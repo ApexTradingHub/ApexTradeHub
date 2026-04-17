@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApexScan Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+  :root{--bg:#080b10;--card:#111620;--border:#1c2333;--text:#c9d1d9;--muted:#484f58;--green:#3fb950;--red:#f85149;--amber:#d29922;--blue:#388bfd;--purple:#bc8cff;--teal:#39d353;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-size:13px;min-height:100vh;padding:20px 24px;}
+  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .logo-text{font-size:18px;font-weight:500;color:#fff;letter-spacing:-.3px;}
+  .logo-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+  .header-right{display:flex;align-items:center;gap:10px;}
+  .regime-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500;}
+  .regime-off{background:rgba(248,81,73,.15);color:var(--red);border:1px solid rgba(248,81,73,.3);}
+  .regime-on{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3);}
+  .last-update{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+  .refresh-btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;transition:background .15s;}
+  .refresh-btn:hover{background:var(--border);}
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+  .stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
+  .stat-value{font-size:20px;font-weight:500;font-family:'IBM Plex Mono',monospace;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
+  .card-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .ctdot{width:6px;height:6px;border-radius:50%;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+  .grid-3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:10px;}
+  .mb10{margin-bottom:10px;}
+  .cw{position:relative;height:160px;}
+  .cws{position:relative;height:120px;}
+  .eq-toggle{display:flex;gap:6px;margin-left:auto;}
+  .eq-btn{font-size:10px;padding:2px 8px;border-radius:4px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--muted);transition:all .15s;}
+  .ab{background:rgba(210,153,34,.15);color:var(--amber);border-color:rgba(210,153,34,.4);}
+  .aa{background:rgba(56,139,253,.15);color:var(--blue);border-color:rgba(56,139,253,.4);}
+  .at{background:rgba(63,185,80,.15);color:var(--green);border-color:rgba(63,185,80,.4);}
+  .signal-table{width:100%;border-collapse:collapse;}
+  .signal-table th{text-align:left;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;padding:0 8px 8px 0;font-weight:400;border-bottom:1px solid var(--border);}
+  .signal-table td{padding:8px 8px 8px 0;border-bottom:1px solid rgba(28,35,51,.5);vertical-align:middle;}
+  .signal-table tr:last-child td{border-bottom:none;}
+  .tc{font-family:'IBM Plex Mono',monospace;color:var(--blue);font-size:12px;font-weight:500;}
+  .cc{color:var(--muted);font-size:11px;}
+  .sp{font-size:10px;padding:2px 7px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-weight:500;white-space:nowrap;}
+  .pb{background:rgba(56,139,253,.15);color:var(--blue);}
+  .pp{background:rgba(188,140,255,.15);color:var(--purple);}
+  .ppr{background:rgba(210,153,34,.15);color:var(--amber);}
+  .pr{background:rgba(63,185,80,.15);color:var(--teal);}
+  .pos{color:var(--green);}
+  .neg{color:var(--red);}
+  .trade-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(28,35,51,.4);font-size:12px;gap:8px;}
+  .trade-row:last-child{border-bottom:none;}
+  .ep{font-size:10px;padding:1px 7px;border-radius:4px;white-space:nowrap;}
+  .etp{background:rgba(63,185,80,.15);color:var(--green);}
+  .esl{background:rgba(248,81,73,.15);color:var(--red);}
+  .ete{background:rgba(72,79,88,.3);color:var(--muted);}
+  .sr{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+  .sn{font-size:11px;color:var(--text);min-width:120px;}
+  .sb{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+  .sbf{height:100%;border-radius:2px;background:var(--blue);}
+  .sc{font-size:11px;color:var(--muted);min-width:16px;text-align:right;}
+  .cg{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .cc2{background:rgba(28,35,51,.4);border-radius:6px;padding:10px 12px;}
+  .cl{font-size:10px;margin-bottom:8px;font-weight:500;}
+  .cr{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;}
+  .ck{color:var(--muted);}
+  .empty{color:var(--muted);font-size:12px;text-align:center;padding:20px 0;}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">&#128225;</div>
+    <div><div class="logo-text">ApexScan</div><div class="logo-sub">Trading Signal Dashboard</div></div>
+  </div>
+  <div class="header-right">
+    <span class="last-update" id="lastUpdate">Laden...</span>
+    <span class="regime-badge regime-off" id="regimeBadge">&#8211;</span>
+    <button class="refresh-btn" onclick="loadData()">&#8635; Refresh</button>
+  </div>
+</div>
+<div class="stats">
+  <div class="stat"><div class="stat-label">Signale total</div><div class="stat-value" id="s-total">&#8211;</div></div>
+  <div class="stat"><div class="stat-label">Win rate (alle)</div><div class="stat-value" id="s-wr">&#8211;</div></div>
+  <div class="stat"><div class="stat-label">Win rate (top)</div><div class="stat-value" id="s-wr2">&#8211;</div></div>
+  <div class="stat"><div class="stat-label">Equity (alle)</div><div class="stat-value" id="s-equity">&#8211;</div></div>
+  <div class="stat"><div class="stat-label">Equity (top)</div><div class="stat-value" id="s-equity2">&#8211;</div></div>
+</div>
+<div class="card mb10">
+  <div class="card-title">
+    <div class="ctdot" style="background:var(--blue)"></div>Equity Kurve
+    <div class="eq-toggle">
+      <button class="eq-btn ab" id="btn-both" onclick="setEqMode('both')">Beide</button>
+      <button class="eq-btn" id="btn-all" onclick="setEqMode('all')">Alle</button>
+      <button class="eq-btn" id="btn-top2" onclick="setEqMode('top2')">Qualit&#228;t</button>
+    </div>
+  </div>
+  <div class="cw"><canvas id="eqChart"></canvas></div>
+</div>
+<div class="grid-3 mb10">
+  <div class="card"><div class="card-title"><div class="ctdot" style="background:var(--amber)"></div>Setups</div><div class="cws"><canvas id="setupChart"></canvas></div></div>
+  <div class="card"><div class="card-title"><div class="ctdot" style="background:var(--red)"></div>Exits (alle)</div><div class="cws"><canvas id="exitChart"></canvas></div></div>
+  <div class="card"><div class="card-title"><div class="ctdot" style="background:var(--green)"></div>Exits (top)</div><div class="cws"><canvas id="exitChart2"></canvas></div></div>
+</div>
+<div class="grid-2 mb10">
+  <div class="card"><div class="card-title"><div class="ctdot" style="background:var(--purple)"></div>Alle vs. Qualit&#228;t</div><div id="compareStats"><div class="empty">Keine Daten</div></div></div>
+  <div class="card"><div class="card-title"><div class="ctdot" style="background:var(--teal)"></div>Sektor-Verteilung</div><div id="sectorBars"><div class="empty">Keine Daten</div></div></div>
+</div>
+<div class="card mb10"><div class="card-title"><div class="ctdot" style="background:var(--blue)"></div>Heutige Signale</div><div id="todaySignals"><div class="empty">Keine Signale heute</div></div></div>
+<div class="card"><div class="card-title"><div class="ctdot" style="background:var(--muted)"></div>Letzte 15 Trades</div><div id="tradeLog"><div class="empty">Keine Trades ausgewertet</div></div></div>
+<script>
+const SF='apex_signals.json',EF='apex_equity_results.json',EF2='apex_equity_top2.json';
+let eqInst,setupInst,exitInst,exit2Inst,allR=[],topR=[],eqMode='both';
+const gc='#1c2333',tc='#484f58';
+const fmtPct=n=>{if(n==null)return'\u2013';return(n>=0?'+':'')+(+n).toFixed(1)+'%';};
+const tod=()=>new Date().toISOString().slice(0,10);
+async function fetchJ(p){try{const r=await fetch(p+'?t='+Date.now());if(!r.ok)return null;return r.json();}catch{return null;}}
+function pil(s){return s==='BREAKOUT'?'pb':s==='POSITION'?'pp':s==='PRE-ROCKET'?'ppr':'pr';}
+function stats(r){
+  if(!r||!r.length)return null;
+  const w=r.filter(x=>x.pnl_pct>0),l=r.filter(x=>x.pnl_pct<=0);
+  const gw=w.reduce((a,x)=>a+Math.abs(x.pnl_usd||0),0),gl=l.reduce((a,x)=>a+Math.abs(x.pnl_usd||0),0);
+  return{wr:w.length/r.length*100,eq:r[r.length-1].equity||0,avgW:w.length?w.reduce((a,x)=>a+x.pnl_pct,0)/w.length:0,
+    avgL:l.length?l.reduce((a,x)=>a+x.pnl_pct,0)/l.length:0,pf:gl>0?gw/gl:999,w:w.length,l:l.length,n:r.length};}
+function renderStats(sigs,rA,rT){
+  document.getElementById('s-total').textContent=sigs?sigs.length:'\u2013';
+  const sA=stats(rA),sT=stats(rT);
+  const set=(id,val,ok)=>{const e=document.getElementById(id);e.textContent=val;e.className='stat-value '+(ok?'pos':'neg');};
+  if(sA){set('s-wr',sA.wr.toFixed(1)+'%',sA.wr>=50);set('s-equity',(sA.eq>=0?'+':'')+('$')+sA.eq.toFixed(0),sA.eq>=0);}
+  if(sT){set('s-wr2',sT.wr.toFixed(1)+'%',sT.wr>=50);set('s-equity2',(sT.eq>=0?'+':'')+('$')+sT.eq.toFixed(0),sT.eq>=0);}
+}
+function curve(r){return r&&r.length?[0,...r.map(x=>x.equity||0)]:[0];}
+function setEqMode(m){
+  eqMode=m;
+  ['both','all','top2'].forEach(x=>{const b=document.getElementById('btn-'+x);b.className='eq-btn'+(x===m?' '+(m==='both'?'ab':m==='all'?'aa':'at'):'');});
+  drawEq();
+}
+function drawEq(){
+  const ctx=document.getElementById('eqChart');
+  const eA=curve(allR),eT=curve(topR);
+  const ds=[];
+  if(eqMode!=='top2'){const c=eA[eA.length-1]>=0?'#388bfd':'#f85149';ds.push({label:'Alle',data:eA,borderColor:c,borderWidth:1.5,pointRadius:0,fill:eqMode==='all'?{target:'origin',above:c+'18',below:'#f8514918'}:false,tension:0.3});}
+  if(eqMode!=='all'){const c=eT[eT.length-1]>=0?'#3fb950':'#f85149';ds.push({label:'Qualit\u00e4t',data:eT,borderColor:c,borderWidth:1.5,pointRadius:0,borderDash:eqMode==='both'?[4,2]:[],fill:eqMode==='top2'?{target:'origin',above:c+'18',below:'#f8514918'}:false,tension:0.3});}
+  if(eqInst)eqInst.destroy();
+  eqInst=new Chart(ctx,{type:'line',data:{labels:Array.from({length:Math.max(eA.length,eT.length)},(_,i)=>i),datasets:ds},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:eqMode==='both',labels:{color:tc,font:{size:10},boxWidth:10}},tooltip:{backgroundColor:'#111620',bodyColor:'#c9d1d9',callbacks:{label:c=>' '+c.dataset.label+': $'+c.parsed.y.toFixed(0)}}},
+    scales:{x:{display:false},y:{grid:{color:gc},ticks:{color:tc,font:{size:10},callback:v=>'$'+v},border:{color:gc}}}}});
+}
+function drawDoughnut(id,r,store){
+  if(!r||!r.length)return;
+  const tp=r.filter(x=>x.exit_reason==='Take Profit').length,sl=r.filter(x=>x.exit_reason==='Stop Loss').length,te=r.filter(x=>x.exit_reason==='Time Exit').length;
+  if(store[0])store[0].destroy();
+  store[0]=new Chart(document.getElementById(id),{type:'doughnut',data:{labels:['TP '+tp,'SL '+sl,'TE '+te],datasets:[{data:[tp,sl,te],backgroundColor:['#3fb95088','#f8514988','#d2992288'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{color:tc,font:{size:10},boxWidth:8,padding:6}}}}});}
+const exitStore=[null],exit2Store=[null];
+function drawSetup(r){
+  if(!r||!r.length)return;
+  const s={};r.forEach(x=>{s[x.setup]=(s[x.setup]||0)+1;});
+  const colors={BREAKOUT:'#388bfd88',POSITION:'#bc8cff88','PRE-ROCKET':'#d2992288',REVERSAL:'#39d35388'};
+  if(setupInst)setupInst.destroy();
+  setupInst=new Chart(document.getElementById('setupChart'),{type:'bar',data:{labels:Object.keys(s),datasets:[{data:Object.values(s),backgroundColor:Object.keys(s).map(k=>colors[k]||'#48505888'),borderWidth:0,borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}},border:{color:gc}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10}},border:{color:gc}}}}});}
+function renderCompare(rA,rT){
+  const el=document.getElementById('compareStats');
+  const sA=stats(rA),sT=stats(rT);
+  if(!sA){el.innerHTML='<div class="empty">Keine Daten</div>';return;}
+  const row=(l,vA,vT,ok)=>`<div class="cr"><span class="ck">${l}</span><span class="${ok(vA)?'pos':'neg'}">${vA}</span><span class="${vT!=='\u2013'&&ok(parseFloat(vT))?'pos':'neg'}">${vT}</span></div>`;
+  el.innerHTML=`<div class="cg">
+    <div class="cc2"><div class="cl" style="color:var(--blue)">Alle Signale</div>
+      <div class="cr"><span class="ck">Trades</span><span>${sA.n}</span></div>
+      <div class="cr"><span class="ck">Win rate</span><span class="${sA.wr>=50?'pos':'neg'}">${sA.wr.toFixed(1)}%</span></div>
+      <div class="cr"><span class="ck">Avg win</span><span class="pos">+${sA.avgW.toFixed(2)}%</span></div>
+      <div class="cr"><span class="ck">Avg loss</span><span class="neg">${sA.avgL.toFixed(2)}%</span></div>
+      <div class="cr"><span class="ck">Profit factor</span><span class="${sA.pf>=1?'pos':'neg'}">${sA.pf.toFixed(2)}</span></div>
+      <div class="cr"><span class="ck">Equity</span><span class="${sA.eq>=0?'pos':'neg'}">${sA.eq>=0?'+':''}$${sA.eq.toFixed(0)}</span></div>
+    </div>
+    <div class="cc2"><div class="cl" style="color:var(--green)">Qualit&#228;tssignale</div>
+      ${sT?`<div class="cr"><span class="ck">Trades</span><span>${sT.n}</span></div>
+      <div class="cr"><span class="ck">Win rate</span><span class="${sT.wr>=50?'pos':'neg'}">${sT.wr.toFixed(1)}%</span></div>
+      <div class="cr"><span class="ck">Avg win</span><span class="pos">+${sT.avgW.toFixed(2)}%</span></div>
+      <div class="cr"><span class="ck">Avg loss</span><span class="neg">${sT.avgL.toFixed(2)}%</span></div>
+      <div class="cr"><span class="ck">Profit factor</span><span class="${sT.pf>=1?'pos':'neg'}">${sT.pf.toFixed(2)}</span></div>
+      <div class="cr"><span class="ck">Equity</span><span class="${sT.eq>=0?'pos':'neg'}">${sT.eq>=0?'+':''}$${sT.eq.toFixed(0)}</span></div>`
+      :'<div class="cr" style="color:var(--muted)">Noch keine Daten</div>'}
+    </div></div>`;}
+function renderToday(sigs){
+  const el=document.getElementById('todaySignals');
+  const t=sigs?sigs.filter(s=>s.date===tod()).sort((a,b)=>b.score-a.score):[];
+  if(!t.length){el.innerHTML='<div class="empty">Keine Signale heute</div>';return;}
+  let h='<table class="signal-table"><thead><tr><th>Ticker</th><th>Setup</th><th>Preis &#8594; Ziel</th><th>Potenzial</th><th>RR</th><th>RSI</th><th>Score</th></tr></thead><tbody>';
+  t.forEach(s=>{const u=s.upside_pct||s.upside||0;h+=`<tr><td><div class="tc">${s.ticker}</div><div class="cc">${s.sector||''}</div></td><td><span class="sp ${pil(s.setup)}">${s.setup}</span></td><td class="mono">$${s.price} &#8594; $${s.target}</td><td class="pos">+${(+u).toFixed(1)}%</td><td class="mono">${(+s.rr).toFixed(2)}</td><td class="mono">${s.rsi}</td><td class="mono">${s.score}</td></tr>`;});
+  el.innerHTML=h+'</tbody></table>';}
+function renderSector(sigs){
+  const el=document.getElementById('sectorBars');
+  if(!sigs||!sigs.length){el.innerHTML='<div class="empty">Keine Daten</div>';return;}
+  const s={};sigs.forEach(x=>{if(x.sector&&x.sector!=='Unknown')s[x.sector]=(s[x.sector]||0)+1;});
+  const arr=Object.entries(s).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  const mx=arr[0]?.[1]||1;
+  el.innerHTML=arr.map(([n,c])=>`<div class="sr"><span class="sn">${n}</span><div class="sb"><div class="sbf" style="width:${(c/mx*100).toFixed(0)}%"></div></div><span class="sc">${c}</span></div>`).join('');}
+function renderLog(r){
+  const el=document.getElementById('tradeLog');
+  if(!r||!r.length){el.innerHTML='<div class="empty">Keine Trades ausgewertet</div>';return;}
+  const ec=x=>x.exit_reason==='Take Profit'?'etp':x.exit_reason==='Stop Loss'?'esl':'ete';
+  const el2=x=>x.exit_reason==='Take Profit'?'TP':x.exit_reason==='Stop Loss'?'SL':'TE';
+  el.innerHTML=[...r].reverse().slice(0,15).map(x=>`<div class="trade-row"><span style="min-width:55px" class="tc">${x.ticker}</span><span style="color:var(--muted);font-size:11px;min-width:75px">${x.date}</span><span class="sp ${pil(x.setup)}">${x.setup}</span><span class="mono">$${x.entry}&#8594;$${x.exit_price}</span><span class="ep ${ec(x)}">${el2(x)} D+${x.exit_day}</span><span class="mono ${x.pnl_pct>0?'pos':'neg'}">${fmtPct(x.pnl_pct)}</span><span class="mono ${x.pnl_usd>=0?'pos':'neg'}">${x.pnl_usd>=0?'+':''}$${(+x.pnl_usd).toFixed(2)}</span><span style="color:var(--muted);font-size:11px">$${(+x.equity).toFixed(0)}</span></div>`).join('');}
+async function loadData(){
+  document.getElementById('lastUpdate').textContent='L\u00e4dt...';
+  const[sigs,rA,rT]=await Promise.all([fetchJ(SF),fetchJ(EF),fetchJ(EF2)]);
+  if(!sigs&&!rA){document.getElementById('lastUpdate').textContent='Fehler: Dateien nicht gefunden';document.getElementById('regimeBadge').textContent='OFFLINE';return;}
+  allR=rA||[];topR=rT||[];
+  if(sigs&&sigs.length){const l=sigs.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];document.getElementById('lastUpdate').textContent='Stand: '+l.date;}
+  renderStats(sigs,allR,topR);drawEq();drawDoughnut('exitChart',allR,exitStore);drawDoughnut('exitChart2',topR,exit2Store);
+  drawSetup(allR);renderCompare(allR,topR);renderToday(sigs);renderSector(sigs);renderLog(allR);}
+loadData();
+</script>
+</body>
+</html>
