@@ -137,9 +137,9 @@
 
     /* Trade rows: Karten-Layout auf Mobil */
     .trade-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 5px;
       padding: 10px 0;
       font-size: 12px;
     }
@@ -151,12 +151,15 @@
     }
     .trade-row-bottom {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       width: 100%;
       align-items: center;
+      gap: 8px;
     }
     .trade-date { color: var(--muted); font-size: 11px; }
-    .trade-equity { display: none; }
+    .trade-equity { display: none !important; }
+    .trade-pnl { font-size: 12px !important; }
+    .trade-prices { font-size: 11px !important; }
 
     /* Sektor bars */
     .sn { min-width: 90px; font-size: 10px; }
