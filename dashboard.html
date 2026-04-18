@@ -73,6 +73,44 @@
 
   /* ===== MOBILE OPTIMIERUNG ===== */
   @media (max-width: 768px) {
+    /* Trade rows: Karten-Layout statt horizontale Zeile */
+    .trade-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 2px 8px;
+      padding: 10px 0;
+      flex-wrap: unset;
+    }
+    .trade-ticker  { grid-column: 1; grid-row: 1; font-size: 14px; font-weight: 600; }
+    .trade-date    { grid-column: 2; grid-row: 1; font-size: 10px; color: var(--muted); align-self: center; }
+    .trade-equity  { grid-column: 3; grid-row: 1; font-size: 11px; color: var(--muted); text-align: right; }
+    .trade-badges  { grid-column: 1; grid-row: 2; display: flex; gap: 4px; align-items: center; }
+    .trade-pnl     { grid-column: 2; grid-row: 2; font-size: 12px; font-weight: 600; align-self: center; }
+    .trade-usd     { grid-column: 3; grid-row: 2; font-size: 12px; text-align: right; align-self: center; }
+    .trade-prices  { display: none; } /* Preise auf Mobil ausblenden - zu eng */
+  }
+  /* Trade Log als Karten auf Mobil */
+  @media (max-width: 768px) {
+    .trade-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 3px 8px;
+      padding: 10px 0;
+      flex-wrap: unset;
+    }
+    .trade-ticker { grid-column: 1; grid-row: 1; font-size: 14px; font-weight: 600; }
+    .trade-date   { grid-column: 2; grid-row: 1; font-size: 10px; color: var(--muted); align-self: center; }
+    .trade-equity { grid-column: 3; grid-row: 1; font-size: 11px; color: var(--muted); text-align: right; }
+    .trade-pnl    { grid-column: 1; grid-row: 2; font-size: 12px; font-weight: 500; }
+    .trade-usd    { grid-column: 2; grid-row: 2; font-size: 11px; align-self: center; }
+    .trade-exit   { grid-column: 3; grid-row: 2; align-self: center; text-align: right; }
+    .trade-setup  { display: none; }
+    .trade-prices { display: none; }
+  }
+
+  @media (max-width: 768px) {
     body { padding: 12px; font-size: 12px; }
 
     /* Header */
@@ -258,7 +296,18 @@ function renderLog(r){
   if(!r||!r.length){el.innerHTML='<div class="empty">Keine Trades ausgewertet</div>';return;}
   const ec=x=>x.exit_reason==='Take Profit'?'etp':x.exit_reason==='Stop Loss'?'esl':'ete';
   const el2=x=>x.exit_reason==='Take Profit'?'TP':x.exit_reason==='Stop Loss'?'SL':'TE';
-  el.innerHTML=[...r].reverse().slice(0,15).map(x=>`<div class="trade-row"><span style="min-width:55px" class="tc">${x.ticker}</span><span style="color:var(--muted);font-size:11px;min-width:75px">${x.date}</span><span class="sp ${pil(x.setup)}">${x.setup}</span><span class="mono">$${x.entry}&#8594;$${x.exit_price}</span><span class="ep ${ec(x)}">${el2(x)} D+${x.exit_day}</span><span class="mono ${x.pnl_pct>0?'pos':'neg'}">${fmtPct(x.pnl_pct)}</span><span class="mono ${x.pnl_usd>=0?'pos':'neg'}">${x.pnl_usd>=0?'+':''}$${(+x.pnl_usd).toFixed(2)}</span><span style="color:var(--muted);font-size:11px">$${(+x.equity).toFixed(0)}</span></div>`).join('');}
+  el.innerHTML=[...r].reverse().slice(0,15).map(x=>`
+<div class="trade-row">
+  <span class="tc trade-ticker">${x.ticker}</span>
+  <span class="trade-date">${x.date}</span>
+  <span class="trade-equity">$${(+x.equity).toFixed(0)}</span>
+  <span class="trade-badges">
+    <span class="sp ${pil(x.setup)}">${x.setup}</span>
+    <span class="ep ${ec(x)}">${el2(x)} D+${x.exit_day}</span>
+  </span>
+  <span class="trade-pnl mono ${x.pnl_pct>0?'pos':'neg'}">${fmtPct(x.pnl_pct)}</span>
+  <span class="trade-usd mono ${x.pnl_usd>=0?'pos':'neg'} trade-prices">${x.pnl_usd>=0?'+':''}$${(+x.pnl_usd).toFixed(2)}</span>
+</div>`).join('');}
 async function loadData(){
   document.getElementById('lastUpdate').textContent='L\u00e4dt...';
   const[sigs,rA,rT]=await Promise.all([fetchJ(SF),fetchJ(EF),fetchJ(EF2)]);
