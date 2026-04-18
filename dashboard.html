@@ -70,6 +70,57 @@
   .ck{color:var(--muted);}
   .empty{color:var(--muted);font-size:12px;text-align:center;padding:20px 0;}
   .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;}
+
+  /* ===== MOBILE OPTIMIERUNG ===== */
+  @media (max-width: 768px) {
+    body { padding: 12px; font-size: 12px; }
+
+    /* Header */
+    .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .header-right { width: 100%; justify-content: space-between; }
+    .logo-text { font-size: 16px; }
+
+    /* Stats: 2 Spalten statt 5 */
+    .stats { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .stats .stat:last-child { grid-column: span 2; }
+    .stat-value { font-size: 16px; }
+
+    /* Grids: alles eine Spalte */
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+
+    /* Charts etwas kleiner */
+    .cw { height: 130px; }
+    .cws { height: 110px; }
+
+    /* Signal Tabelle scrollbar */
+    .signal-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .signal-table th, .signal-table td { font-size: 11px; padding: 6px 6px 6px 0; }
+
+    /* Trade rows kompakter */
+    .trade-row { font-size: 11px; flex-wrap: wrap; gap: 4px; }
+
+    /* Sektor bars */
+    .sn { min-width: 90px; font-size: 10px; }
+
+    /* Compare stats */
+    .cg { grid-template-columns: 1fr; }
+
+    /* Card padding */
+    .card { padding: 12px; }
+    .card-title { font-size: 10px; margin-bottom: 10px; }
+
+    /* Eq toggle buttons */
+    .eq-toggle { gap: 4px; }
+    .eq-btn { font-size: 9px; padding: 2px 6px; }
+  }
+
+  @media (max-width: 400px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat-value { font-size: 14px; }
+    body { padding: 8px; }
+  }
+
 </style>
 </head>
 <body>
@@ -120,7 +171,7 @@ const gc='#1c2333',tc='#484f58';
 const fmtPct=n=>{if(n==null)return'\u2013';return(n>=0?'+':'')+(+n).toFixed(1)+'%';};
 const tod=()=>new Date().toISOString().slice(0,10);
 async function fetchJ(p){try{const r=await fetch(p+'?t='+Date.now());if(!r.ok)return null;return r.json();}catch{return null;}}
-function pil(s){return s==='BREAKOUT'?'pb':s==='POSITION'?'pp':s==='PRE-ROCKET'?'ppr':'pr';}
+function pil(s){return s==='BREAKOUT'?'pb':s==='REVERSAL'?'pr':'pb';}
 function stats(r){
   if(!r||!r.length)return null;
   const w=r.filter(x=>x.pnl_pct>0),l=r.filter(x=>x.pnl_pct<=0);
@@ -161,7 +212,7 @@ const exitStore=[null],exit2Store=[null];
 function drawSetup(r){
   if(!r||!r.length)return;
   const s={};r.forEach(x=>{s[x.setup]=(s[x.setup]||0)+1;});
-  const colors={BREAKOUT:'#388bfd88',POSITION:'#bc8cff88','PRE-ROCKET':'#d2992288',REVERSAL:'#39d35388'};
+  const colors={BREAKOUT:'#388bfd88',REVERSAL:'#39d35388'};
   if(setupInst)setupInst.destroy();
   setupInst=new Chart(document.getElementById('setupChart'),{type:'bar',data:{labels:Object.keys(s),datasets:[{data:Object.values(s),backgroundColor:Object.keys(s).map(k=>colors[k]||'#48505888'),borderWidth:0,borderRadius:4}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:10}},border:{color:gc}},y:{grid:{color:gc},ticks:{color:tc,font:{size:10}},border:{color:gc}}}}});}
@@ -192,7 +243,7 @@ function renderToday(sigs){
   const el=document.getElementById('todaySignals');
   const t=sigs?sigs.filter(s=>s.date===tod()).sort((a,b)=>b.score-a.score):[];
   if(!t.length){el.innerHTML='<div class="empty">Keine Signale heute</div>';return;}
-  let h='<table class="signal-table"><thead><tr><th>Ticker</th><th>Setup</th><th>Preis &#8594; Ziel</th><th>Potenzial</th><th>RR</th><th>RSI</th><th>Score</th></tr></thead><tbody>';
+  let h='<div class="signal-table-wrap"><table class="signal-table"><thead><tr><th>Ticker</th><th>Setup</th><th>Preis &#8594; Ziel</th><th>Potenzial</th><th>RR</th><th>RSI</th><th>Score</th></tr></thead><tbody>';
   t.forEach(s=>{const u=s.upside_pct||s.upside||0;h+=`<tr><td><div class="tc">${s.ticker}</div><div class="cc">${s.sector||''}</div></td><td><span class="sp ${pil(s.setup)}">${s.setup}</span></td><td class="mono">$${s.price} &#8594; $${s.target}</td><td class="pos">+${(+u).toFixed(1)}%</td><td class="mono">${(+s.rr).toFixed(2)}</td><td class="mono">${s.rsi}</td><td class="mono">${s.score}</td></tr>`;});
   el.innerHTML=h+'</tbody></table>';}
 function renderSector(sigs){
