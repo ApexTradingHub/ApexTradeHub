@@ -135,8 +135,28 @@
     .signal-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .signal-table th, .signal-table td { font-size: 11px; padding: 6px 6px 6px 0; }
 
-    /* Trade rows kompakter */
-    .trade-row { font-size: 11px; flex-wrap: wrap; gap: 4px; }
+    /* Trade rows: Karten-Layout auf Mobil */
+    .trade-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 10px 0;
+      font-size: 12px;
+    }
+    .trade-row-top {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+    .trade-row-bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+    .trade-date { color: var(--muted); font-size: 11px; }
+    .trade-equity { display: none; }
 
     /* Sektor bars */
     .sn { min-width: 90px; font-size: 10px; }
@@ -298,15 +318,16 @@ function renderLog(r){
   const el2=x=>x.exit_reason==='Take Profit'?'TP':x.exit_reason==='Stop Loss'?'SL':'TE';
   el.innerHTML=[...r].reverse().slice(0,15).map(x=>`
 <div class="trade-row">
-  <span class="tc trade-ticker">${x.ticker}</span>
-  <span class="trade-date">${x.date}</span>
-  <span class="trade-equity">$${(+x.equity).toFixed(0)}</span>
-  <span class="trade-badges">
+  <div class="trade-row-top">
+    <span class="tc trade-ticker">${x.ticker}</span>
+    <span class="trade-date">${x.date}</span>
+    <span class="trade-pnl mono ${x.pnl_pct>0?'pos':'neg'}">${fmtPct(x.pnl_pct)}</span>
+  </div>
+  <div class="trade-row-bottom">
     <span class="sp ${pil(x.setup)}">${x.setup}</span>
     <span class="ep ${ec(x)}">${el2(x)} D+${x.exit_day}</span>
-  </span>
-  <span class="trade-pnl mono ${x.pnl_pct>0?'pos':'neg'}">${fmtPct(x.pnl_pct)}</span>
-  <span class="trade-usd mono ${x.pnl_usd>=0?'pos':'neg'} trade-prices">${x.pnl_usd>=0?'+':''}$${(+x.pnl_usd).toFixed(2)}</span>
+    <span class="mono ${x.pnl_usd>=0?'pos':'neg'}" style="font-size:11px">${x.pnl_usd>=0?'+':''}$${(+x.pnl_usd).toFixed(2)}</span>
+  </div>
 </div>`).join('');}
 async function loadData(){
   document.getElementById('lastUpdate').textContent='L\u00e4dt...';
