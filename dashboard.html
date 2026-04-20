@@ -19,6 +19,7 @@
   .regime-badge{font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500;}
   .regime-off{background:rgba(248,81,73,.15);color:var(--red);border:1px solid rgba(248,81,73,.3);}
   .regime-on{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3);}
+  .regime-caution{background:rgba(210,153,34,.15);color:var(--amber);border:1px solid rgba(210,153,34,.3);}
   .last-update{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
   .refresh-btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;transition:background .15s;}
   .refresh-btn:hover{background:var(--border);}
@@ -226,7 +227,7 @@
 <div class="card mb10"><div class="card-title"><div class="ctdot" style="background:var(--blue)"></div>Heutige Signale</div><div id="todaySignals"><div class="empty">Keine Signale heute</div></div></div>
 <div class="card"><div class="card-title"><div class="ctdot" style="background:var(--muted)"></div>Letzte 15 Trades</div><div id="tradeLog"><div class="empty">Keine Trades ausgewertet</div></div></div>
 <script>
-const SF='apex_signals.json',EF='apex_equity_results.json',EF2='apex_equity_top2.json';
+const SF='apex_signals.json',EF='apex_equity_results.json',EF2='apex_equity_top2.json',MF='apex_market.json';
 let eqInst,setupInst,exitInst,exit2Inst,allR=[],topR=[],eqMode='both';
 const gc='#1c2333',tc='#484f58';
 const fmtPct=n=>{if(n==null)return'\u2013';return(n>=0?'+':'')+(+n).toFixed(1)+'%';};
@@ -334,10 +335,11 @@ function renderLog(r){
 </div>`).join('');}
 async function loadData(){
   document.getElementById('lastUpdate').textContent='L\u00e4dt...';
-  const[sigs,rA,rT]=await Promise.all([fetchJ(SF),fetchJ(EF),fetchJ(EF2)]);
+  const[sigs,rA,rT,mkt]=await Promise.all([fetchJ(SF),fetchJ(EF),fetchJ(EF2),fetchJ(MF)]);
   if(!sigs&&!rA){document.getElementById('lastUpdate').textContent='Fehler: Dateien nicht gefunden';document.getElementById('regimeBadge').textContent='OFFLINE';return;}
   allR=rA||[];topR=rT||[];
-  if(sigs&&sigs.length){const l=sigs.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];document.getElementById('lastUpdate').textContent='Stand: '+l.date;}
+  if(mkt){const badge=document.getElementById('regimeBadge');badge.textContent=mkt.mode;badge.className='regime-badge '+(mkt.mode==='BULL MODE'?'regime-on':mkt.mode==='CAUTION'?'regime-caution':'regime-off');if(mkt.updated)document.getElementById('lastUpdate').textContent='Stand: '+mkt.updated;}
+  else if(sigs&&sigs.length){const l=sigs.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];document.getElementById('lastUpdate').textContent='Stand: '+l.date;}
   renderStats(sigs,allR,topR);drawEq();drawDoughnut('exitChart',allR,exitStore);drawDoughnut('exitChart2',topR,exit2Store);
   drawSetup(allR);renderCompare(allR,topR);renderToday(sigs);renderSector(sigs);renderLog(allR);}
 loadData();
