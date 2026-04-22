@@ -338,7 +338,7 @@ async function loadData(){
   const[sigs,rA,rT,mkt]=await Promise.all([fetchJ(SF),fetchJ(EF),fetchJ(EF2),fetchJ(MF)]);
   if(!sigs&&!rA){document.getElementById('lastUpdate').textContent='Fehler: Dateien nicht gefunden';document.getElementById('regimeBadge').textContent='OFFLINE';return;}
   allR=rA||[];topR=rT||[];
-  if(mkt){const badge=document.getElementById('regimeBadge');badge.textContent=mkt.mode;badge.className='regime-badge '+(mkt.mode==='BULL MODE'?'regime-on':mkt.mode==='CAUTION'?'regime-caution':'regime-off');if(mkt.updated)document.getElementById('lastUpdate').textContent='Stand: '+mkt.updated;}
+  if(mkt){const badge=document.getElementById('regimeBadge');badge.textContent=mkt.mode;badge.className='regime-badge '+(mkt.mode==='BULLISH'?'regime-on':mkt.mode==='MIXED'?'regime-caution':'regime-off');if(mkt.updated)document.getElementById('lastUpdate').textContent='Stand: '+mkt.updated;}
   else if(sigs&&sigs.length){const l=sigs.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];document.getElementById('lastUpdate').textContent='Stand: '+l.date;}
   renderStats(sigs,allR,topR);drawEq();drawDoughnut('exitChart',allR,exitStore);drawDoughnut('exitChart2',topR,exit2Store);
   drawSetup(allR);renderCompare(allR,topR);renderToday(sigs);renderSector(sigs);renderLog(allR);}
