@@ -23,7 +23,7 @@
   .last-update{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
   .refresh-btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;transition:background .15s;}
   .refresh-btn:hover{background:var(--border);}
-  .stats{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px;}
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px;}
   .stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
   .stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;}
   .stat-value{font-size:20px;font-weight:500;font-family:'IBM Plex Mono',monospace;}
@@ -183,7 +183,7 @@
     body { padding: 8px; }
   }
   @media (min-width: 401px) and (max-width: 768px) {
-    .stats { grid-template-columns: repeat(4, 1fr); }
+    .stats { grid-template-columns: repeat(3, 1fr); }
   }
 
 </style>
@@ -202,12 +202,54 @@
 </div>
 <div class="stats">
   <div class="stat"><div class="stat-label">Signale total</div><div class="stat-value" id="s-total">&#8211;</div></div>
-  <div class="stat"><div class="stat-label">Offen</div><div class="stat-value pos" id="s-open">&#8211;</div></div>
-  <div class="stat"><div class="stat-label">Geschlossen</div><div class="stat-value" id="s-closed">&#8211;</div></div>
-  <div class="stat"><div class="stat-label">Win rate (alle)</div><div class="stat-value" id="s-wr">&#8211;</div></div>
-  <div class="stat"><div class="stat-label">Win rate (top)</div><div class="stat-value" id="s-wr2">&#8211;</div></div>
-  <div class="stat"><div class="stat-label">Equity (alle)</div><div class="stat-value" id="s-equity">&#8211;</div></div>
-  <div class="stat"><div class="stat-label">Equity (top)</div><div class="stat-value" id="s-equity2">&#8211;</div></div>
+  <div class="stat">
+    <div class="stat-label">Trades</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+      <span style="font-size:11px;color:var(--muted);">Offen</span>
+      <span class="stat-value pos" id="s-open" style="font-size:15px;">&#8211;</span>
+    </div>
+    <div style="height:1px;background:var(--border);margin-bottom:5px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11px;color:var(--muted);">Geschlossen</span>
+      <span class="stat-value" id="s-closed" style="font-size:15px;">&#8211;</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Setups</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+      <span style="font-size:11px;color:var(--muted);">Breakout</span>
+      <span style="font-size:15px;font-weight:500;font-family:'IBM Plex Mono',monospace;color:var(--blue);" id="s-breakout">&#8211;</span>
+    </div>
+    <div style="height:1px;background:var(--border);margin-bottom:5px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11px;color:var(--muted);">Reversal</span>
+      <span style="font-size:15px;font-weight:500;font-family:'IBM Plex Mono',monospace;color:var(--teal);" id="s-reversal">&#8211;</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Win rate</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+      <span style="font-size:11px;color:var(--muted);">All</span>
+      <span class="stat-value" id="s-wr" style="font-size:15px;">&#8211;</span>
+    </div>
+    <div style="height:1px;background:var(--border);margin-bottom:5px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11px;color:var(--muted);">Top</span>
+      <span class="stat-value" id="s-wr2" style="font-size:15px;">&#8211;</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Equity</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+      <span style="font-size:11px;color:var(--muted);">All</span>
+      <span class="stat-value" id="s-equity" style="font-size:15px;">&#8211;</span>
+    </div>
+    <div style="height:1px;background:var(--border);margin-bottom:5px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11px;color:var(--muted);">Top</span>
+      <span class="stat-value" id="s-equity2" style="font-size:15px;">&#8211;</span>
+    </div>
+  </div>
 </div>
 <div class="card mb10">
   <div class="card-title">
@@ -260,6 +302,8 @@ function renderStats(sigs,rA,rT){
     maxExit.setDate(maxExit.getDate()+(holdDays[s.setup]||15));
     return today<=maxExit;
   });
+  document.getElementById('s-breakout').textContent=active.filter(s=>s.setup==='BREAKOUT').length;
+  document.getElementById('s-reversal').textContent=active.filter(s=>s.setup==='REVERSAL').length;
   document.getElementById('s-open').textContent=openTrades.length;
   document.getElementById('s-closed').textContent=(rA||[]).length;
   const set=(id,val,ok)=>{const e=document.getElementById(id);e.textContent=val;e.className='stat-value '+(ok?'pos':'neg');};
