@@ -1,0 +1,44 @@
+name: ApexScan Daily
+
+on:
+  schedule:
+    - cron: '0 21 * * 1-5'  # 23:00 Uhr deutsche Zeit (UTC+2)
+  workflow_dispatch:          # manueller Start möglich
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python Setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Dependencies installieren
+        run: |
+          pip install yfinance pandas requests pytz
+
+      - name: ApexScan ausführen
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python ApexScan.py
+
+      - name: Equity Tracker ausführen
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python apex_equity.py
+
+      - name: Ergebnisse pushen
+        run: |
+          git config user.name "ApexScan Bot"
+          git config user.email "bot@apexscan.com"
+          git add apex_signals.json apex_equity_results.json apex_equity_top2.json apex_market.json dashboard.html
+          git diff --staged --quiet || git commit -m "Scan update $(date +'%Y-%m-%d %H:%M')"
+          git push
+          
