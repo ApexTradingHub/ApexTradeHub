@@ -20,7 +20,7 @@ jobs:
 
       - name: Dependencies installieren
         run: |
-          pip install yfinance pandas requests pytz
+          pip install yfinance pandas requests pytz tqdm
 
       - name: ApexScan ausführen
         env:
