@@ -2,7 +2,7 @@ name: ApexScan Daily
 
 on:
   schedule:
-    - cron: '0 21 * * 1-5'  # 23:00 Uhr deutsche Zeit (UTC+2)
+    - cron: '0 21 * * 1-5'  # 23:00 Uhr deutsche Zeit (UTC+2 Sommerzeit)
   workflow_dispatch:          # manueller Start möglich
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Dependencies installieren
         run: |
-          pip install yfinance pandas requests pytz tqdm
+          pip install yfinance pandas requests pytz tqdm matplotlib
 
       - name: ApexScan ausführen
         env:
@@ -41,4 +41,3 @@ jobs:
           git add apex_signals.json apex_equity_results.json apex_equity_top2.json apex_market.json dashboard.html
           git diff --staged --quiet || git commit -m "Scan update $(date +'%Y-%m-%d %H:%M')"
           git push
-          
