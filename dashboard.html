@@ -1206,7 +1206,7 @@ async function loadData() {
     const badge = document.getElementById('regimeBadge');
     badge.innerHTML = `<span class="regime-dot"></span><span>${mkt.mode}</span>`;
     badge.className = 'regime-badge ' + (mkt.mode === 'BULLISH' ? 'regime-on' : mkt.mode === 'MIXED' ? 'regime-caution' : 'regime-off');
-    if (mkt.updated) upd.textContent = 'Stand: ' + mkt.updated;
+    if (mkt.equity_updated || mkt.updated) upd.textContent = 'Stand: ' + (mkt.equity_updated || mkt.updated);
   } else if (sigs && sigs.length) {
     const l = sigs.slice().sort((a, b) => b.date.localeCompare(a.date))[0];
     upd.textContent = 'Stand: ' + l.date;

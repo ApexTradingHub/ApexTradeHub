@@ -423,12 +423,25 @@ def main():
 
 
 def git_push():
-    import subprocess
+    import subprocess, json as _json, os
+    # Write equity timestamp to apex_market.json
+    try:
+        mf = "apex_market.json"
+        market = {}
+        if os.path.exists(mf):
+            with open(mf, "r", encoding="utf-8") as f:
+                market = _json.load(f)
+        market["equity_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        with open(mf, "w", encoding="utf-8") as f:
+            _json.dump(market, f, indent=2)
+    except Exception:
+        pass
+
     print("\nPushe auf GitHub...")
     try:
         subprocess.run(
             ["git", "add",
-             "apex_equity_results.json", "apex_equity_top2.json", "dashboard.html"],
+             "apex_equity_results.json", "apex_equity_top2.json", "apex_market.json", "dashboard.html"],
             check=True, capture_output=True
         )
         result = subprocess.run(
