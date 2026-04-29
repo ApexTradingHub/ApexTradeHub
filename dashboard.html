@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ApexScan — Trading Signal Dashboard</title>
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#03050F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ApexScan">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -1216,6 +1223,40 @@ async function loadData() {
 }
 
 loadData();
+</script>
+
+<script>
+/* ── PWA: Service Worker ── */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/ApexTradeHub/sw.js')
+      .then(reg => console.log('[SW] Registriert:', reg.scope))
+      .catch(err => console.warn('[SW] Fehler:', err));
+  });
+}
+
+/* ── PWA: Offline-Banner ── */
+(function() {
+  const banner = document.createElement('div');
+  banner.id = 'offlineBanner';
+  banner.style.cssText = [
+    'display:none','position:fixed','bottom:20px','left:50%',
+    'transform:translateX(-50%)',
+    'background:rgba(255,59,92,0.13)',
+    'border:1px solid rgba(255,59,92,0.38)',
+    'color:#FF3B5C','font-family:var(--font-mono)',
+    'font-size:11px','font-weight:600',
+    'padding:8px 18px','border-radius:8px',
+    'z-index:9999','letter-spacing:0.08em',
+    'backdrop-filter:blur(10px)','white-space:nowrap'
+  ].join(';');
+  banner.textContent = '⚡ OFFLINE – letzte gespeicherte Daten';
+  document.body.appendChild(banner);
+  function sync() { banner.style.display = navigator.onLine ? 'none' : 'block'; }
+  window.addEventListener('online',  sync);
+  window.addEventListener('offline', sync);
+  sync();
+})();
 </script>
 </body>
 </html>
