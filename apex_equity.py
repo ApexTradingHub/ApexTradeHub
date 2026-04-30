@@ -424,7 +424,7 @@ def main():
 
 def git_push():
     import subprocess, json as _json, os
-    # Write equity timestamp to apex_market.json
+    # Always write equity timestamp so dashboard shows last run time
     try:
         mf = "apex_market.json"
         market = {}
