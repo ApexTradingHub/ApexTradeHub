@@ -370,6 +370,15 @@ def print_summary(all_results, new_results, skipped, label):
 # MAIN
 # =============================================================
 def main():
+    import subprocess, os
+    if os.path.exists(".git"):
+        try:
+            subprocess.run(["git", "pull", "origin", "master", "--rebase"],
+                           capture_output=True, check=True)
+            print("Git: Synced with GitHub.")
+        except subprocess.CalledProcessError:
+            print("Git: Pull failed – continuing anyway.")
+
     signals = load_json(SIGNALS_FILE, [])
 
     if not signals:
