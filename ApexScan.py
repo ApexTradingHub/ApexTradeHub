@@ -148,6 +148,22 @@ def safe_float(x, default=0.0):
         return default
 
 
+def clean_nan_for_json(obj):
+    """Recursively replace NaN/inf floats with None so JSON serialization is
+    spec-compliant (json.dump's allow_nan default writes invalid 'NaN' tokens).
+    Pandas DataFrame conversion in enrich_sector() turns Python None into NaN
+    for numeric columns — this catches that and any other source."""
+    if isinstance(obj, dict):
+        return {k: clean_nan_for_json(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [clean_nan_for_json(x) for x in obj]
+    if isinstance(obj, float):
+        # Catches NaN (NaN != NaN) and +/- inf
+        if obj != obj or obj == float("inf") or obj == float("-inf"):
+            return None
+    return obj
+
+
 def percent_change(current, past):
     if pd.isna(current) or pd.isna(past) or past == 0:
         return None
@@ -981,7 +997,8 @@ def enrich_sector(candidates):
     df = pd.DataFrame(candidates).sort_values(
         ["score", "rr", "vol_ratio"], ascending=False
     ).reset_index(drop=True)
-    return df.to_dict("records")
+    # DataFrame coerces None → NaN in numeric columns; clean back for JSON safety
+    return clean_nan_for_json(df.to_dict("records"))
 
 
 # =============================================================
@@ -1300,7 +1317,7 @@ def save_signals(candidates):
 
     existing.extend(new_entries)
     with open(signals_file, "w", encoding="utf-8") as f:
-        json.dump(existing, f, indent=2, ensure_ascii=False)
+        json.dump(clean_nan_for_json(existing), f, indent=2, ensure_ascii=False)
     print(f"Signals saved: {len(new_entries)} new -> {signals_file}  (total: {len(existing)})")
 
 
