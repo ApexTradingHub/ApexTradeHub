@@ -435,12 +435,14 @@ def git_push():
     import subprocess, json as _json, os
     # Always write equity timestamp so dashboard shows last run time
     try:
+        import pytz
+        tz = pytz.timezone("Europe/Berlin")
         mf = "apex_market.json"
         market = {}
         if os.path.exists(mf):
             with open(mf, "r", encoding="utf-8") as f:
                 market = _json.load(f)
-        market["equity_updated"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        market["equity_updated"] = datetime.now(tz).strftime("%Y-%m-%d %H:%M")
         with open(mf, "w", encoding="utf-8") as f:
             _json.dump(market, f, indent=2)
     except Exception:
