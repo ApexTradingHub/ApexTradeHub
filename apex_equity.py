@@ -52,6 +52,11 @@ HORIZON_DAYS = {
 }
 DEFAULT_HOLD = 21
 
+# Maximum days to wait for buy_above trigger before signal expires.
+# Mirrors apex_backtest_v2.py's MAX_TRIGGER_DAYS so live tracking matches
+# backtest assumptions (61.8% BO WR was measured with 3-day cap).
+MAX_TRIGGER_DAYS = 3
+
 
 # =============================================================
 # HELPERS
@@ -143,8 +148,10 @@ def evaluate_trade(signal, today):
         except Exception:
             continue
 
-        # Step 1: wait for buy_above to be triggered
+        # Step 1: wait for buy_above to be triggered (max MAX_TRIGGER_DAYS)
         if trigger_day is None:
+            if i >= MAX_TRIGGER_DAYS:
+                return None  # signal stale — matches backtest 3d cap
             if h >= entry:
                 trigger_day = i
                 # Same candle hit stop too -> unreliable gap, skip
