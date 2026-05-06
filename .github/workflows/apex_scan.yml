@@ -32,7 +32,6 @@ jobs:
           git push
 
   equity:
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 4,6,8,10,12,14,16,18 * * *'
     runs-on: ubuntu-latest
     permissions:
       contents: write
