@@ -28,8 +28,7 @@ jobs:
           git config user.name "ApexScan Bot"
           git config user.email "bot@apexscan.com"
           git add apex_signals.json apex_equity_results.json apex_equity_top2.json apex_market.json dashboard.html
-          git diff --staged --quiet || git commit -m "Scan $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git diff --staged --quiet || (git pull origin master --rebase && git commit -m "Scan $(date +'%Y-%m-%d %H:%M')" && git push)
 
   equity:
     runs-on: ubuntu-latest
@@ -48,5 +47,4 @@ jobs:
           git config user.name "ApexScan Bot"
           git config user.email "bot@apexscan.com"
           git add apex_equity_results.json apex_equity_top2.json apex_market.json dashboard.html
-          git diff --staged --quiet || git commit -m "Equity $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git diff --staged --quiet || (git pull origin master --rebase && git commit -m "Equity $(date +'%Y-%m-%d %H:%M')" && git push)
