@@ -72,6 +72,11 @@ SCAN_MIN_SCORE = {
     "STAGE_2":       55,
 }
 
+# RSI-Range overrides via CLI (set in main() from --bo-rsi-min / --bo-rsi-max)
+BO_RSI_MIN_OVERRIDE = None
+BO_RSI_MAX_OVERRIDE = None
+RESULTS_FILE_OVERRIDE = None
+
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
     "2-4 weeks":   20,   # SHORT_SQUEEZE
@@ -528,9 +533,11 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     macd_bull = mh > 0 and mh > mh_p
     higher_tf = ma150 > 0 and close >= ma150 * 0.95
 
-    # Per-setup RSI zones
+    # Per-setup RSI zones (with optional CLI overrides for tuning experiments)
     if relax == 0:
-        rsi_breakout  = 45 <= rsi14 <= 68
+        rsi_min = BO_RSI_MIN_OVERRIDE if BO_RSI_MIN_OVERRIDE is not None else 45
+        rsi_max = BO_RSI_MAX_OVERRIDE if BO_RSI_MAX_OVERRIDE is not None else 68
+        rsi_breakout  = rsi_min <= rsi14 <= rsi_max
         rsi_prerocket = 40 <= rsi14 <= 65
         rsi_zone      = rsi_breakout
     else:
@@ -1187,7 +1194,19 @@ def main():
                         help="Enddatum YYYY-MM-DD (z.B. 2024-12-31)")
     parser.add_argument("--top",   type=int, default=None,
                         help="Nur erste N Ticker (schneller für Tests)")
+    parser.add_argument("--bo-rsi-min", type=int, default=None,
+                        help="Override BREAKOUT RSI-Gate min (default 45 relax=0, 40 relax>=1)")
+    parser.add_argument("--bo-rsi-max", type=int, default=None,
+                        help="Override BREAKOUT RSI-Gate max (default 68 relax=0, 72 relax>=1)")
+    parser.add_argument("--out", type=str, default=None,
+                        help="Custom output filename for results JSON (default apex_backtest_results.json)")
     args = parser.parse_args()
+
+    # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE
+    BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
+    BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
+    RESULTS_FILE_OVERRIDE = args.out
 
     start_date = datetime.strptime(args.start, "%Y-%m-%d") if args.start else None
     end_date   = datetime.strptime(args.end,   "%Y-%m-%d") if args.end   else None
@@ -1232,9 +1251,10 @@ def main():
               f"{t['pnl_pct']:>+6.2f}% | {t['exit_reason']:11} D+{t['exit_day']} | "
               f"Equity: ${t['equity']:.2f}")
 
-    with open(RESULTS_FILE, "w", encoding="utf-8") as f:
+    out_file = RESULTS_FILE_OVERRIDE or RESULTS_FILE
+    with open(out_file, "w", encoding="utf-8") as f:
         json.dump(trades, f, indent=2, ensure_ascii=False)
-    print(f"\nErgebnisse gespeichert: {RESULTS_FILE}")
+    print(f"\nErgebnisse gespeichert: {out_file}")
 
     build_chart(trades, eq_curve)
 

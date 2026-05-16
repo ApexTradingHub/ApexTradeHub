@@ -249,17 +249,62 @@ def gen_report(args):
                     L.append("- (keine News abrufbar)")
                 L.append("")
 
-    # === Section 7: Open positions (still running) ===
+    # === Section 7: Open positions (filtered to ACTIVE setups + within hold window) ===
+    # Phase G: only these setups are alive. Old PRE-ROCKET/POSITION/REVERSAL are
+    # legacy artifacts that shouldn't show as "open".
+    ACTIVE_SETUPS = {"BREAKOUT", "VCP", "SHORT_SQUEEZE", "STAGE_2"}
+    HOLD_DAYS = {
+        "1-3 weeks": 15, "2-4 weeks": 20, "2-6 weeks": 30,
+        "3-8 weeks": 40, "4-8 weeks": 40, "4-12 weeks": 60, "8-16 weeks": 80,
+    }
+    MAX_TRIGGER_DAYS = 3
+
     closed_keys = {(t["date"], t["ticker"]) for t in trades}
-    open_sigs = [s for s in sigs if (s["date"], s["ticker"]) not in closed_keys
-                 and s["date"] >= (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")]
-    if open_sigs:
-        L.append(f"## 7. Offene Positionen ({len(open_sigs)})")
+    open_sigs = []
+    expired_count = 0
+    legacy_count = 0
+    never_triggered_count = 0
+    today_dt = datetime.now()
+    for s in sigs:
+        if (s["date"], s["ticker"]) in closed_keys:
+            continue
+        # 1. Filter legacy setup types (Phase G removed them)
+        if s.get("setup") not in ACTIVE_SETUPS:
+            legacy_count += 1
+            continue
+        # 2. Check age
+        try:
+            sig_dt = datetime.strptime(s["date"], "%Y-%m-%d")
+        except Exception:
+            continue
+        days_old = (today_dt - sig_dt).days
+        hold = HOLD_DAYS.get(s.get("horizon", ""), 30)
+        # 3. Past hold period -> would be Time Exit, not "open"
+        if days_old > hold + 5:
+            expired_count += 1
+            continue
+        # 4. Past trigger window without becoming a trade -> stale, never triggered
+        if days_old > MAX_TRIGGER_DAYS + 1 and (s["date"], s["ticker"]) not in closed_keys:
+            never_triggered_count += 1
+            continue
+        open_sigs.append(s)
+
+    L.append(f"## 7. Offene Positionen ({len(open_sigs)})")
+    L.append("")
+    if legacy_count or expired_count or never_triggered_count:
+        L.append(f"_Filtered out: {legacy_count} legacy setup signals, "
+                 f"{expired_count} past hold-period, "
+                 f"{never_triggered_count} never-triggered (>3d alt, kein Entry)_")
         L.append("")
-        L.append("| Signal Date | Ticker | Setup | Entry | Stop | Target | Score |")
-        L.append("|---|---|---|---|---|---|---|")
+    if open_sigs:
+        L.append("| Signal Date | Days Old | Ticker | Setup | Entry | Stop | Target | Score |")
+        L.append("|---|---|---|---|---|---|---|---|")
         for s in sorted(open_sigs, key=lambda x: x["date"], reverse=True):
-            L.append(f"| {s['date']} | {s['ticker']} | {s.get('setup','?')} | "
+            try:
+                age = (today_dt - datetime.strptime(s["date"], "%Y-%m-%d")).days
+            except Exception:
+                age = "?"
+            L.append(f"| {s['date']} | D+{age} | {s['ticker']} | {s.get('setup','?')} | "
                      f"${s.get('buy_above','?')} | ${s.get('stop','?')} | ${s.get('target','?')} | "
                      f"{s.get('score','?')} |")
         L.append("")
