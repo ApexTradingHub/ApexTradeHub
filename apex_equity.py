@@ -45,10 +45,13 @@ def is_quality_signal(signal):
 
 # Horizon -> maximale Haltezeit in Handelstagen
 HORIZON_DAYS = {
-    "1-3 weeks":   15,
-    "2-6 weeks":   30,
-    "3-8 weeks":   40,
-    "4-12 weeks":  60,
+    "1-3 weeks":   15,   # BREAKOUT
+    "2-4 weeks":   20,   # SHORT_SQUEEZE
+    "2-6 weeks":   30,   # legacy
+    "3-8 weeks":   40,   # legacy REVERSAL (disabled in Phase G)
+    "4-8 weeks":   40,   # VCP
+    "4-12 weeks":  60,   # legacy
+    "8-16 weeks":  80,   # STAGE_2
 }
 DEFAULT_HOLD = 21
 
@@ -138,6 +141,10 @@ def evaluate_trade(signal, today):
     exit_day      = None
     trigger_day   = None
     time_exit_date = (sig_date + timedelta(days=hold_days)).date()
+    # Phase F.3 REVERSAL exit management state
+    setup_type = signal.get("setup", "BREAKOUT")
+    rev_trailing_active = False
+    rev_dynamic_sl = sl
 
     for i in range(min(hold_days, len(data))):
         row  = data.iloc[i]
@@ -145,35 +152,51 @@ def evaluate_trade(signal, today):
             o = float(row["Open"].item()) if hasattr(row["Open"], "item") else float(row["Open"])
             h = float(row["High"].item()) if hasattr(row["High"], "item") else float(row["High"])
             l = float(row["Low"].item())  if hasattr(row["Low"],  "item") else float(row["Low"])
+            c = float(row["Close"].item()) if hasattr(row["Close"], "item") else float(row["Close"])
         except Exception:
             continue
 
-        # Step 1: wait for buy_above to be triggered (max MAX_TRIGGER_DAYS)
         if trigger_day is None:
             if i >= MAX_TRIGGER_DAYS:
-                return None  # signal stale — matches backtest 3d cap
+                return None
             if h >= entry:
                 trigger_day = i
-                # Same candle hit stop too -> unreliable gap, skip
                 if l <= sl:
                     return None
             else:
-                continue  # not triggered yet
+                continue
 
-        # Step 2: trade is live, track TP/SL
+        days_in_trade = i - trigger_day
+
+        # --- Phase F.3: REVERSAL Exit Management ---
+        if setup_type == "REVERSAL":
+            # Rule 1: Trailing-Stop ab Day 5 — bei +5% intraday wird Stop auf Breakeven gezogen
+            if not rev_trailing_active and days_in_trade >= 5:
+                if h >= entry * 1.05:
+                    rev_dynamic_sl = max(rev_dynamic_sl, entry)
+                    rev_trailing_active = True
+            # Rule 2: Time-Stop bei Day 14 wenn keine Progress
+            if days_in_trade >= 14:
+                pnl_now = (c / entry - 1) * 100
+                if pnl_now <= 0:
+                    exit_price, exit_reason, exit_day = c, "Time Exit (REV-cut)", i + 1
+                    break
+
+        active_sl = rev_dynamic_sl if setup_type == "REVERSAL" else sl
         hit_tp = h >= tp
-        hit_sl = l <= sl
+        hit_sl = l <= active_sl
 
         if hit_tp and hit_sl:
-            exit_price  = tp if o >= entry else sl
-            exit_reason = "Take Profit" if o >= entry else "Stop Loss"
+            exit_price  = tp if o >= entry else active_sl
+            exit_reason = "Take Profit" if o >= entry else ("Trailing Stop" if rev_trailing_active else "Stop Loss")
             exit_day    = i + 1
             break
         elif hit_tp:
             exit_price, exit_reason, exit_day = tp, "Take Profit", i + 1
             break
         elif hit_sl:
-            exit_price, exit_reason, exit_day = sl, "Stop Loss", i + 1
+            reason = "Trailing Stop" if rev_trailing_active else "Stop Loss"
+            exit_price, exit_reason, exit_day = active_sl, reason, i + 1
             break
 
     # Trigger nie erreicht -> kein Trade

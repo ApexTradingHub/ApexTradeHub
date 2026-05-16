@@ -65,12 +65,20 @@ MIN_AVG_VOLUME    = 50_000
 MIN_DOLLAR_VOLUME = 500_000
 
 # Hard scan-level score gate per setup (must match ApexScan.py)
-SCAN_MIN_SCORE = {"BREAKOUT": 70, "REVERSAL": 50}
+SCAN_MIN_SCORE = {
+    "BREAKOUT":      70,
+    "VCP":           65,
+    "SHORT_SQUEEZE": 60,
+    "STAGE_2":       55,
+}
 
 HORIZON_DAYS = {
-    "1-3 weeks":  15,
-    "2-6 weeks":  30,
-    "4-12 weeks": 60,
+    "1-3 weeks":   15,   # BREAKOUT
+    "2-4 weeks":   20,   # SHORT_SQUEEZE
+    "2-6 weeks":   30,   # legacy
+    "4-8 weeks":   40,   # VCP
+    "4-12 weeks":  60,   # legacy
+    "8-16 weeks":  80,   # STAGE_2
 }
 
 DEAD_TICKERS = {
@@ -166,6 +174,144 @@ def atr_series(df, period=14):
     lc = (df["Low"]  - df["Close"].shift(1)).abs()
     tr = pd.concat([hl, hc, lc], axis=1).max(axis=1)
     return tr.ewm(alpha=1/period, min_periods=period, adjust=False).mean()
+
+
+# =============================================================
+# PHASE G SETUPS (mirror of ApexScan.py)
+# =============================================================
+def detect_vcp_setup(df, atr14_now, vol_ratio, ma50, ma150, close, high, atr_pct):
+    n = len(df)
+    if n < 100: return None
+    if not (close > ma150 > 0 and ma50 > ma150): return None
+    if "ATR14" not in df.columns: return None
+    atr_old = df["ATR14"].iloc[-25]
+    if pd.isna(atr_old) or atr_old <= 0: return None
+    contraction = 1 - (atr14_now / atr_old)
+    if contraction < 0.30: return None
+    last20_high = df["High"].iloc[-21:-1].max()
+    last20_low  = df["Low"].iloc[-21:-1].min()
+    if last20_low <= 0: return None
+    base_range_pct = (last20_high / last20_low - 1) * 100
+    if base_range_pct > 12: return None
+    last10_high = df["High"].iloc[-11:-1].max()
+    breakout_level = last10_high * 1.002
+    if high < breakout_level * 0.998: return None
+    if vol_ratio < 1.2: return None
+    if atr_pct > 6.0: return None
+    return {"breakout_level": breakout_level, "base_low": last20_low,
+            "contraction_pct": round(contraction*100, 1),
+            "base_range_pct": round(base_range_pct, 1)}
+
+
+def detect_short_squeeze_setup(df, short_pct, ma20, ma50, close, vol_ratio, rsi14):
+    if short_pct is None or short_pct < 15.0: return None
+    if not (close > ma20 and ma20 > ma50): return None
+    if len(df) < 6: return None
+    closes = df["Close"].values
+    perf_5d = (closes[-1] / closes[-6] - 1) * 100
+    if perf_5d < 3.0: return None
+    if vol_ratio < 1.3: return None
+    if not (50 <= rsi14 <= 78): return None
+    return {"short_pct": round(short_pct, 1), "perf_5d": round(perf_5d, 1),
+            "breakout_level": df["High"].iloc[-11:-1].max() * 1.003}
+
+
+def detect_stage2_transition(df, ma150_series, close):
+    n = len(df)
+    if n < 252: return None
+    last180_close = df["Close"].iloc[-180:]
+    base_high = float(last180_close.max())
+    base_low  = float(last180_close.min())
+    if base_low <= 0 or (base_high / base_low) > 1.4: return None
+    if ma150_series is None: return None
+    try:
+        ma150_now    = safe_float(ma150_series.iloc[-1])
+        ma150_1m_ago = safe_float(ma150_series.iloc[-21])
+        ma150_5m_ago = safe_float(ma150_series.iloc[-100])
+    except Exception:
+        return None
+    if not (ma150_now and ma150_1m_ago and ma150_5m_ago): return None
+    flat_change = abs(ma150_1m_ago / ma150_5m_ago - 1)
+    if flat_change > 0.05: return None
+    rise_change = ma150_now / ma150_1m_ago - 1
+    if rise_change < 0.01: return None
+    if close < base_high * 0.99: return None
+    return {"base_high": round(base_high, 2), "base_low": round(base_low, 2),
+            "ma150_rise_pct": round(rise_change*100, 2),
+            "base_width_pct": round((base_high/base_low - 1)*100, 1)}
+
+
+# =============================================================
+# REVERSAL DETECTION (kept for compat, disabled in scan_slice)
+# =============================================================
+def compute_reversal_indicators(df, rsi_series):
+    out = {"bullish_divergence": False, "hammer_candle": False,
+           "bullish_engulfing": False, "higher_low_structure": False,
+           "obv_divergence": False, "selling_climax": False}
+    if df is None or len(df) < 30: return out
+    closes = df["Close"].values; highs = df["High"].values
+    lows = df["Low"].values; opens = df["Open"].values; vols = df["Volume"].values
+    n = len(closes)
+    # Bullish RSI divergence
+    if rsi_series is not None and len(rsi_series) >= 30:
+        rsi_vals = rsi_series.values
+        old_low_idx = closes[-30:-10].argmin() + (n - 30)
+        new_low_idx = closes[-10:].argmin() + (n - 10)
+        if closes[new_low_idx] < closes[old_low_idx]:
+            if not pd.isna(rsi_vals[new_low_idx]) and not pd.isna(rsi_vals[old_low_idx]):
+                if rsi_vals[new_low_idx] > rsi_vals[old_low_idx]:
+                    out["bullish_divergence"] = True
+    # Hammer
+    body = abs(closes[-1] - opens[-1])
+    upper_shadow = highs[-1] - max(closes[-1], opens[-1])
+    lower_shadow = min(closes[-1], opens[-1]) - lows[-1]
+    total_range = highs[-1] - lows[-1]
+    if total_range > 0 and body > 0:
+        if lower_shadow >= 2 * body and upper_shadow <= body * 0.5 and total_range / closes[-1] > 0.015:
+            out["hammer_candle"] = True
+    # Bullish engulfing
+    if n >= 2 and closes[-2] < opens[-2] and closes[-1] > opens[-1]:
+        if closes[-1] >= opens[-2] and opens[-1] <= closes[-2]:
+            out["bullish_engulfing"] = True
+    # Higher-Low structure
+    if n >= 30:
+        old_seg = lows[-30:-15]; new_seg = lows[-15:]
+        if new_seg.min() > old_seg.min():
+            avg_close = closes[-30:-15].mean()
+            if (old_seg.max() - old_seg.min()) / avg_close > 0.03:
+                out["higher_low_structure"] = True
+    # OBV divergence
+    if n >= 30:
+        import numpy as np
+        obv_changes = []
+        for i in range(1, n):
+            if closes[i] > closes[i-1]: obv_changes.append(vols[i])
+            elif closes[i] < closes[i-1]: obv_changes.append(-vols[i])
+            else: obv_changes.append(0)
+        obv = np.cumsum([0] + obv_changes)
+        old_idx = closes[-30:-10].argmin() + (n - 30)
+        new_idx = closes[-10:].argmin() + (n - 10)
+        if closes[new_idx] < closes[old_idx] and obv[new_idx] > obv[old_idx]:
+            out["obv_divergence"] = True
+    # Selling climax
+    if n >= 21:
+        vol20_avg = vols[-20:].mean()
+        if vol20_avg > 0:
+            for i in range(-5, 0):
+                if closes[i] < closes[i-1] and vols[i] / vol20_avg >= 2.5:
+                    out["selling_climax"] = True; break
+    return out
+
+
+def compute_reversal_strength_score(rev_signals):
+    rss = 0
+    if rev_signals.get("bullish_divergence"):    rss += 25
+    if rev_signals.get("obv_divergence"):        rss += 20
+    if rev_signals.get("higher_low_structure"):  rss += 15
+    if rev_signals.get("bullish_engulfing"):     rss += 15
+    if rev_signals.get("hammer_candle"):         rss += 12
+    if rev_signals.get("selling_climax"):        rss += 13
+    return rss
 
 
 # =============================================================
@@ -410,133 +556,150 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     expansion_vol  = vol_ratio >= 1.1
     momentum_ok    = perf_20 > 0 and perf_60 > 0
 
-    # REVERSAL: check before hard exits
-    pct_from_52w  = ((close - high_52w) / high_52w * 100) if high_52w > 0 else 0
-    macd_turning  = mh > mh_p and mh_p < 0
-    not_near_high = close < prev_20_high * 0.92
-    reversal_setup = (
-        -40 <= pct_from_52w <= -12 and
-        25 <= rsi14 <= 48 and
-        (macd_turning or (mh > mh_p)) and
-        vol_ratio >= 1.1 and
-        (ma150 == 0 or close >= ma150 * 0.85) and
-        perf_20 >= -35 and
-        close > MIN_PRICE * 3 and
-        not_near_high
-    )
+    # Phase G: REVERSAL disabled. New setups: VCP, SHORT_SQUEEZE, STAGE_2 + BREAKOUT
+    pct_from_52w = ((close - high_52w) / high_52w * 100) if high_52w > 0 else 0
+    reversal_setup = False  # disabled
+    rss = 0
+    rev_indicators = {}
 
-    if not reversal_setup:
-        if not trend_ok:   return None
-        if not vol_ok:     return None
-        if not rsi_zone:   return None
-        if relax == 0 and not momentum_ok: return None
-        if relax == 0 and not base_ok:     return None
+    # Hard exits (all 4 Phase G setups need trend/volume/etc)
+    if not trend_ok:   return None
+    if not vol_ok:     return None
+    if not rsi_zone:   return None
+    if relax == 0 and not momentum_ok: return None
+    if relax == 0 and not base_ok:     return None
     if atr_pct > 15: return None
 
-    # BREAKOUT: max 1% below entry
+    # BREAKOUT detection (20d high)
     buy_above_prev   = prev_20_high * 1.002
     breakout_close   = close >= buy_above_prev * 0.99
     breakout_setup   = breakout_touch and higher_tf and rsi_breakout and breakout_close
 
-    # PRE-ROCKET: DISABLED — low win rate (40%), high SL rate
-    pre_rocket = False
+    # Phase G new setups
+    short_pct_val = (catalyst_signals or {}).get("short_pct_float")
+    vcp_data     = detect_vcp_setup(df, atr14, vol_ratio, ma50, ma150, close, high, atr_pct)
+    squeeze_data = detect_short_squeeze_setup(df, short_pct_val, ma20, ma50, close, vol_ratio, rsi14)
+    stage2_data  = detect_stage2_transition(df, df.get("MA150"), close)
 
-    # POSITION: DISABLED — underperforms in current market
+    pre_rocket = False
     position_setup = False
 
-    if not (breakout_setup or pre_rocket or position_setup or reversal_setup):
+    # Priority: STAGE_2 > VCP > SHORT_SQUEEZE > BREAKOUT
+    if stage2_data:
+        chosen_setup = "STAGE_2"
+    elif vcp_data:
+        chosen_setup = "VCP"
+    elif squeeze_data:
+        chosen_setup = "SHORT_SQUEEZE"
+    elif breakout_setup:
+        chosen_setup = "BREAKOUT"
+    else:
         return None
 
-    # REVERSAL entry/stop/target
-    if reversal_setup and not breakout_setup and not pre_rocket and not position_setup:
-        setup     = "REVERSAL"
-        horizon   = "3-8 weeks"
-        buy_above = round(close * 1.005, 2)
-        stop      = round(low_10 - (atr14 * 0.5), 2)
+    # Entry/Stop/Target per setup
+    if chosen_setup == "STAGE_2":
+        setup = "STAGE_2"; horizon = "8-16 weeks"
+        buy_above = round(stage2_data["base_high"] * 1.005, 2)
+        stop      = round(max(ma150, stage2_data["base_low"]) * 0.97, 2)
         risk_pct  = (buy_above - stop) / buy_above * 100 if buy_above > 0 else 99
-        if risk_pct < 3.0:
-            stop = buy_above * 0.97; risk_pct = 3.0
-        elif risk_pct > 10.0:
-            stop = buy_above - (atr14 * 1.5)
-            risk_pct = (buy_above - stop) / buy_above * 100
-            if risk_pct > 10.0:
-                return None
-        fib_target = round(close + (high_52w - close) * 0.50, 2)
-        target     = fib_target
+        if risk_pct < 3.0: stop = buy_above * 0.92; risk_pct = 8.0
+        elif risk_pct > 15.0: return None
+        base_width = stage2_data["base_high"] - stage2_data["base_low"]
+        target = round(min(stage2_data["base_high"] + base_width * 1.5, buy_above * 1.40), 2)
 
-    else:
+    elif chosen_setup == "VCP":
+        setup = "VCP"; horizon = "4-8 weeks"
+        buy_above = round(vcp_data["breakout_level"], 2)
+        stop      = round(vcp_data["base_low"] * 0.99, 2)
+        risk_pct  = (buy_above - stop) / buy_above * 100 if buy_above > 0 else 99
+        if risk_pct < 3.0: stop = buy_above * 0.95; risk_pct = 5.0
+        elif risk_pct > 8.0: return None
+        target = round(max(buy_above + (atr14 * 4.0), buy_above * 1.18), 2)
+
+    elif chosen_setup == "SHORT_SQUEEZE":
+        setup = "SHORT_SQUEEZE"; horizon = "2-4 weeks"
+        buy_above = round(squeeze_data["breakout_level"], 2)
+        stop      = round(ma20 * 0.98, 2)
+        risk_pct  = (buy_above - stop) / buy_above * 100 if buy_above > 0 else 99
+        if risk_pct < 3.0: stop = buy_above * 0.96; risk_pct = 4.0
+        elif risk_pct > 8.0: return None
+        tgt_52w = high_52w * 0.95
+        target = round(min(tgt_52w, buy_above * 1.20), 2) if tgt_52w > buy_above else round(buy_above * 1.15, 2)
+
+    else:  # BREAKOUT
+        setup = "BREAKOUT"; horizon = "1-3 weeks"
         buy_above = prev_20_high * 1.002
         stop_candidate = low_10 * 0.995
         atr_pct_val    = (atr14 / buy_above) * 100 if buy_above > 0 else 5.0
         min_dist_pct   = max(3.0, atr_pct_val * 1.5)
-        multiplier     = 1.0 if (position_setup and not breakout_setup) else 1.5
+        multiplier     = 1.5
         candidate_dist = ((buy_above - stop_candidate) / buy_above * 100 if buy_above > 0 else 99)
-
         if candidate_dist < min_dist_pct:
             stop = buy_above * (1 - min_dist_pct / 100)
         elif candidate_dist > 10.0:
             stop = buy_above - (atr14 * multiplier)
         else:
             stop = stop_candidate
-
         risk_pct = (buy_above - stop) / buy_above * 100 if buy_above > 0 else 99
-        if risk_pct < 3.0:
-            stop = buy_above * 0.97; risk_pct = 3.0
-        elif risk_pct > 10.0:
-            return None
-
-        if breakout_setup:
-            setup = "BREAKOUT"; horizon = "1-3 weeks"
-        elif position_setup and not breakout_setup:
-            setup = "POSITION"; horizon = "4-12 weeks"
-        else:
-            setup = "PRE-ROCKET"; horizon = "2-6 weeks"
-
+        if risk_pct < 3.0: stop = buy_above * 0.97; risk_pct = 3.0
+        elif risk_pct > 10.0: return None
         target = find_target(df, buy_above, atr14, setup, risk_pct)
 
     upside_pct = ((target / buy_above) - 1) * 100
     rr = upside_pct / risk_pct if risk_pct > 0 else 0
     if rr < 1.2: return None
 
-    # ---- Setup-specific scoring (must mirror ApexScan.py) ----
-    if setup == "REVERSAL":
-        score = 20.0
-        if 28 <= rsi14 <= 35:   score += 15
-        elif 35 < rsi14 <= 42:  score += 10
-        elif 42 < rsi14 <= 45:  score += 5
-        macd_turning_sc = mh > mh_p and mh_p < 0
-        score += 15 if macd_turning_sc else (8 if macd_bull else 0)
-        if vol_ratio >= 1.5:    score += 10
-        elif vol_ratio >= 1.3:  score += 7
-        elif vol_ratio >= 1.1:  score += 4
-        dip = abs(min(perf_20, 0))
-        if 15 <= dip <= 30:    score += 12
-        elif 10 <= dip < 15:   score += 8
-        elif dip > 30:         score += 5
-        depth_52w = abs(pct_from_52w) if pct_from_52w < 0 else 0
-        if 15 <= depth_52w <= 35: score += 10
-        elif 35 < depth_52w <= 40: score += 6
+    # ---- Phase G setup-specific scoring (must mirror ApexScan.py) ----
+    if setup == "STAGE_2":
+        score = 30.0
+        score += min(stage2_data["ma150_rise_pct"], 5) * 3
+        score += 10 if stage2_data["base_width_pct"] < 25 else 5
+        score += 8 if higher_tf else 0
+        score += 8 if macd_bull else 0
+        score += 6 if 48 <= rsi14 <= 68 else (3 if rsi_zone else 0)
+        score += min(max(perf_20, 0), 20) * 0.5
+        score += min(vol_ratio, 3.0) * 4
         score += min(rr, 5.0) * 4
-        if upside_pct >= 20:    score += 10
-        elif upside_pct >= 12:  score += 6
-        elif upside_pct >= 8:   score += 3
-        # No risk-regime bonus — initial small-sample suggested risk_off edge
-        # (n=24 had +8pp WR) but did not replicate at n=124 (40.3% vs 39.7%)
-        # Phase A catalysts (REVERSAL subset)
-        if catalysts["pocket_pivot_recent"]: score += 5
+        if catalysts["pocket_pivot_recent"]: score += 10
         if catalysts["volume_climax"]:       score += 5
-    else:
+        if catalysts["gap_signal"]:          score += 8
+    elif setup == "VCP":
+        score = 25.0
+        score += vcp_data["contraction_pct"] * 0.2
+        score += 10 if vcp_data["base_range_pct"] <= 8 else 5
+        score += 8 if higher_tf else 0
+        score += 8 if macd_bull else 0
+        score += 6 if 48 <= rsi14 <= 68 else (3 if rsi_zone else 0)
+        score += min(max(perf_60, 0), 35) * 0.4
+        score += min(vol_ratio, 3.0) * 4
+        score += min(rr, 5.0) * 4
+        if catalysts["pocket_pivot_recent"]: score += 12
+        if catalysts["volume_climax"]:       score += 5
+        if catalysts["gap_signal"]:          score += 8
+    elif setup == "SHORT_SQUEEZE":
+        score = 20.0
+        score += min(squeeze_data["short_pct"] - 15, 20) * 0.5
+        score += min(squeeze_data["perf_5d"], 15) * 0.6
+        score += 8 if higher_tf else 0
+        score += 8 if macd_bull else 0
+        score += 8 if expansion_vol else (4 if vol_ratio >= 1.0 else 0)
+        score += 6 if 50 <= rsi14 <= 70 else (3 if 45 <= rsi14 <= 78 else 0)
+        score += min(vol_ratio, 3.0) * 4
+        score += min(rr, 5.0) * 4
+        if catalysts["pocket_pivot_recent"]: score += 10
+        if catalysts["volume_climax"]:       score += 8
+        if catalysts["gap_signal"]:          score += 8
+    else:  # BREAKOUT
         score = 0.0
-        score += 20 if breakout_setup else (15 if position_setup else 10)
-        score += 8  if higher_tf else 0
-        score += 8  if expansion_vol else (4 if vol_ratio >= 1.0 else 0)
-        score += 8  if macd_bull else 0
-        score += 6  if 48 <= rsi14 <= 68 else (3 if rsi_zone else 0)
+        score += 20
+        score += 8 if higher_tf else 0
+        score += 8 if expansion_vol else (4 if vol_ratio >= 1.0 else 0)
+        score += 8 if macd_bull else 0
+        score += 6 if 48 <= rsi14 <= 68 else (3 if rsi_zone else 0)
         score += min(max(perf_20, 0), 20)  * 0.8
         score += min(max(perf_60, 0), 35)  * 0.5
         score += min(vol_ratio, 3.0) * 4
         score += min(rr, 5.0) * 4
-        # Phase A catalysts (BREAKOUT — full set)
         if catalysts["pocket_pivot_recent"]: score += 10
         if catalysts["volume_climax"]:       score += 5
         if catalysts["gap_signal"]:          score += 8
@@ -546,6 +709,38 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     if catalyst_signals is not None:
         score += score_delta_for_catalyst_signals(catalyst_signals, setup,
                                                    backtest_mode=True)
+
+    # Phase G: Movement Classification
+    movement_class = "STANDARD"
+    movement_bonus = 0
+    if setup == "BREAKOUT":
+        if perf_120 > 25 and pct_from_52w > -2:
+            movement_class = "POWER_BREAKOUT"; movement_bonus = 15
+        elif perf_120 >= 0:
+            movement_class = "EMERGING_BREAKOUT"; movement_bonus = 5
+        else:
+            movement_class = "WEAK_BREAKOUT"; movement_bonus = -15
+    elif setup == "VCP":
+        movement_class = "VCP_TIGHT" if vcp_data["base_range_pct"] <= 8 else "VCP_WIDE"
+        movement_bonus = 10 if movement_class == "VCP_TIGHT" else 5
+    elif setup == "SHORT_SQUEEZE":
+        movement_class = "SQUEEZE_HIGH" if short_pct_val and short_pct_val >= 20 else "SQUEEZE_MED"
+        movement_bonus = 12 if movement_class == "SQUEEZE_HIGH" else 6
+    elif setup == "STAGE_2":
+        movement_class = "STAGE_2_BREAKOUT"; movement_bonus = 15
+
+    # Phase E: Closing-Strength
+    day_range = high - safe_float(l["Low"])
+    closing_strength = (close - safe_float(l["Low"])) / day_range if day_range > 0 else 0.5
+    closing_bonus = 5 if closing_strength > 0.75 else (-10 if closing_strength < 0.5 else 0)
+
+    # Phase E: Inside-Day (BREAKOUT consolidation = often false breakout)
+    inside_day = (high <= safe_float(prev["High"])) and (safe_float(l["Low"]) >= safe_float(prev["Low"]))
+    inside_day_penalty = -8 if (inside_day and setup == "BREAKOUT") else 0
+
+    score += movement_bonus + closing_bonus + inside_day_penalty
+
+    # (RSS removed in Phase G — REVERSAL disabled)
 
     # Hard score gate (per setup)
     if score < SCAN_MIN_SCORE.get(setup, 0):
@@ -562,6 +757,13 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         "risk_pct":  round(risk_pct, 2),
         "rr":        round(rr, 2),
         "score":     round(score, 1),
+        "movement_class":   movement_class,
+        "closing_strength": round(closing_strength, 2),
+        "inside_day":       inside_day,
+        # Phase G metadata
+        "vcp_contraction":   vcp_data["contraction_pct"] if chosen_setup == "VCP" else None,
+        "squeeze_short_pct": squeeze_data["short_pct"] if chosen_setup == "SHORT_SQUEEZE" else None,
+        "stage2_ma150_rise": stage2_data["ma150_rise_pct"] if chosen_setup == "STAGE_2" else None,
     }
 
 
@@ -584,46 +786,65 @@ def evaluate_outcome(ticker, full_df, scan_idx, signal):
         return None, None, None, None
 
     trigger_day = None
-    # Live behavior: BUY-above order is stale after ~3 days. Backtest's old
-    # default was the full hold_days window which inflated trade count via
-    # late triggers (data shows trigger_day>=5 had 23% WR). Cap at 3.
     MAX_TRIGGER_DAYS = 3
+    setup_type = signal.get("setup", "BREAKOUT")
+    # Phase F.3 REVERSAL exit management state
+    rev_trailing_active = False
+    rev_dynamic_sl = sl    # mutable stop, can be raised by trailing logic
 
     for i, (_, row) in enumerate(future.iterrows()):
         try:
             o = safe_float(row["Open"])
             h = safe_float(row["High"])
             l = safe_float(row["Low"])
+            c = safe_float(row["Close"])
         except Exception:
             continue
 
         # Wait for entry trigger
         if trigger_day is None:
             if i >= MAX_TRIGGER_DAYS:
-                return None, None, None, None  # signal expired
+                return None, None, None, None
             if h >= entry:
                 trigger_day = i
-                # Same candle also hit stop -> unreliable, skip
                 if l <= sl:
                     return None, None, None, None
             else:
-                continue  # not triggered yet
+                continue
 
-        # Trade is live
+        # Days since entry triggered
+        days_in_trade = i - trigger_day
+
+        # --- Phase F.3: REVERSAL Exit Management ---
+        if setup_type == "REVERSAL" and trigger_day is not None:
+            # Rule 1: Trailing-Stop after Day 5 — once intraday hit +5%, lock breakeven
+            if not rev_trailing_active and days_in_trade >= 5:
+                if h >= entry * 1.05:
+                    rev_dynamic_sl = max(rev_dynamic_sl, entry)  # breakeven
+                    rev_trailing_active = True
+            # Rule 2: Time-Stop at Day 14 if no progress
+            if days_in_trade >= 14:
+                pnl_pct_now = (c / entry - 1) * 100
+                if pnl_pct_now <= 0:
+                    return c, "Time Exit (REV-cut)", i + 1, trigger_day + 1
+
+        # Trade is live — use dynamic stop for REVERSAL, static for others
+        active_sl = rev_dynamic_sl if setup_type == "REVERSAL" else sl
         hit_tp = h >= tp
-        hit_sl = l <= sl
+        hit_sl = l <= active_sl
 
         if hit_tp and hit_sl:
-            ep     = tp if o >= entry else sl
-            reason = "Take Profit" if o >= entry else "Stop Loss"
+            ep     = tp if o >= entry else active_sl
+            reason = "Take Profit" if o >= entry else ("Trailing Stop" if rev_trailing_active else "Stop Loss")
             return ep, reason, i + 1, trigger_day + 1
         elif hit_tp:
             return tp, "Take Profit", i + 1, trigger_day + 1
         elif hit_sl:
-            return sl, "Stop Loss",   i + 1, trigger_day + 1
+            reason = "Trailing Stop" if rev_trailing_active else "Stop Loss"
+            return active_sl, reason, i + 1, trigger_day + 1
 
     if trigger_day is None:
-        return None, None, None, None  # trigger never reached
+        return None, None, None, None
 
     last_close = safe_float(future["Close"].iloc[-1])
     return last_close, "Time Exit", min(hold_days, len(future)), trigger_day + 1
