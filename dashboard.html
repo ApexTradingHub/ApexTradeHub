@@ -471,17 +471,17 @@ body {
   <div class="stat">
     <div class="stat-label">Setup-Verteilung</div>
     <div class="stat-row">
-      <span class="stat-sublabel">🚀 Stage-2</span>
+      <span class="stat-sublabel">🚀 Trend</span>
       <span class="stat-subval" style="color:var(--green)" id="s-stage2">—</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-row">
-      <span class="stat-sublabel">🔹 VCP</span>
+      <span class="stat-sublabel">🔹 Bounceback</span>
       <span class="stat-subval" style="color:var(--purple)" id="s-vcp">—</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-row">
-      <span class="stat-sublabel">🔥 Squeeze</span>
+      <span class="stat-sublabel">🔥 Bet</span>
       <span class="stat-subval" style="color:var(--orange)" id="s-squeeze">—</span>
     </div>
     <div class="stat-divider"></div>
@@ -643,9 +643,9 @@ body {
     <span class="hist-filter-label">Filter:</span>
     <select class="hist-select" id="f-setup" onchange="renderHistory()">
       <option value="">Alle Setups</option>
-      <option value="STAGE_2">🚀 Stage-2</option>
-      <option value="VCP">🔹 VCP</option>
-      <option value="SHORT_SQUEEZE">🔥 Short Squeeze</option>
+      <option value="STAGE_2">🚀 Trend</option>
+      <option value="VCP">🔹 Bounceback</option>
+      <option value="SHORT_SQUEEZE">🔥 Bet</option>
       <option value="BREAKOUT">🔵 Breakout</option>
       <option value="REVERSAL">Reversal</option>
     </select>
@@ -659,7 +659,6 @@ body {
       <option value="">Alle Ergebnisse</option>
       <option value="win">Nur Gewinner</option>
       <option value="loss">Nur Verlierer</option>
-      <option value="be">Nur Breakeven (0%)</option>
     </select>
     <button class="hist-filter-btn" onclick="resetHistFilters()">✕ Reset</button>
   </div>
@@ -712,11 +711,11 @@ const tc = '#3D4670';
 
 /* ── SETUP META ── */
 const SETUP_META = {
-  STAGE_2:      { label: '🚀 Stage-2',      color: 'var(--green)',  badge: 'badge-green',  hold: 60 },
-  VCP:          { label: '🔹 VCP',          color: 'var(--purple)', badge: 'badge-purple', hold: 40 },
-  SHORT_SQUEEZE:{ label: '🔥 Short Squeeze', color: 'var(--orange)', badge: 'badge-orange', hold: 20 },
-  BREAKOUT:     { label: '🔵 Breakout',     color: 'var(--blue)',   badge: 'badge-blue',   hold: 15 },
-  REVERSAL:     { label: 'Reversal',        color: 'var(--teal)',   badge: 'badge-teal',   hold: 40 },
+  STAGE_2:      { label: '🚀 Trend',      color: 'var(--green)',  badge: 'badge-green',  hold: 60 },
+  VCP:          { label: '🔹 Bounceback', color: 'var(--purple)', badge: 'badge-purple', hold: 40 },
+  SHORT_SQUEEZE:{ label: '🔥 Bet',        color: 'var(--orange)', badge: 'badge-orange', hold: 20 },
+  BREAKOUT:     { label: '🔵 Breakout',   color: 'var(--blue)',   badge: 'badge-blue',   hold: 15 },
+  REVERSAL:     { label: 'Reversal',      color: 'var(--teal)',   badge: 'badge-teal',   hold: 40 },
 };
 
 function setupMeta(s) { return SETUP_META[s] || { label: s, color: 'var(--muted2)', badge: 'badge-muted', hold: 15 }; }
@@ -740,21 +739,16 @@ function pil(s) {
 
 function stats(r) {
   if (!r || !r.length) return null;
-  // Phase F.3 Trailing-Stops können exakt bei Entry exiten (pnl_pct = 0).
-  // Breakeven ist WEDER Win NOCH Loss — aus WR ausgeschlossen.
-  const w  = r.filter(x => x.pnl_pct >  0);
-  const l  = r.filter(x => x.pnl_pct <  0);   // strict <0
-  const be = r.filter(x => x.pnl_pct === 0);
-  const decisive = w.length + l.length;
+  const w = r.filter(x => x.pnl_pct > 0), l = r.filter(x => x.pnl_pct <= 0);
   const gw = w.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
   const gl = l.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
   return {
-    wr: decisive > 0 ? w.length / decisive * 100 : 0,
+    wr: w.length / r.length * 100,
     eq: r[r.length - 1].equity || 0,
     avgW: w.length ? w.reduce((a, x) => a + x.pnl_pct, 0) / w.length : 0,
     avgL: l.length ? l.reduce((a, x) => a + x.pnl_pct, 0) / l.length : 0,
     pf: gl > 0 ? gw / gl : 999,
-    w: w.length, l: l.length, be: be.length, n: r.length
+    w: w.length, l: l.length, n: r.length
   };
 }
 
@@ -788,7 +782,7 @@ function renderStats(sigs, rA, rT) {
   document.getElementById('s-stage2').textContent   = active.filter(s => s.setup === 'STAGE_2').length;
   document.getElementById('s-vcp').textContent      = active.filter(s => s.setup === 'VCP').length;
   document.getElementById('s-squeeze').textContent  = active.filter(s => s.setup === 'SHORT_SQUEEZE').length;
-  document.getElementById('s-breakout').textContent  = active.filter(s => s.setup === 'BREAKOUT').length;
+  document.getElementById('s-breakout').textContent = active.filter(s => s.setup === 'BREAKOUT').length;
   document.getElementById('s-open').textContent     = openTrades.length;
   document.getElementById('s-closed').textContent   = (rA || []).length;
 
@@ -1023,13 +1017,10 @@ function joinSignals(equity, sigs) {
 }
 
 function renderHistSummary(rows) {
-  // Breakeven (pnl_pct=0 from Phase F.3 trailing-stops) excluded from WR
-  const w = rows.filter(x => x.pnl_pct >  0);
-  const l = rows.filter(x => x.pnl_pct <  0);
+  const w = rows.filter(x => x.pnl_pct > 0), l = rows.filter(x => x.pnl_pct <= 0);
   const gw = w.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
   const gl = l.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
-  const decisive = w.length + l.length;
-  const wr = decisive > 0 ? (w.length / decisive * 100) : 0;
+  const wr = rows.length ? (w.length / rows.length * 100) : 0;
   const pf = gl > 0 ? gw / gl : 999;
   const pnl = rows.reduce((a, x) => a + (x.pnl_usd || 0), 0);
   const avgW = w.length ? w.reduce((a, x) => a + x.pnl_pct, 0) / w.length : 0;
@@ -1049,13 +1040,11 @@ function renderHistSummary(rows) {
   el.innerHTML = setupKeys.map(k => {
     const m = setupMeta(k);
     const sr = allR.filter(x => x.setup === k);
-    const sw = sr.filter(x => x.pnl_pct >  0);
-    const sl = sr.filter(x => x.pnl_pct <  0);
-    const sDecisive = sw.length + sl.length;
-    const sWr = sDecisive > 0 ? (sw.length / sDecisive * 100) : 0;
+    const sw = sr.filter(x => x.pnl_pct > 0);
+    const sWr = sr.length ? (sw.length / sr.length * 100) : 0;
     const sPnl = sr.reduce((a, x) => a + (x.pnl_usd || 0), 0);
     const sgw = sw.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
-    const sgl = sl.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
+    const sgl = sr.filter(x => x.pnl_pct <= 0).reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
     const sPf = sgl > 0 ? sgw / sgl : 999;
     return `<div class="hist-setup-box">
       <div class="hist-setup-name" style="color:${m.color}">${m.label}</div>
@@ -1098,9 +1087,8 @@ function renderHistory() {
   const fResult = document.getElementById('f-result').value;
   if (fSetup)  rows = rows.filter(r => r.setup === fSetup);
   if (fExit)   rows = rows.filter(r => r.exit_reason === fExit);
-  if (fResult === 'win')  rows = rows.filter(r => r.pnl_pct >  0);
-  if (fResult === 'loss') rows = rows.filter(r => r.pnl_pct <  0);
-  if (fResult === 'be')   rows = rows.filter(r => r.pnl_pct === 0);
+  if (fResult === 'win')  rows = rows.filter(r => r.pnl_pct > 0);
+  if (fResult === 'loss') rows = rows.filter(r => r.pnl_pct <= 0);
 
   /* sort */
   rows.sort((a, b) => {
