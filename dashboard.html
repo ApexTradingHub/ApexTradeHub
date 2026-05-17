@@ -649,6 +649,7 @@ body {
       <option value="">Alle Ergebnisse</option>
       <option value="win">Nur Gewinner</option>
       <option value="loss">Nur Verlierer</option>
+      <option value="be">Nur Breakeven (0%)</option>
     </select>
     <button class="hist-filter-btn" onclick="resetHistFilters()">✕ Reset</button>
   </div>
@@ -729,16 +730,21 @@ function pil(s) {
 
 function stats(r) {
   if (!r || !r.length) return null;
-  const w = r.filter(x => x.pnl_pct > 0), l = r.filter(x => x.pnl_pct <= 0);
+  // Phase F.3 Trailing-Stops können exakt bei Entry exiten (pnl_pct = 0).
+  // Breakeven ist WEDER Win NOCH Loss — aus WR ausgeschlossen.
+  const w  = r.filter(x => x.pnl_pct >  0);
+  const l  = r.filter(x => x.pnl_pct <  0);   // strict <0
+  const be = r.filter(x => x.pnl_pct === 0);
+  const decisive = w.length + l.length;
   const gw = w.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
   const gl = l.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
   return {
-    wr: w.length / r.length * 100,
+    wr: decisive > 0 ? w.length / decisive * 100 : 0,
     eq: r[r.length - 1].equity || 0,
     avgW: w.length ? w.reduce((a, x) => a + x.pnl_pct, 0) / w.length : 0,
     avgL: l.length ? l.reduce((a, x) => a + x.pnl_pct, 0) / l.length : 0,
     pf: gl > 0 ? gw / gl : 999,
-    w: w.length, l: l.length, n: r.length
+    w: w.length, l: l.length, be: be.length, n: r.length
   };
 }
 
@@ -1005,10 +1011,13 @@ function joinSignals(equity, sigs) {
 }
 
 function renderHistSummary(rows) {
-  const w = rows.filter(x => x.pnl_pct > 0), l = rows.filter(x => x.pnl_pct <= 0);
+  // Breakeven (pnl_pct=0 from Phase F.3 trailing-stops) excluded from WR
+  const w = rows.filter(x => x.pnl_pct >  0);
+  const l = rows.filter(x => x.pnl_pct <  0);
   const gw = w.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
   const gl = l.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
-  const wr = rows.length ? (w.length / rows.length * 100) : 0;
+  const decisive = w.length + l.length;
+  const wr = decisive > 0 ? (w.length / decisive * 100) : 0;
   const pf = gl > 0 ? gw / gl : 999;
   const pnl = rows.reduce((a, x) => a + (x.pnl_usd || 0), 0);
   const avgW = w.length ? w.reduce((a, x) => a + x.pnl_pct, 0) / w.length : 0;
@@ -1028,11 +1037,13 @@ function renderHistSummary(rows) {
   el.innerHTML = setupKeys.map(k => {
     const m = setupMeta(k);
     const sr = allR.filter(x => x.setup === k);
-    const sw = sr.filter(x => x.pnl_pct > 0);
-    const sWr = sr.length ? (sw.length / sr.length * 100) : 0;
+    const sw = sr.filter(x => x.pnl_pct >  0);
+    const sl = sr.filter(x => x.pnl_pct <  0);
+    const sDecisive = sw.length + sl.length;
+    const sWr = sDecisive > 0 ? (sw.length / sDecisive * 100) : 0;
     const sPnl = sr.reduce((a, x) => a + (x.pnl_usd || 0), 0);
     const sgw = sw.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
-    const sgl = sr.filter(x => x.pnl_pct <= 0).reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
+    const sgl = sl.reduce((a, x) => a + Math.abs(x.pnl_usd || 0), 0);
     const sPf = sgl > 0 ? sgw / sgl : 999;
     return `<div class="hist-setup-box">
       <div class="hist-setup-name" style="color:${m.color}">${m.label}</div>
@@ -1075,8 +1086,9 @@ function renderHistory() {
   const fResult = document.getElementById('f-result').value;
   if (fSetup)  rows = rows.filter(r => r.setup === fSetup);
   if (fExit)   rows = rows.filter(r => r.exit_reason === fExit);
-  if (fResult === 'win')  rows = rows.filter(r => r.pnl_pct > 0);
-  if (fResult === 'loss') rows = rows.filter(r => r.pnl_pct <= 0);
+  if (fResult === 'win')  rows = rows.filter(r => r.pnl_pct >  0);
+  if (fResult === 'loss') rows = rows.filter(r => r.pnl_pct <  0);
+  if (fResult === 'be')   rows = rows.filter(r => r.pnl_pct === 0);
 
   /* sort */
   rows.sort((a, b) => {

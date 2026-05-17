@@ -79,13 +79,17 @@ def summarize_period(trades, days):
     sub = [t for t in trades if t["date"] >= cutoff]
     if not sub:
         return None
+    # Phase F.3 trailing-stops can exit at exact breakeven (entry=exit, 0% pnl).
+    # Breakeven is NEITHER win NOR loss — exclude from WR calc.
     wins = [t for t in sub if t["pnl_pct"] > 0]
-    losses = [t for t in sub if t["pnl_pct"] <= 0]
+    losses = [t for t in sub if t["pnl_pct"] < 0]   # strict <0
+    breakeven = [t for t in sub if t["pnl_pct"] == 0]
+    decisive = len(wins) + len(losses)
     gw = sum(abs(t.get("pnl_usd", 0)) for t in wins)
     gl = sum(abs(t.get("pnl_usd", 0)) for t in losses)
     return {
-        "n": len(sub), "wins": len(wins), "losses": len(losses),
-        "wr": len(wins) / len(sub) * 100,
+        "n": len(sub), "wins": len(wins), "losses": len(losses), "breakeven": len(breakeven),
+        "wr": len(wins) / decisive * 100 if decisive > 0 else 0,
         "avg_w": sum(t["pnl_pct"] for t in wins) / len(wins) if wins else 0,
         "avg_l": sum(t["pnl_pct"] for t in losses) / len(losses) if losses else 0,
         "pf": gw / gl if gl > 0 else 999,
@@ -141,7 +145,8 @@ def gen_report(args):
                               (30, "Last 30 days"), (90, "Last 90 days")]:
         s = summarize_period(merged, days_back)
         if s:
-            L.append(f"- **{label}**: {s['n']} trades | WR {s['wr']:.1f}% | "
+            be_note = f" (incl. {s['breakeven']} BE)" if s.get('breakeven') else ""
+            L.append(f"- **{label}**: {s['n']} trades{be_note} | WR {s['wr']:.1f}% | "
                      f"PF {s['pf']:.2f} | AvgW {s['avg_w']:+.2f}% | AvgL {s['avg_l']:+.2f}% | "
                      f"Total ${s['total_pnl_usd']:+.2f}")
     L.append("")
@@ -151,18 +156,21 @@ def gen_report(args):
     L.append("")
     by_setup = defaultdict(list)
     for t in recent: by_setup[t.get("setup", "?")].append(t)
-    L.append("| Setup | n | WR | PF | AvgWin | AvgLoss |")
-    L.append("|---|---|---|---|---|---|")
+    L.append("| Setup | n | WR | PF | AvgWin | AvgLoss | BE |")
+    L.append("|---|---|---|---|---|---|---|")
     for setup, ts in sorted(by_setup.items(), key=lambda x: -len(x[1])):
         w = [t for t in ts if t["pnl_pct"] > 0]
-        l = [t for t in ts if t["pnl_pct"] <= 0]
+        l = [t for t in ts if t["pnl_pct"] < 0]      # strict <0
+        be = [t for t in ts if t["pnl_pct"] == 0]
         gw = sum(abs(t.get("pnl_usd", 0)) for t in w)
         gl = sum(abs(t.get("pnl_usd", 0)) for t in l)
         pf = gw / gl if gl > 0 else 999
         aw = sum(t["pnl_pct"] for t in w) / len(w) if w else 0
         al = sum(t["pnl_pct"] for t in l) / len(l) if l else 0
-        L.append(f"| {setup} | {len(ts)} | {len(w)/len(ts)*100:.1f}% | {pf:.2f} | "
-                 f"{aw:+.2f}% | {al:+.2f}% |")
+        decisive = len(w) + len(l)
+        wr = len(w) / decisive * 100 if decisive > 0 else 0
+        L.append(f"| {setup} | {len(ts)} | {wr:.1f}% | {pf:.2f} | "
+                 f"{aw:+.2f}% | {al:+.2f}% | {len(be)} |")
     L.append("")
 
     # === Section 3: Exit-Reason Breakdown ===

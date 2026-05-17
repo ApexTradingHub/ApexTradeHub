@@ -1097,9 +1097,11 @@ def build_chart(trades, eq_curve):
 
     tc = "#e0e0e0"; gc = "#1e2030"; green = "#4caf50"; red = "#ef5350"; blue = "#4a9eff"
 
+    # Breakeven (pnl_pct == 0, from Phase F.3 trailing stops at entry) excluded from WR
     wins   = [t for t in trades if t["pnl_pct"] > 0]
-    losses = [t for t in trades if t["pnl_pct"] <= 0]
-    wr     = len(wins) / len(trades) * 100 if trades else 0
+    losses = [t for t in trades if t["pnl_pct"] < 0]   # strict <0
+    decisive = len(wins) + len(losses)
+    wr     = len(wins) / decisive * 100 if decisive > 0 else 0
     avg_w  = sum(t["pnl_pct"] for t in wins)   / len(wins)   if wins   else 0
     avg_l  = sum(t["pnl_pct"] for t in losses) / len(losses) if losses else 0
     profit_factor = abs(sum(t["pnl_usd"] for t in wins) / sum(t["pnl_usd"] for t in losses)) if losses else 999
@@ -1228,16 +1230,19 @@ def main():
         print("\nKeine Trades im Backtest gefunden.")
         return
 
-    wins   = [t for t in trades if t["pnl_pct"] > 0]
-    losses = [t for t in trades if t["pnl_pct"] <= 0]
-    wr     = len(wins) / len(trades) * 100
-    pf     = abs(sum(t["pnl_usd"] for t in wins) / sum(t["pnl_usd"] for t in losses)) if losses else 999
+    # Breakeven excluded from WR (Phase F.3 trailing-stops at entry)
+    wins     = [t for t in trades if t["pnl_pct"] > 0]
+    losses   = [t for t in trades if t["pnl_pct"] < 0]
+    be       = [t for t in trades if t["pnl_pct"] == 0]
+    decisive = len(wins) + len(losses)
+    wr       = len(wins) / decisive * 100 if decisive > 0 else 0
+    pf       = abs(sum(t["pnl_usd"] for t in wins) / sum(t["pnl_usd"] for t in losses)) if losses else 999
 
     period_str = f"{args.start} bis {args.end}" if args.start else f"{args.days} Handelstage"
     print(f"\n{'='*60}")
     print(f"  BACKTEST ERGEBNIS  ({period_str})")
     print(f"{'='*60}")
-    print(f"  Trades total  : {len(trades)}")
+    print(f"  Trades total  : {len(trades)}  (+{len(be)} BE)" if be else f"  Trades total  : {len(trades)}")
     print(f"  Win rate      : {wr:.1f}%  ({len(wins)}W / {len(losses)}L)")
     print(f"  Avg win       : +{sum(t['pnl_pct'] for t in wins)/len(wins):.2f}%" if wins else "  Avg win  : n/a")
     print(f"  Avg loss      : {sum(t['pnl_pct'] for t in losses)/len(losses):.2f}%" if losses else "  Avg loss : n/a")
