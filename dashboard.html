@@ -476,6 +476,16 @@ body {
     </div>
     <div class="stat-divider"></div>
     <div class="stat-row">
+      <span class="stat-sublabel">🔹 VCP</span>
+      <span class="stat-subval" style="color:var(--purple)" id="s-vcp">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">🔥 Squeeze</span>
+      <span class="stat-subval" style="color:var(--orange)" id="s-squeeze">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
       <span class="stat-sublabel">🔵 Breakout</span>
       <span class="stat-subval" style="color:var(--blue)" id="s-breakout">—</span>
     </div>
@@ -776,6 +786,8 @@ function renderStats(sigs, rA, rT) {
   });
 
   document.getElementById('s-stage2').textContent   = active.filter(s => s.setup === 'STAGE_2').length;
+  document.getElementById('s-vcp').textContent      = active.filter(s => s.setup === 'VCP').length;
+  document.getElementById('s-squeeze').textContent  = active.filter(s => s.setup === 'SHORT_SQUEEZE').length;
   document.getElementById('s-breakout').textContent  = active.filter(s => s.setup === 'BREAKOUT').length;
   document.getElementById('s-open').textContent     = openTrades.length;
   document.getElementById('s-closed').textContent   = (rA || []).length;
