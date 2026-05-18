@@ -57,6 +57,19 @@ CONF_MED  = 15
 
 # Active setups (Phase G) — used in open-positions filter
 ACTIVE_SETUPS = {"BREAKOUT", "VCP", "SHORT_SQUEEZE", "STAGE_2"}
+
+# User-facing display names (mirror of dashboard.html SETUP_META)
+# Internal data still uses raw codes — only display layer is changed.
+SETUP_DISPLAY = {
+    "STAGE_2":       "🚀 Trend",
+    "VCP":           "🔹 Bounceback",
+    "SHORT_SQUEEZE": "🔥 Bet",
+    "BREAKOUT":      "🔵 Breakout",
+    "REVERSAL":      "Reversal",
+}
+def disp(setup_code):
+    """Return user-facing display name for a setup code (fallback: raw code)."""
+    return SETUP_DISPLAY.get(setup_code, setup_code)
 HOLD_DAYS = {
     "1-3 weeks": 15, "2-4 weeks": 20, "2-6 weeks": 30,
     "3-8 weeks": 40, "4-8 weeks": 40, "4-12 weeks": 60, "8-16 weeks": 80,
@@ -393,7 +406,7 @@ def gen_confirmed_findings(knowledge):
 
     # Setup-Lifetime
     for setup, d in knowledge.get("setups", {}).items():
-        bucket(f"**{setup}**: lifetime WR {d['wr']:.0%} (n={d['n']}, PF {d['pf']})", d["confidence"])
+        bucket(f"**{disp(setup)}**: lifetime WR {d['wr']:.0%} (n={d['n']}, PF {d['pf']})", d["confidence"])
 
     # Catalyst-Lifts (only meaningful lifts)
     for cat, d in knowledge.get("catalysts", {}).items():
@@ -414,7 +427,7 @@ def gen_confirmed_findings(knowledge):
                 continue
             sign = "+" if fd["lift_vs_setup_baseline"] > 0 else ""
             bucket(
-                f"**{setup} × {feat}**: {sign}{fd['lift_vs_setup_baseline']:.0%} "
+                f"**{disp(setup)} × {feat}**: {sign}{fd['lift_vs_setup_baseline']:.0%} "
                 f"vs setup-baseline (WR {fd['wr']:.0%}, n={fd['n']})",
                 fd["confidence"],
             )
@@ -424,7 +437,7 @@ def gen_confirmed_findings(knowledge):
         for bucket_name, bd in sb.items():
             if bd["wr"] >= 0.70 and bd["confidence"] in ("HIGH", "MED"):
                 bucket(
-                    f"**{setup} score {bucket_name}**: {bd['wr']:.0%} WR (n={bd['n']}) — elite zone",
+                    f"**{disp(setup)} score {bucket_name}**: {bd['wr']:.0%} WR (n={bd['n']}) — elite zone",
                     bd["confidence"],
                 )
 
@@ -521,7 +534,7 @@ def gen_report(args, knowledge):
         pf = gw / gl if gl > 0 else 999
         aw = sum(t["pnl_pct"] for t in w) / len(w) if w else 0
         al = sum(t["pnl_pct"] for t in l) / len(l) if l else 0
-        L.append(f"| {setup} | {len(ts)} | {len(w)/len(ts)*100:.1f}% | {pf:.2f} | {aw:+.2f}% | {al:+.2f}% |")
+        L.append(f"| {disp(setup)} | {len(ts)} | {len(w)/len(ts)*100:.1f}% | {pf:.2f} | {aw:+.2f}% | {al:+.2f}% |")
     L.append("")
 
     # === 4. Per-Setup-Lifetime ===
@@ -531,7 +544,7 @@ def gen_report(args, knowledge):
     L.append("|---|---|---|---|---|---|---|")
     for setup, d in sorted(knowledge.get("setups", {}).items(), key=lambda x: -x[1]["n"]):
         pf_str = f"{d['pf']:.2f}" if d['pf'] is not None else "—"
-        L.append(f"| {setup} | {d['n']} | {d['wr']:.1%} | {pf_str} | "
+        L.append(f"| {disp(setup)} | {d['n']} | {d['wr']:.1%} | {pf_str} | "
                  f"{d['avg_win_pct']:+.2f}% | {d['avg_loss_pct']:+.2f}% | {d['confidence']} |")
     L.append("")
 
@@ -552,7 +565,7 @@ def gen_report(args, knowledge):
     L.append("## 6. Score-Gate Calibration (Lifetime — validiert Gate-Setting)")
     L.append("")
     for setup, buckets in knowledge.get("score_calibration", {}).items():
-        L.append(f"**{setup}:**")
+        L.append(f"**{disp(setup)}:**")
         L.append("| Score-Bucket | n | actual WR | conf |")
         L.append("|---|---|---|---|")
         for b, d in sorted(buckets.items()):
@@ -571,16 +584,18 @@ def gen_report(args, knowledge):
         L.append("| Ticker | n | WR | Avg PnL% | Best | Worst | Setups |")
         L.append("|---|---|---|---|---|---|---|")
         for tk, d in top:
+            setups_disp = ",".join(disp(s) for s in d['setups_seen'])
             L.append(f"| {tk} | {d['n']} | {d['wr']:.0%} | {d['avg_pnl_pct']:+.2f}% | "
-                     f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {','.join(d['setups_seen'])} |")
+                     f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {setups_disp} |")
         L.append("")
         L.append("**💀 Worst-Performer (sortiert WR):**")
         L.append("")
         L.append("| Ticker | n | WR | Avg PnL% | Best | Worst | Setups |")
         L.append("|---|---|---|---|---|---|---|")
         for tk, d in bot:
+            setups_disp = ",".join(disp(s) for s in d['setups_seen'])
             L.append(f"| {tk} | {d['n']} | {d['wr']:.0%} | {d['avg_pnl_pct']:+.2f}% | "
-                     f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {','.join(d['setups_seen'])} |")
+                     f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {setups_disp} |")
         L.append("")
 
     # === 8. Failure-Modes ===
@@ -591,7 +606,7 @@ def gen_report(args, knowledge):
         L.append("| Failure Pattern | count | % of losses | avg pnl | by setup |")
         L.append("|---|---|---|---|---|")
         for mode, d in fm.items():
-            by_s = ", ".join(f"{k}:{v}" for k, v in d.get("by_setup", {}).items())
+            by_s = ", ".join(f"{disp(k)}:{v}" for k, v in d.get("by_setup", {}).items())
             L.append(f"| {mode} | {d['count']} | {d['pct_of_losses']:.0%} | "
                      f"{d['avg_pnl']:+.2f}% | {by_s} |")
         L.append("")
@@ -608,7 +623,8 @@ def gen_report(args, knowledge):
         if t.get("cat_earnings_beat"): cats.append("PEAD")
         if (t.get("cat_short_pct") or 0) >= 15: cats.append("SHORT")
         cat_str = " " + " ".join(cats) if cats else ""
-        L.append(f"- **{t['date']}** {t['ticker']:6} {t.get('setup','?'):14} | "
+        setup_d = disp(t.get('setup','?'))
+        L.append(f"- **{t['date']}** {t['ticker']:6} {setup_d:18} | "
                  f"{out} {t['pnl_pct']:+5.2f}% | {t.get('exit_reason','?')} D+{t.get('exit_day','?')} | "
                  f"score {t.get('score','?')}{cat_str}")
     L.append("")
@@ -648,7 +664,7 @@ def gen_report(args, knowledge):
                 age = (today_dt - datetime.strptime(s["date"], "%Y-%m-%d")).days
             except Exception:
                 age = "?"
-            L.append(f"| {s['date']} | D+{age} | {s['ticker']} | {s.get('setup','?')} | "
+            L.append(f"| {s['date']} | D+{age} | {s['ticker']} | {disp(s.get('setup','?'))} | "
                      f"${s.get('buy_above','?')} | ${s.get('stop','?')} | ${s.get('target','?')} | "
                      f"{s.get('score','?')} |")
         L.append("")
@@ -687,7 +703,7 @@ def gen_report(args, knowledge):
         life_setup_wr = life_d["wr"] * 100
         if abs(win_wr - life_setup_wr) >= 10:
             direction = "📈 better" if win_wr > life_setup_wr else "📉 worse"
-            L.append(f"- {setup} last-30d {win_wr:.1f}% vs lifetime {life_setup_wr:.1f}%: "
+            L.append(f"- {disp(setup)} last-30d {win_wr:.1f}% vs lifetime {life_setup_wr:.1f}%: "
                      f"{direction} by {abs(win_wr-life_setup_wr):.1f}pp")
     L.append("")
 
