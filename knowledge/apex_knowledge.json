@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "updated": "2026-05-18T21:48:08.431335",
+    "total_trades": 97,
+    "date_range": [
+      "2026-03-17",
+      "2026-05-13"
+    ],
+    "lifetime_wr": 0.433,
+    "lifetime_pf": 1.582
+  },
+  "tickers": {
+    "MUR": {
+      "n": 3,
+      "wins": 3,
+      "wr": 1.0,
+      "avg_pnl_pct": 11.14,
+      "total_pnl_usd": 66.83,
+      "best_pnl": 12.43,
+      "worst_pnl": 10.02,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
+    },
+    "CTRA": {
+      "n": 2,
+      "wins": 2,
+      "wr": 1.0,
+      "avg_pnl_pct": 8.54,
+      "total_pnl_usd": 34.14,
+      "best_pnl": 9.98,
+      "worst_pnl": 7.1,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
+    },
+    "PFE": {
+      "n": 2,
+      "wins": 1,
+      "wr": 0.5,
+      "avg_pnl_pct": -0.58,
+      "total_pnl_usd": -2.32,
+      "best_pnl": 2.22,
+      "worst_pnl": -3.38,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
+    },
+    "EXE": {
+      "n": 2,
+      "wins": 0,
+      "wr": 0.0,
+      "avg_pnl_pct": -4.07,
+      "total_pnl_usd": -16.29,
+      "best_pnl": -3.06,
+      "worst_pnl": -5.08,
+      "setups_seen": [
+        "BREAKOUT",
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    },
+    "SEE": {
+      "n": 3,
+      "wins": 3,
+      "wr": 1.0,
+      "avg_pnl_pct": 0.29,
+      "total_pnl_usd": 1.72,
+      "best_pnl": 0.33,
+      "worst_pnl": 0.24,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
+    },
+    "GEV": {
+      "n": 2,
+      "wins": 1,
+      "wr": 0.5,
+      "avg_pnl_pct": -0.81,
+      "total_pnl_usd": -3.25,
+      "best_pnl": 4.94,
+      "worst_pnl": -6.56,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
+    },
+    "CACI": {
+      "n": 3,
+      "wins": 0,
+      "wr": 0.0,
+      "avg_pnl_pct": -7.0,
+      "total_pnl_usd": -41.98,
+      "best_pnl": -3.68,
+      "worst_pnl": -9.28,
+      "setups_seen": [
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    },
+    "ENPH": {
+      "n": 3,
+      "wins": 2,
+      "wr": 0.667,
+      "avg_pnl_pct": 17.75,
+      "total_pnl_usd": 106.49,
+      "best_pnl": 31.6,
+      "worst_pnl": -9.96,
+      "setups_seen": [
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    },
+    "AMTM": {
+      "n": 2,
+      "wins": 0,
+      "wr": 0.0,
+      "avg_pnl_pct": -6.9,
+      "total_pnl_usd": -27.62,
+      "best_pnl": -5.8,
+      "worst_pnl": -8.01,
+      "setups_seen": [
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    },
+    "AKAM": {
+      "n": 2,
+      "wins": 2,
+      "wr": 1.0,
+      "avg_pnl_pct": 12.01,
+      "total_pnl_usd": 48.02,
+      "best_pnl": 12.01,
+      "worst_pnl": 12.01,
+      "setups_seen": [
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    },
+    "XRAY": {
+      "n": 2,
+      "wins": 0,
+      "wr": 0.0,
+      "avg_pnl_pct": -5.35,
+      "total_pnl_usd": -21.36,
+      "best_pnl": -4.2,
+      "worst_pnl": -6.49,
+      "setups_seen": [
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    },
+    "BWA": {
+      "n": 2,
+      "wins": 2,
+      "wr": 1.0,
+      "avg_pnl_pct": 8.83,
+      "total_pnl_usd": 35.33,
+      "best_pnl": 9.53,
+      "worst_pnl": 8.13,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
+    },
+    "TPL": {
+      "n": 2,
+      "wins": 0,
+      "wr": 0.0,
+      "avg_pnl_pct": -3.14,
+      "total_pnl_usd": -12.56,
+      "best_pnl": -3.14,
+      "worst_pnl": -3.14,
+      "setups_seen": [
+        "REVERSAL"
+      ],
+      "confidence": "LOW"
+    }
+  },
+  "setups": {
+    "BREAKOUT": {
+      "n": 53,
+      "wr": 0.547,
+      "pf": 1.993,
+      "avg_win_pct": 7.5,
+      "avg_loss_pct": -4.55,
+      "confidence": "HIGH",
+      "feature_buckets": {
+        "perf_120_0_25": {
+          "n": 18,
+          "wr": 0.278,
+          "lift_vs_setup_baseline": -0.269,
+          "confidence": "MED"
+        },
+        "perf_120_25_50": {
+          "n": 24,
+          "wr": 0.708,
+          "lift_vs_setup_baseline": 0.161,
+          "confidence": "MED"
+        },
+        "perf_120_50plus": {
+          "n": 8,
+          "wr": 0.625,
+          "lift_vs_setup_baseline": 0.078,
+          "confidence": "LOW"
+        },
+        "rsi_50_60": {
+          "n": 8,
+          "wr": 0.625,
+          "lift_vs_setup_baseline": 0.078,
+          "confidence": "LOW"
+        },
+        "rsi_60_65": {
+          "n": 23,
+          "wr": 0.391,
+          "lift_vs_setup_baseline": -0.156,
+          "confidence": "MED"
+        },
+        "rsi_65_70": {
+          "n": 12,
+          "wr": 0.583,
+          "lift_vs_setup_baseline": 0.036,
+          "confidence": "LOW"
+        },
+        "rsi_70plus": {
+          "n": 10,
+          "wr": 0.8,
+          "lift_vs_setup_baseline": 0.253,
+          "confidence": "LOW"
+        },
+        "vol_lt_1": {
+          "n": 23,
+          "wr": 0.435,
+          "lift_vs_setup_baseline": -0.112,
+          "confidence": "MED"
+        },
+        "vol_1_15": {
+          "n": 17,
+          "wr": 0.588,
+          "lift_vs_setup_baseline": 0.041,
+          "confidence": "MED"
+        },
+        "vol_15_25": {
+          "n": 10,
+          "wr": 0.6,
+          "lift_vs_setup_baseline": 0.053,
+          "confidence": "LOW"
+        }
+      }
+    },
+    "REVERSAL": {
+      "n": 44,
+      "wr": 0.295,
+      "pf": 1.306,
+      "avg_win_pct": 16.39,
+      "avg_loss_pct": -5.26,
+      "confidence": "HIGH",
+      "feature_buckets": {
+        "perf_120_lt_0": {
+          "n": 22,
+          "wr": 0.182,
+          "lift_vs_setup_baseline": -0.114,
+          "confidence": "MED"
+        },
+        "perf_120_0_25": {
+          "n": 15,
+          "wr": 0.267,
+          "lift_vs_setup_baseline": -0.029,
+          "confidence": "MED"
+        },
+        "perf_120_25_50": {
+          "n": 7,
+          "wr": 0.714,
+          "lift_vs_setup_baseline": 0.419,
+          "confidence": "LOW"
+        },
+        "rsi_lt_50": {
+          "n": 44,
+          "wr": 0.295,
+          "lift_vs_setup_baseline": 0.0,
+          "confidence": "HIGH"
+        },
+        "vol_1_15": {
+          "n": 31,
+          "wr": 0.226,
+          "lift_vs_setup_baseline": -0.07,
+          "confidence": "HIGH"
+        },
+        "vol_15_25": {
+          "n": 12,
+          "wr": 0.5,
+          "lift_vs_setup_baseline": 0.205,
+          "confidence": "LOW"
+        }
+      }
+    }
+  },
+  "catalysts": {
+    "cat_pocket_pivot": {
+      "n_present": 7,
+      "n_absent": 90,
+      "wr_when_present": 0.429,
+      "wr_when_absent": 0.433,
+      "lift": -0.005,
+      "confidence": "LOW"
+    },
+    "analyst_upside_gt_15pct": {
+      "n_present": 9,
+      "n_absent": 88,
+      "wr_when_present": 0.111,
+      "wr_when_absent": 0.466,
+      "lift": -0.355,
+      "confidence": "LOW"
+    }
+  },
+  "score_calibration": {
+    "BREAKOUT": {
+      "60-70": {
+        "n": 6,
+        "wr": 0.333,
+        "confidence": "LOW"
+      },
+      "70-80": {
+        "n": 12,
+        "wr": 0.417,
+        "confidence": "LOW"
+      },
+      "80-90": {
+        "n": 11,
+        "wr": 0.455,
+        "confidence": "LOW"
+      },
+      "90-100": {
+        "n": 17,
+        "wr": 0.706,
+        "confidence": "MED"
+      },
+      "100-999": {
+        "n": 7,
+        "wr": 0.714,
+        "confidence": "LOW"
+      }
+    },
+    "REVERSAL": {
+      "40-60": {
+        "n": 7,
+        "wr": 0.143,
+        "confidence": "LOW"
+      },
+      "60-70": {
+        "n": 11,
+        "wr": 0.727,
+        "confidence": "LOW"
+      },
+      "70-80": {
+        "n": 13,
+        "wr": 0.308,
+        "confidence": "LOW"
+      },
+      "80-90": {
+        "n": 8,
+        "wr": 0.0,
+        "confidence": "LOW"
+      }
+    }
+  },
+  "failure_modes": {
+    "quick_stop_1_3d": {
+      "count": 18,
+      "pct_of_losses": 0.327,
+      "avg_pnl": -5.23,
+      "by_setup": {
+        "BREAKOUT": 8,
+        "REVERSAL": 10
+      }
+    },
+    "slow_stop_4plus": {
+      "count": 31,
+      "pct_of_losses": 0.564,
+      "avg_pnl": -5.3,
+      "by_setup": {
+        "REVERSAL": 17,
+        "BREAKOUT": 14
+      }
+    },
+    "time_exit_negative": {
+      "count": 3,
+      "pct_of_losses": 0.055,
+      "avg_pnl": -2.01,
+      "by_setup": {
+        "BREAKOUT": 2,
+        "REVERSAL": 1
+      }
+    },
+    "high_score_loss_85plus": {
+      "count": 16,
+      "pct_of_losses": 0.291,
+      "avg_pnl": -5.63,
+      "by_setup": {
+        "BREAKOUT": 9,
+        "REVERSAL": 7
+      }
+    }
+  }
+}
