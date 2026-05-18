@@ -2,8 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-05-18T22:23:05.366039",
-    "total_trades": 97
+    "updated": "2026-05-18T22:29:23.981193",
+    "total_trades": 97,
+    "analyzed_trades": 11
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -62,19 +63,49 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-21",
+            "title": "B. Riley downgrades BTU to Neutral from Buy",
+            "src": "Analyst Action"
+          },
+          {
+            "date": "2026-05-05",
+            "title": "BTU Q1 2026: Net Loss $32.4M, EBITDA $82.5M (vs $144M YoY), Centurion mine production cut 250K vs 700K tons",
+            "src": "SEC 8-K"
+          },
+          {
+            "date": "2026-05-07",
+            "title": "UBS cuts BTU PT to $30.50 from $32",
+            "src": "Analyst Action"
+          }
+        ],
+        "key_events": [
+          "Q1 Earnings 5.5 mit Production-Cut",
+          "B.Riley Downgrade 21.4 (10d vor unserem Signal - schon Warnsignal)"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL 4 Tage vor Q1 Earnings - Earnings am 5.5 zeigten Net Loss & EBITDA -43%, Production Cut",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "earnings_miss_during_hold",
+          "fundamental_deterioration"
+        ],
+        "similar_trades": [
+          "ENPH_2026-04-20",
+          "MOS_2026-04-19"
+        ],
+        "what_would_have_helped": [
+          "Earnings-Blackout-Filter: skip REVERSAL wenn Earnings in <7d",
+          "Production-Cut/Guidance-Reduction News-Check (B.Riley Downgrade war schon 21.4)",
+          "Sektor-Schwaeche-Check: Coal hatte mehrere Quartale schwache Fundamentaldaten"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:21:46.852258",
@@ -137,19 +168,40 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-03-?",
+            "title": "WDC Q2 FY26 Revenue $3.02B +25% YoY, EPS $2.13 non-GAAP",
+            "src": "SEC 8-K"
+          },
+          {
+            "date": "2026-05-08",
+            "title": "WDC up 170% YTD, 845% 1y - AI storage demand driver",
+            "src": "Motley Fool"
+          }
+        ],
+        "key_events": [
+          "WDC ist Top-Performer 2026, unser tight Stop zu Beginn der Vertical traf eine Pullback-Wave"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Stop zu eng fuer hochvolatilen AI-Storage-Stock (170% YTD, 845% 1y) - getoppt nach 3 Tagen, dann massive Continuation verpasst",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_volatility_tight_stop",
+          "vertical_move_breakout_fail",
+          "ai_storage_momentum"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "ATR-Filter strenger: atr_pct > 8% sollte BREAKOUT-Eligibility ausschliessen",
+          "Bei extended Stocks (perf_120 > 100%) breitere Stops (z.B. 12% statt 7%)",
+          "ODER: skip BREAKOUT bei perf_120 > 100% (gesetzlich ueberspannt)"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:12.738407",
@@ -2087,19 +2139,50 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-03-23",
+            "title": "GE Vernova added to S&P 100 effective March 23",
+            "src": "Simply Wall St"
+          },
+          {
+            "date": "2026-04-23",
+            "title": "GEV Q1 2026: $9.3B revenue, raises guidance to $44.5-45.5B (+$13B backlog QoQ)",
+            "src": "SEC 8-K"
+          },
+          {
+            "date": "2026-?",
+            "title": "GEV +243% 1y - extended",
+            "src": "TIKR"
+          }
+        ],
+        "key_events": [
+          "S&P 100 Inclusion 23.3 = unser Signal-Tag",
+          "Fundamentals tatsaechlich stark (Q1 raised guidance), aber Stock-Move war Vorabprice"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT EXAKT am S&P-100-Inclusion-Tag (23.3) = index-buying war bereits gepriced, klassische 'sell the news' Fade",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "lesson_tags": [
+          "index_inclusion_fade",
+          "post_announcement_fade",
+          "extended_stock_breakout"
+        ],
+        "similar_trades": [
+          "WDC_2026-03-18",
+          "PENN_2026-04-27"
+        ],
+        "what_would_have_helped": [
+          "Index-Inclusion-Event-Filter: skip BREAKOUT am Tag der angekuendigten S&P 500/100/Nasdaq Inclusion",
+          "perf_120d > 100% (GEV war +243% 1y) = extended-Penalty einbauen"
+        ],
+        "what_to_replicate": [
+          "Falls man Index-Inclusion-Trades macht: 2-3 Wochen VOR Effective-Date kaufen, nicht AM Tag"
+        ],
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:26.179600",
@@ -3662,19 +3745,44 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-13",
+            "title": "Jefferies cuts CACI PT to $645 from $690 (Hold maintained)",
+            "src": "Simply Wall St"
+          },
+          {
+            "date": "2026-04-15",
+            "title": "CACI wins $306M DLA software contract",
+            "src": "SEC"
+          }
+        ],
+        "key_events": [
+          "3 REVERSAL-Signale in 12 Tagen alle Stopped - Jefferies-Downgrade triggered 13% decline trotz Contract-Wins"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL nach Jefferies-Downgrade (PT $690 -> $645 am 13.4) = catching falling knife nach institutional re-rating",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "reversal_after_analyst_downgrade",
+          "institutional_rerating_in_progress",
+          "defense_sector_specific"
+        ],
+        "similar_trades": [
+          "CACI_2026-04-23",
+          "CACI_2026-05-01",
+          "MOS_2026-04-19",
+          "LKQ_2026-05-06"
+        ],
+        "what_would_have_helped": [
+          "Ticker-Pause-Filter: nach Major-Analyst-PT-Cut (>5% Reduktion) 30d kein REVERSAL fuer diesen Ticker",
+          "News-Sentiment-Check vor REVERSAL-Trigger"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:38.553601",
@@ -4112,19 +4220,49 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-09",
+            "title": "MOS announces Brazilian phosphate operations IDLE + planned sale",
+            "src": "SEC 8-K"
+          },
+          {
+            "date": "2026-04-?",
+            "title": "CIBC cuts PT $27 from $32, BofA $29 from $30, Wells Fargo $25 from $27",
+            "src": "Multiple Analyst"
+          },
+          {
+            "date": "2026-05-?",
+            "title": "MOS Q1 2026: Net Loss $258M, EPS -$0.81",
+            "src": "SEC 8-K"
+          }
+        ],
+        "key_events": [
+          "Brazilian-Idle 9.4 = klare strategische Schwaeche",
+          "Triple analyst-cut innerhalb 30d"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL 10 Tage nach Brazilian-Phosphate-Idle-Announcement (9.4) + multiple Analyst-PT-Cuts - fundamental schwaechender Stock",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "reversal_after_analyst_downgrade",
+          "fundamental_deterioration",
+          "guidance_reduction"
+        ],
+        "similar_trades": [
+          "BTU_2026-05-01",
+          "CACI_2026-04-19",
+          "LKQ_2026-05-06"
+        ],
+        "what_would_have_helped": [
+          "News-Filter: skip REVERSAL wenn negativen Strategic-Announcement in letzten 14d",
+          "Multiple-Analyst-Downgrade-Cluster: 3+ PT-Cuts in 30d = ticker-pause"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:41.929587",
@@ -4337,19 +4475,42 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-28",
+            "title": "ENPH Q1 2026 Earnings BEAT: EPS $0.47 vs est $0.45, Revenue $282.9M",
+            "src": "SEC 8-K"
+          },
+          {
+            "date": "2026-04-28",
+            "title": "Solar Sektor: Post-Tax-Credit-Contraction, EU-Battery-Aktivierungen +20-75%",
+            "src": "Earnings Call"
+          }
+        ],
+        "key_events": [
+          "Q1 2026 Earnings April 28 - BEAT, aber wir waren am 27.4 schon gestoppt (D+7)"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Stop ausgeloest 1 Tag VOR Earnings-Beat - REVERSAL stoppt sich aus dem profitablen Move raus",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "reversal_stopped_before_catalyst",
+          "stop_too_tight_pre_earnings"
+        ],
+        "similar_trades": [
+          "BTU_2026-05-01",
+          "PENN_2026-04-27"
+        ],
+        "what_would_have_helped": [
+          "Earnings-Blackout-Filter (5d vor Earnings): haette den Trade verhindert ODER hold-period verkuerzt",
+          "Falls Earnings <7d: Stop weiter setzen oder time-exit am Earnings-Tag"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:43.470476",
@@ -4862,19 +5023,54 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-?",
+            "title": "AMTM wins $425M CAL FIRE aerial firefighting contract",
+            "src": "Stocktitan"
+          },
+          {
+            "date": "2026-04-?",
+            "title": "AMTM wins $406M UK Small Modular Reactor contract",
+            "src": "Stocktitan"
+          },
+          {
+            "date": "2026-04-16",
+            "title": "Citizens initiates Market Outperform on AMTM PT $40",
+            "src": "Analyst"
+          },
+          {
+            "date": "2026-?",
+            "title": "AMTM Stock -20% YTD despite positive news flow",
+            "src": "TIKR"
+          }
+        ],
+        "key_events": [
+          "3 positive news events konnten fundamental-Schwaeche nicht brechen",
+          "Stock blutete 23d langsam in Stop"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "DEAD_CAT_BOUNCE - Stock war -20% YTD, REVERSAL kaufte trotz fundamentaler Schwaeche; nahm 23 Tage zum Stop",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "dead_cat_bounce",
+          "downtrend_stock_reversal_fail",
+          "slow_bleed_stop"
+        ],
+        "similar_trades": [
+          "BTU_2026-05-01",
+          "LKQ_2026-05-06",
+          "MOS_2026-04-19"
+        ],
+        "what_would_have_helped": [
+          "Phase G DEAD_CAT_BOUNCE-Klassifikation (-15 score) ist GENAU fuer diesen Fall - waere rausgefiltert worden",
+          "Earnings-Sentiment-Check: positive Contract-Wins reichen nicht gegen YTD-Decline"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:47.453732",
@@ -5237,19 +5433,37 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-22",
+            "title": "CACI Q3 FY26 Earnings - beat, raised guidance, but stock still in downgrade-aftermath",
+            "src": "SEC 8-K"
+          }
+        ],
+        "key_events": [
+          "Earnings-BEAT konnte Downgrade-Momentum nicht brechen - Stock fiel weiter"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Identisch zu CACI_2026-04-19 - REVERSAL #2 in Downgrade-Phase, kein Lerneffekt durch System",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "reversal_after_analyst_downgrade",
+          "duplicate_trap",
+          "no_cooldown_after_recent_loss"
+        ],
+        "similar_trades": [
+          "CACI_2026-04-19",
+          "CACI_2026-05-01"
+        ],
+        "what_would_have_helped": [
+          "Per-Ticker-Cooldown nach Stop-Loss: 14d Pause fuer Ticker nach einem REVERSAL-Stop",
+          "Score-Penalty wenn Ticker in letzten 30d gestoppt wurde"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:50.078202",
@@ -5312,19 +5526,37 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-13",
+            "title": "Jefferies Downgrade - wirkte noch 18 Tage spaeter",
+            "src": "Simply Wall St"
+          }
+        ],
+        "key_events": [
+          "Selber Ticker, selbe Falle, dritter Loss"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "reversal_after_analyst_downgrade",
+          "duplicate_trap",
+          "extended_cooldown_needed"
+        ],
+        "similar_trades": [
+          "CACI_2026-04-19",
+          "CACI_2026-04-23"
+        ],
+        "what_would_have_helped": [
+          "DUPLICATE_WINDOW erhoehen auf 21d fuer REVERSAL (nicht 3d)",
+          "ODER: Per-Ticker-Loser-Memory - wenn Ticker in letzten 30d 1+ Loser hatte, score-penalty -10"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:50.620225",
@@ -5987,19 +6219,44 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-23",
+            "title": "PENN Q1 2026: EPS $0.11 vs est $0.05 (120% surprise), Revenue $1.78B (slight miss)",
+            "src": "Quiver Quant"
+          },
+          {
+            "date": "2026-04-23",
+            "title": "PENN stock +16.7% pre-market on earnings",
+            "src": "Investing.com"
+          }
+        ],
+        "key_events": [
+          "Earnings-Spike 23.4 (+16.7%) -> unser Signal 27.4 = 4 Tage NACH Spike = Fade-Trap"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Post-Earnings-Spike-Chase - Q1 Earnings 23.4 mit 120% Surprise, Stock +16.7% pre-market; wir fired BREAKOUT 4 Tage spaeter = klassischer Late-Entry-Fade",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "lesson_tags": [
+          "post_earnings_late_chase",
+          "breakout_after_earnings_spike",
+          "rsi_overbought_69"
+        ],
+        "similar_trades": [
+          "GEV_2026-03-23"
+        ],
+        "what_would_have_helped": [
+          "Earnings-Post-Window: skip BREAKOUT in den 3-7 Tagen nach earnings_surprise > 50%",
+          "ODER: BREAKOUT nach earnings ist OK nur wenn PEAD bestaetigt (Volume + Continuation)",
+          "RSI 69 war am oberen Rand - bestaetigt dass extended Setups gefaehrlich sind"
+        ],
+        "what_to_replicate": [
+          "Falls man PEAD-Trade machen will: TAG VOR oder TAG NACH Earnings einsteigen, nicht 4 Tage spaeter"
+        ],
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:55.692732",
@@ -6437,19 +6694,49 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-?",
+            "title": "LKQ Q1 2026: EPS $0.30 (von $0.65), Revenue flat, Net Income -54%",
+            "src": "Stockanalysis"
+          },
+          {
+            "date": "2026-05-?",
+            "title": "LKQ Securities Lawsuit ueber $2.1B Acquisition-Misrepresentation",
+            "src": "Yahoo Finance"
+          },
+          {
+            "date": "2026-05-11",
+            "title": "LKQ faellt 2.73% von $28.89 auf $28.10 (unser Signal-Niveau)",
+            "src": "Yahoo"
+          }
+        ],
+        "key_events": [
+          "Tariff-Exposure + Restructuring-Charges + Lawsuit-Overhang"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Fundamentale Margin-Compression + Securities-Lawsuit = REVERSAL traf strukturell geschwaechten Stock",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "dead_cat_bounce",
+          "fundamental_deterioration",
+          "litigation_risk",
+          "tariff_exposure"
+        ],
+        "similar_trades": [
+          "AMTM_2026-04-01",
+          "BTU_2026-05-01"
+        ],
+        "what_would_have_helped": [
+          "Securities-Lawsuit-Filter: skip Stocks mit active material-securities-litigation",
+          "Margin-Trend-Check: Operating Margin Q1 6.3% (von 8.3%) = klares Warnsignal",
+          "Phase G DEAD_CAT_BOUNCE-Klassifikation"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-18T22:29:23.981193",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:58.930464",
