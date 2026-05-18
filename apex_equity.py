@@ -225,6 +225,12 @@ def evaluate_trade(signal, today):
     pnl_pct = (exit_price - entry) / entry * 100
     pnl_usd = TRADE_SIZE * pnl_pct / 100
 
+    # Phase F.3 trailing-stop bei breakeven erzeugt regelmäßig 0%-Trades
+    # (REVERSAL legacy). Diese polluten WR-Calculation (zählen als Loss).
+    # Lösung: 0%-Trades nicht als Trade speichern — Position ist neutral exited.
+    if abs(pnl_pct) < 0.01:
+        return None
+
     return {
         "date":        signal["date"],
         "ticker":      ticker,
