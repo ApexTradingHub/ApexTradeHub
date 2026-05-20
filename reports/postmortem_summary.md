@@ -1,19 +1,19 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-05-18T22:29:23.981193 | Total trades: 97_
+_Updated: 2026-05-20T16:23:26.248767 | Total trades: 100_
 
-**Analyse-Status**: complete=11, pending=86
+**Analyse-Status**: complete=14, pending=86
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `reversal_after_analyst_downgrade` | 4 |
-| `fundamental_deterioration` | 3 |
-| `earnings_adjacency_risk` | 2 |
+| `reversal_after_analyst_downgrade` | 6 |
+| `fundamental_deterioration` | 5 |
+| `earnings_adjacency_risk` | 3 |
+| `earnings_miss_during_hold` | 2 |
 | `dead_cat_bounce` | 2 |
 | `duplicate_trap` | 2 |
-| `earnings_miss_during_hold` | 1 |
 | `high_volatility_tight_stop` | 1 |
 | `vertical_move_breakout_fail` | 1 |
 | `ai_storage_momentum` | 1 |
@@ -54,11 +54,13 @@ _Updated: 2026-05-18T22:29:23.981193 | Total trades: 97_
 | Trade | Setup | PnL% | Exit | Score | Sektor | Analyse |
 |---|---|---|---|---|---|---|
 | ENPH_2026-04-20 | REVERSAL | -9.96% | Stop Loss D+7 | 91.1 | Technology | Stop ausgeloest 1 Tag VOR Earnings-Beat - REVERSAL stoppt sich aus dem profitablen Move raus |
+| SW_2026-05-04 | REVERSAL | -9.44% | Stop Loss D+11 | 64.6 | Unknown | REVERSAL gekauft 4 Tage vor Q1-2026-Earnings, die massiv verfehlten: EPS $0.33 vs $0.41 erwartet (-19.5% Surprise), Net Income -83% YoY auf $63M (vs $382M). Net-Marge brach von 5.0% auf 0.8% ein (hoehere Depreciation/Impairment/Restructuring + ~$65M Wetter-Headwinds + schwaechere NA-Volumina). 7-Tage-Verlustserie -9.5%, Stop am 19.5 bei -4.6% Tagesverlust. Oversold-RSI war Falle - der Abverkauf war fundamental getrieben. |
 | WDC_2026-03-18 | BREAKOUT | -9.37% | Stop Loss D+3 | 94.4 | Technology | Stop zu eng fuer hochvolatilen AI-Storage-Stock (170% YTD, 845% 1y) - getoppt nach 3 Tagen, dann massive Continuation verpasst |
 | CACI_2026-04-23 | REVERSAL | -9.28% | Stop Loss D+9 | 81.2 | Technology | Identisch zu CACI_2026-04-19 - REVERSAL #2 in Downgrade-Phase, kein Lerneffekt durch System |
 | BTU_2026-05-01 | REVERSAL | -8.73% | Stop Loss D+3 | 82.2 | Energy | REVERSAL 4 Tage vor Q1 Earnings - Earnings am 5.5 zeigten Net Loss & EBITDA -43%, Production Cut |
 | CACI_2026-05-01 | REVERSAL | -8.03% | Stop Loss D+3 | 72.6 | Technology | REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben |
 | AMTM_2026-04-01 | REVERSAL | -8.01% | Stop Loss D+23 | 59.7 | Industrials | DEAD_CAT_BOUNCE - Stock war -20% YTD, REVERSAL kaufte trotz fundamentaler Schwaeche; nahm 23 Tage zum Stop |
+| APH_2026-05-12 | REVERSAL | -7.84% | Stop Loss D+5 | 86.5 | Unknown | REVERSAL in einen Valuation-Unwind eines Momentum-Stocks gekauft (+105% 1J). Trotz STARKER Q1-Earnings (Beat + Guidance-Raise auf +41-43% EPS-Wachstum) brach der Kurs ein wegen: Analyst-Downgrades Buy->Hold (BofA, Jefferies, Zacks; Bedenken zu Bewertung + Aerospace-Connectivity-Backlog-Slowdown) UND ~$250M Insider-Verkaeufe in 24-72h (CEO verkaufte $18.7M am 5.5). Stock -13.2% in einer Woche. base_range 27.6 = extrem breit = fallendes Messer. Stop nach nur 5 Tagen. Mean-Reversion eines parabolischen Momentum-Unwinds ist kein REVERSAL-Setup. |
 | LKQ_2026-05-06 | REVERSAL | -7.61% | Stop Loss D+5 | 91.3 | Unknown | Fundamentale Margin-Compression + Securities-Lawsuit = REVERSAL traf strukturell geschwaechten Stock |
 | PENN_2026-04-27 | BREAKOUT | -7.45% | Stop Loss D+10 | 110.2 | Consumer Cyclical | Post-Earnings-Spike-Chase - Q1 Earnings 23.4 mit 120% Surprise, Stock +16.7% pre-market; wir fired BREAKOUT 4 Tage spaeter = klassischer Late-Entry-Fade |
 | MOS_2026-04-19 | REVERSAL | -7.09% | Stop Loss D+7 | 76.3 | Basic Materials | REVERSAL 10 Tage nach Brazilian-Phosphate-Idle-Announcement (9.4) + multiple Analyst-PT-Cuts - fundamental schwaechender Stock |
@@ -66,8 +68,6 @@ _Updated: 2026-05-18T22:29:23.981193 | Total trades: 97_
 | XRAY_2026-05-01 | REVERSAL | -6.49% | Stop Loss D+2 | 65.2 | Healthcare | _pending_ |
 | UI_2026-03-18 | BREAKOUT | -6.27% | Stop Loss D+8 | 86.2 | Technology | _pending_ |
 | FLS_2026-04-27 | BREAKOUT | -6.18% | Stop Loss D+3 | 110.9 | Industrials | _pending_ |
-| HP_2026-03-19 | BREAKOUT | -5.98% | Stop Loss D+9 | 82.6 | Energy | _pending_ |
-| CNH_2026-03-26 | REVERSAL | -5.91% | Stop Loss D+20 | 71.5 | Industrials | _pending_ |
 
 ## Best 10 Trades
 

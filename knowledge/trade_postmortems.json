@@ -2,9 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-05-18T22:29:23.981193",
-    "total_trades": 97,
-    "analyzed_trades": 11
+    "updated": "2026-05-20T16:23:26.248767",
+    "total_trades": 100,
+    "analyzed_trades": 14
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -7565,6 +7565,268 @@
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:05.063234",
+        "version": "1.0"
+      }
+    },
+    "SW_2026-05-04": {
+      "core": {
+        "ticker": "SW",
+        "signal_date": "2026-05-04",
+        "exit_date": "2026-05-19",
+        "setup": "REVERSAL",
+        "entry": 39.63,
+        "stop": 35.89,
+        "target": 45.83,
+        "exit_price": 35.89,
+        "exit_reason": "Stop Loss",
+        "exit_day": 11,
+        "trigger_day": null,
+        "pnl_pct": -9.44,
+        "pnl_usd": -18.87,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 64.6,
+        "rr": 1.66,
+        "rsi": 44.5,
+        "macd_bull": "YES",
+        "vol_ratio": 1.19,
+        "avg_dv_m": 200.02,
+        "perf_20d": 0.4,
+        "perf_60d": -10.4,
+        "perf_120d": 11.4,
+        "base_range": 17.3,
+        "horizon": "3-8 weeks",
+        "movement_class": null,
+        "closing_strength": null,
+        "inside_day": null,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": null,
+          "vol_climax": null,
+          "gap_pct": null,
+          "vcp_strength": null,
+          "earnings_blackout": null,
+          "earnings_beat": null,
+          "earnings_next_days": null,
+          "short_pct": null,
+          "analyst_upside": null
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": 2.19,
+        "qqq_perf_pct": 4.26,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL gekauft 4 Tage vor Q1-2026-Earnings, die massiv verfehlten: EPS $0.33 vs $0.41 erwartet (-19.5% Surprise), Net Income -83% YoY auf $63M (vs $382M). Net-Marge brach von 5.0% auf 0.8% ein (hoehere Depreciation/Impairment/Restructuring + ~$65M Wetter-Headwinds + schwaechere NA-Volumina). 7-Tage-Verlustserie -9.5%, Stop am 19.5 bei -4.6% Tagesverlust. Oversold-RSI war Falle - der Abverkauf war fundamental getrieben.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "earnings_miss_during_hold",
+          "fundamental_deterioration"
+        ],
+        "similar_trades": [
+          "BTU_2026-05-01",
+          "ENPH_2026-04-20"
+        ],
+        "what_would_have_helped": [
+          "Earnings-Blackout-Filter: skip REVERSAL wenn Earnings in <7-10d",
+          "Packaging/Materials hatte Margin-Pressure (Kosten/Wetter) - Sektor-Fundamental-Check",
+          "Score war nur 64.6 (niedrige Conviction) - setup-spezifische Mindest-Score haette geblockt"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-05-20T16:23:26.248767",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-05-20T16:21:25.349452",
+        "version": "1.0"
+      }
+    },
+    "HCA_2026-05-09": {
+      "core": {
+        "ticker": "HCA",
+        "signal_date": "2026-05-09",
+        "exit_date": "2026-05-19",
+        "setup": "REVERSAL",
+        "entry": 437.37,
+        "stop": 419.46,
+        "target": 495.44,
+        "exit_price": 419.46,
+        "exit_reason": "Stop Loss",
+        "exit_day": 7,
+        "trigger_day": null,
+        "pnl_pct": -4.09,
+        "pnl_usd": -8.19,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 92.0,
+        "rr": 3.24,
+        "rsi": 35.7,
+        "macd_bull": "NO",
+        "vol_ratio": 1.33,
+        "avg_dv_m": 500.05,
+        "perf_20d": -12.2,
+        "perf_60d": -18.0,
+        "perf_120d": -7.8,
+        "base_range": 6.2,
+        "horizon": "3-8 weeks",
+        "movement_class": null,
+        "closing_strength": null,
+        "inside_day": null,
+        "sector": "Healthcare",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 1.03,
+          "vcp_strength": 0.07,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.7,
+          "analyst_upside": 17.90142236724188
+        }
+      },
+      "market_context": {
+        "sector": "Healthcare",
+        "sector_etf": "XLV",
+        "spy_perf_pct": -0.75,
+        "qqq_perf_pct": -1.65,
+        "sector_etf_perf_pct": 2.99,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL als Post-Earnings-Falling-Knife gekauft. Q1 2026 (24.4) verfehlte (EPS $7.15, -$0.04 miss) wegen hoeherer Labor-/Operating-Kosten. Danach Kaskade von Analyst-PT-Senkungen: Stephens $560->$530, KeyBanc, RBC, Jefferies. Unser Signal 9.5 fiel mitten in diese fundamental getriebene Abwaertsbewegung. HCA fiel weiter waehrend XLV +2.99% stieg = klare relative Schwaeche (kein Bounce-Setup). Workforce-Cut-News 19.-20.5 verstaerkten den Druck. WICHTIG: Score war 92 (hoch!) - der Score sah oversold-RSI + gutes RR, aber NICHT die Downgrade-Welle.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "reversal_after_analyst_downgrade",
+          "fundamental_deterioration",
+          "post_earnings_falling_knife",
+          "sector_relative_weakness",
+          "high_score_false_positive"
+        ],
+        "similar_trades": [
+          "APH_2026-05-12",
+          "BTU_2026-05-01"
+        ],
+        "what_would_have_helped": [
+          "News-Sentiment-Filter: skip REVERSAL nach Earnings-Miss + multiplen Analyst-Downgrades",
+          "Sektor-relative-Staerke-Check: Stock faellt waehrend Sektor-ETF steigt = kein Bounce",
+          "Hoher Score schuetzt NICHT vor fundamentalem Falling-Knife - Score braucht News-Awareness"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-05-20T16:23:26.248767",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-05-20T16:21:25.861026",
+        "version": "1.0"
+      }
+    },
+    "APH_2026-05-12": {
+      "core": {
+        "ticker": "APH",
+        "signal_date": "2026-05-12",
+        "exit_date": "2026-05-19",
+        "setup": "REVERSAL",
+        "entry": 128.51,
+        "stop": 118.43,
+        "target": 147.29,
+        "exit_price": 118.43,
+        "exit_reason": "Stop Loss",
+        "exit_day": 5,
+        "trigger_day": null,
+        "pnl_pct": -7.84,
+        "pnl_usd": -15.69,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 86.5,
+        "rr": 1.86,
+        "rsi": 38.2,
+        "macd_bull": "NO",
+        "vol_ratio": 1.45,
+        "avg_dv_m": 1253.41,
+        "perf_20d": -14.0,
+        "perf_60d": -12.7,
+        "perf_120d": -3.0,
+        "base_range": 27.6,
+        "horizon": "3-8 weeks",
+        "movement_class": null,
+        "closing_strength": null,
+        "inside_day": null,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 1.2,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 1.27,
+          "analyst_upside": 42.114811918354555
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": -0.6,
+        "qqq_perf_pct": -0.81,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL in einen Valuation-Unwind eines Momentum-Stocks gekauft (+105% 1J). Trotz STARKER Q1-Earnings (Beat + Guidance-Raise auf +41-43% EPS-Wachstum) brach der Kurs ein wegen: Analyst-Downgrades Buy->Hold (BofA, Jefferies, Zacks; Bedenken zu Bewertung + Aerospace-Connectivity-Backlog-Slowdown) UND ~$250M Insider-Verkaeufe in 24-72h (CEO verkaufte $18.7M am 5.5). Stock -13.2% in einer Woche. base_range 27.6 = extrem breit = fallendes Messer. Stop nach nur 5 Tagen. Mean-Reversion eines parabolischen Momentum-Unwinds ist kein REVERSAL-Setup.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "reversal_after_analyst_downgrade",
+          "extended_stock_correction",
+          "insider_distribution",
+          "high_volatility_falling_knife"
+        ],
+        "similar_trades": [
+          "HCA_2026-05-09",
+          "WDC_2026-03-18"
+        ],
+        "what_would_have_helped": [
+          "base_range > 20% sollte REVERSAL ausschliessen (zu volatil, fallendes Messer)",
+          "Extended-Stock-Filter: REVERSAL bei perf_1y > 80% gefaehrlich (Momentum-Unwind)",
+          "Insider-Selling-Check (Form 4): $250M in 72h = starkes Distributionssignal",
+          "Analyst-Downgrade-Sentiment-Filter (Buy->Hold Welle)"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-05-20T16:23:26.248767",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-05-20T16:21:26.373229",
         "version": "1.0"
       }
     }
