@@ -336,6 +336,27 @@ def gen_summary(pm):
     L.append(f"**Analyse-Status**: " + ", ".join(f"{k}={v}" for k, v in statuses.items()))
     L.append("")
 
+    # Data-quality guardrail: a trade marked 'complete' MUST have structured news
+    # (web_research). Otherwise the news only lives as prose in claude_analysis and
+    # is not machine-readable. Surface these loudly so future omissions get caught.
+    missing_news = [
+        f"{t['core']['ticker']}_{t['core']['signal_date']}"
+        for t in trades.values()
+        if t["claude_analysis"]["status"] == "complete"
+        and not t["news"].get("web_research")
+        and not t["news"].get("yfinance_news")
+    ]
+    if missing_news:
+        L.append("## ⚠ Daten-Qualität: complete OHNE strukturierte News")
+        L.append("")
+        L.append(f"{len(missing_news)} Trade(s) sind als `complete` markiert, haben aber "
+                 "ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen "
+                 "(Datum/Titel/Quelle), nicht nur im Analyse-Text:")
+        L.append("")
+        for tid in missing_news:
+            L.append(f"- `{tid}`")
+        L.append("")
+
     # Lesson-Tag frequency
     all_tags = []
     for t in trades.values():
