@@ -2,9 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-05-20T16:23:26.248767",
-    "total_trades": 100,
-    "analyzed_trades": 14
+    "updated": "2026-05-21T17:50:26.219098",
+    "total_trades": 101,
+    "analyzed_trades": 27
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -343,15 +343,25 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "secular_ai_catalyst",
+          "extended_but_catalyst_won"
+        ],
+        "similar_trades": [
+          "STX_2026-04-16"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT NACH bestaetigtem Earnings-Beat (cat_earnings_beat=true) = hoehere Conviction",
+          "Post-Earnings-Continuation auf saekularem Catalyst schlaegt Pre-Earnings-Gamble",
+          "AI-Themen-Stocks (Networking/Storage) mit Volumen + Beat sind die staerksten BREAKOUTs"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:13.758905",
@@ -418,15 +428,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17",
+          "CTRA_2026-03-18"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:14.303739",
@@ -493,15 +514,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "CTRA_2026-03-17",
+          "CTRA_2026-03-18"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:14.776654",
@@ -568,15 +600,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-18"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:15.308940",
@@ -643,15 +686,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:15.877614",
@@ -718,15 +772,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:16.296773",
@@ -793,15 +858,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:16.823865",
@@ -1318,15 +1394,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:20.632850",
@@ -1393,15 +1480,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:21.092610",
@@ -1843,15 +1941,26 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "energy_oil_surge_2026q1",
+          "sector_relative_strength"
+        ],
+        "similar_trades": [
+          "DVN_2026-03-17",
+          "MUR_2026-03-17",
+          "CTRA_2026-03-17"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT in Sektor mit starker relativer Staerke (Sektor-ETF >> SPY) hat Tailwind-Edge",
+          "Sektor-Momentum-Check als Score-Bonus (invertiert zum Sektor-Divergenz-Loser-Muster)"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:24.228129",
@@ -4404,15 +4513,27 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor).",
+        "lesson_tags": [
+          "extended_but_catalyst_won",
+          "secular_ai_catalyst",
+          "ai_storage_momentum",
+          "sector_tailwind"
+        ],
+        "similar_trades": [
+          "CIEN_2026-03-18",
+          "WDC_2026-03-18"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT mit starkem saekularem Catalyst (AI-Storage/Networking) gewinnt trotz Extension",
+          "Catalyst-Qualitaet > Extension-Penalty - nicht blind perf120 bestrafen wenn Catalyst stark",
+          "Sektor-Tailwind (Sektor-ETF > SPY) als Rueckenwind"
+        ],
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:42.952600",
@@ -4727,15 +4848,28 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT-Signal 27.4 (Score 110.9, vol_ratio 2.48 = massiver Volumen-Spike), ABER Q1-Earnings am 29.4 = nur 2 Tage spaeter. Earnings verfehlten Revenue um -8.8% ($1.07B vs $1.17B erwartet), Adj. Operating Income -17.9% miss, Sales-Guidance gekuerzt. Stop D+3. Der Volumen-Spike war wahrscheinlich Pre-Earnings-Positionierung, kein echtes Breakout-Volumen. WICHTIG: Earnings-Adjacency-Risk trifft BREAKOUT genauso wie REVERSAL.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "earnings_adjacency_breakout",
+          "earnings_miss_during_hold",
+          "pre_earnings_volume_trap"
+        ],
+        "similar_trades": [
+          "BTU_2026-05-01",
+          "SW_2026-05-04",
+          "XRAY_2026-05-01"
+        ],
+        "what_would_have_helped": [
+          "Earnings-Blackout-Filter fuer ALLE Setups (nicht nur REVERSAL): skip wenn earnings_next_days < 5-7",
+          "apex_catalysts liefert earnings_next_days bereits - im Live-Scanner als Hard-Exit nutzbar",
+          "Volumen-Spike vor Earnings ist verdaechtig, nicht bestaetigend"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:45.203064",
@@ -5362,15 +5496,28 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL mit RSI 47.4 = NICHT oversold (kein echtes Bounce-Setup) + niedriger Score 65.2 (geringe Conviction). Q1-Earnings am 5.5 = 4 Tage nach Signal: GAAP-Net-Loss, Adj-EPS $0.27 (-39% von $0.44), EBITDA-Marge 19%->14.7%. Analyst-PT-Cuts (UBS $18->$17, Mizuho $16->$14). Stop D+2. Doppelter Fehler: kein oversold-Edge UND Earnings-Adjacency in einen Miss.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "not_oversold_reversal",
+          "fundamental_deterioration",
+          "low_conviction_score"
+        ],
+        "similar_trades": [
+          "SW_2026-05-04",
+          "BTU_2026-05-01",
+          "FLS_2026-04-27"
+        ],
+        "what_would_have_helped": [
+          "REVERSAL nur bei echtem oversold (RSI < 40-42) - 47.4 ist neutral, kein Bounce",
+          "Earnings-Blackout < 5-7 Tage",
+          "Setup-spezifische Mindest-Score haette 65.2 geblockt"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-05-21T17:50:26.219098",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:49.612586",
@@ -7827,6 +7974,81 @@
       },
       "auto_meta": {
         "built_at": "2026-05-20T16:21:26.373229",
+        "version": "1.0"
+      }
+    },
+    "CHRW_2026-05-15": {
+      "core": {
+        "ticker": "CHRW",
+        "signal_date": "2026-05-15",
+        "exit_date": "2026-05-19",
+        "setup": "REVERSAL",
+        "entry": 164.41,
+        "stop": 154.4,
+        "target": 183.12,
+        "exit_price": 183.12,
+        "exit_reason": "Take Profit",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": 11.38,
+        "pnl_usd": 22.76,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 80.5,
+        "rr": 1.87,
+        "rsi": 40.7,
+        "macd_bull": "NO",
+        "vol_ratio": 1.21,
+        "avg_dv_m": 346.09,
+        "perf_20d": -10.2,
+        "perf_60d": -11.4,
+        "perf_120d": 10.9,
+        "base_range": 14.5,
+        "horizon": "3-8 weeks",
+        "movement_class": null,
+        "closing_strength": null,
+        "inside_day": null,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 1.9,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 7.17,
+          "analyst_upside": 20.16830490861299
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": -0.74,
+        "qqq_perf_pct": -1.04,
+        "sector_etf_perf_pct": -1.55,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-05-21T17:38:27.871465",
         "version": "1.0"
       }
     }

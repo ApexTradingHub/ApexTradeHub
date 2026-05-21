@@ -1,33 +1,33 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-05-20T16:23:26.248767 | Total trades: 100_
+_Updated: 2026-05-21T17:50:26.219098 | Total trades: 101_
 
-**Analyse-Status**: complete=14, pending=86
+**Analyse-Status**: complete=27, pending=74
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
+| `sector_momentum_tailwind` | 9 |
+| `energy_oil_surge_2026q1` | 9 |
+| `sector_relative_strength` | 9 |
+| `fundamental_deterioration` | 6 |
 | `reversal_after_analyst_downgrade` | 6 |
-| `fundamental_deterioration` | 5 |
-| `earnings_adjacency_risk` | 3 |
-| `earnings_miss_during_hold` | 2 |
+| `earnings_adjacency_risk` | 5 |
+| `earnings_miss_during_hold` | 3 |
+| `ai_storage_momentum` | 2 |
+| `secular_ai_catalyst` | 2 |
+| `extended_but_catalyst_won` | 2 |
 | `dead_cat_bounce` | 2 |
 | `duplicate_trap` | 2 |
 | `high_volatility_tight_stop` | 1 |
 | `vertical_move_breakout_fail` | 1 |
-| `ai_storage_momentum` | 1 |
+| `post_earnings_beat_continuation` | 1 |
 | `index_inclusion_fade` | 1 |
 | `post_announcement_fade` | 1 |
 | `extended_stock_breakout` | 1 |
 | `institutional_rerating_in_progress` | 1 |
 | `defense_sector_specific` | 1 |
-| `guidance_reduction` | 1 |
-| `reversal_stopped_before_catalyst` | 1 |
-| `stop_too_tight_pre_earnings` | 1 |
-| `downtrend_stock_reversal_fail` | 1 |
-| `slow_bleed_stop` | 1 |
-| `no_cooldown_after_recent_loss` | 1 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -65,9 +65,9 @@ _Updated: 2026-05-20T16:23:26.248767 | Total trades: 100_
 | PENN_2026-04-27 | BREAKOUT | -7.45% | Stop Loss D+10 | 110.2 | Consumer Cyclical | Post-Earnings-Spike-Chase - Q1 Earnings 23.4 mit 120% Surprise, Stock +16.7% pre-market; wir fired BREAKOUT 4 Tage spaeter = klassischer Late-Entry-Fade |
 | MOS_2026-04-19 | REVERSAL | -7.09% | Stop Loss D+7 | 76.3 | Basic Materials | REVERSAL 10 Tage nach Brazilian-Phosphate-Idle-Announcement (9.4) + multiple Analyst-PT-Cuts - fundamental schwaechender Stock |
 | GEV_2026-03-23 | BREAKOUT | -6.56% | Stop Loss D+5 | 89.0 | Industrials | BREAKOUT EXAKT am S&P-100-Inclusion-Tag (23.3) = index-buying war bereits gepriced, klassische 'sell the news' Fade |
-| XRAY_2026-05-01 | REVERSAL | -6.49% | Stop Loss D+2 | 65.2 | Healthcare | _pending_ |
+| XRAY_2026-05-01 | REVERSAL | -6.49% | Stop Loss D+2 | 65.2 | Healthcare | REVERSAL mit RSI 47.4 = NICHT oversold (kein echtes Bounce-Setup) + niedriger Score 65.2 (geringe Conviction). Q1-Earnings am 5.5 = 4 Tage nach Signal: GAAP-Net-Loss, Adj-EPS $0.27 (-39% von $0.44), EBITDA-Marge 19%->14.7%. Analyst-PT-Cuts (UBS $18->$17, Mizuho $16->$14). Stop D+2. Doppelter Fehler: kein oversold-Edge UND Earnings-Adjacency in einen Miss. |
 | UI_2026-03-18 | BREAKOUT | -6.27% | Stop Loss D+8 | 86.2 | Technology | _pending_ |
-| FLS_2026-04-27 | BREAKOUT | -6.18% | Stop Loss D+3 | 110.9 | Industrials | _pending_ |
+| FLS_2026-04-27 | BREAKOUT | -6.18% | Stop Loss D+3 | 110.9 | Industrials | BREAKOUT-Signal 27.4 (Score 110.9, vol_ratio 2.48 = massiver Volumen-Spike), ABER Q1-Earnings am 29.4 = nur 2 Tage spaeter. Earnings verfehlten Revenue um -8.8% ($1.07B vs $1.17B erwartet), Adj. Operating Income -17.9% miss, Sales-Guidance gekuerzt. Stop D+3. Der Volumen-Spike war wahrscheinlich Pre-Earnings-Positionierung, kein echtes Breakout-Volumen. WICHTIG: Earnings-Adjacency-Risk trifft BREAKOUT genauso wie REVERSAL. |
 
 ## Best 10 Trades
 
@@ -79,33 +79,33 @@ _Updated: 2026-05-20T16:23:26.248767 | Total trades: 100_
 | SCCO_2026-03-23 | REVERSAL | 19.55% | Take Profit D+13 | 67.2 | Basic Materials | _pending_ |
 | NEM_2026-03-23 | REVERSAL | 17.99% | Take Profit D+11 | 64.4 | Basic Materials | _pending_ |
 | RVTY_2026-05-04 | REVERSAL | 17.6% | Take Profit D+5 | 69.0 | Unknown | _pending_ |
-| STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | _pending_ |
-| CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | _pending_ |
-| MUR_2026-03-19 | BREAKOUT | 12.43% | Take Profit D+12 | 84.2 | Energy | _pending_ |
+| STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
+| CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
+| MUR_2026-03-19 | BREAKOUT | 12.43% | Take Profit D+12 | 84.2 | Energy | Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten. |
 | AKAM_2026-04-16 | REVERSAL | 12.01% | Take Profit D+13 | 71.0 | Technology | _pending_ |
 
-## Pending Claude-Analyse (86)
+## Pending Claude-Analyse (74)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
 - `XOM_2026-03-18`
-- `CIEN_2026-03-18`
-- `DVN_2026-03-17`
-- `MUR_2026-03-17`
-- `CTRA_2026-03-17`
-- `CTRA_2026-03-18`
-- `MUR_2026-03-18`
-- `COP_2026-03-18`
 - `MNST_2026-03-22`
 - `PFE_2026-03-17`
 - `DOW_2026-03-18`
 - `VLO_2026-03-18`
 - `UI_2026-03-18`
 - `EXE_2026-03-19`
-- `HAL_2026-03-19`
-- `MUR_2026-03-19`
 - `HP_2026-03-19`
 - `EQT_2026-03-19`
 - `PFE_2026-03-19`
 - `SEE_2026-03-19`
-- _(+ 66 mehr)_
+- `SHEL_2026-03-19`
+- `SEE_2026-03-22`
+- `DE_2026-03-22`
+- `SEE_2026-03-23`
+- `EMR_2026-03-23`
+- `BUD_2026-03-23`
+- `NEM_2026-03-23`
+- `AVT_2026-03-23`
+- `CTVA_2026-03-24`
+- _(+ 54 mehr)_
