@@ -489,6 +489,11 @@ body {
       <span class="stat-sublabel">🔵 Breakout</span>
       <span class="stat-subval" style="color:var(--blue)" id="s-breakout">—</span>
     </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">🟢 Dip</span>
+      <span class="stat-subval" style="color:var(--cyan)" id="s-mr">—</span>
+    </div>
   </div>
   <div class="stat">
     <div class="stat-label">Win Rate</div>
@@ -647,6 +652,7 @@ body {
       <option value="VCP">🔹 Bounceback</option>
       <option value="SHORT_SQUEEZE">🔥 Bet</option>
       <option value="BREAKOUT">🔵 Breakout</option>
+      <option value="MEAN_REVERSION">🟢 Dip</option>
       <option value="REVERSAL">Reversal</option>
     </select>
     <select class="hist-select" id="f-exit" onchange="renderHistory()">
@@ -784,6 +790,7 @@ function renderStats(sigs, rA, rT) {
   document.getElementById('s-vcp').textContent      = active.filter(s => s.setup === 'VCP').length;
   document.getElementById('s-squeeze').textContent  = active.filter(s => s.setup === 'SHORT_SQUEEZE').length;
   document.getElementById('s-breakout').textContent = active.filter(s => s.setup === 'BREAKOUT').length;
+  document.getElementById('s-mr').textContent       = active.filter(s => s.setup === 'MEAN_REVERSION').length;
   document.getElementById('s-open').textContent     = openTrades.length;
   document.getElementById('s-closed').textContent   = (rA || []).length;
 
