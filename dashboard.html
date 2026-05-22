@@ -655,6 +655,12 @@ body {
       <option value="MEAN_REVERSION">🟢 Dip</option>
       <option value="REVERSAL">Reversal</option>
     </select>
+    <select class="hist-select" id="f-status" onchange="renderHistory()">
+      <option value="">Alle Status</option>
+      <option value="open">🟢 Offen</option>
+      <option value="closed">Geschlossen</option>
+      <option value="expired">⚫ Nie getriggert</option>
+    </select>
     <select class="hist-select" id="f-exit" onchange="renderHistory()">
       <option value="">Alle Exits</option>
       <option value="Take Profit">Take Profit</option>
@@ -681,7 +687,7 @@ body {
           <th onclick="sortHistory('setup')"   id="sh-setup">Setup</th>
           <th onclick="sortHistory('entry')"   id="sh-entry">Entry $</th>
           <th onclick="sortHistory('exitDate')" id="sh-exitDate">Exit Datum</th>
-          <th onclick="sortHistory('exit_reason')" id="sh-exit_reason">Exit Grund</th>
+          <th onclick="sortHistory('_status')" id="sh-_status">Status</th>
           <th onclick="sortHistory('pnl_pct')" id="sh-pnl_pct">PnL %</th>
           <th onclick="sortHistory('pnl_usd')" id="sh-pnl_usd">PnL $</th>
           <th onclick="sortHistory('exit_day')" id="sh-exit_day">Hold</th>
@@ -1075,28 +1081,59 @@ function sortHistory(col) {
 
 function resetHistFilters() {
   document.getElementById('f-setup').value  = '';
+  document.getElementById('f-status').value = '';
   document.getElementById('f-exit').value   = '';
   document.getElementById('f-result').value = '';
   renderHistory();
 }
 
 function renderHistory() {
-  if (!allR.length) return;
-  let rows = allR.map(t => addExitDate({...t}));
+  if (!allR.length && !sigsAll.length) return;
 
-  /* join with signals for score */
+  /* score/sector lookup from signals */
   const sigMap = {};
   sigsAll.forEach(s => { if (!sigMap[s.ticker + '|' + s.date]) sigMap[s.ticker + '|' + s.date] = s; });
-  rows = rows.map(t => { const s = sigMap[t.ticker + '|' + t.date] || {}; return { ...t, score: t.score != null ? t.score : (s.score || null) }; });
+
+  /* closed rows (from equity results) */
+  const closedKeys = new Set((allR || []).map(t => t.ticker + '|' + t.date));
+  let closed = (allR || []).map(t => {
+    const s = sigMap[t.ticker + '|' + t.date] || {};
+    return { ...addExitDate({ ...t }), _status: 'closed',
+             score: t.score != null ? t.score : (s.score != null ? s.score : null),
+             sector: t.sector || s.sector };
+  });
+
+  /* open + expired rows (signals not closed) — incl. non-Telegram signals */
+  const today = new Date();
+  const holdDays = k => setupMeta(k).hold;
+  const seen = new Set();
+  const nonClosed = [];
+  sigsAll.forEach(s => {
+    const key = s.ticker + '|' + s.date;
+    if (!SETUP_META[s.setup] || closedKeys.has(key) || seen.has(key)) return;
+    seen.add(key);
+    const maxExit = new Date(s.date);
+    maxExit.setDate(maxExit.getDate() + holdDays(s.setup));
+    nonClosed.push({
+      date: s.date, ticker: s.ticker, setup: s.setup, sector: s.sector || '',
+      entry: s.buy_above, buy_above: s.buy_above, score: s.score != null ? s.score : null,
+      pnl_pct: null, pnl_usd: null, exit_reason: null, exit_day: null, _exitDate: '—',
+      _status: (today <= maxExit) ? 'open' : 'expired',
+    });
+  });
+
+  let rows = [...closed, ...nonClosed];
 
   /* filters */
   const fSetup  = document.getElementById('f-setup').value;
+  const fStatus = document.getElementById('f-status').value;
   const fExit   = document.getElementById('f-exit').value;
   const fResult = document.getElementById('f-result').value;
   if (fSetup)  rows = rows.filter(r => r.setup === fSetup);
+  if (fStatus) rows = rows.filter(r => r._status === fStatus);
   if (fExit)   rows = rows.filter(r => r.exit_reason === fExit);
   if (fResult === 'win')  rows = rows.filter(r => r.pnl_pct > 0);
-  if (fResult === 'loss') rows = rows.filter(r => r.pnl_pct <= 0);
+  if (fResult === 'loss') rows = rows.filter(r => r.pnl_pct != null && r.pnl_pct <= 0);
 
   /* sort */
   rows.sort((a, b) => {
@@ -1106,22 +1143,28 @@ function renderHistory() {
     return histSortDir * ((av || 0) - (bv || 0));
   });
 
-  /* summary for filtered rows */
-  renderHistSummary(rows);
+  /* summary uses only closed rows (open/expired have no realized PnL) */
+  renderHistSummary(rows.filter(r => r._status === 'closed'));
 
   /* render table */
   const ec = x => x.exit_reason === 'Take Profit' ? 'exit-badge exit-tp' : x.exit_reason === 'Stop Loss' ? 'exit-badge exit-sl' : 'exit-badge exit-te';
   const eShort = x => x.exit_reason === 'Take Profit' ? 'TP' : x.exit_reason === 'Stop Loss' ? 'SL' : 'TE';
+  const statusCell = x => {
+    if (x._status === 'open')    return `<span class="exit-badge" style="background:rgba(0,207,255,.12);color:var(--cyan)">● Offen</span>`;
+    if (x._status === 'expired') return `<span class="exit-badge" style="background:rgba(255,255,255,.05);color:var(--muted2)">● nie getriggert</span>`;
+    return `<span class="${ec(x)}">${eShort(x)}</span>`;
+  };
   const tbody = document.getElementById('histBody');
 
   if (!rows.length) {
-    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><span>Keine Trades gefunden</span></div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><span>Keine Einträge gefunden</span></div></td></tr>`;
     return;
   }
 
   tbody.innerHTML = rows.map(x => {
+    const isClosed = x._status === 'closed';
     const entry = x.entry || x.buy_above || 0;
-    const pnlCls = x.pnl_pct > 0 ? 'hist-pnl-pos' : 'hist-pnl-neg';
+    const pnlCls = !isClosed ? '' : (x.pnl_pct > 0 ? 'hist-pnl-pos' : 'hist-pnl-neg');
     const score = x.score != null ? x.score : '—';
     return `<tr>
       <td class="table-mono" style="white-space:nowrap">${x.date}</td>
@@ -1132,10 +1175,10 @@ function renderHistory() {
       <td><span class="${pil(x.setup)}">${setupMeta(x.setup).label}</span></td>
       <td class="table-mono">$${(+entry).toFixed(2)}</td>
       <td class="table-mono" style="white-space:nowrap">${x._exitDate}</td>
-      <td><span class="${ec(x)}">${eShort(x)}</span></td>
-      <td class="${pnlCls}">${fmtPct(x.pnl_pct)}</td>
-      <td class="${pnlCls}">${x.pnl_usd >= 0 ? '+' : ''}$${(+x.pnl_usd).toFixed(2)}</td>
-      <td class="table-mono">D+${x.exit_day}</td>
+      <td>${statusCell(x)}</td>
+      <td class="${pnlCls}">${isClosed ? fmtPct(x.pnl_pct) : '—'}</td>
+      <td class="${pnlCls}">${isClosed ? ((x.pnl_usd >= 0 ? '+' : '') + '$' + (+x.pnl_usd).toFixed(2)) : '—'}</td>
+      <td class="table-mono">${isClosed ? ('D+' + x.exit_day) : '—'}</td>
       <td>
         <div class="score-cell">
           <div class="score-bar"><div class="score-fill" style="width:${score !== '—' ? Math.min(100, Math.max(0, ((+score - 50) / 80) * 100)) : 0}%"></div></div>
