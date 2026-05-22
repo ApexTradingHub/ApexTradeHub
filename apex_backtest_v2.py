@@ -79,6 +79,11 @@ RESULTS_FILE_OVERRIDE = None
 # Measurement: force a relax level for ALL tickers (default 0 = strict, live-historic).
 # Set to 1 to measure the quality of relaxed signals (Telegram-gate study).
 FORCE_RELAX = 0
+# Restrict scan to a single setup for clean isolated measurement (e.g. "MEAN_REVERSION").
+# None = all setups compete normally.
+ONLY_SETUP = None
+# MEAN_REVERSION oversold threshold (tuning knob via --mr-rsi-max).
+MR_RSI_MAX = 38
 
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
@@ -571,6 +576,54 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     reversal_setup = False  # disabled
     rss = 0
     rev_indicators = {}
+
+    # ---- MEAN_REVERSION setup (v0) — runs BEFORE breakout hard-exits ----
+    # Uptrend pullback that is oversold and turning up. Postmortem-informed to
+    # avoid REVERSAL's failures: (1) only in confirmed rising-MA150 uptrend
+    # (no falling knives), (2) truly oversold RSI<38 (not neutral), (3) first
+    # up-day confirmation, (4) earnings-blackout >=7d, (5) base-cap <15% (no
+    # wide knives), (6) extension-cap perf120<80% (no momentum-unwinds).
+    if ONLY_SETUP in (None, "MEAN_REVERSION"):
+        ma150_prev = safe_float(df["MA150"].iloc[-11]) if len(df) >= 11 else 0.0
+        prev_close = safe_float(prev["Close"])
+        _en = (catalyst_signals or {}).get("earnings_next_days")
+        mr_fire = (
+            ma150 > 0 and ma150_prev > 0 and ma150 > ma150_prev and close > ma150  # uptrend
+            and close < ma20                                                       # pulled back
+            and rsi14 < MR_RSI_MAX                                                 # oversold
+            and close > prev_close                                                 # turning up
+            and base_range < 15                                                    # no wide knife
+            and perf_120 < 80                                                      # not extended
+            and ((_en is None) or (_en >= 7))                                      # earnings blackout
+        )
+        if mr_fire:
+            mr_buy   = round(close * 1.002, 2)
+            mr_stop  = round(low_10 * 0.985, 2)
+            mr_riskp = (mr_buy - mr_stop) / mr_buy * 100 if mr_buy > 0 else 99
+            mr_tgt   = round(max(ma20, high_10), 2)
+            mr_rr    = (mr_tgt - mr_buy) / (mr_buy - mr_stop) if mr_buy > mr_stop else 0
+            if 2.0 <= mr_riskp <= 10.0 and mr_rr >= 1.5:
+                mr_score  = 50.0
+                mr_score += max(0.0, 40 - rsi14) * 1.5            # oversold depth (fixed anchor)
+                mr_score += min(mr_rr, 4.0) * 6                    # RR
+                if close > ma50: mr_score += 8                     # shallow pullback = healthier
+                if mh > mh_p:    mr_score += 6                     # MACD hist turning up
+                if catalysts.get("pocket_pivot"): mr_score += 8
+                mr_score += min(max(perf_120, 0.0), 40.0) * 0.2    # uptrend strength
+                _dr = high - safe_float(l["Low"])
+                _cs = (close - safe_float(l["Low"])) / _dr if _dr > 0 else 0.5
+                _id = (high <= safe_float(prev["High"])) and (safe_float(l["Low"]) >= safe_float(prev["Low"]))
+                return {
+                    "ticker": ticker, "setup": "MEAN_REVERSION", "horizon": "2-4 weeks",
+                    "price": round(close, 2), "buy_above": mr_buy, "stop": mr_stop,
+                    "target": mr_tgt, "risk_pct": round(mr_riskp, 2), "rr": round(mr_rr, 2),
+                    "score": round(mr_score, 1), "relax_level": relax,
+                    "movement_class": "MEAN_REVERSION", "closing_strength": round(_cs, 2),
+                    "inside_day": _id, "vcp_contraction": None, "squeeze_short_pct": None,
+                    "stage2_ma150_rise": None,
+                }
+        if ONLY_SETUP == "MEAN_REVERSION":
+            return None
 
     # Hard exits (all 4 Phase G setups need trend/volume/etc)
     if not trend_ok:   return None
@@ -1209,16 +1262,24 @@ def main():
                         help="Custom output filename for results JSON (default apex_backtest_results.json)")
     parser.add_argument("--force-relax", type=int, default=0, choices=[0, 1, 2],
                         help="Force relax level for ALL tickers (Telegram-gate study). 0=strict (default), 1=relaxed")
+    parser.add_argument("--only-setup", type=str, default=None,
+                        help="Restrict scan to ONE setup for isolated measurement, e.g. MEAN_REVERSION")
+    parser.add_argument("--mr-rsi-max", type=float, default=38,
+                        help="MEAN_REVERSION oversold RSI threshold (default 38; tuning knob)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
     FORCE_RELAX = args.force_relax
+    ONLY_SETUP = args.only_setup
+    MR_RSI_MAX = args.mr_rsi_max
     if FORCE_RELAX:
         print(f"[MEASURE] FORCE_RELAX={FORCE_RELAX} — measuring relaxed-signal quality")
+    if ONLY_SETUP:
+        print(f"[MEASURE] ONLY_SETUP={ONLY_SETUP} — isolated single-setup backtest")
 
     start_date = datetime.strptime(args.start, "%Y-%m-%d") if args.start else None
     end_date   = datetime.strptime(args.end,   "%Y-%m-%d") if args.end   else None
