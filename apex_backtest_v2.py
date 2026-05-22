@@ -76,6 +76,9 @@ SCAN_MIN_SCORE = {
 BO_RSI_MIN_OVERRIDE = None
 BO_RSI_MAX_OVERRIDE = None
 RESULTS_FILE_OVERRIDE = None
+# Measurement: force a relax level for ALL tickers (default 0 = strict, live-historic).
+# Set to 1 to measure the quality of relaxed signals (Telegram-gate study).
+FORCE_RELAX = 0
 
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
@@ -764,6 +767,7 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         "risk_pct":  round(risk_pct, 2),
         "rr":        round(rr, 2),
         "score":     round(score, 1),
+        "relax_level":      relax,
         "movement_class":   movement_class,
         "closing_strength": round(closing_strength, 2),
         "inside_day":       inside_day,
@@ -1022,7 +1026,7 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
             # always met by relax=0 across 3000+ tickers daily, so relax>0
             # paths effectively never run live. Per-ticker relax fallback
             # would mask the effect of any tightening change.
-            sig = scan_slice(ticker, df_slice, relax=0, risk_on=risk_on,
+            sig = scan_slice(ticker, df_slice, relax=FORCE_RELAX, risk_on=risk_on,
                              scan_date=scan_date)
 
             if sig is None:
@@ -1076,6 +1080,7 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
                 "pnl_usd":     round(pnl_usd, 2),
                 "rr":          sig["rr"],
                 "score":       sig["score"],
+                "relax_level": sig.get("relax_level", 0),
                 "risk_on":     sig["risk_on"],
                 "equity":      round(equity, 2),
             })
@@ -1202,13 +1207,18 @@ def main():
                         help="Override BREAKOUT RSI-Gate max (default 68 relax=0, 72 relax>=1)")
     parser.add_argument("--out", type=str, default=None,
                         help="Custom output filename for results JSON (default apex_backtest_results.json)")
+    parser.add_argument("--force-relax", type=int, default=0, choices=[0, 1, 2],
+                        help="Force relax level for ALL tickers (Telegram-gate study). 0=strict (default), 1=relaxed")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
+    FORCE_RELAX = args.force_relax
+    if FORCE_RELAX:
+        print(f"[MEASURE] FORCE_RELAX={FORCE_RELAX} — measuring relaxed-signal quality")
 
     start_date = datetime.strptime(args.start, "%Y-%m-%d") if args.start else None
     end_date   = datetime.strptime(args.end,   "%Y-%m-%d") if args.end   else None

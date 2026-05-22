@@ -45,7 +45,9 @@ MAX_SIGNALS         = 10
 DUPLICATE_WINDOW_DAYS = 3
 
 # Quality filter for Telegram top-2 (setup-specific, data-driven)
-TG_MIN_RR      = 2.0
+TG_MIN_RR      = 1.5     # 2026-05-22: 2.0->1.5. Backtest: RR>=2.0 (WR 54.5%) gives
+                         # NO edge over all (56.0%) but discards 67% of signals.
+                         # 1.5 matches the strict-scan RR floor.
 TG_MIN_UPSIDE  = 8.0
 TG_MIN_SCORE   = {                       # Telegram top-2 quality filter per setup
     "BREAKOUT":      70,
@@ -1746,38 +1748,36 @@ def main():
 
     save_signals(candidates)
 
-    # Send Telegram notification — eligibility → quality → top 2 by score
+    # Send Telegram notification — quality (score-based) → top 2 by score
     if candidates:
-        # Phase G: only strict relax=0 signals are Telegram-eligible across all setups
-        def tg_eligible(c):
-            return c.get("relax_level", 0) == 0
-
-        eligible = [c for c in candidates if tg_eligible(c)]
-        n_filtered = len(candidates) - len(eligible)
-        if n_filtered:
-            print(f"  Telegram filter: {n_filtered} weak BREAKOUT(s) from relax=1 excluded.")
-
-        # Apply quality filter on eligible pool (setup-specific score thresholds)
+        # 2026-05-22: SCORE-based eligibility, NOT relax-based.
+        # Backtest (120d, 810 tickers, n=100): relax=1 signals scored WR 56% /
+        # PF 2.14 vs strict relax=0 WR 41% / PF 1.61. The relax LEVEL is not
+        # predictive of quality — the SCORE is (all score-buckets >=50% WR).
+        # The old relax==0-only gate starved Telegram (0 signals for days once
+        # REVERSAL was disabled). Now gate purely on setup-score + RR/upside,
+        # regardless of relax level.
         def _min_score_for(c):
             return TG_MIN_SCORE.get(c.get("setup", ""), TG_MIN_SCORE_DEFAULT)
 
-        quality = [c for c in eligible if
+        quality = [c for c in candidates if
                    c.get("rr", 0)         >= TG_MIN_RR and
                    c.get("upside_pct", 0) >= TG_MIN_UPSIDE and
                    c.get("score", 0)      >= _min_score_for(c)]
 
-        if not quality and eligible:
-            # Fallback: best eligible even if below quality threshold
-            quality = sorted(eligible, key=lambda x: x.get("score", 0), reverse=True)[:1]
-            print("  Note: No signals passed quality filter — sending best eligible.")
+        n_filtered = len(candidates) - len(quality)
+        if n_filtered:
+            print(f"  Telegram filter: {n_filtered} signal(s) below quality threshold excluded.")
 
         if quality:
             top2 = sorted(quality, key=lambda x: x.get("score", 0), reverse=True)[:2]
+            n_relaxed = sum(1 for c in top2 if c.get("relax_level", 0) > 0)
+            if n_relaxed:
+                print(f"  Note: {n_relaxed}/{len(top2)} pushed signal(s) are relax>0 (score-eligible).")
             msg = build_telegram_message(top2, market_regime)
             send_telegram(msg)
         else:
-            # Alle Kandidaten rausgefiltert (z.B. nur relax=1 oder unter Quality-Threshold)
-            print("  Note: All candidates filtered out — sending no-signal message.")
+            print("  Note: No candidate passed quality threshold — sending no-signal message.")
             send_telegram(get_no_signal_message(market_regime))
     else:
         send_telegram(get_no_signal_message(market_regime))
