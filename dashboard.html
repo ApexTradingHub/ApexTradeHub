@@ -685,7 +685,7 @@ body {
           <th onclick="sortHistory('date')"    id="sh-date">Datum</th>
           <th onclick="sortHistory('ticker')"  id="sh-ticker">Ticker</th>
           <th onclick="sortHistory('setup')"   id="sh-setup">Setup</th>
-          <th onclick="sortHistory('entry')"   id="sh-entry">Entry $</th>
+          <th onclick="sortHistory('entry')"   id="sh-entry">Entry → Ziel</th>
           <th onclick="sortHistory('exitDate')" id="sh-exitDate">Exit Datum</th>
           <th onclick="sortHistory('_status')" id="sh-_status">Status</th>
           <th onclick="sortHistory('pnl_pct')" id="sh-pnl_pct">PnL %</th>
@@ -1116,7 +1116,8 @@ function renderHistory() {
     maxExit.setDate(maxExit.getDate() + holdDays(s.setup));
     nonClosed.push({
       date: s.date, ticker: s.ticker, setup: s.setup, sector: s.sector || '',
-      entry: s.buy_above, buy_above: s.buy_above, score: s.score != null ? s.score : null,
+      entry: s.buy_above, buy_above: s.buy_above, target: s.target, stop: s.stop,
+      score: s.score != null ? s.score : null,
       pnl_pct: null, pnl_usd: null, exit_reason: null, exit_day: null, _exitDate: '—',
       _status: (today <= maxExit) ? 'open' : 'expired',
     });
@@ -1173,7 +1174,7 @@ function renderHistory() {
         <div class="ticker-sector" style="font-size:10px;color:var(--muted2)">${x.sector || ''}</div>
       </td>
       <td><span class="${pil(x.setup)}">${setupMeta(x.setup).label}</span></td>
-      <td class="table-mono">$${(+entry).toFixed(2)}</td>
+      <td class="table-mono" style="white-space:nowrap">$${(+entry).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">${x.target != null ? '$' + (+x.target).toFixed(2) : '—'}</span></td>
       <td class="table-mono" style="white-space:nowrap">${x._exitDate}</td>
       <td>${statusCell(x)}</td>
       <td class="${pnlCls}">${isClosed ? fmtPct(x.pnl_pct) : '—'}</td>
