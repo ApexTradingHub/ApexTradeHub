@@ -1021,19 +1021,26 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
                     "stage2_ma150_rise": None, "stage2_base_width": None,
                 }
 
+        # ---- BREAKOUT eligibility (computed early so the base-gate can be setup-specific) ----
+        buy_above_preview = prev_20_high * 1.002
+        breakout_close    = close >= buy_above_preview * 0.99
+        breakout_setup    = breakout_touch and higher_tf and rsi_breakout and breakout_close
+
         # ---- Hard exits ----
         if not trend_ok:   debug["fail_trend"]   += 1; return None
         if not vol_ok:     debug["fail_volume"]   += 1; return None
         if not rsi_zone:   debug["fail_rsi"]      += 1; return None
         if relax == 0 and not momentum_ok: debug["fail_momentum"] += 1; return None
-        if relax == 0 and not base_ok:     debug["fail_base"]     += 1; return None
+        # Base-gate is SETUP-SPECIFIC (2026-05-22): BREAKOUT uses <=22, others keep strict <=8.
+        # Backtest (2yr, BREAKOUT-isolated): base<=22 vs <=8 -> n 64->163, WR 48.4->52.1%,
+        # PF 1.17->1.68. The 19.4 tightening to <=8 choked BREAKOUT without improving WR.
+        if relax == 0:
+            base_cap = 22 if breakout_setup else 8
+            if base_range > base_cap: debug["fail_base"] += 1; return None
         if atr_pct > 15:   debug["atr_too_high"]  += 1; return None
 
         # ---- Setup detection (Phase G: 4 setups with priority order) ----
-        # BREAKOUT: 20d high breakout
-        buy_above_preview = prev_20_high * 1.002
-        breakout_close    = close >= buy_above_preview * 0.99
-        breakout_setup    = breakout_touch and higher_tf and rsi_breakout and breakout_close
+        # BREAKOUT detected above (buy_above_preview / breakout_close / breakout_setup)
 
         # Short interest from Phase B catalyst data (may be None)
         short_pct_val = (catalyst_signals or {}).get("short_pct_float")

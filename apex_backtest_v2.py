@@ -84,6 +84,9 @@ FORCE_RELAX = 0
 ONLY_SETUP = None
 # MEAN_REVERSION oversold threshold (tuning knob via --mr-rsi-max).
 MR_RSI_MAX = 38
+# BREAKOUT relax=0 base_range cap (tuning knob via --bo-base-max). Default 22 (validated 2026-05-22;
+# the 19.4 tightening to 8 hurt BREAKOUT: base<=22 gave WR 52.1%/PF 1.68 vs 48.4%/1.17). Others <=8.
+BO_BASE_MAX = 22
 
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
@@ -556,7 +559,7 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     if relax == 0:
         trend_ok  = close > ma20 and ma20 > ma50 * 0.99
         near_high = close >= prev_20_high * 0.93
-        base_ok   = base_range <= 8
+        base_ok   = base_range <= BO_BASE_MAX
     elif relax == 1:
         trend_ok  = close > ma50
         near_high = close >= prev_20_high * 0.88
@@ -625,18 +628,21 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         if ONLY_SETUP == "MEAN_REVERSION":
             return None
 
+    # BREAKOUT detection (20d high) — computed early so the base-gate can be setup-specific
+    buy_above_prev   = prev_20_high * 1.002
+    breakout_close   = close >= buy_above_prev * 0.99
+    breakout_setup   = breakout_touch and higher_tf and rsi_breakout and breakout_close
+
     # Hard exits (all 4 Phase G setups need trend/volume/etc)
     if not trend_ok:   return None
     if not vol_ok:     return None
     if not rsi_zone:   return None
     if relax == 0 and not momentum_ok: return None
-    if relax == 0 and not base_ok:     return None
+    # Base-gate SETUP-SPECIFIC (mirror live): BREAKOUT uses BO_BASE_MAX (default 22), others <=8
+    if relax == 0:
+        base_cap = BO_BASE_MAX if breakout_setup else 8
+        if base_range > base_cap: return None
     if atr_pct > 15: return None
-
-    # BREAKOUT detection (20d high)
-    buy_above_prev   = prev_20_high * 1.002
-    breakout_close   = close >= buy_above_prev * 0.99
-    breakout_setup   = breakout_touch and higher_tf and rsi_breakout and breakout_close
 
     # Phase G new setups
     short_pct_val = (catalyst_signals or {}).get("short_pct_float")
@@ -657,6 +663,10 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     elif breakout_setup:
         chosen_setup = "BREAKOUT"
     else:
+        return None
+
+    # Isolated single-setup measurement (e.g. --only-setup BREAKOUT)
+    if ONLY_SETUP and chosen_setup != ONLY_SETUP:
         return None
 
     # Entry/Stop/Target per setup
@@ -1266,16 +1276,19 @@ def main():
                         help="Restrict scan to ONE setup for isolated measurement, e.g. MEAN_REVERSION")
     parser.add_argument("--mr-rsi-max", type=float, default=38,
                         help="MEAN_REVERSION oversold RSI threshold (default 38; tuning knob)")
+    parser.add_argument("--bo-base-max", type=float, default=22,
+                        help="BREAKOUT relax=0 base_range cap (default 22; others fixed <=8)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
     FORCE_RELAX = args.force_relax
     ONLY_SETUP = args.only_setup
     MR_RSI_MAX = args.mr_rsi_max
+    BO_BASE_MAX = args.bo_base_max
     if FORCE_RELAX:
         print(f"[MEASURE] FORCE_RELAX={FORCE_RELAX} — measuring relaxed-signal quality")
     if ONLY_SETUP:
