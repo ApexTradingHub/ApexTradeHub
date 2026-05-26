@@ -496,12 +496,16 @@ body {
     </div>
   </div>
   <div class="stat">
-    <div class="stat-label">Win Rate</div>
-    <div class="stat-value" id="s-wr">—</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">Kumulierte Equity</div>
-    <div class="stat-value" id="s-equity">—</div>
+    <div class="stat-label">Performance</div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Win Rate</span>
+      <span class="stat-subval" id="s-wr">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Equity</span>
+      <span class="stat-subval" id="s-equity">—</span>
+    </div>
   </div>
 </div>
 
@@ -768,7 +772,7 @@ function renderStats(sigs, rA, rT) {
     const e = document.getElementById(id);
     if (!e) return;
     e.textContent = val;
-    e.className = 'stat-value ' + (ok ? 'pos' : 'neg');
+    e.className = 'stat-subval ' + (ok ? 'pos' : 'neg');
   };
   if (sA) {
     setVal('s-wr',     sA.wr.toFixed(1) + '%', sA.wr >= 50);
