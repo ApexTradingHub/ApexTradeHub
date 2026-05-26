@@ -532,25 +532,14 @@ body {
   </div>
 </div>
 
-<!-- COMPARE + SECTOR -->
-<div class="grid-2 anim-5">
-  <div class="card">
-    <div class="card-header">
-      <div class="card-accent" style="background:var(--purple)"></div>
-      <span class="card-title">Alle vs. Qualitätssignale</span>
-    </div>
-    <div id="compareStats">
-      <div class="empty-state"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Keine Daten</span></div>
-    </div>
+<!-- SECTOR -->
+<div class="card anim-5 mb10">
+  <div class="card-header">
+    <div class="card-accent" style="background:var(--teal)"></div>
+    <span class="card-title">Sektor-Verteilung</span>
   </div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-accent" style="background:var(--teal)"></div>
-      <span class="card-title">Sektor-Verteilung</span>
-    </div>
-    <div id="sectorBars">
-      <div class="empty-state"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Keine Daten</span></div>
-    </div>
+  <div id="sectorBars">
+    <div class="empty-state"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>Keine Daten</span></div>
   </div>
 </div>
 
@@ -751,10 +740,33 @@ function showTab(tab) {
 function renderStats(sigs, rA, rT) {
   const active = sigs ? sigs.filter(s => SETUP_META[s.setup]) : [];
   document.getElementById('s-total').textContent = active.length || '—';
-  const sA = stats(rA);
 
+  // Setup counts
+  document.getElementById('s-stage2').textContent   = active.filter(s => s.setup === 'STAGE_2').length;
+  document.getElementById('s-vcp').textContent      = active.filter(s => s.setup === 'VCP').length;
+  document.getElementById('s-squeeze').textContent  = active.filter(s => s.setup === 'SHORT_SQUEEZE').length;
+  document.getElementById('s-breakout').textContent = active.filter(s => s.setup === 'BREAKOUT').length;
+  const mrEl = document.getElementById('s-mr');
+  if (mrEl) mrEl.textContent = active.filter(s => s.setup === 'MEAN_REVERSION' || s.setup === 'REVERSAL').length;
+
+  // Open/closed trades
+  const holdDays = k => setupMeta(k).hold;
+  const closedKeys = new Set((rA || []).map(t => t.ticker + '|' + t.date));
+  const today = new Date();
+  const openTrades = active.filter(s => {
+    if (closedKeys.has(s.ticker + '|' + s.date)) return false;
+    const entry = new Date(s.date);
+    const maxExit = new Date(entry);
+    maxExit.setDate(maxExit.getDate() + holdDays(s.setup));
+    return today <= maxExit;
+  });
+  document.getElementById('s-open').textContent   = openTrades.length;
+  document.getElementById('s-closed').textContent = (rA || []).length;
+
+  const sA = stats(rA);
   const setVal = (id, val, ok) => {
     const e = document.getElementById(id);
+    if (!e) return;
     e.textContent = val;
     e.className = 'stat-value ' + (ok ? 'pos' : 'neg');
   };
