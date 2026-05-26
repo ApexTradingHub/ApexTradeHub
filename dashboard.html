@@ -497,27 +497,11 @@ body {
   </div>
   <div class="stat">
     <div class="stat-label">Win Rate</div>
-    <div class="stat-row">
-      <span class="stat-sublabel">Alle</span>
-      <span class="stat-subval" id="s-wr">—</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-row">
-      <span class="stat-sublabel">Qualität</span>
-      <span class="stat-subval" id="s-wr2">—</span>
-    </div>
+    <div class="stat-value" id="s-wr">—</div>
   </div>
   <div class="stat">
     <div class="stat-label">Kumulierte Equity</div>
-    <div class="stat-row">
-      <span class="stat-sublabel">Alle</span>
-      <span class="stat-subval" id="s-equity">—</span>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-row">
-      <span class="stat-sublabel">Qualität</span>
-      <span class="stat-subval" id="s-equity2">—</span>
-    </div>
+    <div class="stat-value" id="s-equity">—</div>
   </div>
 </div>
 
@@ -526,17 +510,12 @@ body {
   <div class="card-header">
     <div class="card-accent" style="background:var(--cyan)"></div>
     <span class="card-title">Equity-Kurve</span>
-    <div class="eq-toggle">
-      <button class="eq-btn ab" id="btn-both"  onclick="setEqMode('both')">Beide</button>
-      <button class="eq-btn"    id="btn-all"   onclick="setEqMode('all')">Alle</button>
-      <button class="eq-btn"    id="btn-top2"  onclick="setEqMode('top2')">Qualität</button>
-    </div>
   </div>
   <div class="chart-wrap"><canvas id="eqChart"></canvas></div>
 </div>
 
-<!-- 3-CHART ROW -->
-<div class="grid-3 anim-4">
+<!-- 2-CHART ROW -->
+<div class="grid-2 anim-4">
   <div class="card">
     <div class="card-header">
       <div class="card-accent" style="background:var(--amber)"></div>
@@ -547,16 +526,9 @@ body {
   <div class="card">
     <div class="card-header">
       <div class="card-accent" style="background:var(--red)"></div>
-      <span class="card-title">Exits — Alle</span>
+      <span class="card-title">Exit-Verteilung</span>
     </div>
     <div class="chart-wrap-sm"><canvas id="exitChart"></canvas></div>
-  </div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-accent" style="background:var(--green)"></div>
-      <span class="card-title">Exits — Qualität</span>
-    </div>
-    <div class="chart-wrap-sm"><canvas id="exitChart2"></canvas></div>
   </div>
 </div>
 
@@ -779,83 +751,67 @@ function showTab(tab) {
 function renderStats(sigs, rA, rT) {
   const active = sigs ? sigs.filter(s => SETUP_META[s.setup]) : [];
   document.getElementById('s-total').textContent = active.length || '—';
-  const sA = stats(rA), sT = stats(rT);
-
-  const holdDays = k => setupMeta(k).hold;
-  const closedKeys = new Set((rA || []).map(t => t.ticker + '|' + t.date));
-  const today = new Date();
-  const openTrades = active.filter(s => {
-    if (closedKeys.has(s.ticker + '|' + s.date)) return false;
-    const entry = new Date(s.date);
-    const maxExit = new Date(entry);
-    maxExit.setDate(maxExit.getDate() + holdDays(s.setup));
-    return today <= maxExit;
-  });
-
-  document.getElementById('s-stage2').textContent   = active.filter(s => s.setup === 'STAGE_2').length;
-  document.getElementById('s-vcp').textContent      = active.filter(s => s.setup === 'VCP').length;
-  document.getElementById('s-squeeze').textContent  = active.filter(s => s.setup === 'SHORT_SQUEEZE').length;
-  document.getElementById('s-breakout').textContent = active.filter(s => s.setup === 'BREAKOUT').length;
-  document.getElementById('s-mr').textContent       = active.filter(s => s.setup === 'MEAN_REVERSION').length;
-  document.getElementById('s-open').textContent     = openTrades.length;
-  document.getElementById('s-closed').textContent   = (rA || []).length;
+  const sA = stats(rA);
 
   const setVal = (id, val, ok) => {
     const e = document.getElementById(id);
     e.textContent = val;
-    e.className = 'stat-subval ' + (ok ? 'pos' : 'neg');
+    e.className = 'stat-value ' + (ok ? 'pos' : 'neg');
   };
   if (sA) {
     setVal('s-wr',     sA.wr.toFixed(1) + '%', sA.wr >= 50);
     setVal('s-equity', (sA.eq >= 0 ? '+' : '') + '$' + sA.eq.toFixed(0), sA.eq >= 0);
-  }
-  if (sT) {
-    setVal('s-wr2',     sT.wr.toFixed(1) + '%', sT.wr >= 50);
-    setVal('s-equity2', (sT.eq >= 0 ? '+' : '') + '$' + sT.eq.toFixed(0), sT.eq >= 0);
   }
 }
 
 /* ── EQUITY CHART ── */
 function curve(r) { return r && r.length ? [0, ...r.map(x => x.equity || 0)] : [0]; }
 
-function setEqMode(m) {
-  eqMode = m;
-  ['both', 'all', 'top2'].forEach(x => {
-    const b = document.getElementById('btn-' + x);
-    b.className = 'eq-btn' + (x === m ? ' ' + (m === 'both' ? 'ab' : m === 'all' ? 'aa' : 'at') : '');
-  });
-  drawEq();
-}
-
 function drawEq() {
   const ctx = document.getElementById('eqChart');
-  const eA = curve(allR), eT = curve(topR);
-  const ds = [];
-  if (eqMode !== 'top2') {
-    const c = eA[eA.length - 1] >= 0 ? '#4F8FFF' : '#FF3B5C';
-    ds.push({ label: 'Alle', data: eA, borderColor: c, borderWidth: 1.5, pointRadius: 0,
-      fill: eqMode === 'all' ? { target: 'origin', above: c + '18', below: '#FF3B5C18' } : false, tension: 0.35 });
-  }
-  if (eqMode !== 'all') {
-    const c = eT[eT.length - 1] >= 0 ? '#00FF88' : '#FF3B5C';
-    ds.push({ label: 'Qualität', data: eT, borderColor: c, borderWidth: 1.5, pointRadius: 0,
-      borderDash: eqMode === 'both' ? [4, 3] : [],
-      fill: eqMode === 'top2' ? { target: 'origin', above: c + '18', below: '#FF3B5C18' } : false, tension: 0.35 });
-  }
+  const eA = curve(allR);
+  const labels = eA.map((_, i) => i === 0 ? 'Start' : 'T' + i);
+  const c = eA[eA.length - 1] >= 0 ? '#4F8FFF' : '#FF3B5C';
   if (eqInst) eqInst.destroy();
   eqInst = new Chart(ctx, {
     type: 'line',
-    data: { labels: Array.from({ length: Math.max(eA.length, eT.length) }, (_, i) => i), datasets: ds },
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Equity',
+        data: eA,
+        borderColor: c,
+        borderWidth: 1.5,
+        pointRadius: eA.length <= 30 ? 3 : 0,
+        pointBackgroundColor: c,
+        fill: { target: 'origin', above: c + '18', below: '#FF3B5C18' },
+        tension: 0.35
+      }]
+    },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: eqMode === 'both', labels: { color: '#5A6490', font: { size: 10, family: "'JetBrains Mono'" }, boxWidth: 10 } },
-        tooltip: { backgroundColor: '#0B0E1F', borderColor: 'rgba(99,135,255,0.2)', borderWidth: 1, bodyColor: '#CDD5F0', titleColor: '#5A6490',
-          callbacks: { label: c => ' ' + c.dataset.label + ': $' + c.parsed.y.toFixed(0) } }
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0B0E1F', borderColor: 'rgba(99,135,255,0.2)', borderWidth: 1,
+          bodyColor: '#CDD5F0', titleColor: '#5A6490',
+          callbacks: {
+            title: items => 'Trade ' + items[0].dataIndex,
+            label: c => ' Equity: $' + c.parsed.y.toFixed(0)
+          }
+        }
       },
       scales: {
-        x: { display: false },
-        y: { grid: { color: gc }, ticks: { color: tc, font: { size: 10, family: "'JetBrains Mono'" }, callback: v => '$' + v }, border: { color: gc } }
+        x: {
+          grid: { color: gc },
+          ticks: { color: tc, font: { size: 9, family: "'JetBrains Mono'" }, maxTicksLimit: 15, maxRotation: 0 },
+          border: { color: gc }
+        },
+        y: {
+          grid: { color: gc },
+          ticks: { color: tc, font: { size: 10, family: "'JetBrains Mono'" }, callback: v => '$' + v },
+          border: { color: gc }
+        }
       }
     }
   });
@@ -1218,9 +1174,7 @@ async function loadData() {
   renderStats(sigs, allR, topR);
   drawEq();
   drawDoughnut('exitChart', allR, exitStore);
-  drawDoughnut('exitChart2', topR, exit2Store);
   drawSetup(allR);
-  renderCompare(allR, topR);
   renderToday(sigs);
   renderSector(sigs);
   renderLog(allR);
