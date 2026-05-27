@@ -1116,7 +1116,13 @@ function renderHistory() {
     const s = sigMap[t.ticker + '|' + t.date] || {};
     return { ...addExitDate({ ...t }), _status: 'closed',
              score: t.score != null ? t.score : (s.score != null ? s.score : null),
-             sector: t.sector || s.sector };
+             sector: t.sector || s.sector,
+             // pull catalyst flags from the matched signal (equity_results has no cat_*)
+             cat_pocket_pivot:      s.cat_pocket_pivot,
+             cat_earnings_beat:     s.cat_earnings_beat,
+             cat_analyst_upside:    s.cat_analyst_upside,
+             cat_short_pct:         s.cat_short_pct,
+             cat_earnings_blackout: s.cat_earnings_blackout };
   });
 
   /* open + expired rows (signals not closed) — incl. non-Telegram signals */
@@ -1134,6 +1140,11 @@ function renderHistory() {
       date: s.date, ticker: s.ticker, setup: s.setup, sector: s.sector || '',
       entry: s.buy_above, buy_above: s.buy_above, target: s.target, stop: s.stop,
       score: s.score != null ? s.score : null,
+      cat_pocket_pivot:      s.cat_pocket_pivot,
+      cat_earnings_beat:     s.cat_earnings_beat,
+      cat_analyst_upside:    s.cat_analyst_upside,
+      cat_short_pct:         s.cat_short_pct,
+      cat_earnings_blackout: s.cat_earnings_blackout,
       pnl_pct: null, pnl_usd: null, exit_reason: null, exit_day: null, _exitDate: '—',
       _status: (today <= maxExit) ? 'open' : 'expired',
     });
@@ -1183,11 +1194,13 @@ function renderHistory() {
     const entry = x.entry || x.buy_above || 0;
     const pnlCls = !isClosed ? '' : (x.pnl_pct > 0 ? 'hist-pnl-pos' : 'hist-pnl-neg');
     const score = x.score != null ? x.score : '—';
+    const cats = catBadges(x);
     return `<tr>
       <td class="table-mono" style="white-space:nowrap">${x.date}</td>
       <td>
         <div class="ticker-name">${x.ticker}</div>
         <div class="ticker-sector" style="font-size:10px;color:var(--muted2)">${x.sector || ''}</div>
+        ${cats ? `<div class="cat-badges-wrap">${cats}</div>` : ''}
       </td>
       <td><span class="${pil(x.setup)}">${setupMeta(x.setup).label}</span></td>
       <td class="table-mono" style="white-space:nowrap">$${(+entry).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">${x.target != null ? '$' + (+x.target).toFixed(2) : '—'}</span></td>
