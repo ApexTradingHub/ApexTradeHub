@@ -795,34 +795,51 @@ function curve(r) { return r && r.length ? [0, ...r.map(x => x.equity || 0)] : [
 function drawEq() {
   const ctx = document.getElementById('eqChart');
   const eA = curve(allR);
+  const eT = curve(topR || []);
+  // topR is a subset of allR (TG-pushed trades), so eA.length >= eT.length
   const labels = eA.map((_, i) => i === 0 ? 'Start' : 'T' + i);
-  const c = eA[eA.length - 1] >= 0 ? '#4F8FFF' : '#FF3B5C';
+  const cA = eA[eA.length - 1] >= 0 ? '#4F8FFF' : '#FF3B5C';   // blau / rot
+  const cT = (eT.length ? eT[eT.length - 1] : 0) >= 0 ? '#00FF88' : '#FF3B5C'; // grün / rot
   if (eqInst) eqInst.destroy();
+  const datasets = [{
+    label: 'Alle Signale',
+    data: eA,
+    borderColor: cA,
+    borderWidth: 1.5,
+    pointRadius: eA.length <= 30 ? 3 : 0,
+    pointBackgroundColor: cA,
+    fill: { target: 'origin', above: cA + '14', below: '#FF3B5C14' },
+    tension: 0.35
+  }];
+  if (eT && eT.length > 1) {
+    datasets.push({
+      label: 'Telegram-Pushed',
+      data: eT,
+      borderColor: cT,
+      borderWidth: 1.5,
+      borderDash: [5, 4],
+      pointRadius: eT.length <= 30 ? 3 : 0,
+      pointBackgroundColor: cT,
+      fill: false,
+      tension: 0.35
+    });
+  }
   eqInst = new Chart(ctx, {
     type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Equity',
-        data: eA,
-        borderColor: c,
-        borderWidth: 1.5,
-        pointRadius: eA.length <= 30 ? 3 : 0,
-        pointBackgroundColor: c,
-        fill: { target: 'origin', above: c + '18', below: '#FF3B5C18' },
-        tension: 0.35
-      }]
-    },
+    data: { labels: labels, datasets: datasets },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: false },
+        legend: {
+          display: true, position: 'top', align: 'end',
+          labels: { color: '#CDD5F0', font: { size: 10, family: "'JetBrains Mono'" }, boxWidth: 18, boxHeight: 2, padding: 12 }
+        },
         tooltip: {
           backgroundColor: '#0B0E1F', borderColor: 'rgba(99,135,255,0.2)', borderWidth: 1,
           bodyColor: '#CDD5F0', titleColor: '#5A6490',
           callbacks: {
             title: items => 'Trade ' + items[0].dataIndex,
-            label: c => ' Equity: $' + c.parsed.y.toFixed(0)
+            label: c => ' ' + c.dataset.label + ': $' + c.parsed.y.toFixed(0)
           }
         }
       },
