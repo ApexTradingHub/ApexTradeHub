@@ -536,6 +536,15 @@ body {
   </div>
 </div>
 
+<!-- COMPARE: ALLE SIGNALE vs TELEGRAM-PUSHED -->
+<div class="card anim-5 mb14">
+  <div class="card-header">
+    <div class="card-accent" style="background:var(--green)"></div>
+    <span class="card-title">Vergleich: Alle Signale vs Telegram-Pushed</span>
+  </div>
+  <div id="compareStats"></div>
+</div>
+
 <!-- SECTOR -->
 <div class="card anim-5 mb10">
   <div class="card-header">
@@ -858,13 +867,15 @@ function drawDoughnut(id, r, store) {
 }
 
 /* ── SETUP BAR ── */
+// Drives from ALL signals (not just closed trades), so setups with only signals
+// (e.g. STAGE_2 before its first close) still appear.
 function drawSetup(r) {
   if (!r || !r.length) return;
   const s = {};
-  r.forEach(x => { s[x.setup] = (s[x.setup] || 0) + 1; });
+  r.forEach(x => { if (SETUP_META[x.setup]) s[x.setup] = (s[x.setup] || 0) + 1; });
   const colorMap = {};
   Object.keys(SETUP_META).forEach(k => { colorMap[k] = SETUP_META[k].color.replace('var(--','').replace(')',''); });
-  const colorActual = { 'green':'#00FF8890', 'purple':'#B28FFF90', 'orange':'#FF6B3590', 'blue':'#4F8FFF90', 'teal':'#00E5CC90' };
+  const colorActual = { 'green':'#00FF8890', 'purple':'#B28FFF90', 'orange':'#FF6B3590', 'blue':'#4F8FFF90', 'teal':'#00E5CC90', 'cyan':'#00CFFF90' };
   if (setupInst) setupInst.destroy();
   setupInst = new Chart(document.getElementById('setupChart'), {
     type: 'bar',
@@ -897,7 +908,7 @@ function renderCompare(rA, rT) {
       ${row('Profit Factor', sA.pf.toFixed(2), sA.pf >= 1)}${row('Equity', (sA.eq >= 0 ? '+' : '') + '$' + sA.eq.toFixed(0), sA.eq >= 0)}
     </div>
     <div class="compare-box">
-      <div class="compare-box-label" style="color:var(--green)">Qualitätssignale</div>
+      <div class="compare-box-label" style="color:var(--green)">Telegram-Pushed (Top-2/Tag)</div>
       ${sT ? row('Trades', sT.n, true) + row('Win Rate', sT.wr.toFixed(1) + '%', sT.wr >= 50) + row('Avg Win', '+' + sT.avgW.toFixed(2) + '%', true) + row('Avg Loss', sT.avgL.toFixed(2) + '%', false) + row('Profit Factor', sT.pf.toFixed(2), sT.pf >= 1) + row('Equity', (sT.eq >= 0 ? '+' : '') + '$' + sT.eq.toFixed(0), sT.eq >= 0) : '<div class="empty-state" style="padding:16px 0"><span>Noch keine Daten</span></div>'}
     </div>
   </div>`;
@@ -1020,12 +1031,27 @@ function renderHistSummary(rows) {
   setH('h-avgw', '+' + avgW.toFixed(1) + '%');
   setH('h-avgl', avgL.toFixed(1) + '%');
 
-  /* per-setup mini stats */
-  const setupKeys = [...new Set(allR.map(x => x.setup))];
+  /* per-setup mini stats — include ALL setups that have signals OR closed trades */
+  const setupKeys = [...new Set(
+    [...(sigsAll || []), ...allR].map(x => x.setup).filter(k => SETUP_META[k])
+  )];
+  // signal counts (incl. setups with no closed trades yet)
+  const sigCount = {};
+  (sigsAll || []).forEach(s => { sigCount[s.setup] = (sigCount[s.setup] || 0) + 1; });
   const el = document.getElementById('histSetupStats');
   el.innerHTML = setupKeys.map(k => {
     const m = setupMeta(k);
     const sr = allR.filter(x => x.setup === k);
+    const sigN = sigCount[k] || 0;
+    if (!sr.length) {
+      return `<div class="hist-setup-box">
+        <div class="hist-setup-name" style="color:${m.color}">${m.label}</div>
+        <div class="hist-setup-row"><span class="hist-setup-key">Signale</span><span class="hist-setup-val">${sigN}</span></div>
+        <div class="hist-setup-row"><span class="hist-setup-key">Closed</span><span class="hist-setup-val" style="color:var(--muted2)">0</span></div>
+        <div class="hist-setup-row"><span class="hist-setup-key">WR / PF</span><span class="hist-setup-val" style="color:var(--muted2)">—</span></div>
+        <div class="hist-setup-row"><span class="hist-setup-key">PnL</span><span class="hist-setup-val" style="color:var(--muted2)">—</span></div>
+      </div>`;
+    }
     const sw = sr.filter(x => x.pnl_pct > 0);
     const sWr = sr.length ? (sw.length / sr.length * 100) : 0;
     const sPnl = sr.reduce((a, x) => a + (x.pnl_usd || 0), 0);
@@ -1034,7 +1060,8 @@ function renderHistSummary(rows) {
     const sPf = sgl > 0 ? sgw / sgl : 999;
     return `<div class="hist-setup-box">
       <div class="hist-setup-name" style="color:${m.color}">${m.label}</div>
-      <div class="hist-setup-row"><span class="hist-setup-key">Trades</span><span class="hist-setup-val">${sr.length}</span></div>
+      <div class="hist-setup-row"><span class="hist-setup-key">Signale</span><span class="hist-setup-val">${sigN}</span></div>
+      <div class="hist-setup-row"><span class="hist-setup-key">Closed</span><span class="hist-setup-val">${sr.length}</span></div>
       <div class="hist-setup-row"><span class="hist-setup-key">Win Rate</span><span class="hist-setup-val ${sWr >= 50 ? 'pos' : 'neg'}">${sWr.toFixed(1)}%</span></div>
       <div class="hist-setup-row"><span class="hist-setup-key">PF</span><span class="hist-setup-val ${sPf >= 1 ? 'pos' : 'neg'}">${sPf >= 99 ? '∞' : sPf.toFixed(2)}</span></div>
       <div class="hist-setup-row"><span class="hist-setup-key">PnL</span><span class="hist-setup-val ${sPnl >= 0 ? 'pos' : 'neg'}">${sPnl >= 0 ? '+' : ''}$${sPnl.toFixed(0)}</span></div>
@@ -1190,7 +1217,8 @@ async function loadData() {
   renderStats(sigs, allR, topR);
   drawEq();
   drawDoughnut('exitChart', allR, exitStore);
-  drawSetup(allR);
+  drawSetup(sigsAll);          // all signals (not just closed) — every setup visible
+  renderCompare(allR, topR);   // Alle Signale vs Telegram-Pushed
   renderToday(sigs);
   renderSector(sigs);
   renderLog(allR);

@@ -31,17 +31,56 @@ TRADE_SIZE        = 200.0
 START_CAPITAL     = 0.0
 
 # Qualitätsfilter — muss identisch zu ApexScan.py sein
-TG_MIN_RR     = 2.0
+# TG-Gate constants — MIRROR ApexScan.py (post-2026-05-22 changes)
+TG_MIN_RR     = 1.5    # was 2.0; live lowered after backtest showed >=2.0 had no WR edge
 TG_MIN_UPSIDE = 8.0
-TG_MIN_SCORE  = 70.0
+TG_MIN_SCORE  = {
+    "BREAKOUT":      70,
+    "VCP":           70,
+    "SHORT_SQUEEZE": 65,
+    "STAGE_2":       60,
+    "MEAN_REVERSION": 70,
+}
+TG_MIN_SCORE_DEFAULT = 70
+
+
+def telegram_pushed_signals(signals):
+    """Replicate ApexScan's Telegram-push: top-2 by score per scan-date among TG-quality.
+    Mirrors ApexScan.py post-2026-05-22 gate (score-based, per-setup TG_MIN_SCORE).
+    Used to define Track-2 = the ACTUAL Telegram universe (not the broad quality threshold)."""
+    from collections import defaultdict
+    by_date = defaultdict(list)
+    for s in signals:
+        d = s.get("date")
+        if not d:
+            continue
+        min_score = TG_MIN_SCORE.get(s.get("setup", ""), TG_MIN_SCORE_DEFAULT)
+        try:
+            ok = (float(s.get("rr", 0))                                   >= TG_MIN_RR
+                  and float(s.get("upside_pct", s.get("upside", 0)))      >= TG_MIN_UPSIDE
+                  and float(s.get("score", 0))                            >= min_score)
+        except (TypeError, ValueError):
+            ok = False
+        if ok:
+            by_date[d].append(s)
+    pushed = []
+    for d, sigs_d in by_date.items():
+        sigs_d.sort(key=lambda x: float(x.get("score", 0)), reverse=True)
+        pushed.extend(sigs_d[:2])
+    return pushed
+
 
 def is_quality_signal(signal):
     """Returns True if signal would have passed the Telegram quality filter."""
-    return (
-        float(signal.get("rr", 0))        >= TG_MIN_RR and
-        float(signal.get("upside_pct", signal.get("upside", 0))) >= TG_MIN_UPSIDE and
-        float(signal.get("score", 0))     >= TG_MIN_SCORE
-    )
+    min_score = TG_MIN_SCORE.get(signal.get("setup", ""), TG_MIN_SCORE_DEFAULT)
+    try:
+        return (
+            float(signal.get("rr", 0))                                   >= TG_MIN_RR and
+            float(signal.get("upside_pct", signal.get("upside", 0)))     >= TG_MIN_UPSIDE and
+            float(signal.get("score", 0))                                >= min_score
+        )
+    except (TypeError, ValueError):
+        return False
 
 # Horizon -> maximale Haltezeit in Handelstagen
 HORIZON_DAYS = {
@@ -440,18 +479,23 @@ def main():
 
     print()
 
-    # ---- Track 2: NUR QUALITÄTSSIGNALE (Top-2 Filter) ----
-    quality_signals = [s for s in signals if is_quality_signal(s)]
-    saved_top2      = load_json(RESULTS_FILE_TOP2, [])
+    # ---- Track 2: TELEGRAM-PUSHED (replicates live: top-2 by score per scan-date among TG-quality) ----
+    # Was: broad is_quality_signal filter (RR/upside/score threshold). That over-counted vs.
+    # what TG actually pushed (which is top-2/day). Now: faithful replication.
+    quality_signals  = telegram_pushed_signals(signals)
+    quality_keys     = {(s["ticker"], s["date"]) for s in quality_signals}
+    # Prune stale outcomes (old broad-quality signals no longer in TG-pushed set)
+    saved_top2_raw   = load_json(RESULTS_FILE_TOP2, [])
+    saved_top2       = [t for t in saved_top2_raw if (t["ticker"], t["date"]) in quality_keys]
 
-    print(f"Qualitätssignale (RR≥{TG_MIN_RR}, Upside≥{TG_MIN_UPSIDE}%, Score≥{TG_MIN_SCORE}): {len(quality_signals)}")
+    print(f"Telegram-Pushed (Top-2/Tag, TG-quality): {len(quality_signals)}")
 
     if quality_signals:
         top2_results, eq_curve_top2, new_top2, skipped_top2 = run_evaluation(
             quality_signals, saved_top2, "TOP2"
         )
         save_json(RESULTS_FILE_TOP2, top2_results)
-        print_summary(top2_results, new_top2, skipped_top2, "APEX EQUITY — QUALITÄTSSIGNALE")
+        print_summary(top2_results, new_top2, skipped_top2, "APEX EQUITY — TELEGRAM-PUSHED")
 
         # Build top2 chart
         build_chart_to(top2_results, eq_curve_top2, CHART_FILE_TOP2)
