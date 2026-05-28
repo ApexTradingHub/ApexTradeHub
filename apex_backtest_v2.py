@@ -87,6 +87,11 @@ MR_RSI_MAX = 38
 # BREAKOUT relax=0 base_range cap (tuning knob via --bo-base-max). Default 22 (validated 2026-05-22;
 # the 19.4 tightening to 8 hurt BREAKOUT: base<=22 gave WR 52.1%/PF 1.68 vs 48.4%/1.17). Others <=8.
 BO_BASE_MAX = 22
+# VCP ATR-contraction threshold (tuning knob via --vcp-atr-contraction). Default 0.20 (validated
+# 2026-05-28: 0.30 fired ~0; 0.20 gave n=9 WR 88.9% PF 7.16 over 2yr). Mirrors live.
+VCP_ATR_CONTRACTION = 0.20
+# SHORT_SQUEEZE min short interest (tuning knob via --sq-short-min). Default 15.0%.
+SQ_SHORT_MIN = 15.0
 
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
@@ -203,7 +208,7 @@ def detect_vcp_setup(df, atr14_now, vol_ratio, ma50, ma150, close, high, atr_pct
     atr_old = df["ATR14"].iloc[-25]
     if pd.isna(atr_old) or atr_old <= 0: return None
     contraction = 1 - (atr14_now / atr_old)
-    if contraction < 0.30: return None
+    if contraction < VCP_ATR_CONTRACTION: return None
     last20_high = df["High"].iloc[-21:-1].max()
     last20_low  = df["Low"].iloc[-21:-1].min()
     if last20_low <= 0: return None
@@ -220,7 +225,7 @@ def detect_vcp_setup(df, atr14_now, vol_ratio, ma50, ma150, close, high, atr_pct
 
 
 def detect_short_squeeze_setup(df, short_pct, ma20, ma50, close, vol_ratio, rsi14):
-    if short_pct is None or short_pct < 15.0: return None
+    if short_pct is None or short_pct < SQ_SHORT_MIN: return None
     if not (close > ma20 and ma20 > ma50): return None
     if len(df) < 6: return None
     closes = df["Close"].values
@@ -1278,10 +1283,14 @@ def main():
                         help="MEAN_REVERSION oversold RSI threshold (default 38; tuning knob)")
     parser.add_argument("--bo-base-max", type=float, default=22,
                         help="BREAKOUT relax=0 base_range cap (default 22; others fixed <=8)")
+    parser.add_argument("--vcp-atr-contraction", type=float, default=0.20,
+                        help="VCP min ATR-contraction over 25 bars (default 0.20; was 0.30 pre-2026-05-28)")
+    parser.add_argument("--sq-short-min", type=float, default=15.0,
+                        help="SHORT_SQUEEZE min short interest %% (default 15.0)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
@@ -1289,6 +1298,8 @@ def main():
     ONLY_SETUP = args.only_setup
     MR_RSI_MAX = args.mr_rsi_max
     BO_BASE_MAX = args.bo_base_max
+    VCP_ATR_CONTRACTION = args.vcp_atr_contraction
+    SQ_SHORT_MIN = args.sq_short_min
     if FORCE_RELAX:
         print(f"[MEASURE] FORCE_RELAX={FORCE_RELAX} — measuring relaxed-signal quality")
     if ONLY_SETUP:

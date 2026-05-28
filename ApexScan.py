@@ -284,7 +284,10 @@ def detect_vcp_setup(df, atr14_now, vol_ratio, ma50, ma150, close, high, atr_pct
     atr_old = df["ATR14"].iloc[-25]
     if pd.isna(atr_old) or atr_old <= 0: return None
     contraction = 1 - (atr14_now / atr_old)
-    if contraction < 0.30: return None
+    # 2026-05-28: loosened 0.30 -> 0.20. Backtest (2yr, VCP-isolated): 0.30 fired ~0 signals;
+    # 0.20 gave n=9, WR 88.9%, PF 7.16. Still rare (~4-5/yr) but high quality. Other VCP
+    # filters (20d-range <12%, vol>=1.2, atr_pct<=6%) keep it precise.
+    if contraction < 0.20: return None
     # 3. Tight base: 20d range < 12%
     last20_high = df["High"].iloc[-21:-1].max()
     last20_low  = df["Low"].iloc[-21:-1].min()
