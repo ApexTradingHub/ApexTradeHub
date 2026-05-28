@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-05-21T18:07:20.178428 | Total trades: 101_
+_Updated: 2026-05-27T21:42:45.526725 | Total trades: 106_
 
-**Analyse-Status**: complete=27, pending=74
+**Analyse-Status**: complete=27, pending=79
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -84,7 +84,7 @@ _Updated: 2026-05-21T18:07:20.178428 | Total trades: 101_
 | MUR_2026-03-19 | BREAKOUT | 12.43% | Take Profit D+12 | 84.2 | Energy | Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten. |
 | AKAM_2026-04-16 | REVERSAL | 12.01% | Take Profit D+13 | 71.0 | Technology | _pending_ |
 
-## Pending Claude-Analyse (74)
+## Pending Claude-Analyse (79)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -108,4 +108,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `NEM_2026-03-23`
 - `AVT_2026-03-23`
 - `CTVA_2026-03-24`
-- _(+ 54 mehr)_
+- _(+ 59 mehr)_
