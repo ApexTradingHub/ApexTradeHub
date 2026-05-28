@@ -1978,5 +1978,41 @@
     "rr": 1.87,
     "score": 103.0,
     "equity": 401.61
+  },
+  {
+    "date": "2026-05-06",
+    "ticker": "BDX",
+    "setup": "REVERSAL",
+    "sector": "Healthcare",
+    "entry": 145.48,
+    "stop": 141.12,
+    "target": 165.46,
+    "exit_price": 145.08,
+    "exit_reason": "Time Exit (REV-cut)",
+    "exit_day": 15,
+    "hold_days": 40,
+    "pnl_pct": -0.27,
+    "pnl_usd": -0.55,
+    "rr": 4.58,
+    "score": 91.3,
+    "equity": 401.06
+  },
+  {
+    "date": "2026-05-26",
+    "ticker": "APP",
+    "setup": "BREAKOUT",
+    "sector": "Communication Services",
+    "entry": 516.42,
+    "stop": 470.75,
+    "target": 600.0,
+    "exit_price": 600.0,
+    "exit_reason": "Take Profit",
+    "exit_day": 2,
+    "hold_days": 15,
+    "pnl_pct": 16.18,
+    "pnl_usd": 32.37,
+    "rr": 1.83,
+    "score": 103.4,
+    "equity": 433.43
   }
 ]
