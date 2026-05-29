@@ -700,5 +700,41 @@
     "rr": 4.58,
     "score": 91.3,
     "equity": 96.62
+  },
+  {
+    "date": "2026-04-28",
+    "ticker": "TMUS",
+    "setup": "REVERSAL",
+    "sector": "Communication Services",
+    "entry": 187.65,
+    "stop": 178.96,
+    "target": 222.42,
+    "exit_price": 187.02,
+    "exit_reason": "Time Exit (REV-cut)",
+    "exit_day": 22,
+    "hold_days": 40,
+    "pnl_pct": -0.34,
+    "pnl_usd": -0.67,
+    "rr": 4.0,
+    "score": 99.0,
+    "equity": 95.95
+  },
+  {
+    "date": "2026-05-22",
+    "ticker": "F",
+    "setup": "BREAKOUT",
+    "sector": "Consumer Cyclical",
+    "entry": 14.97,
+    "stop": 14.03,
+    "target": 17.0,
+    "exit_price": 17.0,
+    "exit_reason": "Take Profit",
+    "exit_day": 4,
+    "hold_days": 15,
+    "pnl_pct": 13.56,
+    "pnl_usd": 27.12,
+    "rr": 2.15,
+    "score": 119.2,
+    "equity": 123.07
   }
 ]
