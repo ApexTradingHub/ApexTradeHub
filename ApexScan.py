@@ -1662,18 +1662,29 @@ def build_telegram_message(candidates, market_regime):
     NL       = "\n"
     name_cache = load_company_names()
 
+    # Catalyst flags (mirror dashboard catBadges)
+    def _cat_flags(c):
+        f = []
+        if c.get("cat_pocket_pivot"):                 f.append("⚡ Pivot")     # lightning
+        if c.get("cat_earnings_beat"):                f.append("\U0001f4c8 Beat")  # chart-up
+        if (c.get("cat_analyst_upside") or 0) > 15:   f.append("\U0001f3af Analyst")  # dart
+        if (c.get("cat_short_pct") or 0) > 15:        f.append("\U0001f525 Squeeze")  # fire
+        if c.get("cat_earnings_blackout"):            f.append("⚠ Earnings")  # warning
+        return "  ".join(f)
+
     # Group by setup, preserve score order
-    groups = {"STAGE_2": [], "VCP": [], "SHORT_SQUEEZE": [], "BREAKOUT": []}
+    groups = {"STAGE_2": [], "VCP": [], "SHORT_SQUEEZE": [], "BREAKOUT": [], "MEAN_REVERSION": []}
     for c in candidates:
         key = c.get("setup", "")
         if key in groups:
             groups[key].append(c)
 
     setup_cfg = [
-        ("STAGE_2",       "\U0001f680", "Stage-2 Breakout"),   # rocket emoji — rare/big
-        ("VCP",           "\U0001f539", "VCP Breakout"),        # blue diamond — quality
-        ("SHORT_SQUEEZE", "\U0001f525", "Short Squeeze"),       # fire — momentum
-        ("BREAKOUT",      "\U0001f535", "Breakout"),            # blue circle
+        ("STAGE_2",        "\U0001f680", "Stage-2 Breakout"),   # rocket emoji — rare/big
+        ("VCP",            "\U0001f539", "VCP Breakout"),        # blue diamond — quality
+        ("SHORT_SQUEEZE",  "\U0001f525", "Short Squeeze"),       # fire — momentum
+        ("BREAKOUT",       "\U0001f535", "Breakout"),            # blue circle
+        ("MEAN_REVERSION", "\U0001f7e2", "Dip / Mean-Reversion"),# green circle
     ]
 
     lines = [icon + " <b>ApexScan · " + date_str + " · " + mode + "</b>"]
@@ -1703,6 +1714,9 @@ def build_telegram_message(candidates, market_regime):
 
             lines.append("\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500")
             lines.append("<b>" + ticker + " · " + cname + "</b>")
+            _flags = _cat_flags(c)
+            if _flags:
+                lines.append(_flags)
             lines.append("$" + price + " \u2192 $" + target + "  \u2b06 <b>+" + upside + "%</b>")
             lines.append("RR " + rr + "  ·  Entry $" + buy + "  ·  Stop $" + stop)
             lines.append("RSI " + rsi + "  ·  " + horizon + "  ·  Score " + score)
