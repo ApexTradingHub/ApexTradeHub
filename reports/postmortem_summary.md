@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-05-27T21:42:45.526725 | Total trades: 106_
+_Updated: 2026-05-29T11:19:15.837321 | Total trades: 112_
 
-**Analyse-Status**: complete=27, pending=79
+**Analyse-Status**: complete=27, pending=85
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -81,10 +81,10 @@ _Updated: 2026-05-27T21:42:45.526725 | Total trades: 106_
 | RVTY_2026-05-04 | REVERSAL | 17.6% | Take Profit D+5 | 69.0 | Unknown | _pending_ |
 | STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
 | CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
-| MUR_2026-03-19 | BREAKOUT | 12.43% | Take Profit D+12 | 84.2 | Energy | Teil des Maerz-2026-Oil-Surge-Clusters: WTI $55 (Dez25) -> ~$93 (Mitte Maerz), XLE +33% YTD (Venezuela/Maduro-Supply-Schock). Alle 9 Energy-BREAKOUTs gewannen gleichzeitig, weil der Sektor-ETF SPY massiv outperformte (XLE +6-7% waehrend SPY -5% im Hold). Sektor-Momentum-Tailwind war der dominante Treiber, nicht stock-spezifisch. HONEST CAVEAT: EIN Sektor-Event, nicht 9 unabhaengige Bestaetigungen - fuer CONFIRMED-Statistik als 1 korreliertes Cluster werten. |
-| AKAM_2026-04-16 | REVERSAL | 12.01% | Take Profit D+13 | 71.0 | Technology | _pending_ |
+| APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | _pending_ |
+| CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | _pending_ |
 
-## Pending Claude-Analyse (79)
+## Pending Claude-Analyse (85)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -108,4 +108,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `NEM_2026-03-23`
 - `AVT_2026-03-23`
 - `CTVA_2026-03-24`
-- _(+ 59 mehr)_
+- _(+ 65 mehr)_
