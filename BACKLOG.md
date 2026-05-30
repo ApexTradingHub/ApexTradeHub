@@ -76,3 +76,13 @@ Trefferquoten-Setup.
 
 **Trigger zum Anpacken:** wenn der User explizit Vertical-Catches will, oder DELL-artige Misses
 sich häufen.
+
+**STATUS 2026-05-30 — v0 GETESTET & VERWORFEN:**
+- Detector implementiert (apex_backtest_v2.py, opt-in via `--only-setup MOMO`)
+- Baseline 2J: n=72, WR 51.4 %, PF 1.51 — **PF-Gate (≥2.0) verfehlt**
+- Diagnose: +12 %-TP cappt die DELL-artigen Verticals (gemeint waren +25-50 %), Top-Winner
+  enden alle bei exakt +11.78 %. Asymmetrisches Profil wurde durch zu engen TP ausgehebelt.
+- Regime-Sensitivität real: 2025H2 PF 0.67 (verlustbringend), 2026YTD PF 3.62 (sehr stark).
+- Verworfen statt v1-Iteration (Overfitting-Risiko auf demselben Sample).
+- Code bleibt als opt-in Research-Tool in apex_backtest_v2.py (greift nur bei
+  `--only-setup MOMO`, sonst inaktiv).

@@ -1302,7 +1302,11 @@ function toggleTheme() {
   const isLight = document.body.classList.toggle('light');
   document.getElementById('themeBtn').textContent = isLight ? '🌑' : '🌙';
   localStorage.setItem('apexTheme', isLight ? 'light' : 'dark');
-  if (allR.length) { drawEq(); drawDoughnut('exitChart', allR, exitStore); drawSetup(allR); }
+  // re-draw charts mit den korrekten Datenquellen (sigsAll für drawSetup, nicht allR — sonst
+  // fallen alle Setups ohne Closed-Trades raus = nur BREAKOUT+REVERSAL übrig)
+  drawEq();
+  if (allR.length) drawDoughnut('exitChart', allR, exitStore);
+  if (sigsAll.length) drawSetup(sigsAll);
 }
 
 (function initTheme() {

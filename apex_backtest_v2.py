@@ -633,6 +633,54 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         if ONLY_SETUP == "MEAN_REVERSION":
             return None
 
+    # ---- MOMO setup (v0, 2026-05-30) — Vertical-Momentum-Catcher ----
+    # OPT-IN ONLY: 2026-05-30 baseline failed gate (PF 1.51 < 2.0, regime-sensitive,
+    # +12% TP capped winners). Kept as opt-in research tool (--only-setup MOMO).
+    # Original Philosophie: überkauft (RSI>60) ok, ignoriert base_range, vol>=2x.
+    if ONLY_SETUP == "MOMO":
+        if len(df) >= 6:
+            perf_5d_val      = (close / safe_float(df["Close"].iloc[-6]) - 1) * 100
+            prev_5d_high_val = safe_float(df["High"].iloc[-6:-1].max())
+        else:
+            perf_5d_val      = 0.0
+            prev_5d_high_val = 0.0
+        _momo_en = (catalyst_signals or {}).get("earnings_next_days")
+        momo_fire = (
+            perf_5d_val > 15.0                                  # vertical spike
+            and vol_ratio >= 2.0                                # institutional confirmation
+            and rsi14 > 60                                      # already in momentum
+            and close > prev_5d_high_val                        # signal-day continuation
+            and ma50 > 0 and close > ma50                       # at least short-term trend
+            and ((_momo_en is None) or (_momo_en >= 5))         # earnings blackout (5d)
+        )
+        if momo_fire:
+            momo_buy   = round(close * 1.002, 2)
+            momo_stop  = round(close - 2.5 * atr14, 2)
+            momo_riskp = (momo_buy - momo_stop) / momo_buy * 100 if momo_buy > 0 else 99
+            momo_tgt   = round(close * 1.12, 2)
+            momo_rr    = (momo_tgt - momo_buy) / (momo_buy - momo_stop) if momo_buy > momo_stop else 0
+            if 5.0 <= momo_riskp <= 18.0:   # wide-stop band; no min RR (asymmetric by design)
+                momo_score  = 50.0
+                momo_score += min(vol_ratio, 5.0) * 5            # vol up to +25
+                momo_score += min(perf_5d_val, 40.0) * 0.5       # perf_5d up to +20
+                if rsi14 > 70: momo_score += 5
+                if catalysts.get("pocket_pivot"): momo_score += 8
+                if perf_20 > 30: momo_score += 5
+                _mo_dr = high - safe_float(l["Low"])
+                _mo_cs = (close - safe_float(l["Low"])) / _mo_dr if _mo_dr > 0 else 0.5
+                _mo_id = (high <= safe_float(prev["High"])) and (safe_float(l["Low"]) >= safe_float(prev["Low"]))
+                return {
+                    "ticker": ticker, "setup": "MOMO", "horizon": "1-3 weeks",
+                    "price": round(close, 2), "buy_above": momo_buy, "stop": momo_stop,
+                    "target": momo_tgt, "risk_pct": round(momo_riskp, 2), "rr": round(momo_rr, 2),
+                    "score": round(momo_score, 1), "relax_level": relax,
+                    "movement_class": "MOMO", "closing_strength": round(_mo_cs, 2),
+                    "inside_day": _mo_id, "vcp_contraction": None, "squeeze_short_pct": None,
+                    "stage2_ma150_rise": None,
+                }
+        if ONLY_SETUP == "MOMO":
+            return None
+
     # BREAKOUT detection (20d high) — computed early so the base-gate can be setup-specific
     buy_above_prev   = prev_20_high * 1.002
     breakout_close   = close >= buy_above_prev * 0.99
