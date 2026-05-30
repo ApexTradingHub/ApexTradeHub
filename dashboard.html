@@ -47,6 +47,32 @@
   --glow-green: 0 0 20px rgba(0,255,136,0.15);
 }
 
+/* ━━ LIGHT MODE TOKENS ━━ */
+body.light {
+  --bg:       #F7F4EF;
+  --s1:       #FBF9F6;
+  --s2:       #F3EFE8;
+  --s3:       #EDE8E0;
+  --s4:       #E5DED4;
+  --border:   rgba(139, 115, 85, 0.12);
+  --border-b: rgba(139, 115, 85, 0.28);
+  --border-g: rgba(45, 106, 79, 0.20);
+  --text:     #1A1612;
+  --muted:    #C4B9A8;
+  --muted2:   #A89880;
+  --cyan:     #8B7355;
+  --green:    #1A6B3C;
+  --red:      #C0392B;
+  --amber:    #A07020;
+  --purple:   #6B4A8A;
+  --blue:     #1A4A8A;
+  --teal:     #2A5C43;
+  --orange:   #8A4A1A;
+  --shadow: 0 8px 32px rgba(0,0,0,0.08);
+  --glow-cyan: 0 0 12px rgba(139,115,85,0.12);
+  --glow-green: 0 0 12px rgba(26,107,60,0.12);
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -56,6 +82,9 @@ body {
   font-size: 13px;
   min-height: 100vh;
   padding: 24px 28px 40px;
+  transition: background .3s, color .3s;
+}
+body:not(.light) {
   background-image:
     linear-gradient(rgba(99,135,255,0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(99,135,255,0.015) 1px, transparent 1px);
@@ -128,6 +157,11 @@ body {
 .refresh-btn:hover { background: var(--s3); border-color: var(--cyan); color: var(--cyan); box-shadow: var(--glow-cyan); }
 .refresh-btn svg { transition: transform .4s; }
 .refresh-btn:hover svg { transform: rotate(180deg); }
+.theme-btn { background: var(--s2); border: 1px solid var(--border-b); color: var(--muted2); padding: 7px 12px; border-radius: var(--r-sm); cursor: pointer; font-size: 14px; transition: all .15s; display: flex; align-items: center; gap: 5px; }
+.theme-btn:hover { background: var(--s3); border-color: var(--cyan); color: var(--cyan); }
+body.light .logo-name { color: #1A1612; }
+body.light .logo-name span { color: #8B7355; }
+body.light .header::after { background: linear-gradient(90deg, #8B7355, transparent); }
 
 /* ━━ TAB NAV ━━ */
 .tab-nav {
@@ -434,6 +468,7 @@ body {
       </svg>
       Refresh
     </button>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Theme wechseln">🌙</button>
   </div>
 </header>
 
@@ -1261,6 +1296,25 @@ async function loadData() {
   /* if history tab is active, also render it */
   if (location.hash === '#history') renderHistory();
 }
+
+/* ── THEME TOGGLE ── */
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light');
+  document.getElementById('themeBtn').textContent = isLight ? '🌑' : '🌙';
+  localStorage.setItem('apexTheme', isLight ? 'light' : 'dark');
+  if (allR.length) { drawEq(); drawDoughnut('exitChart', allR, exitStore); drawSetup(allR); }
+}
+
+(function initTheme() {
+  const saved = localStorage.getItem('apexTheme');
+  if (saved === 'light') {
+    document.body.classList.add('light');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = '🌑';
+    });
+  }
+})();
 
 /* ── INIT ── */
 (function init() {
