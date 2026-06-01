@@ -1417,14 +1417,17 @@ def enrich_sector(candidates):
     cache = load_sector_cache()
     for row in candidates:
         t = row["ticker"]
-        if t not in cache:
+        # 2026-06-01 fix: retry "Unknown" entries (yfinance temp-fails got cached permanently).
+        # Don't cache failures — let next scan re-try. Only cache successful lookups.
+        if t not in cache or cache.get(t) == "Unknown":
             try:
                 with suppress_output():
                     info = yf.Ticker(t).info
-                cache[t] = info.get("sector", "Unknown") if isinstance(info, dict) else "Unknown"
+                if isinstance(info, dict) and info.get("sector"):
+                    cache[t] = info["sector"]
             except Exception:
-                cache[t] = "Unknown"
-        row["sector"] = cache[t]
+                pass
+        row["sector"] = cache.get(t, "Unknown")
     save_sector_cache(cache)
     df = pd.DataFrame(candidates).sort_values(
         ["score", "rr", "vol_ratio"], ascending=False
