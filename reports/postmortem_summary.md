@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-05-29T11:19:15.837321 | Total trades: 112_
+_Updated: 2026-06-01T16:57:41.901153 | Total trades: 118_
 
-**Analyse-Status**: complete=27, pending=85
+**Analyse-Status**: complete=38, pending=80
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -11,23 +11,23 @@ _Updated: 2026-05-29T11:19:15.837321 | Total trades: 112_
 | `sector_momentum_tailwind` | 9 |
 | `energy_oil_surge_2026q1` | 9 |
 | `sector_relative_strength` | 9 |
+| `pocket_pivot_validation` | 7 |
+| `earnings_adjacency_risk` | 6 |
 | `fundamental_deterioration` | 6 |
 | `reversal_after_analyst_downgrade` | 6 |
-| `earnings_adjacency_risk` | 5 |
+| `strong_closing_strength_confirmation` | 4 |
 | `earnings_miss_during_hold` | 3 |
+| `secular_ai_catalyst` | 3 |
+| `geopolitical_premium_fade` | 3 |
+| `oil_peak_chase` | 3 |
+| `high_score_loss_85plus` | 3 |
 | `ai_storage_momentum` | 2 |
-| `secular_ai_catalyst` | 2 |
+| `post_earnings_beat_continuation` | 2 |
 | `extended_but_catalyst_won` | 2 |
+| `earnings_adjacency_breakout` | 2 |
 | `dead_cat_bounce` | 2 |
 | `duplicate_trap` | 2 |
-| `high_volatility_tight_stop` | 1 |
-| `vertical_move_breakout_fail` | 1 |
-| `post_earnings_beat_continuation` | 1 |
-| `index_inclusion_fade` | 1 |
-| `post_announcement_fade` | 1 |
-| `extended_stock_breakout` | 1 |
-| `institutional_rerating_in_progress` | 1 |
-| `defense_sector_specific` | 1 |
+| `no_pocket_pivot_warning` | 2 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -64,10 +64,10 @@ _Updated: 2026-05-29T11:19:15.837321 | Total trades: 112_
 | LKQ_2026-05-06 | REVERSAL | -7.61% | Stop Loss D+5 | 91.3 | Unknown | Fundamentale Margin-Compression + Securities-Lawsuit = REVERSAL traf strukturell geschwaechten Stock |
 | PENN_2026-04-27 | BREAKOUT | -7.45% | Stop Loss D+10 | 110.2 | Consumer Cyclical | Post-Earnings-Spike-Chase - Q1 Earnings 23.4 mit 120% Surprise, Stock +16.7% pre-market; wir fired BREAKOUT 4 Tage spaeter = klassischer Late-Entry-Fade |
 | MOS_2026-04-19 | REVERSAL | -7.09% | Stop Loss D+7 | 76.3 | Basic Materials | REVERSAL 10 Tage nach Brazilian-Phosphate-Idle-Announcement (9.4) + multiple Analyst-PT-Cuts - fundamental schwaechender Stock |
+| S_2026-05-18 | BREAKOUT | -6.78% | Stop Loss D+8 | 122.4 | Unknown | SentinelOne BREAKOUT-Signal am 18.5. — Earnings am 28.5. = nur 10 Tage Abstand. Pre-Earnings-Nervositaet baute Pressure auf, Stop D+8 (also ~26.5., 2 Tage vor Earnings) traf den Drawdown. ABER: Das System hat uns vor dem 28.5.-Disaster gerettet — Q2-Guide-Miss + 8% Layoff-Ankuendigung loesten -18% Post-Earnings-Crash aus. Unser Stop bei -6.78% war besser als das Halten gewesen waere. KEIN Pocket-Pivot-Flag — zweiter Loser ohne PP (siehe HP). Score 122 + EMERGING_BREAKOUT = Setup sah gut aus, aber Earnings-Adjacency-Risk fuer BREAKOUT bestaetigt sich wieder (siehe FLS/BTU/XRAY). |
 | GEV_2026-03-23 | BREAKOUT | -6.56% | Stop Loss D+5 | 89.0 | Industrials | BREAKOUT EXAKT am S&P-100-Inclusion-Tag (23.3) = index-buying war bereits gepriced, klassische 'sell the news' Fade |
 | XRAY_2026-05-01 | REVERSAL | -6.49% | Stop Loss D+2 | 65.2 | Healthcare | REVERSAL mit RSI 47.4 = NICHT oversold (kein echtes Bounce-Setup) + niedriger Score 65.2 (geringe Conviction). Q1-Earnings am 5.5 = 4 Tage nach Signal: GAAP-Net-Loss, Adj-EPS $0.27 (-39% von $0.44), EBITDA-Marge 19%->14.7%. Analyst-PT-Cuts (UBS $18->$17, Mizuho $16->$14). Stop D+2. Doppelter Fehler: kein oversold-Edge UND Earnings-Adjacency in einen Miss. |
 | UI_2026-03-18 | BREAKOUT | -6.27% | Stop Loss D+8 | 86.2 | Technology | _pending_ |
-| FLS_2026-04-27 | BREAKOUT | -6.18% | Stop Loss D+3 | 110.9 | Industrials | BREAKOUT-Signal 27.4 (Score 110.9, vol_ratio 2.48 = massiver Volumen-Spike), ABER Q1-Earnings am 29.4 = nur 2 Tage spaeter. Earnings verfehlten Revenue um -8.8% ($1.07B vs $1.17B erwartet), Adj. Operating Income -17.9% miss, Sales-Guidance gekuerzt. Stop D+3. Der Volumen-Spike war wahrscheinlich Pre-Earnings-Positionierung, kein echtes Breakout-Volumen. WICHTIG: Earnings-Adjacency-Risk trifft BREAKOUT genauso wie REVERSAL. |
 
 ## Best 10 Trades
 
@@ -81,10 +81,10 @@ _Updated: 2026-05-29T11:19:15.837321 | Total trades: 112_
 | RVTY_2026-05-04 | REVERSAL | 17.6% | Take Profit D+5 | 69.0 | Unknown | _pending_ |
 | STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
 | CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
-| APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | _pending_ |
-| CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | _pending_ |
+| APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
+| CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | Trump verkuendete am Freitag 23.5. nach US-Close die Verdopplung der Stahl-Tariffs von 25% auf 50%. CLF gappte am Montag 26.5. premarket +35% hoch. Reiner Policy-Tarif-Tailwind: Cleveland-Cliffs ist ein puer US-Stahlproduzent, profitiert maximal von Importzoellen. closing_strength 0.92 = sehr starker Tagesabschluss = der Move war institutionell, kein retail-fade. TP D+1, sauberer +13.6%-Win. |
 
-## Pending Claude-Analyse (85)
+## Pending Claude-Analyse (80)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -108,4 +108,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `NEM_2026-03-23`
 - `AVT_2026-03-23`
 - `CTVA_2026-03-24`
-- _(+ 65 mehr)_
+- _(+ 60 mehr)_

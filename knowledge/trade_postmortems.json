@@ -2,9 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-05-29T11:19:15.837321",
-    "total_trades": 112,
-    "analyzed_trades": 27
+    "updated": "2026-06-01T16:57:41.901153",
+    "total_trades": 118,
+    "analyzed_trades": 38
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -8283,19 +8283,46 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-07",
+            "title": "Brent crude peaks $138/b — Strait of Hormuz disruption-driven",
+            "src": "EIA"
+          },
+          {
+            "date": "2026-05-XX",
+            "title": "Brent retreating on 60-day ceasefire bet + Hormuz reopening — drilling demand softening",
+            "src": "EIA"
+          }
+        ],
+        "key_events": [
+          "Energy-Top-Chase 6 Wo nach Crude-Peak",
+          "Kein Pocket-Pivot — fehlende Akkumulations-Bestaetigung"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Helmerich & Payne (Land-Drilling-Services). POWER_BREAKOUT-Klasse (perf_120 > 25%) = bereits extended. Score 138.6 (hoechster aller Loser) bestaetigt das 'High-Score-Loss-85plus'-Muster: extreme Scores sind oft extreme Vola, nicht extreme Conviction. Gekauft am 18.5. — Crude-Peak $138 (7.4.) liegt 6 Wochen zurueck, Hormuz-Ceasefire-Erwartung baut sich auf, Land-Drilling-Demand sinkt mit fadendem Premium. Plus: KEIN Pocket-Pivot-Flag (anders als die Winner) — die institutionelle Bestaetigung fehlte. closing_strength 0.91 war OK, hat aber nicht ausgereicht gegen den Sektor-Gegenwind.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "geopolitical_premium_fade",
+          "oil_peak_chase",
+          "high_score_loss_85plus",
+          "no_pocket_pivot_warning",
+          "power_breakout_fade"
+        ],
+        "similar_trades": [
+          "SM_2026-05-20",
+          "HAL_2026-05-18"
+        ],
+        "what_would_have_helped": [
+          "Sektor-Peak-Awareness: Energy-BREAKOUT mid-May (Crude-Peak liegt 6 Wo zurueck) ist Top-Chase. Sektor-Stage waere ein wertvoller Filter",
+          "Fehlender Pocket-Pivot als reine Hard-Filter-Warnung — Winner-Daten zeigen 7/7 mit PP",
+          "POWER_BREAKOUT-Klasse (extended) in einem fadenden Sektor = doppelt riskant"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-27T21:42:43.140462",
@@ -8583,19 +8610,46 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-07",
+            "title": "Brent crude peaks $138/b on Strait of Hormuz disruptions",
+            "src": "EIA Oil Market Report"
+          },
+          {
+            "date": "2026-05-XX",
+            "title": "Brent heading for biggest weekly drop in 2 months on 60-day ceasefire bet + partial Hormuz reopening",
+            "src": "EIA"
+          }
+        ],
+        "key_events": [
+          "BREAKOUT am Energy-Sektor-Peak gekauft",
+          "closing_strength 0.29 = Spike-Fade-Warner ignoriert"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Klassischer Spike-and-Fade am Signal-Tag: closing_strength 0.29 (extreme weak close) war der bereits eingebaute Warner. Plus: SM (Energy E&P) gekauft am Top des Strait-of-Hormuz-Geopolitik-Premiums — Brent peakte April auf $138, im Mai begann Ceasefire-Erwartung den Premium auszupreisen. WTI fadete, Energy-Stocks korrigierten. Score 137 (zweithoechster aller Winner/Loser) hat NICHT geholfen — ist genau das 'High-Score-Loss-85plus'-Muster (Score-Extrem == Vola-Extrem, nicht Conviction). Stop D+3, sauberes -6.11%. EMERGING_BREAKOUT-Klasse impliziert 'extending into peak'.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "geopolitical_premium_fade",
+          "oil_peak_chase",
+          "spike_and_fade_close",
+          "high_score_loss_85plus",
+          "sector_top_trap"
+        ],
+        "similar_trades": [
+          "HP_2026-05-18",
+          "HAL_2026-05-18"
+        ],
+        "what_would_have_helped": [
+          "closing_strength < 0.5 sollte einen harten Penalty geben (aktuell -10) oder bei < 0.35 hard-skip — der intraday-fade ist sehr predictive bei Spike-Tagen",
+          "Sektor-Top-Awareness: Wenn ein ganzer Sektor (Energy) gerade an einem multi-month high steht UND der Treiber (Geopolitik) anfaengt sich zu loesen, BREAKOUT vermeiden",
+          "Score-Cap fuer Telegram-Ranking bei ~100 — Scores 120+ haben keine bessere WR aber hoehere Vola/Risiko"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-27T21:42:45.224689",
@@ -8658,19 +8712,46 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-07",
+            "title": "Brent peaks $138 on Hormuz disruption",
+            "src": "EIA"
+          },
+          {
+            "date": "2026-05-XX",
+            "title": "Crude retreats on ceasefire bet — oilfield-services demand softens",
+            "src": "EIA"
+          }
+        ],
+        "key_events": [
+          "Energy-Cluster-Top-Chase",
+          "Pocket Pivot reichte nicht gegen Sektor-Headwind"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Halliburton (Oilfield-Services). Selbes Energy-Cluster-Muster wie HP/SM: POWER_BREAKOUT, extreme Score 139.2, gekauft am fadenden Hormuz-Premium-Top. Pocket Pivot DA (anders als HP) — zeigt: Pocket Pivot allein reicht NICHT, wenn der Sektor-Headwind dominiert. closing_strength 0.92 OK. Stop D+6 (langsamer Stop, klassischer slow_stop_4plus-Pattern). Postmortem-Lehre: Pocket Pivot ist starker Filter, aber nicht immun gegen Sektor-Top. Wie SHEL/AM aus Maerz (Sektor-Divergenz-Loser) — Energy-Tape dominiert Einzelstock-Setup.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "geopolitical_premium_fade",
+          "oil_peak_chase",
+          "high_score_loss_85plus",
+          "power_breakout_fade",
+          "pocket_pivot_not_immune_to_sector"
+        ],
+        "similar_trades": [
+          "HP_2026-05-18",
+          "SM_2026-05-20",
+          "SHEL_2026-03-19"
+        ],
+        "what_would_have_helped": [
+          "Sektor-Peak-Awareness wichtiger als Pocket Pivot — HAL hatte PP und verlor trotzdem",
+          "Sektor-relative-Schwaeche-Check: wenn XLE die letzten 10d underperformt, BREAKOUT im Energy-Sektor skippen"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-29T11:19:12.833110",
@@ -8808,19 +8889,54 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-21",
+            "title": "AAL +4.9% to $13.59 on travel-demand headlines + Q2 outlook",
+            "src": "Stockstotrade"
+          },
+          {
+            "date": "2026-05-21",
+            "title": "BMO lifts PT $12 -> $13.50 on Q1 beat + above-consensus FY outlook",
+            "src": "Stockstotrade"
+          },
+          {
+            "date": "2026-04-XX",
+            "title": "Q1 ahead on Rev + EPS; Q2 guide ~15% YoY rev growth, 65% of quarter booked",
+            "src": "AAL Earnings"
+          },
+          {
+            "date": "2026-05-XX",
+            "title": "Spirit Airlines shutdown — AAL uses rescue fares on overlap routes",
+            "src": "Stockstotrade"
+          }
+        ],
+        "key_events": [
+          "Q1-Beat + Q2-Guide-Beat",
+          "Spirit-Shutdown = ULCC-Druck weg",
+          "BMO-PT-Raise"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Q1-Beat (Rev + EPS) + Q2-Guidance: ~15% YoY Rev-Growth, 65% des Quartals schon gebucht. Spirit-Airlines-Shutdown = ultra-low-cost-Druck weg, AAL nimmt Rescue-Fares auf Overlap-Routes. BMO-PT-Raise auf $13.50 (von $12). +20% in 3 Wochen vor Signal (11 -> 13.59). Pocket Pivot + closing_strength 0.99 = saubere Akkumulation. Score 94.8 (niedrigster der Winner) + WEAK_BREAKOUT — aber Catalyst-Story (Industry-Konsolidierung + Earnings-Beat) trug den Trade. TP D+3, +11.94%.",
+        "lesson_tags": [
+          "industry_consolidation_catalyst",
+          "earnings_beat_continuation",
+          "pocket_pivot_validation",
+          "strong_closing_strength_confirmation"
+        ],
+        "similar_trades": [
+          "F_2026-05-22"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Industry-Konsolidierungs-Story (Competitor-Shutdown, M&A) als sektor-strukturellen Catalyst — diese Setups laufen oft mehrere Wochen, Multi-Win-Potential",
+          "Score 95 + WEAK_BREAKOUT funktioniert wenn der Catalyst klar genug ist — Score allein (95 ist eher mid) ist nicht der einzige Conviction-Marker"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-29T11:19:13.998695",
@@ -8883,19 +8999,43 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-23",
+            "title": "Trump announces doubling of steel tariffs 25% -> 50% at US Steel rally near Pittsburgh (after market close)",
+            "src": "MarketBeat"
+          },
+          {
+            "date": "2026-05-26",
+            "title": "CLF +35% premarket on tariff news; opens with massive gap",
+            "src": "Globe and Mail"
+          }
+        ],
+        "key_events": [
+          "Trump-Verdopplung Stahl-Tariffs 25->50% am 23.5. nach Close",
+          "Domestic-Producer-Tailwind"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "Trump verkuendete am Freitag 23.5. nach US-Close die Verdopplung der Stahl-Tariffs von 25% auf 50%. CLF gappte am Montag 26.5. premarket +35% hoch. Reiner Policy-Tarif-Tailwind: Cleveland-Cliffs ist ein puer US-Stahlproduzent, profitiert maximal von Importzoellen. closing_strength 0.92 = sehr starker Tagesabschluss = der Move war institutionell, kein retail-fade. TP D+1, sauberer +13.6%-Win.",
+        "lesson_tags": [
+          "policy_tariff_tailwind",
+          "weekend_news_gap_up",
+          "pocket_pivot_validation",
+          "strong_closing_strength_confirmation"
+        ],
+        "similar_trades": [
+          "AA_2026-05-22"
+        ],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Wochenend-Policy-News (Tariffs, etc.) auf US-Stahl/Aluminium/Domestic-Producer = Monday-Gap-up-BREAKOUT-Setup mit hoher Conviction",
+          "Pocket Pivot + closing_strength > 0.9 = institutionelle Bestaetigung des Gap-Moves"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-29T11:19:14.465049",
@@ -9033,6 +9173,119 @@
       },
       "news": {
         "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-07",
+            "title": "AppLovin Q1 2026: Rev $1.84B beat $1.78B; Q2 guide $1.92-1.95B beat Street",
+            "src": "Earnings"
+          },
+          {
+            "date": "2026-05-26",
+            "title": "AppLovin shares +5.90% on competitive-relief + analyst targets",
+            "src": "TradingKey"
+          },
+          {
+            "date": "2026-05-27",
+            "title": "AppLovin +10.23% — Morgan Stanley reiterates Outperform PT $720; UBS/DB/Macquarie/Wedbush/Oppenheimer/Jefferies all bullish",
+            "src": "StocksToTrade"
+          },
+          {
+            "date": "2026-05-27",
+            "title": "Meta unlikely to bid on non-IDFA iOS traffic — competitive relief for APP",
+            "src": "Motley Fool"
+          }
+        ],
+        "key_events": [
+          "Q1 Beat + Q2 Guidance Raise",
+          "AXON-Plattform-Launch im Juni 2026",
+          "Multi-Bank-PT-Raise-Cascade"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant.",
+        "lesson_tags": [
+          "confirmed_earnings_beat_catalyst",
+          "analyst_pt_raise_cascade",
+          "pocket_pivot_validation",
+          "ai_adtech_thematic"
+        ],
+        "similar_trades": [
+          "STX_2026-04-16",
+          "CIEN_2026-03-18",
+          "ORCL_2026-05-28"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "BREAKOUT + Pocket Pivot + cat_analyst_upside>15 + recent_earnings_beat = Top-Conviction-Setup",
+          "Multi-Bank-PT-Raise-Cascade in den 2-3 Wochen vor BREAKOUT-Signal als Bestaetigung",
+          "Auch bei schwacher closing_strength (0.41) kann der Trade gewinnen, wenn der Catalyst-Stack ausreichend stark ist — closing_strength ist KEIN Hard-Killer"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-05-29T11:19:15.535572",
+        "version": "1.0"
+      }
+    },
+    "TMUS_2026-04-28": {
+      "core": {
+        "ticker": "TMUS",
+        "signal_date": "2026-04-28",
+        "exit_date": "2026-05-29",
+        "setup": "REVERSAL",
+        "entry": 187.65,
+        "stop": 178.96,
+        "target": 222.42,
+        "exit_price": 187.02,
+        "exit_reason": "Time Exit (REV-cut)",
+        "exit_day": 22,
+        "trigger_day": null,
+        "pnl_pct": -0.34,
+        "pnl_usd": -0.67,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 99.0,
+        "rr": 4.0,
+        "rsi": 37.3,
+        "macd_bull": "NO",
+        "vol_ratio": 1.67,
+        "avg_dv_m": 1235.06,
+        "perf_20d": -12.7,
+        "perf_60d": -4.9,
+        "perf_120d": -7.3,
+        "base_range": 13.6,
+        "horizon": "3-8 weeks",
+        "movement_class": null,
+        "closing_strength": null,
+        "inside_day": null,
+        "sector": "Communication Services",
+        "catalysts": {
+          "pocket_pivot": null,
+          "vol_climax": null,
+          "gap_pct": null,
+          "vcp_strength": null,
+          "earnings_blackout": null,
+          "earnings_beat": null,
+          "earnings_next_days": null,
+          "short_pct": null,
+          "analyst_upside": null
+        }
+      },
+      "market_context": {
+        "sector": "Communication Services",
+        "sector_etf": "XLC",
+        "spy_perf_pct": 6.29,
+        "qqq_perf_pct": 12.28,
+        "sector_etf_perf_pct": -0.05,
+        "sector_divergence": true,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
         "web_research": [],
         "key_events": []
       },
@@ -9048,7 +9301,530 @@
         "confidence": null
       },
       "auto_meta": {
-        "built_at": "2026-05-29T11:19:15.535572",
+        "built_at": "2026-06-01T14:33:55.095496",
+        "version": "1.0"
+      }
+    },
+    "S_2026-05-18": {
+      "core": {
+        "ticker": "S",
+        "signal_date": "2026-05-18",
+        "exit_date": "2026-05-29",
+        "setup": "BREAKOUT",
+        "entry": 17.41,
+        "stop": 16.23,
+        "target": 20.0,
+        "exit_price": 16.23,
+        "exit_reason": "Stop Loss",
+        "exit_day": 8,
+        "trigger_day": null,
+        "pnl_pct": -6.78,
+        "pnl_usd": -13.56,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 122.4,
+        "rr": 2.19,
+        "rsi": 70.0,
+        "macd_bull": "YES",
+        "vol_ratio": 1.19,
+        "avg_dv_m": 118.78,
+        "perf_20d": 22.5,
+        "perf_60d": 35.2,
+        "perf_120d": 11.7,
+        "base_range": 17.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.87,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": -0.36,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 7.7700000000000005,
+          "analyst_upside": 5.473204104903084
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": 2.41,
+        "qqq_perf_pct": 4.59,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-28",
+            "title": "SentinelOne Q1 FY27: Q2 guide $289-291M MISS vs $292M consensus; 8% workforce cut announced",
+            "src": "S 8-K"
+          },
+          {
+            "date": "2026-05-29",
+            "title": "S shares -18% early Friday on guide miss + layoff announcement",
+            "src": "SEC + reports"
+          }
+        ],
+        "key_events": [
+          "Earnings 10d nach BREAKOUT-Signal",
+          "Q2-Guide-Miss + 8%-Layoff = -18% Earnings-Crash (wir waren VOR dem Crash raus)"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "SentinelOne BREAKOUT-Signal am 18.5. — Earnings am 28.5. = nur 10 Tage Abstand. Pre-Earnings-Nervositaet baute Pressure auf, Stop D+8 (also ~26.5., 2 Tage vor Earnings) traf den Drawdown. ABER: Das System hat uns vor dem 28.5.-Disaster gerettet — Q2-Guide-Miss + 8% Layoff-Ankuendigung loesten -18% Post-Earnings-Crash aus. Unser Stop bei -6.78% war besser als das Halten gewesen waere. KEIN Pocket-Pivot-Flag — zweiter Loser ohne PP (siehe HP). Score 122 + EMERGING_BREAKOUT = Setup sah gut aus, aber Earnings-Adjacency-Risk fuer BREAKOUT bestaetigt sich wieder (siehe FLS/BTU/XRAY).",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "no_pocket_pivot_warning",
+          "pre_earnings_drawdown",
+          "earnings_adjacency_breakout"
+        ],
+        "similar_trades": [
+          "FLS_2026-04-27",
+          "BTU_2026-05-01",
+          "XRAY_2026-05-01"
+        ],
+        "what_would_have_helped": [
+          "Earnings-Blackout-Filter STRIKT auf 10-Tage: wenn cat_earnings_next_days < 10, BREAKOUT skippen. Aktuell scort der Catalyst-Layer earnings_blackout aber kein Hard-Skip",
+          "Fehlender Pocket-Pivot als verstaerkende Warnung — bei den Winnern war PP 7/7",
+          "Ironisch: das System hat das Schlimmste verhindert (Stop traf VOR dem -18%-Earnings-Crash), aber dafuer haetten wir den Trade gar nicht eingehen sollen"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-06-01T14:33:55.627757",
+        "version": "1.0"
+      }
+    },
+    "F_2026-05-22": {
+      "core": {
+        "ticker": "F",
+        "signal_date": "2026-05-22",
+        "exit_date": "2026-05-28",
+        "setup": "BREAKOUT",
+        "entry": 14.97,
+        "stop": 14.03,
+        "target": 17.0,
+        "exit_price": 17.0,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 13.56,
+        "pnl_usd": 27.12,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 119.2,
+        "rr": 2.15,
+        "rsi": 69.9,
+        "macd_bull": "YES",
+        "vol_ratio": 1.54,
+        "avg_dv_m": 1061.61,
+        "perf_20d": 22.1,
+        "perf_60d": 4.9,
+        "perf_120d": 15.1,
+        "base_range": 26.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.98,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.88,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 0.0,
+          "analyst_upside": -8.238446081714667
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": 1.2,
+        "qqq_perf_pct": 2.52,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-11",
+            "title": "Ford Energy launch: battery storage systems for utilities/data centers/industrials",
+            "src": "FX Leaders"
+          },
+          {
+            "date": "2026-05-22",
+            "title": "Ford +24% on month — best since April 2009; investors re-rate as energy/AI play",
+            "src": "Benzinga"
+          },
+          {
+            "date": "2026-05-22",
+            "title": "Q1: Net Income $2.55B, EPS $0.66 beat; FY EBIT guide $8.5-10.5B",
+            "src": "Yahoo Finance"
+          }
+        ],
+        "key_events": [
+          "Ford-Energy-Unit-Launch 11.5.",
+          "Re-Rating als Energy/AI-Player",
+          "Q1-Earnings-Beat + Guide-Raise"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "Ford-Energy-Launch am 11.5.2026 (Battery-Storage fuer Utilities, Datacenters, Industrial). +24% im Mai = bester Monat seit April 2009. Investoren bewerten Ford neu als 'diversifizierter Industrial + Energy-Tech-Player', nicht mehr nur Automaker. Q1-Earnings vorher schon stark ($2.55B Net Income, EPS $0.66 beat), FY-Guidance auf $8.5-10.5B EBIT angehoben. Pocket Pivot + closing_strength 0.98 = saubere institutionelle Akkumulation. EMERGING_BREAKOUT (perf_120 nicht extrem) + Catalyst = ideales Setup. TP D+4.",
+        "lesson_tags": [
+          "business_pivot_re_rating",
+          "pocket_pivot_validation",
+          "strong_closing_strength_confirmation",
+          "ai_data_center_tailwind"
+        ],
+        "similar_trades": [
+          "CIEN_2026-03-18",
+          "STX_2026-04-16"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Business-Pivot mit klarer Re-Rating-Story (Auto -> Energy-Storage) UND Q1-Earnings-Bestaetigung im Ruecken = staerkstes BREAKOUT-Profil",
+          "EMERGING_BREAKOUT (nicht POWER, nicht WEAK) ist der Sweet-Spot — Aktie in der Mitte ihres Trends, Raum nach oben"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-06-01T14:33:56.068046",
+        "version": "1.0"
+      }
+    },
+    "OKTA_2026-05-22": {
+      "core": {
+        "ticker": "OKTA",
+        "signal_date": "2026-05-22",
+        "exit_date": "2026-05-28",
+        "setup": "BREAKOUT",
+        "entry": 91.13,
+        "stop": 85.37,
+        "target": 101.32,
+        "exit_price": 101.32,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 11.18,
+        "pnl_usd": 22.36,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 110.7,
+        "rr": 1.77,
+        "rsi": 70.3,
+        "macd_bull": "YES",
+        "vol_ratio": 1.09,
+        "avg_dv_m": 253.77,
+        "perf_20d": 21.4,
+        "perf_60d": 22.6,
+        "perf_120d": 14.8,
+        "base_range": 19.3,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.95,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.75,
+          "vcp_strength": 0.03,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 5.6399997,
+          "analyst_upside": 8.889852558542932
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": 1.2,
+        "qqq_perf_pct": 2.52,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-28",
+            "title": "Okta Q1 FY27: Rev/Sub-Rev +11% YoY, RPO +16%, EPS beat 6.75%, Q2 guide $749-753M",
+            "src": "Okta 8-K"
+          },
+          {
+            "date": "2026-05-28",
+            "title": "OKTA shares +5.8% after-hours on earnings beat",
+            "src": "ECIKS"
+          }
+        ],
+        "key_events": [
+          "BREAKOUT 6d vor Q1-Earnings (Pre-Earnings-Momentum)",
+          "Q1-Beat bestaetigte Erwartung nach Trade-Close"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "BREAKOUT 6 Tage VOR Q1-FY27-Earnings (28.5.) im Aufbau des Pre-Earnings-Momentums. Earnings bestaetigten die Erwartung: Rev +11% YoY, EPS-Beat 6.75%, Q2-Guide $749-753M. Identity-Security-Thema in der Cyber-Welle. Pocket Pivot, closing_strength 0.95 = Top-Tageskurs. EMERGING_BREAKOUT, score 110.7. TP D+4 — Trade closed VOR den Earnings, fing exakt das Pre-Earnings-Anticipation-Move ab. Gegenmodell zum Earnings-Adjacency-RISIKO (S, FLS, BTU): Hier war's Earnings-Adjacency-CHANCE, weil Catalyst-Backing stark.",
+        "lesson_tags": [
+          "pre_earnings_anticipation_move",
+          "pocket_pivot_validation",
+          "strong_closing_strength_confirmation",
+          "cybersecurity_thematic"
+        ],
+        "similar_trades": [
+          "F_2026-05-22",
+          "APP_2026-05-26"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "BREAKOUT 5-10 Tage vor erwarteten Earnings (cat_earnings_next_days 5-10) MIT Pocket-Pivot + starker closing_strength = Pre-Earnings-Anticipation-Setup. Trade schliesst meist vor Earnings via TP — geringeres Earnings-Risiko als bei 1-3-Tage-Adjacency"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-06-01T14:33:56.529350",
+        "version": "1.0"
+      }
+    },
+    "ORCL_2026-05-28": {
+      "core": {
+        "ticker": "ORCL",
+        "signal_date": "2026-05-28",
+        "exit_date": "2026-05-29",
+        "setup": "BREAKOUT",
+        "entry": 201.11,
+        "stop": 188.22,
+        "target": 223.94,
+        "exit_price": 223.94,
+        "exit_reason": "Take Profit",
+        "exit_day": 1,
+        "trigger_day": null,
+        "pnl_pct": 11.35,
+        "pnl_usd": 22.7,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 109.8,
+        "rr": 1.77,
+        "rsi": 66.1,
+        "macd_bull": "NO",
+        "vol_ratio": 1.23,
+        "avg_dv_m": 4106.15,
+        "perf_20d": 24.3,
+        "perf_60d": 37.2,
+        "perf_120d": -1.3,
+        "base_range": 14.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "WEAK_BREAKOUT",
+        "closing_strength": 0.89,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.61,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.12,
+          "analyst_upside": 19.79633284241531
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": 0.25,
+        "qqq_perf_pct": 0.37,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-04",
+            "title": "Oracle DoD classified AI deal — stock +6% on day",
+            "src": "Timothy Sykes"
+          },
+          {
+            "date": "2026-05-XX",
+            "title": "Oracle Datapod $1.65B 6-yr supply deal + 1.4 GW DTE Energy datacenter",
+            "src": "24/7 Wall St"
+          },
+          {
+            "date": "2026-05-XX",
+            "title": "Wedbush PT $275, Oppenheimer $235, Arete $255 — Oracle re-rated as core AI-infrastructure player",
+            "src": "TradingKey"
+          },
+          {
+            "date": "2026-05-29",
+            "title": "Oracle +11.18% on AI/cloud momentum + Q4 expectations",
+            "src": "TradingKey"
+          }
+        ],
+        "key_events": [
+          "DoD-AI-Deal + OpenAI/Meta/Nvidia-Partnerships",
+          "Multi-Bank-PT-Raise auf $235-275",
+          "AI-Infrastructure-Re-Rating"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "AI-Infrastructure-Thema dominant: Oracle Cloud Infrastructure (OCI) als Top-Wahl fuer OpenAI, Meta, Nvidia, US-DoD-Classified-AI-Deal am 4.5. (+6% damals), $1.65B Datapod-Deal, 1.4 GW DTE-Energy-DataCenter-Partnership. Wall-Street-Re-Rating Oracle als Core-AI-Player. Analyst-PT-Raise-Welle: Wedbush $275, Oppenheimer $235, Arete $255. Stock $176 (4.5.) -> >$200 (28.5.) = +14% Pre-Earnings-Run. Pocket Pivot + Analyst-Flag (>15%) + closing_strength 0.89. TP D+1, sauberer +11.35%-Win. Selbe AI-Infrastruktur-Story wie CIEN/STX aus Maerz/April.",
+        "lesson_tags": [
+          "ai_infrastructure_thematic",
+          "secular_ai_catalyst",
+          "analyst_pt_raise_cascade",
+          "pocket_pivot_validation",
+          "post_earnings_beat_continuation"
+        ],
+        "similar_trades": [
+          "CIEN_2026-03-18",
+          "STX_2026-04-16",
+          "APP_2026-05-26"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "AI-Infrastructure-Player (Datacenter, GPU-Cloud, Networking) mit konkretem Big-Deal-News (DoD, OpenAI, Hyperscaler) = robustestes 2026-Catalyst-Pattern",
+          "Pocket Pivot + Analyst-Flag + AI-Theme = Top-Trio (gleiches Profil wie CIEN/STX)"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-06-01T14:33:56.987125",
+        "version": "1.0"
+      }
+    },
+    "AA_2026-05-22": {
+      "core": {
+        "ticker": "AA",
+        "signal_date": "2026-05-22",
+        "exit_date": "2026-05-28",
+        "setup": "BREAKOUT",
+        "entry": 69.76,
+        "stop": 65.21,
+        "target": 77.5,
+        "exit_price": 77.5,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 11.1,
+        "pnl_usd": 22.19,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 122.6,
+        "rr": 1.7,
+        "rsi": 63.5,
+        "macd_bull": "YES",
+        "vol_ratio": 1.68,
+        "avg_dv_m": 293.96,
+        "perf_20d": 8.3,
+        "perf_60d": 12.8,
+        "perf_120d": 71.6,
+        "base_range": 19.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.74,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 2.07,
+          "vcp_strength": 0.06,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.34,
+          "analyst_upside": 5.427080414681984
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": 1.2,
+        "qqq_perf_pct": 2.52,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-22",
+            "title": "UBS upgrades Alcoa to BUY on aluminum price strength from Middle East outages",
+            "src": "Trefis"
+          },
+          {
+            "date": "2026-05-22",
+            "title": "Aluminum tariff 50% + Hormuz disruptions push prices to multi-year highs",
+            "src": "Seeking Alpha"
+          },
+          {
+            "date": "2026-04-20",
+            "title": "Q1: Net Income $425M, EBITDA $595M on higher aluminum prices",
+            "src": "AA 10-Q"
+          }
+        ],
+        "key_events": [
+          "50%-Aluminium-Tariff + Hormuz-Supply-Disruption",
+          "UBS-Upgrade am Signal-Tag"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "Aluminium-Tariff 50% in Kraft + Middle-East-Smelter-Disruptions (Hormuz, etc.) = globale Aluminium-Knappheit. Plus UBS-Upgrade auf BUY am 22.5. Plus Q1: Net Income $425M, EBITDA $595M. AA war bereits +134% YoY (POWER-Profil), aber EMERGING_BREAKOUT klassifiziert (perf_120 moderat). Pocket Pivot + closing_strength 0.74 (gut). Score 122.6, TP D+4. Tarif-Tailwind dominant — gleicher Trade-Catalyst-Stack wie CLF.",
+        "lesson_tags": [
+          "policy_tariff_tailwind",
+          "commodity_supply_squeeze",
+          "pocket_pivot_validation",
+          "analyst_upgrade_catalyst"
+        ],
+        "similar_trades": [
+          "CLF_2026-05-26"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Domestic-Commodity-Producer + Tarif-Tailwind + Analyst-Upgrade am Signal-Tag = konvergierender Catalyst-Stack, sehr replizierbar"
+        ],
+        "analyzed_at": "2026-06-01T16:57:41.901153",
+        "confidence": "high"
+      },
+      "auto_meta": {
+        "built_at": "2026-06-01T14:33:57.452500",
         "version": "1.0"
       }
     }
