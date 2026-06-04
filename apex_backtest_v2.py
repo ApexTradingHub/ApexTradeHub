@@ -92,6 +92,11 @@ BO_BASE_MAX = 22
 VCP_ATR_CONTRACTION = 0.20
 # SHORT_SQUEEZE min short interest (tuning knob via --sq-short-min). Default 15.0%.
 SQ_SHORT_MIN = 15.0
+# Catalyst-Free Elite Penalty (Test 2026-06-04, opt-in via --catalyst-free-elite-penalty).
+# Hypothese: BREAKOUT-Signale mit Score>=100 OHNE positiven Catalyst (PP, Gap>=2%,
+# EarningsBeat) sind techn. Extremes ohne Bestätigung -> historisch im 100+ Bucket: 4 von 8
+# Losern (FLS/PENN/HP/S) hatten 0 Catalysts. Default 0 = off, kein Verhaltens-Change.
+CATALYST_FREE_ELITE_PENALTY = 0.0
 
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
@@ -868,6 +873,20 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
 
     # (RSS removed in Phase G — REVERSAL disabled)
 
+    # Test 2026-06-04: Catalyst-Free Elite Penalty (opt-in via CLI)
+    # BREAKOUT-Signale mit Score>=100 ohne PP/Gap/Beat sind hypothetisch im
+    # 100+ Bucket schlechter -> Penalty drueckt sie aus dem Elite-Bucket.
+    if CATALYST_FREE_ELITE_PENALTY > 0 and setup == "BREAKOUT" and score >= 100:
+        gap_pct = catalysts.get("up_gap_pct", 0) or 0
+        has_positive_catalyst = (
+            catalysts.get("pocket_pivot_recent") or
+            catalysts.get("gap_signal") or
+            gap_pct >= 2.0 or
+            (catalyst_signals or {}).get("earnings_beat_recent")
+        )
+        if not has_positive_catalyst:
+            score -= CATALYST_FREE_ELITE_PENALTY
+
     # Hard score gate (per setup)
     if score < SCAN_MIN_SCORE.get(setup, 0):
         return None
@@ -1335,10 +1354,13 @@ def main():
                         help="VCP min ATR-contraction over 25 bars (default 0.20; was 0.30 pre-2026-05-28)")
     parser.add_argument("--sq-short-min", type=float, default=15.0,
                         help="SHORT_SQUEEZE min short interest %% (default 15.0)")
+    parser.add_argument("--catalyst-free-elite-penalty", type=float, default=0.0,
+                        help="Penalty fuer BO score>=100 OHNE [PP, Gap>=2%%, EarningsBeat]. "
+                             "Test-Hypothese: techn. Extreme ohne Bestaetigung sind Falle (default 0 = off)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
@@ -1348,6 +1370,10 @@ def main():
     BO_BASE_MAX = args.bo_base_max
     VCP_ATR_CONTRACTION = args.vcp_atr_contraction
     SQ_SHORT_MIN = args.sq_short_min
+    CATALYST_FREE_ELITE_PENALTY = args.catalyst_free_elite_penalty
+    if CATALYST_FREE_ELITE_PENALTY:
+        print(f"[TEST] CATALYST_FREE_ELITE_PENALTY={CATALYST_FREE_ELITE_PENALTY} "
+              f"(BO score>=100 ohne PP/Gap/Beat -> -{CATALYST_FREE_ELITE_PENALTY})")
     if FORCE_RELAX:
         print(f"[MEASURE] FORCE_RELAX={FORCE_RELAX} — measuring relaxed-signal quality")
     if ONLY_SETUP:
