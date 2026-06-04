@@ -788,7 +788,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 <!-- OPEN POSITIONS -->
 <div class="card anim-3">
   <div class="card-head">
-    <h2>📂 Offene Positionen</h2>
+    <h2>Offene Positionen</h2>
     <span class="card-sub" id="p-open-sub">—</span>
   </div>
   <div class="table-wrap">
@@ -799,16 +799,18 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
           <th>Setup</th>
           <th>Entry → Ziel</th>
           <th>Kurs</th>
+          <th>Einsatz</th>
+          <th>Wert</th>
           <th>PnL %</th>
           <th>PnL $</th>
           <th>Stop</th>
           <th>Trail</th>
           <th>Hold</th>
-          <th>Signal-Datum</th>
+          <th>Signal</th>
         </tr>
       </thead>
       <tbody id="p-open-body">
-        <tr><td colspan="10"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>
+        <tr><td colspan="12"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>
       </tbody>
     </table>
   </div>
@@ -1521,6 +1523,12 @@ function renderPaper() {
       });
     } catch { return iso; }
   };
+  // Ticker-Logo via FinancialModelingPrep (frei, kein API-Key). 404 -> hide.
+  const tickerLogo = t =>
+    `<img src="https://financialmodelingprep.com/image-stock/${t}.png" ` +
+    `style="width:18px;height:18px;vertical-align:middle;margin-right:6px;` +
+    `border-radius:3px;object-fit:contain" ` +
+    `onerror="this.style.display='none'" alt="">`;
   // Kurzform fuer Tabellen-Zellen — nur HH:MM, plus Alters-Farbe
   const fmtBerlinTimeAged = iso => {
     if (!iso) return { html: '—', cls: '' };
@@ -1577,7 +1585,7 @@ function renderPaper() {
   /* === OPEN POSITIONS === */
   const ob = document.getElementById('p-open-body');
   if ((s.open || []).length === 0) {
-    ob.innerHTML = '<tr><td colspan="10"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>';
+    ob.innerHTML = '<tr><td colspan="12"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>';
   } else {
     const priceStamp = fmtBerlinTimeAged(s.last_updated);
     ob.innerHTML = s.open.map(p => {
@@ -1587,11 +1595,17 @@ function renderPaper() {
       const trailIcon = p.trailing_active
         ? '<span style="color:var(--orange)" title="Trailing aktiv">🟡</span>'
         : '<span style="color:var(--muted2)">—</span>';
+      const sizeUsd = +p.size_usd || 0;
+      const curPrice = +p.current_price || 0;
+      const shares = +p.shares || 0;
+      const value = shares > 0 ? shares * curPrice : sizeUsd + pnlUsd;
       return `<tr>
-        <td><b>${p.ticker}</b></td>
+        <td>${tickerLogo(p.ticker)}<b>${p.ticker}</b></td>
         <td><span class="${pil(p.setup)}">${m.label}</span></td>
         <td>$${(+p.entry_actual).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></td>
-        <td>$${(+p.current_price || 0).toFixed(2)} <span style="font-size:10px;color:${priceStamp.color}">(${priceStamp.html})</span></td>
+        <td>$${curPrice.toFixed(2)} <span style="font-size:10px;color:${priceStamp.color}">(${priceStamp.html})</span></td>
+        <td>$${sizeUsd.toFixed(2)}</td>
+        <td class="${cls(value - sizeUsd)}">$${value.toFixed(2)}</td>
         <td class="${cls(pnlPct)}">${fmtPct(pnlPct)}</td>
         <td class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</td>
         <td>$${(+p.stop).toFixed(2)}</td>
@@ -1611,7 +1625,7 @@ function renderPaper() {
     pb.innerHTML = s.pending.map(p => {
       const m = setupMeta(p.setup);
       return `<tr>
-        <td><b>${p.ticker}</b></td>
+        <td>${tickerLogo(p.ticker)}<b>${p.ticker}</b></td>
         <td><span class="${pil(p.setup)}">${m.label}</span></td>
         <td>$${(+p.entry).toFixed(2)}</td>
         <td>$${(+p.stop_initial).toFixed(2)}</td>
@@ -1642,7 +1656,7 @@ function renderPaper() {
           : 'color:var(--muted2)';
       return `<tr>
         <td>${fmtBerlin(p.closed_at)}</td>
-        <td><b>${p.ticker}</b></td>
+        <td>${tickerLogo(p.ticker)}<b>${p.ticker}</b></td>
         <td><span class="${pil(p.setup)}">${m.label}</span></td>
         <td>$${(+p.entry_actual).toFixed(2)}</td>
         <td>$${(+p.exit_price).toFixed(2)}</td>
@@ -1664,7 +1678,7 @@ function renderPaper() {
     eb.innerHTML = sortedE.slice(0, 30).map(p => {
       const m = setupMeta(p.setup);
       return `<tr>
-        <td><b>${p.ticker}</b></td>
+        <td>${tickerLogo(p.ticker)}<b>${p.ticker}</b></td>
         <td><span class="${pil(p.setup)}">${m.label}</span></td>
         <td>$${(+p.entry).toFixed(2)}</td>
         <td>${(+p.score).toFixed(0)}</td>
