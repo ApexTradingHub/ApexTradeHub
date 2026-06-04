@@ -1,0 +1,69 @@
+{
+  "mode": "paper",
+  "capital_initial": 300.0,
+  "cash": 300.0,
+  "last_updated": "2026-06-04T07:48:59",
+  "pending": [
+    {
+      "id": "PAPER_IBKR_2026-06-01",
+      "ticker": "IBKR",
+      "setup": "BREAKOUT",
+      "sector": "Financial Services",
+      "signal_date": "2026-06-01",
+      "entry": 88.62,
+      "stop_initial": 83.84,
+      "target": 97.5,
+      "score": 123.3,
+      "rr": 1.86,
+      "upside_pct": 10.0,
+      "added_at": "2026-06-04T07:48:59",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_ARE_2026-06-02",
+      "ticker": "ARE",
+      "setup": "BREAKOUT",
+      "sector": "Real Estate",
+      "signal_date": "2026-06-02",
+      "entry": 51.1,
+      "stop_initial": 48.17,
+      "target": 56.43,
+      "score": 124.6,
+      "rr": 1.82,
+      "upside_pct": 10.4,
+      "added_at": "2026-06-04T07:48:59",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_ADI_2026-06-03",
+      "ticker": "ADI",
+      "setup": "BREAKOUT",
+      "sector": "Technology",
+      "signal_date": "2026-06-03",
+      "entry": 435.4,
+      "stop_initial": 411.1,
+      "target": 477.53,
+      "score": 138.8,
+      "rr": 1.73,
+      "upside_pct": 9.7,
+      "added_at": "2026-06-04T07:48:59",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
+  "open": [],
+  "closed": [],
+  "expired": [],
+  "stats": {
+    "total_trades": 0,
+    "open_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "pnl_realized": 0,
+    "pnl_unrealized": 0,
+    "equity": 300.0
+  }
+}
