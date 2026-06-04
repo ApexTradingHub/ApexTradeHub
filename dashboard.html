@@ -478,6 +478,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 <nav class="tab-nav anim-1">
   <button class="tab-btn active" onclick="showTab('today')" id="tab-today">📡 Signale</button>
   <button class="tab-btn" onclick="showTab('history')" id="tab-history">📋 Trade History</button>
+  <button class="tab-btn" onclick="showTab('paper')" id="tab-paper">📈 Paper Trading</button>
 </nav>
 
 <!-- ═══════════════════════════════
@@ -713,6 +714,189 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 </div><!-- /page-history -->
 
 <!-- ═══════════════════════════════
+     PAGE 3: PAPER TRADING
+═══════════════════════════════ -->
+<div class="page" id="page-paper">
+
+<!-- STATUS HEADER -->
+<div class="stats anim-2">
+  <div class="stat">
+    <div class="stat-label">Mode</div>
+    <div class="stat-value" id="p-mode">—</div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Stand</span>
+      <span class="stat-subval" id="p-updated">—</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Equity</div>
+    <div class="stat-value" id="p-equity">—</div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Cash frei</span>
+      <span class="stat-subval" id="p-cash">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Start-Kapital</span>
+      <span class="stat-subval" id="p-capital">—</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">PnL</div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Realisiert</span>
+      <span class="stat-subval" id="p-pnl-real">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Unrealisiert</span>
+      <span class="stat-subval" id="p-pnl-unreal">—</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Trades</div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Offen</span>
+      <span class="stat-subval pos" id="p-n-open">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Geschlossen</span>
+      <span class="stat-subval" id="p-n-closed">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Pending / Expired</span>
+      <span class="stat-subval" id="p-n-pending">—</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Performance</div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Win-Rate</span>
+      <span class="stat-subval" id="p-wr">—</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-row">
+      <span class="stat-sublabel">Wins / Losses</span>
+      <span class="stat-subval" id="p-wl">—</span>
+    </div>
+  </div>
+</div>
+
+<!-- OPEN POSITIONS -->
+<div class="card anim-3">
+  <div class="card-head">
+    <h2>📂 Offene Positionen</h2>
+    <span class="card-sub" id="p-open-sub">—</span>
+  </div>
+  <div class="table-wrap">
+    <table class="hist-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Setup</th>
+          <th>Entry → Ziel</th>
+          <th>Kurs</th>
+          <th>PnL %</th>
+          <th>PnL $</th>
+          <th>Stop</th>
+          <th>Trail</th>
+          <th>Hold</th>
+          <th>Signal-Datum</th>
+        </tr>
+      </thead>
+      <tbody id="p-open-body">
+        <tr><td colspan="10"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PENDING SIGNALS -->
+<div class="card anim-3">
+  <div class="card-head">
+    <h2>⏳ Pending (warten auf Trigger)</h2>
+    <span class="card-sub" id="p-pending-sub">—</span>
+  </div>
+  <div class="table-wrap">
+    <table class="hist-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Setup</th>
+          <th>Buy above</th>
+          <th>Stop</th>
+          <th>Ziel</th>
+          <th>RR</th>
+          <th>Score</th>
+          <th>Signal-Datum</th>
+          <th>Hinzugefügt</th>
+        </tr>
+      </thead>
+      <tbody id="p-pending-body">
+        <tr><td colspan="9"><div class="empty-state"><span>Keine wartenden Signale.</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- CLOSED TRADES -->
+<div class="card anim-3">
+  <div class="card-head">
+    <h2>📋 Geschlossene Trades</h2>
+    <span class="card-sub" id="p-closed-sub">—</span>
+  </div>
+  <div class="table-wrap">
+    <table class="hist-table">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Ticker</th>
+          <th>Setup</th>
+          <th>Entry</th>
+          <th>Exit</th>
+          <th>Grund</th>
+          <th>PnL %</th>
+          <th>PnL $</th>
+          <th>Hold</th>
+        </tr>
+      </thead>
+      <tbody id="p-closed-body">
+        <tr><td colspan="9"><div class="empty-state"><span>Noch keine geschlossenen Trades.</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- EXPIRED -->
+<div class="card anim-3">
+  <div class="card-head">
+    <h2>⚫ Verfallen (nicht getriggert)</h2>
+    <span class="card-sub" id="p-expired-sub">—</span>
+  </div>
+  <div class="table-wrap">
+    <table class="hist-table">
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Setup</th>
+          <th>Buy above</th>
+          <th>Score</th>
+          <th>Signal-Datum</th>
+          <th>Verfallen</th>
+        </tr>
+      </thead>
+      <tbody id="p-expired-body">
+        <tr><td colspan="6"><div class="empty-state"><span>Keine verfallenen Signale.</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /page-paper -->
+
+<!-- ═══════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════ -->
 <script>
@@ -721,10 +905,12 @@ const SF  = 'apex_signals.json';
 const EF  = 'apex_equity_results.json';
 const EF2 = 'apex_equity_top2.json';
 const MF  = 'apex_market.json';
+const PF  = 'apex_positions.json';
 
 /* ── STATE ── */
 let eqInst, setupInst, allR = [], topR = [], sigsAll = [], eqMode = 'both';
 let histSortCol = 'date', histSortDir = -1; // -1 = desc
+let paperState = null;
 
 /* ── CHART DEFAULTS ── */
 const gc = 'rgba(99,135,255,0.06)';
@@ -782,6 +968,7 @@ function showTab(tab) {
   document.getElementById('tab-' + tab).classList.add('active');
   location.hash = tab;
   if (tab === 'history') renderHistory();
+  if (tab === 'paper')   renderPaper();
 }
 
 /* ── STATS RENDER ── */
@@ -1263,7 +1450,8 @@ function renderHistory() {
 async function loadData() {
   const upd = document.getElementById('lastUpdate');
   upd.textContent = 'Lädt…';
-  const [sigs, rA, rT, mkt] = await Promise.all([fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF)]);
+  const [sigs, rA, rT, mkt, pState] = await Promise.all([fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF)]);
+  paperState = pState || null;
   if (!sigs && !rA) {
     upd.textContent = 'Fehler: Dateien nicht gefunden';
     const badge = document.getElementById('regimeBadge');
@@ -1295,6 +1483,152 @@ async function loadData() {
 
   /* if history tab is active, also render it */
   if (location.hash === '#history') renderHistory();
+  if (location.hash === '#paper')   renderPaper();
+}
+
+/* ── PAPER TRADING RENDER ── */
+function renderPaper() {
+  const s = paperState;
+  const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  const setHTML = (id, v) => { const el = document.getElementById(id); if (el) el.innerHTML = v; };
+  const fmtUsd = n => (n == null) ? '—' : (n >= 0 ? '+$' : '-$') + Math.abs(+n).toFixed(2);
+  const fmtUsdPlain = n => (n == null) ? '—' : '$' + (+n).toFixed(2);
+  const cls = n => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
+
+  if (!s) {
+    setText('p-mode', 'Keine Daten');
+    setText('p-updated', '—'); setText('p-equity', '—');
+    setText('p-cash', '—'); setText('p-capital', '—');
+    setText('p-pnl-real', '—'); setText('p-pnl-unreal', '—');
+    setText('p-n-open', '—'); setText('p-n-closed', '—'); setText('p-n-pending', '—');
+    setText('p-wr', '—'); setText('p-wl', '—');
+    return;
+  }
+
+  /* === HEADER === */
+  const isLive = s.mode === 'live';
+  setHTML('p-mode',
+    isLive
+      ? '<span style="color:var(--orange)">🔴 LIVE</span>'
+      : '<span style="color:var(--cyan)">📋 PAPER</span>'
+  );
+  setText('p-updated', s.last_updated || '—');
+  const st = s.stats || {};
+  setText('p-equity', fmtUsdPlain(st.equity));
+  setText('p-cash', fmtUsdPlain(s.cash));
+  setText('p-capital', fmtUsdPlain(s.capital_initial));
+
+  const real = +st.pnl_realized || 0;
+  const unre = +st.pnl_unrealized || 0;
+  setHTML('p-pnl-real',
+    `<span class="${cls(real)}">${fmtUsd(real)}</span>`);
+  setHTML('p-pnl-unreal',
+    `<span class="${cls(unre)}">${fmtUsd(unre)}</span>`);
+  setText('p-n-open',   (s.open || []).length);
+  setText('p-n-closed', (s.closed || []).length);
+  setText('p-n-pending', (s.pending || []).length + ' / ' + (s.expired || []).length);
+  setText('p-wr', (st.win_rate || 0).toFixed(1) + '%');
+  setText('p-wl', (st.wins || 0) + 'W / ' + (st.losses || 0) + 'L');
+
+  /* === OPEN POSITIONS === */
+  const ob = document.getElementById('p-open-body');
+  if ((s.open || []).length === 0) {
+    ob.innerHTML = '<tr><td colspan="10"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>';
+  } else {
+    ob.innerHTML = s.open.map(p => {
+      const m = setupMeta(p.setup);
+      const pnlPct = +p.pnl_pct || 0;
+      const pnlUsd = +p.pnl_usd || 0;
+      const trailIcon = p.trailing_active
+        ? '<span style="color:var(--orange)" title="Trailing aktiv">🟡</span>'
+        : '<span style="color:var(--muted2)">—</span>';
+      return `<tr>
+        <td><b>${p.ticker}</b></td>
+        <td><span class="${pil(p.setup)}">${m.label}</span></td>
+        <td>$${(+p.entry_actual).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></td>
+        <td>$${(+p.current_price || 0).toFixed(2)}</td>
+        <td class="${cls(pnlPct)}">${fmtPct(pnlPct)}</td>
+        <td class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</td>
+        <td>$${(+p.stop).toFixed(2)}</td>
+        <td>${trailIcon}</td>
+        <td>${p.hold_days || 0}d</td>
+        <td><span style="color:var(--muted2)">${p.signal_date}</span></td>
+      </tr>`;
+    }).join('');
+  }
+  setText('p-open-sub', (s.open || []).length + ' Position(en)');
+
+  /* === PENDING === */
+  const pb = document.getElementById('p-pending-body');
+  if ((s.pending || []).length === 0) {
+    pb.innerHTML = '<tr><td colspan="9"><div class="empty-state"><span>Keine wartenden Signale.</span></div></td></tr>';
+  } else {
+    pb.innerHTML = s.pending.map(p => {
+      const m = setupMeta(p.setup);
+      return `<tr>
+        <td><b>${p.ticker}</b></td>
+        <td><span class="${pil(p.setup)}">${m.label}</span></td>
+        <td>$${(+p.entry).toFixed(2)}</td>
+        <td>$${(+p.stop_initial).toFixed(2)}</td>
+        <td><span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></td>
+        <td>${(+p.rr).toFixed(2)}</td>
+        <td>${(+p.score).toFixed(0)}</td>
+        <td>${p.signal_date}</td>
+        <td><span style="color:var(--muted2)">${(p.added_at || '').slice(0, 16)}</span></td>
+      </tr>`;
+    }).join('');
+  }
+  setText('p-pending-sub', (s.pending || []).length + ' wartend');
+
+  /* === CLOSED === */
+  const cb = document.getElementById('p-closed-body');
+  if ((s.closed || []).length === 0) {
+    cb.innerHTML = '<tr><td colspan="9"><div class="empty-state"><span>Noch keine geschlossenen Trades.</span></div></td></tr>';
+  } else {
+    const sortedC = (s.closed || []).slice().sort((a, b) => (b.closed_at || '').localeCompare(a.closed_at || ''));
+    cb.innerHTML = sortedC.map(p => {
+      const m = setupMeta(p.setup);
+      const pnlPct = +p.pnl_pct || 0;
+      const pnlUsd = +p.pnl_usd || 0;
+      const reasonStyle = p.exit_reason && p.exit_reason.includes('Take Profit')
+        ? 'color:var(--green)'
+        : p.exit_reason && p.exit_reason.includes('Stop')
+          ? 'color:var(--red)'
+          : 'color:var(--muted2)';
+      return `<tr>
+        <td>${(p.closed_at || '').slice(0, 10)}</td>
+        <td><b>${p.ticker}</b></td>
+        <td><span class="${pil(p.setup)}">${m.label}</span></td>
+        <td>$${(+p.entry_actual).toFixed(2)}</td>
+        <td>$${(+p.exit_price).toFixed(2)}</td>
+        <td><span style="${reasonStyle}">${p.exit_reason || '?'}</span></td>
+        <td class="${cls(pnlPct)}">${fmtPct(pnlPct)}</td>
+        <td class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</td>
+        <td>${p.hold_days || 0}d</td>
+      </tr>`;
+    }).join('');
+  }
+  setText('p-closed-sub', (s.closed || []).length + ' Trade(s)');
+
+  /* === EXPIRED === */
+  const eb = document.getElementById('p-expired-body');
+  if ((s.expired || []).length === 0) {
+    eb.innerHTML = '<tr><td colspan="6"><div class="empty-state"><span>Keine verfallenen Signale.</span></div></td></tr>';
+  } else {
+    const sortedE = (s.expired || []).slice().sort((a, b) => (b.expired_at || '').localeCompare(a.expired_at || ''));
+    eb.innerHTML = sortedE.slice(0, 30).map(p => {
+      const m = setupMeta(p.setup);
+      return `<tr>
+        <td><b>${p.ticker}</b></td>
+        <td><span class="${pil(p.setup)}">${m.label}</span></td>
+        <td>$${(+p.entry).toFixed(2)}</td>
+        <td>${(+p.score).toFixed(0)}</td>
+        <td>${p.signal_date}</td>
+        <td><span style="color:var(--muted2)">${(p.expired_at || '').slice(0, 16)}</span></td>
+      </tr>`;
+    }).join('');
+  }
+  setText('p-expired-sub', (s.expired || []).length + ' verfallen');
 }
 
 /* ── THEME TOGGLE ── */
