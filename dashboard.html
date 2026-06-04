@@ -439,38 +439,66 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   .logo-name { font-size: 18px; }
 }
 
-/* Paper-Tab Mobile Optimierung: weniger wichtige Spalten verstecken */
-@media (max-width: 900px) {
-  /* Open Positions: hide Entry→Ziel (3), Stop (9), Trail (10), Hold (11), Signal (12) */
-  #p-open-body tr td:nth-child(3),
+/* Paper-Tab Mobile: Open-Tabelle wird zur Karten-Ansicht */
+@media (max-width: 768px) {
+  /* Open Positions als Karten */
+  #page-paper .card:has(#p-open-body) thead { display: none; }
+  #p-open-body tr {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.02);
+  }
+  #p-open-body tr td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border: none !important;
+    font-size: 13px;
+    white-space: normal;
+  }
+  #p-open-body tr td[data-label]::before {
+    content: attr(data-label);
+    color: var(--muted2);
+    font-size: 11px;
+    font-weight: normal;
+    margin-right: 12px;
+  }
+  /* Ticker = Header der Karte */
+  #p-open-body tr td:nth-child(1) {
+    display: block;
+    font-size: 16px;
+    border-bottom: 1px solid var(--border) !important;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+  }
+  /* Verstecken: Setup(2), Einsatz(5), Stop(9), Trail(10), Hold(11), Signal(12) */
+  #p-open-body tr td:nth-child(2),
+  #p-open-body tr td:nth-child(5),
   #p-open-body tr td:nth-child(9),
   #p-open-body tr td:nth-child(10),
   #p-open-body tr td:nth-child(11),
-  #p-open-body tr td:nth-child(12),
-  #page-paper .hist-table thead tr:first-child th:nth-child(3),
-  #page-paper .card:has(#p-open-body) thead th:nth-child(9),
-  #page-paper .card:has(#p-open-body) thead th:nth-child(10),
-  #page-paper .card:has(#p-open-body) thead th:nth-child(11),
-  #page-paper .card:has(#p-open-body) thead th:nth-child(12) { display: none; }
-  /* Pending: hide Stop (4), Ziel (5), Hinzugefuegt (9) */
+  #p-open-body tr td:nth-child(12) { display: none; }
+
+  /* Pending/Closed/Expired: Spalten reduzieren statt Karten */
   #p-pending-body tr td:nth-child(4),
   #p-pending-body tr td:nth-child(5),
   #p-pending-body tr td:nth-child(9),
   #page-paper .card:has(#p-pending-body) thead th:nth-child(4),
   #page-paper .card:has(#p-pending-body) thead th:nth-child(5),
   #page-paper .card:has(#p-pending-body) thead th:nth-child(9) { display: none; }
-  /* Closed: hide Entry (4), Hold (9) */
   #p-closed-body tr td:nth-child(4),
   #p-closed-body tr td:nth-child(9),
   #page-paper .card:has(#p-closed-body) thead th:nth-child(4),
   #page-paper .card:has(#p-closed-body) thead th:nth-child(9) { display: none; }
-  /* Expired: hide Buy above (3), Score (4) */
   #p-expired-body tr td:nth-child(3),
   #p-expired-body tr td:nth-child(4),
   #page-paper .card:has(#p-expired-body) thead th:nth-child(3),
   #page-paper .card:has(#p-expired-body) thead th:nth-child(4) { display: none; }
 }
-/* Smaller font + tighter padding fuer Paper-Tabellen auf Phone */
 @media (max-width: 480px) {
   #page-paper .hist-table { font-size: 11px; }
   #page-paper .hist-table th,
@@ -1640,12 +1668,12 @@ function renderPaper() {
       return `<tr>
         <td>${tickerLogo(p.ticker)}<b>${p.ticker}</b></td>
         <td><span class="${pil(p.setup)}">${m.label}</span></td>
-        <td>$${(+p.entry_actual).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></td>
-        <td>$${curPrice.toFixed(2)} <span style="font-size:10px;color:${priceStamp.color}">(${priceStamp.html})</span></td>
+        <td data-label="Entry → Ziel">$${(+p.entry_actual).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></td>
+        <td data-label="Kurs">$${curPrice.toFixed(2)} <span style="font-size:10px;color:${priceStamp.color}">(${priceStamp.html})</span></td>
         <td>$${sizeUsd.toFixed(2)}</td>
-        <td class="${cls(value - sizeUsd)}">$${value.toFixed(2)}</td>
-        <td class="${cls(pnlPct)}">${fmtPct(pnlPct)}</td>
-        <td class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</td>
+        <td data-label="Wert" class="${cls(value - sizeUsd)}">$${value.toFixed(2)}</td>
+        <td data-label="Änderung" class="${cls(pnlPct)}">${fmtPct(pnlPct)}</td>
+        <td data-label="Gewinn/Verlust" class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</td>
         <td>$${(+p.stop).toFixed(2)}</td>
         <td>${trailIcon}</td>
         <td>${p.hold_days || 0}d</td>
