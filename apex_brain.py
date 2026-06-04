@@ -6,8 +6,12 @@ knowledge/trade_postmortems.json, apex_market.json) und schreibt strukturierte
 Markdown-Notes in einen lokalen Obsidian-Vault. Greift NICHT in Live-Scanner /
 Equity-Tracker / Postmortem ein — komplett autark.
 
+Macht VOR jedem Lauf automatisch ein `git pull --rebase` damit Knowledge-JSONs
++ Reports vom CI-ApexKnowledge-Workflow lokal aktuell sind. Skip via --no-pull.
+
 USAGE:
-    py apex_brain.py                # alle Modi
+    py apex_brain.py                # alle Modi (mit git pull)
+    py apex_brain.py --no-pull      # ohne git pull (offline / testing)
     py apex_brain.py --signals      # nur Signal-Notes (idempotent: ueberschreibt nicht)
     py apex_brain.py --postmortems  # nur Postmortem-Notes (regeneriert)
     py apex_brain.py --weekly       # nur Weekly-Summary
@@ -30,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime, date, timedelta
 from pathlib import Path
@@ -90,6 +95,39 @@ def write_md(path: Path, content: str, overwrite: bool = True) -> bool:
 
 def log(msg: str):
     print(f"[Brain] {msg}", flush=True)
+
+
+def git_pull_sync():
+    """Pulls --rebase im Script-Repo. Liefert (ok: bool, msg: str)."""
+    try:
+        # 1. Aktueller Stand checken
+        status = subprocess.run(
+            ["git", "status", "--porcelain"],
+            cwd=str(SCRIPT_DIR), capture_output=True, text=True, timeout=15,
+        )
+        dirty = bool(status.stdout.strip())
+        if dirty:
+            log("git: working tree dirty -> stash dann pull dann pop")
+            subprocess.run(["git", "stash", "--include-untracked"],
+                           cwd=str(SCRIPT_DIR), capture_output=True, text=True, timeout=15)
+        # 2. Pull
+        result = subprocess.run(
+            ["git", "pull", "--rebase", "origin", "master"],
+            cwd=str(SCRIPT_DIR), capture_output=True, text=True, timeout=60,
+        )
+        if dirty:
+            subprocess.run(["git", "stash", "pop"],
+                           cwd=str(SCRIPT_DIR), capture_output=True, text=True, timeout=15)
+        if result.returncode != 0:
+            return False, f"pull failed: {result.stderr.strip()[:200]}"
+        last_line = (result.stdout.strip().split("\n") or [""])[-1]
+        return True, last_line[:120]
+    except subprocess.TimeoutExpired:
+        return False, "git timeout"
+    except FileNotFoundError:
+        return False, "git not in PATH"
+    except Exception as e:
+        return False, f"git error: {e}"
 
 
 def safe_ticker(t: str) -> str:
@@ -725,7 +763,17 @@ def main():
     ap.add_argument("--learnings", action="store_true", help="nur Lesson-Aggregat")
     ap.add_argument("--force", action="store_true",
                     help="ueberschreibt auch existierende Signal-Notes")
+    ap.add_argument("--no-pull", action="store_true",
+                    help="ueberspringt git pull (offline / testing)")
     args = ap.parse_args()
+
+    # Git pull vor allem anderen — holt frische apex_signals.json, equity_results,
+    # knowledge/* und reports/* vom CI-ApexKnowledge-Workflow (06:30 UTC).
+    if not args.no_pull:
+        ok, msg = git_pull_sync()
+        log(f"git pull: {'OK' if ok else 'FAIL'} - {msg}")
+        if not ok:
+            log("Hinweis: Vault wird trotzdem aus lokalen Files gebaut (evtl. veraltet).")
 
     vault = Path(args.vault).resolve()
     ensure_dirs(vault)
