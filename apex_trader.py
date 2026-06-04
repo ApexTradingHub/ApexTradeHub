@@ -216,7 +216,7 @@ def batch_prices(tickers: list[str]) -> dict[str, float]:
     try:
         df = yf.download(
             tickers if not single else tickers[0],
-            period="2d", interval="5m",
+            period="2d", interval="1m",
             progress=False, threads=False, auto_adjust=True,
         )
         for t in tickers:
@@ -254,7 +254,7 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
         single = (len(tickers) == 1)
         df = yf.download(
             tickers if not single else tickers[0],
-            period="1d", interval="5m",
+            period="1d", interval="1m",
             progress=False, threads=False, auto_adjust=True,
         )
         result = {}

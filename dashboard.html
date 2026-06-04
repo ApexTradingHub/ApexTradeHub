@@ -438,6 +438,44 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   .stat-value { font-size: 18px; }
   .logo-name { font-size: 18px; }
 }
+
+/* Paper-Tab Mobile Optimierung: weniger wichtige Spalten verstecken */
+@media (max-width: 900px) {
+  /* Open Positions: hide Entry→Ziel (3), Stop (9), Trail (10), Hold (11), Signal (12) */
+  #p-open-body tr td:nth-child(3),
+  #p-open-body tr td:nth-child(9),
+  #p-open-body tr td:nth-child(10),
+  #p-open-body tr td:nth-child(11),
+  #p-open-body tr td:nth-child(12),
+  #page-paper .hist-table thead tr:first-child th:nth-child(3),
+  #page-paper .card:has(#p-open-body) thead th:nth-child(9),
+  #page-paper .card:has(#p-open-body) thead th:nth-child(10),
+  #page-paper .card:has(#p-open-body) thead th:nth-child(11),
+  #page-paper .card:has(#p-open-body) thead th:nth-child(12) { display: none; }
+  /* Pending: hide Stop (4), Ziel (5), Hinzugefuegt (9) */
+  #p-pending-body tr td:nth-child(4),
+  #p-pending-body tr td:nth-child(5),
+  #p-pending-body tr td:nth-child(9),
+  #page-paper .card:has(#p-pending-body) thead th:nth-child(4),
+  #page-paper .card:has(#p-pending-body) thead th:nth-child(5),
+  #page-paper .card:has(#p-pending-body) thead th:nth-child(9) { display: none; }
+  /* Closed: hide Entry (4), Hold (9) */
+  #p-closed-body tr td:nth-child(4),
+  #p-closed-body tr td:nth-child(9),
+  #page-paper .card:has(#p-closed-body) thead th:nth-child(4),
+  #page-paper .card:has(#p-closed-body) thead th:nth-child(9) { display: none; }
+  /* Expired: hide Buy above (3), Score (4) */
+  #p-expired-body tr td:nth-child(3),
+  #p-expired-body tr td:nth-child(4),
+  #page-paper .card:has(#p-expired-body) thead th:nth-child(3),
+  #page-paper .card:has(#p-expired-body) thead th:nth-child(4) { display: none; }
+}
+/* Smaller font + tighter padding fuer Paper-Tabellen auf Phone */
+@media (max-width: 480px) {
+  #page-paper .hist-table { font-size: 11px; }
+  #page-paper .hist-table th,
+  #page-paper .hist-table td { padding: 6px 4px; }
+}
 </style>
 </head>
 <body>
