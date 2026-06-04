@@ -56,9 +56,10 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 | Finding | n | Status | Lift | Action falls CONFIRMED |
 |---|---|---|---|---|
-| **⚡ Pocket Pivot Edge** | 19 | MED → CONFIRMED bei n≥30 | **+27pp WR** | Hard-Filter-Kandidat: skip BREAKOUT ohne PP |
-| **🎯 analyst_upside>15 NEGATIV** | 16 | MED → CONFIRMED bei n≥30 | **−17pp WR** | Catalyst-Score-Delta entfernen oder invertieren |
-| **Score-Cap-Hypothese** | n=18+20 | TENTATIVE | 100+ keine bessere WR als 90-100 | Telegram-Ranking-Score-Cap bei 100 |
+| **⚡ Pocket Pivot Edge** | 21 | MED → CONFIRMED bei n≥30 | **+25pp WR** | Hard-Filter-Kandidat: skip BREAKOUT ohne PP |
+| **🎯 analyst_upside>15 NEGATIV** | 19 | MED → CONFIRMED bei n≥30 | **−22.7pp WR** (vorher -17, **stärker negativ**) | Catalyst-Score-Delta entfernen oder invertieren |
+| **Score-Cap-Hypothese** | 90-100: n=18 (72.2 %)<br>100+: n=24 (70.8 %) | TENTATIVE | 100+ KEINE bessere WR als 90-100 (bestätigt) | Telegram-Ranking-Score-Cap bei 100 |
+| **🔵 BREAKOUT × RSI≥70** | 12 | HYPOTHESIS (neu 2026-06-04) | **+16pp WR (75 %)** | RSI-Obergrenze 68→72 lockern für BREAKOUT |
 | **🔵 BREAKOUT × perf_120 25-50** | 24 | MED | +13pp WR (71 %) | Score-Bonus für diese Range |
 | **🔵 BREAKOUT × perf_120 0-25** | 24 | MED | −16pp WR (42 %) | Score-Penalty |
 | **🔵 BREAKOUT × vol_lt_1** | 24 | MED | −16pp WR (42 %) | vol≥1.0-Gate validiert |
@@ -127,13 +128,18 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ---
 
-## 7. Aktueller Daten-Stand (Stichtag dieses Updates)
+## 7. Aktueller Daten-Stand (2026-06-04)
 
-- **Lifetime Trades:** 118 | WR 45.8 % | PF 1.81
-- **Postmortems analysiert:** 38/118 (Batch 1: 11, Batch 2: 3, Batch 3: 13, Batch 4: 11)
-- **CONFIRMED Setups:** BREAKOUT (n=67), REVERSAL (n=51, disabled)
-- **30d Window:** WR 48.4 % / PF 1.96 — Drift +2.6pp gegen Lifetime (REVERSAL-Legacy stirbt aus)
-- **Offene Positionen:** 5 BREAKOUT (AFRM, AVGO, ODFL, FDX, CZR), alle 90-100+ Score
+- **Lifetime Trades:** 125 | WR 45.6 % | PF 1.81
+- **Postmortems analysiert:** 38/125 (87 pending)
+- **CONFIRMED Setups:** BREAKOUT (n=71, WR 59.2 %, PF 2.66), REVERSAL (n=54, disabled)
+- **30d Window:** WR 47.2 % / PF 1.95 (n=36) — flat lifetime
+- **14d Window:** **WR 90.9 % / PF 16.37 (n=11)** ⚡ BREAKOUT-Welle, regime-getrieben
+- **BREAKOUT 30d:** **WR 76.2 %** (n=21) — Drift +17pp vs lifetime, neuer Rekord
+- **REVERSAL 30d:** WR 6.7 % (n=15) — Drift -21pp, Legacy stirbt schneller als erwartet
+- **Offene Positionen (Equity-Sicht):** 7 BREAKOUT + 1 STAGE_2 (ADI/FANG/JCI/ARE/IBKR/TSM/AYI/EW)
+- **Paper-Trader-Sicht:** 1 BREAKOUT open (ADI), 2 expired (IBKR/ARE), 0 pending
+  - Diskrepanz ggü Equity ist erwartet (Trader = Top-1/Tag + Re-Validation, Equity = alle Signale + strict 3d)
 
 ---
 
