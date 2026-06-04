@@ -2,8 +2,9 @@ name: ApexKnowledge Daily
 
 on:
   schedule:
-    # 22:30 UTC = 00:30 CEST — nach letztem Equity-Lauf (22:00 UTC) und nach Scan (20:30 UTC)
-    - cron: '30 22 * * 1-5'
+    # 06:30 UTC = 08:30 CEST — morgens, nach naechtlichem Scan + Equity. Robust gegen
+    # Scan-Verzoegerungen (User sah TG-Nachrichten bis 00:50 CEST = 22:50 UTC).
+    - cron: '30 6 * * 1-5'
   workflow_dispatch:
 
 jobs:
