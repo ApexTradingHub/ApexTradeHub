@@ -178,6 +178,27 @@ def append_log(entries: list):
 # ---------------------------------------------------------------------------
 # Price feed (yfinance)
 # ---------------------------------------------------------------------------
+def _extract_series(df, ticker, single_ticker, col):
+    """Holt eine Spalten-Series aus yfinance-DataFrame, robust gegen MultiIndex."""
+    if df is None or df.empty:
+        return None
+    try:
+        if single_ticker:
+            # Single-Ticker: flat columns -> df[col]
+            if col in df.columns:
+                return df[col].dropna()
+            return None
+        # Multi-Ticker: MultiIndex ('Close', 'ADI') oder ('ADI', 'Close')
+        if hasattr(df.columns, "levels"):
+            if col in df.columns.get_level_values(0):
+                return df[col][ticker].dropna() if ticker in df[col].columns else None
+            if ticker in df.columns.get_level_values(0):
+                return df[ticker][col].dropna() if col in df[ticker].columns else None
+        return None
+    except Exception:
+        return None
+
+
 def batch_prices(tickers: list[str]) -> dict[str, float]:
     """Return latest available price per ticker. Empty dict on failure."""
     if not tickers:
@@ -188,52 +209,37 @@ def batch_prices(tickers: list[str]) -> dict[str, float]:
         log("yfinance not installed; cannot fetch prices")
         return {}
 
-    # Use 5-min intraday for fresh data; fallback to daily
     result: dict[str, float] = {}
+    single = (len(tickers) == 1)
+
+    # 1. Intraday 5m fuer aktuellste Daten
     try:
         df = yf.download(
-            tickers, period="2d", interval="5m",
-            progress=False, threads=False, group_by="ticker",
+            tickers if not single else tickers[0],
+            period="2d", interval="5m",
+            progress=False, threads=False, auto_adjust=True,
         )
-        if len(tickers) == 1:
-            t = tickers[0]
-            if not df.empty and "Close" in df.columns:
-                last = df["Close"].dropna()
-                if len(last):
-                    result[t] = float(last.iloc[-1])
-        else:
-            for t in tickers:
-                try:
-                    s = df[t]["Close"].dropna()
-                    if len(s):
-                        result[t] = float(s.iloc[-1])
-                except Exception:
-                    pass
+        for t in tickers:
+            s = _extract_series(df, t, single, "Close")
+            if s is not None and len(s):
+                result[t] = float(s.iloc[-1])
     except Exception as e:
         log(f"intraday fetch failed ({e}); falling back to daily")
 
-    # Daily fallback for missing tickers
+    # 2. Daily fallback fuer was Intraday nicht liefern konnte
     missing = [t for t in tickers if t not in result]
     if missing:
         try:
+            m_single = (len(missing) == 1)
             df = yf.download(
-                missing, period="5d", interval="1d",
-                progress=False, threads=False, group_by="ticker",
+                missing if not m_single else missing[0],
+                period="5d", interval="1d",
+                progress=False, threads=False, auto_adjust=True,
             )
-            if len(missing) == 1:
-                t = missing[0]
-                if not df.empty:
-                    s = df["Close"].dropna()
-                    if len(s):
-                        result[t] = float(s.iloc[-1])
-            else:
-                for t in missing:
-                    try:
-                        s = df[t]["Close"].dropna()
-                        if len(s):
-                            result[t] = float(s.iloc[-1])
-                    except Exception:
-                        pass
+            for t in missing:
+                s = _extract_series(df, t, m_single, "Close")
+                if s is not None and len(s):
+                    result[t] = float(s.iloc[-1])
         except Exception as e:
             log(f"daily fallback failed: {e}")
     return result
@@ -245,22 +251,17 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
         return {}
     try:
         import yfinance as yf
+        single = (len(tickers) == 1)
         df = yf.download(
-            tickers, period="1d", interval="5m",
-            progress=False, threads=False, group_by="ticker",
+            tickers if not single else tickers[0],
+            period="1d", interval="5m",
+            progress=False, threads=False, auto_adjust=True,
         )
         result = {}
-        if len(tickers) == 1:
-            t = tickers[0]
-            if not df.empty and "High" in df.columns:
-                result[t] = float(df["High"].max())
-        else:
-            for t in tickers:
-                try:
-                    h = float(df[t]["High"].max())
-                    result[t] = h
-                except Exception:
-                    pass
+        for t in tickers:
+            s = _extract_series(df, t, single, "High")
+            if s is not None and len(s):
+                result[t] = float(s.max())
         return result
     except Exception as e:
         log(f"high fetch failed: {e}")
