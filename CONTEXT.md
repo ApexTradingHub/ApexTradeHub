@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-01
+**Letztes Update:** 2026-06-03 (Phase A Obsidian Brain shipped)
 
 ---
 
@@ -79,10 +79,24 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 5. Offene Backlog-Items (siehe `BACKLOG.md`)
 
-1. **Pending/Triggered-Status für offene Signale** — `apex_open_positions.json` mit `triggered`-Flag,
-   Dashboard zeigt „⏳ Pending" vs „✅ Offen". Mittlerer Aufwand, Live-Equity-Tracker erweitern.
+1. **Pending/Triggered-Status für offene Signale** — wird durch **Phase B (Paper Trader)**
+   gelöst: Trader läuft alle 20 min, schreibt `triggered`-Flag in `apex_positions.json`.
+   Dashboard liest direkt. Item bleibt Backlog bis Phase B live.
 2. **MOMO-Setup** — getestet (PF 1.51 < 2.0 = verworfen), Code als opt-in (`--only-setup MOMO`)
    in `apex_backtest_v2.py` belassen. Re-test bei klaren DELL-artigen Misses.
+
+### Aktive Roadmap (`CLAUDE_CODE_BRIEF.md`)
+- ✅ **Phase A — Obsidian Brain** (`apex_brain.py`) — shipped 2026-06-03 (`0c0a93b`)
+- ⏳ **Phase B — Paper Trader** (`apex_trader.py`) — Spec final:
+  - BREAKOUT only, Top-1 nach Score pro Scan-Tag, Telegram-äquivalentes Gate
+  - $300 Kapital, $50 × max 5 Positionen, $50 Cash-Reserve
+  - Trailing: high ≥ Entry×1.08 → SL auf Entry×1.05 (einmaliger Sprung)
+  - Cron: `*/20 13-21 * * 1-5` (alle 20 min während US-Markt)
+  - Eigene Buchhaltung via `apex_positions.json` + Cash-Check vor Open
+  - Equity-Tracker bleibt nightly, unverändert
+  - Löst Backlog-Item 1 (Pending-Status) als Side-Effect
+- ⏳ **Phase C — Dashboard Paper-Tab** (hängt von B)
+- ⏳ **Phase D — Equity-Research-Plugin** (optional, hängt von A)
 
 ---
 
@@ -120,6 +134,13 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-03** **Phase A: Obsidian Brain (`apex_brain.py`)** — autonomer Markdown-Writer
+  in lokales Vault `./vault/` (gitignored). Liest `apex_signals.json`,
+  `apex_equity_results.json`, `knowledge/trade_postmortems.json`, `apex_market.json`.
+  Modi: `--signals` (idempotent), `--postmortems` (regen), `--weekly`, `--market`,
+  `--learnings`. Erstrun: 205 trade-notes, 38 postmortems, 1 weekly, 1 market,
+  68 lesson-tag-Aggregate. **Keine Eingriffe in Live-Code.**
+  `.gitignore` UTF-16→UTF-8 fixed (war fuer git unlesbar).
 - **2026-06-01** Sektor-Enrichment-Fix: retry "Unknown", cache nur Erfolge
 - **2026-05-30** Dashboard Light-Mode Setup-Bar-Bug gefixed (drawSetup mit `sigsAll` statt `allR`),
   MOMO im Backtest auf opt-in
