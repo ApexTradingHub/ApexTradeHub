@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-04 (Phase A + B shipped)
+**Letztes Update:** 2026-06-04 (Phase A + B + C shipped)
 
 ---
 
@@ -97,7 +97,10 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
   - Journal: `apex_trade_log.json` (append-only, alle Events)
   - eToro-API als Stub (TRADING_MODE env var: paper|live)
   - Löst Backlog-Item 1 (Pending-Status) als Side-Effect
-- ⏳ **Phase C — Dashboard Paper-Tab** (hängt von B, ready to build)
+- ✅ **Phase C — Dashboard Paper-Tab** (`dashboard.html`) — shipped 2026-06-04
+  - Neuer 3. Tab "📈 Paper Trading", liest `apex_positions.json`
+  - Status-Header (Mode/Cash/Equity/PnL), 4 Tabellen (Open/Pending/Closed/Expired)
+  - sw.js v11→v12, PF zu DATA_FILES
 - ⏳ **Phase D — Equity-Research-Plugin** (optional, hängt von A)
 
 ---
@@ -136,6 +139,10 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-04** **Phase C: Dashboard Paper Trading Tab** — neuer 3. Tab im `dashboard.html`
+  liest `apex_positions.json`. Status-Header (Mode/Cash/Equity/PnL), 4 Tabellen:
+  Open (mit live PnL + Trail-Status), Pending (warten auf Trigger), Closed
+  (Entry/Exit/Reason), Expired (max 30). sw.js v11→v12, PF zu DATA_FILES.
 - **2026-06-04** **Phase B: Paper Trader (`apex_trader.py`)** — autonome Trading-Engine
   in Python + GH Actions Workflow `apex_trader.yml`. Liest `apex_signals.json`, wählt
   Top-1 BREAKOUT pro Scan-Tag (Telegram-äquivalentes Gate), schreibt Pending in
