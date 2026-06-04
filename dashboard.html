@@ -439,65 +439,54 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   .logo-name { font-size: 18px; }
 }
 
-/* Paper-Tab Mobile: Open-Tabelle wird zur Karten-Ansicht */
-@media (max-width: 768px) {
-  /* Open Positions als Karten */
-  #page-paper .card:has(#p-open-body) thead { display: none; }
-  #p-open-body tr {
-    display: block;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 10px;
-    background: rgba(255,255,255,0.02);
-  }
-  #p-open-body tr td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px 0;
-    border: none !important;
-    font-size: 13px;
-    white-space: normal;
-  }
-  #p-open-body tr td[data-label]::before {
-    content: attr(data-label);
-    color: var(--muted2);
-    font-size: 11px;
-    font-weight: normal;
-    margin-right: 12px;
-  }
-  /* Ticker = Header der Karte */
-  #p-open-body tr td:nth-child(1) {
-    display: block;
-    font-size: 16px;
-    border-bottom: 1px solid var(--border) !important;
-    padding-bottom: 10px;
-    margin-bottom: 8px;
-  }
-  /* Verstecken: Setup(2), Einsatz(5), Stop(9), Trail(10), Hold(11), Signal(12) */
-  #p-open-body tr td:nth-child(2),
-  #p-open-body tr td:nth-child(5),
-  #p-open-body tr td:nth-child(9),
-  #p-open-body tr td:nth-child(10),
-  #p-open-body tr td:nth-child(11),
-  #p-open-body tr td:nth-child(12) { display: none; }
+/* Paper-Tab Mobile: Karten-Klassen (JS-rendered, robust) */
+.paper-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 0 0 12px 0;
+  background: rgba(255,255,255,0.02);
+}
+.paper-card .pc-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.paper-card .pc-head img { width: 22px; height: 22px; border-radius: 4px; object-fit: contain; }
+.paper-card .pc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 13px;
+}
+.paper-card .pc-row .pc-label { color: var(--muted2); font-size: 11px; }
+.paper-card .pc-row .pc-val { font-weight: 600; }
+.paper-cards-wrap { display: none; }
 
-  /* Pending/Closed/Expired: Spalten reduzieren statt Karten */
+@media (max-width: 768px) {
+  #p-open-table { display: none; }
+  .paper-cards-wrap { display: block; }
+  /* Pending/Closed/Expired bleiben Tabellen mit weniger Spalten */
   #p-pending-body tr td:nth-child(4),
   #p-pending-body tr td:nth-child(5),
   #p-pending-body tr td:nth-child(9),
-  #page-paper .card:has(#p-pending-body) thead th:nth-child(4),
-  #page-paper .card:has(#p-pending-body) thead th:nth-child(5),
-  #page-paper .card:has(#p-pending-body) thead th:nth-child(9) { display: none; }
+  #p-pending-table thead th:nth-child(4),
+  #p-pending-table thead th:nth-child(5),
+  #p-pending-table thead th:nth-child(9) { display: none; }
   #p-closed-body tr td:nth-child(4),
   #p-closed-body tr td:nth-child(9),
-  #page-paper .card:has(#p-closed-body) thead th:nth-child(4),
-  #page-paper .card:has(#p-closed-body) thead th:nth-child(9) { display: none; }
+  #p-closed-table thead th:nth-child(4),
+  #p-closed-table thead th:nth-child(9) { display: none; }
   #p-expired-body tr td:nth-child(3),
   #p-expired-body tr td:nth-child(4),
-  #page-paper .card:has(#p-expired-body) thead th:nth-child(3),
-  #page-paper .card:has(#p-expired-body) thead th:nth-child(4) { display: none; }
+  #p-expired-table thead th:nth-child(3),
+  #p-expired-table thead th:nth-child(4) { display: none; }
 }
 @media (max-width: 480px) {
   #page-paper .hist-table { font-size: 11px; }
@@ -857,7 +846,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     <h2>Offene Positionen</h2>
     <span class="card-sub" id="p-open-sub">—</span>
   </div>
-  <div class="table-wrap">
+  <div class="table-wrap" id="p-open-table">
     <table class="hist-table">
       <thead>
         <tr>
@@ -880,6 +869,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
       </tbody>
     </table>
   </div>
+  <div class="paper-cards-wrap" id="p-open-cards"></div>
 </div>
 
 <!-- PENDING SIGNALS -->
@@ -889,7 +879,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     <span class="card-sub" id="p-pending-sub">—</span>
   </div>
   <div class="table-wrap">
-    <table class="hist-table">
+    <table class="hist-table" id="p-pending-table">
       <thead>
         <tr>
           <th>Ticker</th>
@@ -917,7 +907,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     <span class="card-sub" id="p-closed-sub">—</span>
   </div>
   <div class="table-wrap">
-    <table class="hist-table">
+    <table class="hist-table" id="p-closed-table">
       <thead>
         <tr>
           <th>Datum</th>
@@ -945,7 +935,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     <span class="card-sub" id="p-expired-sub">—</span>
   </div>
   <div class="table-wrap">
-    <table class="hist-table">
+    <table class="hist-table" id="p-expired-table">
       <thead>
         <tr>
           <th>Ticker</th>
@@ -1650,10 +1640,31 @@ function renderPaper() {
 
   /* === OPEN POSITIONS === */
   const ob = document.getElementById('p-open-body');
+  const cardsWrap = document.getElementById('p-open-cards');
   if ((s.open || []).length === 0) {
     ob.innerHTML = '<tr><td colspan="12"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>';
+    if (cardsWrap) cardsWrap.innerHTML = '<div class="empty-state" style="padding:20px"><span>Keine offenen Positionen.</span></div>';
   } else {
     const priceStamp = fmtBerlinTimeAged(s.last_updated);
+    // Mobile-Karten (parallel zur Tabelle, CSS entscheidet sichtbar)
+    if (cardsWrap) {
+      cardsWrap.innerHTML = s.open.map(p => {
+        const pnlPct = +p.pnl_pct || 0;
+        const pnlUsd = +p.pnl_usd || 0;
+        const sizeUsd = +p.size_usd || 0;
+        const curPrice = +p.current_price || 0;
+        const shares = +p.shares || 0;
+        const value = shares > 0 ? shares * curPrice : sizeUsd + pnlUsd;
+        return `<div class="paper-card">
+          <div class="pc-head">${tickerLogo(p.ticker)}<span>${p.ticker}</span></div>
+          <div class="pc-row"><span class="pc-label">Entry → Ziel</span><span class="pc-val">$${(+p.entry_actual).toFixed(2)} → <span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></span></div>
+          <div class="pc-row"><span class="pc-label">Kurs</span><span class="pc-val">$${curPrice.toFixed(2)} <span style="font-size:10px;color:${priceStamp.color}">(${priceStamp.html})</span></span></div>
+          <div class="pc-row"><span class="pc-label">Wert</span><span class="pc-val ${cls(value - sizeUsd)}">$${value.toFixed(2)}</span></div>
+          <div class="pc-row"><span class="pc-label">Änderung</span><span class="pc-val ${cls(pnlPct)}">${fmtPct(pnlPct)}</span></div>
+          <div class="pc-row"><span class="pc-label">Gewinn/Verlust</span><span class="pc-val ${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</span></div>
+        </div>`;
+      }).join('');
+    }
     ob.innerHTML = s.open.map(p => {
       const m = setupMeta(p.setup);
       const pnlPct = +p.pnl_pct || 0;

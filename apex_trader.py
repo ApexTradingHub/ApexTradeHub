@@ -199,6 +199,19 @@ def _extract_series(df, ticker, single_ticker, col):
         return None
 
 
+def _yahoo_chart_api(ticker: str, interval: str = "1m", range_: str = "1d"):
+    """Yahoo v8 chart endpoint - direkter HTTP-Fetch. Robuster als yfinance bei Throttle."""
+    import urllib.request, json as _json
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
+           f"?interval={interval}&range={range_}")
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=10) as r:
+        data = _json.loads(r.read().decode("utf-8"))
+    res = data["chart"]["result"][0]
+    meta = res.get("meta", {})
+    return meta, res.get("indicators", {}).get("quote", [{}])[0]
+
+
 def batch_prices(tickers: list[str]) -> dict[str, float]:
     """Return latest available price per ticker. Empty dict on failure."""
     if not tickers:
@@ -212,7 +225,7 @@ def batch_prices(tickers: list[str]) -> dict[str, float]:
     result: dict[str, float] = {}
     single = (len(tickers) == 1)
 
-    # 1. Intraday 5m fuer aktuellste Daten
+    # 1. yfinance 1m intraday
     try:
         df = yf.download(
             tickers if not single else tickers[0],
@@ -223,10 +236,44 @@ def batch_prices(tickers: list[str]) -> dict[str, float]:
             s = _extract_series(df, t, single, "Close")
             if s is not None and len(s):
                 result[t] = float(s.iloc[-1])
+        if result:
+            log(f"prices: 1m yfinance OK ({len(result)}/{len(tickers)})")
     except Exception as e:
-        log(f"intraday fetch failed ({e}); falling back to daily")
+        log(f"1m yfinance failed: {e}")
 
-    # 2. Daily fallback fuer was Intraday nicht liefern konnte
+    # 2. yfinance 5m fallback
+    missing = [t for t in tickers if t not in result]
+    if missing:
+        try:
+            m_single = (len(missing) == 1)
+            df = yf.download(
+                missing if not m_single else missing[0],
+                period="2d", interval="5m",
+                progress=False, threads=False, auto_adjust=True,
+            )
+            for t in missing:
+                s = _extract_series(df, t, m_single, "Close")
+                if s is not None and len(s):
+                    result[t] = float(s.iloc[-1])
+            log(f"prices: 5m fallback ({len(result)}/{len(tickers)})")
+        except Exception as e:
+            log(f"5m yfinance failed: {e}")
+
+    # 3. Yahoo v8 chart API direkt (robusteste Methode)
+    missing = [t for t in tickers if t not in result]
+    if missing:
+        log(f"prices: trying v8 chart API for {missing}")
+        for t in missing:
+            try:
+                meta, _ = _yahoo_chart_api(t, "1m", "1d")
+                px = meta.get("regularMarketPrice")
+                if px:
+                    result[t] = float(px)
+                    log(f"  v8 chart OK: {t} = ${px}")
+            except Exception as e:
+                log(f"  v8 chart failed {t}: {e}")
+
+    # 4. Daily-Close als letzte Notbremse
     missing = [t for t in tickers if t not in result]
     if missing:
         try:
@@ -240,8 +287,12 @@ def batch_prices(tickers: list[str]) -> dict[str, float]:
                 s = _extract_series(df, t, m_single, "Close")
                 if s is not None and len(s):
                     result[t] = float(s.iloc[-1])
+                    log(f"  daily fallback: {t}")
         except Exception as e:
             log(f"daily fallback failed: {e}")
+
+    if not result:
+        log(f"WARN: NO price for any ticker {tickers}")
     return result
 
 
@@ -249,6 +300,7 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
     """Return today's intraday HIGH per ticker (for trigger check on intraday-runs)."""
     if not tickers:
         return {}
+    result = {}
     try:
         import yfinance as yf
         single = (len(tickers) == 1)
@@ -257,15 +309,25 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
             period="1d", interval="1m",
             progress=False, threads=False, auto_adjust=True,
         )
-        result = {}
         for t in tickers:
             s = _extract_series(df, t, single, "High")
             if s is not None and len(s):
                 result[t] = float(s.max())
-        return result
     except Exception as e:
-        log(f"high fetch failed: {e}")
-        return {}
+        log(f"high yfinance failed: {e}")
+    # Fallback v8 chart API
+    missing = [t for t in tickers if t not in result]
+    for t in missing:
+        try:
+            meta, quote = _yahoo_chart_api(t, "1m", "1d")
+            highs = [h for h in (quote.get("high") or []) if h is not None]
+            if highs:
+                result[t] = float(max(highs))
+            elif meta.get("regularMarketDayHigh"):
+                result[t] = float(meta["regularMarketDayHigh"])
+        except Exception as e:
+            log(f"  high v8 fail {t}: {e}")
+    return result
 
 
 # ---------------------------------------------------------------------------
