@@ -139,6 +139,11 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-04** **Trader hardening:** MAX_TRIGGER_DAYS 3→1, Re-Validation-Logik:
+  alte Pendings nur überleben wenn (Ticker,Setup) in heutiger Scan erneut auftaucht →
+  signal_date refresht. Sonst expired. Timestamps jetzt UTC mit Z-Suffix.
+  Dashboard zeigt alle Trader-Zeiten in Europe/Berlin via toLocaleString. sw.js v12→v13.
+  Erstanwendung: IBKR (3d) + ARE (2d) expired, ADI (1d frisch) getriggert @$437.58.
 - **2026-06-04** **Phase C: Dashboard Paper Trading Tab** — neuer 3. Tab im `dashboard.html`
   liest `apex_positions.json`. Status-Header (Mode/Cash/Equity/PnL), 4 Tabellen:
   Open (mit live PnL + Trail-Status), Pending (warten auf Trigger), Closed

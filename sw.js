@@ -1,4 +1,4 @@
-const CACHE = 'apexscan-v12';
+const CACHE = 'apexscan-v13';
 
 // App shell – alles was sich selten ändert
 const SHELL = [

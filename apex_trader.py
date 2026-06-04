@@ -61,7 +61,8 @@ TRAILING_TRIGGER_MULT = 1.08    # high >= entry*1.08 aktiviert Trail
 TRAILING_TARGET_MULT  = 1.05    # SL springt auf entry*1.05 (+5% gesichert)
 
 # Trigger / Hold
-MAX_TRIGGER_DAYS = 3            # Signal expired wenn nach 3d nicht getriggert
+MAX_TRIGGER_DAYS = 1            # Signal expired wenn nach 1d nicht getriggert
+                                # (es sei denn re-validiert = Ticker in heutiger Scan)
 MAX_HOLD_DAYS    = 30           # Time-Exit nach 30d (BREAKOUT)
 
 # Pfade
@@ -88,7 +89,8 @@ def f(val, default=0.0):
 
 
 def now_iso() -> str:
-    return datetime.now().isoformat(timespec="seconds")
+    """Returns UTC timestamp with explicit Z suffix (unambiguous for any TZ display)."""
+    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
 def today_date() -> date:
@@ -350,6 +352,19 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
     highs = get_today_high(tickers)
     prices = batch_prices(tickers)
 
+    # Re-Validation-Lookup: Ticker+Setup, die in der LATEST Scan-Date erneut auftauchen,
+    # gelten als "re-validiert" und kriegen ihren signal_date refreshed (kein Expire).
+    latest_signals = load_json(SIGNALS_FILE) or []
+    latest_scan_date = max((s.get("date") for s in latest_signals if s.get("date")),
+                           default=None)
+    revalidated_map = {}
+    if latest_scan_date:
+        for s in latest_signals:
+            if (s.get("date") == latest_scan_date and
+                s.get("setup") in ALLOWED_SETUPS and
+                passes_tg_gate(s)):
+                revalidated_map[(s["ticker"], s["setup"])] = s
+
     for p in state["pending"]:
         # 1. Expiry check
         try:
@@ -357,14 +372,38 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
             days_since = (today - sig_date).days
         except Exception:
             days_since = 0
+
         if days_since > MAX_TRIGGER_DAYS:
-            p["status"] = "expired"
-            p["expired_at"] = now_iso()
-            state["expired"].append(p)
-            events.append({"event": "expired", "id": p["id"], "ts": now_iso(),
-                           "ticker": p["ticker"], "reason": f"no trigger after {days_since}d"})
-            log(f"  expired: {p['ticker']} (signal {p['signal_date']})")
-            continue
+            # Re-Validierung: taucht (Ticker, Setup) in der neuesten Scan wieder auf?
+            revalid = revalidated_map.get((p["ticker"], p["setup"]))
+            if revalid and revalid.get("date") != p.get("signal_date"):
+                # Frisch validiert -> Signal-Daten refreshen, signal_date update
+                old_sd = p["signal_date"]
+                p["signal_date"]   = revalid["date"]
+                p["entry"]         = f(revalid.get("buy_above"))
+                p["stop_initial"]  = f(revalid.get("stop"))
+                p["target"]        = f(revalid.get("target"))
+                p["score"]         = f(revalid.get("score"))
+                p["rr"]            = f(revalid.get("rr"))
+                p["upside_pct"]    = f(revalid.get("upside_pct"))
+                p["revalidated_at"] = now_iso()
+                events.append({
+                    "event": "revalidated", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"], "old_signal_date": old_sd,
+                    "new_signal_date": revalid["date"],
+                })
+                log(f"  revalidated: {p['ticker']} ({old_sd} -> {revalid['date']})")
+                # Trigger-Check unten greift mit neuen Daten
+            else:
+                p["status"] = "expired"
+                p["expired_at"] = now_iso()
+                state["expired"].append(p)
+                events.append({"event": "expired", "id": p["id"], "ts": now_iso(),
+                               "ticker": p["ticker"],
+                               "reason": f"no trigger after {days_since}d, nicht re-validiert"})
+                log(f"  expired: {p['ticker']} (signal {p['signal_date']}, "
+                    f"{days_since}d alt, nicht re-validiert)")
+                continue
 
         # 2. Capacity & cash checks
         if len(state["open"]) >= MAX_POSITIONS:

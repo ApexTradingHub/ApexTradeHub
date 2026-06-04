@@ -1,9 +1,40 @@
 {
   "mode": "paper",
   "capital_initial": 300.0,
-  "cash": 300.0,
-  "last_updated": "2026-06-04T07:48:59",
-  "pending": [
+  "cash": 250.0,
+  "last_updated": "2026-06-04T08:09:17Z",
+  "pending": [],
+  "open": [
+    {
+      "id": "PAPER_ADI_2026-06-03",
+      "ticker": "ADI",
+      "setup": "BREAKOUT",
+      "sector": "Technology",
+      "signal_date": "2026-06-03",
+      "entry": 435.4,
+      "stop_initial": 411.1,
+      "target": 477.53,
+      "score": 138.8,
+      "rr": 1.73,
+      "upside_pct": 9.7,
+      "added_at": "2026-06-04T07:48:59",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 437.57699999999994,
+      "shares": 0.11426560353949135,
+      "size_usd": 50.0,
+      "stop": 411.1,
+      "high_since_entry": 437.57699999999994,
+      "trailing_active": false,
+      "opened_at": "2026-06-04T08:09:23Z",
+      "current_price": 437.57699999999994,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
+    }
+  ],
+  "closed": [],
+  "expired": [
     {
       "id": "PAPER_IBKR_2026-06-01",
       "ticker": "IBKR",
@@ -17,8 +48,9 @@
       "rr": 1.86,
       "upside_pct": 10.0,
       "added_at": "2026-06-04T07:48:59",
-      "status": "pending",
-      "mode": "paper"
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-06-04T08:09:23Z"
     },
     {
       "id": "PAPER_ARE_2026-06-02",
@@ -33,37 +65,19 @@
       "rr": 1.82,
       "upside_pct": 10.4,
       "added_at": "2026-06-04T07:48:59",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_ADI_2026-06-03",
-      "ticker": "ADI",
-      "setup": "BREAKOUT",
-      "sector": "Technology",
-      "signal_date": "2026-06-03",
-      "entry": 435.4,
-      "stop_initial": 411.1,
-      "target": 477.53,
-      "score": 138.8,
-      "rr": 1.73,
-      "upside_pct": 9.7,
-      "added_at": "2026-06-04T07:48:59",
-      "status": "pending",
-      "mode": "paper"
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-06-04T08:09:23Z"
     }
   ],
-  "open": [],
-  "closed": [],
-  "expired": [],
   "stats": {
     "total_trades": 0,
-    "open_trades": 0,
+    "open_trades": 1,
     "wins": 0,
     "losses": 0,
     "win_rate": 0.0,
     "pnl_realized": 0,
-    "pnl_unrealized": 0,
+    "pnl_unrealized": 0.0,
     "equity": 300.0
   }
 }

@@ -22,5 +22,28 @@
     "ticker": "ADI",
     "signal_date": "2026-06-03",
     "score": 138.8
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_IBKR_2026-06-01",
+    "ts": "2026-06-04T08:09:23Z",
+    "ticker": "IBKR",
+    "reason": "no trigger after 3d, nicht re-validiert"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_ARE_2026-06-02",
+    "ts": "2026-06-04T08:09:23Z",
+    "ticker": "ARE",
+    "reason": "no trigger after 2d, nicht re-validiert"
+  },
+  {
+    "event": "open",
+    "id": "PAPER_ADI_2026-06-03",
+    "ts": "2026-06-04T08:09:23Z",
+    "ticker": "ADI",
+    "entry_signal": 435.4,
+    "entry_actual": 437.57699999999994,
+    "mode": "paper"
   }
 ]
