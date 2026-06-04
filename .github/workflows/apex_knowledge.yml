@@ -1,0 +1,33 @@
+name: ApexKnowledge Daily
+
+on:
+  schedule:
+    # 22:30 UTC = 00:30 CEST — nach letztem Equity-Lauf (22:00 UTC) und nach Scan (20:30 UTC)
+    - cron: '30 22 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  knowledge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install yfinance pandas requests pytz tqdm matplotlib
+      - name: ApexLearn
+        run: python apex_learn.py
+      - name: ApexPostmortem Summary
+        run: python apex_postmortem.py --summary
+      - name: Push
+        run: |
+          git config user.name "ApexScan Bot"
+          git config user.email "bot@apexscan.com"
+          git stash
+          git pull origin master --rebase || true
+          git stash pop || true
+          git add knowledge/apex_knowledge.json reports/learn_latest.md reports/learn_*.md reports/postmortem_summary.md
+          git diff --staged --quiet || git commit -m "Knowledge $(date +'%Y-%m-%d %H:%M')"
+          git push
