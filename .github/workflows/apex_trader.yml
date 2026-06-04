@@ -2,8 +2,8 @@ name: ApexTrader
 
 on:
   schedule:
-    # Every 20 min during US market hours (13:00-21:00 UTC = 9-17 ET)
-    - cron: '*/20 13-21 * * 1-5'
+    # Every 15 min during US market hours (13:00-21:00 UTC = 9-17 ET)
+    - cron: '*/15 13-21 * * 1-5'
   workflow_dispatch:
 
 jobs:

@@ -1521,6 +1521,23 @@ function renderPaper() {
       });
     } catch { return iso; }
   };
+  // Kurzform fuer Tabellen-Zellen — nur HH:MM, plus Alters-Farbe
+  const fmtBerlinTimeAged = iso => {
+    if (!iso) return { html: '—', cls: '' };
+    try {
+      const s = iso.endsWith('Z') || iso.includes('+') ? iso : iso + 'Z';
+      const d = new Date(s);
+      if (isNaN(d.getTime())) return { html: iso, cls: '' };
+      const hhmm = d.toLocaleTimeString('de-DE', {
+        timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit',
+      });
+      const ageMin = (Date.now() - d.getTime()) / 60000;
+      let color = 'var(--muted2)';
+      if      (ageMin <= 30)  color = 'var(--green)';
+      else if (ageMin <= 120) color = 'var(--orange)';
+      return { html: hhmm, cls: '', color };
+    } catch { return { html: iso, cls: '' }; }
+  };
 
   if (!s) {
     setText('p-mode', 'Keine Daten');
@@ -1562,6 +1579,7 @@ function renderPaper() {
   if ((s.open || []).length === 0) {
     ob.innerHTML = '<tr><td colspan="10"><div class="empty-state"><span>Keine offenen Positionen.</span></div></td></tr>';
   } else {
+    const priceStamp = fmtBerlinTimeAged(s.last_updated);
     ob.innerHTML = s.open.map(p => {
       const m = setupMeta(p.setup);
       const pnlPct = +p.pnl_pct || 0;
@@ -1573,7 +1591,7 @@ function renderPaper() {
         <td><b>${p.ticker}</b></td>
         <td><span class="${pil(p.setup)}">${m.label}</span></td>
         <td>$${(+p.entry_actual).toFixed(2)} <span style="color:var(--muted2)">→</span> <span style="color:var(--green)">$${(+p.target).toFixed(2)}</span></td>
-        <td>$${(+p.current_price || 0).toFixed(2)}</td>
+        <td>$${(+p.current_price || 0).toFixed(2)} <span style="font-size:10px;color:${priceStamp.color}">(${priceStamp.html})</span></td>
         <td class="${cls(pnlPct)}">${fmtPct(pnlPct)}</td>
         <td class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</td>
         <td>$${(+p.stop).toFixed(2)}</td>

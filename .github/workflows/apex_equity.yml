@@ -2,7 +2,10 @@ name: ApexEquity Update
 
 on:
   schedule:
-    - cron: '0 4,6,8,10,12,14,16,18 * * 1-5'
+    # Every 30 min during US market hours (13:00-21:00 UTC = 9-17 ET) for live equity tracking
+    - cron: '*/30 13-21 * * 1-5'
+    # Plus a few off-hours runs for EOD aggregation + early-morning state
+    - cron: '0 6,22 * * 1-5'
   workflow_dispatch:
 
 jobs:
