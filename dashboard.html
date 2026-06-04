@@ -667,9 +667,10 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     </select>
     <select class="hist-select" id="f-status" onchange="renderHistory()">
       <option value="">Alle Status</option>
+      <option value="pending">⏳ Pending</option>
       <option value="open">🟢 Offen</option>
       <option value="closed">Geschlossen</option>
-      <option value="expired">⚫ Nie getriggert</option>
+      <option value="expired">⚫ Expired</option>
     </select>
     <select class="hist-select" id="f-exit" onchange="renderHistory()">
       <option value="">Alle Exits</option>
@@ -1352,17 +1353,27 @@ function renderHistory() {
              cat_earnings_blackout: s.cat_earnings_blackout };
   });
 
-  /* open + expired rows (signals not closed) — incl. non-Telegram signals */
+  /* open / pending / expired rows (signals not closed) — incl. non-Telegram signals
+     Status-Logik (matched apex_trader.py + apex_equity.py):
+       age <= 3d (TRIGGER_WINDOW)         → pending      (warten auf Trigger)
+       3d < age <= hold_days[setup]       → open         (vermutlich getriggert, im Hold)
+       age > hold_days[setup]             → expired      (Trade-Window vorbei)               */
+  const TRIGGER_WINDOW_DAYS = 3;
   const today = new Date();
   const holdDays = k => setupMeta(k).hold;
+  const dayDiff = (d1, d2) => Math.round((d1 - d2) / 86400000);
   const seen = new Set();
   const nonClosed = [];
   sigsAll.forEach(s => {
     const key = s.ticker + '|' + s.date;
     if (!SETUP_META[s.setup] || closedKeys.has(key) || seen.has(key)) return;
     seen.add(key);
-    const maxExit = new Date(s.date);
-    maxExit.setDate(maxExit.getDate() + holdDays(s.setup));
+    const sigD = new Date(s.date);
+    const age = dayDiff(today, sigD);
+    let status;
+    if      (age <= TRIGGER_WINDOW_DAYS)  status = 'pending';
+    else if (age <= holdDays(s.setup))    status = 'open';
+    else                                  status = 'expired';
     nonClosed.push({
       date: s.date, ticker: s.ticker, setup: s.setup, sector: s.sector || '',
       entry: s.buy_above, buy_above: s.buy_above, target: s.target, stop: s.stop,
@@ -1373,7 +1384,7 @@ function renderHistory() {
       cat_short_pct:         s.cat_short_pct,
       cat_earnings_blackout: s.cat_earnings_blackout,
       pnl_pct: null, pnl_usd: null, exit_reason: null, exit_day: null, _exitDate: '—',
-      _status: (today <= maxExit) ? 'open' : 'expired',
+      _status: status,
     });
   });
 
@@ -1405,8 +1416,9 @@ function renderHistory() {
   const ec = x => x.exit_reason === 'Take Profit' ? 'exit-badge exit-tp' : x.exit_reason === 'Stop Loss' ? 'exit-badge exit-sl' : 'exit-badge exit-te';
   const eShort = x => x.exit_reason === 'Take Profit' ? 'TP' : x.exit_reason === 'Stop Loss' ? 'SL' : 'TE';
   const statusCell = x => {
+    if (x._status === 'pending') return `<span class="exit-badge" style="background:rgba(255,107,53,.12);color:var(--orange)">⏳ Pending</span>`;
     if (x._status === 'open')    return `<span class="exit-badge" style="background:rgba(0,207,255,.12);color:var(--cyan)">● Offen</span>`;
-    if (x._status === 'expired') return `<span class="exit-badge" style="background:rgba(255,255,255,.05);color:var(--muted2)">● nie getriggert</span>`;
+    if (x._status === 'expired') return `<span class="exit-badge" style="background:rgba(255,255,255,.05);color:var(--muted2)">⚫ Expired</span>`;
     return `<span class="${ec(x)}">${eShort(x)}</span>`;
   };
   const tbody = document.getElementById('histBody');

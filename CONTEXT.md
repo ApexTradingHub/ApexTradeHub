@@ -139,10 +139,18 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
-- **2026-06-04** **Trader hardening:** MAX_TRIGGER_DAYS 3→1, Re-Validation-Logik:
+- **2026-06-04** **Konsistenz-Pass Trigger+Hold-Windows system-wide:**
+  - `MAX_TRIGGER_DAYS = 3` (Paper-Trader zurück 1→3 = matched Equity/Backtest = 61.8 % BO-WR
+    Messung). Re-Validation refresht signal_date bei wiederholter Emission.
+  - `HOLD_DAYS_PER_SETUP` dict in Paper-Trader (BO=21, VCP=40, STAGE_2=60, SQ=20, MR=20, REV=40)
+    statt fix 30 für alle. Matched apex_equity.py horizon_to_days.
+  - Dashboard History Status-Logik: age ≤ 3d → ⏳ Pending, 3d<age≤hold → 🟢 Offen,
+    age>hold → ⚫ Expired (vorher: hold cutoff hat alles abgedeckt = falsch).
+  - Filter-Dropdown bekommt Pending-Option.
+- **2026-06-04** **Trader hardening:** Re-Validation-Logik:
   alte Pendings nur überleben wenn (Ticker,Setup) in heutiger Scan erneut auftaucht →
   signal_date refresht. Sonst expired. Timestamps jetzt UTC mit Z-Suffix.
-  Dashboard zeigt alle Trader-Zeiten in Europe/Berlin via toLocaleString. sw.js v12→v13.
+  Dashboard zeigt alle Trader-Zeiten in Europe/Berlin via toLocaleString. sw.js v12→v14.
   Erstanwendung: IBKR (3d) + ARE (2d) expired, ADI (1d frisch) getriggert @$437.58.
 - **2026-06-04** **Phase C: Dashboard Paper Trading Tab** — neuer 3. Tab im `dashboard.html`
   liest `apex_positions.json`. Status-Header (Mode/Cash/Equity/PnL), 4 Tabellen:
@@ -178,6 +186,21 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 - **2026-05-22** **Telegram-Gate von relax-basiert → score-basiert**, TG_MIN_RR 2.0 → 1.5
 - **2026-05-22** **Phase H: Mean-Reversion Setup live**, equity ACTIVE_SETUPS expanded
 - **2026-05-21** Scan-Schedule 17:30 UTC → 20:30 UTC (nach US-Close)
+
+---
+
+## 9b. Konsistenz-Konstanten (System-weit, NICHT divergieren)
+
+| Konzept | Wert | Quelle der Wahrheit | Wo verwendet |
+|---|---|---|---|
+| **TRIGGER_WINDOW** | 3 Trading-Days | apex_equity.py L100 | Paper-Trader, Dashboard History, Backtest v2 |
+| **HOLD_DAYS BREAKOUT** | 21 | apex_equity.py horizon_to_days | Paper-Trader, Dashboard, Backtest |
+| **HOLD_DAYS VCP** | 40 | dito | dito |
+| **HOLD_DAYS STAGE_2** | 60 | dito | dito |
+| **HOLD_DAYS SHORT_SQUEEZE** | 20 | dito | dito |
+| **HOLD_DAYS MEAN_REVERSION** | 20 | dito | dito |
+| **DUPLICATE_WINDOW_DAYS** | 3 | ApexScan.py L45 | Scanner — skipped Signals die in 3d schon emittiert wurden |
+| **TG-Send-Modus** | „no signal"-Message wenn 0 neue | ApexScan.py L1875-1878 | Falls Telegram-Channel still ist: Scanner OK, nur alle Tickers in 3d-Duplicate-Filter |
 
 ---
 

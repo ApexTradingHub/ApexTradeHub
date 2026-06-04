@@ -60,10 +60,25 @@ TG_MIN_SCORE_DEFAULT = 70
 TRAILING_TRIGGER_MULT = 1.08    # high >= entry*1.08 aktiviert Trail
 TRAILING_TARGET_MULT  = 1.05    # SL springt auf entry*1.05 (+5% gesichert)
 
-# Trigger / Hold
-MAX_TRIGGER_DAYS = 1            # Signal expired wenn nach 1d nicht getriggert
-                                # (es sei denn re-validiert = Ticker in heutiger Scan)
-MAX_HOLD_DAYS    = 30           # Time-Exit nach 30d (BREAKOUT)
+# Trigger-Window: Signal expired wenn nach N Tagen nicht getriggert
+#  Mirrors apex_equity.py + apex_backtest_v2.py (= 3-day cap, matched 61.8 % BO-WR Messung).
+#  Re-Validation (Ticker in heutiger Scan) refresht signal_date.
+MAX_TRIGGER_DAYS = 3
+
+# Hold-Window: Time-Exit pro Setup (matched apex_equity.py horizon_to_days)
+HOLD_DAYS_PER_SETUP = {
+    "BREAKOUT":       21,
+    "VCP":            40,
+    "STAGE_2":        60,
+    "SHORT_SQUEEZE":  20,
+    "MEAN_REVERSION": 20,
+    "REVERSAL":       40,
+}
+HOLD_DAYS_DEFAULT = 21
+
+
+def hold_days_for(setup: str) -> int:
+    return HOLD_DAYS_PER_SETUP.get(setup, HOLD_DAYS_DEFAULT)
 
 # Pfade
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -522,10 +537,13 @@ def update_open_positions(state: dict, dry_run: bool = False) -> list:
             exit_price = p["stop"]
         else:
             try:
-                opened = datetime.fromisoformat(p["opened_at"])
-                hold = (datetime.now() - opened).days
+                # opened_at is UTC ISO with Z; replace Z->+00:00 for fromisoformat
+                opened_str = p["opened_at"].replace("Z", "+00:00")
+                opened = datetime.fromisoformat(opened_str)
+                hold = (datetime.now(timezone.utc) - opened).days
                 p["hold_days"] = hold
-                if hold >= MAX_HOLD_DAYS:
+                hold_limit = hold_days_for(p.get("setup", ""))
+                if hold >= hold_limit:
                     exit_reason = "Time Exit"
                     exit_price = cur
             except Exception:
