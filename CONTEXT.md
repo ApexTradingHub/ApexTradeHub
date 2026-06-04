@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-03 (Phase A Obsidian Brain shipped)
+**Letztes Update:** 2026-06-04 (Phase A + B shipped)
 
 ---
 
@@ -87,15 +87,17 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ### Aktive Roadmap (`CLAUDE_CODE_BRIEF.md`)
 - ✅ **Phase A — Obsidian Brain** (`apex_brain.py`) — shipped 2026-06-03 (`0c0a93b`)
-- ⏳ **Phase B — Paper Trader** (`apex_trader.py`) — Spec final:
+- ✅ **Phase B — Paper Trader** (`apex_trader.py`) — shipped 2026-06-04
   - BREAKOUT only, Top-1 nach Score pro Scan-Tag, Telegram-äquivalentes Gate
-  - $300 Kapital, $50 × max 5 Positionen, $50 Cash-Reserve
+  - $300 Kapital, $50 × max 5 Positionen (= $250 deployed + $50 Cash-Reserve)
   - Trailing: high ≥ Entry×1.08 → SL auf Entry×1.05 (einmaliger Sprung)
-  - Cron: `*/20 13-21 * * 1-5` (alle 20 min während US-Markt)
-  - Eigene Buchhaltung via `apex_positions.json` + Cash-Check vor Open
-  - Equity-Tracker bleibt nightly, unverändert
+  - Cron: `*/20 13-21 * * 1-5` (alle 20 min während US-Markt, GH Actions)
+  - Freshness-Gate: Signale älter als MAX_TRIGGER_DAYS=3d werden gar nicht erst aufgenommen
+  - State: `apex_positions.json` (pending/open/closed/expired + stats)
+  - Journal: `apex_trade_log.json` (append-only, alle Events)
+  - eToro-API als Stub (TRADING_MODE env var: paper|live)
   - Löst Backlog-Item 1 (Pending-Status) als Side-Effect
-- ⏳ **Phase C — Dashboard Paper-Tab** (hängt von B)
+- ⏳ **Phase C — Dashboard Paper-Tab** (hängt von B, ready to build)
 - ⏳ **Phase D — Equity-Research-Plugin** (optional, hängt von A)
 
 ---
@@ -134,6 +136,15 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-04** **Phase B: Paper Trader (`apex_trader.py`)** — autonome Trading-Engine
+  in Python + GH Actions Workflow `apex_trader.yml`. Liest `apex_signals.json`, wählt
+  Top-1 BREAKOUT pro Scan-Tag (Telegram-äquivalentes Gate), schreibt Pending in
+  `apex_positions.json`. Bei high≥buy_above → Trigger, Position auf @ Entry+max 0.5 %
+  Slippage, $50 abgezogen von Cash. TP/SL/Trailing/Time-Exit jeden 20-Min-Run.
+  Trailing: high≥Entry×1.08 → SL springt auf Entry×1.05 (one-shot). MAX_HOLD=30d,
+  MAX_TRIGGER_DAYS=3. Test: 3 Pendings (IBKR/ARE/ADI) → alle getriggert Lauf 2,
+  Cash $300→$150. eToro-Mode via TRADING_MODE env var (Stub für live).
+  **Löst Backlog-Item 1** (Pending-Status für Dashboard automatisch).
 - **2026-06-03** **Phase A: Obsidian Brain (`apex_brain.py`)** — autonomer Markdown-Writer
   in lokales Vault `./vault/` (gitignored). Liest `apex_signals.json`,
   `apex_equity_results.json`, `knowledge/trade_postmortems.json`, `apex_market.json`.

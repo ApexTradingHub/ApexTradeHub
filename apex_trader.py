@@ -1,0 +1,707 @@
+"""
+apex_trader.py — Paper-Trading-Engine (Phase B)
+
+Liest apex_signals.json, waehlt taeglich Top-1 BREAKOUT nach Score, eroeffnet
+Positionen wenn Trigger (high >= buy_above) erreicht und Cash verfuegbar.
+Trailing-Stop: bei high >= Entry*1.08 -> SL springt auf Entry*1.05 (one-shot).
+Schreibt apex_positions.json (State) + apex_trade_log.json (Journal).
+
+Mode-Switch via TRADING_MODE env var ("paper"|"live"). Im "live"-Modus
+ruft eToro-API auf (Stub, noch nicht implementiert).
+
+USAGE:
+    py apex_trader.py                 # einmaliger Run
+    py apex_trader.py --reset         # State + Log loeschen, frisch starten
+    py apex_trader.py --dry-run       # nichts schreiben, nur loggen
+    py apex_trader.py --status        # aktuellen Stand anzeigen
+
+DEPENDENCIES: yfinance, pandas
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import sys
+import traceback
+from datetime import datetime, date, timedelta, timezone
+from pathlib import Path
+from collections import defaultdict
+
+# ---------------------------------------------------------------------------
+# Config
+# ---------------------------------------------------------------------------
+TRADING_MODE = os.environ.get("TRADING_MODE", "paper").lower()  # "paper" | "live"
+ETORO_API_KEY = os.environ.get("ETORO_API_KEY", "")
+ETORO_ACCOUNT_ID = os.environ.get("ETORO_ACCOUNT_ID", "")
+
+# Risk parameters
+CAPITAL_INITIAL = 300.0         # Test-Portfolio Startkapital
+POSITION_SIZE   = 50.0          # USD pro Trade
+MAX_POSITIONS   = 5             # gleichzeitig offene Positionen
+CASH_RESERVE    = 50.0          # Mindest-Cash-Reserve (Puffer)
+
+# Setup-Filter (Phase B: nur BREAKOUT)
+ALLOWED_SETUPS  = {"BREAKOUT"}
+
+# Telegram-aequivalentes Gate (mirrors ApexScan.py)
+TG_MIN_RR       = 1.5
+TG_MIN_UPSIDE   = 8.0
+TG_MIN_SCORE    = {
+    "BREAKOUT":      70,
+    "VCP":           70,
+    "SHORT_SQUEEZE": 65,
+    "STAGE_2":       60,
+    "MEAN_REVERSION": 70,
+}
+TG_MIN_SCORE_DEFAULT = 70
+
+# Trailing-Stop
+TRAILING_TRIGGER_MULT = 1.08    # high >= entry*1.08 aktiviert Trail
+TRAILING_TARGET_MULT  = 1.05    # SL springt auf entry*1.05 (+5% gesichert)
+
+# Trigger / Hold
+MAX_TRIGGER_DAYS = 3            # Signal expired wenn nach 3d nicht getriggert
+MAX_HOLD_DAYS    = 30           # Time-Exit nach 30d (BREAKOUT)
+
+# Pfade
+SCRIPT_DIR = Path(__file__).resolve().parent
+SIGNALS_FILE   = SCRIPT_DIR / "apex_signals.json"
+POSITIONS_FILE = SCRIPT_DIR / "apex_positions.json"
+TRADE_LOG_FILE = SCRIPT_DIR / "apex_trade_log.json"
+
+
+# ---------------------------------------------------------------------------
+# Utils
+# ---------------------------------------------------------------------------
+def log(msg: str):
+    print(f"[Trader] {msg}", flush=True)
+
+
+def f(val, default=0.0):
+    if val is None:
+        return default
+    try:
+        return float(val)
+    except (TypeError, ValueError):
+        return default
+
+
+def now_iso() -> str:
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def today_date() -> date:
+    return date.today()
+
+
+def load_json(path: Path, default=None):
+    if not path.exists():
+        return default
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception as e:
+        log(f"WARN: cannot read {path.name}: {e}")
+        return default
+
+
+def save_json(path: Path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, indent=2, default=str, ensure_ascii=False)
+
+
+# ---------------------------------------------------------------------------
+# State init / I/O
+# ---------------------------------------------------------------------------
+def init_state() -> dict:
+    return {
+        "mode": TRADING_MODE,
+        "capital_initial": CAPITAL_INITIAL,
+        "cash": CAPITAL_INITIAL,
+        "last_updated": now_iso(),
+        "pending": [],   # signals seen, not yet triggered
+        "open":    [],   # active positions
+        "closed":  [],   # closed positions (history)
+        "expired": [],   # signals that expired without trigger
+        "stats": {
+            "total_trades":    0,
+            "open_trades":     0,
+            "wins":            0,
+            "losses":          0,
+            "pnl_realized":    0.0,
+            "pnl_unrealized":  0.0,
+            "equity":          CAPITAL_INITIAL,
+        },
+    }
+
+
+def load_state() -> dict:
+    state = load_json(POSITIONS_FILE)
+    if not state:
+        return init_state()
+    # Fill any new fields for forward compat
+    for k, v in init_state().items():
+        if k not in state:
+            state[k] = v
+    return state
+
+
+def load_trade_log() -> list:
+    return load_json(TRADE_LOG_FILE, default=[]) or []
+
+
+def append_log(entries: list):
+    log_data = load_trade_log()
+    log_data.extend(entries)
+    save_json(TRADE_LOG_FILE, log_data)
+
+
+# ---------------------------------------------------------------------------
+# Price feed (yfinance)
+# ---------------------------------------------------------------------------
+def batch_prices(tickers: list[str]) -> dict[str, float]:
+    """Return latest available price per ticker. Empty dict on failure."""
+    if not tickers:
+        return {}
+    try:
+        import yfinance as yf
+    except ImportError:
+        log("yfinance not installed; cannot fetch prices")
+        return {}
+
+    # Use 5-min intraday for fresh data; fallback to daily
+    result: dict[str, float] = {}
+    try:
+        df = yf.download(
+            tickers, period="2d", interval="5m",
+            progress=False, threads=False, group_by="ticker",
+        )
+        if len(tickers) == 1:
+            t = tickers[0]
+            if not df.empty and "Close" in df.columns:
+                last = df["Close"].dropna()
+                if len(last):
+                    result[t] = float(last.iloc[-1])
+        else:
+            for t in tickers:
+                try:
+                    s = df[t]["Close"].dropna()
+                    if len(s):
+                        result[t] = float(s.iloc[-1])
+                except Exception:
+                    pass
+    except Exception as e:
+        log(f"intraday fetch failed ({e}); falling back to daily")
+
+    # Daily fallback for missing tickers
+    missing = [t for t in tickers if t not in result]
+    if missing:
+        try:
+            df = yf.download(
+                missing, period="5d", interval="1d",
+                progress=False, threads=False, group_by="ticker",
+            )
+            if len(missing) == 1:
+                t = missing[0]
+                if not df.empty:
+                    s = df["Close"].dropna()
+                    if len(s):
+                        result[t] = float(s.iloc[-1])
+            else:
+                for t in missing:
+                    try:
+                        s = df[t]["Close"].dropna()
+                        if len(s):
+                            result[t] = float(s.iloc[-1])
+                    except Exception:
+                        pass
+        except Exception as e:
+            log(f"daily fallback failed: {e}")
+    return result
+
+
+def get_today_high(tickers: list[str]) -> dict[str, float]:
+    """Return today's intraday HIGH per ticker (for trigger check on intraday-runs)."""
+    if not tickers:
+        return {}
+    try:
+        import yfinance as yf
+        df = yf.download(
+            tickers, period="1d", interval="5m",
+            progress=False, threads=False, group_by="ticker",
+        )
+        result = {}
+        if len(tickers) == 1:
+            t = tickers[0]
+            if not df.empty and "High" in df.columns:
+                result[t] = float(df["High"].max())
+        else:
+            for t in tickers:
+                try:
+                    h = float(df[t]["High"].max())
+                    result[t] = h
+                except Exception:
+                    pass
+        return result
+    except Exception as e:
+        log(f"high fetch failed: {e}")
+        return {}
+
+
+# ---------------------------------------------------------------------------
+# Telegram-aequivalentes Gate
+# ---------------------------------------------------------------------------
+def passes_tg_gate(sig: dict) -> bool:
+    setup = sig.get("setup", "")
+    if setup not in ALLOWED_SETUPS:
+        return False
+    min_score = TG_MIN_SCORE.get(setup, TG_MIN_SCORE_DEFAULT)
+    return (
+        f(sig.get("score"))      >= min_score and
+        f(sig.get("rr"))         >= TG_MIN_RR and
+        f(sig.get("upside_pct")) >= TG_MIN_UPSIDE
+    )
+
+
+# ---------------------------------------------------------------------------
+# Signal selection: Top-1 BREAKOUT per scan-day
+# ---------------------------------------------------------------------------
+def select_new_signals(state: dict, signals: list) -> list:
+    """Return list of new pending entries to add (Top-1 BREAKOUT per scan-day)."""
+    if not signals:
+        return []
+
+    # Freshness gate: nur Signale jünger als MAX_TRIGGER_DAYS aufnehmen
+    today = today_date()
+    cutoff = today - timedelta(days=MAX_TRIGGER_DAYS)
+
+    # Bucket by signal date
+    by_date: dict[str, list] = defaultdict(list)
+    for s in signals:
+        if not passes_tg_gate(s):
+            continue
+        d = s.get("date")
+        if not d:
+            continue
+        try:
+            d_dt = datetime.fromisoformat(d).date()
+            if d_dt < cutoff:
+                continue
+        except Exception:
+            continue
+        by_date[d].append(s)
+
+    # Skip dates we already tracked
+    tracked_keys = set()
+    for bucket in ("pending", "open", "closed", "expired"):
+        for p in state.get(bucket, []):
+            tracked_keys.add((p.get("ticker"), p.get("signal_date")))
+
+    held_tickers = {p["ticker"] for p in state.get("open", [])}
+
+    new_pending = []
+    for sigdate, day_sigs in by_date.items():
+        # Skip if we already picked any signal for this scan-day
+        if any(k[1] == sigdate for k in tracked_keys):
+            continue
+        # Filter: not already held, not duplicate
+        candidates = [s for s in day_sigs
+                      if s["ticker"] not in held_tickers
+                      and (s["ticker"], sigdate) not in tracked_keys]
+        if not candidates:
+            continue
+        candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
+        top = candidates[0]
+        new_pending.append({
+            "id": f"PAPER_{top['ticker']}_{sigdate}",
+            "ticker": top["ticker"],
+            "setup": top["setup"],
+            "sector": top.get("sector", "Unknown"),
+            "signal_date": sigdate,
+            "entry":  f(top.get("buy_above")),
+            "stop_initial": f(top.get("stop")),
+            "target": f(top.get("target")),
+            "score": f(top.get("score")),
+            "rr":    f(top.get("rr")),
+            "upside_pct": f(top.get("upside_pct")),
+            "added_at": now_iso(),
+            "status": "pending",
+            "mode": TRADING_MODE,
+        })
+    return new_pending
+
+
+# ---------------------------------------------------------------------------
+# Pending -> Open (Trigger check)
+# ---------------------------------------------------------------------------
+def trigger_pending(state: dict, dry_run: bool = False) -> list:
+    """Walk pending list, expire stale, trigger if price >= entry. Returns events."""
+    if not state["pending"]:
+        return []
+
+    today = today_date()
+    events = []
+    still_pending = []
+
+    # Bulk price fetch: today's high for ALL pending tickers
+    tickers = list({p["ticker"] for p in state["pending"]})
+    highs = get_today_high(tickers)
+    prices = batch_prices(tickers)
+
+    for p in state["pending"]:
+        # 1. Expiry check
+        try:
+            sig_date = datetime.fromisoformat(p["signal_date"]).date()
+            days_since = (today - sig_date).days
+        except Exception:
+            days_since = 0
+        if days_since > MAX_TRIGGER_DAYS:
+            p["status"] = "expired"
+            p["expired_at"] = now_iso()
+            state["expired"].append(p)
+            events.append({"event": "expired", "id": p["id"], "ts": now_iso(),
+                           "ticker": p["ticker"], "reason": f"no trigger after {days_since}d"})
+            log(f"  expired: {p['ticker']} (signal {p['signal_date']})")
+            continue
+
+        # 2. Capacity & cash checks
+        if len(state["open"]) >= MAX_POSITIONS:
+            still_pending.append(p)
+            continue
+        if state["cash"] < POSITION_SIZE:
+            still_pending.append(p)
+            continue
+
+        # 3. Trigger check: today's HIGH must touch entry
+        high_today = highs.get(p["ticker"])
+        cur_price = prices.get(p["ticker"])
+        if high_today is None or cur_price is None:
+            still_pending.append(p)  # data fail: retry next run
+            continue
+
+        if high_today >= p["entry"]:
+            # FIRE
+            entry_actual = max(p["entry"], min(cur_price, p["entry"] * 1.005))
+            # Simulate fill: at entry if high>=entry, but cap slippage at +0.5%
+            if not dry_run:
+                open_position(state, p, entry_actual)
+            events.append({
+                "event": "open", "id": p["id"], "ts": now_iso(),
+                "ticker": p["ticker"], "entry_signal": p["entry"],
+                "entry_actual": entry_actual, "mode": TRADING_MODE,
+            })
+            log(f"  TRIGGER: {p['ticker']} @ ${entry_actual:.2f} (signal entry ${p['entry']:.2f}, high ${high_today:.2f})")
+        else:
+            still_pending.append(p)
+
+    state["pending"] = still_pending
+    return events
+
+
+def open_position(state: dict, pending: dict, entry_actual: float):
+    """Move from pending to open."""
+    shares = POSITION_SIZE / entry_actual
+    pos = {
+        **pending,
+        "entry_actual": entry_actual,
+        "shares": shares,
+        "size_usd": POSITION_SIZE,
+        "stop":  pending["stop_initial"],
+        "high_since_entry": entry_actual,
+        "trailing_active": False,
+        "opened_at": now_iso(),
+        "status": "open",
+        "current_price": entry_actual,
+        "pnl_pct": 0.0,
+        "pnl_usd": 0.0,
+        "hold_days": 0,
+    }
+    state["open"].append(pos)
+    state["cash"] -= POSITION_SIZE
+
+    if TRADING_MODE == "live":
+        try:
+            etoro_open_position(pos)
+        except Exception as e:
+            log(f"  ERR live-open: {e}")
+
+
+# ---------------------------------------------------------------------------
+# Open -> Closed (TP / SL / Trailing / Time)
+# ---------------------------------------------------------------------------
+def update_open_positions(state: dict, dry_run: bool = False) -> list:
+    """Refresh prices, manage trailing, close if TP/SL/time hit."""
+    if not state["open"]:
+        return []
+
+    events = []
+    tickers = list({p["ticker"] for p in state["open"]})
+    prices = batch_prices(tickers)
+    highs = get_today_high(tickers)
+
+    still_open = []
+    for p in state["open"]:
+        cur = prices.get(p["ticker"])
+        high = highs.get(p["ticker"], cur)
+        if cur is None:
+            log(f"  no price for {p['ticker']} — keeping open")
+            still_open.append(p)
+            continue
+
+        entry = p["entry_actual"]
+
+        # Update high-since-entry (use today's high if available)
+        if high is not None and high > p.get("high_since_entry", entry):
+            p["high_since_entry"] = high
+
+        # Trailing activation (one-shot)
+        if not p.get("trailing_active"):
+            if p["high_since_entry"] >= entry * TRAILING_TRIGGER_MULT:
+                new_stop = entry * TRAILING_TARGET_MULT
+                old_stop = p["stop"]
+                p["stop"] = max(old_stop, new_stop)
+                p["trailing_active"] = True
+                p["trailing_activated_at"] = now_iso()
+                events.append({
+                    "event": "trailing_activated", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"], "old_stop": old_stop, "new_stop": p["stop"],
+                    "high": p["high_since_entry"],
+                })
+                log(f"  trailing on: {p['ticker']} SL ${old_stop:.2f} -> ${p['stop']:.2f}")
+
+        # Exit checks (priority: TP > SL > Time)
+        exit_reason = None
+        exit_price = cur
+
+        if high is not None and high >= p["target"]:
+            exit_reason = "Take Profit"
+            exit_price = p["target"]
+        elif cur <= p["stop"]:
+            exit_reason = "Stop Loss" + (" (Trailing)" if p.get("trailing_active") else "")
+            exit_price = p["stop"]
+        else:
+            try:
+                opened = datetime.fromisoformat(p["opened_at"])
+                hold = (datetime.now() - opened).days
+                p["hold_days"] = hold
+                if hold >= MAX_HOLD_DAYS:
+                    exit_reason = "Time Exit"
+                    exit_price = cur
+            except Exception:
+                pass
+
+        if exit_reason:
+            if not dry_run:
+                close_position(state, p, exit_price, exit_reason)
+            events.append({
+                "event": "close", "id": p["id"], "ts": now_iso(),
+                "ticker": p["ticker"], "exit_price": exit_price,
+                "reason": exit_reason, "pnl_pct": (exit_price - entry) / entry * 100,
+            })
+            log(f"  CLOSE: {p['ticker']} @ ${exit_price:.2f} ({exit_reason}, "
+                f"{(exit_price - entry) / entry * 100:+.2f}%)")
+            continue
+
+        # Still open: refresh live PnL
+        p["current_price"] = cur
+        p["pnl_pct"] = (cur - entry) / entry * 100
+        p["pnl_usd"] = p["size_usd"] * p["pnl_pct"] / 100
+        still_open.append(p)
+
+    state["open"] = still_open
+    return events
+
+
+def close_position(state: dict, pos: dict, exit_price: float, reason: str):
+    entry = pos["entry_actual"]
+    pnl_pct = (exit_price - entry) / entry * 100
+    pnl_usd = pos["size_usd"] * pnl_pct / 100
+    closed = {
+        **pos,
+        "exit_price": exit_price,
+        "exit_reason": reason,
+        "closed_at": now_iso(),
+        "pnl_pct": pnl_pct,
+        "pnl_usd": pnl_usd,
+        "status": "closed",
+    }
+    state["closed"].append(closed)
+    # Cash flow: return position size + pnl
+    state["cash"] += pos["size_usd"] + pnl_usd
+
+    if TRADING_MODE == "live":
+        try:
+            etoro_close_position(pos, exit_price, reason)
+        except Exception as e:
+            log(f"  ERR live-close: {e}")
+
+
+# ---------------------------------------------------------------------------
+# Stats recompute
+# ---------------------------------------------------------------------------
+def recompute_stats(state: dict):
+    closed = state["closed"]
+    open_pos = state["open"]
+    wins = sum(1 for c in closed if c.get("pnl_pct", 0) > 0)
+    losses = sum(1 for c in closed if c.get("pnl_pct", 0) <= 0)
+    pnl_real = sum(c.get("pnl_usd", 0) for c in closed)
+    pnl_unr  = sum(p.get("pnl_usd", 0) for p in open_pos)
+    state["stats"] = {
+        "total_trades":   len(closed),
+        "open_trades":    len(open_pos),
+        "wins":           wins,
+        "losses":         losses,
+        "win_rate":       (wins / len(closed) * 100) if closed else 0.0,
+        "pnl_realized":   pnl_real,
+        "pnl_unrealized": pnl_unr,
+        "equity":         state["cash"] + sum(p["size_usd"] + p.get("pnl_usd", 0)
+                                              for p in open_pos),
+    }
+
+
+# ---------------------------------------------------------------------------
+# eToro stubs (live mode)
+# ---------------------------------------------------------------------------
+def etoro_open_position(pos: dict):
+    """Stub: POST /v1/portfolios/{account_id}/positions."""
+    if not (ETORO_API_KEY and ETORO_ACCOUNT_ID):
+        raise RuntimeError("ETORO_API_KEY / ETORO_ACCOUNT_ID missing")
+    log(f"  [eToro] would OPEN {pos['ticker']} ${pos['size_usd']:.0f} "
+        f"SL ${pos['stop']:.2f} TP ${pos['target']:.2f}")
+    # TODO: implement actual eToro API call
+
+
+def etoro_close_position(pos: dict, exit_price: float, reason: str):
+    """Stub: DELETE /v1/portfolios/{account_id}/positions/{id}."""
+    if not (ETORO_API_KEY and ETORO_ACCOUNT_ID):
+        raise RuntimeError("ETORO_API_KEY / ETORO_ACCOUNT_ID missing")
+    log(f"  [eToro] would CLOSE {pos['ticker']} @ ${exit_price:.2f} ({reason})")
+    # TODO: implement actual eToro API call
+
+
+# ---------------------------------------------------------------------------
+# Status print
+# ---------------------------------------------------------------------------
+def print_status(state: dict):
+    s = state["stats"]
+    log(f"=== {state['mode'].upper()} STATUS ===")
+    log(f"Cash:        ${state['cash']:.2f}")
+    log(f"Equity:      ${s['equity']:.2f}")
+    log(f"Open:        {s['open_trades']} positions")
+    log(f"Closed:      {s['total_trades']} trades ({s['wins']}W/{s['losses']}L, "
+        f"WR {s.get('win_rate', 0):.1f}%)")
+    log(f"PnL real:    ${s['pnl_realized']:+.2f}")
+    log(f"PnL unreal:  ${s['pnl_unrealized']:+.2f}")
+    log(f"Pending:     {len(state['pending'])}")
+    log(f"Expired:     {len(state['expired'])}")
+    if state["open"]:
+        log("--- OPEN ---")
+        for p in state["open"]:
+            trail = "T" if p.get("trailing_active") else " "
+            log(f"  [{trail}] {p['ticker']:<6} "
+                f"entry ${p['entry_actual']:.2f}  cur ${p.get('current_price', 0):.2f}  "
+                f"SL ${p['stop']:.2f}  TP ${p['target']:.2f}  "
+                f"PnL {p.get('pnl_pct', 0):+.2f}%")
+    if state["pending"]:
+        log("--- PENDING ---")
+        for p in state["pending"]:
+            log(f"  {p['ticker']:<6}  buy>=${p['entry']:.2f}  score {p['score']:.0f}  "
+                f"signal {p['signal_date']}")
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+def run_trader(dry_run: bool = False):
+    log(f"=== ApexTrader run ({TRADING_MODE.upper()} mode) ===")
+
+    state = load_state()
+    state["mode"] = TRADING_MODE
+    state["last_updated"] = now_iso()
+
+    all_events = []
+
+    # 1. Update open positions (TP/SL/trailing/time-exit)
+    log("step 1: update open positions")
+    events1 = update_open_positions(state, dry_run=dry_run)
+    all_events.extend(events1)
+
+    # 2. Walk pending → trigger if cash + price ok
+    log("step 2: trigger pending")
+    events2 = trigger_pending(state, dry_run=dry_run)
+    all_events.extend(events2)
+
+    # 3. Pick new signals from today's scan (Top-1 BREAKOUT)
+    log("step 3: select new signals")
+    signals = load_json(SIGNALS_FILE) or []
+    new_pending = select_new_signals(state, signals)
+    if new_pending:
+        if not dry_run:
+            state["pending"].extend(new_pending)
+        for np_ in new_pending:
+            all_events.append({
+                "event": "pending_added", "id": np_["id"], "ts": now_iso(),
+                "ticker": np_["ticker"], "signal_date": np_["signal_date"],
+                "score": np_["score"],
+            })
+        log(f"  +{len(new_pending)} new pending: {[p['ticker'] for p in new_pending]}")
+    else:
+        log("  no new signals")
+
+    # 4. Recompute stats
+    recompute_stats(state)
+
+    # 5. Persist
+    if not dry_run:
+        save_json(POSITIONS_FILE, state)
+        # Always ensure trade-log file exists (even empty) for git workflow
+        if all_events:
+            append_log(all_events)
+        elif not TRADE_LOG_FILE.exists():
+            save_json(TRADE_LOG_FILE, [])
+        log(f"saved: {POSITIONS_FILE.name} ({len(all_events)} events logged)")
+    else:
+        log(f"[DRY-RUN] would save with {len(all_events)} events")
+
+    print_status(state)
+    return state
+
+
+def reset_state():
+    if POSITIONS_FILE.exists():
+        POSITIONS_FILE.unlink()
+        log(f"deleted {POSITIONS_FILE.name}")
+    if TRADE_LOG_FILE.exists():
+        TRADE_LOG_FILE.unlink()
+        log(f"deleted {TRADE_LOG_FILE.name}")
+    log("state reset complete")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--reset", action="store_true", help="loescht apex_positions.json + apex_trade_log.json")
+    ap.add_argument("--dry-run", action="store_true", help="nichts schreiben, nur loggen")
+    ap.add_argument("--status", action="store_true", help="aktuellen State anzeigen, kein Run")
+    args = ap.parse_args()
+
+    if args.reset:
+        reset_state()
+        return
+
+    if args.status:
+        state = load_state()
+        print_status(state)
+        return
+
+    try:
+        run_trader(dry_run=args.dry_run)
+    except Exception as e:
+        log(f"FATAL: {e}")
+        log(traceback.format_exc())
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

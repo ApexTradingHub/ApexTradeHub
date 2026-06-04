@@ -1,0 +1,35 @@
+name: ApexTrader
+
+on:
+  schedule:
+    # Every 20 min during US market hours (13:00-21:00 UTC = 9-17 ET)
+    - cron: '*/20 13-21 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  trader:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install yfinance pandas requests pytz
+      - name: ApexTrader
+        env:
+          ETORO_API_KEY:    ${{ secrets.ETORO_API_KEY }}
+          ETORO_ACCOUNT_ID: ${{ secrets.ETORO_ACCOUNT_ID }}
+          TRADING_MODE:     paper
+        run: python apex_trader.py
+      - name: Push
+        run: |
+          git config user.name "ApexScan Bot"
+          git config user.email "bot@apexscan.com"
+          git stash
+          git pull origin master --rebase || true
+          git stash pop || true
+          git add apex_positions.json apex_trade_log.json
+          git diff --staged --quiet || git commit -m "Trader $(date +'%Y-%m-%d %H:%M')"
+          git push
