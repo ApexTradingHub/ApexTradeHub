@@ -113,8 +113,21 @@ def load_json(path, default):
 
 
 def save_json(path, data):
+    # allow_nan=False zwingt valid JSON (kein NaN/Infinity) — Browser-fetch sicher.
+    # Bei Erfolg wird normal geschrieben; bei NaN-Fehler vorher per _clean_nan absichern.
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+        try:
+            json.dump(data, f, indent=2, ensure_ascii=False, allow_nan=False)
+        except ValueError:
+            # Fallback: NaN-Inhalt cleanen
+            import math as _math
+            def _clean(o):
+                if isinstance(o, dict): return {k: _clean(v) for k, v in o.items()}
+                if isinstance(o, list): return [_clean(x) for x in o]
+                if isinstance(o, float) and (_math.isnan(o) or _math.isinf(o)): return None
+                return o
+            f.seek(0); f.truncate()
+            json.dump(_clean(data), f, indent=2, ensure_ascii=False, allow_nan=False)
 
 
 def horizon_to_days(horizon: str) -> int:
@@ -519,6 +532,17 @@ def main():
     # apex_open_positions.json. Dashboard nutzt das als Single-Source.
     today = datetime.now().date()
     open_positions = compute_open_positions(signals, all_results, today)
+    # NaN-Schutz: Browser-JSON-Parser akzeptiert kein NaN. Ersetze durch None.
+    import math as _math
+    def _clean_nan(obj):
+        if isinstance(obj, dict):
+            return {k: _clean_nan(v) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [_clean_nan(x) for x in obj]
+        if isinstance(obj, float) and _math.isnan(obj):
+            return None
+        return obj
+    open_positions = _clean_nan(open_positions)
     save_json(OPEN_POSITIONS_FILE, open_positions)
     pending_n = sum(1 for p in open_positions if p["status"] == "pending")
     open_n    = sum(1 for p in open_positions if p["status"] == "open")
