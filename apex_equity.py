@@ -22,9 +22,10 @@ warnings.filterwarnings("ignore")
 # =============================================================
 # CONFIG
 # =============================================================
-SIGNALS_FILE      = "apex_signals.json"
-RESULTS_FILE      = "apex_equity_results.json"       # alle Signale
-RESULTS_FILE_TOP2 = "apex_equity_top2.json"          # nur Top-2 Qualitätssignale
+SIGNALS_FILE       = "apex_signals.json"
+RESULTS_FILE       = "apex_equity_results.json"       # alle geschlossenen Trades
+RESULTS_FILE_TOP2  = "apex_equity_top2.json"          # nur Top-2 Qualitätssignale
+OPEN_POSITIONS_FILE = "apex_open_positions.json"      # aktive: pending/open/expired
 CHART_FILE        = "apex_equity_chart.png"
 CHART_FILE_TOP2   = "apex_equity_top2_chart.png"
 TRADE_SIZE        = 200.0
@@ -512,6 +513,168 @@ def main():
             f"{r['exit_reason']:11} D+{r['exit_day']} | "
             f"Equity: ${r.get('equity', 0):.2f}"
         )
+
+    # ---- Track 3: Aktive Pending/Open/Expired Snapshot ----
+    # Schreibt Live-Status fuer JEDES nicht-geschlossene Signal in
+    # apex_open_positions.json. Dashboard nutzt das als Single-Source.
+    today = datetime.now().date()
+    open_positions = compute_open_positions(signals, all_results, today)
+    save_json(OPEN_POSITIONS_FILE, open_positions)
+    pending_n = sum(1 for p in open_positions if p["status"] == "pending")
+    open_n    = sum(1 for p in open_positions if p["status"] == "open")
+    expired_n = sum(1 for p in open_positions if p["status"] == "expired")
+    print(f"Active-Snapshot: {pending_n} pending, {open_n} open, {expired_n} expired "
+          f"-> {OPEN_POSITIONS_FILE}")
+
+
+def compute_open_positions(signals, closed_results, today):
+    """Berechnet aktiven Status (pending/open/expired) für jedes nicht-geschlossene Signal.
+    Schreibt apex_open_positions.json. Dashboard nutzt das als Single-Source-of-Truth.
+
+    Lifecycle:
+      - Signal frisch (age <= MAX_TRIGGER_DAYS) und High < buy_above   -> pending
+      - High >= buy_above irgendwann in den ersten 3d                  -> open (mit PnL)
+      - Age > MAX_TRIGGER_DAYS und nie getriggert                      -> expired
+      - Getriggert und TP/SL/Time-Exit erreicht                        -> nicht hier (in closed_results)
+    """
+    closed_keys = {(t["ticker"], t["date"]) for t in closed_results}
+    # Cutoff: letzte 60 Tage (max Hold ueber alle Setups)
+    cutoff = today - timedelta(days=60)
+    candidates = []
+    for s in signals:
+        if (s["ticker"], s.get("date", "")) in closed_keys:
+            continue
+        try:
+            sd = datetime.strptime(s["date"], "%Y-%m-%d").date()
+        except Exception:
+            continue
+        if sd < cutoff:
+            continue
+        candidates.append(s)
+    if not candidates:
+        return []
+
+    # Bulk-Download (60d Daily) fuer alle aktiven Tickers — eine yf-call statt N
+    tickers = sorted({s["ticker"] for s in candidates})
+    print(f"compute_open: {len(candidates)} candidates, batch-download {len(tickers)} tickers...")
+    try:
+        bulk = yf.download(tickers, period="60d", interval="1d",
+                           auto_adjust=True, progress=False, threads=True,
+                           group_by="ticker" if len(tickers) > 1 else None)
+    except Exception as e:
+        print(f"compute_open: bulk download failed {e}")
+        return []
+
+    def extract(t):
+        try:
+            if len(tickers) == 1:
+                df = bulk
+            elif hasattr(bulk.columns, "levels"):
+                df = bulk[t] if t in bulk.columns.get_level_values(0) else None
+            else:
+                df = None
+            if df is None or df.empty:
+                return None
+            # Flatten MultiIndex if any
+            if hasattr(df.columns, "levels"):
+                df.columns = df.columns.get_level_values(0)
+            return df
+        except Exception:
+            return None
+
+    now_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    result = []
+    for s in candidates:
+        df = extract(s["ticker"])
+        if df is None:
+            continue
+        sd = datetime.strptime(s["date"], "%Y-%m-%d").date()
+        age_days = (today - sd).days
+        entry = float(s["buy_above"])
+        # Nur Bars NACH dem Signal-Tag
+        try:
+            post = df[df.index.date > sd]
+        except Exception:
+            continue
+
+        base = {
+            "ticker":   s["ticker"],
+            "date":     s["date"],
+            "setup":    s["setup"],
+            "sector":   s.get("sector", ""),
+            "entry":    round(entry, 2),
+            "stop":     round(float(s["stop"]), 2),
+            "target":   round(float(s["target"]), 2),
+            "score":    round(float(s.get("score", 0)), 1),
+            "rr":       round(float(s.get("rr", 0)), 2),
+            "upside_pct": round(float(s.get("upside_pct", 0)), 1),
+            "days_since_signal": age_days,
+            "updated_at": now_iso,
+        }
+
+        if len(post) == 0:
+            # Noch kein Bar nach dem Signal (Signal heute, vor US-Open)
+            result.append({**base, "status": "pending", "trigger_day": None,
+                           "trigger_date": None, "current_price": None,
+                           "current_high": None, "pnl_pct_unrealized": None})
+            continue
+
+        # Trigger suchen — bis MAX_TRIGGER_DAYS oder Ende der post-Bars
+        trigger_idx = None
+        for i in range(min(MAX_TRIGGER_DAYS, len(post))):
+            try:
+                hi = post["High"].iloc[i]
+                hi = float(hi.item()) if hasattr(hi, "item") else float(hi)
+            except Exception:
+                continue
+            if hi >= entry:
+                trigger_idx = i
+                break
+
+        try:
+            import math
+            last_close_raw = post["Close"].iloc[-1]
+            last_close = float(last_close_raw.item()) if hasattr(last_close_raw, "item") else float(last_close_raw)
+            if math.isnan(last_close):
+                last_close = None
+        except Exception:
+            last_close = None
+
+        if trigger_idx is None:
+            status = "pending" if age_days <= MAX_TRIGGER_DAYS else "expired"
+            result.append({**base, "status": status, "trigger_day": None,
+                           "trigger_date": None, "current_price": last_close,
+                           "current_high": None, "pnl_pct_unrealized": None})
+            continue
+
+        # Triggered
+        try:
+            trigger_date = post.index[trigger_idx].date().isoformat()
+        except Exception:
+            trigger_date = None
+        trigger_day_num = trigger_idx + 1   # D+1, D+2, ...
+
+        # High seit Trigger (fuer Trail-Anzeige)
+        try:
+            import math
+            highs_since = post["High"].iloc[trigger_idx:]
+            current_high_val = float(highs_since.max().item()) if hasattr(highs_since.max(), "item") else float(highs_since.max())
+            if math.isnan(current_high_val):
+                current_high_val = None
+        except Exception:
+            current_high_val = None
+
+        pnl_pct = ((last_close - entry) / entry * 100) if last_close is not None else None
+        result.append({
+            **base,
+            "status": "open",
+            "trigger_day":  trigger_day_num,
+            "trigger_date": trigger_date,
+            "current_price": round(last_close, 2) if last_close is not None else None,
+            "current_high":  round(current_high_val, 2) if current_high_val is not None else None,
+            "pnl_pct_unrealized": round(pnl_pct, 2) if pnl_pct is not None else None,
+        })
+    return result
 
 
 def git_push():

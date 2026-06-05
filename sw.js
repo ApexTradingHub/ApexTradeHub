@@ -1,4 +1,4 @@
-const CACHE = 'apexscan-v19';
+const CACHE = 'apexscan-v20';
 
 // App shell – alles was sich selten ändert
 const SHELL = [
@@ -12,7 +12,8 @@ const DATA_FILES = [
   '/ApexTradeHub/apex_equity_results.json',
   '/ApexTradeHub/apex_equity_top2.json',
   '/ApexTradeHub/apex_market.json',
-  '/ApexTradeHub/apex_positions.json'
+  '/ApexTradeHub/apex_positions.json',
+  '/ApexTradeHub/apex_open_positions.json'
 ];
 
 // ── Install: Shell cachen ──

@@ -965,11 +965,13 @@ const EF  = 'apex_equity_results.json';
 const EF2 = 'apex_equity_top2.json';
 const MF  = 'apex_market.json';
 const PF  = 'apex_positions.json';
+const OPF = 'apex_open_positions.json';  // equity-managed lifecycle source-of-truth
 
 /* ── STATE ── */
 let eqInst, setupInst, allR = [], topR = [], sigsAll = [], eqMode = 'both';
 let histSortCol = 'date', histSortDir = -1; // -1 = desc
 let paperState = null;
+let openPositions = [];   // pending/open/expired snapshot
 
 /* ── CHART DEFAULTS ── */
 const gc = 'rgba(99,135,255,0.06)';
@@ -980,7 +982,7 @@ const SETUP_META = {
   STAGE_2:      { label: '🚀 Trend',      color: 'var(--green)',  badge: 'badge-green',  hold: 60 },
   VCP:          { label: '🔹 Bounceback', color: 'var(--purple)', badge: 'badge-purple', hold: 40 },
   SHORT_SQUEEZE:{ label: '🔥 Bet',        color: 'var(--orange)', badge: 'badge-orange', hold: 20 },
-  BREAKOUT:     { label: '🔵 Breakout',   color: 'var(--blue)',   badge: 'badge-blue',   hold: 15 },
+  BREAKOUT:     { label: '🔵 Breakout',   color: 'var(--blue)',   badge: 'badge-blue',   hold: 21 },
   MEAN_REVERSION:{ label: '🟢 Dip',       color: 'var(--cyan)',   badge: 'badge-amber',  hold: 20 },
   REVERSAL:     { label: 'Reversal',      color: 'var(--teal)',   badge: 'badge-teal',   hold: 40 },
 };
@@ -1411,27 +1413,38 @@ function renderHistory() {
              cat_earnings_blackout: s.cat_earnings_blackout };
   });
 
-  /* open / pending / expired rows (signals not closed) — incl. non-Telegram signals
-     Status-Logik (matched apex_trader.py + apex_equity.py):
-       age <= 3d (TRIGGER_WINDOW)         → pending      (warten auf Trigger)
-       3d < age <= hold_days[setup]       → open         (vermutlich getriggert, im Hold)
-       age > hold_days[setup]             → expired      (Trade-Window vorbei)               */
+  /* open / pending / expired rows (signals not closed)
+     Source-of-Truth: apex_open_positions.json (equity-managed lifecycle).
+     Fallback wenn nicht im File: alters-Heuristik. */
   const TRIGGER_WINDOW_DAYS = 3;
   const today = new Date();
   const holdDays = k => setupMeta(k).hold;
   const dayDiff = (d1, d2) => Math.round((d1 - d2) / 86400000);
+  // Map key -> equity-managed live state
+  const opMap = {};
+  openPositions.forEach(p => { opMap[p.ticker + '|' + p.date] = p; });
   const seen = new Set();
   const nonClosed = [];
   sigsAll.forEach(s => {
     const key = s.ticker + '|' + s.date;
     if (!SETUP_META[s.setup] || closedKeys.has(key) || seen.has(key)) return;
     seen.add(key);
-    const sigD = new Date(s.date);
-    const age = dayDiff(today, sigD);
-    let status;
-    if      (age <= TRIGGER_WINDOW_DAYS)  status = 'pending';
-    else if (age <= holdDays(s.setup))    status = 'open';
-    else                                  status = 'expired';
+    const live = opMap[key];
+    let status, currentPrice = null, pnlPct = null, triggerDay = null;
+    if (live) {
+      // Source of truth = equity
+      status = live.status;
+      currentPrice = live.current_price;
+      pnlPct = live.pnl_pct_unrealized;
+      triggerDay = live.trigger_day;
+    } else {
+      // Fallback: Alters-Heuristik
+      const sigD = new Date(s.date);
+      const age = dayDiff(today, sigD);
+      if      (age <= TRIGGER_WINDOW_DAYS)  status = 'pending';
+      else if (age <= holdDays(s.setup))    status = 'open';
+      else                                  status = 'expired';
+    }
     nonClosed.push({
       date: s.date, ticker: s.ticker, setup: s.setup, sector: s.sector || '',
       entry: s.buy_above, buy_above: s.buy_above, target: s.target, stop: s.stop,
@@ -1441,8 +1454,10 @@ function renderHistory() {
       cat_analyst_upside:    s.cat_analyst_upside,
       cat_short_pct:         s.cat_short_pct,
       cat_earnings_blackout: s.cat_earnings_blackout,
-      pnl_pct: null, pnl_usd: null, exit_reason: null, exit_day: null, _exitDate: '—',
+      pnl_pct: pnlPct, pnl_usd: null,
+      exit_reason: null, exit_day: triggerDay, _exitDate: '—',
       _status: status,
+      _current_price: currentPrice,
     });
   });
 
@@ -1520,8 +1535,11 @@ function renderHistory() {
 async function loadData() {
   const upd = document.getElementById('lastUpdate');
   upd.textContent = 'Lädt…';
-  const [sigs, rA, rT, mkt, pState] = await Promise.all([fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF)]);
+  const [sigs, rA, rT, mkt, pState, opSnap] = await Promise.all([
+    fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF), fetchJ(OPF)
+  ]);
   paperState = pState || null;
+  openPositions = Array.isArray(opSnap) ? opSnap : [];
   if (!sigs && !rA) {
     upd.textContent = 'Fehler: Dateien nicht gefunden';
     const badge = document.getElementById('regimeBadge');
