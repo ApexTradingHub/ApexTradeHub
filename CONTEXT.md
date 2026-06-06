@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-04 (Phase A + B + C shipped)
+**Letztes Update:** 2026-06-06 (Oracle-VM-Migration + Workflow-Hardening + Paper-Tab-Redesign)
 
 ---
 
@@ -56,10 +56,13 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 | Finding | n | Status | Lift | Action falls CONFIRMED |
 |---|---|---|---|---|
-| **⚡ Pocket Pivot Edge** | 21 | MED → CONFIRMED bei n≥30 | **+25pp WR** | Hard-Filter-Kandidat: skip BREAKOUT ohne PP |
-| **🎯 analyst_upside>15 NEGATIV** | 19 | MED → CONFIRMED bei n≥30 | **−22.7pp WR** (vorher -17, **stärker negativ**) | Catalyst-Score-Delta entfernen oder invertieren |
-| **Score-Cap-Hypothese** | 90-100: n=18 (72.2 %)<br>100+: n=24 (70.8 %) | TENTATIVE | 100+ KEINE bessere WR als 90-100 (bestätigt) | Telegram-Ranking-Score-Cap bei 100 |
-| **🔵 BREAKOUT × RSI≥70** | 12 | HYPOTHESIS (neu 2026-06-04) | **+16pp WR (75 %)** | RSI-Obergrenze 68→72 lockern für BREAKOUT |
+| **⚡ Pocket Pivot Edge** | 24 | MED → CONFIRMED bei n≥30 | **+20pp WR** (cooled von +25, naehert sich n=30) | Hard-Filter-Kandidat: skip BREAKOUT ohne PP |
+| **🎯 analyst_upside>15 NEGATIV** | 20 | MED → CONFIRMED bei n≥30 | **−19pp WR** (was -22, leicht moderiert) | Catalyst-Score-Delta entfernen oder invertieren |
+| **Score-Cap-Hypothese** | 90-100: n=18 (72.2 %)<br>100+: **n=29 (69.0 %)** | TENTATIVE (n=29 bei 100+ fast bei CONFIRMED-threshold) | 100+ KEINE bessere WR als 90-100 — verfestigt | Telegram-Ranking-Score-Cap bei 100 |
+| **🔵 BREAKOUT × RSI≥70** | 12 | HYPOTHESIS | **+15pp WR (75 %)** | RSI-Obergrenze 68→72 lockern für BREAKOUT |
+| **⚡ Gap ≥2 %** | 7 | LOW (n→ noch klein) | **+27pp WR (71 %)** — starkes Signal | Gap-Score-Boost (aktuell +8), evtl. erhoehen |
+| **🔵 BREAKOUT × perf_120 0-25** | 27 | MED | -15pp WR (44 %, war -17) | Score-Penalty |
+| **🔵 BREAKOUT × vol_lt_1** | 27 | MED | -12pp WR (48 %) | vol≥1.0-Gate validiert |
 | **🔵 BREAKOUT × perf_120 25-50** | 24 | MED | +13pp WR (71 %) | Score-Bonus für diese Range |
 | **🔵 BREAKOUT × perf_120 0-25** | 24 | MED | −16pp WR (42 %) | Score-Penalty |
 | **🔵 BREAKOUT × vol_lt_1** | 24 | MED | −16pp WR (42 %) | vol≥1.0-Gate validiert |
@@ -92,17 +95,27 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
   - BREAKOUT only, Top-1 nach Score pro Scan-Tag, Telegram-äquivalentes Gate
   - $300 Kapital, $50 × max 5 Positionen (= $250 deployed + $50 Cash-Reserve)
   - Trailing: high ≥ Entry×1.08 → SL auf Entry×1.05 (einmaliger Sprung)
-  - Cron: `*/20 13-21 * * 1-5` (alle 20 min während US-Markt, GH Actions)
+  - **Cron: `*/15 13-21 * * 1-5` auf Oracle-VM** (GH-Workflow geloescht 2026-06-05)
   - Freshness-Gate: Signale älter als MAX_TRIGGER_DAYS=3d werden gar nicht erst aufgenommen
   - State: `apex_positions.json` (pending/open/closed/expired + stats)
   - Journal: `apex_trade_log.json` (append-only, alle Events)
   - eToro-API als Stub (TRADING_MODE env var: paper|live)
   - Löst Backlog-Item 1 (Pending-Status) als Side-Effect
-- ✅ **Phase C — Dashboard Paper-Tab** (`dashboard.html`) — shipped 2026-06-04
-  - Neuer 3. Tab "📈 Paper Trading", liest `apex_positions.json`
-  - Status-Header (Mode/Cash/Equity/PnL), 4 Tabellen (Open/Pending/Closed/Expired)
-  - sw.js v11→v12, PF zu DATA_FILES
+- ✅ **Phase C — Dashboard Paper-Tab** (`dashboard.html`) — Redesign 2026-06-05
+  - Open + Closed als ausklappbare Zeilen (vorher 12-Spalten-Tabelle)
+  - **Activity Log** rendert apex_trade_log.json (open/close/trailing/expired/etc.)
+  - Mode-Karte mit Status-Pill, Equity-Karte mit Δ zum Start-Kapital
+  - Mobile 2-Zeilen-Layout via Flex (sw.js v23)
 - ⏳ **Phase D — Equity-Research-Plugin** (optional, hängt von A)
+
+### Infrastruktur 2026-06-05+
+- **Trader** läuft auf **Oracle Always-Free VM** (Ubuntu 22.04, E2.1.Micro,
+  1 GB RAM + 2 GB Swap, Public IP). `~/run_trader.sh` = git pull + python +
+  git push. Cron `*/15 13-21 * * 1-5`. Robust gegen GH-Throttling.
+- **Scanner, Equity, Knowledge** weiter auf GitHub Actions, aber Push-Step
+  gehärtet: `/tmp`-Backup statt Stash, 5x Retry-Loop, Conflict-Resolution
+  bevorzugt Worker's Files.
+- **Brain** lokal mit auto git-pull. Vault gitignored.
 
 ---
 
@@ -128,23 +141,66 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ---
 
-## 7. Aktueller Daten-Stand (2026-06-04)
+## 7. Aktueller Daten-Stand (2026-06-06)
 
-- **Lifetime Trades:** 125 | WR 45.6 % | PF 1.81
-- **Postmortems analysiert:** 38/125 (87 pending)
-- **CONFIRMED Setups:** BREAKOUT (n=71, WR 59.2 %, PF 2.66), REVERSAL (n=54, disabled)
-- **30d Window:** WR 47.2 % / PF 1.95 (n=36) — flat lifetime
-- **14d Window:** **WR 90.9 % / PF 16.37 (n=11)** ⚡ BREAKOUT-Welle, regime-getrieben
-- **BREAKOUT 30d:** **WR 76.2 %** (n=21) — Drift +17pp vs lifetime, neuer Rekord
-- **REVERSAL 30d:** WR 6.7 % (n=15) — Drift -21pp, Legacy stirbt schneller als erwartet
-- **Offene Positionen (Equity-Sicht):** 7 BREAKOUT + 1 STAGE_2 (ADI/FANG/JCI/ARE/IBKR/TSM/AYI/EW)
-- **Paper-Trader-Sicht:** 1 BREAKOUT open (ADI), 2 expired (IBKR/ARE), 0 pending
-  - Diskrepanz ggü Equity ist erwartet (Trader = Top-1/Tag + Re-Validation, Equity = alle Signale + strict 3d)
+- **Lifetime Trades:** 132 | WR 46.2 % | PF 1.84
+- **Postmortems analysiert:** 38/132 (94 pending)
+- **CONFIRMED Setups:** BREAKOUT (n=77, WR 59.7 %, PF 2.70), REVERSAL (n=54, disabled)
+- **30d Window:** WR 51.4 % / PF 2.19 (n=35) — Drift +5.2pp vs lifetime
+- **14d Window:** WR 63.6 % / PF 4.20 (n=11) — kühlt von 90.9 % ab
+- **7d Window:** WR 0.0 % (n=2) — IBKR/AFRM Stops, AXTA-Wave (auch Stops)
+- **BREAKOUT 30d:** **WR 70.8 %** (n=24) — Drift +11pp vs lifetime, weiter stark aber abgekühlt
+- **MEAN_REVERSION:** erster geschlossener Trade SBUX -2.38 % D+2 SL
+- **REVERSAL 30d:** WR 10.0 % (n=10) — Legacy stirbt
+- **Offene Positionen (Equity-Sicht, nach IBKR/AFRM-Closes):** 5 BREAKOUT
+  (AXTA/ADI/FANG/JCI/ARE)
+- **Paper-Trader-Sicht:** AXTA open (D+1 via Oracle-Cron getriggert), ADI Stop Loss
 
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-06** **Workflow-Hardening + Market-Regime-Backup:**
+  - `apex_scan.yml`, `apex_equity.yml`, `apex_knowledge.yml`: Push-Step von
+    `git stash` auf `/tmp`-Backup umgestellt (Stash-Pop-Conflict vermieden).
+    Plus Push-Retry-Loop (5x mit exponential backoff). Bei Conflict im
+    Push: `pull --rebase -X theirs` (Worker's Files gewinnen).
+  - Scan-Cron 30→42 (off-peak, weg von GH-:30-Drossel-Zone).
+  - **`apex_equity.maybe_refresh_market_regime()`**: wenn `apex_market.json.updated`
+    >18h alt (= Scanner-Fail Donnerstag/Freitag), berechnet Equity das Regime
+    via importierter `ApexScan.get_market_regime()`. Single-Source-of-Truth.
+  - Root-Cause 2026-06-05 Push-Fail: Equity pushte 22:00 `apex_market.json`,
+    Scanner stashte + pull-rebase + stash pop → CONFLICT auf market.json.
+- **2026-06-05** **Trader-Migration auf Oracle Cloud Always-Free VM:**
+  - Ubuntu 22.04 + E2.1.Micro (1 CPU, 1 GB RAM + 2 GB Swap, Public IP)
+  - GitHub Deploy-Key fuer Push, `~/run_trader.sh` + cron `*/15 13-21 1-5`
+  - Verlaesslicher als GH-Actions-Cron (echtes Linux-Cron, kein Throttling)
+  - GH-Workflow `.github/workflows/apex_trader.yml` GELOESCHT (kein
+    doppelter Trader). Andere Workflows (Scanner, Equity, Knowledge) bleiben
+    auf GH.
+- **2026-06-05** **Paper-Tab Komplett-Redesign:**
+  - Open + Closed als kompakte ausklappbare Zeilen (vorher 12-Spalten-Tabelle).
+    Header zeigt Logo+Ticker+Setup, Stats (Wert/Δ%/PnL), Chevron. Klick
+    klappt Detail-Panel aus mit Entry/TP/SL/Shares/Trailing/Hold/etc.
+  - **Pending + Verfallen-Sektionen** aus Paper-Tab entfernt (interner State,
+    Dashboard zeigt nur Open+Closed).
+  - **NEU: Activity Log** rendert `apex_trade_log.json` als lesbare Events
+    (⏳ pending_added, 🟢 open, ✅/❌ close, 🟡 trailing, ⚫ expired, 🔄 revalidated)
+  - Mode-Karte: Status-Pill mit pulsing Dot, cyan/orange Top-Border
+  - Equity-Karte: 28px Hero-Number + ▲/▼ Delta zum Start-Kapital
+  - Mobile: 2-Zeilen-Layout via Flex (vorher Grid-Overflow), Ticker-Logos via
+    FMP-Image-URL, sw.js bis v23.
+- **2026-06-04** **`apex_open_positions.json` Single-Source-of-Truth fuer Signal-Status:**
+  - apex_equity.compute_open_positions() schreibt fuer jedes nicht-geschlossene
+    Signal: status (pending/open/expired) + trigger_day + current_price + PnL%.
+  - Dashboard History-Tab nutzt das File statt Alters-Heuristik. ARE/JCI/etc.
+    zeigen jetzt echten Status (open D+1) statt heuristisch (pending).
+  - SETUP_META.BREAKOUT.hold 15→21 (Frontend matched Backend).
+- **2026-06-04** **yfinance 5m→1m Bars + Multi-Step-Fallback in Trader:**
+  Realtime-Lag von ~4 Min auf <1 Min reduziert. Fallback-Kette: 1m → 5m →
+  Yahoo v8 Chart API → daily. Plus expliziter Bugfix: `group_by='ticker'`
+  zerschiess Single-Ticker-Schema → batch_prices returnte leer → current_price
+  wurde seit ADI-Open NIE aktualisiert. Fix mit `_extract_series` Helper.
 - **2026-06-04** **Konsistenz-Pass Trigger+Hold-Windows system-wide:**
   - `MAX_TRIGGER_DAYS = 3` (Paper-Trader zurück 1→3 = matched Equity/Backtest = 61.8 % BO-WR
     Messung). Re-Validation refresht signal_date bei wiederholter Emission.
