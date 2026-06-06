@@ -25,11 +25,38 @@ jobs:
         run: python apex_equity.py
       - name: Push
         run: |
+          set +e
           git config user.name "ApexScan Bot"
           git config user.email "bot@apexscan.com"
-          git stash
+
+          mkdir -p /tmp/eq
+          for f in apex_equity_results.json apex_equity_top2.json apex_open_positions.json apex_market.json; do
+            [ -f "$f" ] && cp "$f" "/tmp/eq/$f"
+          done
+
+          git checkout -- . 2>/dev/null
           git pull origin master --rebase
-          git stash pop
-          git add apex_equity_results.json apex_equity_top2.json apex_open_positions.json apex_market.json dashboard.html
-          git diff --staged --quiet || git commit -m "Equity $(date +'%Y-%m-%d %H:%M')"
-          git push
+
+          for f in apex_equity_results.json apex_equity_top2.json apex_open_positions.json apex_market.json; do
+            [ -f "/tmp/eq/$f" ] && cp "/tmp/eq/$f" "$f"
+          done
+
+          git add apex_equity_results.json apex_equity_top2.json apex_open_positions.json apex_market.json dashboard.html 2>/dev/null
+          if git diff --staged --quiet; then
+            echo "Keine Aenderungen."
+            exit 0
+          fi
+          git commit -m "Equity $(date +'%Y-%m-%d %H:%M')"
+
+          for attempt in 1 2 3 4 5; do
+            if git push 2>&1; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push attempt $attempt failed, retrying..."
+            git pull origin master --rebase -X theirs 2>&1 || git rebase --abort 2>/dev/null
+            sleep $((attempt * 3))
+          done
+
+          echo "Push failed after 5 attempts."
+          exit 1

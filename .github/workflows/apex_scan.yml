@@ -26,11 +26,44 @@ jobs:
         run: python ApexScan.py
       - name: Push
         run: |
+          set +e
           git config user.name "ApexScan Bot"
           git config user.email "bot@apexscan.com"
-          git stash
+
+          # Scanner-Outputs sichern (Konflikt-resistente Methode statt stash)
+          mkdir -p /tmp/scan
+          for f in apex_signals.json apex_market.json sector_cache.json signal_memory.json; do
+            [ -f "$f" ] && cp "$f" "/tmp/scan/$f"
+          done
+
+          # Hard-Reset auf HEAD + pull (kein Stash-Konflikt-Risiko)
+          git checkout -- . 2>/dev/null
+          git clean -fd -- apex_signals.json apex_market.json sector_cache.json signal_memory.json 2>/dev/null
           git pull origin master --rebase
-          git stash pop
-          git add apex_signals.json apex_equity_results.json apex_equity_top2.json apex_market.json dashboard.html
-          git diff --staged --quiet || git commit -m "Scan $(date +'%Y-%m-%d %H:%M')"
-          git push
+
+          # Scanner-Outputs zurueck einspielen (Scanner ist authoritative)
+          for f in apex_signals.json apex_market.json sector_cache.json signal_memory.json; do
+            [ -f "/tmp/scan/$f" ] && cp "/tmp/scan/$f" "$f"
+          done
+
+          # Commit
+          git add apex_signals.json apex_equity_results.json apex_equity_top2.json apex_market.json sector_cache.json signal_memory.json dashboard.html 2>/dev/null
+          if git diff --staged --quiet; then
+            echo "Keine Aenderungen zum Committen."
+            exit 0
+          fi
+          git commit -m "Scan $(date +'%Y-%m-%d %H:%M')"
+
+          # Push mit Retry — bei Conflict bevorzugen wir Scanner's Files
+          for attempt in 1 2 3 4 5; do
+            if git push 2>&1; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push attempt $attempt failed, retrying..."
+            git pull origin master --rebase -X theirs 2>&1 || git rebase --abort 2>/dev/null
+            sleep $((attempt * 3))
+          done
+
+          echo "Push failed after 5 attempts."
+          exit 1
