@@ -449,26 +449,48 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   transition: background 0.15s;
 }
 .paper-row:hover { background: rgba(255,255,255,0.04); }
+/* Head: zwei Hauptbereiche - pr-main (Logo+Ticker+Chevron) + pr-stats (Zahlen) */
 .paper-row-head {
-  display: grid;
-  grid-template-columns: 32px 1fr auto auto auto auto 24px;
+  display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   padding: 10px 14px;
   cursor: pointer;
   user-select: none;
 }
-.paper-row-head .pr-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: contain; }
-.paper-row-head .pr-ticker { font-weight: 700; font-size: 14px; }
-.paper-row-head .pr-setup { font-size: 11px; color: var(--muted2); margin-left: 4px; }
-.paper-row-head .pr-stat { font-size: 13px; font-variant-numeric: tabular-nums; }
+.paper-row-head .pr-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.paper-row-head .pr-stats {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+.paper-row-head .pr-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
+.paper-row-head .pr-ticker-block {
+  display: flex; flex-direction: column; min-width: 0;
+}
+.paper-row-head .pr-ticker { font-weight: 700; font-size: 14px; line-height: 1.2; }
+.paper-row-head .pr-setup { font-size: 10px; color: var(--muted2); line-height: 1.2; margin-top: 2px; }
+.paper-row-head .pr-stat { font-size: 13px; font-variant-numeric: tabular-nums; min-width: 0; }
 .paper-row-head .pr-stat-label { color: var(--muted2); font-size: 10px; display: block; margin-bottom: 2px; }
+/* CSS-Chevron statt Emoji (iOS rendert ▶ als Play-Button) */
 .paper-row-head .pr-chevron {
+  width: 18px; height: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
   color: var(--muted2);
   transition: transform 0.2s;
-  font-size: 12px;
-  text-align: center;
+  font-size: 14px;
+  font-family: ui-monospace, monospace;
+  flex-shrink: 0;
 }
+.paper-row-head .pr-chevron::before { content: '›'; font-size: 22px; line-height: 1; }
 .paper-row.expanded .pr-chevron { transform: rotate(90deg); }
 .paper-row-detail {
   display: none;
@@ -486,6 +508,68 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 .paper-row-detail .prd-grid > div { display: flex; flex-direction: column; gap: 2px; }
 .paper-row-detail .prd-grid .prd-label { color: var(--muted2); font-size: 10px; }
 .paper-row-detail .prd-grid .prd-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Mode-Karte: Status-Pill mit Dot */
+.stat-paper-mode { position: relative; }
+.stat-paper-mode::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--cyan);
+  border-radius: 12px 12px 0 0;
+  opacity: 0.7;
+}
+.stat-paper-mode.live::before { background: var(--orange); }
+.paper-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,207,255,0.10);
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 6px 0 12px;
+}
+.paper-mode-badge.live { background: rgba(255,107,53,0.10); color: var(--orange); }
+.pmb-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 0 currentColor;
+  animation: pmb-pulse 2s infinite;
+}
+@keyframes pmb-pulse {
+  0% { box-shadow: 0 0 0 0 currentColor; }
+  70% { box-shadow: 0 0 0 6px rgba(0,0,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+}
+
+/* Equity-Karte: dicke Zahl + Delta */
+.stat-paper-equity { position: relative; }
+.stat-paper-equity::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  border-radius: 12px 12px 0 0;
+  opacity: 0.5;
+}
+.paper-equity-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  margin: 4px 0 2px;
+}
+.paper-equity-delta {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+  color: var(--muted2);
+}
+.paper-equity-delta.pos { color: var(--green); }
+.paper-equity-delta.neg { color: var(--red); }
 
 /* Activity Log */
 .paper-activity {
@@ -510,34 +594,29 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 .activity-item .ai-msg { color: var(--text); }
 .activity-item .ai-msg b { color: var(--cyan); }
 
-/* Mobile: 2-Zeilen-Layout. Erste Zeile Ticker+Chevron, zweite Zeile Stats nebeneinander */
+/* Mobile: 2-Zeilen-Layout. Erste Zeile Ticker, zweite Zeile Stats nebeneinander */
 @media (max-width: 768px) {
   .paper-row-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px 10px;
-    padding: 10px 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 14px;
   }
-  /* Erste Zeile: Logo + Ticker block + Chevron ganz rechts */
-  .paper-row-head .pr-logo { order: 1; width: 22px; height: 22px; }
-  .paper-row-head > div:nth-child(2) { order: 2; flex: 1; min-width: 0; }
-  .paper-row-head .pr-chevron { order: 3; margin-left: auto; }
-  /* Stats: order 4+, brechen automatisch in 2. Zeile durch flex-wrap */
-  .paper-row-head .pr-stat {
-    order: 4;
-    flex: 1 1 auto;
-    min-width: 90px;
-    text-align: left;
-    font-size: 12px;
+  .paper-row-head .pr-main {
+    width: 100%;
+    justify-content: flex-start;
   }
+  .paper-row-head .pr-main .pr-chevron { margin-left: auto; }
+  .paper-row-head .pr-stats {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .paper-row-head .pr-stat { flex: 1; font-size: 12px; }
   .paper-row-head .pr-hide-mobile { display: none; }
   .paper-row-head .pr-stat-label { font-size: 9px; }
-  .paper-row-head .pr-ticker { font-size: 13px; }
-  .paper-row-head .pr-setup { font-size: 10px; }
 
   .activity-item { grid-template-columns: 60px 20px 1fr; font-size: 11px; }
-  /* Activity-Log scroll-Hoehe etwas kleiner auf Mobile */
   .paper-activity { max-height: 360px; }
 }
 </style>
@@ -823,22 +902,26 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 
 <!-- STATUS HEADER -->
 <div class="stats anim-2">
-  <div class="stat">
+  <div class="stat stat-paper-mode">
     <div class="stat-label">Mode</div>
-    <div class="stat-value" id="p-mode">—</div>
+    <div class="paper-mode-badge" id="p-mode-badge">
+      <span class="pmb-dot"></span>
+      <span class="pmb-text" id="p-mode">—</span>
+    </div>
     <div class="stat-row">
-      <span class="stat-sublabel">Stand</span>
+      <span class="stat-sublabel">Letzter Run</span>
       <span class="stat-subval" id="p-updated">—</span>
     </div>
   </div>
-  <div class="stat">
+  <div class="stat stat-paper-equity">
     <div class="stat-label">Equity</div>
-    <div class="stat-value" id="p-equity">—</div>
+    <div class="paper-equity-value" id="p-equity">—</div>
+    <div class="paper-equity-delta" id="p-equity-delta">—</div>
+    <div class="stat-divider"></div>
     <div class="stat-row">
       <span class="stat-sublabel">Cash frei</span>
       <span class="stat-subval" id="p-cash">—</span>
     </div>
-    <div class="stat-divider"></div>
     <div class="stat-row">
       <span class="stat-sublabel">Start-Kapital</span>
       <span class="stat-subval" id="p-capital">—</span>
@@ -1603,14 +1686,27 @@ function renderPaper() {
 
   /* === HEADER === */
   const isLive = s.mode === 'live';
-  setHTML('p-mode',
-    isLive
-      ? '<span style="color:var(--orange)">🔴 LIVE</span>'
-      : '<span style="color:var(--cyan)">📋 PAPER</span>'
-  );
+  setText('p-mode', isLive ? 'LIVE' : 'PAPER');
+  // Mode-Karte + Badge live/paper-Styling
+  document.querySelectorAll('.stat-paper-mode').forEach(el => el.classList.toggle('live', isLive));
+  document.querySelectorAll('.paper-mode-badge').forEach(el => el.classList.toggle('live', isLive));
   setText('p-updated', fmtBerlin(s.last_updated));
   const st = s.stats || {};
   setText('p-equity', fmtUsdPlain(st.equity));
+  // Equity-Delta zum Start-Kapital
+  const eqVal = +st.equity || 0;
+  const startCap = +s.capital_initial || 0;
+  if (startCap > 0) {
+    const deltaUsd = eqVal - startCap;
+    const deltaPct = (deltaUsd / startCap) * 100;
+    const arrow = deltaUsd >= 0 ? '▲' : '▼';
+    const cls = deltaUsd > 0 ? 'pos' : deltaUsd < 0 ? 'neg' : '';
+    const el = document.getElementById('p-equity-delta');
+    if (el) {
+      el.className = 'paper-equity-delta ' + cls;
+      el.textContent = `${arrow} ${(deltaUsd >= 0 ? '+' : '')}${deltaUsd.toFixed(2)} $ · ${deltaPct.toFixed(2)} %`;
+    }
+  }
   setText('p-cash', fmtUsdPlain(s.cash));
   setText('p-capital', fmtUsdPlain(s.capital_initial));
 
@@ -1648,13 +1744,17 @@ function renderPaper() {
       const trailIcon = p.trailing_active ? '🟡' : '—';
       return `<div class="paper-row" id="op-row-${idx}">
         <div class="paper-row-head" onclick="document.getElementById('op-row-${idx}').classList.toggle('expanded')">
-          ${tickerLogoBig(p.ticker)}
-          <div><span class="pr-ticker">${p.ticker}</span><span class="pr-setup">${m.label}</span></div>
-          <div class="pr-stat pr-hide-mobile"><span class="pr-stat-label">Kurs</span>$${curPrice.toFixed(2)}</div>
-          <div class="pr-stat"><span class="pr-stat-label">Wert</span><span class="${cls(value - sizeUsd)}">$${value.toFixed(2)}</span></div>
-          <div class="pr-stat"><span class="pr-stat-label">Δ %</span><span class="${cls(pnlPct)}">${fmtPct(pnlPct)}</span></div>
-          <div class="pr-stat"><span class="pr-stat-label">PnL</span><span class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</span></div>
-          <div class="pr-chevron">▶</div>
+          <div class="pr-main">
+            ${tickerLogoBig(p.ticker)}
+            <div class="pr-ticker-block"><span class="pr-ticker">${p.ticker}</span><span class="pr-setup">${m.label}</span></div>
+            <div class="pr-chevron"></div>
+          </div>
+          <div class="pr-stats">
+            <div class="pr-stat pr-hide-mobile"><span class="pr-stat-label">Kurs</span>$${curPrice.toFixed(2)}</div>
+            <div class="pr-stat"><span class="pr-stat-label">Wert</span><span class="${cls(value - sizeUsd)}">$${value.toFixed(2)}</span></div>
+            <div class="pr-stat"><span class="pr-stat-label">Δ %</span><span class="${cls(pnlPct)}">${fmtPct(pnlPct)}</span></div>
+            <div class="pr-stat"><span class="pr-stat-label">PnL</span><span class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</span></div>
+          </div>
         </div>
         <div class="paper-row-detail">
           <div class="prd-grid">
@@ -1691,13 +1791,17 @@ function renderPaper() {
       const sizeUsd = +p.size_usd || 0;
       return `<div class="paper-row" id="cl-row-${idx}">
         <div class="paper-row-head" onclick="document.getElementById('cl-row-${idx}').classList.toggle('expanded')">
-          ${tickerLogoBig(p.ticker)}
-          <div><span class="pr-ticker">${p.ticker}</span><span class="pr-setup">${m.label}</span></div>
-          <div class="pr-stat pr-hide-mobile"><span class="pr-stat-label">Ergebnis</span><span style="color:${isWin?'var(--green)':'var(--red)'}">${reasonShort}</span></div>
-          <div class="pr-stat"><span class="pr-stat-label">PnL %</span><span class="${cls(pnlPct)}">${fmtPct(pnlPct)}</span></div>
-          <div class="pr-stat"><span class="pr-stat-label">PnL $</span><span class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</span></div>
-          <div class="pr-stat"><span class="pr-stat-label">Hold</span>${p.hold_days || 0}d</div>
-          <div class="pr-chevron">▶</div>
+          <div class="pr-main">
+            ${tickerLogoBig(p.ticker)}
+            <div class="pr-ticker-block"><span class="pr-ticker">${p.ticker}</span><span class="pr-setup">${m.label}</span></div>
+            <div class="pr-chevron"></div>
+          </div>
+          <div class="pr-stats">
+            <div class="pr-stat pr-hide-mobile"><span class="pr-stat-label">Ergebnis</span><span style="color:${isWin?'var(--green)':'var(--red)'}">${reasonShort}</span></div>
+            <div class="pr-stat"><span class="pr-stat-label">PnL %</span><span class="${cls(pnlPct)}">${fmtPct(pnlPct)}</span></div>
+            <div class="pr-stat"><span class="pr-stat-label">PnL $</span><span class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</span></div>
+            <div class="pr-stat"><span class="pr-stat-label">Hold</span>${p.hold_days || 0}d</div>
+          </div>
         </div>
         <div class="paper-row-detail">
           <div class="prd-grid">
