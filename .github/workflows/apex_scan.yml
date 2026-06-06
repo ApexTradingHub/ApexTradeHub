@@ -2,7 +2,8 @@ name: ApexScan Daily
 
 on:
   schedule:
-    - cron: '30 20 * * 1-5'   # 20:30 UTC = 22:30 CEST, nach US-Close (20:00 UTC), vor UTC-Rollover (00:00 UTC / 02:00 CEST)
+    - cron: '42 20 * * 1-5'   # 20:42 UTC = 22:42 CEST. Off-peak (war :30 = GH-Throttle-Zone)
+                              # nach US-Close (20:00 UTC), vor UTC-Rollover (00:00 UTC / 02:00 CEST)
   workflow_dispatch:
 
 jobs:

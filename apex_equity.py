@@ -112,6 +112,36 @@ def load_json(path, default):
         return default
 
 
+def maybe_refresh_market_regime():
+    """Backup-Logik: wenn apex_market.json.updated > 18h alt (= Scanner ist ausgefallen
+    z.B. Donnerstag/Freitag durch GH-Cron-Drosselung), berechnet Equity das Regime
+    selbst via ApexScan-Funktion und schreibt mode/risk_on/summary/updated neu.
+    Normal-Betrieb (Scanner laeuft taeglich 20:42 UTC): nicht-stale, kein Update."""
+    from datetime import datetime, timedelta
+    try:
+        with open("apex_market.json", "r", encoding="utf-8") as f:
+            m = json.load(f)
+        updated_str = m.get("updated", "1970-01-01 00:00")
+        last = datetime.strptime(updated_str, "%Y-%m-%d %H:%M")
+        if datetime.now() - last < timedelta(hours=18):
+            return False  # noch frisch, kein Eingriff
+    except Exception as e:
+        print(f"  market check fail: {e} -> refresh trotzdem")
+
+    print("  Market regime stale (>18h) -> Equity-Backup berechnet Regime...")
+    try:
+        import sys
+        sys.path.insert(0, ".")
+        from ApexScan import get_market_regime, save_market_regime
+        regime = get_market_regime()
+        save_market_regime(regime)
+        print(f"  Equity-Backup: market_regime aktualisiert -> {regime.get('mode')}")
+        return True
+    except Exception as e:
+        print(f"  market backup compute fail: {e}")
+        return False
+
+
 def save_json(path, data):
     # allow_nan=False zwingt valid JSON (kein NaN/Infinity) — Browser-fetch sicher.
     # Bei Erfolg wird normal geschrieben; bei NaN-Fehler vorher per _clean_nan absichern.
@@ -467,6 +497,10 @@ def main():
             print("Git: Synced with GitHub.")
         except subprocess.CalledProcessError:
             print("Git: Pull failed – continuing anyway.")
+
+    # Market-Regime-Backup: wenn Scanner Donnerstag/Freitag ausgefallen ist,
+    # uebernimmt Equity das Regime-Berechnen
+    maybe_refresh_market_regime()
 
     signals = load_json(SIGNALS_FILE, [])
 
