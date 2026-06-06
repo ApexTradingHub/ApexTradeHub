@@ -510,16 +510,35 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 .activity-item .ai-msg { color: var(--text); }
 .activity-item .ai-msg b { color: var(--cyan); }
 
-/* Mobile: kompakter, weniger Spalten in der Header-Row */
+/* Mobile: 2-Zeilen-Layout. Erste Zeile Ticker+Chevron, zweite Zeile Stats nebeneinander */
 @media (max-width: 768px) {
   .paper-row-head {
-    grid-template-columns: 28px 1fr auto auto 20px;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
     padding: 10px 12px;
+  }
+  /* Erste Zeile: Logo + Ticker block + Chevron ganz rechts */
+  .paper-row-head .pr-logo { order: 1; width: 22px; height: 22px; }
+  .paper-row-head > div:nth-child(2) { order: 2; flex: 1; min-width: 0; }
+  .paper-row-head .pr-chevron { order: 3; margin-left: auto; }
+  /* Stats: order 4+, brechen automatisch in 2. Zeile durch flex-wrap */
+  .paper-row-head .pr-stat {
+    order: 4;
+    flex: 1 1 auto;
+    min-width: 90px;
+    text-align: left;
+    font-size: 12px;
   }
   .paper-row-head .pr-hide-mobile { display: none; }
   .paper-row-head .pr-stat-label { font-size: 9px; }
+  .paper-row-head .pr-ticker { font-size: 13px; }
+  .paper-row-head .pr-setup { font-size: 10px; }
+
   .activity-item { grid-template-columns: 60px 20px 1fr; font-size: 11px; }
+  /* Activity-Log scroll-Hoehe etwas kleiner auf Mobile */
+  .paper-activity { max-height: 360px; }
 }
 </style>
 </head>
