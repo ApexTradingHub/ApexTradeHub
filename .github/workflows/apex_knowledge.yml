@@ -22,8 +22,12 @@ jobs:
       - run: pip install yfinance pandas requests pytz tqdm matplotlib
       - name: ApexLearn
         run: python apex_learn.py
-      - name: ApexPostmortem Summary
-        run: python apex_postmortem.py --summary
+      - name: ApexPostmortem (Full mode — addet new closed trades + regen summary)
+        run: python apex_postmortem.py
+        # Full mode: scannt equity_results fuer neue closed trades, fetcht yfinance
+        # news + market context, schreibt placeholder-Eintrag (claude_analysis leer)
+        # in knowledge/trade_postmortems.json. claude_analysis wird manuell von
+        # Claude via WebSearch/Bigdata-Skills geschrieben. Am Ende: summary regen.
       - name: Push
         run: |
           set +e
