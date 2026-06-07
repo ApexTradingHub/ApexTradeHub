@@ -56,9 +56,29 @@ TG_MIN_SCORE    = {
 }
 TG_MIN_SCORE_DEFAULT = 70
 
-# Trailing-Stop
-TRAILING_TRIGGER_MULT = 1.08    # high >= entry*1.08 aktiviert Trail
-TRAILING_TARGET_MULT  = 1.05    # SL springt auf entry*1.05 (+5% gesichert)
+# Trailing-Stop — Leiter (3 Stufen) statt one-shot
+# Phase-1 Update 2026-06-07: ersetzt single-step +8%->+5% durch progressive Stufen
+TRAIL_LADDER = [
+    (1.06, 1.02),   # Step 1: high >= entry*1.06 -> SL = entry*1.02  (+2% gesichert)
+    (1.10, 1.06),   # Step 2: high >= entry*1.10 -> SL = entry*1.06  (+6% gesichert)
+    (1.14, 1.10),   # Step 3: high >= entry*1.14 -> SL = entry*1.10  (+10% gesichert)
+]
+# Backward-Compat: alte Felder bleiben, werden aber nicht mehr genutzt
+TRAILING_TRIGGER_MULT = 1.08
+TRAILING_TARGET_MULT  = 1.05
+
+# Stagnations-Exit — totes Kapital freigeben fuer neue Signale
+# Phase-1 Update 2026-06-07
+STAGNATION_DAYS    = 5      # nach 5 Tagen
+STAGNATION_PNL_MIN = -2.0   # PnL zwischen -2 %
+STAGNATION_PNL_MAX = 2.0    # und +2 % -> close
+
+# Replacement-Logik — wenn alle Slots voll und neues Signal qualifiziert
+# Phase-1 Update 2026-06-07
+REPLACEMENT_MIN_SCORE       = 90.0   # neues Signal muss Elite-Bucket sein
+REPLACEMENT_WEAKEST_MIN_PNL = 2.0    # schwaechste Position muss >= +2 % im Plus sein
+                                     # (niemals Verlust realisieren fuer Replacement)
+# Catalyst-Requirement: Pocket Pivot ODER Gap >= 2 % (CONFIRMED/HYPOTHESIS Positiv-Lift)
 
 # Trigger-Window: Signal expired wenn nach N Tagen nicht getriggert
 #  Mirrors apex_equity.py + apex_backtest_v2.py (= 3-day cap, matched 61.8 % BO-WR Messung).
@@ -414,6 +434,54 @@ def select_new_signals(state: dict, signals: list) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Replacement-Logik (Phase 1) — voller Slot, neues Top-Signal kommt
+# ---------------------------------------------------------------------------
+def find_signal_in_pool(ticker: str, signal_date: str) -> dict | None:
+    """Lookup original signal dict aus apex_signals.json (fuer Catalyst-Check)."""
+    sigs = load_json(SIGNALS_FILE) or []
+    for s in sigs:
+        if s.get("ticker") == ticker and s.get("date") == signal_date:
+            return s
+    return None
+
+
+def is_replacement_eligible(pending: dict, state: dict) -> tuple[bool, str, dict | None]:
+    """Prueft ob Pending-Signal eine bestehende Position ersetzen darf.
+    Returns (eligible, reason, position_to_replace_or_None)."""
+    open_pos = state.get("open") or []
+    if len(open_pos) < MAX_POSITIONS:
+        return False, "slot frei, kein Replacement noetig", None
+
+    # 1. Neues Signal muss Score >= REPLACEMENT_MIN_SCORE
+    new_score = f(pending.get("score"))
+    if new_score < REPLACEMENT_MIN_SCORE:
+        return False, f"score {new_score:.0f} < {REPLACEMENT_MIN_SCORE:.0f}", None
+
+    # 2. Catalyst-Requirement: Pocket Pivot ODER Gap >= 2%
+    sig = find_signal_in_pool(pending["ticker"], pending["signal_date"])
+    if sig is None:
+        return False, "Original-Signal nicht gefunden im apex_signals.json", None
+    has_pp  = bool(sig.get("cat_pocket_pivot"))
+    gap_pct = f(sig.get("cat_gap_pct"))
+    has_gap = gap_pct >= 2.0
+    if not (has_pp or has_gap):
+        return False, "kein Pocket Pivot und kein Gap >= 2%", None
+
+    # 3. Schwaechste Position finden (lowest current pnl_pct)
+    weakest = min(open_pos, key=lambda p: f(p.get("pnl_pct")))
+    weakest_pnl = f(weakest.get("pnl_pct"))
+
+    # 4. Schwaechste muss im Plus sein (mind. REPLACEMENT_WEAKEST_MIN_PNL)
+    if weakest_pnl < REPLACEMENT_WEAKEST_MIN_PNL:
+        return False, (f"schwaechste {weakest['ticker']} bei {weakest_pnl:+.2f} % "
+                       f"(< +{REPLACEMENT_WEAKEST_MIN_PNL} %)"), None
+
+    return True, (f"OK: ersetze {weakest['ticker']} ({weakest_pnl:+.2f} %) "
+                  f"durch {pending['ticker']} (score {new_score:.0f}, "
+                  f"PP={has_pp}, Gap={gap_pct:.1f}%)"), weakest
+
+
+# ---------------------------------------------------------------------------
 # Pending -> Open (Trigger check)
 # ---------------------------------------------------------------------------
 def trigger_pending(state: dict, dry_run: bool = False) -> list:
@@ -484,9 +552,32 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
                 continue
 
         # 2. Capacity & cash checks
+        # === Phase-1 Replacement: wenn Slots voll, pruefe ob Pending qualifiziert ===
         if len(state["open"]) >= MAX_POSITIONS:
-            still_pending.append(p)
-            continue
+            eligible, reason, to_replace = is_replacement_eligible(p, state)
+            if eligible and to_replace is not None:
+                # Trigger-Preis trotzdem checken bevor wir was anfassen
+                high_today = highs.get(p["ticker"])
+                if high_today is None or high_today < p["entry"]:
+                    still_pending.append(p)
+                    continue
+                # OK: schwaechste Position schliessen, Slot wird frei
+                log(f"  REPLACEMENT: {reason}")
+                cur_replace = prices.get(to_replace["ticker"], to_replace.get("entry_actual"))
+                if not dry_run:
+                    # Use close_position helper to keep stats clean
+                    close_position(state, to_replace, cur_replace, "Replacement Exit")
+                events.append({
+                    "event": "replacement", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"], "replaced_ticker": to_replace["ticker"],
+                    "replaced_pnl_pct": f(to_replace.get("pnl_pct")),
+                    "reason": reason,
+                })
+                # state["open"] hat jetzt einen Slot frei -> fallthrough zur normalen Trigger-Logik unten
+            else:
+                still_pending.append(p)
+                continue
+
         if state["cash"] < POSITION_SIZE:
             still_pending.append(p)
             continue
@@ -528,6 +619,7 @@ def open_position(state: dict, pending: dict, entry_actual: float):
         "stop":  pending["stop_initial"],
         "high_since_entry": entry_actual,
         "trailing_active": False,
+        "ladder_step": 0,             # Phase-1: noch keine Trail-Stufe aktiv
         "opened_at": now_iso(),
         "status": "open",
         "current_price": entry_actual,
@@ -573,22 +665,41 @@ def update_open_positions(state: dict, dry_run: bool = False) -> list:
         if high is not None and high > p.get("high_since_entry", entry):
             p["high_since_entry"] = high
 
-        # Trailing activation (one-shot)
-        if not p.get("trailing_active"):
-            if p["high_since_entry"] >= entry * TRAILING_TRIGGER_MULT:
-                new_stop = entry * TRAILING_TARGET_MULT
+        # === Trailing-Ladder (Phase 1) — progressive Stufen ===
+        # ladder_step: 0 = noch nicht aktiviert, 1/2/3 = Stufe erreicht
+        current_step = int(p.get("ladder_step", 0))
+        high_se = p["high_since_entry"]
+        # Pruefe ob naechste Stufe erreicht ist
+        for step_idx, (trigger_mult, sl_mult) in enumerate(TRAIL_LADDER, start=1):
+            if step_idx <= current_step:
+                continue   # diese Stufe ist schon aktiv
+            if high_se >= entry * trigger_mult:
+                new_stop = entry * sl_mult
                 old_stop = p["stop"]
-                p["stop"] = max(old_stop, new_stop)
+                p["stop"] = max(old_stop, new_stop)   # niemals nach unten
+                p["ladder_step"] = step_idx
                 p["trailing_active"] = True
-                p["trailing_activated_at"] = now_iso()
+                p["trailing_activated_at"] = p.get("trailing_activated_at") or now_iso()
                 events.append({
                     "event": "trailing_activated", "id": p["id"], "ts": now_iso(),
                     "ticker": p["ticker"], "old_stop": old_stop, "new_stop": p["stop"],
-                    "high": p["high_since_entry"],
+                    "high": high_se, "ladder_step": step_idx,
                 })
-                log(f"  trailing on: {p['ticker']} SL ${old_stop:.2f} -> ${p['stop']:.2f}")
+                log(f"  trailing step {step_idx}: {p['ticker']} SL ${old_stop:.2f} -> ${p['stop']:.2f}")
+                current_step = step_idx
+            else:
+                break   # naechste Stufe nicht erreicht -> abbrechen
 
-        # Exit checks (priority: TP > SL > Time)
+        # === Hold-Days berechnen (fuer Stagnation + Time-Exit) ===
+        try:
+            opened_str = p["opened_at"].replace("Z", "+00:00")
+            opened = datetime.fromisoformat(opened_str)
+            hold = (datetime.now(timezone.utc) - opened).days
+            p["hold_days"] = hold
+        except Exception:
+            hold = p.get("hold_days", 0)
+
+        # === Exit checks (Reihenfolge: TP > SL > Stagnation > Time) ===
         exit_reason = None
         exit_price = cur
 
@@ -599,18 +710,18 @@ def update_open_positions(state: dict, dry_run: bool = False) -> list:
             exit_reason = "Stop Loss" + (" (Trailing)" if p.get("trailing_active") else "")
             exit_price = p["stop"]
         else:
-            try:
-                # opened_at is UTC ISO with Z; replace Z->+00:00 for fromisoformat
-                opened_str = p["opened_at"].replace("Z", "+00:00")
-                opened = datetime.fromisoformat(opened_str)
-                hold = (datetime.now(timezone.utc) - opened).days
-                p["hold_days"] = hold
+            # Stagnations-Exit: ab Tag 5 mit flachem PnL (-2 % bis +2 %)
+            pnl_pct = (cur - entry) / entry * 100
+            if (hold >= STAGNATION_DAYS and
+                STAGNATION_PNL_MIN <= pnl_pct <= STAGNATION_PNL_MAX):
+                exit_reason = "Stagnation Exit"
+                exit_price = cur
+            else:
+                # Time-Exit nach setup-spezifischem Hold-Limit
                 hold_limit = hold_days_for(p.get("setup", ""))
                 if hold >= hold_limit:
                     exit_reason = "Time Exit"
                     exit_price = cur
-            except Exception:
-                pass
 
         if exit_reason:
             if not dry_run:
