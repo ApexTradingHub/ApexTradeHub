@@ -2,9 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-06-04T11:36:06.124532",
-    "total_trades": 125,
-    "analyzed_trades": 38
+    "updated": "2026-06-07T14:25:33.405044",
+    "total_trades": 132,
+    "analyzed_trades": 40
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -10259,19 +10259,66 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-08",
+            "title": "AFRM Q3 FY2026 Earnings: GMV $11.6B (+35%), Revenue $1.039B (+33%), Net Income $100M, Adj OpMargin 27%, FY26 guidance raised",
+            "src": "SEC 8-K, Shareholder Letter"
+          },
+          {
+            "date": "2026-05-14",
+            "title": "Mizuho raised AFRM PT to $100 from $95",
+            "src": "Analyst Action"
+          },
+          {
+            "date": "2026-05-27",
+            "title": "Truist raised AFRM PT to $80 from $75",
+            "src": "Analyst Action"
+          },
+          {
+            "date": "2026-06-05",
+            "title": "Nasdaq -4% as NFP +172K kills rate-cut hopes, 42.7% probability of Dec rate-hike",
+            "src": "CNN Business / Yahoo Finance"
+          },
+          {
+            "date": "2025-03-17",
+            "title": "Klarna replaces Affirm as Walmart BNPL provider (5% GMV impact, known/priced but referenced in selloff narrative)",
+            "src": "Retail Dive / Payments Dive"
+          }
+        ],
+        "key_events": [
+          "Q3 Earnings 8.5 STRONG: GMV +35%, NI $100M, guidance up - Fundamental intact zum Signal-Zeitpunkt",
+          "NFP-Schock 5.6 (D+7): Nasdaq -4%, Rate-Hike-Fear, BNPL/Fintech disproportional getroffen",
+          "Beta 3.7 mathematisch konsistent mit -7.46% Stop bei SPY ~-3% Zeitraum"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Macro-Risk-Off-Event am 5.6.2026 (NFP +172K = doppelter Konsens -> Rate-Hike-Fear, Nasdaq -4%). AFRM mit Beta 3.7 ueberproportional getroffen. Fundamental war intakt (Q3-Beat + Guidance-Raise 21d zuvor). Klassischer Macro-vs-Setup-Konflikt.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
-        "what_would_have_helped": [],
+        "lesson_tags": [
+          "high_beta_breakout_macro_risk",
+          "fintech_consumer_credit_sensitivity",
+          "fundamentals_intact_but_stopped",
+          "rate_decision_window_risk"
+        ],
+        "similar_trades": [
+          "IBKR_2026-06-01"
+        ],
+        "what_would_have_helped": [
+          "BETA-Penalty: BREAKOUTs mit Beta > 2.5 koennten Score-Penalty -10 bekommen",
+          "Macro-Calendar-Awareness: ApexCatalysts checkt upcoming NFP/CPI/FOMC, Penalty bei High-Impact-Events in 7d",
+          "Regime-MIXED-Verschaerfung: bei Wechsel BULLISH->MIXED TG_MIN_SCORE 70->85 anheben",
+          "Sektor-spezifisches Rate-Sensitivity-Flag (BNPL, REITs, Util) - bei steigender Rate-Erwartung pendalisieren"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-07T14:25:33.405044",
+        "confidence": "high",
+        "data_sources": [
+          "Financial Modeling Prep (Company Profile)",
+          "WebSearch (CNN, Yahoo Finance, Retail Dive)",
+          "SEC 8-K"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:05.303892",
@@ -10350,6 +10397,568 @@
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:05.822684",
+        "version": "1.0"
+      }
+    },
+    "IBKR_2026-06-01": {
+      "core": {
+        "ticker": "IBKR",
+        "signal_date": "2026-06-01",
+        "exit_date": "2026-06-05",
+        "setup": "BREAKOUT",
+        "entry": 88.62,
+        "stop": 83.84,
+        "target": 97.5,
+        "exit_price": 83.84,
+        "exit_reason": "Stop Loss",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": -5.39,
+        "pnl_usd": -10.79,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 123.3,
+        "rr": 1.86,
+        "rsi": 64.1,
+        "macd_bull": "NO",
+        "vol_ratio": 1.24,
+        "avg_dv_m": 464.85,
+        "perf_20d": 10.2,
+        "perf_60d": 30.3,
+        "perf_120d": 37.7,
+        "base_range": 15.0,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.61,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -1.01,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.9899999999999998,
+          "analyst_upside": -2.6947795692862764
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": -2.77,
+        "qqq_perf_pct": -5.07,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-04-15",
+            "title": "IBKR Q1 2026 Earnings: Customer Accounts 4.75M (+31%), Margin Loans $90.2B (+40%), NII $966M (+20%), Commission $613M (+19%), Pretax Margin 77%",
+            "src": "SEC 8-K"
+          },
+          {
+            "date": "2026-06-05",
+            "title": "Nasdaq -4% as NFP +172K kills rate-cut hopes - broad de-risking, IBKR caught despite zins-beneficiary profile",
+            "src": "CNN Business / Yahoo Finance"
+          },
+          {
+            "date": "2026-06-01",
+            "title": "IBKR Entry $88.62 = 2.6% unter 52w-High $91.02 (sehr nahe Top, vulnerable Mean-Revert-Zone)",
+            "src": "Financial Modeling Prep Company Profile"
+          }
+        ],
+        "key_events": [
+          "Q1 Earnings April STARK (Account-Growth +31%, NII +20%, 77% Margin) - Fundamental intakt",
+          "Entry naher 52w-High ($88.62 vs $91.02) = Late-Cycle BREAKOUT-Failure-Zone",
+          "NFP-Schock 5.6: Broad Risk-Off ueberschreibt rationale Sektor-Logik (Zins-Gewinner faellt)"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "Late-Cycle BREAKOUT 2.6% unter 52w-High in classic Mean-Revert-Zone. Verschaerft durch Macro-Risk-Off-Event 5.6.2026 (Nasdaq -4%). Beta 1.33 x SPY-Drop ~3% = ca. -5%, exakt am -5.39% Stop. Paradox: IBKR ist zins-Gewinner (NII +20% Q1), aber bei pauschaler Risk-Off-Welle verliert ALLES kurzfristig.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "late_cycle_breakout_near_52w_high",
+          "macro_selloff_correlates_all_stocks",
+          "rate_beneficiary_paradox",
+          "score_top_decile_no_protection_in_macro"
+        ],
+        "similar_trades": [
+          "AFRM_2026-05-29"
+        ],
+        "what_would_have_helped": [
+          "DISTANCE-TO-52W-HIGH-Filter: Entry < 3% unter 52w-High -> Score-Penalty -5 (Mean-Revert-Risk)",
+          "Macro-Calendar-Awareness (gleicher Punkt wie AFRM): upcoming NFP/CPI/FOMC innerhalb 7d -> Score-Penalty",
+          "MIXED-Regime-Schaerfung: TG_MIN_SCORE 70 -> 85 wenn Regime Wechsel BULLISH->MIXED",
+          "Pretax-Margin-Profitability ist KEIN Macro-Schutz: hochprofitable Stocks fallen genauso bei broad selloff"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-06-07T14:25:33.405044",
+        "confidence": "high",
+        "data_sources": [
+          "Financial Modeling Prep (Company Profile)",
+          "WebSearch (CNN, SEC, Yahoo Finance)",
+          "IBKR Q1 8-K"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:36.711220",
+        "version": "1.0"
+      }
+    },
+    "KLAC_2026-05-26": {
+      "core": {
+        "ticker": "KLAC",
+        "signal_date": "2026-05-26",
+        "exit_date": "2026-06-05",
+        "setup": "BREAKOUT",
+        "entry": 1928.16,
+        "stop": 1805.2,
+        "target": 2150.0,
+        "exit_price": 2150.0,
+        "exit_reason": "Take Profit",
+        "exit_day": 7,
+        "trigger_day": null,
+        "pnl_pct": 11.51,
+        "pnl_usd": 23.01,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 126.3,
+        "rr": 1.8,
+        "rsi": 66.3,
+        "macd_bull": "YES",
+        "vol_ratio": 1.06,
+        "avg_dv_m": 2172.02,
+        "perf_20d": 6.0,
+        "perf_60d": 32.1,
+        "perf_120d": 74.3,
+        "base_range": 19.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "POWER_BREAKOUT",
+        "closing_strength": 0.89,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 2.11,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.7199999999999998,
+          "analyst_upside": -7.768359194387964
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": -1.74,
+        "qqq_perf_pct": -3.45,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:37.424173",
+        "version": "1.0"
+      }
+    },
+    "ODFL_2026-05-29": {
+      "core": {
+        "ticker": "ODFL",
+        "signal_date": "2026-05-29",
+        "exit_date": "2026-06-04",
+        "setup": "BREAKOUT",
+        "entry": 224.25,
+        "stop": 212.75,
+        "target": 245.0,
+        "exit_price": 245.0,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 9.25,
+        "pnl_usd": 18.51,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 110.4,
+        "rr": 1.81,
+        "rsi": 67.4,
+        "macd_bull": "YES",
+        "vol_ratio": 1.73,
+        "avg_dv_m": 418.65,
+        "perf_20d": 6.0,
+        "perf_60d": 4.1,
+        "perf_120d": 46.9,
+        "base_range": 15.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.9,
+        "inside_day": false,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -0.73,
+          "vcp_strength": 0.06,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 6.81,
+          "analyst_upside": -5.557916944259389
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": 0.08,
+        "qqq_perf_pct": 0.31,
+        "sector_etf_perf_pct": 1.75,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:37.929529",
+        "version": "1.0"
+      }
+    },
+    "ASML_2026-05-21": {
+      "core": {
+        "ticker": "ASML",
+        "signal_date": "2026-05-21",
+        "exit_date": "2026-06-11",
+        "setup": "BREAKOUT",
+        "entry": 1606.7,
+        "stop": 1509.05,
+        "target": 1800.0,
+        "exit_price": 1757.47,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 9.38,
+        "pnl_usd": 18.77,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 111.5,
+        "rr": 1.98,
+        "rsi": 59.4,
+        "macd_bull": "YES",
+        "vol_ratio": 0.82,
+        "avg_dv_m": 2642.47,
+        "perf_20d": 12.5,
+        "perf_60d": 4.5,
+        "perf_120d": 53.5,
+        "base_range": 11.3,
+        "horizon": "1-3 weeks",
+        "movement_class": "POWER_BREAKOUT",
+        "closing_strength": 0.82,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": -0.08,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 0.19,
+          "analyst_upside": 4.3160804020100585
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": -0.7,
+        "qqq_perf_pct": -1.32,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:38.452764",
+        "version": "1.0"
+      }
+    },
+    "BAX_2026-05-21": {
+      "core": {
+        "ticker": "BAX",
+        "signal_date": "2026-05-21",
+        "exit_date": "2026-06-11",
+        "setup": "BREAKOUT",
+        "entry": 18.87,
+        "stop": 17.77,
+        "target": 21.0,
+        "exit_price": 19.35,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 2.54,
+        "pnl_usd": 5.09,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 87.2,
+        "rr": 1.94,
+        "rsi": 61.1,
+        "macd_bull": "YES",
+        "vol_ratio": 0.9,
+        "avg_dv_m": 155.74,
+        "perf_20d": 3.4,
+        "perf_60d": -8.2,
+        "perf_120d": 0.7,
+        "base_range": 11.8,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": -1.49,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 10.7200004,
+          "analyst_upside": 16.213242249080384
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": -0.7,
+        "qqq_perf_pct": -1.32,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:38.957381",
+        "version": "1.0"
+      }
+    },
+    "CBT_2026-05-27": {
+      "core": {
+        "ticker": "CBT",
+        "signal_date": "2026-05-27",
+        "exit_date": "2026-06-06",
+        "setup": "BREAKOUT",
+        "entry": 86.6,
+        "stop": 82.74,
+        "target": 95.0,
+        "exit_price": 82.74,
+        "exit_reason": "Stop Loss",
+        "exit_day": 7,
+        "trigger_day": null,
+        "pnl_pct": -4.46,
+        "pnl_usd": -8.91,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 133.9,
+        "rr": 2.17,
+        "rsi": 65.8,
+        "macd_bull": "YES",
+        "vol_ratio": 1.5,
+        "avg_dv_m": 38.42,
+        "perf_20d": 12.0,
+        "perf_60d": 12.9,
+        "perf_120d": 35.5,
+        "base_range": 13.4,
+        "horizon": "1-3 weeks",
+        "movement_class": "POWER_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Basic Materials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.32,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 7.5200000000000005,
+          "analyst_upside": -3.390617742684632
+        }
+      },
+      "market_context": {
+        "sector": "Basic Materials",
+        "sector_etf": "XLB",
+        "spy_perf_pct": -1.72,
+        "qqq_perf_pct": -3.34,
+        "sector_etf_perf_pct": -1.07,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:39.458359",
+        "version": "1.0"
+      }
+    },
+    "SBUX_2026-06-03": {
+      "core": {
+        "ticker": "SBUX",
+        "signal_date": "2026-06-03",
+        "exit_date": "2026-06-06",
+        "setup": "MEAN_REVERSION",
+        "entry": 96.08,
+        "stop": 93.79,
+        "target": 107.46,
+        "exit_price": 93.79,
+        "exit_reason": "Stop Loss",
+        "exit_day": 2,
+        "trigger_day": null,
+        "pnl_pct": -2.38,
+        "pnl_usd": -4.77,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 88.4,
+        "rr": 4.97,
+        "rsi": 32.8,
+        "macd_bull": "NO",
+        "vol_ratio": 1.1,
+        "avg_dv_m": 742.9,
+        "perf_20d": -8.1,
+        "perf_60d": -3.3,
+        "perf_120d": 18.0,
+        "base_range": 12.9,
+        "horizon": "2-4 weeks",
+        "movement_class": "MEAN_REVERSION",
+        "closing_strength": 0.23,
+        "inside_day": false,
+        "sector": "Unknown",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": -0.03,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 54,
+          "short_pct": 5.06,
+          "analyst_upside": 10.804046303055582
+        }
+      },
+      "market_context": {
+        "sector": "Unknown",
+        "sector_etf": null,
+        "spy_perf_pct": -2.21,
+        "qqq_perf_pct": -5.26,
+        "sector_etf_perf_pct": null,
+        "sector_divergence": false,
+        "regime_at_signal": null
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-06-06T22:47:39.969587",
         "version": "1.0"
       }
     }
