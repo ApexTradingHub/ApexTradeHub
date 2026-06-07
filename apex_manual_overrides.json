@@ -1,0 +1,19 @@
+{
+  "_instructions": "Manual Overrides fuer den Paper Trader. Bearbeite Eintraege pro Ticker. Trader liest jeden Run (alle 15 Min) und wendet alle Eintraege mit applied_at=null an. Felder: sl (SL-Setzen, niemals nach unten), tp (TP ueberschreiben), close (true -> sofort schliessen). 'note' wird in trade_log + activity geloggt. 'applied_at' wird vom Trader gesetzt. Beispiel: { \"AFRM\": { \"sl\": 70.50, \"close\": false, \"note\": \"SL auf BE\", \"set_at\": \"2026-06-07T15:30:00Z\", \"applied_at\": null } }",
+  "_examples": {
+    "EXAMPLE_TICKER_SL": {
+      "sl": 0.0,
+      "tp": null,
+      "close": false,
+      "note": "SL auf Break-Even gezogen",
+      "set_at": "2026-06-07T00:00:00Z",
+      "applied_at": "DUMMY-niemals_anwenden"
+    },
+    "EXAMPLE_TICKER_CLOSE": {
+      "close": true,
+      "note": "Sofort schliessen wegen XYZ",
+      "set_at": "2026-06-07T00:00:00Z",
+      "applied_at": "DUMMY-niemals_anwenden"
+    }
+  }
+}

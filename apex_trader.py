@@ -105,6 +105,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 SIGNALS_FILE   = SCRIPT_DIR / "apex_signals.json"
 POSITIONS_FILE = SCRIPT_DIR / "apex_positions.json"
 TRADE_LOG_FILE = SCRIPT_DIR / "apex_trade_log.json"
+OVERRIDES_FILE = SCRIPT_DIR / "apex_manual_overrides.json"   # Phase 2: User/Claude-Overrides
 
 
 # ---------------------------------------------------------------------------
@@ -431,6 +432,101 @@ def select_new_signals(state: dict, signals: list) -> list:
             "mode": TRADING_MODE,
         })
     return new_pending
+
+
+# ---------------------------------------------------------------------------
+# Manual Overrides (Phase 2) — User/Claude editiert apex_manual_overrides.json,
+# Trader liest jeden Run und wendet noch-nicht-applied Eintraege an.
+# ---------------------------------------------------------------------------
+def apply_manual_overrides(state: dict, dry_run: bool = False) -> list:
+    """Liest apex_manual_overrides.json, wendet alle Eintraege mit applied_at=null an.
+
+    Schema (Key = Ticker, Wert = Override-Dict):
+        {
+          "AFRM": {
+            "sl":    70.50,      // optional: SL setzen (max(old, new) -> niemals nach unten)
+            "tp":    null,       // optional: TP ueberschreiben
+            "close": false,      // optional: sofort schliessen
+            "note":  "SL auf BE gezogen",
+            "set_at":     "2026-06-07T15:30:00Z",
+            "applied_at": null   // wird vom Trader gesetzt
+          }
+        }
+    """
+    overrides = load_json(OVERRIDES_FILE)
+    if not overrides or not isinstance(overrides, dict):
+        return []
+    events = []
+    changed = False
+    for key, ov in overrides.items():
+        if key.startswith("_"):
+            continue   # _meta, _instructions, etc.
+        if not isinstance(ov, dict):
+            continue
+        if ov.get("applied_at"):
+            continue   # bereits angewandt
+
+        # Position via Ticker finden (in open list)
+        pos = next((p for p in state["open"] if p["ticker"] == key), None)
+        if pos is None:
+            log(f"  override: {key} - keine offene Position gefunden, skip")
+            ov["applied_at"] = now_iso()
+            ov["apply_result"] = "no_open_position"
+            changed = True
+            continue
+
+        # SL
+        if ov.get("sl") is not None:
+            new_sl = f(ov["sl"])
+            old_sl = pos["stop"]
+            pos["stop"] = max(old_sl, new_sl)
+            # Trailing-Ladder konsistent halten: wenn manuell hoeher als naechste Stufe -> Stufe upgrade
+            entry = pos.get("entry_actual", pos.get("entry"))
+            if entry:
+                for step_idx, (_, sl_mult) in enumerate(TRAIL_LADDER, start=1):
+                    if pos["stop"] >= entry * sl_mult:
+                        pos["ladder_step"] = max(int(pos.get("ladder_step", 0)), step_idx)
+                pos["trailing_active"] = pos["ladder_step"] > 0 or pos.get("trailing_active", False)
+            events.append({
+                "event": "manual_override", "id": pos["id"], "ts": now_iso(),
+                "ticker": pos["ticker"], "field": "sl",
+                "old": old_sl, "new": pos["stop"],
+                "note": ov.get("note", ""),
+            })
+            log(f"  override: {key} SL ${old_sl:.2f} -> ${pos['stop']:.2f}  ({ov.get('note', '')})")
+
+        # TP
+        if ov.get("tp") is not None:
+            new_tp = f(ov["tp"])
+            old_tp = pos["target"]
+            pos["target"] = new_tp
+            events.append({
+                "event": "manual_override", "id": pos["id"], "ts": now_iso(),
+                "ticker": pos["ticker"], "field": "tp",
+                "old": old_tp, "new": new_tp,
+                "note": ov.get("note", ""),
+            })
+            log(f"  override: {key} TP ${old_tp:.2f} -> ${new_tp:.2f}  ({ov.get('note', '')})")
+
+        # CLOSE NOW
+        if ov.get("close") is True:
+            cur = pos.get("current_price", pos["entry_actual"])
+            if not dry_run:
+                close_position(state, pos, cur, "Manual Close")
+            events.append({
+                "event": "manual_override", "id": pos["id"], "ts": now_iso(),
+                "ticker": pos["ticker"], "field": "close",
+                "exit_price": cur, "note": ov.get("note", ""),
+            })
+            log(f"  override: {key} CLOSE @ ${cur:.2f}  ({ov.get('note', '')})")
+
+        ov["applied_at"] = now_iso()
+        ov["apply_result"] = "ok"
+        changed = True
+
+    if changed and not dry_run:
+        save_json(OVERRIDES_FILE, overrides)
+    return events
 
 
 # ---------------------------------------------------------------------------
@@ -853,6 +949,11 @@ def run_trader(dry_run: bool = False):
     state["last_updated"] = now_iso()
 
     all_events = []
+
+    # 0. Manual Overrides anwenden (User/Claude via apex_manual_overrides.json)
+    log("step 0: manual overrides")
+    events0 = apply_manual_overrides(state, dry_run=dry_run)
+    all_events.extend(events0)
 
     # 1. Update open positions (TP/SL/trailing/time-exit)
     log("step 1: update open positions")
