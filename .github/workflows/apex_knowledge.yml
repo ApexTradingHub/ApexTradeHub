@@ -2,9 +2,9 @@ name: ApexKnowledge Daily
 
 on:
   schedule:
-    # 06:30 UTC = 08:30 CEST — morgens, nach naechtlichem Scan + Equity. Robust gegen
-    # Scan-Verzoegerungen (User sah TG-Nachrichten bis 00:50 CEST = 22:50 UTC).
-    - cron: '30 6 * * 1-5'
+    # 06:47 UTC = 08:47 CEST. Off-peak slot (war :30 = GH-Throttle-Zone, lief mit
+    # 2-6h Verzoegerung). Morgens nach naechtlichem Scan + Equity.
+    - cron: '47 6 * * 1-5'
   workflow_dispatch:
 
 jobs:
