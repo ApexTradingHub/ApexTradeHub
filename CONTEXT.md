@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-06 (Oracle-VM-Migration + Workflow-Hardening + Paper-Tab-Redesign)
+**Letztes Update:** 2026-06-08 (Trader Phase 1+2 + Bigdata-Skills installed + Cron-Slot-Shift)
 
 ---
 
@@ -141,14 +141,15 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ---
 
-## 7. Aktueller Daten-Stand (2026-06-06)
+## 7. Aktueller Daten-Stand (2026-06-08)
 
-- **Lifetime Trades:** 132 | WR 46.2 % | PF 1.84
-- **Postmortems analysiert:** 38/132 (94 pending)
+- **Lifetime Trades:** 132 | WR 46.2 % | PF 1.84 (unverändert seit 06-03, keine neuen Closes)
+- **Postmortems analysiert:** **40/132** (92 pending) ← +2 (AFRM/IBKR via Bigdata-Workflow)
+- **Market Regime aktuell:** **MIXED** (SPY=OK | QQQ=OK) — war BULLISH bis 06-04, seit Macro-Risk-Off 06-05 MIXED
 - **CONFIRMED Setups:** BREAKOUT (n=77, WR 59.7 %, PF 2.70), REVERSAL (n=54, disabled)
-- **30d Window:** WR 51.4 % / PF 2.19 (n=35) — Drift +5.2pp vs lifetime
-- **14d Window:** WR 63.6 % / PF 4.20 (n=11) — kühlt von 90.9 % ab
-- **7d Window:** WR 0.0 % (n=2) — IBKR/AFRM Stops, AXTA-Wave (auch Stops)
+- **30d Window:** **WR 54.5 % / PF 2.49** (n=33) — Drift +8.3pp vs lifetime, weiter stark
+- **14d Window:** WR 63.6 % / PF 4.20 (n=11) — unverändert
+- **7d Window:** WR 0.0 % (n=2) — IBKR/AFRM Stops fielen ins Macro-Schock-Fenster
 - **BREAKOUT 30d:** **WR 70.8 %** (n=24) — Drift +11pp vs lifetime, weiter stark aber abgekühlt
 - **MEAN_REVERSION:** erster geschlossener Trade SBUX -2.38 % D+2 SL
 - **REVERSAL 30d:** WR 10.0 % (n=10) — Legacy stirbt
@@ -160,6 +161,38 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-08** **ApexKnowledge Cron 06:30 → 06:47 UTC** (off-peak slot, war 2-6h
+  delayed durch GH-:30-Throttle-Zone). Plus `apex_postmortem.py` lief ohne `--summary`
+  (full mode) — addet neue closed trades zu trade_postmortems.json (aktuell 0 new).
+- **2026-06-07** **Trader Phase 2: Manual Override System** (`apex_manual_overrides.json`)
+  - Schema: `{ticker: {sl, tp, close, note, set_at, applied_at}}`
+  - User/Claude editiert, Trader liest jeden Run, wendet noch-nicht-`applied_at` an
+  - SL: max(old, new) - niemals nach unten, Trail-Ladder konsistent gehalten
+  - TP: direktes Überschreiben | CLOSE: `"Manual Close"` exit mit current_price
+  - Events ins trade_log (`event: manual_override` mit field/old/new/note)
+  - VM-Script `run_trader.sh` updated (apex_manual_overrides.json in git add list)
+- **2026-06-07** **Trader Phase 1: Trailing-Ladder + Stagnation + Replacement**
+  - **Trailing-Ladder** ersetzt one-shot Trail: 3 Stufen
+    - Step 1: high ≥ entry×1.06 → SL = entry×1.02 (+2 % gesichert)
+    - Step 2: high ≥ entry×1.10 → SL = entry×1.06 (+6 % gesichert)
+    - Step 3: high ≥ entry×1.14 → SL = entry×1.10 (+10 % gesichert)
+    Position bekommt `ladder_step` Feld (0/1/2/3).
+  - **Stagnations-Exit:** ≥ 5 Tage held + PnL zwischen ±2 % → close mit "Stagnation Exit"
+  - **Replacement-Logik:** wenn Slots voll + neues Pending qualifiziert:
+    - Score ≥ 90 + (Pocket Pivot OR Gap ≥2 %) + schwächste Pos ≥ +2 % im Plus
+    - → schwächste mit "Replacement Exit" close, neue open im selben Run
+  - **NICHT übernommen aus User-Brief:** MAX_HOLD 7d (Daten sagen 21d), Score-Sweet-Spot
+    70-80 (Daten sagen 90-100=72 % WR, 70-80=42 % WR)
+- **2026-06-07** **Bigdata.com MCP-Skills installiert** vom User. Workflow für
+  Postmortem-Batches: bigdata-com:financial-research-analyst orchestriert FMP +
+  WebSearch. Test mit AFRM + IBKR erfolgreich (Phase 2 ergänzt 40/132 analyzed).
+- **2026-06-07** **Postmortems AFRM + IBKR** (Batch 5 v2): Macro-Risk-Off-Theme:
+  - AFRM_2026-05-29: high_beta_breakout_macro_risk, fintech_consumer_credit_sensitivity,
+    fundamentals_intact_but_stopped, rate_decision_window_risk
+  - IBKR_2026-06-01: late_cycle_breakout_near_52w_high, macro_selloff_correlates_all_stocks,
+    rate_beneficiary_paradox, score_top_decile_no_protection_in_macro
+  - Output: knowledge/trade_postmortems.json + reports/{AFRM,IBKR}_postmortem_*.md (MD)
+    + reports/{AFRM,IBKR}_company_brief_2026-06.docx (Word mit inline attribution)
 - **2026-06-06** **Workflow-Hardening + Market-Regime-Backup:**
   - `apex_scan.yml`, `apex_equity.yml`, `apex_knowledge.yml`: Push-Step von
     `git stash` auf `/tmp`-Backup umgestellt (Stash-Pop-Conflict vermieden).
