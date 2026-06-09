@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-08T11:23:59.313752",
-    "total_trades": 132,
+    "updated": "2026-06-09T10:24:47.066427",
+    "total_trades": 133,
     "date_range": [
       "2026-03-17",
       "2026-06-03"
     ],
-    "lifetime_wr": 0.462,
-    "lifetime_pf": 1.843
+    "lifetime_wr": 0.466,
+    "lifetime_pf": 1.868
   },
   "tickers": {
     "MUR": {
@@ -258,13 +258,26 @@
         "BREAKOUT"
       ],
       "confidence": "LOW"
+    },
+    "ASML": {
+      "n": 2,
+      "wins": 2,
+      "wr": 1.0,
+      "avg_pnl_pct": 9.12,
+      "total_pnl_usd": 36.49,
+      "best_pnl": 9.38,
+      "worst_pnl": 8.86,
+      "setups_seen": [
+        "BREAKOUT"
+      ],
+      "confidence": "LOW"
     }
   },
   "setups": {
     "BREAKOUT": {
-      "n": 77,
-      "wr": 0.597,
-      "pf": 2.702,
+      "n": 78,
+      "wr": 0.603,
+      "pf": 2.761,
       "avg_win_pct": 8.78,
       "avg_loss_pct": -4.82,
       "confidence": "HIGH",
@@ -272,67 +285,67 @@
         "perf_120_lt_0": {
           "n": 7,
           "wr": 0.857,
-          "lift_vs_setup_baseline": 0.26,
+          "lift_vs_setup_baseline": 0.255,
           "confidence": "LOW"
         },
         "perf_120_0_25": {
           "n": 27,
           "wr": 0.444,
-          "lift_vs_setup_baseline": -0.153,
+          "lift_vs_setup_baseline": -0.158,
           "confidence": "MED"
         },
         "perf_120_25_50": {
           "n": 27,
           "wr": 0.667,
-          "lift_vs_setup_baseline": 0.069,
+          "lift_vs_setup_baseline": 0.064,
           "confidence": "MED"
         },
         "perf_120_50plus": {
-          "n": 16,
-          "wr": 0.625,
-          "lift_vs_setup_baseline": 0.028,
+          "n": 17,
+          "wr": 0.647,
+          "lift_vs_setup_baseline": 0.044,
           "confidence": "MED"
         },
         "rsi_50_60": {
           "n": 9,
           "wr": 0.667,
-          "lift_vs_setup_baseline": 0.069,
+          "lift_vs_setup_baseline": 0.064,
           "confidence": "LOW"
         },
         "rsi_60_65": {
-          "n": 34,
-          "wr": 0.5,
-          "lift_vs_setup_baseline": -0.097,
+          "n": 35,
+          "wr": 0.514,
+          "lift_vs_setup_baseline": -0.088,
           "confidence": "HIGH"
         },
         "rsi_65_70": {
           "n": 22,
           "wr": 0.636,
-          "lift_vs_setup_baseline": 0.039,
+          "lift_vs_setup_baseline": 0.034,
           "confidence": "MED"
         },
         "rsi_70plus": {
           "n": 12,
           "wr": 0.75,
-          "lift_vs_setup_baseline": 0.153,
+          "lift_vs_setup_baseline": 0.147,
           "confidence": "LOW"
         },
         "vol_lt_1": {
           "n": 27,
           "wr": 0.481,
-          "lift_vs_setup_baseline": -0.116,
+          "lift_vs_setup_baseline": -0.121,
           "confidence": "MED"
         },
         "vol_1_15": {
-          "n": 30,
-          "wr": 0.633,
-          "lift_vs_setup_baseline": 0.036,
+          "n": 31,
+          "wr": 0.645,
+          "lift_vs_setup_baseline": 0.043,
           "confidence": "HIGH"
         },
         "vol_15_25": {
           "n": 17,
           "wr": 0.647,
-          "lift_vs_setup_baseline": 0.05,
+          "lift_vs_setup_baseline": 0.044,
           "confidence": "MED"
         }
       }
@@ -387,26 +400,26 @@
   "catalysts": {
     "cat_pocket_pivot": {
       "n_present": 24,
-      "n_absent": 108,
+      "n_absent": 109,
       "wr_when_present": 0.625,
-      "wr_when_absent": 0.426,
-      "lift": 0.199,
+      "wr_when_absent": 0.431,
+      "lift": 0.194,
       "confidence": "MED"
     },
     "gap_gt_2pct": {
       "n_present": 7,
-      "n_absent": 125,
+      "n_absent": 126,
       "wr_when_present": 0.714,
-      "wr_when_absent": 0.448,
-      "lift": 0.266,
+      "wr_when_absent": 0.452,
+      "lift": 0.262,
       "confidence": "LOW"
     },
     "analyst_upside_gt_15pct": {
       "n_present": 20,
-      "n_absent": 112,
+      "n_absent": 113,
       "wr_when_present": 0.3,
-      "wr_when_absent": 0.491,
-      "lift": -0.191,
+      "wr_when_absent": 0.496,
+      "lift": -0.196,
       "confidence": "MED"
     }
   },
@@ -433,9 +446,9 @@
         "confidence": "MED"
       },
       "100-999": {
-        "n": 29,
-        "wr": 0.69,
-        "confidence": "MED"
+        "n": 30,
+        "wr": 0.7,
+        "confidence": "HIGH"
       }
     },
     "REVERSAL": {
