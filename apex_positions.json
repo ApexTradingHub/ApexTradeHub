@@ -2,8 +2,25 @@
   "mode": "paper",
   "capital_initial": 300.0,
   "cash": 246.97458961508488,
-  "last_updated": "2026-06-08T21:45:02Z",
-  "pending": [],
+  "last_updated": "2026-06-09T13:00:03Z",
+  "pending": [
+    {
+      "id": "PAPER_MOH_2026-06-08",
+      "ticker": "MOH",
+      "setup": "BREAKOUT",
+      "sector": "Healthcare",
+      "signal_date": "2026-06-08",
+      "entry": 196.13,
+      "stop_initial": 185.01,
+      "target": 215.0,
+      "score": 112.7,
+      "rr": 1.7,
+      "upside_pct": 9.6,
+      "added_at": "2026-06-09T13:00:05Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_AXTA_2026-06-04",
@@ -30,7 +47,7 @@
       "current_price": 31.850000381469727,
       "pnl_pct": 0.25181108426102294,
       "pnl_usd": 0.12590554213051147,
-      "hold_days": 3
+      "hold_days": 4
     }
   ],
   "closed": [
