@@ -2,8 +2,25 @@
   "mode": "paper",
   "capital_initial": 300.0,
   "cash": 196.97458961508488,
-  "last_updated": "2026-06-09T21:45:03Z",
-  "pending": [],
+  "last_updated": "2026-06-10T13:00:03Z",
+  "pending": [
+    {
+      "id": "PAPER_ASML_2026-06-09",
+      "ticker": "ASML",
+      "setup": "BREAKOUT",
+      "sector": "Technology",
+      "signal_date": "2026-06-09",
+      "entry": 1782.85,
+      "stop_initial": 1664.75,
+      "target": 1990.27,
+      "score": 132.4,
+      "rr": 1.76,
+      "upside_pct": 11.6,
+      "added_at": "2026-06-10T13:00:06Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_AXTA_2026-06-04",
@@ -30,7 +47,7 @@
       "current_price": 32.834999084472656,
       "pnl_pct": 3.352216192863257,
       "pnl_usd": 1.6761080964316284,
-      "hold_days": 4
+      "hold_days": 5
     },
     {
       "id": "PAPER_MOH_2026-06-08",
