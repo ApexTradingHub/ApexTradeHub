@@ -63,6 +63,7 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **⚡ Gap ≥2 %** | 7 | LOW (n→ noch klein) | **+27pp WR (71 %)** — starkes Signal | Gap-Score-Boost (aktuell +8), evtl. erhoehen |
 | **🔵 BREAKOUT × perf_120 0-25** | 27 | MED | -15pp WR (44 %, war -17) | Score-Penalty |
 | **🔵 BREAKOUT × vol_lt_1** | 27 | MED | -12pp WR (48 %) | vol≥1.0-Gate validiert |
+| **🚀 STAGE_2 Surge im MIXED-Regime** | n=10 open, 0 closed | HYPOTHESIS (2026-06-08, neu) | aktuelle PnL alle ≤+4 % | **Beobachten:** kommt Defensive-Rotation? STAGE_2-Stocks (LIN/EW/COST/KIM/EQR/ASB/GL) im Watch. Bei n≥10 closed schauen. Falls WR <40 % → STAGE_2 in MIXED-Regime deaktivieren oder Score-Penalty |
 | **🔵 BREAKOUT × perf_120 25-50** | 24 | MED | +13pp WR (71 %) | Score-Bonus für diese Range |
 | **🔵 BREAKOUT × perf_120 0-25** | 24 | MED | −16pp WR (42 %) | Score-Penalty |
 | **🔵 BREAKOUT × vol_lt_1** | 24 | MED | −16pp WR (42 %) | vol≥1.0-Gate validiert |
@@ -150,6 +151,10 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 - **30d Window:** **WR 54.5 % / PF 2.49** (n=33) — Drift +8.3pp vs lifetime, weiter stark
 - **14d Window:** WR 63.6 % / PF 4.20 (n=11) — unverändert
 - **7d Window:** WR 0.0 % (n=2) — IBKR/AFRM Stops fielen ins Macro-Schock-Fenster
+- **🚀 STAGE_2 Anomalie (2026-06-08):** 10 STAGE_2 offen (defensive Sektor-Names:
+  LIN/EW/COST/KIM/EQR/ASB/GL), Signal-Welle in MIXED-Regime begonnen.
+  **0 STAGE_2 jemals geschlossen lifetime** — wir wissen nicht wie sie performen.
+  Aktuelle PnL alle leicht negativ bis +4 %. Defensive-Rotation-Hypothese.
 - **BREAKOUT 30d:** **WR 70.8 %** (n=24) — Drift +11pp vs lifetime, weiter stark aber abgekühlt
 - **MEAN_REVERSION:** erster geschlossener Trade SBUX -2.38 % D+2 SL
 - **REVERSAL 30d:** WR 10.0 % (n=10) — Legacy stirbt
