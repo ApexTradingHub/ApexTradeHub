@@ -98,6 +98,16 @@ SQ_SHORT_MIN = 15.0
 # Losern (FLS/PENN/HP/S) hatten 0 Catalysts. Default 0 = off, kein Verhaltens-Change.
 CATALYST_FREE_ELITE_PENALTY = 0.0
 
+# Score-Realign (Test 2026-06-11, opt-in via --score-realign).
+# Aligniert BREAKOUT-Score an gemessene Live-WR-Kohorten (n=24-27 MED):
+#   - RSI-Zone 48-68 -> 48-72 (RSI>=70 zeigt 75% WR n=12, addet auch Signale -> Count-Schutz)
+#   - perf_120 0-25 Bucket: milde Penalty (-3) statt EMERGING +5
+#     (gemessen 44% WR n=27 = groesstes Loser-Bucket; mild = re-rank statt gate-out)
+#   - perf_120 25-50 Bucket: bleibt hoch (+15, gemessen 71% WR n=24)
+# Analyst +3->0 und Winrate n>=4 sind NICHT hier (nicht backtestbar: analyst skip in
+# backtest_mode, winrate braucht forward-data) -> separate Live-Validierung.
+SCORE_REALIGN = False
+
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
     "2-4 weeks":   20,   # SHORT_SQUEEZE
@@ -826,7 +836,8 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         score += 8 if higher_tf else 0
         score += 8 if expansion_vol else (4 if vol_ratio >= 1.0 else 0)
         score += 8 if macd_bull else 0
-        score += 6 if 48 <= rsi14 <= 68 else (3 if rsi_zone else 0)
+        _rsi_hi = 72 if SCORE_REALIGN else 68   # Realign: RSI>=70 zeigt 75% WR (n=12)
+        score += 6 if 48 <= rsi14 <= _rsi_hi else (3 if rsi_zone else 0)
         score += min(max(perf_20, 0), 20)  * 0.8
         score += min(max(perf_60, 0), 35)  * 0.5
         score += min(vol_ratio, 3.0) * 4
@@ -845,12 +856,24 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     movement_class = "STANDARD"
     movement_bonus = 0
     if setup == "BREAKOUT":
-        if perf_120 > 25 and pct_from_52w > -2:
-            movement_class = "POWER_BREAKOUT"; movement_bonus = 15
-        elif perf_120 >= 0:
-            movement_class = "EMERGING_BREAKOUT"; movement_bonus = 5
+        if SCORE_REALIGN:
+            # Bucketed nach gemessenen Live-WR-Kohorten (mild = re-rank, nicht gate-out)
+            if perf_120 < 0:
+                movement_class = "WEAK_BREAKOUT"; movement_bonus = -15   # unveraendert (n=7 zu klein)
+            elif perf_120 <= 25:
+                movement_class = "DEADZONE_BREAKOUT"; movement_bonus = -3  # 44% WR n=27, war +5
+            elif perf_120 <= 50:
+                movement_class = "SWEET_BREAKOUT"; movement_bonus = 15     # 71% WR n=24
+            else:  # >50 extended
+                movement_class = ("POWER_BREAKOUT" if pct_from_52w > -2 else "EMERGING_BREAKOUT")
+                movement_bonus = 8
         else:
-            movement_class = "WEAK_BREAKOUT"; movement_bonus = -15
+            if perf_120 > 25 and pct_from_52w > -2:
+                movement_class = "POWER_BREAKOUT"; movement_bonus = 15
+            elif perf_120 >= 0:
+                movement_class = "EMERGING_BREAKOUT"; movement_bonus = 5
+            else:
+                movement_class = "WEAK_BREAKOUT"; movement_bonus = -15
     elif setup == "VCP":
         movement_class = "VCP_TIGHT" if vcp_data["base_range_pct"] <= 8 else "VCP_WIDE"
         movement_bonus = 10 if movement_class == "VCP_TIGHT" else 5
@@ -1357,10 +1380,13 @@ def main():
     parser.add_argument("--catalyst-free-elite-penalty", type=float, default=0.0,
                         help="Penalty fuer BO score>=100 OHNE [PP, Gap>=2%%, EarningsBeat]. "
                              "Test-Hypothese: techn. Extreme ohne Bestaetigung sind Falle (default 0 = off)")
+    parser.add_argument("--score-realign", action="store_true",
+                        help="BREAKOUT-Score an gemessene WR-Kohorten aligniern: RSI 48-72, "
+                             "perf_120 0-25 Penalty, 25-50 Sweet-Spot (default off)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY, SCORE_REALIGN
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
@@ -1371,9 +1397,12 @@ def main():
     VCP_ATR_CONTRACTION = args.vcp_atr_contraction
     SQ_SHORT_MIN = args.sq_short_min
     CATALYST_FREE_ELITE_PENALTY = args.catalyst_free_elite_penalty
+    SCORE_REALIGN = args.score_realign
     if CATALYST_FREE_ELITE_PENALTY:
         print(f"[TEST] CATALYST_FREE_ELITE_PENALTY={CATALYST_FREE_ELITE_PENALTY} "
               f"(BO score>=100 ohne PP/Gap/Beat -> -{CATALYST_FREE_ELITE_PENALTY})")
+    if SCORE_REALIGN:
+        print("[TEST] SCORE_REALIGN=ON (BO: RSI 48-72, perf_120 0-25 Penalty, 25-50 Sweet)")
     if FORCE_RELAX:
         print(f"[MEASURE] FORCE_RELAX={FORCE_RELAX} — measuring relaxed-signal quality")
     if ONLY_SETUP:
