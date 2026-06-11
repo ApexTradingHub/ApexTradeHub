@@ -378,8 +378,21 @@ def select_new_signals(state: dict, signals: list) -> list:
     today = today_date()
     cutoff = today - timedelta(days=MAX_TRIGGER_DAYS)
 
-    # Bucket by signal date
-    by_date: dict[str, list] = defaultdict(list)
+    # 2026-06-10: Top-1/Tag-Regel ABGESCHAFFT (fuehrte zu Unter-Auslastung:
+    # 3 Slots leer + $200 idle waehrend mehrere Elite-Signale ignoriert wurden).
+    # Neue Logik: ALLE qualifizierten BREAKOUTs der letzten MAX_TRIGGER_DAYS sammeln,
+    # nach Score sortieren, freie Slots auffuellen.
+
+    # Tracked-Keys (schon gesehen) + bereits gehaltene/pending Tickers
+    tracked_keys = set()
+    for bucket in ("pending", "open", "closed", "expired"):
+        for p in state.get(bucket, []):
+            tracked_keys.add((p.get("ticker"), p.get("signal_date")))
+    busy_tickers = {p["ticker"] for p in state.get("open", [])}
+    busy_tickers |= {p["ticker"] for p in state.get("pending", [])}
+
+    # Alle qualifizierten, frischen Kandidaten flach sammeln
+    candidates = []
     for s in signals:
         if not passes_tg_gate(s):
             continue
@@ -392,29 +405,36 @@ def select_new_signals(state: dict, signals: list) -> list:
                 continue
         except Exception:
             continue
-        by_date[d].append(s)
+        ticker = s["ticker"]
+        if ticker in busy_tickers:
+            continue                          # schon offen oder pending
+        if (ticker, d) in tracked_keys:
+            continue                          # diesen (Ticker, Datum)-Eintrag schon getrackt
+        candidates.append(s)
 
-    # Skip dates we already tracked
-    tracked_keys = set()
-    for bucket in ("pending", "open", "closed", "expired"):
-        for p in state.get(bucket, []):
-            tracked_keys.add((p.get("ticker"), p.get("signal_date")))
+    if not candidates:
+        return []
 
-    held_tickers = {p["ticker"] for p in state.get("open", [])}
+    # Dedup pro Ticker: behalte hoechsten Score (gleicher Ticker an mehreren Tagen)
+    best_per_ticker = {}
+    for s in candidates:
+        t = s["ticker"]
+        if t not in best_per_ticker or f(s.get("score")) > f(best_per_ticker[t].get("score")):
+            best_per_ticker[t] = s
+    candidates = list(best_per_ticker.values())
+
+    # Nach Score sortieren (beste zuerst)
+    candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
+
+    # Freie Slots berechnen: MAX_POSITIONS minus (open + pending)
+    used_slots = len(state.get("open", [])) + len(state.get("pending", []))
+    free_slots = max(0, MAX_POSITIONS - used_slots)
+    if free_slots == 0:
+        return []
 
     new_pending = []
-    for sigdate, day_sigs in by_date.items():
-        # Skip if we already picked any signal for this scan-day
-        if any(k[1] == sigdate for k in tracked_keys):
-            continue
-        # Filter: not already held, not duplicate
-        candidates = [s for s in day_sigs
-                      if s["ticker"] not in held_tickers
-                      and (s["ticker"], sigdate) not in tracked_keys]
-        if not candidates:
-            continue
-        candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
-        top = candidates[0]
+    for top in candidates[:free_slots]:
+        sigdate = top["date"]
         new_pending.append({
             "id": f"PAPER_{top['ticker']}_{sigdate}",
             "ticker": top["ticker"],
