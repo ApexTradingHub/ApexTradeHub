@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 300.0,
   "cash": 47.950351953215886,
-  "last_updated": "2026-06-11T19:30:02Z",
+  "last_updated": "2026-06-11T19:45:02Z",
   "pending": [],
   "open": [
     {
@@ -28,9 +28,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-09T13:15:05Z",
-      "current_price": 192.48500061035156,
-      "pnl_pct": -2.3467272771148604,
-      "pnl_usd": -1.1733636385574302,
+      "current_price": 191.65249633789062,
+      "pnl_pct": -2.7690810527535374,
+      "pnl_usd": -1.3845405263767687,
       "hold_days": 2
     },
     {
@@ -51,15 +51,16 @@
       "entry_actual": 1782.85,
       "shares": 0.028044984154583955,
       "size_usd": 50.0,
-      "stop": 1664.75,
-      "high_since_entry": 1883.999755859375,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 1818.5069999999998,
+      "high_since_entry": 1898.800048828125,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-06-10T13:15:05Z",
-      "current_price": 1879.8299560546875,
-      "pnl_pct": 5.439602661731923,
-      "pnl_usd": 2.719801330865961,
-      "hold_days": 1
+      "current_price": 1885.5350341796875,
+      "pnl_pct": 5.7596003129645,
+      "pnl_usd": 2.8798001564822497,
+      "hold_days": 1,
+      "trailing_activated_at": "2026-06-11T19:45:05Z"
     },
     {
       "id": "PAPER_CARR_2026-06-09",
@@ -84,9 +85,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 69.5999984741211,
-      "pnl_pct": -0.5288002370714665,
-      "pnl_usd": -0.26440011853573325,
+      "current_price": 70.08499908447266,
+      "pnl_pct": 0.16435484417987337,
+      "pnl_usd": 0.08217742208993668,
       "hold_days": 0
     },
     {
@@ -112,9 +113,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 20.579999923706055,
-      "pnl_pct": 1.3743161603175034,
-      "pnl_usd": 0.6871580801587517,
+      "current_price": 20.655000686645508,
+      "pnl_pct": 1.7437598475223364,
+      "pnl_usd": 0.8718799237611683,
       "hold_days": 0
     },
     {
@@ -140,9 +141,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 53.0099983215332,
-      "pnl_pct": -0.8788363471705194,
-      "pnl_usd": -0.43941817358525964,
+      "current_price": 53.18000030517578,
+      "pnl_pct": -0.5609567966047413,
+      "pnl_usd": -0.28047839830237065,
       "hold_days": 0
     }
   ],
@@ -251,7 +252,7 @@
     "losses": 1,
     "win_rate": 50.0,
     "pnl_realized": -2.0496480467841023,
-    "pnl_unrealized": 1.5297774803462898,
-    "equity": 299.4801294335622
+    "pnl_unrealized": 2.1688385776542156,
+    "equity": 300.1191905308701
   }
 }
