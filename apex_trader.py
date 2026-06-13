@@ -43,8 +43,10 @@ POSITION_SIZE   = 50.0          # USD pro Trade
 MAX_POSITIONS   = 7             # gleichzeitig offene Positionen
 CASH_RESERVE    = 50.0          # Mindest-Cash-Reserve (Puffer)
 
-# Setup-Filter — Phase 1 BREAKOUT only, 2026-06-12 STAGE_2 dazu (Trend-Signale)
-ALLOWED_SETUPS  = {"BREAKOUT", "STAGE_2"}
+# Setup-Filter — BREAKOUT only.
+# 2026-06-12: STAGE_2 wieder raus. Widerspricht der Rotations-These (Hold 60d,
+# blockiert Slot wochenlang). Schnelle ~5%-Spruenge sind das Momentum-Filler-Job.
+ALLOWED_SETUPS  = {"BREAKOUT"}
 
 # Telegram-aequivalentes Gate (mirrors ApexScan.py)
 TG_MIN_RR       = 1.5
