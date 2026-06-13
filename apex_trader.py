@@ -36,13 +36,15 @@ ETORO_API_KEY = os.environ.get("ETORO_API_KEY", "")
 ETORO_ACCOUNT_ID = os.environ.get("ETORO_ACCOUNT_ID", "")
 
 # Risk parameters
-CAPITAL_INITIAL = 300.0         # Test-Portfolio Startkapital
+# 2026-06-12: Bumped 300->400, 5->7 fuer Rotation-Test (User-Request).
+# Scope: testen ob mehr Slots + Momentum-Filler die Cash-Auslastung verbessern.
+CAPITAL_INITIAL = 400.0         # Test-Portfolio Startkapital
 POSITION_SIZE   = 50.0          # USD pro Trade
-MAX_POSITIONS   = 5             # gleichzeitig offene Positionen
+MAX_POSITIONS   = 7             # gleichzeitig offene Positionen
 CASH_RESERVE    = 50.0          # Mindest-Cash-Reserve (Puffer)
 
-# Setup-Filter (Phase B: nur BREAKOUT)
-ALLOWED_SETUPS  = {"BREAKOUT"}
+# Setup-Filter — Phase 1 BREAKOUT only, 2026-06-12 STAGE_2 dazu (Trend-Signale)
+ALLOWED_SETUPS  = {"BREAKOUT", "STAGE_2"}
 
 # Telegram-aequivalentes Gate (mirrors ApexScan.py)
 TG_MIN_RR       = 1.5
@@ -93,6 +95,7 @@ HOLD_DAYS_PER_SETUP = {
     "SHORT_SQUEEZE":  20,
     "MEAN_REVERSION": 20,
     "REVERSAL":       40,
+    "MOMENTUM":        7,   # Filler: schneller Sprung, schnell wieder raus
 }
 HOLD_DAYS_DEFAULT = 21
 
@@ -106,6 +109,20 @@ SIGNALS_FILE   = SCRIPT_DIR / "apex_signals.json"
 POSITIONS_FILE = SCRIPT_DIR / "apex_positions.json"
 TRADE_LOG_FILE = SCRIPT_DIR / "apex_trade_log.json"
 OVERRIDES_FILE = SCRIPT_DIR / "apex_manual_overrides.json"   # Phase 2: User/Claude-Overrides
+MOMENTUM_CACHE = SCRIPT_DIR / "apex_momentum_cache.json"     # Momentum-Filler (Tages-Cache)
+US_TICKERS     = SCRIPT_DIR / "us_tickers.txt"
+
+# Momentum-Filler (2026-06-12) — fuellt Slots wenn Scanner-Signale nicht reichen
+MOMENTUM_UNIVERSE_SIZE     = 200    # Top-N tickers aus us_tickers.txt
+MOMENTUM_CACHE_MAX_AGE_H   = 6      # cache max 6h alt, dann refresh
+MOMENTUM_PERF_5D_MIN       = 3.0    # mind. +3 % in 5 Handelstagen
+MOMENTUM_RSI_MAX           = 72     # nicht ueberkauft
+MOMENTUM_VOL_RATIO_MIN     = 1.2    # mind. 20 % ueber 20d-Durchschnitt
+MOMENTUM_PRICE_MIN         = 5.0    # keine Penny-Stocks
+MOMENTUM_MIN_SCORE         = 60     # eigene Score-Scale, NICHT mit Scanner vergleichbar
+MOMENTUM_TP_PCT            = 0.06   # +6 % Target (User-These: schnelle 5%-Spruenge)
+MOMENTUM_SL_PCT            = 0.04   # -4 % Stop
+MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber jetzigem Kurs)
 
 
 # ---------------------------------------------------------------------------
@@ -367,6 +384,195 @@ def passes_tg_gate(sig: dict) -> bool:
 
 
 # ---------------------------------------------------------------------------
+# Momentum-Filler (2026-06-12) — fuellt Slots wenn Scanner-Signale nicht reichen
+# Tages-Cache: yfinance Bulk-Download max 1× pro Run-Set, nicht jeden 15-Min-Run.
+# ---------------------------------------------------------------------------
+def _wilder_rsi(close_series, period: int = 14) -> float:
+    """RSI(14) am letzten Punkt. Returns None bei zu wenig Daten."""
+    if len(close_series) < period + 1:
+        return None
+    delta = close_series.diff().dropna()
+    up = delta.clip(lower=0)
+    dn = (-delta).clip(lower=0)
+    avg_up = up.rolling(period).mean()
+    avg_dn = dn.rolling(period).mean()
+    if avg_dn.iloc[-1] == 0:
+        return 100.0
+    rs = avg_up.iloc[-1] / avg_dn.iloc[-1]
+    return float(100 - (100 / (1 + rs)))
+
+
+def fetch_momentum_universe() -> list:
+    """Holt Top-N US-Tickers, computed Momentum-Filter + Score, cached.
+    Returns liste von candidate-dicts (kompatibel zur pending-Struktur)."""
+    if not US_TICKERS.exists():
+        log("momentum: us_tickers.txt fehlt, skip")
+        return []
+    with open(US_TICKERS, "r", encoding="utf-8") as fh:
+        tickers = [t.strip().upper() for t in fh if t.strip()][:MOMENTUM_UNIVERSE_SIZE]
+    if not tickers:
+        return []
+
+    try:
+        import yfinance as yf
+    except ImportError:
+        return []
+
+    log(f"momentum: fetching {len(tickers)} tickers (1mo daily)...")
+    try:
+        df = yf.download(
+            tickers, period="1mo", interval="1d",
+            progress=False, threads=True, auto_adjust=True,
+            group_by="ticker",
+        )
+    except Exception as e:
+        log(f"momentum: yfinance fail {e}")
+        return []
+
+    today = today_date().isoformat()
+    candidates = []
+    for t in tickers:
+        try:
+            if len(tickers) == 1:
+                tdf = df
+            elif hasattr(df.columns, "levels"):
+                if t not in df.columns.get_level_values(0):
+                    continue
+                tdf = df[t]
+            else:
+                continue
+            close = tdf["Close"].dropna()
+            vol = tdf["Volume"].dropna()
+            if len(close) < 20 or len(vol) < 20:
+                continue
+
+            cur = float(close.iloc[-1])
+            if cur < MOMENTUM_PRICE_MIN:
+                continue
+
+            perf_5d  = (cur / float(close.iloc[-5]) - 1) * 100
+            perf_20d = (cur / float(close.iloc[-20]) - 1) * 100
+            vol_5  = float(vol.iloc[-5:].mean())
+            vol_20 = float(vol.iloc[-20:].mean())
+            vol_ratio = vol_5 / vol_20 if vol_20 > 0 else 0
+            rsi = _wilder_rsi(close, 14)
+
+            # Filter
+            if rsi is None: continue
+            if perf_5d < MOMENTUM_PERF_5D_MIN: continue
+            if rsi > MOMENTUM_RSI_MAX: continue
+            if vol_ratio < MOMENTUM_VOL_RATIO_MIN: continue
+
+            # Momentum-Score (eigene Skala, NICHT mit Scanner vergleichbar)
+            #   perf_5d: max +48 (bei 12 % capped)
+            #   perf_20d positive: max +15
+            #   vol_ratio: max +18
+            #   RSI sweet 50-65: +10
+            score = (
+                min(perf_5d, 12) * 4 +
+                min(max(perf_20d, 0), 30) * 0.5 +
+                min(vol_ratio, 3.0) * 6 +
+                (10 if 50 <= rsi <= 65 else 5 if rsi < 70 else 0)
+            )
+            if score < MOMENTUM_MIN_SCORE: continue
+
+            candidates.append({
+                "ticker": t,
+                "setup": "MOMENTUM",
+                "source": "momentum_filler",
+                "date": today,
+                "price": round(cur, 2),
+                "buy_above": round(cur * (1 + MOMENTUM_ENTRY_BUFFER), 2),
+                "stop": round(cur * (1 - MOMENTUM_SL_PCT), 2),
+                "target": round(cur * (1 + MOMENTUM_TP_PCT), 2),
+                "score": round(score, 1),
+                "perf_5d": round(perf_5d, 1),
+                "perf_20d": round(perf_20d, 1),
+                "rsi": round(rsi, 1),
+                "vol_ratio": round(vol_ratio, 2),
+                "rr": round(MOMENTUM_TP_PCT / MOMENTUM_SL_PCT, 2),
+                "upside_pct": round(MOMENTUM_TP_PCT * 100, 1),
+                "sector": "Unknown",
+            })
+        except Exception:
+            continue
+
+    candidates.sort(key=lambda x: -x["score"])
+    candidates = candidates[:50]
+
+    save_json(MOMENTUM_CACHE, {
+        "updated_at": now_iso(),
+        "candidates": candidates,
+        "universe_size": len(tickers),
+    })
+    log(f"momentum: {len(candidates)} kandidaten gefunden (cached)")
+    return candidates
+
+
+def load_momentum_candidates() -> list:
+    """Lade Cache wenn frisch, sonst refresh."""
+    cache = load_json(MOMENTUM_CACHE)
+    if cache and isinstance(cache, dict):
+        try:
+            ts = cache.get("updated_at", "").replace("Z", "+00:00")
+            updated = datetime.fromisoformat(ts)
+            age = (datetime.now(timezone.utc) - updated).total_seconds() / 3600
+            if age < MOMENTUM_CACHE_MAX_AGE_H:
+                cands = cache.get("candidates", [])
+                log(f"momentum: cache hit ({age:.1f}h alt, {len(cands)} kandidaten)")
+                return cands
+        except Exception:
+            pass
+    return fetch_momentum_universe()
+
+
+def select_momentum_fillers(state: dict, free_slots: int) -> list:
+    """Erstellt pending-Eintraege fuer Momentum-Filler.
+    Wird nur aufgerufen wenn Scanner-Signale die Slots nicht voll fuellen."""
+    if free_slots <= 0:
+        return []
+    candidates = load_momentum_candidates()
+    if not candidates:
+        return []
+
+    busy = {p["ticker"] for p in state.get("open", [])}
+    busy |= {p["ticker"] for p in state.get("pending", [])}
+
+    # Skip historisch geschlossene desselben Tages (nicht zwei mal pro Tag)
+    today = today_date().isoformat()
+    tracked = {(p.get("ticker"), p.get("signal_date")) for p in
+               state.get("closed", []) + state.get("expired", [])}
+
+    fillers = []
+    for c in candidates:
+        if len(fillers) >= free_slots:
+            break
+        if c["ticker"] in busy:
+            continue
+        if (c["ticker"], c["date"]) in tracked:
+            continue
+        fillers.append({
+            "id": f"PAPER_MOM_{c['ticker']}_{c['date']}",
+            "ticker": c["ticker"],
+            "setup": c["setup"],
+            "source": c["source"],
+            "sector": c.get("sector", "Unknown"),
+            "signal_date": c["date"],
+            "entry":        f(c["buy_above"]),
+            "stop_initial": f(c["stop"]),
+            "target":       f(c["target"]),
+            "score":        f(c["score"]),
+            "rr":           f(c["rr"]),
+            "upside_pct":   f(c["upside_pct"]),
+            "added_at": now_iso(),
+            "status": "pending",
+            "mode": TRADING_MODE,
+        })
+        busy.add(c["ticker"])
+    return fillers
+
+
+# ---------------------------------------------------------------------------
 # Signal selection: Top-1 BREAKOUT per scan-day
 # ---------------------------------------------------------------------------
 def select_new_signals(state: dict, signals: list) -> list:
@@ -439,6 +645,7 @@ def select_new_signals(state: dict, signals: list) -> list:
             "id": f"PAPER_{top['ticker']}_{sigdate}",
             "ticker": top["ticker"],
             "setup": top["setup"],
+            "source": "scanner",
             "sector": top.get("sector", "Unknown"),
             "signal_date": sigdate,
             "entry":  f(top.get("buy_above")),
@@ -742,6 +949,7 @@ def open_position(state: dict, pending: dict, entry_actual: float):
         "pnl_pct": 0.0,
         "pnl_usd": 0.0,
         "hold_days": 0,
+        "source": pending.get("source", "scanner"),
     }
     state["open"].append(pos)
     state["cash"] -= POSITION_SIZE
@@ -985,8 +1193,8 @@ def run_trader(dry_run: bool = False):
     events2 = trigger_pending(state, dry_run=dry_run)
     all_events.extend(events2)
 
-    # 3. Pick new signals from today's scan (Top-1 BREAKOUT)
-    log("step 3: select new signals")
+    # 3a. Scanner-Signale (Prioritaet): BREAKOUT + STAGE_2 aus apex_signals.json
+    log("step 3a: select scanner signals")
     signals = load_json(SIGNALS_FILE) or []
     new_pending = select_new_signals(state, signals)
     if new_pending:
@@ -996,11 +1204,33 @@ def run_trader(dry_run: bool = False):
             all_events.append({
                 "event": "pending_added", "id": np_["id"], "ts": now_iso(),
                 "ticker": np_["ticker"], "signal_date": np_["signal_date"],
-                "score": np_["score"],
+                "score": np_["score"], "source": np_.get("source", "scanner"),
             })
-        log(f"  +{len(new_pending)} new pending: {[p['ticker'] for p in new_pending]}")
+        log(f"  +{len(new_pending)} scanner pending: {[p['ticker'] for p in new_pending]}")
     else:
-        log("  no new signals")
+        log("  no scanner signals")
+
+    # 3b. Momentum-Filler (Fallback): nur wenn Scanner-Signale + bestehende
+    # Pending+Open die Slots nicht voll machen. yfinance Tages-Cache.
+    used = len(state["open"]) + len(state["pending"])
+    free_slots = max(0, MAX_POSITIONS - used)
+    if free_slots > 0:
+        log(f"step 3b: momentum fillers (free_slots={free_slots})")
+        mom_pending = select_momentum_fillers(state, free_slots)
+        if mom_pending:
+            if not dry_run:
+                state["pending"].extend(mom_pending)
+            for np_ in mom_pending:
+                all_events.append({
+                    "event": "pending_added", "id": np_["id"], "ts": now_iso(),
+                    "ticker": np_["ticker"], "signal_date": np_["signal_date"],
+                    "score": np_["score"], "source": "momentum_filler",
+                })
+            log(f"  +{len(mom_pending)} momentum pending: {[p['ticker'] for p in mom_pending]}")
+        else:
+            log("  no momentum candidates")
+    else:
+        log("step 3b: skip momentum (slots voll)")
 
     # 4. Recompute stats
     recompute_stats(state)

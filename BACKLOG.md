@@ -5,6 +5,36 @@ Kontext, um sie kalt (ohne Vorwissen) aufzugreifen.
 
 ---
 
+## 3. Sektor-Cap im Trader (max 2 pro Sektor) — zurückgestellt 2026-06-12
+
+**Motivation:** AFRM (Fintech) + IBKR (Financial Services) gleichzeitig im Portfolio
+beim Macro-Schock 5.6.2026 = beide gestoppt, identische Loss-Cluster. Postmortem-Lesson
+`macro_selloff_correlates_all_stocks` (siehe knowledge/trade_postmortems.json).
+
+**Idee aus CLAUDE_CODE_TRADER_HYBRID.md (User-Brief):** Max 2 Positionen pro Sektor,
+gilt für Scanner-Signale UND Momentum-Filler zusammen. Wird im `trigger_pending`-Schritt
+geprüft, bevor `open_position` gerufen wird.
+
+**Vorgeschlagene Implementierung:**
+```python
+def sector_count(ticker, open_positions, sector_cache):
+    sec = sector_cache.get(ticker, "Unknown")
+    return sum(1 for p in open_positions if sector_cache.get(p["ticker"], "Unknown") == sec)
+
+# in trigger_pending vor open_position:
+if sector_count(p["ticker"], state["open"], sector_cache) >= 2:
+    still_pending.append(p)  # nicht expirien, evtl. spaeter Slot
+    continue
+```
+
+**Warum zurückgestellt:** User-Entscheidung 2026-06-12 — erst Hybrid-Trader-Test ohne Cap
+laufen lassen, dann ggf. nachziehen wenn Cluster-Verluste sich wiederholen.
+
+**Trigger zum Anpacken:** ein zweites Loss-Cluster (mind. 2 Positions desselben Sektors
+in <3 Tagen gestoppt). Oder User-Wunsch.
+
+---
+
 ## 1. Trigger-Status für offene Signale ("Pending" vs "Offen") — zurückgestellt 2026-05-29
 
 **Problem:** Im Dashboard werden frische Signale pauschal als "offen" angezeigt, obwohl
