@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-08 (Trader Phase 1+2 + Bigdata-Skills installed + Cron-Slot-Shift)
+**Letztes Update:** 2026-06-14 (Hybrid-Trader live + SCORE_REALIGN live + Pre-Compact)
 
 ---
 
@@ -32,17 +32,19 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 | Setup | Status | Charakteristik | Aktueller WR/PF (lifetime) |
 |---|---|---|---|
-| **BREAKOUT** 🔵 | CONFIRMED | 20d-High-Breakout, base-Cap setup-spezifisch ≤22 | WR 58 % / PF 2.56 (n=67) ✅ |
-| **STAGE_2** 🚀 Trend | aktiv | Weinstein Long-Base | n=4 signals lifetime — rar by design |
-| **VCP** 🔹 Bounceback | aktiv (gelockert 28.5.) | Minervini, ATR-Kontraktion 30→20 | Backtest WR 88.9 % n=9 |
-| **SHORT_SQUEEZE** 🔥 Bet | aktiv (strict, ≥15 % short) | praktisch nie feuernd | n=0 lifetime |
-| **MEAN_REVERSION** 🟢 Dip | aktiv | RSI<38 Pullback im Uptrend | n=0 lifetime (zu jung) |
-| ~~REVERSAL~~ | **disabled** | Legacy, 30 % WR strukturell defekt | sterbende Legacy-Positions in n |
+| **BREAKOUT** 🔵 | CONFIRMED | 20d-High-Breakout, SCORE_REALIGN live (06-14) | WR **59.7 % / PF 2.70 (n=77)** ✅ |
+| **STAGE_2** 🚀 Trend | aktiv im Scanner, RAUS im Paper-Trader (Rotations-Konflikt) | 10 open im Equity, 0 closed lifetime |
+| **VCP** 🔹 Bounceback | aktiv (gelockert 28.5.) | Backtest WR 88.9 % n=9 |
+| **SHORT_SQUEEZE** 🔥 Bet | aktiv (strict, ≥15 % short) | n=0 lifetime |
+| **MEAN_REVERSION** 🟢 Dip | aktiv | RSI<38 Pullback im Uptrend, n=1 closed (SBUX -2.38 %) |
+| **MOMENTUM** ⚡ (Filler) | **NEU 06-12** Paper-Trader-only, yfinance Top-200 US | n=0 lifetime (Test) |
+| ~~REVERSAL~~ | **disabled** | Legacy, 28 % WR strukturell defekt | sterbende Legacy-Positions in n |
 
-**Aktuelle Tuning-State der BREAKOUT-Hard-Exits (relax=0):**
-- `base_range`: ≤22 wenn BREAKOUT-Kandidat, ≤8 für andere Setups (setup-spezifisch, 28.5.)
+**BREAKOUT-Tuning aktuell (Stand 2026-06-14):**
+- **RSI-Zone (REALIGN): 48-72** (war 48-68, +6 voll im erweiterten Bereich)
+- **perf_120 Buckets (REALIGN):** <0 = -15 (WEAK), 0-25 = **-3 (DEADZONE)**, 25-50 = +15 (SWEET), >50 = +8
+- `base_range`: ≤22 BREAKOUT, ≤8 andere Setups (28.5.)
 - `vol_ratio`: ≥1.0 (relax=0), ≥0.7 (relax=1)
-- RSI-Zone: 45-68 (relax=0), 40-72 (relax=1) — TENTATIVE: RSI 60-65 underperforms
 
 **Telegram-Gate (post-2026-05-22 Fix):**
 - Score-basiert, NICHT relax-basiert: `TG_MIN_SCORE` per Setup + RR ≥ 1.5 + Upside ≥ 8 %
@@ -142,19 +144,23 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ---
 
-## 7. Aktueller Daten-Stand (2026-06-08)
+## 7. Aktueller Daten-Stand (2026-06-14)
 
-- **Lifetime Trades:** 132 | WR 46.2 % | PF 1.84 (unverändert seit 06-03, keine neuen Closes)
+- **Lifetime Trades:** 132 | WR 46.2 % | PF 1.84 (Knowledge-Snapshot, nächster Refresh Mo 06:47 UTC)
 - **Postmortems analysiert:** **40/132** (92 pending) ← +2 (AFRM/IBKR via Bigdata-Workflow)
-- **Market Regime aktuell:** **MIXED** (SPY=OK | QQQ=OK) — war BULLISH bis 06-04, seit Macro-Risk-Off 06-05 MIXED
+- **Market Regime aktuell:** **MIXED** (SPY=OK | QQQ=OK) — war BULLISH bis 06-04
 - **CONFIRMED Setups:** BREAKOUT (n=77, WR 59.7 %, PF 2.70), REVERSAL (n=54, disabled)
-- **30d Window:** **WR 54.5 % / PF 2.49** (n=33) — Drift +8.3pp vs lifetime, weiter stark
-- **14d Window:** WR 63.6 % / PF 4.20 (n=11) — unverändert
-- **7d Window:** WR 0.0 % (n=2) — IBKR/AFRM Stops fielen ins Macro-Schock-Fenster
-- **🚀 STAGE_2 Anomalie (2026-06-08):** 10 STAGE_2 offen (defensive Sektor-Names:
-  LIN/EW/COST/KIM/EQR/ASB/GL), Signal-Welle in MIXED-Regime begonnen.
-  **0 STAGE_2 jemals geschlossen lifetime** — wir wissen nicht wie sie performen.
-  Aktuelle PnL alle leicht negativ bis +4 %. Defensive-Rotation-Hypothese.
+- **30d Window:** WR 54.5 % / PF 2.49 (n=33) — Drift +8.3pp vs lifetime
+- **Paper-Trader (Hybrid live, 2026-06-12):** Equity **$402.09 (+$2.09 / +0.5 %)**
+  - 5 offene BREAKOUTs: MOH/ASML/CARR/BAX/ARE | Cash $147.95
+  - ASML Trail-Step 1 hat live gefeuert (SL $1818, +2 % gesichert)
+  - 2 closed lifetime: ADI Stop −6.05 % / AXTA Stagnation +1.95 %
+- **Trader-Config:** MAX_POSITIONS=7, CAPITAL=$400 (incl. $100 virtual deposit 2026-06-12),
+  BREAKOUT-only Scanner + Momentum-Filler Backup
+- **🚀 STAGE_2 Anomalie:** weiter beobachten, 10 offen im Equity-Tracker (NICHT im Paper),
+  0 closed lifetime, Defensive-Rotation-Hypothese (LIN/EW/COST/KIM/EQR/ASB/GL)
+- **Score-Realign live (2026-06-14):** Backtest 2J: WR 51.9 → 53.8 %, PF 1.66 → 1.78,
+  Total PnL +11 %. 13 weniger Trades, 77 % davon waren Loser (aktiver Filter).
 - **BREAKOUT 30d:** **WR 70.8 %** (n=24) — Drift +11pp vs lifetime, weiter stark aber abgekühlt
 - **MEAN_REVERSION:** erster geschlossener Trade SBUX -2.38 % D+2 SL
 - **REVERSAL 30d:** WR 10.0 % (n=10) — Legacy stirbt
@@ -166,6 +172,27 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-12** **Hybrid-Trader live + STAGE_2-Rollback**:
+  - `ALLOWED_SETUPS = {BREAKOUT}` (STAGE_2 testweise drin, dann raus — Hold 60d widerspricht
+    Rotations-These und blockiert Slots wochenlang. STAGE_2 bleibt im Equity-Tracker als
+    Beobachtungs-Sample mit 10 offen, 0 closed.)
+  - `MAX_POSITIONS 5→7, CAPITAL_INITIAL 300→400` ($100 virtual deposit, in trade_log geloggt
+    als event `capital_deposit`)
+  - **Momentum-Filler NEU** (`fetch_momentum_universe`, `select_momentum_fillers`):
+    yfinance Top-200 US-Tickers (us_tickers.txt vorsortiert nach Marktkap), 1mo daily,
+    Filter: perf_5d≥3 %, RSI≤72, vol_ratio≥1.2, price≥$5.
+    Score: eigene Skala (perf_5d*4 + perf_20d*0.5 + vol_ratio*6 + RSI-sweet), min_score=60.
+    Stop/TP: −4 % / +6 %, Hold 7d. Cache 6h TTL in `apex_momentum_cache.json` →
+    max 2 yfinance-Downloads/Tag, kein Throttling.
+  - **Priorität:** Scanner-BREAKOUTs ZUERST, Momentum nur wenn Slots übrig nach Scanner.
+  - `source: "scanner"|"momentum_filler"` auf jeder Position für spätere Auswertung.
+  - **NICHT umgesetzt (BACKLOG #3):** Sektor-Cap max 2 pro Sektor (User-Entscheidung,
+    erst nach Hybrid-Test ggf. nachziehen).
+- **2026-06-11** **Multi-Signal Slot-Filling in apex_trader.py** (Top-1/Tag-Regel weg):
+  - Vorher: Scanner pickte nur Top-1 BREAKOUT pro Scan-Tag → chronische Unter-Auslastung
+    (3 Slots leer, $198 idle bei 4 verfügbaren Elite-Signalen).
+  - Jetzt: Alle qualifizierten BREAKOUTs der letzten 3 Tage gesammelt, dedup pro Ticker,
+    nach Score sortiert, freie Slots aufgefüllt. Cash-Gate (`cash ≥ $50`) bleibt.
 - **2026-06-14** **SCORE_REALIGN live in ApexScan.py** (Backtest 2 Jahre validiert):
   - BREAKOUT RSI-Zone 48-68 → **48-72** (RSI≥70 zeigt 75 % WR n=12)
   - perf_120 0-25 movement_bonus +5 → **−3 DEADZONE** (44 % WR n=27, größtes Loser-Bucket)
@@ -312,6 +339,11 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **HOLD_DAYS SHORT_SQUEEZE** | 20 | dito | dito |
 | **HOLD_DAYS MEAN_REVERSION** | 20 | dito | dito |
 | **DUPLICATE_WINDOW_DAYS** | 3 | ApexScan.py L45 | Scanner — skipped Signals die in 3d schon emittiert wurden |
+| **MAX_POSITIONS** (Paper) | 7 | apex_trader.py | bumped 5→7 für Hybrid-Test 2026-06-12 |
+| **CAPITAL_INITIAL** | $400 | apex_trader.py | bumped 300→400 + $100 virtual deposit |
+| **HOLD_DAYS_PER_SETUP.MOMENTUM** | 7 | apex_trader.py | Momentum-Filler-Hold, schnelle Rotation |
+| **Momentum-Filler-Cache** | 6h | apex_trader.py MOMENTUM_CACHE_MAX_AGE_H | yfinance-Schutz, max 2 Downloads/Tag |
+| **Source-Field** | "scanner" \| "momentum_filler" | Position-Dict + pending-Dict | für Performance-Trennung |
 | **TG-Send-Modus** | „no signal"-Message wenn 0 neue | ApexScan.py L1875-1878 | Falls Telegram-Channel still ist: Scanner OK, nur alle Tickers in 3d-Duplicate-Filter |
 
 ---
