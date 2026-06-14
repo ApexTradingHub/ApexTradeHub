@@ -1174,12 +1174,18 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
         movement_class = "STANDARD"
         movement_bonus = 0
         if setup == "BREAKOUT":
-            if perf_120 > 25 and pct_from_52w > -2:
-                movement_class = "POWER_BREAKOUT"; movement_bonus = 15
-            elif perf_120 >= 0:
-                movement_class = "EMERGING_BREAKOUT"; movement_bonus = 5
-            else:
-                movement_class = "WEAK_BREAKOUT"; movement_bonus = -15
+            # SCORE_REALIGN live 2026-06-14 (Backtest 2 Jahre validiert:
+            # WR 51.9%->53.8%, PF 1.66->1.78, n -6% mit 77 % Loser-Anteil der weggefallenen).
+            # Bucketed nach gemessenen Live-WR-Kohorten:
+            if perf_120 < 0:
+                movement_class = "WEAK_BREAKOUT"; movement_bonus = -15  # n=7 zu klein, lassen
+            elif perf_120 <= 25:
+                movement_class = "DEADZONE_BREAKOUT"; movement_bonus = -3   # 44 % WR n=27 (war +5)
+            elif perf_120 <= 50:
+                movement_class = "SWEET_BREAKOUT"; movement_bonus = 15  # 71 % WR n=24
+            else:  # >50 extended
+                movement_class = ("POWER_BREAKOUT" if pct_from_52w > -2 else "EMERGING_BREAKOUT")
+                movement_bonus = 8
         elif setup == "VCP":
             # VCP needs strong long-term trend (Stage 2 already verified)
             movement_class = "VCP_TIGHT" if vcp_data["base_range_pct"] <= 8 else "VCP_WIDE"
@@ -1266,13 +1272,14 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
             if catalysts["volume_climax"]:       score += 8  # extreme vol = squeeze in progress
             if catalysts["gap_signal"]:          score += 8
 
-        else:  # BREAKOUT (existing logic)
+        else:  # BREAKOUT (SCORE_REALIGN live 2026-06-14)
             score = 0.0
             score += 20
             score += 8  if higher_tf else 0
             score += 8  if expansion_vol else (4 if vol_ratio >= 1.0 else 0)
             score += 8  if macd_bull else 0
-            score += 6  if 48 <= rsi14 <= 68 else (3 if rsi_zone else 0)
+            # Realign: RSI 48-72 (war 48-68). RSI>=70 zeigt 75 % WR n=12 in Live-Daten.
+            score += 6  if 48 <= rsi14 <= 72 else (3 if rsi_zone else 0)
             score += 5  if market_regime["risk_on"] else 0
             score += min(max(perf_20, 0), 20)  * 0.8
             score += min(max(perf_60, 0), 35)  * 0.5

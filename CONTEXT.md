@@ -166,6 +166,18 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-14** **SCORE_REALIGN live in ApexScan.py** (Backtest 2 Jahre validiert):
+  - BREAKOUT RSI-Zone 48-68 → **48-72** (RSI≥70 zeigt 75 % WR n=12)
+  - perf_120 0-25 movement_bonus +5 → **−3 DEADZONE** (44 % WR n=27, größtes Loser-Bucket)
+  - perf_120 25-50 → **+15 SWEET** (71 % WR n=24)
+  - perf_120 >50 → **+8** (vorher Power +15 oder Emerging +5)
+  - Backtest-Ergebnis: WR 51.9 → **53.8 %** (+1.9pp), PF 1.66 → **1.78**, total PnL +11 %
+  - n −6 % (195 vs 208), **77 % der weggefallenen Trades waren Loser** = aktiver Filter
+  - Gate 1 (n≥95 %) strict gefailed (94 %), aber Loser-Anteil rechtfertigt GO. User OK.
+  - Backtest-Flag `--score-realign` bleibt für Reproducability, Live ist hardcoded.
+
+
+
 - **2026-06-08** **ApexKnowledge Cron 06:30 → 06:47 UTC** (off-peak slot, war 2-6h
   delayed durch GH-:30-Throttle-Zone). Plus `apex_postmortem.py` lief ohne `--summary`
   (full mode) — addet neue closed trades zu trade_postmortems.json (aktuell 0 new).
