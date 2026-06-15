@@ -1,27 +1,9 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 101.50625861589421,
-  "last_updated": "2026-06-15T13:45:02Z",
-  "pending": [
-    {
-      "id": "PAPER_MOM_ROKU_2026-06-15",
-      "ticker": "ROKU",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Unknown",
-      "signal_date": "2026-06-15",
-      "entry": 144.38,
-      "stop_initial": 137.91,
-      "target": 152.28,
-      "score": 72.5,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-06-15T13:45:07Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "cash": 51.50625861589421,
+  "last_updated": "2026-06-15T14:00:02Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_ASML_2026-06-09",
@@ -46,9 +28,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-10T13:15:05Z",
-      "current_price": 1886.97998046875,
-      "pnl_pct": 5.840647304526466,
-      "pnl_usd": 2.920323652263233,
+      "current_price": 1883.739990234375,
+      "pnl_pct": 5.658916354958358,
+      "pnl_usd": 2.8294581774791796,
       "hold_days": 5,
       "trailing_activated_at": "2026-06-11T19:45:05Z"
     },
@@ -75,9 +57,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 71.81999969482422,
-      "pnl_pct": 2.643989845396913,
-      "pnl_usd": 1.3219949226984564,
+      "current_price": 71.80000305175781,
+      "pnl_pct": 2.615410964353028,
+      "pnl_usd": 1.307705482176514,
       "hold_days": 4
     },
     {
@@ -103,9 +85,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 21.1200008392334,
-      "pnl_pct": 4.034288159368505,
-      "pnl_usd": 2.0171440796842526,
+      "current_price": 21.110000610351562,
+      "pnl_pct": 3.98502837471831,
+      "pnl_usd": 1.992514187359155,
       "hold_days": 4
     },
     {
@@ -160,9 +142,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 30.799999237060547,
-      "pnl_pct": 7.683645151126137,
-      "pnl_usd": 3.841822575563069,
+      "current_price": 30.770000457763672,
+      "pnl_pct": 7.578762749022548,
+      "pnl_usd": 3.789381374511274,
       "hold_days": 0,
       "trailing_activated_at": "2026-06-15T13:30:13Z"
     },
@@ -190,11 +172,40 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 47.07500076293945,
-      "pnl_pct": 5.260217480998282,
-      "pnl_usd": 2.630108740499141,
+      "current_price": 46.525001525878906,
+      "pnl_pct": 4.030413160889731,
+      "pnl_usd": 2.0152065804448656,
       "hold_days": 0,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
+    },
+    {
+      "id": "PAPER_MOM_ROKU_2026-06-15",
+      "ticker": "ROKU",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-06-15",
+      "entry": 144.38,
+      "stop_initial": 137.91,
+      "target": 152.28,
+      "score": 72.5,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-06-15T13:45:07Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 144.38,
+      "shares": 0.34630835295747336,
+      "size_usd": 50.0,
+      "stop": 137.91,
+      "high_since_entry": 144.38,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-15T14:00:09Z",
+      "current_price": 144.38,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -360,12 +371,12 @@
   ],
   "stats": {
     "total_trades": 4,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 3,
     "losses": 1,
     "win_rate": 75.0,
     "pnl_realized": 1.5066105691101033,
-    "pnl_unrealized": 12.909028758428155,
-    "equity": 414.41528737432236
+    "pnl_unrealized": 12.11190058969099,
+    "equity": 413.61815920558524
   }
 }
