@@ -246,5 +246,33 @@
     "new_stop": 29.174345999999996,
     "high": 30.700000762939453,
     "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_LUV_2026-06-12",
+    "ts": "2026-06-15T13:45:07Z",
+    "ticker": "LUV",
+    "old_stop": 41.93,
+    "new_stop": 45.616949999999996,
+    "high": 47.69029998779297,
+    "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_LRCX_2026-06-15",
+    "ts": "2026-06-15T13:45:07Z",
+    "ticker": "LRCX",
+    "exit_price": 388.82,
+    "reason": "Take Profit",
+    "pnl_pct": 5.474175347222224
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_ROKU_2026-06-15",
+    "ts": "2026-06-15T13:45:07Z",
+    "ticker": "ROKU",
+    "signal_date": "2026-06-15",
+    "score": 72.5,
+    "source": "momentum_filler"
   }
 ]
