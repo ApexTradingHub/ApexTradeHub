@@ -40,8 +40,9 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **MOMENTUM** ⚡ (Filler) | **NEU 06-12** Paper-Trader-only, yfinance Top-200 US | n=0 lifetime (Test) |
 | ~~REVERSAL~~ | **disabled** | Legacy, 28 % WR strukturell defekt | sterbende Legacy-Positions in n |
 
-**BREAKOUT-Tuning aktuell (Stand 2026-06-14):**
+**BREAKOUT-Tuning aktuell (Stand 2026-06-15):**
 - **RSI-Zone (REALIGN): 48-72** (war 48-68, +6 voll im erweiterten Bereich)
+- **⚠ RSI 60-65 = neue DEADZONE (CONFIRMED 2026-06-15, n=40, WR 47.5% / −10pp lift)** — innerhalb der erlaubten Zone gibt's ein Mid-Range-Loch. Action ausstehend: Score-Penalty (~-5) **nach Backtest**. NICHT als Hard-Skip (Loser-Anteil 52.5% vs Baseline 42.5% = killt fast 1:1 Winner mit). Pattern: U-Kurve, RSI 50-60 (+10pp) und RSI 70+ (+18pp) ggf. Bonus-Kandidaten bei groesserem n.
 - **perf_120 Buckets (REALIGN):** <0 = -15 (WEAK), 0-25 = **-3 (DEADZONE)**, 25-50 = +15 (SWEET), >50 = +8
 - `base_range`: ≤22 BREAKOUT, ≤8 andere Setups (28.5.)
 - `vol_ratio`: ≥1.0 (relax=0), ≥0.7 (relax=1)
