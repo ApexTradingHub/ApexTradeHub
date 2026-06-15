@@ -176,3 +176,79 @@ Risiko: Cherry-Pick auf kleiner Sample, MR-Floor verschwindet wenn Stress sich a
 
 **Realismus-Score:** 3/10 für Reaktivierung in den nächsten 6 Monaten. Setup-Tod
 ist fundamental, nicht regime-bedingt.
+
+---
+
+## 6. evaluate_trade Same-Day-Trigger-Stop-Ambiguität — bug found 2026-06-15
+
+**Problem:** `apex_equity.py::evaluate_trade` gibt `None` zurück (= Trade wird nicht
+simuliert, Signal bleibt forever-open) wenn am Trigger-Tag SOWOHL `high >= entry`
+ALS AUCH `low <= stop` zutrifft. Konservative Sicherheit — Intraday-Reihenfolge
+nicht bekannt — aber zu aggressiv.
+
+**Aufgedeckt durch:** CDNS 2026-04-27 BREAKOUT. D+1 (2026-04-28):
+- Open $329.70 (< Entry $335.48 → kein Trigger am Open)
+- Low $317.07 < Stop $317.38 ✓
+- High $338.55 ≥ Entry $335.48 ✓ (Trigger)
+- Close $325.31
+
+Realistische Intraday-Sequenz: Open → Drop zu Low (kein Trigger, noch nicht in Trade)
+→ Up zu High (Trigger fires bei $335.48) → Close. Hätte funktioniert, Stop wurde nie
+gehittet weil wir nicht im Trade waren als Low erreicht wurde.
+
+**Manuell gefixt 2026-06-15:** CDNS in `apex_equity_results.json` als TP-Hit
+nachgetragen (D+19, $370, +10.29%, +$20.58). Equity-Cumulativ recomputed.
+
+**Vorschlag-Fix (nicht implementiert):**
+```python
+# Heuristik: wenn Open >= entry, trigger und stop sind klar separable.
+# Wenn Open < entry: nehmen wir an Drop kam zuerst (Open->Low->High).
+# In dem Fall kein Stop weil nicht im Trade beim Low.
+if h >= entry:
+    if o >= entry:
+        # Open ueber entry: getriggert sofort am Open
+        # Bei Low <= sl im gleichen Tag -> Stop loss
+        if l <= sl: exit ... # gleicher Tag
+    else:
+        # Open unter entry: Drop wahrscheinlich zuerst, Trigger danach
+        # Stop wird nicht gehittet weil nicht im Trade
+        trigger_day = i  # weiter im Loop
+```
+
+**Trigger zum Anpacken:** weitere forever-open-Signale auftauchen (User-Frage). Oder
+beim nächsten Equity-Refactor mitnehmen.
+
+---
+
+## 7. HORIZON_DAYS-Konflikt: Code 15 vs Doku 21 für BREAKOUT — discovered 2026-06-15
+
+**Problem:** Drei Quellen-of-Truth für BREAKOUT-Hold widersprechen sich:
+
+| Quelle | BREAKOUT hold | Aktuell |
+|---|---|---|
+| `apex_equity.py` HORIZON_DAYS["1-3 weeks"] | **15** | Code-Wahrheit |
+| CONTEXT.md Konsistenz-Konstanten | **21** | dokumentierte Intention |
+| `apex_trader.py` HOLD_DAYS_PER_SETUP.BREAKOUT | **21** | Paper-Trader |
+| Dashboard SETUP_META.BREAKOUT.hold | 21 (seit 2026-06-04) | Frontend |
+
+**Konsequenz:** Die gesamte `apex_equity_results.json` (147 Trades) wurde mit
+15-Tage-Hold für BREAKOUT simuliert. Time-Exits feuern 6 Tage früher als
+beabsichtigt. Realer Edge ist möglicherweise unterschätzt — siehe CDNS, hätte
+mit 21-Tage-Hold organisch TP gehittet.
+
+**Optionen:**
+1. **Code anpassen:** `HORIZON_DAYS["1-3 weeks"] = 21` → konsistent mit Trader/Backtest.
+   Alle Lifetime-Stats werden besser (mehr TP-Hits, weniger Time-Exits).
+2. **Doku anpassen:** CONTEXT.md ehrlich auf 15 setzen, Paper-Trader nachziehen.
+   System wird strenger.
+
+**Empfehlung:** Option 1. Aber **Backtest-First!** — `apex_backtest_v2.py` mit beiden
+Werten laufen lassen (15 vs 21 für BREAKOUT) über 2J, sehen welcher Wert besser
+performt. Falls 21 deutlich besser → Code anpassen + Knowledge-Refresh + Equity-
+Recompute (alle BREAKOUTs aus Lifetime mit 21 neu evaluieren).
+
+**Risiko:** Im Code-Pfad steckt evtl. mehr Logik die auf 15 Tage hängt
+(Backtest, Knowledge-Eval, etc.) — vor Live-Wechsel sauber tracen.
+
+**Trigger zum Anpacken:** vor nächstem Tuning-Backtest. Oder wenn weitere Trades
+in der "TP-knapp-verpasst"-Zone auftauchen.
