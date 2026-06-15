@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-14 (Hybrid-Trader live + SCORE_REALIGN live + Pre-Compact)
+**Letztes Update:** 2026-06-15 (FRED-Macro-Integration live: Telegram-Header + Postmortem)
 
 ---
 
@@ -171,6 +171,26 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-06-15** **FRED-Macro-Integration live (Telegram-Header + Postmortem-Context)**:
+  - `apex_macro.py` — pullt FRED daily (VIXCLS, BAMLH0A0HYM2, T10Y2Y, DFF, DTB3), schreibt
+    `apex_macro.json`. 3-State Regime: RISK_ON 🟢 Good / ELEVATED 🟡 Mid / RISK_OFF 🔴 Bad.
+    Threshold: VIX ≥25 oder HY-OAS ≥5.0 = stress; VIX ≥20 oder HY ≥3.5 = elevated. Worst-of regiert.
+  - `apex_macro_history.json` (2y backfill via `--backfill`) — fuer Postmortem-Lookups
+    am Entry/Exit-Datum.
+  - **ApexScan.py-Patch:** Telegram-Header bekommt 2. Zeile `🟢 Macro: Good · VIX 17.7 (-1.8) · HY 2.71`.
+    Graceful fallback wenn Macro-File fehlt.
+  - **apex_postmortem.py-Patch:** `market_context` enthaelt jetzt `macro_at_signal` +
+    `macro_at_exit` ({vix, hy_oas, yield_curve, regime, date_used}).
+  - **Oracle-VM-Cron NEU:** `15 6 * * * /home/ubuntu/run_macro.sh` — daily 06:15 UTC.
+    Pulls, runs apex_macro.py, commits+pushes apex_macro.json wenn changed. `FRED_API_KEY`
+    in `~/.bashrc` als env var (NICHT in Repo).
+  - **Macro-Backtest-Hypothese FALSIFIED** (siehe BACKLOG #4): BREAKOUT-WR sinkt NICHT bei
+    VIX ≥22 — RISK_OFF-Bucket zeigt sogar **+4.6pp WR** (61.1% n=18). Macro-Gate killen
+    waere kontraproduktiv. apex_macro_backtest.py bleibt als opt-in Re-Test-Tool fuer
+    n≥300 in 6+ Monaten.
+  - **Side-Finding (BACKLOG #5):** REVERSAL × HY 3.0-3.5 = 53.3% WR n=15 (vs 30.4% baseline)
+    — TENTATIVE, nicht reaktivieren bis n≥30.
 
 - **2026-06-12** **Hybrid-Trader live + STAGE_2-Rollback**:
   - `ALLOWED_SETUPS = {BREAKOUT}` (STAGE_2 testweise drin, dann raus — Hold 60d widerspricht

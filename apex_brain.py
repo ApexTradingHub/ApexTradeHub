@@ -427,11 +427,19 @@ def write_postmortem_notes(vault: Path, pm_data: dict) -> int:
         web = news.get("web_research", []) or []
         if web:
             body.append("## News-Research")
-            for n in web:
-                d = n.get("date", "?")
-                title = n.get("title", "?")
-                src = n.get("src", "?")
-                body.append(f"- **{d}** — {title}  *({src})*")
+            # Robust gegen Schema-Drift: web_research kann list-of-dicts, list-of-str
+            # ODER prose-string sein (frueh-Bigdata-Sessions schrieben Prosa rein).
+            if isinstance(web, str):
+                body.append(web)
+            else:
+                for n in web:
+                    if isinstance(n, dict):
+                        d = n.get("date", "?")
+                        title = n.get("title", "?")
+                        src = n.get("src", "?")
+                        body.append(f"- **{d}** — {title}  *({src})*")
+                    else:
+                        body.append(f"- {n}")
             body.append("")
 
         # Similar trades
