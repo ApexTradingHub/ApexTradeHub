@@ -1,38 +1,62 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 147.95,
-  "last_updated": "2026-06-11T19:00:02Z",
-  "pending": [],
-  "open": [
+  "cash": 198.7691709422831,
+  "last_updated": "2026-06-15T13:00:02Z",
+  "pending": [
     {
-      "id": "PAPER_MOH_2026-06-08",
-      "ticker": "MOH",
+      "id": "PAPER_CCL_2026-06-12",
+      "ticker": "CCL",
       "setup": "BREAKOUT",
-      "sector": "Healthcare",
-      "signal_date": "2026-06-08",
-      "entry": 196.13,
-      "stop_initial": 185.01,
-      "target": 215.0,
-      "score": 112.7,
-      "rr": 1.7,
-      "upside_pct": 9.6,
-      "added_at": "2026-06-09T13:00:05Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 197.11064999999996,
-      "shares": 0.2536646294860273,
-      "size_usd": 50.0,
-      "stop": 185.01,
-      "high_since_entry": 204.9499969482422,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-06-09T13:15:05Z",
-      "current_price": 200.33999633789062,
-      "pnl_pct": 1.6383418845661875,
-      "pnl_usd": 0.8191709422830936,
-      "hold_days": 3
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-06-12",
+      "entry": 28.46,
+      "stop_initial": 26.59,
+      "target": 31.75,
+      "score": 129.0,
+      "rr": 1.77,
+      "upside_pct": 11.6,
+      "added_at": "2026-06-15T13:00:07Z",
+      "status": "pending",
+      "mode": "paper"
     },
+    {
+      "id": "PAPER_LUV_2026-06-12",
+      "ticker": "LUV",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-06-12",
+      "entry": 44.5,
+      "stop_initial": 41.93,
+      "target": 49.0,
+      "score": 115.5,
+      "rr": 1.75,
+      "upside_pct": 10.1,
+      "added_at": "2026-06-15T13:00:07Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_MOM_LRCX_2026-06-15",
+      "ticker": "LRCX",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-06-15",
+      "entry": 368.64,
+      "stop_initial": 352.14,
+      "target": 388.82,
+      "score": 75.1,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-06-15T13:00:38Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
+  "open": [
     {
       "id": "PAPER_ASML_2026-06-09",
       "ticker": "ASML",
@@ -59,7 +83,7 @@
       "current_price": 1862.5400390625,
       "pnl_pct": 4.469811765571983,
       "pnl_usd": 2.2349058827859913,
-      "hold_days": 2,
+      "hold_days": 4,
       "trailing_activated_at": "2026-06-11T19:45:05Z"
     },
     {
@@ -88,7 +112,7 @@
       "current_price": 69.9000015258789,
       "pnl_pct": -0.1000406947564565,
       "pnl_usd": -0.050020347378228254,
-      "hold_days": 1
+      "hold_days": 3
     },
     {
       "id": "PAPER_BAX_2026-06-10",
@@ -116,7 +140,7 @@
       "current_price": 20.8799991607666,
       "pnl_pct": 2.8520721184503386,
       "pnl_usd": 1.4260360592251693,
-      "hold_days": 1
+      "hold_days": 3
     },
     {
       "id": "PAPER_ARE_2026-06-09",
@@ -144,7 +168,7 @@
       "current_price": 53.16999816894531,
       "pnl_pct": -0.5796593699601428,
       "pnl_usd": -0.2898296849800714,
-      "hold_days": 1
+      "hold_days": 3
     }
   ],
   "closed": [
@@ -207,6 +231,37 @@
       "exit_price": 32.38999938964844,
       "exit_reason": "Stagnation Exit",
       "closed_at": "2026-06-10T19:45:06Z"
+    },
+    {
+      "id": "PAPER_MOH_2026-06-08",
+      "ticker": "MOH",
+      "setup": "BREAKOUT",
+      "sector": "Healthcare",
+      "signal_date": "2026-06-08",
+      "entry": 196.13,
+      "stop_initial": 185.01,
+      "target": 215.0,
+      "score": 112.7,
+      "rr": 1.7,
+      "upside_pct": 9.6,
+      "added_at": "2026-06-09T13:00:05Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 197.11064999999996,
+      "shares": 0.2536646294860273,
+      "size_usd": 50.0,
+      "stop": 185.01,
+      "high_since_entry": 204.9499969482422,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-09T13:15:05Z",
+      "current_price": 200.33999633789062,
+      "pnl_pct": 1.6383418845661875,
+      "pnl_usd": 0.8191709422830936,
+      "hold_days": 5,
+      "exit_price": 200.33999633789062,
+      "exit_reason": "Stagnation Exit",
+      "closed_at": "2026-06-15T13:00:07Z"
     }
   ],
   "expired": [
@@ -246,13 +301,13 @@
     }
   ],
   "stats": {
-    "total_trades": 2,
-    "open_trades": 5,
-    "wins": 1,
+    "total_trades": 3,
+    "open_trades": 4,
+    "wins": 2,
     "losses": 1,
-    "win_rate": 50.0,
-    "pnl_realized": -2.0496480467841023,
-    "pnl_unrealized": 4.140262851935955,
-    "equity": 402.09
+    "win_rate": 66.66666666666666,
+    "pnl_realized": -1.2304771045010088,
+    "pnl_unrealized": 3.321091909652861,
+    "equity": 402.09026285193596
   }
 }

@@ -173,5 +173,41 @@
     "new_capital_initial": 400.0,
     "new_max_positions": 7,
     "note": "Hybrid-Trader Setup-Erweiterung (BREAKOUT+STAGE_2+MOMENTUM)"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOH_2026-06-08",
+    "ts": "2026-06-15T13:00:07Z",
+    "ticker": "MOH",
+    "exit_price": 200.33999633789062,
+    "reason": "Stagnation Exit",
+    "pnl_pct": 1.6383418845661875
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CCL_2026-06-12",
+    "ts": "2026-06-15T13:00:07Z",
+    "ticker": "CCL",
+    "signal_date": "2026-06-12",
+    "score": 129.0,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_LUV_2026-06-12",
+    "ts": "2026-06-15T13:00:07Z",
+    "ticker": "LUV",
+    "signal_date": "2026-06-12",
+    "score": 115.5,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_LRCX_2026-06-15",
+    "ts": "2026-06-15T13:00:38Z",
+    "ticker": "LRCX",
+    "signal_date": "2026-06-15",
+    "score": 75.1,
+    "source": "momentum_filler"
   }
 ]
