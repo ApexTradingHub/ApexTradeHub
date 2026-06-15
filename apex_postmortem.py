@@ -203,6 +203,33 @@ def fetch_yf_news(ticker, signal_date, hold_days=14):
 # =============================================================
 # POSTMORTEM BUILDER
 # =============================================================
+
+# Lazy macro-history cache (loaded once per run)
+_MACRO_HISTORY = None
+
+def _macro_lookup(target_date):
+    """Look up FRED macro context (VIX/HY/yield-curve + regime) at a date.
+    Returns None gracefully if apex_macro_history.json missing — postmortem
+    still works, just without macro fields. Run `py apex_macro.py --backfill`
+    once to populate the history file."""
+    global _MACRO_HISTORY
+    if not target_date:
+        return None
+    try:
+        if _MACRO_HISTORY is None:
+            from apex_macro import HISTORY_FILE, macro_at_date
+            if not HISTORY_FILE.exists():
+                _MACRO_HISTORY = {}  # mark as 'tried, missing'
+                return None
+            _MACRO_HISTORY = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
+        if not _MACRO_HISTORY:
+            return None
+        from apex_macro import macro_at_date
+        return macro_at_date(target_date, history=_MACRO_HISTORY)
+    except Exception:
+        return None
+
+
 def compute_exit_date(signal_date, exit_day):
     """Approximate exit date = signal_date + exit_day trading days."""
     try:
@@ -295,6 +322,8 @@ def build_core_postmortem(merged, market_cache, sector_cache):
             "sector_etf_perf_pct": sec_perf,
             "sector_divergence": sector_divergence,
             "regime_at_signal": merged.get("risk_on"),
+            "macro_at_signal":  _macro_lookup(sig_date),
+            "macro_at_exit":    _macro_lookup(exit_date) if exit_date else None,
         },
         "news": {
             "yfinance_news": news,

@@ -1657,10 +1657,17 @@ def get_no_signal_message(market_regime):
 
     text = random.choice(msgs)
     summary = escape_md(market_regime.get("summary", ""))
+    macro_line = ""
+    try:
+        from apex_macro import macro_telegram_line
+        macro_line = macro_telegram_line()
+    except Exception:
+        pass
+    macro_suffix = ("\n" + macro_line) if macro_line else ""
     return (
         "\U0001f4a4 <b>ApexScan</b> · " + date_str + "\n\n"
         + escape_md(text) + "\n\n"
-        + "<i>" + summary + "</i>"
+        + "<i>" + summary + "</i>" + macro_suffix
     )
 
 def build_telegram_message(candidates, market_regime):
@@ -1698,6 +1705,13 @@ def build_telegram_message(candidates, market_regime):
     ]
 
     lines = [icon + " <b>ApexScan · " + date_str + " · " + mode + "</b>"]
+    try:
+        from apex_macro import macro_telegram_line
+        macro_line = macro_telegram_line()
+        if macro_line:
+            lines.append(macro_line)
+    except Exception:
+        pass
 
     for key, sicon, label in setup_cfg:
         items = groups[key]

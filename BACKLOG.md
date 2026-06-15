@@ -116,3 +116,63 @@ sich häufen.
 - Verworfen statt v1-Iteration (Overfitting-Risiko auf demselben Sample).
 - Code bleibt als opt-in Research-Tool in apex_backtest_v2.py (greift nur bei
   `--only-setup MOMO`, sonst inaktiv).
+
+---
+
+## 4. Macro-VIX/HY-Gate für BREAKOUT — getestet & FALSIFIED 2026-06-14
+
+**Hypothese:** BREAKOUT-WR fällt bei VIX≥22 oder HY-OAS≥4.0 zum Entry-Zeitpunkt.
+Motivation: AFRM/IBKR-Postmortems mit Lesson `macro_selloff_correlates_all_stocks`.
+
+**Setup:** `apex_macro.py` zieht FRED-Series (VIXCLS, BAMLH0A0HYM2, T10Y2Y, DFF, DTB3) →
+`apex_macro.json`. `apex_macro_backtest.py` joint 143 Lifetime-Trades aus
+`apex_equity_results.json` mit VIX + HY-OAS am Entry-Datum.
+
+**Ergebnis: Hypothese widerlegt, sogar gegenteilig.**
+
+BREAKOUT-WR nach Combined Regime (n=85):
+| Regime | n | WR | vs Baseline 56.5 % |
+|---|---:|---:|---:|
+| RISK_ON  | 54 | 55.6 % | -0.9pp |
+| ELEVATED | 13 | 53.8 % | -2.7pp |
+| **RISK_OFF** | 18 | **61.1 %** | **+4.6pp** |
+
+VIX 25+ hat das **stärkste WR-Bucket** (61.1 %, n=18). Ein VIX-Gate würde genau die
+besten Signale killen → verletzt Signal-Protection-Regel.
+
+**AFRM/IBKR-Recency-Bias:** Aus 2 schmerzhaften Trades hatten wir Pattern induziert,
+das im n=18 RISK_OFF-Bucket Noise ist (61 % WR insgesamt).
+
+**Sample-Caveat:** Nur 3 Monate (März-Juni 2026), VIX 20-22-Bucket leer, bimodale
+Verteilung. Für sauberen Re-Test 2+ Jahre Daten nötig (haben wir nicht).
+
+**Was bleibt:**
+- `apex_macro.py` als Situational-Awareness-Tool aktiv (daily snapshot, kein Live-Filter)
+- `apex_macro_backtest.py` als Re-Test-Tool bei ~300+ Lifetime-Trades wieder anwerfen
+- Side-Finding: REVERSAL × HY 3.0-3.5 = 53.3 % WR n=15 (vs Setup-Baseline 30.4 %),
+  TENTATIVE — siehe Punkt 5
+
+**Trigger zum Re-Test:** Trade-DB ≥ 300, oder echter Crash mit >50 Trades im VIX>30-Bereich.
+
+---
+
+## 5. REVERSAL-Reaktivierung in Stress-Regime — Watch (nicht handeln) 2026-06-14
+
+**Befund aus Macro-Backtest:**
+- REVERSAL × HY 3.0-3.5 (Normal-Stress): WR **53.3 %** (n=15, MED) vs Setup-Baseline 30.4 % (+23pp)
+- REVERSAL × VIX 25+ (Panic): WR **53.8 %** (n=13, LOW) vs Setup-Baseline 30.4 % (+23pp)
+
+**Warum trotzdem nicht reaktivieren (yet):**
+- n=13-15 ist TENTATIVE — User-Regel: nur Code-Changes bei n≥30 + CONFIRMED
+- REVERSAL ist strukturell defekt (Postmortems: fundamental-driven drops, Earnings-Miss,
+  Analyst-Downgrade-Cascade, Insider-Distribution) — gleicher Mechanismus auch in Stress
+- Lift kommt vermutlich aus dem Mean-Reversion-Floor nach Panik, nicht aus reparierter
+  Setup-Logik
+
+**Trigger zum Anpacken:** n≥30 in REVERSAL×HY 3.0-3.5 ODER User entscheidet:
+"reaktivieren nur im stress regime, Hard-Gate `hy_oas ≥ 3.0`". Wäre **machbar** als
+opt-in: REVERSAL bleibt im Scanner aktiv, aber Telegram-Gate filtert wenn HY < 3.0.
+Risiko: Cherry-Pick auf kleiner Sample, MR-Floor verschwindet wenn Stress sich auflöst.
+
+**Realismus-Score:** 3/10 für Reaktivierung in den nächsten 6 Monaten. Setup-Tod
+ist fundamental, nicht regime-bedingt.
