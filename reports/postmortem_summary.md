@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-06-12T10:54:11.333371 | Total trades: 143_
+_Updated: 2026-06-15T12:55:03.295341 | Total trades: 144_
 
-**Analyse-Status**: complete=40, pending=103
+**Analyse-Status**: complete=42, pending=102
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -11,8 +11,8 @@ _Updated: 2026-06-12T10:54:11.333371 | Total trades: 143_
 | `sector_momentum_tailwind` | 9 |
 | `energy_oil_surge_2026q1` | 9 |
 | `sector_relative_strength` | 9 |
+| `earnings_adjacency_risk` | 7 |
 | `pocket_pivot_validation` | 7 |
-| `earnings_adjacency_risk` | 6 |
 | `fundamental_deterioration` | 6 |
 | `reversal_after_analyst_downgrade` | 6 |
 | `strong_closing_strength_confirmation` | 4 |
@@ -21,13 +21,13 @@ _Updated: 2026-06-12T10:54:11.333371 | Total trades: 143_
 | `geopolitical_premium_fade` | 3 |
 | `oil_peak_chase` | 3 |
 | `high_score_loss_85plus` | 3 |
+| `macro_selloff_correlates_all_stocks` | 3 |
 | `ai_storage_momentum` | 2 |
 | `post_earnings_beat_continuation` | 2 |
 | `extended_but_catalyst_won` | 2 |
 | `earnings_adjacency_breakout` | 2 |
 | `dead_cat_bounce` | 2 |
 | `duplicate_trap` | 2 |
-| `no_pocket_pivot_warning` | 2 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -84,7 +84,7 @@ _Updated: 2026-06-12T10:54:11.333371 | Total trades: 143_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | Trump verkuendete am Freitag 23.5. nach US-Close die Verdopplung der Stahl-Tariffs von 25% auf 50%. CLF gappte am Montag 26.5. premarket +35% hoch. Reiner Policy-Tarif-Tailwind: Cleveland-Cliffs ist ein puer US-Stahlproduzent, profitiert maximal von Importzoellen. closing_strength 0.92 = sehr starker Tagesabschluss = der Move war institutionell, kein retail-fade. TP D+1, sauberer +13.6%-Win. |
 
-## Pending Claude-Analyse (103)
+## Pending Claude-Analyse (102)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -108,4 +108,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `NEM_2026-03-23`
 - `AVT_2026-03-23`
 - `CTVA_2026-03-24`
-- _(+ 83 mehr)_
+- _(+ 82 mehr)_

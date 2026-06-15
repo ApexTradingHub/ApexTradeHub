@@ -1,13 +1,13 @@
 {
   "meta": {
-    "updated": "2026-06-12T10:54:05.333557",
-    "total_trades": 143,
+    "updated": "2026-06-15T12:54:57.300121",
+    "total_trades": 144,
     "date_range": [
       "2026-03-17",
       "2026-06-03"
     ],
-    "lifetime_wr": 0.455,
-    "lifetime_pf": 1.812
+    "lifetime_wr": 0.458,
+    "lifetime_pf": 1.835
   },
   "tickers": {
     "MUR": {
@@ -377,47 +377,47 @@
       }
     },
     "REVERSAL": {
-      "n": 56,
-      "wr": 0.304,
-      "pf": 1.322,
-      "avg_win_pct": 15.19,
+      "n": 57,
+      "wr": 0.316,
+      "pf": 1.366,
+      "avg_win_pct": 14.83,
       "avg_loss_pct": -5.01,
       "confidence": "HIGH",
       "feature_buckets": {
         "perf_120_lt_0": {
-          "n": 29,
-          "wr": 0.207,
-          "lift_vs_setup_baseline": -0.097,
-          "confidence": "MED"
+          "n": 30,
+          "wr": 0.233,
+          "lift_vs_setup_baseline": -0.082,
+          "confidence": "HIGH"
         },
         "perf_120_0_25": {
           "n": 19,
           "wr": 0.263,
-          "lift_vs_setup_baseline": -0.04,
+          "lift_vs_setup_baseline": -0.053,
           "confidence": "MED"
         },
         "perf_120_25_50": {
           "n": 8,
           "wr": 0.75,
-          "lift_vs_setup_baseline": 0.446,
+          "lift_vs_setup_baseline": 0.434,
           "confidence": "LOW"
         },
         "rsi_lt_50": {
-          "n": 56,
-          "wr": 0.304,
+          "n": 57,
+          "wr": 0.316,
           "lift_vs_setup_baseline": 0.0,
           "confidence": "HIGH"
         },
         "vol_1_15": {
-          "n": 42,
-          "wr": 0.262,
-          "lift_vs_setup_baseline": -0.042,
+          "n": 43,
+          "wr": 0.279,
+          "lift_vs_setup_baseline": -0.037,
           "confidence": "HIGH"
         },
         "vol_15_25": {
           "n": 13,
           "wr": 0.462,
-          "lift_vs_setup_baseline": 0.158,
+          "lift_vs_setup_baseline": 0.146,
           "confidence": "LOW"
         }
       }
@@ -426,26 +426,26 @@
   "catalysts": {
     "cat_pocket_pivot": {
       "n_present": 30,
-      "n_absent": 113,
+      "n_absent": 114,
       "wr_when_present": 0.533,
-      "wr_when_absent": 0.434,
-      "lift": 0.1,
+      "wr_when_absent": 0.439,
+      "lift": 0.095,
       "confidence": "HIGH"
     },
     "gap_gt_2pct": {
       "n_present": 8,
-      "n_absent": 135,
+      "n_absent": 136,
       "wr_when_present": 0.625,
-      "wr_when_absent": 0.444,
-      "lift": 0.181,
+      "wr_when_absent": 0.449,
+      "lift": 0.176,
       "confidence": "LOW"
     },
     "analyst_upside_gt_15pct": {
       "n_present": 23,
-      "n_absent": 120,
+      "n_absent": 121,
       "wr_when_present": 0.348,
-      "wr_when_absent": 0.475,
-      "lift": -0.127,
+      "wr_when_absent": 0.479,
+      "lift": -0.132,
       "confidence": "MED"
     }
   },
@@ -489,8 +489,8 @@
         "confidence": "LOW"
       },
       "70-80": {
-        "n": 15,
-        "wr": 0.267,
+        "n": 16,
+        "wr": 0.312,
         "confidence": "MED"
       },
       "80-90": {
