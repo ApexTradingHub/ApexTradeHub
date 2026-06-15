@@ -2590,5 +2590,41 @@
     "rr": 4.02,
     "score": 79.1,
     "equity": 620.15
+  },
+  {
+    "date": "2026-06-04",
+    "ticker": "AXTA",
+    "setup": "BREAKOUT",
+    "sector": "Basic Materials",
+    "entry": 31.66,
+    "stop": 30.01,
+    "target": 34.5,
+    "exit_price": 34.5,
+    "exit_reason": "Take Profit",
+    "exit_day": 7,
+    "hold_days": 15,
+    "pnl_pct": 8.97,
+    "pnl_usd": 17.94,
+    "rr": 1.72,
+    "score": 106.1,
+    "equity": 638.09
+  },
+  {
+    "date": "2026-06-10",
+    "ticker": "CF",
+    "setup": "MEAN_REVERSION",
+    "sector": "Basic Materials",
+    "entry": 109.48,
+    "stop": 104.7,
+    "target": 120.26,
+    "exit_price": 104.7,
+    "exit_reason": "Stop Loss",
+    "exit_day": 3,
+    "hold_days": 20,
+    "pnl_pct": -4.37,
+    "pnl_usd": -8.73,
+    "rr": 2.26,
+    "score": 80.7,
+    "equity": 629.36
   }
 ]
