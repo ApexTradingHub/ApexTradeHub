@@ -283,5 +283,23 @@
     "entry_signal": 144.38,
     "entry_actual": 144.38,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_ARE_2026-06-09",
+    "ts": "2026-06-16T13:45:06Z",
+    "ticker": "ARE",
+    "exit_price": 52.48500061035156,
+    "reason": "Stagnation Exit",
+    "pnl_pct": -1.8605074600756066
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_JBL_2026-06-15",
+    "ts": "2026-06-16T13:45:06Z",
+    "ticker": "JBL",
+    "signal_date": "2026-06-15",
+    "score": 123.3,
+    "source": "scanner"
   }
 ]
