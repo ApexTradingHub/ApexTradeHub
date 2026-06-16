@@ -310,5 +310,23 @@
     "entry_signal": 387.41,
     "entry_actual": 387.41,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_BAX_2026-06-10",
+    "ts": "2026-06-16T15:00:06Z",
+    "ticker": "BAX",
+    "exit_price": 20.665000915527344,
+    "reason": "Stagnation Exit",
+    "pnl_pct": 1.7930196321725305
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DAL_2026-06-15",
+    "ts": "2026-06-16T15:00:06Z",
+    "ticker": "DAL",
+    "signal_date": "2026-06-15",
+    "score": 117.0,
+    "source": "scanner"
   }
 ]
