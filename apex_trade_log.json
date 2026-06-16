@@ -364,5 +364,23 @@
     "entry_signal": 43.71,
     "entry_actual": 43.928549999999994,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_ASML_2026-06-09",
+    "ts": "2026-06-16T19:45:07Z",
+    "ticker": "ASML",
+    "exit_price": 1818.5069999999998,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.9999999999999958
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_ASML_2026-06-15",
+    "ts": "2026-06-16T19:45:07Z",
+    "ticker": "ASML",
+    "signal_date": "2026-06-15",
+    "score": 146.3,
+    "source": "scanner"
   }
 ]
