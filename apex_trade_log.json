@@ -337,5 +337,23 @@
     "entry_signal": 84.0,
     "entry_actual": 84.0,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CARR_2026-06-09",
+    "ts": "2026-06-16T19:15:06Z",
+    "ticker": "CARR",
+    "exit_price": 71.29000091552734,
+    "reason": "Stagnation Exit",
+    "pnl_pct": 1.886524103940753
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SW_2026-06-15",
+    "ts": "2026-06-16T19:15:06Z",
+    "ticker": "SW",
+    "signal_date": "2026-06-15",
+    "score": 115.3,
+    "source": "scanner"
   }
 ]

@@ -1,9 +1,27 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 51.47251470194267,
-  "last_updated": "2026-06-16T19:00:02Z",
-  "pending": [],
+  "cash": 102.41577675391305,
+  "last_updated": "2026-06-16T19:15:02Z",
+  "pending": [
+    {
+      "id": "PAPER_SW_2026-06-15",
+      "ticker": "SW",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-06-15",
+      "entry": 43.71,
+      "stop_initial": 40.99,
+      "target": 48.31,
+      "score": 115.3,
+      "rr": 1.69,
+      "upside_pct": 10.5,
+      "added_at": "2026-06-16T19:15:06Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_ASML_2026-06-09",
@@ -28,39 +46,11 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-10T13:15:05Z",
-      "current_price": 1826.030029296875,
-      "pnl_pct": 2.4219664748506657,
-      "pnl_usd": 1.2109832374253329,
+      "current_price": 1818.8800048828125,
+      "pnl_pct": 2.020921832056123,
+      "pnl_usd": 1.0104609160280615,
       "hold_days": 6,
       "trailing_activated_at": "2026-06-11T19:45:05Z"
-    },
-    {
-      "id": "PAPER_CARR_2026-06-09",
-      "ticker": "CARR",
-      "setup": "BREAKOUT",
-      "sector": "Industrials",
-      "signal_date": "2026-06-09",
-      "entry": 69.97,
-      "stop_initial": 66.29,
-      "target": 76.16,
-      "score": 115.6,
-      "rr": 1.68,
-      "upside_pct": 8.8,
-      "added_at": "2026-06-11T13:00:05Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 69.97,
-      "shares": 0.7145919679862799,
-      "size_usd": 50.0,
-      "stop": 66.29,
-      "high_since_entry": 72.6500015258789,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 71.44000244140625,
-      "pnl_pct": 2.100903875098258,
-      "pnl_usd": 1.050451937549129,
-      "hold_days": 5
     },
     {
       "id": "PAPER_CCL_2026-06-12",
@@ -116,9 +106,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 47.494998931884766,
-      "pnl_pct": 6.199337988450488,
-      "pnl_usd": 3.099668994225244,
+      "current_price": 47.58000183105469,
+      "pnl_pct": 6.38940540232476,
+      "pnl_usd": 3.19470270116238,
       "hold_days": 1,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
     },
@@ -146,9 +136,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-15T14:00:09Z",
-      "current_price": 139.375,
-      "pnl_pct": -3.4665466131043052,
-      "pnl_usd": -1.7332733065521526,
+      "current_price": 139.3300018310547,
+      "pnl_pct": -3.4977130966514114,
+      "pnl_usd": -1.7488565483257057,
       "hold_days": 1
     },
     {
@@ -175,9 +165,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T14:00:09Z",
-      "current_price": 380.82000732421875,
-      "pnl_pct": -1.7010383510444422,
-      "pnl_usd": -0.8505191755222211,
+      "current_price": 380.56500244140625,
+      "pnl_pct": -1.7668613506604824,
+      "pnl_usd": -0.8834306753302412,
       "hold_days": 0
     },
     {
@@ -204,9 +194,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T15:15:05Z",
-      "current_price": 83.80999755859375,
-      "pnl_pct": -0.2261933826264881,
-      "pnl_usd": -0.11309669131324405,
+      "current_price": 83.75499725341797,
+      "pnl_pct": -0.29166993640718003,
+      "pnl_usd": -0.14583496820359002,
       "hold_days": 0
     }
   ],
@@ -395,6 +385,37 @@
       "exit_price": 20.665000915527344,
       "exit_reason": "Stagnation Exit",
       "closed_at": "2026-06-16T15:00:06Z"
+    },
+    {
+      "id": "PAPER_CARR_2026-06-09",
+      "ticker": "CARR",
+      "setup": "BREAKOUT",
+      "sector": "Industrials",
+      "signal_date": "2026-06-09",
+      "entry": 69.97,
+      "stop_initial": 66.29,
+      "target": 76.16,
+      "score": 115.6,
+      "rr": 1.68,
+      "upside_pct": 8.8,
+      "added_at": "2026-06-11T13:00:05Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 69.97,
+      "shares": 0.7145919679862799,
+      "size_usd": 50.0,
+      "stop": 66.29,
+      "high_since_entry": 72.6500015258789,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-11T13:15:06Z",
+      "current_price": 71.44000244140625,
+      "pnl_pct": 1.886524103940753,
+      "pnl_usd": 0.9432620519703765,
+      "hold_days": 5,
+      "exit_price": 71.29000091552734,
+      "exit_reason": "Stagnation Exit",
+      "closed_at": "2026-06-16T19:15:06Z"
     }
   ],
   "expired": [
@@ -434,13 +455,13 @@
     }
   ],
   "stats": {
-    "total_trades": 6,
-    "open_trades": 7,
-    "wins": 4,
+    "total_trades": 7,
+    "open_trades": 6,
+    "wins": 5,
     "losses": 2,
-    "win_rate": 66.66666666666666,
-    "pnl_realized": 1.4728666551585652,
-    "pnl_unrealized": 6.549743017928243,
-    "equity": 408.0222577198709
+    "win_rate": 71.42857142857143,
+    "pnl_realized": 2.4161287071289417,
+    "pnl_unrealized": 5.312569447447058,
+    "equity": 407.7283462013601
   }
 }
