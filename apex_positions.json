@@ -1,27 +1,9 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 100.5760048858564,
-  "last_updated": "2026-06-16T13:45:02Z",
-  "pending": [
-    {
-      "id": "PAPER_JBL_2026-06-15",
-      "ticker": "JBL",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-06-15",
-      "entry": 387.41,
-      "stop_initial": 362.29,
-      "target": 430.0,
-      "score": 123.3,
-      "rr": 1.69,
-      "upside_pct": 11.0,
-      "added_at": "2026-06-16T13:45:06Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "cash": 50.576004885856406,
+  "last_updated": "2026-06-16T14:00:03Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_ASML_2026-06-09",
@@ -46,9 +28,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-10T13:15:05Z",
-      "current_price": 1863.4261474609375,
-      "pnl_pct": 4.519513557558829,
-      "pnl_usd": 2.2597567787794146,
+      "current_price": 1848.93994140625,
+      "pnl_pct": 3.7069827190313314,
+      "pnl_usd": 1.853491359515666,
       "hold_days": 6,
       "trailing_activated_at": "2026-06-11T19:45:05Z"
     },
@@ -75,9 +57,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 72.21499633789062,
-      "pnl_pct": 3.208512702430508,
-      "pnl_usd": 1.6042563512152541,
+      "current_price": 71.92500305175781,
+      "pnl_pct": 2.794058956349598,
+      "pnl_usd": 1.397029478174799,
       "hold_days": 5
     },
     {
@@ -103,9 +85,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-11T13:15:06Z",
-      "current_price": 20.889999389648438,
-      "pnl_pct": 2.901331903100533,
-      "pnl_usd": 1.4506659515502665,
+      "current_price": 20.799999237060547,
+      "pnl_pct": 2.458003236592033,
+      "pnl_usd": 1.2290016182960164,
       "hold_days": 5
     },
     {
@@ -132,9 +114,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 30.6200008392334,
-      "pnl_pct": 7.054330732959945,
-      "pnl_usd": 3.5271653664799727,
+      "current_price": 30.530000686645508,
+      "pnl_pct": 6.7396701896194084,
+      "pnl_usd": 3.3698350948097042,
       "hold_days": 1,
       "trailing_activated_at": "2026-06-15T13:30:13Z"
     },
@@ -162,9 +144,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 47.810001373291016,
-      "pnl_pct": 6.903686898744523,
-      "pnl_usd": 3.451843449372261,
+      "current_price": 47.72999954223633,
+      "pnl_pct": 6.724801927969885,
+      "pnl_usd": 3.3624009639849426,
       "hold_days": 1,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
     },
@@ -192,9 +174,38 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-15T14:00:09Z",
-      "current_price": 139.9499969482422,
-      "pnl_pct": -3.0682941209016543,
-      "pnl_usd": -1.5341470604508272,
+      "current_price": 139.74000549316406,
+      "pnl_pct": -3.213737710788152,
+      "pnl_usd": -1.606868855394076,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_JBL_2026-06-15",
+      "ticker": "JBL",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-06-15",
+      "entry": 387.41,
+      "stop_initial": 362.29,
+      "target": 430.0,
+      "score": 123.3,
+      "rr": 1.69,
+      "upside_pct": 11.0,
+      "added_at": "2026-06-16T13:45:06Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 387.41,
+      "shares": 0.12906223380914275,
+      "size_usd": 50.0,
+      "stop": 362.29,
+      "high_since_entry": 387.41,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-16T14:00:09Z",
+      "current_price": 387.41,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -392,12 +403,12 @@
   ],
   "stats": {
     "total_trades": 5,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 3,
     "losses": 2,
     "win_rate": 60.0,
     "pnl_realized": 0.5763568390723,
-    "pnl_unrealized": 10.759540836946341,
-    "equity": 411.33554572280275
+    "pnl_unrealized": 9.604889659387052,
+    "equity": 410.1808945452435
   }
 }
