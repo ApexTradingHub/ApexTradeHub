@@ -2,32 +2,104 @@
 
 _Updated: 2026-06-15T21:50:59.130073 | Total trades: 147_
 
-**Analyse-Status**: complete=48, pending=99
+**Analyse-Status**: complete=147
+
+## ⚠ Daten-Qualität: complete OHNE strukturierte News
+
+67 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
+
+- `PFE_2026-03-17`
+- `DOW_2026-03-18`
+- `UI_2026-03-18`
+- `PFE_2026-03-19`
+- `SEE_2026-03-19`
+- `SEE_2026-03-22`
+- `DE_2026-03-22`
+- `SEE_2026-03-23`
+- `EMR_2026-03-23`
+- `AVT_2026-03-23`
+- `CTVA_2026-03-24`
+- `ODFL_2026-03-24`
+- `GEV_2026-03-25`
+- `FFIV_2026-03-25`
+- `CSCO_2026-03-25`
+- `VTRS_2026-03-22`
+- `TJX_2026-04-01`
+- `XEL_2026-04-09`
+- `D_2026-04-09`
+- `LEG_2026-04-13`
+- `JBHT_2026-04-16`
+- `MDT_2026-03-26`
+- `CNH_2026-03-26`
+- `FRT_2026-04-10`
+- `DPZ_2026-03-26`
+- `CDP_2026-04-16`
+- `EG_2026-04-14`
+- `ALL_2026-04-16`
+- `HUBB_2026-04-22`
+- `MGM_2026-04-27`
+- `CNM_2026-03-25`
+- `CZR_2026-04-20`
+- `AKAM_2026-04-16`
+- `AKAM_2026-04-17`
+- `HII_2026-04-29`
+- `DVA_2026-05-05`
+- `CBT_2026-05-05`
+- `JKHY_2026-04-13`
+- `FLR_2026-04-27`
+- `DG_2026-05-07`
+- `BWA_2026-05-01`
+- `RVTY_2026-05-04`
+- `BWA_2026-05-05`
+- `BKNG_2026-05-06`
+- `HD_2026-05-06`
+- `AMTM_2026-05-09`
+- `SYY_2026-04-15`
+- `TEL_2026-05-13`
+- `CHRW_2026-05-15`
+- `SJM_2026-04-14`
+- `BDX_2026-05-06`
+- `TMUS_2026-04-28`
+- `RTX_2026-05-09`
+- `META_2026-05-06`
+- `ODFL_2026-05-29`
+- `BAX_2026-05-21`
+- `CBT_2026-05-27`
+- `SBUX_2026-06-03`
+- `TDG_2026-05-04`
+- `CAH_2026-05-13`
+- `TPR_2026-05-13`
+- `BC_2026-05-26`
+- `GM_2026-05-27`
+- `RRC_2026-05-28`
+- `JCI_2026-06-03`
+- `AXTA_2026-06-04`
+- `CF_2026-06-10`
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `sector_momentum_tailwind` | 11 |
-| `sector_relative_strength` | 11 |
-| `energy_oil_surge_2026q1` | 9 |
-| `earnings_adjacency_risk` | 7 |
-| `fundamental_deterioration` | 7 |
-| `pocket_pivot_validation` | 7 |
-| `reversal_after_analyst_downgrade` | 6 |
-| `reversal_win_external_catalyst` | 5 |
-| `high_score_loss_85plus` | 4 |
-| `strong_closing_strength_confirmation` | 4 |
-| `earnings_miss_during_hold` | 3 |
-| `post_earnings_beat_continuation` | 3 |
-| `secular_ai_catalyst` | 3 |
-| `duplicate_trap` | 3 |
-| `geopolitical_premium_fade` | 3 |
-| `oil_peak_chase` | 3 |
-| `macro_selloff_correlates_all_stocks` | 3 |
-| `ai_storage_momentum` | 2 |
-| `extended_but_catalyst_won` | 2 |
-| `commodity_bull_market` | 2 |
+| `sector_relative_strength` | 27 |
+| `sector_momentum_tailwind` | 27 |
+| `reversal_after_oversold_trap` | 23 |
+| `post_earnings_beat_continuation` | 20 |
+| `reversal_win_external_catalyst` | 17 |
+| `oil_peak_chase` | 15 |
+| `energy_oil_surge_2026q1` | 15 |
+| `duplicate_trap` | 15 |
+| `oversold_bounce_with_catalyst` | 15 |
+| `secular_ai_catalyst` | 13 |
+| `geopolitical_premium_fade` | 12 |
+| `fundamental_deterioration` | 10 |
+| `earnings_adjacency_risk` | 9 |
+| `pocket_pivot_validation` | 9 |
+| `defensive_low_beta_drift` | 8 |
+| `low_score_loss` | 8 |
+| `breakout_no_follow_through` | 7 |
+| `reversal_no_turn` | 7 |
+| `ai_capex_supercycle` | 7 |
+| `high_score_loss_85plus` | 7 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -78,34 +150,13 @@ _Updated: 2026-06-15T21:50:59.130073 | Total trades: 147_
 | BLD_2026-04-01 | REVERSAL | 25.15% | Take Profit D+12 | 57.2 | Industrials | REINER M&A-GLUECKSFALL, KEIN Setup-Edge. QXO kuendigte 18.4.2026 $14.3B-Buyout zu $505/Share an. Entry $371, Exit $464 (+25%) = Buyout-Pop. REVERSAL-Logik (RSI 43.5, perf_120 -15.4%) hat NICHTS vorhergesagt, ein Downtrend-Stock wurde zufaellig uebernommen. NICHT replizierbar. |
 | SCCO_2026-03-23 | REVERSAL | 19.55% | Take Profit D+13 | 67.2 | Basic Materials | REVERSAL fing zufaellig den Metalle-Bullenmarkt (Maerz 2026 Silber/Zink/Kupfer-Rekorde). Win kam aus Sektor-Tailwind (Q4-2025 Silber-Umsatz +106%, Rekord-Net-Sales $13.4B +17% YoY), NICHT aus Mean-Reversion-Logik. RSI 36 war oversold, aber perf_120 bereits +35.4% = kein Falling-Knife sondern Pullback im intakten Bull. |
 | NEM_2026-03-23 | REVERSAL | 17.99% | Take Profit D+11 | 64.4 | Basic Materials | REVERSAL fing den historischen Gold-Rally (Realized-Gold >$3500/oz Ende 2025). RSI 31 oversold + perf_120 +16.7%. Win aus Sektor-Tailwind (Gold-Rekord) + Ahafo-North-Mine-Start Okt 2025, NICHT aus Reversal-Setup. Identisches Muster wie SCCO: Pullback im Commodity-Bull. |
-| RVTY_2026-05-04 | REVERSAL | 17.6% | Take Profit D+5 | 69.0 | Unknown | _pending_ |
+| RVTY_2026-05-04 | REVERSAL | 17.6% | Take Profit D+5 | 69.0 | Unknown | REVERSAL Revvity, TP +17.60% D+5. Schneller starker Bounce Life-Sciences. Score 69 niedrig (REVERSAL-Score anti-prediktiv). Oversold-Bounce mit Turn. |
 | STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
 | CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | Trump verkuendete am Freitag 23.5. nach US-Close die Verdopplung der Stahl-Tariffs von 25% auf 50%. CLF gappte am Montag 26.5. premarket +35% hoch. Reiner Policy-Tarif-Tailwind: Cleveland-Cliffs ist ein puer US-Stahlproduzent, profitiert maximal von Importzoellen. closing_strength 0.92 = sehr starker Tagesabschluss = der Move war institutionell, kein retail-fade. TP D+1, sauberer +13.6%-Win. |
 
-## Pending Claude-Analyse (99)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `XOM_2026-03-18`
-- `MNST_2026-03-22`
-- `PFE_2026-03-17`
-- `DOW_2026-03-18`
-- `VLO_2026-03-18`
-- `UI_2026-03-18`
-- `EXE_2026-03-19`
-- `HP_2026-03-19`
-- `EQT_2026-03-19`
-- `PFE_2026-03-19`
-- `SEE_2026-03-19`
-- `SHEL_2026-03-19`
-- `SEE_2026-03-22`
-- `DE_2026-03-22`
-- `SEE_2026-03-23`
-- `EMR_2026-03-23`
-- `BUD_2026-03-23`
-- `AVT_2026-03-23`
-- `CTVA_2026-03-24`
-- `AM_2026-03-24`
-- _(+ 79 mehr)_

@@ -5,6 +5,32 @@ Kontext, um sie kalt (ohne Vorwissen) aufzugreifen.
 
 ---
 
+## 8. Duplicate-Trap: DUPLICATE_WINDOW_DAYS=3 zu kurz — beobachtet 2026-06-17
+
+**Befund aus Postmortem-Vollanalyse (147/147 analyzed):** `duplicate_trap` ist mit
+**n=15** das auffälligste neue Lesson-Tag. Dasselbe Signal wurde mehrfach innerhalb
+weniger Tage emittiert: SEE ×3 (19./22./23.3), AKAM ×2, TPL ×2, BWA ×2, HII ×2,
+PFE ×2, CBT ×2, ENPH ×2.
+
+**Problem:** `DUPLICATE_WINDOW_DAYS = 3` (ApexScan.py L45) filtert nur Re-Emissionen
+innerhalb 3 Tagen. Re-Signale alle 10-20 Tage rutschen durch. Im Equity-Tracker zählen
+sie als separate Trades (verzerrt n + WR), im Live-Paper-Trader hätten wir mehrfach
+Kapital auf denselben Trade allokiert (SEE = 3 Slots für denselben flachen Trade).
+
+**Mögliche Fixes (NICHT umgesetzt — User: keine Action 2026-06-17):**
+- DUPLICATE_WINDOW von 3d auf ~10d erhöhen (einfachster Fix)
+- Same-Ticker-within-Hold-Window-Block im Paper-Trader (sauberer, da hold-aware)
+- Im Equity-Tracker: Duplikate dedupen vor WR-Berechnung
+
+**Caveat (Signal-Protection-Regel):** Window-Erhöhung senkt Signal-Count. Vor Umsetzung
+prüfen wie viele LEGITIME Re-Entries (Trade geschlossen, sauberes Neu-Signal) dabei
+mitgefiltert würden. Nicht blind erhöhen.
+
+**Trigger zum Anpacken:** vor Go-Live (verzerrt Live-Kapital-Allokation) ODER beim
+nächsten Equity-Refactor. Aktuell nur beobachtet.
+
+---
+
 ## 3. Sektor-Cap im Trader (max 2 pro Sektor) — zurückgestellt 2026-06-12
 
 **Motivation:** AFRM (Fintech) + IBKR (Financial Services) gleichzeitig im Portfolio

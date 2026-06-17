@@ -264,19 +264,39 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
+        "key_events": [
+          "Iran-Schlag 28.2, WTI-Peak $119.48 am 9.3",
+          "Hormuz dicht, >10M bpd shut-in",
+          "Iran-US-Deeskalation Ende Maerz = Premium-Fade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT chased Energie auf dem Oel-Spike (Iran-Schlag 28.2, WTI $119). ABER Energie-EQUITIES lagten waehrend der Oel-Rally, und die Ende-Maerz-Deeskalation (Iran-US-Resolution) liess die Risikopraemie verfallen. Klassischer oil_peak_chase: wir kauften Energie-Stocks die der Commodity nicht folgten, dann Premium-Fade. (-3.46%)",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade",
+          "sector_relative_strength",
+          "energy_oil_surge_2026q1"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:13.199558",
@@ -1002,19 +1022,28 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-04-20",
+            "title": "Staples defensive Rotation aber Analyst-Caution in Q1 (TD Cowen MNST cut, HSY target-cuts)",
+            "src": "yahoo/nasdaq"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Monster, Stop D+4 -3.00%. Staples-Caution (TD Cowen cut auf $80 im April), large-cap-Staples lacking growth-path. Oversold ohne Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "staples_analyst_caution"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:17.314468",
@@ -1081,15 +1110,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Pfizer, Time-Exit +2.22% D+15. Defensiver Pharma-Breakout, marginaler Win ohne TP. Low-Beta-Drift.",
+        "lesson_tags": [
+          "defensive_low_beta_drift"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:17.817118",
@@ -1156,15 +1187,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Dow, TP +10.26% D+8. Chemicals-Breakout mit Follow-Through im Maerz. Materials-Staerke.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "sector_momentum_tailwind"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:18.263275",
@@ -1227,19 +1261,33 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Refiner, Time-Exit +1.39%. Refiner profitierten kurz von Crack-Spreads im Oel-Spike, aber Premium-Fade kappte den Move. Marginaler Win, Time-Exit ohne TP.",
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:18.822186",
@@ -1306,15 +1354,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Ubiquiti, Stop D+8 -6.27%. Kein Pocket-Pivot. Networking-Stock vor dem Mai-Sektor-Run, kein Catalyst. Groesster Verlust der Maerz-Tech-Gruppe.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "no_pocket_pivot_loss",
+          "premature_breakout"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:19.492315",
@@ -1377,19 +1428,39 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
+        "key_events": [
+          "Iran-Schlag 28.2, WTI-Peak $119.48 am 9.3",
+          "Hormuz dicht, >10M bpd shut-in",
+          "Iran-US-Deeskalation Ende Maerz = Premium-Fade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT chased Energie auf dem Oel-Spike (Iran-Schlag 28.2, WTI $119). ABER Energie-EQUITIES lagten waehrend der Oel-Rally, und die Ende-Maerz-Deeskalation (Iran-US-Resolution) liess die Risikopraemie verfallen. Klassischer oil_peak_chase: wir kauften Energie-Stocks die der Commodity nicht folgten, dann Premium-Fade. (-5.08%)",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade",
+          "sector_relative_strength",
+          "energy_oil_surge_2026q1"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:20.116482",
@@ -1640,19 +1711,39 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
+        "key_events": [
+          "Iran-Schlag 28.2, WTI-Peak $119.48 am 9.3",
+          "Hormuz dicht, >10M bpd shut-in",
+          "Iran-US-Deeskalation Ende Maerz = Premium-Fade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT chased Energie auf dem Oel-Spike (Iran-Schlag 28.2, WTI $119). ABER Energie-EQUITIES lagten waehrend der Oel-Rally, und die Ende-Maerz-Deeskalation (Iran-US-Resolution) liess die Risikopraemie verfallen. Klassischer oil_peak_chase: wir kauften Energie-Stocks die der Commodity nicht folgten, dann Premium-Fade. (-5.98%)",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade",
+          "sector_relative_strength",
+          "energy_oil_surge_2026q1"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:21.544209",
@@ -1715,19 +1806,39 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
+        "key_events": [
+          "Iran-Schlag 28.2, WTI-Peak $119.48 am 9.3",
+          "Hormuz dicht, >10M bpd shut-in",
+          "Iran-US-Deeskalation Ende Maerz = Premium-Fade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT chased Energie auf dem Oel-Spike (Iran-Schlag 28.2, WTI $119). ABER Energie-EQUITIES lagten waehrend der Oel-Rally, und die Ende-Maerz-Deeskalation (Iran-US-Resolution) liess die Risikopraemie verfallen. Klassischer oil_peak_chase: wir kauften Energie-Stocks die der Commodity nicht folgten, dann Premium-Fade. (-4.94%)",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade",
+          "sector_relative_strength",
+          "energy_oil_surge_2026q1"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:22.158302",
@@ -1794,15 +1905,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Pfizer, Stop D+12 -3.38%. 2 Tage nach PFE_2026-03-17 re-signalisiert, diesmal Stop. Pharma-Breakout ohne Catalyst verpuffte.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "defensive_low_beta_drift",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "PFE_2026-03-17"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:22.674500",
@@ -1869,15 +1985,23 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT Sealed Air, Time-Exit ~+0.3% D+15 (3x signalisiert 19./22./23.3). Packaging-Breakout der praktisch flach blieb. DUPLICATE-CLUSTER: 3x in 5 Tagen = totes Kapital, kein Move. Zeigt Duplicate-Trap deutlich.",
+        "lesson_tags": [
+          "duplicate_trap",
+          "breakout_no_follow_through",
+          "defensive_low_beta_drift"
+        ],
+        "similar_trades": [
+          "SEE_2026-03-19",
+          "SEE_2026-03-22",
+          "SEE_2026-03-23"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:23.176639",
@@ -1940,19 +2064,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Energy, Time-Exit ~flat (-0.04%). Sektor-Divergenz: Energy-ETF -2.79% vs SPY +3.33% waehrend hold. Oel-Equity-Lag + Premium-Fade. Kein echter Schaden, aber totes Kapital 15d.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "sector_relative_strength",
+          "geopolitical_premium_fade"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:23.705187",
@@ -2113,15 +2252,23 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT Sealed Air, Time-Exit ~+0.3% D+15 (3x signalisiert 19./22./23.3). Packaging-Breakout der praktisch flach blieb. DUPLICATE-CLUSTER: 3x in 5 Tagen = totes Kapital, kein Move. Zeigt Duplicate-Trap deutlich.",
+        "lesson_tags": [
+          "duplicate_trap",
+          "breakout_no_follow_through",
+          "defensive_low_beta_drift"
+        ],
+        "similar_trades": [
+          "SEE_2026-03-19",
+          "SEE_2026-03-22",
+          "SEE_2026-03-23"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:24.660608",
@@ -2188,15 +2335,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Deere, TP +9.68% D+13. Ag-Equipment-Recovery + Farm-Demand-Rebound. Oversold-Bounce mit fundamentalem Turn (Q1-Earnings stark).",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst",
+          "ag_recovery"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:25.094635",
@@ -2263,15 +2414,23 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT Sealed Air, Time-Exit ~+0.3% D+15 (3x signalisiert 19./22./23.3). Packaging-Breakout der praktisch flach blieb. DUPLICATE-CLUSTER: 3x in 5 Tagen = totes Kapital, kein Move. Zeigt Duplicate-Trap deutlich.",
+        "lesson_tags": [
+          "duplicate_trap",
+          "breakout_no_follow_through",
+          "defensive_low_beta_drift"
+        ],
+        "similar_trades": [
+          "SEE_2026-03-19",
+          "SEE_2026-03-22",
+          "SEE_2026-03-23"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:25.722811",
@@ -2444,15 +2603,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Emerson, Stop D+4 -5.24%. Industrials oversold ohne Turn. Schneller Stop = Falling-Knife.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:26.968942",
@@ -2515,19 +2676,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-04-20",
+            "title": "Staples defensive Rotation aber Analyst-Caution in Q1 (TD Cowen MNST cut, HSY target-cuts)",
+            "src": "yahoo/nasdaq"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL AB InBev, TP +8.96% D+12. Oversold-Bounce Beverage-Staple. Defensive-Rotation-Tailwind (Staples +13.2% YTD).",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "defensive_rotation",
+          "reversal_win_external_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:27.492028",
@@ -2689,15 +2860,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Avnet, TP +6.31% D+11. Electronics-Distribution-Bounce. Oversold-Turn im Maerz.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:28.715050",
@@ -2764,15 +2938,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Corteva, Time-Exit +3.56% D+15. Ag-Chemicals marginaler Win. Ag-Recovery-Thema (vgl. DE).",
+        "lesson_tags": [
+          "ag_recovery",
+          "sector_momentum_tailwind"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:29.231339",
@@ -2835,19 +3012,39 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
+        "key_events": [
+          "Iran-Schlag 28.2, WTI-Peak $119.48 am 9.3",
+          "Hormuz dicht, >10M bpd shut-in",
+          "Iran-US-Deeskalation Ende Maerz = Premium-Fade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT chased Energie auf dem Oel-Spike (Iran-Schlag 28.2, WTI $119). ABER Energie-EQUITIES lagten waehrend der Oel-Rally, und die Ende-Maerz-Deeskalation (Iran-US-Resolution) liess die Risikopraemie verfallen. Klassischer oil_peak_chase: wir kauften Energie-Stocks die der Commodity nicht folgten, dann Premium-Fade. (-4.83%)",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade",
+          "sector_relative_strength",
+          "energy_oil_surge_2026q1"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:29.745688",
@@ -2914,15 +3111,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Old Dominion, TP +9.34% D+7. Oversold-Bounce LTL-Trucking. Transport-Erholung.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:30.255712",
@@ -2989,15 +3189,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT GE Vernova, Time-Exit +4.94% D+15. Power/Grid-Equipment marginaler Win. (Spaeter wieder im Watch als diskretionaer.)",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "power_grid_buildout"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:30.768267",
@@ -3064,15 +3267,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT F5, Stop D+2 -4.78%. Wie CSCO: Maerz zu frueh, der FFIV-Rekord-Run kam erst Mai. Score 68 niedrig. No-PP-Loser.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "premature_breakout",
+          "low_score_loss"
+        ],
+        "similar_trades": [
+          "CSCO_2026-03-25"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:31.228786",
@@ -3139,15 +3347,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Cisco, Stop D+3 -3.77%. Maerz-Entry war zu frueh — der Networking-Breakout (CSCO Rekord) kam erst im Mai. Score 66 = unteres Decile (33% WR-Bucket). Premature Entry.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "premature_breakout",
+          "low_score_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:31.893578",
@@ -3214,15 +3425,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Viatris, TP +11.30% D+1. Sehr schneller Oversold-Bounce Generika/Pharma. Schneller Reversal-Win.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:32.597769",
@@ -3383,15 +3597,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT TJX, Stop D+7 -3.00%. Score 67 niedrig (33%-WR-Bucket). Off-Price-Retail-Breakout ohne Catalyst.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "low_score_loss",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:33.739693",
@@ -3458,15 +3675,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Xcel Energy, Stop D+3 -3.01%. Identisch zu D_2026-04-09 (gleicher Tag, gleiche Sektor-Divergenz Utilities). Rate-Sensitivitaet.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "sector_relative_strength",
+          "rate_sensitive_utility"
+        ],
+        "similar_trades": [
+          "D_2026-04-09"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:34.351632",
@@ -3533,15 +3755,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Dominion, Stop D+3 -3.01%. Sektor-Divergenz (Utilities -1.61% vs SPY +0.91%). Rate-sensitive Utility-Breakout scheiterte.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "sector_relative_strength",
+          "rate_sensitive_utility"
+        ],
+        "similar_trades": [
+          "XEL_2026-04-09"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:34.982938",
@@ -3608,15 +3835,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Leggett & Platt, TP +11.70% D+1. Sehr schneller TP. Beaten-down Consumer-Cyclical Squeeze.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:35.486183",
@@ -3778,15 +4007,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT JB Hunt, TP +8.39% D+2. Logistics-Breakout, schneller TP. Transport-Staerke.",
+        "lesson_tags": [
+          "sector_momentum_tailwind"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:36.808810",
@@ -3853,15 +4084,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Medtronic, Stop D+17 -3.73%. Sektor-Divergenz (Healthcare +2.1% vs SPY +10.08%). Score 52 sehr niedrig. Langsamer Stop = kein echter Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "sector_relative_strength",
+          "low_score_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:37.321863",
@@ -3924,19 +4159,28 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-04-20",
+            "title": "Staples defensive Rotation aber Analyst-Caution in Q1 (TD Cowen MNST cut, HSY target-cuts)",
+            "src": "yahoo/nasdaq"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Colgate, Stop D+5 -3.00%. Staples-Caution. Score 68. Oversold ohne Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "staples_analyst_caution"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:37.834172",
@@ -4103,15 +4347,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL CNH Industrial, Stop D+20 -5.91%. Schwaecher als Deere (CNH benefited von Deere-unmet-demand erst spaeter). Langsamer Stop, Ag-Schwaeche vor Juni-Tariff-Cut.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "weaker_peer_lag"
+        ],
+        "similar_trades": [
+          "DE_2026-03-22"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:39.052973",
@@ -4178,15 +4427,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Federal Realty, Time-Exit +2.10% D+15. Marginaler REIT-Win, Low-Beta-Drift ohne TP.",
+        "lesson_tags": [
+          "defensive_low_beta_drift",
+          "rate_sensitive_reit"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:39.567816",
@@ -4253,15 +4505,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Dominos, Stop D+21 -3.00%. Score 59 niedrig. Sehr langsamer Stop nach 21d = schleichender Abverkauf, kein Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "low_score_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:40.186903",
@@ -4324,19 +4579,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-04-20",
+            "title": "Staples defensive Rotation aber Analyst-Caution in Q1 (TD Cowen MNST cut, HSY target-cuts)",
+            "src": "yahoo/nasdaq"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Hershey, Stop D+6 -3.40%. Staples-Caution: Analyst-Target-Cuts, kein Growth-Path. Oversold-Bounce scheiterte an fundamentaler Skepsis.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "staples_analyst_caution",
+          "fundamental_deterioration"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:40.807973",
@@ -4403,15 +4668,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT COPT Defense Properties, Stop D+8 -2.98%. Sektor-Divergenz (RealEstate -0.73% vs SPY +1.93%). REIT-Breakout ohne Sektor-Support.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_relative_strength",
+          "rate_sensitive_reit"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:41.414466",
@@ -4583,15 +4851,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Everest Group, Time-Exit +1.72% D+15. Insurance-Breakout, marginaler Drift-Win.",
+        "lesson_tags": [
+          "defensive_low_beta_drift"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:42.435178",
@@ -4857,15 +5127,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Allstate, Stop D+10 -3.16%. Sektor-Divergenz (FinServ +0.19% vs SPY +2.42%). Insurance-Breakout ohne Sektor-Support.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_relative_strength"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:44.181895",
@@ -4932,15 +5204,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Hubbell, Stop D+6 -4.43%. Electrical-Equipment-Breakout ohne Follow-Through. Score 94 aber kein PP-Flag.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "no_pocket_pivot_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:44.691911",
@@ -5104,15 +5378,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT MGM, Stop D+3 -5.28%. Takeover-Sympathie-Play (Caesars-Deal-Spekulation impliziert MGM $60) der nicht hielt. Casino-Sympathy-Trade ohne eigenen Catalyst.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "ma_sympathy_fade",
+          "no_own_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:45.820094",
@@ -5179,15 +5456,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Core&Main, Time-Exit -3.54% D+40. Sektor-Divergenz (Industrials +3.42% vs SPY +12.46%). Score 57 niedrig. Volle 40d ohne Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "sector_relative_strength",
+          "low_score_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:46.327379",
@@ -5254,15 +5535,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Caesars, Time-Exit -2.46% D+15. Buyout-Spekulation (Fertitta exklusive Gespraeche verlaengert April) ohne Deal — Stock fadete bis zur Mai-Ankuendigung. Speculation-Premium-Fade.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "ma_speculation_fade",
+          "geopolitical_premium_fade"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:46.936753",
@@ -5439,15 +5723,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "REVERSAL Akamai, TP +12.01% (Duplikat 16./17.4). Oversold-Bounce der vor dem Cyber/CDN-Mai-Run kam. DUPLICATE-TRAP: 2x in 2 Tagen signalisiert.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "duplicate_trap",
+          "reversal_win_external_catalyst"
+        ],
+        "similar_trades": [
+          "AKAM_2026-04-16",
+          "AKAM_2026-04-17"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:47.967608",
@@ -5514,15 +5805,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "REVERSAL Akamai, TP +12.01% (Duplikat 16./17.4). Oversold-Bounce der vor dem Cyber/CDN-Mai-Run kam. DUPLICATE-TRAP: 2x in 2 Tagen signalisiert.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "duplicate_trap",
+          "reversal_win_external_catalyst"
+        ],
+        "similar_trades": [
+          "AKAM_2026-04-16",
+          "AKAM_2026-04-17"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:48.480899",
@@ -5589,15 +5887,21 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Huntington Ingalls, Stop D+4 -5.03%. FRUEHERE Version von HII_2026-05-12 (gleicher Fehler 2x): oversold-Kauf vor Q1-Earnings (5.5) die Margin-Compression + neg FCF zeigten. Earnings-Adjacency.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "reversal_after_oversold_trap",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "HII_2026-05-12"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:49.097627",
@@ -5952,15 +6256,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT DaVita, TP +8.27% D+1. Schneller TP Healthcare-Services. Wahrscheinlich Earnings-getrieben.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:51.177086",
@@ -6027,15 +6333,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Cabot, TP +8.11% D+1. Schneller TP Specialty-Chemicals.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:51.849050",
@@ -6102,15 +6410,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Jack Henry, Stop D+17 -4.95%. Score 54 niedrig. Langsamer Stop, Fintech-Processing oversold ohne Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "low_score_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:52.475583",
@@ -6173,19 +6484,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+9.55%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:52.946828",
@@ -6248,19 +6576,39 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
+        "key_events": [
+          "Iran-Schlag 28.2, WTI-Peak $119.48 am 9.3",
+          "Hormuz dicht, >10M bpd shut-in",
+          "Iran-US-Deeskalation Ende Maerz = Premium-Fade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT chased Energie auf dem Oel-Spike (Iran-Schlag 28.2, WTI $119). ABER Energie-EQUITIES lagten waehrend der Oel-Rally, und die Ende-Maerz-Deeskalation (Iran-US-Resolution) liess die Risikopraemie verfallen. Klassischer oil_peak_chase: wir kauften Energie-Stocks die der Commodity nicht folgten, dann Premium-Fade. (-4.52%)",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "oil_peak_chase",
+          "geopolitical_premium_fade",
+          "sector_relative_strength",
+          "energy_oil_surge_2026q1"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:53.605804",
@@ -6327,15 +6675,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Fluor (E&C, energy-exposed), Stop D+9. Sektor-Divergenz (Industrials +0.4% vs SPY +3.14%). Post-Spike-Energie-Schwaeche zog E&C mit runter.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_relative_strength",
+          "oil_peak_chase"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:54.101016",
@@ -6398,19 +6749,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-20",
+            "title": "PANW/CSCO/FFIV Rekorde, Cyber-Stocks outrun chips; OKTA lagte aber bounced",
+            "src": "yahoo finance"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Palo Alto, TP +10.45% D+9. Cyber-Stocks outran chips im Mai. PANW Q2-FY26 Beat ($1.03 vs $0.81 EPS), Platformization + AI-Security-Adoption.",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "cyber_security_breakout",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:54.623401",
@@ -6477,15 +6838,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Dollar General, Stop D+2 -5.30%. Schneller Stop. Discount-Retail oversold aber kein Bounce. Falling-Knife.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:55.141004",
@@ -6652,15 +7015,21 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT BorgWarner, TP +9.53% D+6 (2x signalisiert 1./5.5). Auto-Parts-Breakout mit Follow-Through.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "BWA_2026-05-01",
+          "BWA_2026-05-05"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:56.222454",
@@ -6727,15 +7096,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Revvity, TP +17.60% D+5. Schneller starker Bounce Life-Sciences. Score 69 niedrig (REVERSAL-Score anti-prediktiv). Oversold-Bounce mit Turn.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:56.766497",
@@ -6802,15 +7174,21 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT BorgWarner, TP +8.13% D+4 (2x signalisiert 1./5.5). Auto-Parts-Breakout mit Follow-Through.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "BWA_2026-05-01",
+          "BWA_2026-05-05"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:57.291384",
@@ -6877,15 +7255,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Booking, Stop D+3 -5.01%. Schneller Stop. High-Priced-Stock oversold ohne Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:57.805981",
@@ -6948,19 +7328,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-04-20",
+            "title": "Staples defensive Rotation aber Analyst-Caution in Q1 (TD Cowen MNST cut, HSY target-cuts)",
+            "src": "yahoo/nasdaq"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Albertsons, Stop D+17 -5.89%. Sektor-Divergenz (Cons.Def +1.1% vs SPY +4.11%). Langsamer Stop = kein Turn, fundamentale Grocery-Schwaeche.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "sector_relative_strength",
+          "staples_analyst_caution"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:58.302651",
@@ -7132,15 +7522,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Home Depot, Stop D+5 -5.70%. Retail-Discretionary oversold-Kauf gescheitert. Kein Turn.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:22:59.531847",
@@ -7207,15 +7599,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Amentum, Stop D+3 -5.80%. Schneller Stop. Oversold-Defense-Services ohne Turn. Vgl. AMTM_2026-04-01 (Dead-Cat-Bounce).",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "dead_cat_bounce"
+        ],
+        "similar_trades": [
+          "AMTM_2026-04-01"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:00.053944",
@@ -7469,19 +7866,30 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-05",
+            "title": "XRAY Q4-Miss + Analyst-PT-Cuts (Barclays $9, UBS, Mizuho)",
+            "src": "marketbeat"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Dentsply Sirona, Stop D+2 -4.20%. Earnings-Adjacency: Q4-Miss ($0.27 vs $0.28), Earnings 7.5 nahe Signal, multiple Analyst-PT-Cuts (Barclays $9 von $12, UBS, Mizuho). Score 100 = High-Score-Loss. Oversold war Falle bei fundamentaler Schwaeche.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "fundamental_deterioration",
+          "reversal_after_oversold_trap",
+          "high_score_loss_85plus"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:01.578931",
@@ -7544,19 +7952,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Energy (Expand Energy natgas), Stop D+2. Oversold-Kauf in schwachem Energie-Sektor nach Premium-Fade. Falling-Knife im Post-Spike-Abverkauf.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "oil_peak_chase",
+          "sector_relative_strength"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:02.219799",
@@ -7619,19 +8042,37 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Texas Pacific Land (Energy-Royalty), REV-cut Time-Exit -3.14% D+19. Duplikat-Signal (2 Tage hintereinander). Oversold-Kauf in Energie-Schwaeche nach Oel-Premium-Fade, kein Turn. REV-cut-Mechanik hat groesseren Verlust verhindert.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "oil_peak_chase",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "TPL_2026-04-10",
+          "TPL_2026-04-11"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:02.724467",
@@ -7694,19 +8135,37 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-02-28",
+            "title": "US/Israel-Schlag gegen Iran, Oel spiked auf $119 (Hormuz dicht), aber Energie-Equities lagten",
+            "src": "iea/bloomberg"
+          },
+          {
+            "date": "2026-03-31",
+            "title": "Iran-US-Deeskalation, Oel-Risikopraemie verfaellt, Energie-Equities fallen",
+            "src": "bloomberg"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Texas Pacific Land (Energy-Royalty), REV-cut Time-Exit -3.14% D+19. Duplikat-Signal (2 Tage hintereinander). Oversold-Kauf in Energie-Schwaeche nach Oel-Premium-Fade, kein Turn. REV-cut-Mechanik hat groesseren Verlust verhindert.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "oil_peak_chase",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "TPL_2026-04-10",
+          "TPL_2026-04-11"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:03.334751",
@@ -7773,15 +8232,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Sysco, REV-cut Time-Exit -1.52% D+15. Score 53 niedrig. Kein Turn, REV-cut nahe flat.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "rev_cut_worked",
+          "low_score_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:03.845235",
@@ -7844,19 +8307,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-04",
+            "title": "RIVN $300M Share-Issuance @ $15.34 (dilutive)",
+            "src": "yahoo"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Rivian, Stop D+6 -5.67%. Dilutive Share-Issuance 4.5 ($300M @ $15.34) drueckte den Kurs. Oversold-Kauf in einen Equity-Raise = struktureller Gegenwind.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "dilutive_equity_raise",
+          "fundamental_deterioration"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:04.558607",
@@ -7923,15 +8396,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL TE Connectivity, Stop D+3 -4.98%. Oversold-Kauf ohne Turn-Bestaetigung. Schneller Stop = Falling-Knife.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-18T22:23:05.063234",
@@ -8312,15 +8787,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL CH Robinson, TP +11.38% D+3. Schneller Oversold-Bounce im Transport-Sektor-Tailwind. Sauberer Reversal-Win.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "sector_momentum_tailwind",
+          "reversal_win_external_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-21T17:38:27.871465",
@@ -8485,19 +8964,28 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05",
+            "title": "DexCom-Flex-Launch Type-2-Segment, +14.9% 30d",
+            "src": "yahoo"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT DexCom, TP +10.38% D+2. DexCom-Flex-Launch (Type-2-Markt Deutschland) als Catalyst, +14.9% in 30d Momentum. Produkt-getriebener Breakout.",
+        "lesson_tags": [
+          "secular_product_catalyst",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-27T21:42:43.683159",
@@ -8564,15 +9052,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Smucker, TP +11.54% Time-Exit D+40. Langsamer Staples-Bounce, brauchte volle 40d Haltedauer. Defensive-Rotation. Geduld-Win.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "defensive_rotation",
+          "slow_grind_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-27T21:42:44.192718",
@@ -8635,19 +9127,28 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-20",
+            "title": "PANW/CSCO/FFIV Rekorde, Cyber-Stocks outrun chips; OKTA lagte aber bounced",
+            "src": "yahoo finance"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Okta, TP +11.16% D+5. Bounce trotz Lag (28% unter 52w-High) im Cyber-Sektor-Tailwind. Mean-Reversion-Flavour innerhalb Cyber-Rally.",
+        "lesson_tags": [
+          "cyber_security_breakout",
+          "sector_momentum_tailwind"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-05-27T21:42:44.714064",
@@ -8914,19 +9415,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "Airlines-Rally: Pricing-Power offsets fuel, Iran-Resolution gepriced, Demand stark",
+            "src": "motley fool"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Delta, TP +10.12% D+4. Airline-Rally: Pricing-Power offsets Fuel, Iran-Resolution gepriced, starke Demand. Sektor-Tailwind + Catalyst.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "airline_pricing_power",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-05-29T11:19:13.342022",
@@ -9202,15 +9713,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL Becton Dickinson, REV-cut Time-Exit -0.27% D+15. Kein Turn, REV-cut-Mechanik schloss nahe flat = Mechanik hat groesseren Verlust verhindert.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "rev_cut_worked"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-05-29T11:19:14.946588",
@@ -9390,15 +9904,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL, REV-cut Time-Exit -0.34% D+22. Kein Turn aber auch kein Schaden — REV-cut-Mechanik schloss nahe flat. Mechanik validiert (verhinderte Stop-Loss-Verlust).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "rev_cut_worked"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-01T14:33:55.095496",
@@ -9988,15 +10505,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL, REV-cut Time-Exit -0.54% D+15. Kein Turn aber auch kein Schaden — REV-cut-Mechanik schloss nahe flat. Mechanik validiert (verhinderte Stop-Loss-Verlust).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "rev_cut_worked"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:02.748163",
@@ -10167,15 +10687,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL, REV-cut Time-Exit -0.44% D+17. Kein Turn aber auch kein Schaden — REV-cut-Mechanik schloss nahe flat. Mechanik validiert (verhinderte Stop-Loss-Verlust).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "rev_cut_worked"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:03.870383",
@@ -10238,19 +10761,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+12.36%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:04.335225",
@@ -10313,19 +10853,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+10.3%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:04.797925",
@@ -10510,19 +11067,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+10.55%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-04T11:36:05.822684",
@@ -10697,19 +11271,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+11.51%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-06T22:47:37.424173",
@@ -10776,15 +11367,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Old Dominion, TP +9.25% D+4. Transport-Momentum-Breakout mit PP. Sauberer Win.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "pocket_pivot_validation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-06T22:47:37.929529",
@@ -10847,19 +11441,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+9.38%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-06T22:47:38.452764",
@@ -10926,15 +11537,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Baxter, Time-Exit +2.54% D+15. Healthcare marginaler Drift-Win, kein TP. Low-Beta.",
+        "lesson_tags": [
+          "defensive_low_beta_drift"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-06T22:47:38.957381",
@@ -11001,15 +11614,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Cabot, Stop D+7 -4.46%. Score 134 (sehr hoch!) aber Stop = High-Score-Loss. Re-Entry 22 Tage nach CBT_2026-05-05-Win, diesmal failed. High-Score != Conviction.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "duplicate_trap"
+        ],
+        "similar_trades": [
+          "CBT_2026-05-05"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-06T22:47:39.458359",
@@ -11076,15 +11694,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MEAN_REVERSION Stop -2.38% D+2. Teil der n=4-Loser-Serie die zur MR-Deaktivierung fuehrte (2026-06-17). RSI<38-Pullback ohne Turn. Setup disabled.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "mean_reversion_disabled",
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-06T22:47:39.969587",
@@ -11370,19 +11991,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Cadence, TP +10.29% D+19. EDA/Chip-Design ritt den Semi/AI-Tailwind. NB: dieser Trade wurde manuell geschlossen (evaluate_trade Same-Day-Stop-Bug, BACKLOG #6) + offenbarte Horizon-15/21-Konflikt (BACKLOG #7).",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "sector_momentum_tailwind",
+          "manual_close_evaluate_trade_bug"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:51.891567",
@@ -11463,15 +12094,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL TransDigm, TP +8.70% Time-Exit D+40. Aerospace-Aftermarket, volle 40d. Langsamer Defense/Aero-Bounce.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst",
+          "slow_grind_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:52.385179",
@@ -11552,15 +12187,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Cardinal Health, TP +11.97% D+18. Healthcare-Distribution-Bounce, 18d. Defensive-Reversal-Win.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst",
+          "slow_grind_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:52.901056",
@@ -11641,15 +12280,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "REVERSAL Tapestry, TP +10.32% D+18. Luxury-Retail-Bounce, brauchte 18d. Geduld-Win.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "reversal_win_external_catalyst",
+          "slow_grind_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:53.431618",
@@ -11726,19 +12369,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
+        "key_events": [
+          "SOX +65% YTD 2026",
+          "AVGO AI-Rev +106% auf $8.4B",
+          "LRCX raised Equipment-Outlook >30%"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT ritt den AI-Capex-Supercycle (SOX +65% YTD). Hyperscaler-Capex (MSFT/GOOG/AMZN/META) trieb Semi-Equipment + AI-Chips. Bestaetigter sekularer Catalyst schlaegt Extension. (+8.86%)",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_capex_supercycle",
+          "sector_momentum_tailwind",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Semi/AI-Equipment waehrend bestaetigtem Capex-Cycle = hochwertigstes Setup; Extension kein Ausschluss bei realem Catalyst"
+        ],
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:54.028696",
@@ -11819,15 +12479,17 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Brunswick, Time-Exit -2.70% D+15. Marine-Consumer-Cyclical verpuffte flat-negativ. Kein Follow-Through trotz PP.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:54.518098",
@@ -11908,15 +12570,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT GM, Time-Exit -1.16% D+15. Score 115 aber Auto-Breakout verpuffte flat. Tariff/EV-Unsicherheit kappte Momentum. Totes Kapital.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "auto_tariff_uncertainty"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:55.152345",
@@ -11993,19 +12658,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-31",
+            "title": "SOX +65% YTD, AI-Capex-Supercycle: AMAT +75%, ASML +51%, AVGO AI-Rev +106%",
+            "src": "motley fool/247wallst"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT TSM, Time-Exit -3.33% D+15. Spaeter Entry im Semi-Run (27.5) als Momentum bereits abgekuehlt war (vgl. TSM_2026-04-22 gewann). Late-Cycle-Entry in heisslaufenden Sektor. Burry/Krinsky-Bubble-Warnungen Ende Mai.",
         "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "lesson_tags": [
+          "late_cycle_breakout_near_52w_high",
+          "secular_ai_catalyst",
+          "extended_but_catalyst_lost"
+        ],
+        "similar_trades": [
+          "TSM_2026-04-22"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:55.757247",
@@ -12086,15 +12763,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MEAN_REVERSION Stop -2.81% D+8. Teil der n=4-Loser-Serie die zur MR-Deaktivierung fuehrte (2026-06-17). RSI<38-Pullback ohne Turn. Setup disabled.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "mean_reversion_disabled",
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:56.369656",
@@ -12171,19 +12851,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-28",
+            "title": "Fertitta uebernimmt Caesars $17.6B, $31/Share (+49%)",
+            "src": "casino.org"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
-        "similar_trades": [],
+        "primary_win_cause": "BREAKOUT Caesars — Fertitta $17.6B All-Cash-Buyout ($31/Share, +49% Praemie) wurde EXAKT am Signal-Tag (28.5) angekuendigt. ABER Trade nur +1.58% Time-Exit D+15: wir entered NACH dem Buyout-Pop, danach handelte CZR flach nahe Deal-Preis (Arb-Spread). Buyout-Pop verpasst, Rest war totes Geld.",
+        "lesson_tags": [
+          "ma_buyout_luck",
+          "post_announcement_arb_drift",
+          "not_replicable_outcome"
+        ],
+        "similar_trades": [
+          "BLD_2026-04-01"
+        ],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "high"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:57.087372",
@@ -12264,15 +12956,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT Johnson Controls, Stop D+5 -4.43%. Score 106 aber Stop. PEAD-Flag (post-earnings-drift) der nach unten lief. High-Score-Loss in MIXED-Regime.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "low"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:57.815395",
@@ -12353,15 +13048,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT Axalta, TP +8.97% D+7 (PP+GAP). Coatings-Breakout mit Pocket-Pivot + Gap. Sauberer Catalyst-Win. (Auch im Paper-Trader gehandelt.)",
+        "lesson_tags": [
+          "pocket_pivot_validation",
+          "post_earnings_beat_continuation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:58.379279",
@@ -12442,15 +13140,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MEAN_REVERSION Stop -4.37% D+3. Teil der n=4-Loser-Serie die zur MR-Deaktivierung fuehrte (2026-06-17). RSI<38-Pullback ohne Turn. Setup disabled.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "mean_reversion_disabled",
+          "reversal_after_oversold_trap"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-17T19:50:31.025051+00:00",
+        "confidence": "medium"
       },
       "auto_meta": {
         "built_at": "2026-06-15T21:50:58.829283",
