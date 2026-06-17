@@ -36,7 +36,7 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **STAGE_2** 🚀 Trend | aktiv im Scanner, RAUS im Paper-Trader (Rotations-Konflikt) | 10 open im Equity, 0 closed lifetime |
 | **VCP** 🔹 Bounceback | aktiv (gelockert 28.5.) | Backtest WR 88.9 % n=9 |
 | **SHORT_SQUEEZE** 🔥 Bet | aktiv (strict, ≥15 % short) | n=0 lifetime |
-| **MEAN_REVERSION** 🟢 Dip | aktiv | RSI<38 Pullback im Uptrend, n=1 closed (SBUX -2.38 %) |
+| ~~MEAN_REVERSION~~ 🟢 Dip | **DISABLED 2026-06-17** (User: "kaufe ich eh nicht") | n=4 30d-window, WR **0 %**, AvgLoss -2.70 %. Score weakly ANTI-predictive in-sample. Flag `MEAN_REVERSION_ENABLED=False` in ApexScan.py. Code-Pfad bleibt fuer Re-Enable. |
 | **MOMENTUM** ⚡ (Filler) | **NEU 06-12** Paper-Trader-only, yfinance Top-200 US | n=0 lifetime (Test) |
 | ~~REVERSAL~~ | **disabled** | Legacy, 28 % WR strukturell defekt | sterbende Legacy-Positions in n |
 

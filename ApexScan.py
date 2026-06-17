@@ -44,6 +44,11 @@ MIN_SIGNALS         = 1
 MAX_SIGNALS         = 10
 DUPLICATE_WINDOW_DAYS = 3
 
+# Setup-Enable-Flags. MEAN_REVERSION disabled 2026-06-17:
+# 30d-Window n=4 closed, WR 0% (4/4 loss), AvgLoss -2.70%.
+# Score weakly ANTI-predictive in-sample, no live-validated edge. User skipt sie eh.
+MEAN_REVERSION_ENABLED = False
+
 # Quality filter for Telegram top-2 (setup-specific, data-driven)
 TG_MIN_RR      = 1.5     # 2026-05-22: 2.0->1.5. Backtest: RR>=2.0 (WR 54.5%) gives
                          # NO edge over all (56.0%) but discards 67% of signals.
@@ -969,7 +974,8 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
         prev_close = safe_float(prev["Close"])
         _mr_en = (catalyst_signals or {}).get("earnings_next_days")
         mr_fire = (
-            ma150 > 0 and ma150_prev > 0 and ma150 > ma150_prev and close > ma150  # uptrend
+            MEAN_REVERSION_ENABLED
+            and ma150 > 0 and ma150_prev > 0 and ma150 > ma150_prev and close > ma150  # uptrend
             and close < ma20                                                       # pulled back
             and rsi14 < 38                                                         # oversold
             and close > prev_close                                                 # turning up
