@@ -1,27 +1,9 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 107.17516171027822,
-  "last_updated": "2026-06-17T19:30:02Z",
-  "pending": [
-    {
-      "id": "PAPER_SWK_2026-06-15",
-      "ticker": "SWK",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Industrials",
-      "signal_date": "2026-06-15",
-      "entry": 84.62,
-      "stop_initial": 80.37,
-      "target": 92.5,
-      "score": 108.7,
-      "rr": 1.86,
-      "upside_pct": 9.3,
-      "added_at": "2026-06-17T19:30:06Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "cash": 57.17516171027822,
+  "last_updated": "2026-06-17T19:45:02Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_LUV_2026-06-12",
@@ -47,9 +29,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 47.20500183105469,
-      "pnl_pct": 5.550901293654628,
-      "pnl_usd": 2.7754506468273146,
+      "current_price": 46.97999954223633,
+      "pnl_pct": 5.04779371062962,
+      "pnl_usd": 2.52389685531481,
       "hold_days": 2,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
     },
@@ -77,9 +59,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T15:15:05Z",
-      "current_price": 82.29499816894531,
-      "pnl_pct": -2.0297640845889133,
-      "pnl_usd": -1.0148820422944567,
+      "current_price": 82.375,
+      "pnl_pct": -1.9345238095238095,
+      "pnl_usd": -0.9672619047619048,
       "hold_days": 1
     },
     {
@@ -106,10 +88,10 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T19:30:07Z",
-      "current_price": 43.7599983215332,
-      "pnl_pct": -0.38369506497890576,
-      "pnl_usd": -0.19184753248945288,
-      "hold_days": 0
+      "current_price": 43.494998931884766,
+      "pnl_pct": -0.98694600234979,
+      "pnl_usd": -0.493473001174895,
+      "hold_days": 1
     },
     {
       "id": "PAPER_ASML_2026-06-15",
@@ -135,9 +117,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T13:45:06Z",
-      "current_price": 1891.9000244140625,
-      "pnl_pct": -1.2408201300833503,
-      "pnl_usd": -0.6204100650416752,
+      "current_price": 1876.1400146484375,
+      "pnl_pct": -2.0635092886592887,
+      "pnl_usd": -1.0317546443296444,
       "hold_days": 0
     },
     {
@@ -164,9 +146,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T14:30:07Z",
-      "current_price": 723.0499877929688,
-      "pnl_pct": 3.3948987787402496,
-      "pnl_usd": 1.6974493893701248,
+      "current_price": 715.6900024414062,
+      "pnl_pct": 2.3424335919823616,
+      "pnl_usd": 1.1712167959911808,
       "hold_days": 0
     },
     {
@@ -193,9 +175,38 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T17:15:06Z",
-      "current_price": 405.25,
-      "pnl_pct": -0.754656449477924,
-      "pnl_usd": -0.377328224738962,
+      "current_price": 404.70001220703125,
+      "pnl_pct": -0.8893479422892182,
+      "pnl_usd": -0.4446739711446091,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_SWK_2026-06-15",
+      "ticker": "SWK",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-06-15",
+      "entry": 84.62,
+      "stop_initial": 80.37,
+      "target": 92.5,
+      "score": 108.7,
+      "rr": 1.86,
+      "upside_pct": 9.3,
+      "added_at": "2026-06-17T19:30:06Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 84.62,
+      "shares": 0.5908768612621129,
+      "size_usd": 50.0,
+      "stop": 80.37,
+      "high_since_entry": 84.62,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-17T19:45:06Z",
+      "current_price": 84.62,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -585,12 +596,12 @@
   ],
   "stats": {
     "total_trades": 11,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 8,
     "losses": 3,
     "win_rate": 72.72727272727273,
     "pnl_realized": 7.175513663494096,
-    "pnl_unrealized": 2.2684321716328926,
-    "equity": 409.44359388191106
+    "pnl_unrealized": 0.7579501298949374,
+    "equity": 407.9331118401732
   }
 }
