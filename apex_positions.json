@@ -1,40 +1,28 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 54.17516171027822,
-  "last_updated": "2026-06-17T19:15:02Z",
-  "pending": [],
-  "open": [
+  "cash": 107.17516171027822,
+  "last_updated": "2026-06-17T19:30:02Z",
+  "pending": [
     {
-      "id": "PAPER_CCL_2026-06-12",
-      "ticker": "CCL",
+      "id": "PAPER_SWK_2026-06-15",
+      "ticker": "SWK",
       "setup": "BREAKOUT",
       "source": "scanner",
-      "sector": "Consumer Cyclical",
-      "signal_date": "2026-06-12",
-      "entry": 28.46,
-      "stop_initial": 26.59,
-      "target": 31.75,
-      "score": 129.0,
-      "rr": 1.77,
-      "upside_pct": 11.6,
-      "added_at": "2026-06-15T13:00:07Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 28.602299999999996,
-      "shares": 1.7481111658852613,
-      "size_usd": 50.0,
-      "stop": 30.318437999999997,
-      "high_since_entry": 31.594999313354492,
-      "trailing_active": true,
-      "ladder_step": 2,
-      "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 30.549999237060547,
-      "pnl_pct": 6.809589568183506,
-      "pnl_usd": 3.404794784091753,
-      "hold_days": 2,
-      "trailing_activated_at": "2026-06-15T13:30:13Z"
-    },
+      "sector": "Industrials",
+      "signal_date": "2026-06-15",
+      "entry": 84.62,
+      "stop_initial": 80.37,
+      "target": 92.5,
+      "score": 108.7,
+      "rr": 1.86,
+      "upside_pct": 9.3,
+      "added_at": "2026-06-17T19:30:06Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
+  "open": [
     {
       "id": "PAPER_LUV_2026-06-12",
       "ticker": "LUV",
@@ -59,9 +47,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 47.5099983215332,
-      "pnl_pct": 6.232876788044512,
-      "pnl_usd": 3.116438394022256,
+      "current_price": 47.20500183105469,
+      "pnl_pct": 5.550901293654628,
+      "pnl_usd": 2.7754506468273146,
       "hold_days": 2,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
     },
@@ -89,9 +77,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T15:15:05Z",
-      "current_price": 82.62999725341797,
-      "pnl_pct": -1.6309556506928942,
-      "pnl_usd": -0.8154778253464471,
+      "current_price": 82.29499816894531,
+      "pnl_pct": -2.0297640845889133,
+      "pnl_usd": -1.0148820422944567,
       "hold_days": 1
     },
     {
@@ -118,9 +106,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T19:30:07Z",
-      "current_price": 44.2400016784668,
-      "pnl_pct": 0.7089960366704631,
-      "pnl_usd": 0.35449801833523154,
+      "current_price": 43.7599983215332,
+      "pnl_pct": -0.38369506497890576,
+      "pnl_usd": -0.19184753248945288,
       "hold_days": 0
     },
     {
@@ -147,9 +135,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T13:45:06Z",
-      "current_price": 1915.7099609375,
-      "pnl_pct": 0.00208370916033594,
-      "pnl_usd": 0.00104185458016797,
+      "current_price": 1891.9000244140625,
+      "pnl_pct": -1.2408201300833503,
+      "pnl_usd": -0.6204100650416752,
       "hold_days": 0
     },
     {
@@ -176,9 +164,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T14:30:07Z",
-      "current_price": 727.9000244140625,
-      "pnl_pct": 4.08844563438968,
-      "pnl_usd": 2.04422281719484,
+      "current_price": 723.0499877929688,
+      "pnl_pct": 3.3948987787402496,
+      "pnl_usd": 1.6974493893701248,
       "hold_days": 0
     },
     {
@@ -205,9 +193,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T17:15:06Z",
-      "current_price": 408.7300109863281,
-      "pnl_pct": 0.09759496544552072,
-      "pnl_usd": 0.04879748272276037,
+      "current_price": 405.25,
+      "pnl_pct": -0.754656449477924,
+      "pnl_usd": -0.377328224738962,
       "hold_days": 0
     }
   ],
@@ -524,6 +512,39 @@
       "exit_price": 137.91,
       "exit_reason": "Stop Loss",
       "closed_at": "2026-06-17T17:00:07Z"
+    },
+    {
+      "id": "PAPER_CCL_2026-06-12",
+      "ticker": "CCL",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-06-12",
+      "entry": 28.46,
+      "stop_initial": 26.59,
+      "target": 31.75,
+      "score": 129.0,
+      "rr": 1.77,
+      "upside_pct": 11.6,
+      "added_at": "2026-06-15T13:00:07Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 28.602299999999996,
+      "shares": 1.7481111658852613,
+      "size_usd": 50.0,
+      "stop": 30.318437999999997,
+      "high_since_entry": 31.594999313354492,
+      "trailing_active": true,
+      "ladder_step": 2,
+      "opened_at": "2026-06-15T13:15:06Z",
+      "current_price": 30.549999237060547,
+      "pnl_pct": 6.0000000000000036,
+      "pnl_usd": 3.0000000000000018,
+      "hold_days": 2,
+      "trailing_activated_at": "2026-06-15T13:30:13Z",
+      "exit_price": 30.318437999999997,
+      "exit_reason": "Stop Loss (Trailing)",
+      "closed_at": "2026-06-17T19:30:06Z"
     }
   ],
   "expired": [
@@ -563,13 +584,13 @@
     }
   ],
   "stats": {
-    "total_trades": 10,
-    "open_trades": 7,
-    "wins": 7,
+    "total_trades": 11,
+    "open_trades": 6,
+    "wins": 8,
     "losses": 3,
-    "win_rate": 70.0,
-    "pnl_realized": 4.175513663494094,
-    "pnl_unrealized": 8.154315525600563,
-    "equity": 412.3294772358788
+    "win_rate": 72.72727272727273,
+    "pnl_realized": 7.175513663494096,
+    "pnl_unrealized": 2.2684321716328926,
+    "equity": 409.44359388191106
   }
 }

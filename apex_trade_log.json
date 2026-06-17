@@ -475,5 +475,23 @@
     "entry_signal": 406.3,
     "entry_actual": 408.33149999999995,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CCL_2026-06-12",
+    "ts": "2026-06-17T19:30:06Z",
+    "ticker": "CCL",
+    "exit_price": 30.318437999999997,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 6.0000000000000036
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SWK_2026-06-15",
+    "ts": "2026-06-17T19:30:06Z",
+    "ticker": "SWK",
+    "signal_date": "2026-06-15",
+    "score": 108.7,
+    "source": "scanner"
   }
 ]
