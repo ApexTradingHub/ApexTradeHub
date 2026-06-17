@@ -1,27 +1,9 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 104.17516171027822,
-  "last_updated": "2026-06-17T17:00:03Z",
-  "pending": [
-    {
-      "id": "PAPER_RL_2026-06-15",
-      "ticker": "RL",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Consumer Cyclical",
-      "signal_date": "2026-06-15",
-      "entry": 406.3,
-      "stop_initial": 385.95,
-      "target": 442.68,
-      "score": 112.4,
-      "rr": 1.79,
-      "upside_pct": 9.0,
-      "added_at": "2026-06-17T17:00:07Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "cash": 54.17516171027822,
+  "last_updated": "2026-06-17T17:15:02Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_CCL_2026-06-12",
@@ -47,9 +29,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 30.864999771118164,
-      "pnl_pct": 7.910901469875389,
-      "pnl_usd": 3.9554507349376946,
+      "current_price": 30.8700008392334,
+      "pnl_pct": 7.928386315902576,
+      "pnl_usd": 3.964193157951288,
       "hold_days": 2,
       "trailing_activated_at": "2026-06-15T13:30:13Z"
     },
@@ -77,9 +59,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 47.994998931884766,
-      "pnl_pct": 7.317343466677332,
-      "pnl_usd": 3.658671733338666,
+      "current_price": 48.06999969482422,
+      "pnl_pct": 7.485045994352333,
+      "pnl_usd": 3.7425229971761667,
       "hold_days": 2,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
     },
@@ -107,9 +89,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T15:15:05Z",
-      "current_price": 83.19999694824219,
-      "pnl_pct": -0.9523845854259673,
-      "pnl_usd": -0.47619229271298363,
+      "current_price": 83.2699966430664,
+      "pnl_pct": -0.8690516153971354,
+      "pnl_usd": -0.43452580769856763,
       "hold_days": 1
     },
     {
@@ -136,9 +118,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T19:30:07Z",
-      "current_price": 45.04999923706055,
-      "pnl_pct": 2.552893817484421,
-      "pnl_usd": 1.2764469087422106,
+      "current_price": 44.77000045776367,
+      "pnl_pct": 1.9154979114122315,
+      "pnl_usd": 0.9577489557061157,
       "hold_days": 0
     },
     {
@@ -165,9 +147,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T13:45:06Z",
-      "current_price": 1915.760009765625,
-      "pnl_pct": 0.004696310859839717,
-      "pnl_usd": 0.0023481554299198586,
+      "current_price": 1910.510009765625,
+      "pnl_pct": -0.2693592352188395,
+      "pnl_usd": -0.13467961760941974,
       "hold_days": 0
     },
     {
@@ -194,9 +176,38 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T14:30:07Z",
-      "current_price": 730.1300048828125,
-      "pnl_pct": 4.407328987875044,
-      "pnl_usd": 2.203664493937522,
+      "current_price": 730.4400024414062,
+      "pnl_pct": 4.451658103058757,
+      "pnl_usd": 2.2258290515293786,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_RL_2026-06-15",
+      "ticker": "RL",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-06-15",
+      "entry": 406.3,
+      "stop_initial": 385.95,
+      "target": 442.68,
+      "score": 112.4,
+      "rr": 1.79,
+      "upside_pct": 9.0,
+      "added_at": "2026-06-17T17:00:07Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 408.33149999999995,
+      "shares": 0.1224495293652339,
+      "size_usd": 50.0,
+      "stop": 385.95,
+      "high_since_entry": 408.33149999999995,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-17T17:15:06Z",
+      "current_price": 408.33149999999995,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -553,12 +564,12 @@
   ],
   "stats": {
     "total_trades": 10,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 7,
     "losses": 3,
     "win_rate": 70.0,
     "pnl_realized": 4.175513663494094,
-    "pnl_unrealized": 10.620389733673028,
-    "equity": 414.79555144395124
+    "pnl_unrealized": 10.321088737054962,
+    "equity": 414.4962504473332
   }
 }
