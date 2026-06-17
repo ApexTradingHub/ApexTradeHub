@@ -1,27 +1,9 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 106.41577675391306,
-  "last_updated": "2026-06-17T14:15:02Z",
-  "pending": [
-    {
-      "id": "PAPER_CMI_2026-06-16",
-      "ticker": "CMI",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Industrials",
-      "signal_date": "2026-06-16",
-      "entry": 695.83,
-      "stop_initial": 657.78,
-      "target": 772.24,
-      "score": 126.3,
-      "rr": 2.01,
-      "upside_pct": 11.0,
-      "added_at": "2026-06-17T14:15:06Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "cash": 56.415776753913065,
+  "last_updated": "2026-06-17T14:30:03Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_CCL_2026-06-12",
@@ -47,9 +29,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 31.114999771118164,
-      "pnl_pct": 8.784957052818019,
-      "pnl_usd": 4.392478526409009,
+      "current_price": 30.959999084472656,
+      "pnl_pct": 8.24304019072823,
+      "pnl_usd": 4.121520095364115,
       "hold_days": 2,
       "trailing_activated_at": "2026-06-15T13:30:13Z"
     },
@@ -77,9 +59,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-15T13:15:06Z",
-      "current_price": 48.189998626708984,
-      "pnl_pct": 7.7533649208094095,
-      "pnl_usd": 3.8766824604047048,
+      "current_price": 47.92499923706055,
+      "pnl_pct": 7.160823382101963,
+      "pnl_usd": 3.5804116910509816,
       "hold_days": 2,
       "trailing_activated_at": "2026-06-15T13:45:07Z"
     },
@@ -107,9 +89,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-15T14:00:09Z",
-      "current_price": 139.2050018310547,
-      "pnl_pct": -3.58429018489078,
-      "pnl_usd": -1.79214509244539,
+      "current_price": 139.1999969482422,
+      "pnl_pct": -3.587756650337864,
+      "pnl_usd": -1.793878325168932,
       "hold_days": 2
     },
     {
@@ -136,9 +118,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T15:15:05Z",
-      "current_price": 83.5,
-      "pnl_pct": -0.5952380952380952,
-      "pnl_usd": -0.2976190476190476,
+      "current_price": 83.1449966430664,
+      "pnl_pct": -1.0178611392066592,
+      "pnl_usd": -0.5089305696033296,
       "hold_days": 0
     },
     {
@@ -165,9 +147,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-16T19:30:07Z",
-      "current_price": 44.560001373291016,
-      "pnl_pct": 1.437450981858089,
-      "pnl_usd": 0.7187254909290445,
+      "current_price": 44.73500061035156,
+      "pnl_pct": 1.8358234231532076,
+      "pnl_usd": 0.9179117115766037,
       "hold_days": 0
     },
     {
@@ -194,9 +176,38 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T13:45:06Z",
-      "current_price": 1901.3599853515625,
-      "pnl_pct": -0.7470001756815339,
-      "pnl_usd": -0.37350008784076694,
+      "current_price": 1910.739990234375,
+      "pnl_pct": -0.2573540117996563,
+      "pnl_usd": -0.12867700589982814,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_CMI_2026-06-16",
+      "ticker": "CMI",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-06-16",
+      "entry": 695.83,
+      "stop_initial": 657.78,
+      "target": 772.24,
+      "score": 126.3,
+      "rr": 2.01,
+      "upside_pct": 11.0,
+      "added_at": "2026-06-17T14:15:06Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 699.3091499999999,
+      "shares": 0.0714991359686914,
+      "size_usd": 50.0,
+      "stop": 657.78,
+      "high_since_entry": 699.3091499999999,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-17T14:30:07Z",
+      "current_price": 699.3091499999999,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -521,12 +532,12 @@
   ],
   "stats": {
     "total_trades": 9,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 7,
     "losses": 2,
     "win_rate": 77.77777777777779,
     "pnl_realized": 6.416128707128946,
-    "pnl_unrealized": 6.524622249837555,
-    "equity": 412.9403990037506
+    "pnl_unrealized": 6.188357597319611,
+    "equity": 412.6041343512327
   }
 }
