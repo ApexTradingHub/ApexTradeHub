@@ -448,5 +448,23 @@
     "entry_signal": 695.83,
     "entry_actual": 699.3091499999999,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_ROKU_2026-06-15",
+    "ts": "2026-06-17T17:00:07Z",
+    "ticker": "ROKU",
+    "exit_price": 137.91,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.481230087269704
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_RL_2026-06-15",
+    "ts": "2026-06-17T17:00:07Z",
+    "ticker": "RL",
+    "signal_date": "2026-06-15",
+    "score": 112.4,
+    "source": "scanner"
   }
 ]
