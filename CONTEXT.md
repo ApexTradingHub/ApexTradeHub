@@ -38,7 +38,23 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **SHORT_SQUEEZE** 🔥 Bet | aktiv (strict, ≥15 % short) | n=0 lifetime |
 | ~~MEAN_REVERSION~~ 🟢 Dip | **DISABLED 2026-06-17** (User: "kaufe ich eh nicht") | n=4 30d-window, WR **0 %**, AvgLoss -2.70 %. Score weakly ANTI-predictive in-sample. Flag `MEAN_REVERSION_ENABLED=False` in ApexScan.py. Code-Pfad bleibt fuer Re-Enable. |
 | **MOMENTUM** ⚡ (Filler) | **NEU 06-12** Paper-Trader-only, yfinance Top-200 US | n=0 lifetime (Test) |
+| **INTRADAY** ⚡⚡ Catcher | **NEU 06-18 EXPERIMENT, opt-in `INTRADAY_ENABLED=1`** Paper-only | n=0 (Test, default OFF) |
 | ~~REVERSAL~~ | **disabled** | Legacy, 28 % WR strukturell defekt | sterbende Legacy-Positions in n |
+
+**INTRADAY-Catcher (EXPERIMENT, User-Wunsch 2026-06-18, default OFF):**
+- Code in `apex_trader.py` (Step 3c). Scant die ~50 Daily-Momentum-Kandidaten auf
+  INTRADAY-Momentum (5m-Bars heute): gain_from_open 1.5-6 %, über VWAP, oberer Teil
+  Tagesspanne (range_pos ≥0.55). Direkter Market-Entry (kein pending/trigger).
+- Exit: TP **+5 %**, Stop **-3 %**, Hard-Close ab **19:45 UTC** (same-day, kein Overnight).
+- Sub-Limit **max 3** gleichzeitige Intraday-Plays, $50/Pos, eigene Exit-Logik (KEIN
+  Ladder/Stagnation). Source-Tag `intraday_momentum`, setup `INTRADAY`, Exit-Reasons
+  `Intraday TP/Stop/Close (EOD)` → sauber separat auswertbar.
+- **Aktivierung VM:** `export INTRADAY_ENABLED=1` in ~/.bashrc + Cron `*/15`→`*/5` für
+  schnellere Kadenz. Default OFF = ändert Live-Trader nicht bis aktiviert.
+- **Ziel/These (User):** ~$20/Tag durch schnelle 5%-Intraday-Spruenge + mehr Rotation.
+- **Risiko bewusst:** MOMO-Profil (BACKLOG #2 = PF 1.51 verworfen). Experiment, Rollback
+  = Flag auf 0. **Eval nach ~1-2 Wochen:** Intraday-Trades isoliert (source-Tag), bringt es
+  netto + nach Würde-Fees? Falls nein → zurückbauen.
 
 **BREAKOUT-Tuning aktuell (Stand 2026-06-15):**
 - **RSI-Zone (REALIGN): 48-72** (war 48-68, +6 voll im erweiterten Bereich)

@@ -14,3 +14,7 @@ vault/
 
 # Local-only batch helpers
 backup/
+
+# Transient trader caches (regenerated each run, VM-local)
+apex_momentum_cache.json
+apex_intraday_cache.json

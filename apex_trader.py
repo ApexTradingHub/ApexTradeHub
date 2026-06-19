@@ -98,6 +98,7 @@ HOLD_DAYS_PER_SETUP = {
     "MEAN_REVERSION": 20,
     "REVERSAL":       40,
     "MOMENTUM":        7,   # Filler: schneller Sprung, schnell wieder raus
+    "INTRADAY":        1,   # Intraday-Catcher: same-day raus (EOD-Hardclose greift eh frueher)
 }
 HOLD_DAYS_DEFAULT = 21
 
@@ -125,6 +126,23 @@ MOMENTUM_MIN_SCORE         = 60     # eigene Score-Scale, NICHT mit Scanner verg
 MOMENTUM_TP_PCT            = 0.06   # +6 % Target (User-These: schnelle 5%-Spruenge)
 MOMENTUM_SL_PCT            = 0.04   # -4 % Stop
 MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber jetzigem Kurs)
+
+# ---------------------------------------------------------------------------
+# Intraday-Momentum-Catcher (2026-06-18) — EXPERIMENT, opt-in via env-flag.
+# User-These: Aktien die JETZT intraday laufen catchen, 5% mitnehmen, same-day raus.
+# Bewusst risikoreich (MOMO-Profil, BACKLOG #2). Sauber instrumentiert + rollback-bar.
+# Reaktiviert/scant NUR die bereits gefilterten Daily-Momentum-Kandidaten (leichter Fetch).
+# ---------------------------------------------------------------------------
+INTRADAY_ENABLED       = os.environ.get("INTRADAY_ENABLED", "0").strip() in ("1", "true", "True", "yes")
+INTRADAY_MAX_POSITIONS = 3       # max gleichzeitige Intraday-Plays (eigenes Sub-Limit)
+INTRADAY_GAIN_MIN      = 1.5     # min % vom Tages-Open (schon in Bewegung)
+INTRADAY_GAIN_MAX      = 6.0     # max % vom Open (nicht schon erschoepft/zu spaet)
+INTRADAY_TP_PCT        = 0.05    # +5 % Target (User-Ziel)
+INTRADAY_SL_PCT        = 0.03    # -3 % Stop (intraday dreht schnell -> eng)
+INTRADAY_PRICE_MIN     = 5.0     # keine Penny-Stocks
+INTRADAY_RANGE_POS_MIN = 0.55    # last muss im oberen Teil der Tagesspanne sein (Momentum intakt)
+INTRADAY_EOD_UTC       = "19:45" # Hard-Close ab dieser UTC-Zeit (15 Min vor US-Close 20:00)
+INTRADAY_CACHE         = SCRIPT_DIR / "apex_intraday_cache.json"
 
 
 # ---------------------------------------------------------------------------
@@ -575,6 +593,187 @@ def select_momentum_fillers(state: dict, free_slots: int) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Intraday-Momentum-Catcher (2026-06-18) — EXPERIMENT
+# ---------------------------------------------------------------------------
+def _is_eod_utc() -> bool:
+    """True wenn aktuelle UTC-Zeit >= INTRADAY_EOD_UTC (Hard-Close-Fenster)."""
+    try:
+        hh, mm = (int(x) for x in INTRADAY_EOD_UTC.split(":"))
+        now = datetime.now(timezone.utc)
+        return (now.hour, now.minute) >= (hh, mm)
+    except Exception:
+        return False
+
+
+def fetch_intraday_signals() -> list:
+    """Scant die (bereits gefilterten) Daily-Momentum-Kandidaten auf INTRADAY-Momentum.
+    Leichter Fetch: nur die ~50 Momentum-Namen, 5m-Bars von heute. Returns ranked candidates."""
+    pool = load_momentum_candidates()  # ~50 vorgefilterte Namen (reuse, kein extra Universe-Fetch)
+    if not pool:
+        log("intraday: kein momentum-pool")
+        return []
+    tickers = [c["ticker"] for c in pool]
+
+    try:
+        import yfinance as yf
+    except ImportError:
+        return []
+
+    log(f"intraday: scanning {len(tickers)} momentum-namen (5m bars heute)...")
+    try:
+        df = yf.download(
+            tickers if len(tickers) > 1 else tickers[0],
+            period="1d", interval="5m",
+            progress=False, threads=True, auto_adjust=True,
+            group_by="ticker",
+        )
+    except Exception as e:
+        log(f"intraday: yfinance fail {e}")
+        return []
+
+    cands = []
+    for t in tickers:
+        try:
+            if len(tickers) == 1:
+                tdf = df
+            elif hasattr(df.columns, "levels"):
+                if t not in df.columns.get_level_values(0):
+                    continue
+                tdf = df[t]
+            else:
+                continue
+            o = tdf["Open"].dropna()
+            h = tdf["High"].dropna()
+            l = tdf["Low"].dropna()
+            c = tdf["Close"].dropna()
+            v = tdf["Volume"].dropna()
+            if len(c) < 4:   # zu wenig Bars heute
+                continue
+
+            open_today = float(o.iloc[0])
+            last       = float(c.iloc[-1])
+            hi_today   = float(h.max())
+            lo_today   = float(l.min())
+            if last < INTRADAY_PRICE_MIN or open_today <= 0:
+                continue
+
+            gain_from_open = (last / open_today - 1) * 100
+            # VWAP heute
+            typical = (h + l + c) / 3
+            vwap = float((typical * v).sum() / v.sum()) if float(v.sum()) > 0 else last
+            above_vwap = last >= vwap
+            # Position in Tagesspanne (1.0 = am High, 0 = am Low)
+            rng = hi_today - lo_today
+            range_pos = (last - lo_today) / rng if rng > 0 else 0.5
+
+            # === Intraday-Entry-Filter ===
+            if not (INTRADAY_GAIN_MIN <= gain_from_open <= INTRADAY_GAIN_MAX):
+                continue
+            if not above_vwap:
+                continue
+            if range_pos < INTRADAY_RANGE_POS_MIN:
+                continue
+
+            # Score: gain + range-position + vwap-distanz (alles intraday)
+            score = gain_from_open * 3 + range_pos * 20 + ((last / vwap - 1) * 100) * 2
+            cands.append({
+                "ticker": t,
+                "last": round(last, 2),
+                "gain_from_open": round(gain_from_open, 2),
+                "range_pos": round(range_pos, 2),
+                "above_vwap": above_vwap,
+                "score": round(score, 1),
+            })
+        except Exception:
+            continue
+
+    cands.sort(key=lambda x: -x["score"])
+    save_json(INTRADAY_CACHE, {"updated_at": now_iso(), "candidates": cands})
+    log(f"intraday: {len(cands)} kandidaten (top: {[c['ticker'] for c in cands[:3]]})")
+    return cands
+
+
+def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
+    """Oeffnet Intraday-Plays DIREKT (market entry, kein pending/trigger).
+    Nur waehrend Marktstunden, vor EOD-Fenster, mit freien Slots + Cash + Sub-Limit."""
+    events = []
+    if not INTRADAY_ENABLED:
+        return events
+    if _is_eod_utc():
+        log("intraday: EOD-Fenster -> keine neuen Entries")
+        return events
+
+    open_pos = state.get("open", [])
+    # Sub-Limit: max INTRADAY_MAX_POSITIONS gleichzeitig
+    intraday_open = [p for p in open_pos if p.get("source") == "intraday_momentum"]
+    if len(intraday_open) >= INTRADAY_MAX_POSITIONS:
+        log(f"intraday: sub-limit erreicht ({len(intraday_open)}/{INTRADAY_MAX_POSITIONS})")
+        return events
+    # Globales Slot-Limit + Cash
+    if len(open_pos) >= MAX_POSITIONS:
+        log("intraday: globale slots voll")
+        return events
+    if state.get("cash", 0) < POSITION_SIZE:
+        log("intraday: cash < position_size")
+        return events
+
+    cands = fetch_intraday_signals()
+    if not cands:
+        return events
+
+    busy = {p["ticker"] for p in open_pos} | {p["ticker"] for p in state.get("pending", [])}
+    # nicht denselben Ticker am selben Tag zweimal (auch nach Close)
+    today = today_date().isoformat()
+    tracked = {p.get("ticker") for p in state.get("closed", [])
+               if str(p.get("closed_at", "")).startswith(today)
+               and p.get("source") == "intraday_momentum"}
+
+    n_free_global = MAX_POSITIONS - len(open_pos)
+    n_free_intra  = INTRADAY_MAX_POSITIONS - len(intraday_open)
+    can_open = min(n_free_global, n_free_intra)
+
+    prices = batch_prices([c["ticker"] for c in cands[:can_open + 5]])
+    opened = 0
+    for c in cands:
+        if opened >= can_open:
+            break
+        tk = c["ticker"]
+        if tk in busy or tk in tracked:
+            continue
+        if state.get("cash", 0) < POSITION_SIZE:
+            break
+        cur = prices.get(tk, c["last"])
+        if cur is None or cur < INTRADAY_PRICE_MIN:
+            continue
+        pending_like = {
+            "id": f"PAPER_INTRA_{tk}_{today}_{datetime.now(timezone.utc).strftime('%H%M')}",
+            "ticker": tk,
+            "setup": "INTRADAY",
+            "source": "intraday_momentum",
+            "sector": "Unknown",
+            "signal_date": today,
+            "stop_initial": round(cur * (1 - INTRADAY_SL_PCT), 2),
+            "target":       round(cur * (1 + INTRADAY_TP_PCT), 2),
+            "score":        c["score"],
+            "rr":           round(INTRADAY_TP_PCT / INTRADAY_SL_PCT, 2),
+            "upside_pct":   round(INTRADAY_TP_PCT * 100, 1),
+            "gain_from_open": c["gain_from_open"],
+        }
+        if not dry_run:
+            open_position(state, pending_like, cur)
+        events.append({
+            "event": "intraday_open", "id": pending_like["id"], "ts": now_iso(),
+            "ticker": tk, "entry": cur, "gain_from_open": c["gain_from_open"],
+            "score": c["score"], "mode": TRADING_MODE,
+        })
+        log(f"  INTRADAY OPEN: {tk} @ ${cur:.2f} (gain_from_open {c['gain_from_open']:+.1f}%, "
+            f"TP ${pending_like['target']}, SL ${pending_like['stop_initial']})")
+        busy.add(tk)
+        opened += 1
+    return events
+
+
+# ---------------------------------------------------------------------------
 # Signal selection: Top-1 BREAKOUT per scan-day
 # ---------------------------------------------------------------------------
 def select_new_signals(state: dict, signals: list) -> list:
@@ -987,6 +1186,33 @@ def update_open_positions(state: dict, dry_run: bool = False) -> list:
 
         entry = p["entry_actual"]
 
+        # === Intraday-Catcher: eigene Exit-Logik (TP/SL/EOD), KEIN Ladder/Stagnation/Time ===
+        if p.get("source") == "intraday_momentum":
+            high_i = high if high is not None else cur
+            i_reason, i_px = None, cur
+            if high_i >= p["target"]:
+                i_reason, i_px = "Intraday TP", p["target"]
+            elif cur <= p["stop"]:
+                i_reason, i_px = "Intraday Stop", p["stop"]
+            elif _is_eod_utc():
+                i_reason, i_px = "Intraday Close (EOD)", cur
+            if i_reason:
+                if not dry_run:
+                    close_position(state, p, i_px, i_reason)
+                events.append({
+                    "event": "close", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"], "exit_price": i_px, "reason": i_reason,
+                    "pnl_pct": (i_px - entry) / entry * 100,
+                })
+                log(f"  CLOSE: {p['ticker']} @ ${i_px:.2f} ({i_reason}, "
+                    f"{(i_px - entry) / entry * 100:+.2f}%)")
+                continue
+            p["current_price"] = cur
+            p["pnl_pct"] = (cur - entry) / entry * 100
+            p["pnl_usd"] = p["size_usd"] * p["pnl_pct"] / 100
+            still_open.append(p)
+            continue
+
         # Update high-since-entry (use today's high if available)
         if high is not None and high > p.get("high_since_entry", entry):
             p["high_since_entry"] = high
@@ -1233,6 +1459,16 @@ def run_trader(dry_run: bool = False):
             log("  no momentum candidates")
     else:
         log("step 3b: skip momentum (slots voll)")
+
+    # 3c. Intraday-Momentum-Catcher (EXPERIMENT, opt-in INTRADAY_ENABLED) — direkter Market-Entry
+    if INTRADAY_ENABLED:
+        log("step 3c: intraday momentum catcher")
+        intra_events = select_intraday_plays(state, dry_run=dry_run)
+        all_events.extend(intra_events)
+        if not intra_events:
+            log("  no intraday entries")
+    else:
+        log("step 3c: intraday disabled (INTRADAY_ENABLED=0)")
 
     # 4. Recompute stats
     recompute_stats(state)
