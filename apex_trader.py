@@ -941,6 +941,10 @@ def apply_manual_overrides(state: dict, dry_run: bool = False) -> list:
             cur = pos.get("current_price", pos["entry_actual"])
             if not dry_run:
                 close_position(state, pos, cur, "Manual Close")
+                # BUGFIX 2026-06-19: Position MUSS aus open entfernt werden, sonst
+                # doppelt gezaehlt (closed + open). close_position fuegt nur zu closed
+                # + gibt Cash, entfernt aber NICHT aus open (anders als update_open_positions).
+                state["open"] = [p for p in state["open"] if p.get("id") != pos.get("id")]
             events.append({
                 "event": "manual_override", "id": pos["id"], "ts": now_iso(),
                 "ticker": pos["ticker"], "field": "close",
