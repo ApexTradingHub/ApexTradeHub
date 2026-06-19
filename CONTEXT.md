@@ -82,6 +82,13 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 - **GEV** (Diskussion vom 1.6.): Buy-Zone unter $950 erreicht ($944 aktuell), aber Pullback noch
   im Gange (RSI 29, schloss am Tagestief). Empfehlung: halbe Position @$944 mit Stop $895, oder
   warten auf grünen Tagesschluss als MR-Turn-Bestätigung.
+- **DIS** (Watch seit 2026-06-18, cross-sector idea-gen): enge Base $98.6-$104, löst gerade auf
+  (+3.1% am 18.6, $103.97). Comm-Services/Entertainment = bewusst raus aus AI/Power-Chase.
+  Setup: Trigger Schluss **>$105.25** (20d-High), Stop unter Base ~$98.50 (-5.7%) o. enger MA20
+  ~$101, Ziel 52w-High $124 (+19%, R/R ~3:1). Katalysator: Q2-FY26-Beat (6.5: EPS $1.57>$1.50,
+  Streaming+Experiences führen, Double-Digit-EPS-Guide FY26/27). Earnings erst ~4.-12.8 (kein
+  Adjacency-Risk). Insider clean (16.6 Form-4 = nur RSU-Vesting+Tax-Withholding, keine Sales).
+  Kein Spin/Split. NICHT scanner-validiert, diskretionär. Wenn Trigger nicht kommt: Pullback MA20.
 
 ---
 

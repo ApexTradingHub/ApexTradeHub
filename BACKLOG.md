@@ -278,3 +278,78 @@ Recompute (alle BREAKOUTs aus Lifetime mit 21 neu evaluieren).
 
 **Trigger zum Anpacken:** vor nächstem Tuning-Backtest. Oder wenn weitere Trades
 in der "TP-knapp-verpasst"-Zone auftauchen.
+
+---
+
+## 9. Win-Magnitude zu klein — Gewinner laufen lassen — entdeckt 2026-06-18
+
+**Befund aus Paper-Trader-Analyse (11 closed, WR 72.7%):**
+- **Avg-Winner +3.34% < Avg-Loser -4.13%** — unser durchschnittlicher Gewinner ist
+  KLEINER als unser durchschnittlicher Verlierer.
+- **Kein einziger BREAKOUT erreichte den vollen TP (~+10%)** — alle exiteten via
+  Trailing-Ladder (+2-6%) oder Stagnation (+2%), bevor sie die +8.5% Lifetime-AvgWin
+  erreichten. Beispiele: CCL war +7.5%, raus bei +6%. Stagnation-Exits AXTA/MOH/BAX/CARR
+  alle bei +1.6-1.9%.
+- **Fragilität:** PF (~2.16) wird KOMPLETT von der hohen WR getragen. Bei n=11 regресst
+  72% → ~58% (Lifetime). Mit diesen Magnituden faellt PF dann auf ~1.1 = kaum profitabel.
+
+**Root-Cause:** Exit-Mechanik (Stagnation ±2% nach 5d + enge Trailing-Ladder 1.06→1.02)
+ist auf Kapitalerhalt getrimmt, erstickt aber die +10%-Winner die im Backtest die PF tragen.
+System ist exzellenter Verlust-Vermeider, mittelmaessiger Gewinn-Maximierer.
+
+**Fix-Optionen (NICHT umgesetzt, Backtest-First):**
+1. **Partial-Profit-Taking:** halbe Position bei +6% (Trailing-Step-2), Rest mit weiterem
+   Stop laufen lassen Richtung TP. Sichert + laesst Runner laufen.
+2. **Trailing-Ladder weiter:** Steps lockern (z.B. 1.08→1.03, 1.14→1.08, 1.20→1.14) damit
+   normale Pullbacks nicht bei +2% rausstoppen.
+3. **Stagnation-Schwelle anheben:** statt ±2% nach 5d → erst nach 8d oder bei engerem Band.
+
+**Akzeptanz (vorher fixieren):** AvgWin muss ueber AvgLoss steigen OHNE dass WR signifikant
+faellt UND ohne dass Max-Drawdown steigt. Gegen aktuelle Logik in apex_backtest_v2.py.
+Ein-Knopf-Pro-Lauf (nicht alle 3 Optionen buendeln).
+
+**Trigger:** naechster Tuning-Tag. Groesster Einzelhebel fuer Equity-Wachstum.
+
+---
+
+## 10. Rotation / Replacement-Logik miskalibriert — entdeckt 2026-06-18
+
+**Befund:** Die Replacement-Logik EXISTIERT (`is_replacement_eligible` in apex_trader.py,
+seit 2026-06-07), aber **feuert praktisch nie** wegen einer rueckwaerts-kalibrierten
+Bedingung.
+
+**Aktuelle Gates (ALLE noetig):**
+1. Alle 7 Slots voll
+2. Neues Signal Score ≥ 90
+3. Neues Signal hat Pocket Pivot ODER Gap ≥ 2%
+4. **Schwaechste offene Position ≥ +2%** ← DER FEHLER
+
+**Warum #4 falsch ist:** Die schwaechste Position (= min pnl) muss ≥ +2% sein, damit
+getauscht wird. Aber es gibt fast IMMER eine Position die flach oder leicht rot ist
+(aktuelles Buch: DAL -1.9%, ASML -2.1%, SW -1.0%, RL -0.9%). → Replacement feuert NUR
+wenn das GANZE Buch ≥ +2% gruen ist — also genau dann wenn man NICHT rotieren will.
+Wenn man am meisten rotieren WILL (ein -2% Laggard blockiert einen Slot waehrend ein
+Elite-PP-Signal kommt), weigert sich die Logik weil der Laggard im Minus ist.
+
+**Das ist die Antwort auf "kann der Trader Positionen austauschen":** Ja, der Code ist da,
+aber er schuetzt Laggards statt sie zu ersetzen. Rotation = totes/schwaches Geld schneiden
+und in frische Momentum-Signale umschichten — genau das verhindert #4.
+
+**Fix-Optionen (NICHT umgesetzt, Backtest-First):**
+1. **#4 umdrehen:** Replace erlauben wenn schwaechste Position UNTER einer Schwelle ist
+   (z.B. flach-bis-leicht-negativ, < +1% UND ≥ 3d gehalten ohne Progress) = dead money
+   schneiden, nicht Winner stoeren.
+2. **Score-Delta-Gate:** Neues Signal muss Original-Score der schwaechsten Position um
+   Margin schlagen (z.B. +20 Punkte) = nur nach OBEN tauschen, kein Churn.
+3. **Loss-Toleranz:** kleine realisierte Verluste (z.B. bis -3%) fuer klar bessere Signale
+   erlauben — ABER in echt (eToro) Spreads/Fees bedenken, sonst Churn-Bleed.
+
+**Spannung mit Disziplin:** Aggressive Rotation = Overtrading-Risiko + "grass is greener"-
+Falle (guten Dip verkaufen fuer neuen Namen der dann failt). Quality-Gate (PP/Gap + Score)
+ist gut, nur #4 ist kaputt. Vorsichtig + Backtest.
+
+**Verbindung zu #9:** Bessere Rotation = weniger Dead-Money-Drag + mehr Throughput +
+schnellerer Redeploy in frische Winner. #9 (Winner laufen lassen) + #10 (Laggards schneller
+schneiden) zusammen = Magnitude-UND-Frequenz-Hebel.
+
+**Trigger:** zusammen mit #9 im naechsten Trader-Tuning-Tag.
