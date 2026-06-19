@@ -134,7 +134,10 @@ MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber
 # Reaktiviert/scant NUR die bereits gefilterten Daily-Momentum-Kandidaten (leichter Fetch).
 # ---------------------------------------------------------------------------
 INTRADAY_ENABLED       = os.environ.get("INTRADAY_ENABLED", "0").strip() in ("1", "true", "True", "yes")
-INTRADAY_MAX_POSITIONS = 3       # max gleichzeitige Intraday-Plays (eigenes Sub-Limit)
+# Option B (2026-06-19): Slot-Split. Swing (BREAKOUT+Momentum) max 5, Intraday reserviert 2.
+INTRADAY_RESERVED_SLOTS = 2       # fix fuer Intraday reservierte Slots
+SWING_MAX_POSITIONS     = MAX_POSITIONS - INTRADAY_RESERVED_SLOTS   # = 5 fuer Scanner+Momentum
+INTRADAY_MAX_POSITIONS = INTRADAY_RESERVED_SLOTS  # max gleichzeitige Intraday-Plays (=2)
 INTRADAY_GAIN_MIN      = 1.5     # min % vom Tages-Open (schon in Bewegung)
 INTRADAY_GAIN_MAX      = 6.0     # max % vom Open (nicht schon erschoepft/zu spaet)
 INTRADAY_TP_PCT        = 0.05    # +5 % Target (User-Ziel)
@@ -386,6 +389,29 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
         except Exception as e:
             log(f"  high v8 fail {t}: {e}")
     return result
+
+
+def market_open_today() -> bool:
+    """True wenn die US-Boerse HEUTE handelt (frische Bars vorhanden).
+    Schuetzt vor Trigger/Entry an Feiertagen+Wochenenden (Cron kennt keine Feiertage).
+    Check: neuestes verfuegbares SPY-Tagesbar-Datum == heutiges US-Datum (ET ~UTC-4/5)."""
+    try:
+        import yfinance as yf
+        df = yf.download("SPY", period="5d", interval="1d",
+                         progress=False, threads=False, auto_adjust=True)
+        if df is None or df.empty:
+            return True   # im Zweifel offen lassen (Fail-open: nicht handeln blockieren bei Datenfehler)
+        last_bar = df.index[-1]
+        last_date = last_bar.date() if hasattr(last_bar, "date") else last_bar
+        # US-Ostküste grob: UTC-4 (EDT). Feiertags-Erkennung braucht nur Tagesgenauigkeit.
+        et_today = (datetime.now(timezone.utc) - timedelta(hours=4)).date()
+        is_open = (last_date == et_today)
+        if not is_open:
+            log(f"market: letztes Bar {last_date} != heute {et_today} -> Boerse zu (Feiertag/WE)")
+        return is_open
+    except Exception as e:
+        log(f"market_open_today check failed ({e}) -> fail-open")
+        return True
 
 
 # ---------------------------------------------------------------------------
@@ -833,9 +859,11 @@ def select_new_signals(state: dict, signals: list) -> list:
     # Nach Score sortieren (beste zuerst)
     candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
 
-    # Freie Slots berechnen: MAX_POSITIONS minus (open + pending)
-    used_slots = len(state.get("open", [])) + len(state.get("pending", []))
-    free_slots = max(0, MAX_POSITIONS - used_slots)
+    # Freie SWING-Slots (Option B): SWING_MAX minus (swing-open + pending).
+    # Intraday-Positionen zaehlen NICHT gegen das Swing-Budget (eigene reservierte Slots).
+    swing_open = sum(1 for p in state.get("open", []) if p.get("source") != "intraday_momentum")
+    used_slots = swing_open + len(state.get("pending", []))
+    free_slots = max(0, SWING_MAX_POSITIONS - used_slots)
     if free_slots == 0:
         return []
 
@@ -1420,58 +1448,68 @@ def run_trader(dry_run: bool = False):
     events1 = update_open_positions(state, dry_run=dry_run)
     all_events.extend(events1)
 
-    # 2. Walk pending → trigger if cash + price ok
-    log("step 2: trigger pending")
-    events2 = trigger_pending(state, dry_run=dry_run)
-    all_events.extend(events2)
+    # Market-Open-Guard (2026-06-19): Cron kennt keine US-Feiertage. An Feiertagen/WE
+    # liefert yfinance stale Bars -> Trigger/Entries auf altem Preis = falsch. Skip Step 2+3.
+    market_open = market_open_today()
+    if not market_open:
+        log("step 2-3: SKIP (Boerse heute zu — Feiertag/WE). Nur Mgmt + Overrides liefen.")
+
+    # 2. Walk pending → trigger if cash + price ok (nur bei offener Boerse)
+    if market_open:
+        log("step 2: trigger pending")
+        events2 = trigger_pending(state, dry_run=dry_run)
+        all_events.extend(events2)
 
     # 3a. Scanner-Signale (Prioritaet): BREAKOUT + STAGE_2 aus apex_signals.json
-    log("step 3a: select scanner signals")
-    signals = load_json(SIGNALS_FILE) or []
-    new_pending = select_new_signals(state, signals)
-    if new_pending:
-        if not dry_run:
-            state["pending"].extend(new_pending)
-        for np_ in new_pending:
-            all_events.append({
-                "event": "pending_added", "id": np_["id"], "ts": now_iso(),
-                "ticker": np_["ticker"], "signal_date": np_["signal_date"],
-                "score": np_["score"], "source": np_.get("source", "scanner"),
-            })
-        log(f"  +{len(new_pending)} scanner pending: {[p['ticker'] for p in new_pending]}")
-    else:
-        log("  no scanner signals")
-
-    # 3b. Momentum-Filler (Fallback): nur wenn Scanner-Signale + bestehende
-    # Pending+Open die Slots nicht voll machen. yfinance Tages-Cache.
-    used = len(state["open"]) + len(state["pending"])
-    free_slots = max(0, MAX_POSITIONS - used)
-    if free_slots > 0:
-        log(f"step 3b: momentum fillers (free_slots={free_slots})")
-        mom_pending = select_momentum_fillers(state, free_slots)
-        if mom_pending:
+    if market_open:
+        log("step 3a: select scanner signals")
+        signals = load_json(SIGNALS_FILE) or []
+        new_pending = select_new_signals(state, signals)
+        if new_pending:
             if not dry_run:
-                state["pending"].extend(mom_pending)
-            for np_ in mom_pending:
+                state["pending"].extend(new_pending)
+            for np_ in new_pending:
                 all_events.append({
                     "event": "pending_added", "id": np_["id"], "ts": now_iso(),
                     "ticker": np_["ticker"], "signal_date": np_["signal_date"],
-                    "score": np_["score"], "source": "momentum_filler",
+                    "score": np_["score"], "source": np_.get("source", "scanner"),
                 })
-            log(f"  +{len(mom_pending)} momentum pending: {[p['ticker'] for p in mom_pending]}")
+            log(f"  +{len(new_pending)} scanner pending: {[p['ticker'] for p in new_pending]}")
         else:
-            log("  no momentum candidates")
-    else:
-        log("step 3b: skip momentum (slots voll)")
+            log("  no scanner signals")
+
+    # 3b. Momentum-Filler (Fallback): nur wenn SWING-Slots (Option B: max 5) frei.
+    # Intraday-Positionen zaehlen NICHT gegen das Swing-Budget.
+    if market_open:
+        swing_open = sum(1 for p in state["open"] if p.get("source") != "intraday_momentum")
+        used = swing_open + len(state["pending"])
+        free_slots = max(0, SWING_MAX_POSITIONS - used)
+        if free_slots > 0:
+            log(f"step 3b: momentum fillers (swing free_slots={free_slots}/{SWING_MAX_POSITIONS})")
+            mom_pending = select_momentum_fillers(state, free_slots)
+            if mom_pending:
+                if not dry_run:
+                    state["pending"].extend(mom_pending)
+                for np_ in mom_pending:
+                    all_events.append({
+                        "event": "pending_added", "id": np_["id"], "ts": now_iso(),
+                        "ticker": np_["ticker"], "signal_date": np_["signal_date"],
+                        "score": np_["score"], "source": "momentum_filler",
+                    })
+                log(f"  +{len(mom_pending)} momentum pending: {[p['ticker'] for p in mom_pending]}")
+            else:
+                log("  no momentum candidates")
+        else:
+            log("step 3b: skip momentum (swing-slots voll)")
 
     # 3c. Intraday-Momentum-Catcher (EXPERIMENT, opt-in INTRADAY_ENABLED) — direkter Market-Entry
-    if INTRADAY_ENABLED:
+    if INTRADAY_ENABLED and market_open:
         log("step 3c: intraday momentum catcher")
         intra_events = select_intraday_plays(state, dry_run=dry_run)
         all_events.extend(intra_events)
         if not intra_events:
             log("  no intraday entries")
-    else:
+    elif not INTRADAY_ENABLED:
         log("step 3c: intraday disabled (INTRADAY_ENABLED=0)")
 
     # 4. Recompute stats
