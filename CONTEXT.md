@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-15 (FRED-Macro-Integration live: Telegram-Header + Postmortem)
+**Letztes Update:** 2026-06-19 (Intraday-Catcher + Option-B-Slot-Split + Holiday-Guard + 2 Bugfixes)
 
 ---
 
@@ -196,6 +196,26 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-06-18/19** **Trader: Intraday-Catcher + Option-B + Holiday-Guard + 2 Bugfixes**:
+  - **Intraday-Momentum-Catcher** (`apex_trader.py` Step 3c, EXPERIMENT, opt-in `INTRADAY_ENABLED=1`):
+    scant die ~50 Daily-Momentum-Namen intraday (5m-Bars): gain_from_open 1.5-6 %, über VWAP,
+    range_pos ≥0.55. Direkter Market-Entry (kein pending/trigger). Exit TP **+5 %** / Stop **-3 %** /
+    Hard-Close ab **19:45 UTC**. Tags `source=intraday_momentum`, setup `INTRADAY`. User-Ziel:
+    ~$20/Tag durch schnelle Intraday-Sprünge. MOMO-Risiko bewusst (BACKLOG #2). Eval nach 1-2 Wo,
+    Rollback = Flag auf 0. **VM:** `export INTRADAY_ENABLED=1` in run_trader.sh (NICHT ~/.bashrc —
+    Cron sourct das nicht!), Cron `*/15`→`*/5`.
+  - **Option B Slot-Split:** `SWING_MAX_POSITIONS=5` (Scanner+Momentum), `INTRADAY_RESERVED_SLOTS=2`,
+    total MAX_POSITIONS=7. Intraday zählt NICHT gegen Swing-Budget → Catcher wird nicht mehr vom
+    vollen BREAKOUT-Buch ausgehungert. (Antwort auf: "bei genug BREAKOUTs öffnet nie ein Momentum/
+    Intraday-Trade" — stimmte, Filler+Intraday waren beide hinter freien Slots gated.)
+  - **BUGFIX Manual-Close-Doppelzählung:** `apply_manual_overrides` CLOSE rief `close_position`
+    (→ closed + Cash) aber entfernte die Pos NICHT aus `open` → doppelt gezählt (Equity inflated).
+    Gefunden via LUV-Close (Equity sprang fälschlich auf $468). Fix: `state["open"]` filtern.
+  - **BUGFIX Holiday-Guard:** Cron `*/5 13-21 1-5` kennt keine US-Feiertage → an Juneteenth (19.6)
+    triggerte FLR fälschlich auf stalem Donnerstags-Hoch. Neue `market_open_today()` (SPY letztes
+    Bar-Datum == heute ET?) gated Step 2+3. Bei zu Börse: nur Mgmt+Overrides, keine Entries/Trigger.
+  - State-Repairs: LUV (Doppelzählung raus) + FLR (Feiertags-Open → zurück pending).
+
 - **2026-06-15** **FRED-Macro-Integration live (Telegram-Header + Postmortem-Context)**:
   - `apex_macro.py` — pullt FRED daily (VIXCLS, BAMLH0A0HYM2, T10Y2Y, DFF, DTB3), schreibt
     `apex_macro.json`. 3-State Regime: RISK_ON 🟢 Good / ELEVATED 🟡 Mid / RISK_OFF 🔴 Bad.
@@ -383,7 +403,9 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **HOLD_DAYS SHORT_SQUEEZE** | 20 | dito | dito |
 | **HOLD_DAYS MEAN_REVERSION** | 20 | dito | dito |
 | **DUPLICATE_WINDOW_DAYS** | 3 | ApexScan.py L45 | Scanner — skipped Signals die in 3d schon emittiert wurden |
-| **MAX_POSITIONS** (Paper) | 7 | apex_trader.py | bumped 5→7 für Hybrid-Test 2026-06-12 |
+| **MAX_POSITIONS** (Paper, total) | 7 | apex_trader.py | bumped 5→7 für Hybrid-Test 2026-06-12 |
+| **SWING_MAX_POSITIONS** | 5 | apex_trader.py | Option B 06-19: Scanner+Momentum max 5 (= 7−2) |
+| **INTRADAY_RESERVED_SLOTS** | 2 | apex_trader.py | Option B 06-19: für Intraday-Catcher reserviert |
 | **CAPITAL_INITIAL** | $400 | apex_trader.py | bumped 300→400 + $100 virtual deposit |
 | **HOLD_DAYS_PER_SETUP.MOMENTUM** | 7 | apex_trader.py | Momentum-Filler-Hold, schnelle Rotation |
 | **Momentum-Filler-Cache** | 6h | apex_trader.py MOMENTUM_CACHE_MAX_AGE_H | yfinance-Schutz, max 2 Downloads/Tag |
