@@ -1,9 +1,27 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 60.80588586557268,
+  "cash": 110.81,
   "last_updated": "2026-06-19T20:40:03Z",
-  "pending": [],
+  "pending": [
+    {
+      "id": "PAPER_FLR_2026-06-18",
+      "ticker": "FLR",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-06-18",
+      "entry": 53.75,
+      "stop_initial": 50.27,
+      "target": 60.0,
+      "score": 148.8,
+      "rr": 1.8,
+      "upside_pct": 11.6,
+      "added_at": "2026-06-19T18:48:01Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_DAL_2026-06-15",
@@ -178,35 +196,6 @@
       "pnl_pct": 2.5289554907001466,
       "pnl_usd": 1.2644777453500733,
       "hold_days": 2
-    },
-    {
-      "id": "PAPER_FLR_2026-06-18",
-      "ticker": "FLR",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Industrials",
-      "signal_date": "2026-06-18",
-      "entry": 53.75,
-      "stop_initial": 50.27,
-      "target": 60.0,
-      "score": 148.8,
-      "rr": 1.8,
-      "upside_pct": 11.6,
-      "added_at": "2026-06-19T18:48:01Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 53.75,
-      "shares": 0.9302325581395349,
-      "size_usd": 50.0,
-      "stop": 50.27,
-      "high_since_entry": 53.91999816894531,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-06-19T18:50:06Z",
-      "current_price": 53.599998474121094,
-      "pnl_pct": -0.2790726062863372,
-      "pnl_usd": -0.1395363031431686,
-      "hold_days": 0
     }
   ],
   "closed": [
@@ -628,12 +617,12 @@
   ],
   "stats": {
     "total_trades": 12,
-    "open_trades": 7,
+    "open_trades": 6,
     "wins": 9,
     "losses": 3,
     "win_rate": 75.0,
     "pnl_realized": 10.806237818788555,
-    "pnl_unrealized": 3.6852964321557278,
-    "equity": 414.4911822977284
+    "pnl_unrealized": 3.8248327352988962,
+    "equity": 414.6348327352989
   }
 }
