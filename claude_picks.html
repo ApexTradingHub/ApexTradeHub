@@ -92,9 +92,17 @@
   .delta{margin-left:auto;text-align:right}
   .asof{font-size:11px;color:var(--tx3);margin-top:12px}
 
+  .spark{flex:none;margin-left:auto;margin-right:16px}
+  .chead .pxwrap{margin-left:0;text-align:right}
+  .tape{position:fixed;left:0;right:0;bottom:0;height:44px;background:#0A0D13;border-top:1px solid var(--line);
+    display:flex;align-items:center;gap:26px;padding:0 22px;overflow-x:auto;font-size:12.5px;z-index:50}
+  .tape::-webkit-scrollbar{height:0}
+  .tape .it{display:flex;align-items:center;gap:8px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tape .it .lb{color:var(--tx2)} .tape .it .pr{font-weight:600}
+  .tape .it .cg{font-weight:600;font-size:11.5px}
   footer{max-width:1060px;margin:34px auto 0;padding:16px 20px 0;border-top:1px solid var(--line);
     font-size:11px;color:var(--tx3);text-align:center}
-  @media(max-width:560px){.chead .pxwrap .p{font-size:18px}}
+  @media(max-width:560px){.chead .pxwrap .p{font-size:18px}.spark{display:none}}
 </style>
 </head>
 <body>
@@ -114,6 +122,7 @@
     <div id="board"></div>
   </div>
   <footer>Diskretionäre Einschätzungen, kein Anlagerat. Kurse „as-of" letztem Update — nicht live. Δ trackt ab Aufnahme zur Selbstkontrolle.</footer>
+  <div class="tape" id="tape"></div>
 
   <svg width="0" height="0" style="position:absolute">
     <symbol id="th-up" viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 6.59 7.59C6.22 7.95 6 8.45 6 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91z"/></symbol>
@@ -129,6 +138,13 @@ function delta(p){const d=((p.current_price-p.ref_price)/p.ref_price*100);return
 function pips(n){let h='<div class="pips">';for(let i=1;i<=5;i++)h+=`<div class="pip${i<=n?' on':''}"></div>`;return h+'</div>';}
 function thumb(v){const x=VERDICT[v]||VERDICT.wait;return `<span class="thumb ${v}"><svg viewBox="0 0 24 24"><use href="#${x.i}"/></svg></span>`;}
 function lvl(k,v){if(v==null||v===0||v==='—')return '';return `<div class="lv"><span class="k">${k}</span><span class="v">${typeof v==='number'?'$'+v.toFixed(2):v}</span></div>`;}
+function spark(a){if(!a||a.length<2)return '';const w=108,h=34,mn=Math.min(...a),mx=Math.max(...a),r=(mx-mn)||1;
+  const pts=a.map((v,i)=>`${(i/(a.length-1)*w).toFixed(1)},${(h-((v-mn)/r)*h*0.86-2).toFixed(1)}`).join(' ');
+  const col=a[a.length-1]>=a[0]?'var(--up)':'var(--down)';
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>`;}
+function tapeRow(t){const cls=t.chg>0?'up':t.chg<0?'down':'flat',s=(t.chg>=0?'+':'')+t.chg.toFixed(2)+'%';
+  const pr=t.price>=1000?Math.round(t.price).toLocaleString('en-US'):t.price.toFixed(2);
+  return `<div class="it"><span class="lb">${t.label}</span><span class="pr">${pr}</span><span class="cg chg ${cls}">${s}</span></div>`;}
 
 function tile(p){const dl=delta(p);return `<div class="tile ${dl.cls}">
   <div class="h">${logo(p.ticker)}<span class="tk">${p.ticker}</span><span class="vb">${thumb(p.verdict)}</span></div>
@@ -140,6 +156,7 @@ function card(p){const dl=delta(p),vd=VERDICT[p.verdict]||VERDICT.wait,L=p.level
   return `<div class="card ${p.verdict}">
     <div class="chead">${logo(p.ticker)}
       <div class="name"><b>${p.ticker}</b><div class="co">${p.company}</div></div>
+      ${spark(p.spark)}
       <div class="pxwrap"><div class="p">$${p.current_price.toFixed(2)}</div><div class="c chg ${dl.cls}">${dl.s}</div></div>
       <div class="verdict">${thumb(p.verdict)}<span class="vlabel">${vd.l}</span></div>
     </div>
@@ -155,10 +172,12 @@ function card(p){const dl=delta(p),vd=VERDICT[p.verdict]||VERDICT.wait,L=p.level
       <div class="asof">Aufgenommen ${p.added} · aktualisiert ${p.updated}</div>
     </div></div>`;}
 
-const FALLBACK={"updated":"2026-06-20","intro":"Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diskretionär.","picks":[
- {"ticker":"DIS","company":"The Walt Disney Company","sector":"Communication Services","horizon":"swing","verdict":"buy","conviction":4,"thesis":"Saubere Base nahe Hoch, Q2-Beat bestätigt, Streaming + Parks ziehen an.","added":"2026-06-20","updated":"2026-06-20","ref_price":103.89,"current_price":103.89,"levels":{"trigger":105.25,"stop":98.50,"target":124.00},"why":[{"date":"2026-05-06","text":"Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide."},{"date":"2026-06-18","text":"Enge 10-Tage-Base $98.6–$104, löst mit Volumen auf. −1.2% unterm 20d-High, untere Mitte 52w-Range → Luft."},{"date":"2026-06-16","text":"Insider clean: Form-4 = nur RSU-Vesting, KEINE Open-Market-Verkäufe."}],"note":"Entry sauber bei Schluss > $105.25. Earnings erst ~Aug → kein Risiko. Nicht ins Hoch springen.","rr":"~3:1"},
- {"ticker":"ETN","company":"Eaton Corporation plc","sector":"Industrials — Power","horizon":"long","verdict":"wait","conviction":4,"thesis":"Pure-Play Power-Infra nach Dana-Spinoff — Strom ist DER AI-Data-Center-Flaschenhals.","added":"2026-06-20","updated":"2026-06-20","ref_price":421.77,"current_price":421.77,"levels":{"trigger":427.00,"stop":405.00,"target":500.00},"why":[{"date":"2026-06-11","text":"8-K (SEC EDGAR): Reverse-Morris-Trust — Auto-Sparte mit Dana abgespalten. ~$1.1B Cash, Pure-Play Power."},{"date":"2026-03-12","text":"Boyd-Thermal $9.5B = größter Liquid-Cooling-Deal. ETN im Cooling-Layer der AI-Data-Center."},{"date":"2026-06-18","text":"Base aufgelöst (+7.9% in 5T) → an Resistance. Einstieg gelaufen, Geduld."}],"note":"These top, Einstieg schlecht. Warten auf Pullback MA20 (~$409) ODER Breakout-Schluss > $427. RMT = 12–18-Monate-Treiber.","rr":"—"},
- {"ticker":"FLR","company":"Fluor Corporation","sector":"Industrials — E&C","horizon":"long","verdict":"wait","conviction":3,"thesis":"Engineering-Play auf Nuclear + AI-Data-Center-Bau. Echtes Backlog, aber überhitzter Chart.","added":"2026-06-20","updated":"2026-06-20","ref_price":53.66,"current_price":53.66,"levels":{"trigger":0,"stop":48.00,"target":60.00},"why":[{"date":"2026-06-02","text":"$1.03 Mrd Naval-Nuclear-Vertrag + SMR für Dow + TeraWulf-Data-Center (480 MW). $60 Mrd+ Backlog."},{"date":"2026-06-18","text":"+15% in 8T, RSI 70, ~11% über MA50, über Analysten-Zielen. Katalysator ~2.5 Wochen alt."}],"note":"Fundamental kaufwürdig (Nuclear/AI real), Timing schlecht — nicht ins +15% am Hoch. Pullback MA20 (~$48–49) abwarten.","rr":"—"}
+const FALLBACK={"updated":"2026-06-20","intro":"Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diskretionär.",
+ "tape":[{"label":"S&P 500","price":746.74,"chg":1.04},{"label":"Nasdaq 100","price":740.62,"chg":2.51},{"label":"Bitcoin","price":63949.51,"chg":0.64},{"label":"VIX","price":18.44,"chg":12.37},{"label":"Gold","price":4172.9,"chg":-1.21}],
+ "picks":[
+ {"ticker":"DIS","company":"The Walt Disney Company","sector":"Communication Services","horizon":"swing","verdict":"buy","conviction":4,"thesis":"Saubere Base nahe Hoch, Q2-Beat bestätigt, Streaming + Parks ziehen an.","added":"2026-06-20","updated":"2026-06-20","ref_price":103.89,"current_price":103.89,"levels":{"trigger":105.25,"stop":98.50,"target":124.00},"spark":[108.66,108.02,104.72,106.16,104.9,105.42,102.72,103.91,102.29,104.08,103.58,103.0,103.28,104.18,103.73,101.83,102.85,101.41,99.39,99.34,99.71,98.87,99.33,98.61,100.34,100.04,101.69,101.28,100.86,103.89],"why":[{"date":"2026-05-06","text":"Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide."},{"date":"2026-06-18","text":"Enge 10-Tage-Base $98.6–$104, löst mit Volumen auf. −1.2% unterm 20d-High, untere Mitte 52w-Range → Luft."},{"date":"2026-06-16","text":"Insider clean: Form-4 = nur RSU-Vesting, KEINE Open-Market-Verkäufe."}],"note":"Entry sauber bei Schluss > $105.25. Earnings erst ~Aug → kein Risiko. Nicht ins Hoch springen.","rr":"~3:1"},
+ {"ticker":"ETN","company":"Eaton Corporation plc","sector":"Industrials — Power","horizon":"long","verdict":"wait","conviction":4,"thesis":"Pure-Play Power-Infra nach Dana-Spinoff — Strom ist DER AI-Data-Center-Flaschenhals.","added":"2026-06-20","updated":"2026-06-20","ref_price":421.77,"current_price":421.77,"levels":{"trigger":427.00,"stop":405.00,"target":500.00},"spark":[398.05,401.51,419.0,401.53,406.94,408.1,399.44,381.87,371.88,379.69,381.51,391.35,403.13,406.37,401.94,400.6,400.08,417.62,421.21,418.61,395.94,403.14,401.72,375.46,393.64,391.39,407.06,407.71,409.64,421.77],"why":[{"date":"2026-06-11","text":"8-K (SEC EDGAR): Reverse-Morris-Trust — Auto-Sparte mit Dana abgespalten. ~$1.1B Cash, Pure-Play Power."},{"date":"2026-03-12","text":"Boyd-Thermal $9.5B = größter Liquid-Cooling-Deal. ETN im Cooling-Layer der AI-Data-Center."},{"date":"2026-06-18","text":"Base aufgelöst (+7.9% in 5T) → an Resistance. Einstieg gelaufen, Geduld."}],"note":"These top, Einstieg schlecht. Warten auf Pullback MA20 (~$409) ODER Breakout-Schluss > $427. RMT = 12–18-Monate-Treiber.","rr":"—"},
+ {"ticker":"FLR","company":"Fluor Corporation","sector":"Industrials — E&C","horizon":"long","verdict":"wait","conviction":3,"thesis":"Engineering-Play auf Nuclear + AI-Data-Center-Bau. Echtes Backlog, aber überhitzter Chart.","added":"2026-06-20","updated":"2026-06-20","ref_price":53.66,"current_price":53.66,"levels":{"trigger":0,"stop":48.00,"target":60.00},"spark":[51.08,43.31,43.69,44.73,45.03,45.49,44.36,44.35,42.53,43.43,44.59,44.87,46.86,47.3,46.97,45.76,46.55,49.34,50.16,50.41,47.56,49.52,49.48,46.84,50.15,50.76,50.47,50.65,51.92,53.66],"why":[{"date":"2026-06-02","text":"$1.03 Mrd Naval-Nuclear-Vertrag + SMR für Dow + TeraWulf-Data-Center (480 MW). $60 Mrd+ Backlog."},{"date":"2026-06-18","text":"+15% in 8T, RSI 70, ~11% über MA50, über Analysten-Zielen. Katalysator ~2.5 Wochen alt."}],"note":"Fundamental kaufwürdig (Nuclear/AI real), Timing schlecht — nicht ins +15% am Hoch. Pullback MA20 (~$48–49) abwarten.","rr":"—"}
 ]};
 function render(data){
   document.getElementById('updated').textContent=data.updated||'—';
@@ -167,6 +186,7 @@ function render(data){
   const picks=(data.picks||[]).slice().sort((a,b)=>(order[a.verdict]-order[b.verdict])||(b.conviction-a.conviction));
   document.getElementById('heat').innerHTML=picks.map(tile).join('');
   document.getElementById('board').innerHTML=picks.map(card).join('');
+  document.getElementById('tape').innerHTML=(data.tape||[]).map(tapeRow).join('');
 }
 fetch('claude_picks.json?_='+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json();}).then(render).catch(_=>render(FALLBACK));
 </script>

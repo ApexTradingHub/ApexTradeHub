@@ -1,6 +1,13 @@
 {
   "updated": "2026-06-20",
   "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diskretionär. Stand jeweils pro Karte.",
+  "tape": [
+    { "label": "S&P 500", "price": 746.74, "chg": 1.04 },
+    { "label": "Nasdaq 100", "price": 740.62, "chg": 2.51 },
+    { "label": "Bitcoin", "price": 63949.51, "chg": 0.64 },
+    { "label": "VIX", "price": 18.44, "chg": 12.37 },
+    { "label": "Gold", "price": 4172.90, "chg": -1.21 }
+  ],
   "picks": [
     {
       "ticker": "DIS",
@@ -15,9 +22,10 @@
       "ref_price": 103.89,
       "current_price": 103.89,
       "levels": { "trigger": 105.25, "stop": 98.50, "target": 124.00 },
+      "spark": [108.66,108.02,104.72,106.16,104.9,105.42,102.72,103.91,102.29,104.08,103.58,103.0,103.28,104.18,103.73,101.83,102.85,101.41,99.39,99.34,99.71,98.87,99.33,98.61,100.34,100.04,101.69,101.28,100.86,103.89],
       "why": [
         { "date": "2026-05-06", "text": "Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide FY26/27." },
-        { "date": "2026-06-18", "text": "Enge 10-Tage-Base $98.6–$104, löst gerade mit Volumen auf. Nur −1.2% unterm 20d-High, untere Mitte des 52w-Range ($92–$124) → Luft." },
+        { "date": "2026-06-18", "text": "Enge 10-Tage-Base $98.6–$104, löst gerade mit Volumen auf. Nur −1.2% unterm 20d-High, untere Mitte des 52w-Range → Luft." },
         { "date": "2026-06-16", "text": "Insider clean: Form-4 = nur RSU-Vesting + Tax-Withholding, KEINE Open-Market-Verkäufe." }
       ],
       "note": "Entry sauber bei Schluss > $105.25 (Breakout-Bestätigung). Earnings erst ~Aug → kein Adjacency-Risiko. Anti-Chase: nicht ins Hoch springen.",
@@ -36,6 +44,7 @@
       "ref_price": 421.77,
       "current_price": 421.77,
       "levels": { "trigger": 427.00, "stop": 405.00, "target": 500.00 },
+      "spark": [398.05,401.51,419.0,401.53,406.94,408.1,399.44,381.87,371.88,379.69,381.51,391.35,403.13,406.37,401.94,400.6,400.08,417.62,421.21,418.61,395.94,403.14,401.72,375.46,393.64,391.39,407.06,407.71,409.64,421.77],
       "why": [
         { "date": "2026-06-11", "text": "8-K (SEC EDGAR): Reverse-Morris-Trust — Mobility-/Auto-Sparte wird mit Dana abgespalten. Eaton bekommt ~$1.1B Cash, wird Pure-Play Power/Electrical." },
         { "date": "2026-03-12", "text": "Boyd-Thermal-Acquisition $9.5B = größter Liquid-Cooling-Deal. Positioniert ETN im Cooling-Layer der AI-Data-Center." },
@@ -57,6 +66,7 @@
       "ref_price": 53.66,
       "current_price": 53.66,
       "levels": { "trigger": 0, "stop": 48.00, "target": 60.00 },
+      "spark": [51.08,43.31,43.69,44.73,45.03,45.49,44.36,44.35,42.53,43.43,44.59,44.87,46.86,47.3,46.97,45.76,46.55,49.34,50.16,50.41,47.56,49.52,49.48,46.84,50.15,50.76,50.47,50.65,51.92,53.66],
       "why": [
         { "date": "2026-06-02", "text": "$1.03 Mrd Naval-Nuclear-Vertragsmodifikation + SMR-Projekt für Dow (X-energy) + TeraWulf-Data-Center (480 MW). $60 Mrd+ potenzielles Backlog." },
         { "date": "2026-06-18", "text": "+15% in 8 Tagen, RSI 70, ~11% über MA50, über Analysten-Zielen. Haupt-Katalysator (Naval) ~2.5 Wochen alt = erster Pop durch." }
