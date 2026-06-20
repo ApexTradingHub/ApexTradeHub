@@ -353,3 +353,37 @@ schnellerer Redeploy in frische Winner. #9 (Winner laufen lassen) + #10 (Laggard
 schneiden) zusammen = Magnitude-UND-Frequenz-Hebel.
 
 **Trigger:** zusammen mit #9 im naechsten Trader-Tuning-Tag.
+
+---
+
+## 11. perf_120-Unification (80-90-Bucket / WEAK-Seite) — geparkt 2026-06-20
+
+**Befund (Ultracode-Forensik):** Der BREAKOUT-Score ist bei perf_120 nicht-monoton — `perf_120`
+verhaelt sich wie eine **umgekehrte U-Kurve** (WR ganzes 250d-Sample):
+- perf_120 < 0 (WEAK): **41 %** 🔴
+- perf_120 0-25 (DEADZONE): 53 %
+- perf_120 25-50 (SWEET): 56 %
+- perf_120 > 50 (POWER): **39 %** 🔴
+
+**Schlecht an beiden Extremen, gut in der Mitte.** Der Score-Rebuild (2026-06-20) fixte das
+RECHTE Extrem (POWER/extended, catalyst-gated -12). Das LINKE Extrem (WEAK, perf_120<0 =
+Breakout im Abwaertstrend = Dead-Cat-Bounce, vgl. Postmortem `dead_cat_bounce` AMTM) ist offen.
+
+**Warum 80-90 das Loch ist (42 % WR, schlechter als BEIDE Nachbarn):** Mischzone — sammelt die
+schlechten Raender von WEAK + POWER, die durch starke Kurzfrist-Terme (vol_ratio, perf_60) auf
+80-90 inflationiert werden. Gegenprobe: 80-90 ohne Deadzone-Signale = nur 29 % WR (die
+Nicht-Deadzone-Signale sind das Problem). 90-100 ohne Deadzone = 72 %.
+
+**Loesung B (elegant, empfohlen):** perf_120 als echte umgekehrte-U-Kurve statt 3 separater
+Mechanismen (Realign-Buckets + Score-Rebuild-Penalty + WEAK -15). Eine kohaerente, kalibrierte
+Kurve die BEIDE Extreme stufenlos straft, die Mitte belohnt. Encodiert die Replicate-Lehre
+F_2026-05-22 direkt („EMERGING/Mitte = Sweet-Spot"). POWER-Carve-Out (Semi/AI-Capex) muss
+erhalten bleiben.
+
+**Warum geparkt (niedrige Prio):** Der Score zaehlt fuers Ranking (Telegram-Top-2, Trader-Picks)
+— und gepickt wird aus 90-100+, NICHT aus 80-90. 80-90-Signale werden nur an ruhigen Tagen
+gehandelt. Geringer praktischer Payoff. Der Score-Rebuild fixte bereits das Bucket das zaehlt.
+
+**Trigger zum Anpacken:** naechster substanzieller Score-Tag (dann Loesung B als
+perf_120-Unification, Backtest-First, POWER-Carve-Out erhalten). Quick-Alternative falls
+gezielt: WEAK-Penalty -15->-20 ODER Trend-Konflikt-Penalty (perf_120<0 UND perf_20>0).
