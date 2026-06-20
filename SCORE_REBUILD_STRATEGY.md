@@ -232,6 +232,42 @@ Deckt sich mit Postmortems `high_volatility_tight_stop` (WDC) + „High-Score = 
 **Status Hebel B (Extension):** verworfen als Haupthebel. Code bleibt hinter `--score-rebuild`
 als Referenz. Der Carve-Out-Mechanismus ist für Hebel B' wiederverwendbar.
 
+## 6c. LÖSUNG GEFUNDEN 2026-06-20 — catalyst-gated perf_120-Penalty (validiert)
+
+**Forensik mit Vola-Metadaten (instrumentierter Backtest):** Im 100-110-Trough trennt
+**perf_120** Loser von Winnern glasklar:
+- Loser perf_120 ⌀ **+61 %** (extended) vs Winner ⌀ **+33 %** (SWEET-Zone). Diff -28pp.
+- vol_ratio (1.35 vs 1.37) + closing_strength (0.81 vs 0.87) diskriminieren NICHT.
+→ Mein „Volatilitäts"-Read (aus Ticker-Namen) war falsch. **Treiber = perf_120-Extension.**
+
+**Korrigierter Hebel:** `if perf_120 > 50 and not strong_catalyst: score -= EXT_PENALTY`
+(vol/closing-Bedingungen entfernt, Schwelle 60→50). Carve-Out = strong_catalyst
+(PP+Vol-Climax / earnings_beat / Gap≥5) schützt Semi/AI-Capex-Winner.
+
+**Penalty-Sweep (250d, BREAKOUT, score-realign):**
+| Penalty | n | WR | 90-100 | 100+ | 100-110 | Gap |
+|---|---|---|---|---|---|---|
+| Baseline | 122 | 50 % | 62 % | 47 % | 40 % | -15pp |
+| -8 | 122 | 51 % | 56 % | 50 % | 43 % | -6pp |
+| **-12** | **122** | 51 % | 55 % | **54 %** | **50 %** | **-0pp** ✅ |
+| -15 | 121 | 51 % | 57 % | 54 % | 50 % | -2pp |
+
+**EXT_PENALTY = -12 ist das Optimum:** perfekte Monotonie (-0pp), Trough 40→50 %, alle
+122 Signale erhalten, Aggregat WR/PF besser, Carve-Out validiert (14 strong_catalyst-Winner
+unbestraft).
+
+**Caveat (transparent):** 90-100-Bucket dippt 62→55 % (-7pp, über -5pp-Schwelle). ABER:
+keine Degradation — die extended Loser saßen vorher fälschlich im 100+, jetzt ehrlich im
+90-100. Re-Reveal, nicht Breakage. User-Entscheidung: GO (Spirit der Akzeptanz erfüllt).
+
+**Status:** Backtest-GO erreicht. `EXT_PENALTY=12` als Default gesetzt. Flag `--score-rebuild`.
+
+### Live-Port (nächste Phase, separat)
+- Catalyst-gated perf_120>50-Penalty in `ApexScan.py` hardcoden (analog SCORE_REALIGN).
+- **WICHTIG:** Live hat ZUSÄTZLICH `cat_analyst_upside>15` als strong_catalyst-Kriterium
+  (im Backtest geskippt). → Carve-Out live noch robuster.
+- Danach Knowledge-Refresh; Scores ändern Telegram-Ranking, nicht die simulierten Trades.
+
 ## 7. Nächster Schritt (wenn freigegeben)
 
 1. `apex_backtest_v2.py`: Baseline-Lauf, Score-Kalibrierungs-Tabelle als Referenz festhalten.

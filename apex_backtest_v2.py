@@ -112,7 +112,7 @@ SCORE_REALIGN = False
 # Zielt aufs ASML-Fade-Profil (extended + schwache Bestaetigung + KEIN starker Catalyst).
 # Carve-Out schuetzt Semi/AI-Capex-Winner (what_to_replicate). Siehe SCORE_REBUILD_STRATEGY.md.
 SCORE_REBUILD = False
-EXT_PENALTY   = 15.0   # Penalty-Hoehe (kalibrierbar)
+EXT_PENALTY   = 12.0   # Penalty-Hoehe (Sweep 2026-06-20: -12 = perfekte Monotonie -0pp, alle Signale)
 
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
@@ -905,14 +905,18 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
     # (vol<1.5 UND closing<0.6) + KEIN starker Catalyst. Carve-Out = Semi/AI-Capex-Winner
     # bleiben verschont (what_to_replicate). NB: analyst_upside in backtest_mode nicht da,
     # Carve-Out nutzt earnings_beat / PP+Vol-Climax / Gap>=5 (alle backtestbar).
+    _gap = catalysts.get("up_gap_pct", 0) or 0
+    strong_catalyst = bool(
+        (catalyst_signals or {}).get("earnings_beat_recent") or
+        (catalysts.get("pocket_pivot_recent") and catalysts.get("volume_climax")) or
+        _gap >= 5.0
+    )
     if SCORE_REBUILD and setup == "BREAKOUT":
-        _gap = catalysts.get("up_gap_pct", 0) or 0
-        strong_catalyst = (
-            (catalyst_signals or {}).get("earnings_beat_recent") or
-            (catalysts.get("pocket_pivot_recent") and catalysts.get("volume_climax")) or
-            _gap >= 5.0
-        )
-        if perf_120 > 60 and vol_ratio < 1.5 and closing_strength < 0.6 and not strong_catalyst:
+        # KORRIGIERT 2026-06-20 nach Forensik: Treiber des 100-110-Trough ist perf_120-
+        # Extension (Loser +61% vs Winner +33%), NICHT vol/closing (diskriminieren nicht).
+        # Extended (perf_120>50) OHNE starken Catalyst = Penalty. Catalyst-Carve-Out schuetzt
+        # Semi/AI-Capex-Winner (what_to_replicate).
+        if perf_120 > 50 and not strong_catalyst:
             score -= EXT_PENALTY
 
     # (RSS removed in Phase G — REVERSAL disabled)
@@ -950,6 +954,13 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         "movement_class":   movement_class,
         "closing_strength": round(closing_strength, 2),
         "inside_day":       inside_day,
+        # Vola-Metadaten fuer Score-Forensik (Hebel B' / 2026-06-20)
+        "vol_ratio":        round(vol_ratio, 2),
+        "perf_20":          round(perf_20, 1),
+        "perf_60":          round(perf_60, 1),
+        "perf_120":         round(perf_120, 1),
+        "rsi":              round(rsi14, 1),
+        "strong_catalyst":  strong_catalyst,
         # Phase G metadata
         "vcp_contraction":   vcp_data["contraction_pct"] if chosen_setup == "VCP" else None,
         "squeeze_short_pct": squeeze_data["short_pct"] if chosen_setup == "SHORT_SQUEEZE" else None,
@@ -1262,6 +1273,15 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
                 "relax_level": sig.get("relax_level", 0),
                 "risk_on":     sig["risk_on"],
                 "equity":      round(equity, 2),
+                # Vola-Metadaten fuer Score-Forensik (Hebel B')
+                "vol_ratio":        sig.get("vol_ratio"),
+                "perf_20":          sig.get("perf_20"),
+                "perf_60":          sig.get("perf_60"),
+                "perf_120":         sig.get("perf_120"),
+                "rsi":              sig.get("rsi"),
+                "movement_class":   sig.get("movement_class"),
+                "closing_strength": sig.get("closing_strength"),
+                "strong_catalyst":  sig.get("strong_catalyst"),
             })
 
     return trades, eq_curve
@@ -1406,10 +1426,12 @@ def main():
                              "perf_120 0-25 Penalty, 25-50 Sweet-Spot (default off)")
     parser.add_argument("--score-rebuild", action="store_true",
                         help="Hebel B: Extension-Penalty mit Catalyst-Carve-Out (default off)")
+    parser.add_argument("--ext-penalty", type=float, default=12.0,
+                        help="Hoehe der Extension-Penalty fuer --score-rebuild (default 12, Sweep-Optimum)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY, SCORE_REALIGN, SCORE_REBUILD
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY, SCORE_REALIGN, SCORE_REBUILD, EXT_PENALTY
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
@@ -1422,9 +1444,10 @@ def main():
     CATALYST_FREE_ELITE_PENALTY = args.catalyst_free_elite_penalty
     SCORE_REALIGN = args.score_realign
     SCORE_REBUILD = args.score_rebuild
+    EXT_PENALTY = args.ext_penalty
     if SCORE_REBUILD:
-        print(f"[TEST] SCORE_REBUILD=ON (Hebel B: Extension-Penalty -{EXT_PENALTY:.0f} fuer "
-              f"perf120>60 + vol<1.5 + closing<0.6 + kein-Catalyst)")
+        print(f"[TEST] SCORE_REBUILD=ON (Hebel B-korr: Extension-Penalty -{EXT_PENALTY:.0f} fuer "
+              f"perf120>50 + kein-strong-Catalyst; Carve-Out: PP+VolClimax/EarnBeat/Gap>=5)")
     if CATALYST_FREE_ELITE_PENALTY:
         print(f"[TEST] CATALYST_FREE_ELITE_PENALTY={CATALYST_FREE_ELITE_PENALTY} "
               f"(BO score>=100 ohne PP/Gap/Beat -> -{CATALYST_FREE_ELITE_PENALTY})")
