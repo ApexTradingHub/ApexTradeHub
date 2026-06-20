@@ -108,6 +108,12 @@ CATALYST_FREE_ELITE_PENALTY = 0.0
 # backtest_mode, winrate braucht forward-data) -> separate Live-Validierung.
 SCORE_REALIGN = False
 
+# Score-Rebuild Hebel B (2026-06-19): Extension-Penalty mit Catalyst-Carve-Out.
+# Zielt aufs ASML-Fade-Profil (extended + schwache Bestaetigung + KEIN starker Catalyst).
+# Carve-Out schuetzt Semi/AI-Capex-Winner (what_to_replicate). Siehe SCORE_REBUILD_STRATEGY.md.
+SCORE_REBUILD = False
+EXT_PENALTY   = 15.0   # Penalty-Hoehe (kalibrierbar)
+
 HORIZON_DAYS = {
     "1-3 weeks":   15,   # BREAKOUT
     "2-4 weeks":   20,   # SHORT_SQUEEZE
@@ -894,6 +900,21 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
 
     score += movement_bonus + closing_bonus + inside_day_penalty
 
+    # Hebel B (Score-Rebuild): Extension-Penalty mit Catalyst-Carve-Out.
+    # Trifft NUR das Fade-Profil: stark gelaufen (perf_120>60) + schwache Bestaetigung
+    # (vol<1.5 UND closing<0.6) + KEIN starker Catalyst. Carve-Out = Semi/AI-Capex-Winner
+    # bleiben verschont (what_to_replicate). NB: analyst_upside in backtest_mode nicht da,
+    # Carve-Out nutzt earnings_beat / PP+Vol-Climax / Gap>=5 (alle backtestbar).
+    if SCORE_REBUILD and setup == "BREAKOUT":
+        _gap = catalysts.get("up_gap_pct", 0) or 0
+        strong_catalyst = (
+            (catalyst_signals or {}).get("earnings_beat_recent") or
+            (catalysts.get("pocket_pivot_recent") and catalysts.get("volume_climax")) or
+            _gap >= 5.0
+        )
+        if perf_120 > 60 and vol_ratio < 1.5 and closing_strength < 0.6 and not strong_catalyst:
+            score -= EXT_PENALTY
+
     # (RSS removed in Phase G — REVERSAL disabled)
 
     # Test 2026-06-04: Catalyst-Free Elite Penalty (opt-in via CLI)
@@ -1383,10 +1404,12 @@ def main():
     parser.add_argument("--score-realign", action="store_true",
                         help="BREAKOUT-Score an gemessene WR-Kohorten aligniern: RSI 48-72, "
                              "perf_120 0-25 Penalty, 25-50 Sweet-Spot (default off)")
+    parser.add_argument("--score-rebuild", action="store_true",
+                        help="Hebel B: Extension-Penalty mit Catalyst-Carve-Out (default off)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
-    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY, SCORE_REALIGN
+    global BO_RSI_MIN_OVERRIDE, BO_RSI_MAX_OVERRIDE, RESULTS_FILE_OVERRIDE, FORCE_RELAX, ONLY_SETUP, MR_RSI_MAX, BO_BASE_MAX, VCP_ATR_CONTRACTION, SQ_SHORT_MIN, CATALYST_FREE_ELITE_PENALTY, SCORE_REALIGN, SCORE_REBUILD
     BO_RSI_MIN_OVERRIDE = args.bo_rsi_min
     BO_RSI_MAX_OVERRIDE = args.bo_rsi_max
     RESULTS_FILE_OVERRIDE = args.out
@@ -1398,6 +1421,10 @@ def main():
     SQ_SHORT_MIN = args.sq_short_min
     CATALYST_FREE_ELITE_PENALTY = args.catalyst_free_elite_penalty
     SCORE_REALIGN = args.score_realign
+    SCORE_REBUILD = args.score_rebuild
+    if SCORE_REBUILD:
+        print(f"[TEST] SCORE_REBUILD=ON (Hebel B: Extension-Penalty -{EXT_PENALTY:.0f} fuer "
+              f"perf120>60 + vol<1.5 + closing<0.6 + kein-Catalyst)")
     if CATALYST_FREE_ELITE_PENALTY:
         print(f"[TEST] CATALYST_FREE_ELITE_PENALTY={CATALYST_FREE_ELITE_PENALTY} "
               f"(BO score>=100 ohne PP/Gap/Beat -> -{CATALYST_FREE_ELITE_PENALTY})")

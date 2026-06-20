@@ -197,6 +197,41 @@ Liste der Top-10-Score-Signale vorher/nachher mit ihren tatsächlichen Outcomes.
 
 ---
 
+## 6b. BACKTEST-BEFUND 2026-06-19 — Hebel B falsifiziert, echter Treiber gefunden
+
+**Setup:** Baseline-Backtest (250 Handelstage, BREAKOUT, score-realign) vs +Hebel B
+(--score-rebuild, Extension-Penalty -15 mit Carve-Out).
+
+**Ergebnis: Hebel B bewegt den Trough NICHT.**
+| | Baseline | Hebel B |
+|---|---|---|
+| Trades | 122 | 122 (Signal-Protection ✅) |
+| WR | 50.0 % | 50.8 % |
+| PF | 1.53 | 1.56 |
+| WR(90-100) vs WR(100+) | 62 % vs 47 % (-15pp) | 62 % vs 47 % (**-15pp, unverändert**) |
+
+→ Das Extension-Fade-Profil (perf_120>60 + vol<1.5 + closing<0.6 + kein-Catalyst) ist **zu
+selten** in den Daten. Penalty feuert kaum, Kalibrierung praktisch identisch. **Hypothese
+falsifiziert** (billig + sauber — gut).
+
+**Forensik 100-110-Bucket (n=20, WR 40 %, der Trough):**
+- Verlierer (12, 11× Stop-Loss): **ACHR, CVNA, CAVA, ROKU, ZS, AVGO, ANET, LRCX** (Hoch-Vola-
+  Momentum), + OVV/AA/FLR/CARR.
+- Gewinner (8): PHM, CCL, ODFL, BWA, CLF, MPWR, ON, SNOW (ruhigere Cyclicals mit Catalyst).
+
+**Echter Treiber: Volatilität, nicht Extension.** Der Score inflationiert Hoch-Vola-Namen über
+`vol_ratio×4` + `rr×4` + Momentum-Terme ins Elite-Bucket — dann whipsawen sie aus (tight stop).
+Deckt sich mit Postmortems `high_volatility_tight_stop` (WDC) + „High-Score = Vola-Extrem".
+
+**Revidierte Hebel-Richtung (statt Extension-Penalty):**
+- **Hebel B' — Volatilitäts-/Whipsaw-Penalty:** vol_ratio extrem UND rr hoch UND Stop eng
+  relativ zur ATR → Penalty. ODER `rr×4`/`vol_ratio×4`-Bonus degressiv/gedeckelt.
+- **Voraussetzung:** Backtest muss erst **Vola-Metadaten pro Trade persistieren** (ATR,
+  vol_ratio, closing_strength, movement_class) — aktuell speichert er nur Preis/Exit/Score.
+
+**Status Hebel B (Extension):** verworfen als Haupthebel. Code bleibt hinter `--score-rebuild`
+als Referenz. Der Carve-Out-Mechanismus ist für Hebel B' wiederverwendbar.
+
 ## 7. Nächster Schritt (wenn freigegeben)
 
 1. `apex_backtest_v2.py`: Baseline-Lauf, Score-Kalibrierungs-Tabelle als Referenz festhalten.
