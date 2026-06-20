@@ -60,6 +60,12 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 - **RSI-Zone (REALIGN): 48-72** (war 48-68, +6 voll im erweiterten Bereich)
 - **⚠ RSI 60-65 = neue DEADZONE (CONFIRMED 2026-06-15, n=40, WR 47.5% / −10pp lift)** — innerhalb der erlaubten Zone gibt's ein Mid-Range-Loch. Action ausstehend: Score-Penalty (~-5) **nach Backtest**. NICHT als Hard-Skip (Loser-Anteil 52.5% vs Baseline 42.5% = killt fast 1:1 Winner mit). Pattern: U-Kurve, RSI 50-60 (+10pp) und RSI 70+ (+18pp) ggf. Bonus-Kandidaten bei groesserem n.
 - **perf_120 Buckets (REALIGN):** <0 = -15 (WEAK), 0-25 = **-3 (DEADZONE)**, 25-50 = +15 (SWEET), >50 = +8
+- **SCORE_REBUILD live (2026-06-20):** Extension-Penalty **-12** für perf_120>50 OHNE starken
+  Catalyst (Catalyst-Carve-Out: earnings_beat / analyst_upside>15 / PP+Vol-Climax / Gap≥5).
+  Backtest 250d: Plateau WR(100+) 47→54 %, **Monotonie -15pp→-0pp**, alle 122 Signale erhalten,
+  PF 1.53→1.60. EXT_PENALTY=12 = Sweep-Optimum. Trifft ASML-Juni-Profil (146→134), verschont
+  Sweet-Zone (FLR perf_120 31 unberührt) + Semi/AI-Capex-Winner (what_to_replicate).
+  Backtest-Flag `--score-rebuild --ext-penalty 12`, Live hardcoded. Doku: `SCORE_REBUILD_STRATEGY.md`.
 - `base_range`: ≤22 BREAKOUT, ≤8 andere Setups (28.5.)
 - `vol_ratio`: ≥1.0 (relax=0), ≥0.7 (relax=1)
 

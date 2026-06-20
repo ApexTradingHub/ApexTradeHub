@@ -1343,6 +1343,24 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
         score += closing_bonus       # close-near-high reward / close-near-low penalty
         score += inside_day_penalty  # consolidation inside prev day -> false breakout risk
 
+        # ---- SCORE_REBUILD live (2026-06-20, Backtest-validiert) ----
+        # Catalyst-gated Extension-Penalty: ueberdehnte BREAKOUTs (perf_120>50) OHNE starken
+        # Catalyst sind Late-Entries (Backtest 100-110-Trough: Loser perf_120 +61% vs Winner +33%).
+        # -12 -> Plateau WR(100+) 47%->54%, Monotonie -15pp->-0pp, alle Signale erhalten (Sweep-Optimum).
+        # Carve-Out schuetzt Semi/AI-Capex-Winner (what_to_replicate). Live HAT zusaetzlich
+        # analyst_upside>15 (Backtest skippt analyst) -> Carve-Out live robuster.
+        if setup == "BREAKOUT" and perf_120 > 50:
+            _gap_rb     = catalysts.get("up_gap_pct", 0) or 0
+            _analyst_rb = (catalyst_signals or {}).get("analyst_target_upside") or 0
+            strong_catalyst = (
+                (catalyst_signals or {}).get("earnings_beat_recent") or
+                _analyst_rb > 15 or
+                (catalysts.get("pocket_pivot_recent") and catalysts.get("volume_climax")) or
+                _gap_rb >= 5.0
+            )
+            if not strong_catalyst:
+                score -= 12.0
+
         # (RSS removed — REVERSAL setup disabled in Phase G)
 
         # ---- Hard score gate (per setup) ----
