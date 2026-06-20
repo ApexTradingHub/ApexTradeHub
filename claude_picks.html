@@ -5,121 +5,116 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Conviction — Claude's Picks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F4F0E7; --paper2:#FBF8F1; --ink:#211E18; --ink-soft:#5B554A;
-    --hair:#DBD3C3; --gold:#A8894C;
-    --buy:#1F6F54; --buy-bg:#E5EFE8;
-    --wait:#B07D24; --wait-bg:#F3EAD6;
-    --avoid:#A33F36; --avoid-bg:#F1E0DC;
-    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --bg:#10131A; --surf:#181B24; --surf2:#1F2430; --line:#2A2F3C; --line2:#363C4A;
+    --tx:#D6DAE3; --tx2:#8B92A4; --tx3:#5C6373;
+    --up:#26A69A; --up-dim:#16413E; --down:#EF5350; --down-dim:#46201F; --flat:#3A4150;
+    --buy:#26A69A; --wait:#F2A33C; --avoid:#EF5350; --gold:#C7A35A;
     --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.5;-webkit-font-smoothing:antialiased;padding:0 0 80px}
-  .wrap{max-width:780px;margin:0 auto;padding:0 24px}
+  body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:14px;
+    line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:70px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
 
-  /* Masthead */
-  header{border-bottom:2px solid var(--ink);margin:0 auto 8px;padding:48px 24px 18px;max-width:780px}
-  .kicker{font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
-    color:var(--gold);font-weight:600;margin-bottom:10px}
-  h1{font-family:var(--serif);font-weight:600;font-size:54px;line-height:.98;letter-spacing:-.02em}
-  h1 em{font-style:italic;font-weight:400}
-  .dateline{display:flex;justify-content:space-between;align-items:baseline;
-    border-top:1px solid var(--hair);margin-top:16px;padding-top:10px;
-    font-size:12px;color:var(--ink-soft);letter-spacing:.04em}
-  .dateline b{color:var(--ink);font-weight:600}
-  .intro{font-family:var(--serif);font-size:16px;font-style:italic;color:var(--ink-soft);
-    max-width:780px;margin:18px auto 0;padding:0 24px;line-height:1.55}
+  /* Topbar */
+  .top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    padding:26px 20px 16px;max-width:1060px;margin:0 auto;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:baseline;gap:12px}
+  .brand b{font-size:21px;font-weight:700;letter-spacing:-.02em}
+  .brand .sub{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .top .meta{font-size:12px;color:var(--tx2)}
+  .top .meta b{color:var(--tx);font-weight:600}
+  .intro{max-width:1060px;margin:14px auto 0;padding:0 20px;font-size:13px;color:var(--tx2);line-height:1.55}
 
-  /* Legend */
-  .legend{display:flex;gap:18px;flex-wrap:wrap;max-width:780px;margin:26px auto 8px;padding:0 24px;
-    font-size:11.5px;letter-spacing:.05em;color:var(--ink-soft)}
+  /* Heatmap tiles */
+  .heat{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:22px 0 6px}
+  .tile{position:relative;border-radius:8px;padding:14px 15px;min-height:104px;
+    border:1px solid var(--line2);cursor:default;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+  .tile.up{background:linear-gradient(135deg,var(--up-dim),#10131A 120%)}
+  .tile.down{background:linear-gradient(135deg,var(--down-dim),#10131A 120%)}
+  .tile.flat{background:var(--surf2)}
+  .tile .h{display:flex;align-items:center;gap:9px}
+  .logo{width:30px;height:30px;border-radius:6px;background:#fff;object-fit:contain;flex:none}
+  .logo.ph{display:flex;align-items:center;justify-content:center;background:var(--surf2);
+    color:var(--tx2);font-size:11px;font-weight:700;border:1px solid var(--line2)}
+  .tile .tk{font-weight:700;font-size:16px;letter-spacing:-.01em}
+  .tile .vb{margin-left:auto}
+  .tile .px{font-size:23px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .tile .ch{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+  .up .ch,.chg.up{color:var(--up)} .down .ch,.chg.down{color:var(--down)} .flat .ch{color:var(--tx2)}
+
+  /* Verdict thumb */
+  .thumb{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+  .thumb svg{width:15px;height:15px}
+  .buy .thumb,.thumb.buy{background:rgba(38,166,154,.16)} .buy .thumb svg,.thumb.buy svg{fill:var(--buy)}
+  .wait .thumb,.thumb.wait{background:rgba(242,163,60,.16)} .wait .thumb svg,.thumb.wait svg{fill:var(--wait)}
+  .avoid .thumb,.thumb.avoid{background:rgba(239,83,80,.16)} .avoid .thumb svg,.thumb.avoid svg{fill:var(--avoid)}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--tx2);margin:14px 2px 2px;align-items:center}
   .legend span{display:inline-flex;align-items:center;gap:6px}
-  .legend svg{width:15px;height:15px}
+  .legend svg{width:14px;height:14px}
 
-  /* Card */
-  .card{background:var(--paper2);border:1px solid var(--hair);border-radius:2px;
-    margin-top:22px;padding:26px 28px;position:relative;
-    box-shadow:0 1px 0 rgba(33,30,24,.04),0 14px 28px -22px rgba(33,30,24,.35)}
-  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:2px 0 0 2px}
-  .card.buy::before{background:var(--buy)} .card.wait::before{background:var(--wait)} .card.avoid::before{background:var(--avoid)}
-
-  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-  .id .tkr{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:-.01em;line-height:1}
-  .id .co{font-size:12.5px;color:var(--ink-soft);margin-top:3px;letter-spacing:.02em}
-  .tags{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
-  .tag{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
-    padding:3px 9px;border-radius:99px;border:1px solid var(--hair);color:var(--ink-soft);background:#fff}
-  .tag.long{border-color:#cdbf9e;color:#7a6a3f}
-
-  /* Verdict badge */
-  .verdict{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:78px}
-  .thumb{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-  .thumb svg{width:24px;height:24px}
-  .buy .thumb{background:var(--buy-bg)} .buy .thumb svg{fill:var(--buy)}
-  .wait .thumb{background:var(--wait-bg)} .wait .thumb svg{fill:var(--wait)}
-  .avoid .thumb{background:var(--avoid-bg)} .avoid .thumb svg{fill:var(--avoid)}
-  .vlabel{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  /* Detail cards */
+  .card{background:var(--surf);border:1px solid var(--line);border-radius:10px;margin-top:14px;overflow:hidden}
+  .chead{display:flex;align-items:center;gap:13px;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .chead .name b{font-size:17px;font-weight:700;letter-spacing:-.01em}
+  .chead .name .co{font-size:12px;color:var(--tx2)}
+  .chead .pxwrap{margin-left:auto;text-align:right}
+  .chead .pxwrap .p{font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .chead .pxwrap .c{font-size:12.5px;font-weight:600;font-variant-numeric:tabular-nums}
+  .chead .verdict{display:flex;align-items:center;gap:8px;padding-left:14px;border-left:1px solid var(--line)}
+  .vlabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
   .buy .vlabel{color:var(--buy)} .wait .vlabel{color:var(--wait)} .avoid .vlabel{color:var(--avoid)}
 
-  .thesis{font-family:var(--serif);font-size:19px;line-height:1.4;margin:18px 0 4px;letter-spacing:-.005em}
-
-  /* Conviction pips */
-  .conv{display:flex;align-items:center;gap:8px;margin:14px 0 2px;font-size:11px;
-    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .cbody{padding:16px 18px}
+  .tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+  .tag{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--tx2);
+    padding:3px 9px;border-radius:5px;border:1px solid var(--line2);background:var(--surf2)}
+  .tag.long{color:var(--gold);border-color:#4a3f24}
+  .thesis{font-size:15.5px;line-height:1.45;margin-bottom:14px;color:var(--tx)}
+  .conv{display:flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);margin-bottom:4px}
   .pips{display:flex;gap:4px}
-  .pip{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--gold)}
+  .pip{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--gold)}
   .pip.on{background:var(--gold)}
 
-  /* Why / news */
-  .why{border-top:1px solid var(--hair);margin-top:18px;padding-top:16px}
-  .why h4{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
-    font-weight:600;margin-bottom:11px}
-  .why ul{list-style:none}
-  .why li{display:flex;gap:12px;margin-bottom:11px;font-size:14px;line-height:1.5}
-  .why .d{font-family:var(--serif);font-weight:600;font-size:12px;color:var(--ink-soft);
-    white-space:nowrap;padding-top:2px;min-width:74px}
-  .note{font-size:13.5px;color:var(--ink-soft);font-style:italic;font-family:var(--serif);
-    line-height:1.55;margin-top:14px;padding-left:14px;border-left:2px solid var(--hair)}
+  .why{border-top:1px solid var(--line);margin-top:15px;padding-top:14px}
+  .why h4{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .why li{display:flex;gap:11px;margin-bottom:9px;font-size:13px;line-height:1.5;color:var(--tx);list-style:none}
+  .why .d{font-weight:600;font-size:11.5px;color:var(--tx3);white-space:nowrap;min-width:70px;font-variant-numeric:tabular-nums}
+  .note{font-size:12.5px;color:var(--tx2);line-height:1.55;margin-top:12px;padding-left:12px;border-left:2px solid var(--line2)}
 
-  /* Levels + outcome footer */
-  .foot{display:flex;flex-wrap:wrap;gap:22px;border-top:1px solid var(--hair);
-    margin-top:18px;padding-top:15px;font-size:12px}
-  .lv{display:flex;flex-direction:column}
-  .lv .k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px}
-  .lv .v{font-family:var(--serif);font-weight:600;font-size:16px}
+  .foot{display:flex;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);margin-top:15px;padding-top:13px}
+  .lv .k{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);display:block;margin-bottom:3px}
+  .lv .v{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
   .delta{margin-left:auto;text-align:right}
-  .delta .v{font-size:17px}
-  .up{color:var(--buy)} .down{color:var(--avoid)}
-  .asof{font-size:11px;color:var(--ink-soft);margin-top:14px;letter-spacing:.04em}
+  .asof{font-size:11px;color:var(--tx3);margin-top:12px}
 
-  footer{max-width:780px;margin:46px auto 0;padding:18px 24px 0;border-top:1px solid var(--hair);
-    font-size:11px;color:var(--ink-soft);font-style:italic;font-family:var(--serif);text-align:center}
-  .err{max-width:780px;margin:40px auto;padding:24px;text-align:center;color:var(--avoid);font-family:var(--serif)}
-  @media(max-width:560px){h1{font-size:38px}.thesis{font-size:17px}.why .d{min-width:60px}}
+  footer{max-width:1060px;margin:34px auto 0;padding:16px 20px 0;border-top:1px solid var(--line);
+    font-size:11px;color:var(--tx3);text-align:center}
+  @media(max-width:560px){.chead .pxwrap .p{font-size:18px}}
 </style>
 </head>
 <body>
-  <header>
-    <div class="kicker">Research Desk · Diskretionär</div>
-    <h1>Conviction <em>— Claude's Picks</em></h1>
-    <div class="dateline"><span>Kuratierte Markt-Ideen aus Knowledge, News &amp; Filings</span><span>Stand <b id="updated">—</b></span></div>
-  </header>
-  <p class="intro" id="intro"></p>
-  <div class="legend">
-    <span><svg viewBox="0 0 24 24" style="fill:var(--buy)"><use href="#th-up"/></svg> Kaufen</span>
-    <span><svg viewBox="0 0 24 24" style="fill:var(--wait)"><use href="#th-wait"/></svg> Abwarten</span>
-    <span><svg viewBox="0 0 24 24" style="fill:var(--avoid)"><use href="#th-down"/></svg> Finger weg</span>
-    <span style="margin-left:auto">● Conviction 1–5</span>
+  <div class="top">
+    <div class="brand"><b>Conviction</b><span class="sub">Claude's Picks</span></div>
+    <div class="meta">Stand <b id="updated">—</b> · Kurse as-of, nicht live</div>
   </div>
-  <div class="wrap" id="board"></div>
-  <footer>Diskretionäre Einschätzungen, kein Anlagerat. Kurse „as-of" letztem Update — nicht live. Outcome-Δ trackt ab Aufnahme zur Selbstkontrolle.</footer>
+  <p class="intro" id="intro"></p>
+  <div class="wrap">
+    <div class="heat" id="heat"></div>
+    <div class="legend">
+      <span><svg viewBox="0 0 24 24" style="fill:var(--buy)"><use href="#th-up"/></svg> Kaufen</span>
+      <span><svg viewBox="0 0 24 24" style="fill:var(--wait)"><use href="#th-wait"/></svg> Abwarten</span>
+      <span><svg viewBox="0 0 24 24" style="fill:var(--avoid)"><use href="#th-down"/></svg> Finger weg</span>
+      <span style="margin-left:auto">Kachel-Farbe = Kurs seit Aufnahme · ● Conviction 1–5</span>
+    </div>
+    <div id="board"></div>
+  </div>
+  <footer>Diskretionäre Einschätzungen, kein Anlagerat. Kurse „as-of" letztem Update — nicht live. Δ trackt ab Aufnahme zur Selbstkontrolle.</footer>
 
-  <!-- SVG sprite -->
   <svg width="0" height="0" style="position:absolute">
     <symbol id="th-up" viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 1 6.59 7.59C6.22 7.95 6 8.45 6 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91z"/></symbol>
     <symbol id="th-down" viewBox="0 0 24 24"><path d="M22 3h-4v12h4V3zM2 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 23l6.58-6.59c.37-.36.59-.86.59-1.41V5c0-1.1-.9-2-2-2H7c-.83 0-1.54.5-1.84 1.22L2.14 11.27c-.09.23-.14.47-.14.73v1.91z"/></symbol>
@@ -127,48 +122,50 @@
   </svg>
 
 <script>
-const VERDICT={buy:{label:"Kaufen",icon:"th-up"},wait:{label:"Abwarten",icon:"th-wait"},avoid:{label:"Finger weg",icon:"th-down"}};
+const VERDICT={buy:{l:"Kaufen",i:"th-up"},wait:{l:"Abwarten",i:"th-wait"},avoid:{l:"Finger weg",i:"th-down"}};
+const logoURL=t=>`https://images.financialmodelingprep.com/symbol/${t}.png`;
+function logo(t){return `<img class="logo" src="${logoURL(t)}" alt="" onerror="this.onerror=null;this.outerHTML='<span class=&quot;logo ph&quot;>${t.slice(0,3)}</span>'">`;}
+function delta(p){const d=((p.current_price-p.ref_price)/p.ref_price*100);return {d,cls:d>0.05?'up':d<-0.05?'down':'flat',s:(d>=0?'+':'')+d.toFixed(2)+'%'};}
 function pips(n){let h='<div class="pips">';for(let i=1;i<=5;i++)h+=`<div class="pip${i<=n?' on':''}"></div>`;return h+'</div>';}
+function thumb(v){const x=VERDICT[v]||VERDICT.wait;return `<span class="thumb ${v}"><svg viewBox="0 0 24 24"><use href="#${x.i}"/></svg></span>`;}
 function lvl(k,v){if(v==null||v===0||v==='—')return '';return `<div class="lv"><span class="k">${k}</span><span class="v">${typeof v==='number'?'$'+v.toFixed(2):v}</span></div>`;}
-function card(p){
-  const vd=VERDICT[p.verdict]||VERDICT.wait;
-  const d=((p.current_price-p.ref_price)/p.ref_price*100);
-  const dc=d>=0?'up':'down', ds=(d>=0?'+':'')+d.toFixed(1)+'%';
+
+function tile(p){const dl=delta(p);return `<div class="tile ${dl.cls}">
+  <div class="h">${logo(p.ticker)}<span class="tk">${p.ticker}</span><span class="vb">${thumb(p.verdict)}</span></div>
+  <div><div class="px">$${p.current_price.toFixed(2)}</div><div class="ch">${dl.s} <span style="color:var(--tx3);font-weight:500">seit Aufnahme</span></div></div>
+</div>`;}
+
+function card(p){const dl=delta(p),vd=VERDICT[p.verdict]||VERDICT.wait,L=p.levels||{};
   const why=(p.why||[]).map(w=>`<li><span class="d">${w.date}</span><span>${w.text}</span></li>`).join('');
-  const L=p.levels||{};
   return `<div class="card ${p.verdict}">
-    <div class="top">
-      <div class="id">
-        <div class="tkr">${p.ticker}</div><div class="co">${p.company}</div>
-        <div class="tags"><span class="tag ${p.horizon==='long'?'long':''}">${p.horizon==='long'?'Langfristig':'Swing'}</span><span class="tag">${p.sector||''}</span></div>
-      </div>
-      <div class="verdict">
-        <div class="thumb"><svg viewBox="0 0 24 24"><use href="#${vd.icon}"/></svg></div>
-        <div class="vlabel">${vd.label}</div>
-      </div>
+    <div class="chead">${logo(p.ticker)}
+      <div class="name"><b>${p.ticker}</b><div class="co">${p.company}</div></div>
+      <div class="pxwrap"><div class="p">$${p.current_price.toFixed(2)}</div><div class="c chg ${dl.cls}">${dl.s}</div></div>
+      <div class="verdict">${thumb(p.verdict)}<span class="vlabel">${vd.l}</span></div>
     </div>
-    <div class="thesis">${p.thesis}</div>
-    <div class="conv">Conviction ${pips(p.conviction)}</div>
-    <div class="why"><h4>Warum</h4><ul>${why}</ul>
-      ${p.note?`<div class="note">${p.note}</div>`:''}</div>
-    <div class="foot">
-      ${lvl(p.horizon==='swing'?'Trigger':'Einstieg ab',L.trigger)}
-      ${lvl('Stop',L.stop)}${lvl('Ziel',L.target)}${p.rr&&p.rr!=='—'?lvl('R/R',p.rr):''}
-      <div class="lv delta"><span class="k">seit Aufnahme ($${p.ref_price.toFixed(2)})</span><span class="v ${dc}">${ds}</span></div>
-    </div>
-    <div class="asof">Aufgenommen ${p.added} · aktualisiert ${p.updated}</div>
-  </div>`;
-}
-const FALLBACK={"updated":"2026-06-20","intro":"Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diskretionär. Stand jeweils pro Karte.","picks":[
- {"ticker":"DIS","company":"The Walt Disney Company","sector":"Communication Services","horizon":"swing","verdict":"buy","conviction":4,"thesis":"Saubere Base nahe Hoch, Q2-Beat bestätigt, Streaming + Parks ziehen an.","added":"2026-06-20","updated":"2026-06-20","ref_price":103.89,"current_price":103.89,"levels":{"trigger":105.25,"stop":98.50,"target":124.00},"why":[{"date":"2026-05-06","text":"Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide FY26/27."},{"date":"2026-06-18","text":"Enge 10-Tage-Base $98.6–$104, löst mit Volumen auf. Nur −1.2% unterm 20d-High, untere Mitte des 52w-Range → Luft."},{"date":"2026-06-16","text":"Insider clean: Form-4 = nur RSU-Vesting, KEINE Open-Market-Verkäufe."}],"note":"Entry sauber bei Schluss > $105.25 (Breakout-Bestätigung). Earnings erst ~Aug → kein Adjacency-Risiko. Nicht ins Hoch springen.","rr":"~3:1 (Stop −5.7% / Ziel +19%)"},
- {"ticker":"ETN","company":"Eaton Corporation plc","sector":"Industrials — Power","horizon":"long","verdict":"wait","conviction":4,"thesis":"Pure-Play Power-Infra nach Dana-Spinoff — Strom ist DER AI-Data-Center-Flaschenhals.","added":"2026-06-20","updated":"2026-06-20","ref_price":421.77,"current_price":421.77,"levels":{"trigger":427.00,"stop":405.00,"target":500.00},"why":[{"date":"2026-06-11","text":"8-K (SEC EDGAR): Reverse-Morris-Trust — Auto-Sparte wird mit Dana abgespalten. ~$1.1B Cash, wird Pure-Play Power/Electrical."},{"date":"2026-03-12","text":"Boyd-Thermal $9.5B = größter Liquid-Cooling-Deal. Positioniert ETN im Cooling-Layer der AI-Data-Center."},{"date":"2026-06-18","text":"Base nach oben aufgelöst (+7.9% in 5 Tagen) → an Resistance. Einstieg gelaufen, Geduld."}],"note":"These top, Einstieg gerade schlecht. Warten auf Pullback Richtung MA20 (~$409) ODER Breakout-Schluss > $427 auf Volumen. RMT = struktureller Treiber über 12–18 Monate.","rr":"—"},
- {"ticker":"FLR","company":"Fluor Corporation","sector":"Industrials — E&C","horizon":"long","verdict":"wait","conviction":3,"thesis":"Engineering-Play auf Nuclear + AI-Data-Center-Bau. Echtes Backlog, aber überhitzter Chart.","added":"2026-06-20","updated":"2026-06-20","ref_price":53.66,"current_price":53.66,"levels":{"trigger":0,"stop":48.00,"target":60.00},"why":[{"date":"2026-06-02","text":"$1.03 Mrd Naval-Nuclear-Vertrag + SMR-Projekt für Dow + TeraWulf-Data-Center (480 MW). $60 Mrd+ potenzielles Backlog."},{"date":"2026-06-18","text":"+15% in 8 Tagen, RSI 70, ~11% über MA50, über Analysten-Zielen. Haupt-Katalysator ~2.5 Wochen alt = erster Pop durch."}],"note":"Fundamental kaufwürdig (Nuclear/AI-Infra real), Timing schlecht — nicht ins +15% am Hoch. Auf Pullback MA20 (~$48–49) warten.","rr":"—"}
+    <div class="cbody">
+      <div class="tags"><span class="tag ${p.horizon==='long'?'long':''}">${p.horizon==='long'?'Langfristig':'Swing'}</span><span class="tag">${p.sector||''}</span></div>
+      <div class="thesis">${p.thesis}</div>
+      <div class="conv">Conviction ${pips(p.conviction)}</div>
+      <div class="why"><h4>Warum</h4><ul>${why}</ul>${p.note?`<div class="note">${p.note}</div>`:''}</div>
+      <div class="foot">
+        ${lvl(p.horizon==='swing'?'Trigger':'Einstieg ab',L.trigger)}${lvl('Stop',L.stop)}${lvl('Ziel',L.target)}${p.rr&&p.rr!=='—'?lvl('R/R',p.rr):''}
+        <div class="lv delta"><span class="k">seit Aufnahme ($${p.ref_price.toFixed(2)})</span><span class="v chg ${dl.cls}">${dl.s}</span></div>
+      </div>
+      <div class="asof">Aufgenommen ${p.added} · aktualisiert ${p.updated}</div>
+    </div></div>`;}
+
+const FALLBACK={"updated":"2026-06-20","intro":"Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diskretionär.","picks":[
+ {"ticker":"DIS","company":"The Walt Disney Company","sector":"Communication Services","horizon":"swing","verdict":"buy","conviction":4,"thesis":"Saubere Base nahe Hoch, Q2-Beat bestätigt, Streaming + Parks ziehen an.","added":"2026-06-20","updated":"2026-06-20","ref_price":103.89,"current_price":103.89,"levels":{"trigger":105.25,"stop":98.50,"target":124.00},"why":[{"date":"2026-05-06","text":"Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide."},{"date":"2026-06-18","text":"Enge 10-Tage-Base $98.6–$104, löst mit Volumen auf. −1.2% unterm 20d-High, untere Mitte 52w-Range → Luft."},{"date":"2026-06-16","text":"Insider clean: Form-4 = nur RSU-Vesting, KEINE Open-Market-Verkäufe."}],"note":"Entry sauber bei Schluss > $105.25. Earnings erst ~Aug → kein Risiko. Nicht ins Hoch springen.","rr":"~3:1"},
+ {"ticker":"ETN","company":"Eaton Corporation plc","sector":"Industrials — Power","horizon":"long","verdict":"wait","conviction":4,"thesis":"Pure-Play Power-Infra nach Dana-Spinoff — Strom ist DER AI-Data-Center-Flaschenhals.","added":"2026-06-20","updated":"2026-06-20","ref_price":421.77,"current_price":421.77,"levels":{"trigger":427.00,"stop":405.00,"target":500.00},"why":[{"date":"2026-06-11","text":"8-K (SEC EDGAR): Reverse-Morris-Trust — Auto-Sparte mit Dana abgespalten. ~$1.1B Cash, Pure-Play Power."},{"date":"2026-03-12","text":"Boyd-Thermal $9.5B = größter Liquid-Cooling-Deal. ETN im Cooling-Layer der AI-Data-Center."},{"date":"2026-06-18","text":"Base aufgelöst (+7.9% in 5T) → an Resistance. Einstieg gelaufen, Geduld."}],"note":"These top, Einstieg schlecht. Warten auf Pullback MA20 (~$409) ODER Breakout-Schluss > $427. RMT = 12–18-Monate-Treiber.","rr":"—"},
+ {"ticker":"FLR","company":"Fluor Corporation","sector":"Industrials — E&C","horizon":"long","verdict":"wait","conviction":3,"thesis":"Engineering-Play auf Nuclear + AI-Data-Center-Bau. Echtes Backlog, aber überhitzter Chart.","added":"2026-06-20","updated":"2026-06-20","ref_price":53.66,"current_price":53.66,"levels":{"trigger":0,"stop":48.00,"target":60.00},"why":[{"date":"2026-06-02","text":"$1.03 Mrd Naval-Nuclear-Vertrag + SMR für Dow + TeraWulf-Data-Center (480 MW). $60 Mrd+ Backlog."},{"date":"2026-06-18","text":"+15% in 8T, RSI 70, ~11% über MA50, über Analysten-Zielen. Katalysator ~2.5 Wochen alt."}],"note":"Fundamental kaufwürdig (Nuclear/AI real), Timing schlecht — nicht ins +15% am Hoch. Pullback MA20 (~$48–49) abwarten.","rr":"—"}
 ]};
 function render(data){
   document.getElementById('updated').textContent=data.updated||'—';
   document.getElementById('intro').textContent=data.intro||'';
   const order={buy:0,wait:1,avoid:2};
   const picks=(data.picks||[]).slice().sort((a,b)=>(order[a.verdict]-order[b.verdict])||(b.conviction-a.conviction));
+  document.getElementById('heat').innerHTML=picks.map(tile).join('');
   document.getElementById('board').innerHTML=picks.map(card).join('');
 }
 fetch('claude_picks.json?_='+Date.now()).then(r=>{if(!r.ok)throw 0;return r.json();}).then(render).catch(_=>render(FALLBACK));
