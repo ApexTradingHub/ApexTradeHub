@@ -660,6 +660,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   <button class="tab-btn active" onclick="showTab('today')" id="tab-today">📡 Signale</button>
   <button class="tab-btn" onclick="showTab('history')" id="tab-history">📋 Trade History</button>
   <button class="tab-btn" onclick="showTab('paper')" id="tab-paper">📈 Paper Trading</button>
+  <button class="tab-btn" onclick="showTab('picks')" id="tab-picks">🎯 Claude's Picks</button>
 </nav>
 
 <!-- ═══════════════════════════════
@@ -1005,6 +1006,11 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 
 </div><!-- /page-paper -->
 
+<div class="page" id="page-picks">
+  <iframe id="picks-frame" title="Claude's Picks" data-src="claude_picks.html"
+    style="width:100%;height:82vh;border:0;border-radius:12px;background:#10131A;display:block;"></iframe>
+</div><!-- /page-picks -->
+
 <!-- ═══════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════ -->
@@ -1082,6 +1088,7 @@ function showTab(tab) {
   location.hash = tab;
   if (tab === 'history') renderHistory();
   if (tab === 'paper')   renderPaper();
+  if (tab === 'picks') { const f = document.getElementById('picks-frame'); if (f && !f.src) f.src = f.dataset.src; }
 }
 
 /* ── STATS RENDER ── */

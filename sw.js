@@ -1,8 +1,9 @@
-const CACHE = 'apexscan-v23';
+const CACHE = 'apexscan-v24';
 
 // App shell – alles was sich selten ändert
 const SHELL = [
   '/ApexTradeHub/dashboard.html',
+  '/ApexTradeHub/claude_picks.html',
   'https://cdn.jsdelivr.net/npm/chart.js'
 ];
 
@@ -14,7 +15,8 @@ const DATA_FILES = [
   '/ApexTradeHub/apex_market.json',
   '/ApexTradeHub/apex_positions.json',
   '/ApexTradeHub/apex_open_positions.json',
-  '/ApexTradeHub/apex_trade_log.json'
+  '/ApexTradeHub/apex_trade_log.json',
+  '/ApexTradeHub/claude_picks.json'
 ];
 
 // ── Install: Shell cachen ──
