@@ -1,12 +1,12 @@
 {
   "meta": {
-    "updated": "2026-06-19T11:08:00.594352",
-    "total_trades": 152,
+    "updated": "2026-06-22T12:38:32.663494",
+    "total_trades": 153,
     "date_range": [
       "2026-03-17",
       "2026-06-10"
     ],
-    "lifetime_wr": 0.454,
+    "lifetime_wr": 0.458,
     "lifetime_pf": 1.83
   },
   "tickers": {
@@ -448,31 +448,47 @@
           "confidence": "LOW"
         }
       }
+    },
+    "MEAN_REVERSION": {
+      "n": 5,
+      "wr": 0.2,
+      "pf": 0.025,
+      "avg_win_pct": 0.27,
+      "avg_loss_pct": -2.7,
+      "confidence": "LOW",
+      "feature_buckets": {
+        "rsi_lt_50": {
+          "n": 5,
+          "wr": 0.2,
+          "lift_vs_setup_baseline": 0.0,
+          "confidence": "LOW"
+        }
+      }
     }
   },
   "catalysts": {
     "cat_pocket_pivot": {
       "n_present": 33,
-      "n_absent": 119,
+      "n_absent": 120,
       "wr_when_present": 0.545,
-      "wr_when_absent": 0.429,
-      "lift": 0.117,
+      "wr_when_absent": 0.433,
+      "lift": 0.112,
       "confidence": "HIGH"
     },
     "gap_gt_2pct": {
       "n_present": 9,
-      "n_absent": 143,
+      "n_absent": 144,
       "wr_when_present": 0.667,
-      "wr_when_absent": 0.441,
-      "lift": 0.226,
+      "wr_when_absent": 0.444,
+      "lift": 0.222,
       "confidence": "LOW"
     },
     "analyst_upside_gt_15pct": {
-      "n_present": 26,
+      "n_present": 27,
       "n_absent": 126,
-      "wr_when_present": 0.308,
+      "wr_when_present": 0.333,
       "wr_when_absent": 0.484,
-      "lift": -0.176,
+      "lift": -0.151,
       "confidence": "MED"
     }
   },
