@@ -469,14 +469,43 @@ def _wilder_rsi(close_series, period: int = 14) -> float:
     return float(100 - (100 / (1 + rs)))
 
 
+def fetch_trending_universe(limit: int = 25) -> list:
+    """yfinance Trending-Quelle: day_gainers + most_actives = Namen die JETZT laufen.
+    2026-06-22 (User-Wunsch): zweite Momentum-Quelle, damit der Filler bei duennem
+    statischem Universe trotzdem 'in-motion'-Kandidaten findet. KEIN Filter-Loosen —
+    diese Namen durchlaufen dieselben Momentum-Filter wie die Top-200."""
+    try:
+        import yfinance as yf
+    except ImportError:
+        return []
+    if not hasattr(yf, "screen"):
+        return []
+    syms = set()
+    for q in ("day_gainers", "most_actives"):
+        try:
+            r = yf.screen(q, count=limit)
+            for x in (r.get("quotes", []) if isinstance(r, dict) else []):
+                s = (x.get("symbol") or "").upper()
+                # nur saubere US-Equity-Symbole (keine ^Index/=F-Futures/.Ausland/-Crypto)
+                if s and s.isalpha() and 1 <= len(s) <= 5:
+                    syms.add(s)
+        except Exception as e:
+            log(f"trending {q} fail: {str(e)[:80]}")
+    log(f"trending: {len(syms)} laufende Namen (day_gainers+most_actives)")
+    return list(syms)
+
+
 def fetch_momentum_universe() -> list:
-    """Holt Top-N US-Tickers, computed Momentum-Filter + Score, cached.
+    """Holt Top-N US-Tickers + yfinance-Trending, computed Momentum-Filter + Score, cached.
     Returns liste von candidate-dicts (kompatibel zur pending-Struktur)."""
     if not US_TICKERS.exists():
         log("momentum: us_tickers.txt fehlt, skip")
         return []
     with open(US_TICKERS, "r", encoding="utf-8") as fh:
         tickers = [t.strip().upper() for t in fh if t.strip()][:MOMENTUM_UNIVERSE_SIZE]
+    # Zweite Quelle: yfinance-Trending (day_gainers/most_actives) dazu mergen
+    trending = fetch_trending_universe()
+    tickers = list(dict.fromkeys(tickers + trending))   # dedup, Reihenfolge erhalten
     if not tickers:
         return []
 
