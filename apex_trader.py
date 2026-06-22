@@ -89,6 +89,12 @@ REPLACEMENT_WEAKEST_MIN_PNL = 2.0    # schwaechste Position muss >= +2 % im Plus
 #  Re-Validation (Ticker in heutiger Scan) refresht signal_date.
 MAX_TRIGGER_DAYS = 3
 
+# Close-Cooldown (2026-06-22 Bugfix): ein gerade geschlossener Ticker darf N Tage NICHT
+# re-geoeffnet werden. Verhindert die Duplicate-Trap (BACKLOG #8) als realen Churn:
+# ASML wurde an 5 Daten emittiert; nach Stagnation-Close der 15.6-Version oeffnete die
+# 19.6-Version 5 Min spaeter am alten buy_above ($1942) ueber dem Marktkurs.
+CLOSE_COOLDOWN_DAYS = 5
+
 # Hold-Window: Time-Exit pro Setup (matched apex_equity.py horizon_to_days)
 HOLD_DAYS_PER_SETUP = {
     "BREAKOUT":       21,
@@ -105,6 +111,21 @@ HOLD_DAYS_DEFAULT = 21
 
 def hold_days_for(setup: str) -> int:
     return HOLD_DAYS_PER_SETUP.get(setup, HOLD_DAYS_DEFAULT)
+
+
+def recently_closed_tickers(state: dict, days: int = CLOSE_COOLDOWN_DAYS) -> set:
+    """Tickers die in den letzten `days` Tagen geschlossen wurden — NICHT sofort re-entern.
+    Fix fuer Duplicate-Trap: Ticker an mehreren Daten emittiert -> nach Close re-Open."""
+    out = set()
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    for p in state.get("closed", []):
+        try:
+            ca = datetime.fromisoformat(str(p.get("closed_at", "")).replace("Z", "+00:00"))
+            if ca >= cutoff:
+                out.add(p.get("ticker"))
+        except Exception:
+            continue
+    return out
 
 # Pfade
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -583,6 +604,7 @@ def select_momentum_fillers(state: dict, free_slots: int) -> list:
 
     busy = {p["ticker"] for p in state.get("open", [])}
     busy |= {p["ticker"] for p in state.get("pending", [])}
+    busy |= recently_closed_tickers(state)   # Close-Cooldown (Anti-Churn)
 
     # Skip historisch geschlossene desselben Tages (nicht zwei mal pro Tag)
     today = today_date().isoformat()
@@ -747,7 +769,7 @@ def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
     if not cands:
         return events
 
-    busy = {p["ticker"] for p in open_pos} | {p["ticker"] for p in state.get("pending", [])}
+    busy = {p["ticker"] for p in open_pos} | {p["ticker"] for p in state.get("pending", [])} | recently_closed_tickers(state)
     # nicht denselben Ticker am selben Tag zweimal (auch nach Close)
     today = today_date().isoformat()
     tracked = {p.get("ticker") for p in state.get("closed", [])
@@ -823,6 +845,8 @@ def select_new_signals(state: dict, signals: list) -> list:
             tracked_keys.add((p.get("ticker"), p.get("signal_date")))
     busy_tickers = {p["ticker"] for p in state.get("open", [])}
     busy_tickers |= {p["ticker"] for p in state.get("pending", [])}
+    # Close-Cooldown: gerade geschlossene Ticker NICHT sofort wieder aufnehmen (Anti-Churn)
+    busy_tickers |= recently_closed_tickers(state)
 
     # Alle qualifizierten, frischen Kandidaten flach sammeln
     candidates = []
@@ -1067,7 +1091,21 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
                 passes_tg_gate(s)):
                 revalidated_map[(s["ticker"], s["setup"])] = s
 
+    open_tickers = {q["ticker"] for q in state["open"]}
+    cooldown = recently_closed_tickers(state)
     for p in state["pending"]:
+        # 0. Anti-Churn-Guard (2026-06-22): Ticker bereits offen ODER gerade geschlossen
+        # -> Pending verfaellt, KEIN Re-Open. Fix fuer ASML-Duplicate-Re-Entry.
+        if p["ticker"] in open_tickers or p["ticker"] in cooldown:
+            p["status"] = "expired"
+            p["expired_at"] = now_iso()
+            if not dry_run:
+                state["expired"].append(p)
+            events.append({"event": "expired", "id": p["id"], "ts": now_iso(),
+                           "ticker": p["ticker"], "reason": "anti-churn: offen/Cooldown"})
+            log(f"  expired (anti-churn): {p['ticker']} — offen oder kuerzlich geschlossen")
+            continue
+
         # 1. Expiry check
         try:
             sig_date = datetime.fromisoformat(p["signal_date"]).date()
