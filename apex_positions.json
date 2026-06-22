@@ -1,39 +1,28 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 211.2087733341981,
-  "last_updated": "2026-06-22T13:40:02Z",
-  "pending": [],
-  "open": [
+  "cash": 261.38938695022426,
+  "last_updated": "2026-06-22T13:45:03Z",
+  "pending": [
     {
-      "id": "PAPER_ASML_2026-06-15",
+      "id": "PAPER_ASML_2026-06-19",
       "ticker": "ASML",
       "setup": "BREAKOUT",
       "source": "scanner",
       "sector": "Technology",
-      "signal_date": "2026-06-15",
-      "entry": 1907.31,
-      "stop_initial": 1784.83,
-      "target": 2150.0,
-      "score": 146.3,
-      "rr": 1.98,
-      "upside_pct": 12.7,
-      "added_at": "2026-06-16T19:45:07Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 1915.6700439453125,
-      "shares": 0.026100528197969448,
-      "size_usd": 50.0,
-      "stop": 1784.83,
-      "high_since_entry": 1958.0,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-06-17T13:45:06Z",
-      "current_price": 1946.530029296875,
-      "pnl_pct": 1.6109238357147622,
-      "pnl_usd": 0.805461917857381,
-      "hold_days": 4
-    },
+      "signal_date": "2026-06-19",
+      "entry": 1942.37,
+      "stop_initial": 1814.55,
+      "target": 2200.0,
+      "score": 144.4,
+      "rr": 2.02,
+      "upside_pct": 13.3,
+      "added_at": "2026-06-22T13:45:07Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
+  "open": [
     {
       "id": "PAPER_CMI_2026-06-16",
       "ticker": "CMI",
@@ -58,9 +47,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T14:30:07Z",
-      "current_price": 729.52001953125,
-      "pnl_pct": 4.320102136694489,
-      "pnl_usd": 2.1600510683472445,
+      "current_price": 724.844970703125,
+      "pnl_pct": 3.6515782330497277,
+      "pnl_usd": 1.8257891165248639,
       "hold_days": 4
     },
     {
@@ -87,9 +76,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T17:15:06Z",
-      "current_price": 418.125,
-      "pnl_pct": 2.398418931676849,
-      "pnl_usd": 1.1992094658384245,
+      "current_price": 416.31500244140625,
+      "pnl_pct": 1.9551522332727949,
+      "pnl_usd": 0.9775761166363975,
       "hold_days": 4
     },
     {
@@ -116,9 +105,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T19:45:06Z",
-      "current_price": 86.7249984741211,
-      "pnl_pct": 2.4875897827004128,
-      "pnl_usd": 1.2437948913502064,
+      "current_price": 86.9749984741211,
+      "pnl_pct": 2.783028213331469,
+      "pnl_usd": 1.3915141066657346,
       "hold_days": 4
     }
   ],
@@ -565,6 +554,38 @@
       "exit_price": 44.189998626708984,
       "exit_reason": "Stagnation Exit",
       "closed_at": "2026-06-22T13:00:09Z"
+    },
+    {
+      "id": "PAPER_ASML_2026-06-15",
+      "ticker": "ASML",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-06-15",
+      "entry": 1907.31,
+      "stop_initial": 1784.83,
+      "target": 2150.0,
+      "score": 146.3,
+      "rr": 1.98,
+      "upside_pct": 12.7,
+      "added_at": "2026-06-16T19:45:07Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 1915.6700439453125,
+      "shares": 0.026100528197969448,
+      "size_usd": 50.0,
+      "stop": 1784.83,
+      "high_since_entry": 1958.0,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-17T13:45:06Z",
+      "current_price": 1946.530029296875,
+      "pnl_pct": 0.36122723205236623,
+      "pnl_usd": 0.18061361602618312,
+      "hold_days": 5,
+      "exit_price": 1922.5899658203125,
+      "exit_reason": "Stagnation Exit",
+      "closed_at": "2026-06-22T13:45:07Z"
     }
   ],
   "expired": [
@@ -622,13 +643,13 @@
     }
   ],
   "stats": {
-    "total_trades": 14,
-    "open_trades": 4,
-    "wins": 11,
+    "total_trades": 15,
+    "open_trades": 3,
+    "wins": 12,
     "losses": 3,
-    "win_rate": 78.57142857142857,
-    "pnl_realized": 11.205011152986627,
-    "pnl_unrealized": 5.408517343393256,
-    "equity": 416.61729067759137
+    "win_rate": 80.0,
+    "pnl_realized": 11.38562476901281,
+    "pnl_unrealized": 4.194879339826996,
+    "equity": 415.58426629005123
   }
 }
