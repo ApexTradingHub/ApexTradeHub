@@ -1,14 +1,158 @@
 {
-  "updated": "2026-06-20",
-  "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diskretionär. Stand jeweils pro Karte.",
+  "updated": "2026-06-22",
+  "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Diese Runde: der AI-Data-Center-Stack (Power → Equipment → Cooling → REIT → Bau) + ein Diversifizierer.",
   "tape": [
-    { "label": "S&P 500", "price": 746.74, "chg": 1.04 },
-    { "label": "Nasdaq 100", "price": 740.62, "chg": 2.51 },
-    { "label": "Bitcoin", "price": 63949.51, "chg": 0.64 },
-    { "label": "VIX", "price": 18.44, "chg": 12.37 },
-    { "label": "Gold", "price": 4172.90, "chg": -1.21 }
+    {
+      "label": "S&P 500",
+      "price": 746.74,
+      "chg": 1.04
+    },
+    {
+      "label": "Nasdaq 100",
+      "price": 740.62,
+      "chg": 2.51
+    },
+    {
+      "label": "Bitcoin",
+      "price": 63949.51,
+      "chg": 0.64
+    },
+    {
+      "label": "VIX",
+      "price": 18.44,
+      "chg": 12.37
+    },
+    {
+      "label": "Gold",
+      "price": 4172.9,
+      "chg": -1.21
+    }
   ],
   "picks": [
+    {
+      "ticker": "CEG",
+      "company": "Constellation Energy",
+      "sector": "Utilities — Nuclear Power",
+      "horizon": "long",
+      "verdict": "buy",
+      "conviction": 4,
+      "thesis": "Größter US-Nuklear-Betreiber + Calpine-Gas — die Strombasis für AI-Data-Center.",
+      "levels": {
+        "trigger": 0,
+        "stop": 248.0,
+        "target": 330.0
+      },
+      "why": [
+        {
+          "date": "2026-02",
+          "text": "Calpine-Übernahme geschlossen: +21.000 MW Gas/Geothermie auf die Nuklear-Basis, Quartalsumsatz fast verdoppelt auf $11.1B."
+        },
+        {
+          "date": "2026-06-22",
+          "text": "RSI 43, −3% in 20 Tagen = zurückgesetzt. Bester Entry der Power-Namen (CEG/VST/VRT) — nicht gechased."
+        }
+      ],
+      "note": "Akkumulieren in der Zone <$280 — RSI 43 = abgekühlt. Nuklear ist der knappste, regulatorisch geschützte Baustein der AI-Power-These. Günstigere Alternative: VST (fwd-P/E 18 vs CEG 24, PEG 0.48).",
+      "rr": "—",
+      "added": "2026-06-22",
+      "updated": "2026-06-22",
+      "ref_price": 274.06,
+      "current_price": 274.06,
+      "spark": [
+        310.8,
+        303.16,
+        299.23,
+        293.14,
+        274.46,
+        274.83,
+        267.2,
+        262.0,
+        260.67,
+        281.26,
+        285.83,
+        294.07,
+        301.57,
+        288.68,
+        286.31,
+        287.75,
+        265.7,
+        272.65,
+        267.24,
+        264.59,
+        254.83,
+        250.67,
+        251.65,
+        242.3,
+        246.71,
+        253.76,
+        262.35,
+        268.0,
+        267.17,
+        274.06
+      ]
+    },
+    {
+      "ticker": "VRT",
+      "company": "Vertiv Holdings",
+      "sector": "Industrials — Cooling",
+      "horizon": "long",
+      "verdict": "buy",
+      "conviction": 4,
+      "thesis": "Liquid-Cooling-Pure-Play — der Thermal-Layer jeder AI-Factory.",
+      "levels": {
+        "trigger": 0,
+        "stop": 300.0,
+        "target": 400.0
+      },
+      "why": [
+        {
+          "date": "2026-06-12",
+          "text": "ThermoKey-Acquisition abgeschlossen — erweitert das Heat-Rejection-Portfolio für High-Density-AI-Data-Center (System-Level-Cooling)."
+        },
+        {
+          "date": "2026-Q3",
+          "text": "122% Earnings-Wachstum aus Data-Center-Cooling + Power-Distribution-Nachfrage. RSI 56 = mitten im Trend, nicht überhitzt."
+        }
+      ],
+      "note": "Buy-Zone — Cooling ist der am wenigsten überlaufene Layer der These und VRT der reinste Play. Nicht extended (RSI 56). Stop unter ~$300.",
+      "rr": "—",
+      "added": "2026-06-22",
+      "updated": "2026-06-22",
+      "ref_price": 333.05,
+      "current_price": 333.05,
+      "spark": [
+        339.94,
+        339.9,
+        367.84,
+        367.05,
+        369.91,
+        376.15,
+        370.86,
+        339.66,
+        322.56,
+        315.6,
+        323.33,
+        327.39,
+        323.84,
+        319.71,
+        314.11,
+        315.64,
+        323.32,
+        334.42,
+        331.37,
+        323.85,
+        300.45,
+        300.51,
+        289.46,
+        280.92,
+        297.82,
+        302.81,
+        311.93,
+        299.6,
+        317.58,
+        333.05
+      ]
+    },
     {
       "ticker": "DIS",
       "company": "The Walt Disney Company",
@@ -16,42 +160,196 @@
       "horizon": "swing",
       "verdict": "buy",
       "conviction": 4,
-      "thesis": "Saubere Base nahe Hoch, Q2-Beat bestätigt, Streaming + Parks ziehen an.",
-      "added": "2026-06-20",
-      "updated": "2026-06-20",
+      "thesis": "Saubere Base nahe Hoch, Q2-Beat bestätigt — Diversifizierer abseits der AI-These.",
+      "levels": {
+        "trigger": 105.25,
+        "stop": 98.5,
+        "target": 124.0
+      },
+      "why": [
+        {
+          "date": "2026-05-06",
+          "text": "Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide FY26/27."
+        },
+        {
+          "date": "2026-06-18",
+          "text": "Enge Base $98.6–$104, löst mit Volumen auf. −1.2% unterm 20d-High, untere Mitte des 52w-Range → Luft."
+        },
+        {
+          "date": "2026-06-16",
+          "text": "Insider clean: Form-4 = nur RSU-Vesting, keine Open-Market-Verkäufe."
+        }
+      ],
+      "note": "Sauberster Entry bei Schluss > $105.25. Earnings erst ~Aug → kein Adjacency-Risiko. Anti-Chase: nicht ins Hoch springen.",
+      "rr": "~3:1",
+      "added": "2026-06-22",
+      "updated": "2026-06-22",
       "ref_price": 103.89,
       "current_price": 103.89,
-      "levels": { "trigger": 105.25, "stop": 98.50, "target": 124.00 },
-      "spark": [108.66,108.02,104.72,106.16,104.9,105.42,102.72,103.91,102.29,104.08,103.58,103.0,103.28,104.18,103.73,101.83,102.85,101.41,99.39,99.34,99.71,98.87,99.33,98.61,100.34,100.04,101.69,101.28,100.86,103.89],
-      "why": [
-        { "date": "2026-05-06", "text": "Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide FY26/27." },
-        { "date": "2026-06-18", "text": "Enge 10-Tage-Base $98.6–$104, löst gerade mit Volumen auf. Nur −1.2% unterm 20d-High, untere Mitte des 52w-Range → Luft." },
-        { "date": "2026-06-16", "text": "Insider clean: Form-4 = nur RSU-Vesting + Tax-Withholding, KEINE Open-Market-Verkäufe." }
-      ],
-      "note": "Entry sauber bei Schluss > $105.25 (Breakout-Bestätigung). Earnings erst ~Aug → kein Adjacency-Risiko. Anti-Chase: nicht ins Hoch springen.",
-      "rr": "~3:1 (Stop −5.7% / Ziel +19%)"
+      "spark": [
+        108.66,
+        108.02,
+        104.72,
+        106.16,
+        104.9,
+        105.42,
+        102.72,
+        103.91,
+        102.29,
+        104.08,
+        103.58,
+        103.0,
+        103.28,
+        104.18,
+        103.73,
+        101.83,
+        102.85,
+        101.41,
+        99.39,
+        99.34,
+        99.71,
+        98.87,
+        99.33,
+        98.61,
+        100.34,
+        100.04,
+        101.69,
+        101.28,
+        100.86,
+        103.89
+      ]
     },
     {
       "ticker": "ETN",
       "company": "Eaton Corporation plc",
-      "sector": "Industrials — Power Management",
+      "sector": "Industrials — Power Equipment",
       "horizon": "long",
       "verdict": "wait",
       "conviction": 4,
-      "thesis": "Pure-Play Power-Infra nach Dana-Spinoff — Strom ist DER AI-Data-Center-Flaschenhals.",
-      "added": "2026-06-20",
-      "updated": "2026-06-20",
+      "thesis": "Pure-Play Power-Infra nach Dana-Spinoff — das Electrical-Equipment des AI-Buildouts.",
+      "levels": {
+        "trigger": 427.0,
+        "stop": 405.0,
+        "target": 500.0
+      },
+      "why": [
+        {
+          "date": "2026-06-11",
+          "text": "8-K (SEC EDGAR): Reverse-Morris-Trust — Auto-Sparte wird mit Dana abgespalten. ~$1.1B Cash, wird Pure-Play Power/Electrical."
+        },
+        {
+          "date": "2026-03-12",
+          "text": "Boyd-Thermal $9.5B = größter Liquid-Cooling-Deal. Positioniert ETN im Cooling-Layer der AI-Data-Center."
+        },
+        {
+          "date": "2026-06-18",
+          "text": "Base aufgelöst (+7.9% in 5T) → an Resistance. Einstieg gelaufen."
+        }
+      ],
+      "note": "These top, Einstieg gerade schlecht. Warten auf Pullback Richtung MA20 (~$409) ODER Breakout-Schluss > $427 auf Volumen. RMT-Deal = 12–18-Monate-Treiber.",
+      "rr": "—",
+      "added": "2026-06-22",
+      "updated": "2026-06-22",
       "ref_price": 421.77,
       "current_price": 421.77,
-      "levels": { "trigger": 427.00, "stop": 405.00, "target": 500.00 },
-      "spark": [398.05,401.51,419.0,401.53,406.94,408.1,399.44,381.87,371.88,379.69,381.51,391.35,403.13,406.37,401.94,400.6,400.08,417.62,421.21,418.61,395.94,403.14,401.72,375.46,393.64,391.39,407.06,407.71,409.64,421.77],
+      "spark": [
+        398.05,
+        401.51,
+        419.0,
+        401.53,
+        406.94,
+        408.1,
+        399.44,
+        381.87,
+        371.88,
+        379.69,
+        381.51,
+        391.35,
+        403.13,
+        406.37,
+        401.94,
+        400.6,
+        400.08,
+        417.62,
+        421.21,
+        418.61,
+        395.94,
+        403.14,
+        401.72,
+        375.46,
+        393.64,
+        391.39,
+        407.06,
+        407.71,
+        409.64,
+        421.77
+      ]
+    },
+    {
+      "ticker": "EQIX",
+      "company": "Equinix",
+      "sector": "Real Estate — Data-Center REIT",
+      "horizon": "long",
+      "verdict": "wait",
+      "conviction": 3,
+      "thesis": "Der Vermieter der AI-Ära — 280+ Data-Center, AI-Nachfrage hebt die Guidance.",
+      "levels": {
+        "trigger": 0,
+        "stop": 1020.0,
+        "target": 1250.0
+      },
       "why": [
-        { "date": "2026-06-11", "text": "8-K (SEC EDGAR): Reverse-Morris-Trust — Mobility-/Auto-Sparte wird mit Dana abgespalten. Eaton bekommt ~$1.1B Cash, wird Pure-Play Power/Electrical." },
-        { "date": "2026-03-12", "text": "Boyd-Thermal-Acquisition $9.5B = größter Liquid-Cooling-Deal. Positioniert ETN im Cooling-Layer der AI-Data-Center." },
-        { "date": "2026-06-18", "text": "Base nach oben aufgelöst (+7.9% in 5 Tagen) → jetzt an Resistance. Einstieg gelaufen, Geduld auf Pullback oder bestätigten Breakout." }
+        {
+          "date": "2026-Q1",
+          "text": "Q1-2026: Rev $2.44B (+10%), Net Income $415M (+21%), adj EPS $4.20 (+20%). FY-Guidance auf AI-Nachfrage angehoben."
+        },
+        {
+          "date": "2026-Q1",
+          "text": "Fabric-Umsatz +26%, Bookings +70%, AI-Deal-Connections verdreifacht YoY — direkter AI-Hebel."
+        },
+        {
+          "date": "2026-06",
+          "text": "ABER: +43% YTD auf ~$1.090, P/E ~71 (REIT-Sektor ~30) = teuer auf diesem Niveau."
+        }
       ],
-      "note": "These top, Einstieg gerade schlecht (gelaufen). Warten auf Pullback Richtung MA20 (~$409) ODER Breakout-Schluss > $427 auf Volumen. RMT-Deal = struktureller Treiber über 12–18 Monate, kein schneller Pop.",
-      "rr": "—"
+      "note": "Top-Asset, aber teuer + weit gelaufen. Auf Rücksetzer warten statt am Hoch kaufen. Der einzige REIT/Landlord-Play der These — diversifiziert ggü. Equipment/Power.",
+      "rr": "—",
+      "added": "2026-06-22",
+      "updated": "2026-06-22",
+      "ref_price": 1092.19,
+      "current_price": 1092.19,
+      "spark": [
+        1061.51,
+        1066.8,
+        1080.87,
+        1075.31,
+        1071.98,
+        1074.37,
+        1054.23,
+        1057.39,
+        1043.27,
+        1065.06,
+        1078.42,
+        1079.79,
+        1077.63,
+        1070.22,
+        1069.44,
+        1068.04,
+        1050.77,
+        1071.8,
+        1077.0,
+        1089.15,
+        1080.95,
+        1062.74,
+        1059.84,
+        1038.33,
+        1043.18,
+        1055.85,
+        1064.38,
+        1094.68,
+        1088.52,
+        1092.19
+      ]
     },
     {
       "ticker": "FLR",
@@ -60,19 +358,60 @@
       "horizon": "long",
       "verdict": "wait",
       "conviction": 3,
-      "thesis": "Engineering-Play auf Nuclear + AI-Data-Center-Bau. Echtes Backlog, aber überhitzter Chart.",
-      "added": "2026-06-20",
-      "updated": "2026-06-20",
+      "thesis": "Engineering-Play auf Nuclear + AI-Data-Center-Bau. Echtes Backlog, überhitzter Chart.",
+      "levels": {
+        "trigger": 0,
+        "stop": 48.0,
+        "target": 60.0
+      },
+      "why": [
+        {
+          "date": "2026-06-02",
+          "text": "$1.03 Mrd Naval-Nuclear-Vertrag + SMR-Projekt für Dow + TeraWulf-Data-Center (480 MW). $60 Mrd+ potenzielles Backlog."
+        },
+        {
+          "date": "2026-06-18",
+          "text": "+24% in 20T, RSI 70 = überhitzt, über Analysten-Zielen. Haupt-Katalysator ~3 Wochen alt."
+        }
+      ],
+      "note": "Fundamental kaufwürdig, Timing schlecht — RSI 70, nicht ins +24% am Hoch springen. Auf Pullback MA20 (~$48–49) warten.",
+      "rr": "—",
+      "added": "2026-06-22",
+      "updated": "2026-06-22",
       "ref_price": 53.66,
       "current_price": 53.66,
-      "levels": { "trigger": 0, "stop": 48.00, "target": 60.00 },
-      "spark": [51.08,43.31,43.69,44.73,45.03,45.49,44.36,44.35,42.53,43.43,44.59,44.87,46.86,47.3,46.97,45.76,46.55,49.34,50.16,50.41,47.56,49.52,49.48,46.84,50.15,50.76,50.47,50.65,51.92,53.66],
-      "why": [
-        { "date": "2026-06-02", "text": "$1.03 Mrd Naval-Nuclear-Vertragsmodifikation + SMR-Projekt für Dow (X-energy) + TeraWulf-Data-Center (480 MW). $60 Mrd+ potenzielles Backlog." },
-        { "date": "2026-06-18", "text": "+15% in 8 Tagen, RSI 70, ~11% über MA50, über Analysten-Zielen. Haupt-Katalysator (Naval) ~2.5 Wochen alt = erster Pop durch." }
-      ],
-      "note": "Fundamental kaufwürdig (Nuclear/AI-Infra-Thema real), aber Timing schlecht — ins +15% am Hoch springen widerspricht unserer Disziplin. Auf Konsolidierung / Pullback MA20 (~$48–49) warten.",
-      "rr": "—"
+      "spark": [
+        51.08,
+        43.31,
+        43.69,
+        44.73,
+        45.03,
+        45.49,
+        44.36,
+        44.35,
+        42.53,
+        43.43,
+        44.59,
+        44.87,
+        46.86,
+        47.3,
+        46.97,
+        45.76,
+        46.55,
+        49.34,
+        50.16,
+        50.41,
+        47.56,
+        49.52,
+        49.48,
+        46.84,
+        50.15,
+        50.76,
+        50.47,
+        50.65,
+        51.92,
+        53.66
+      ]
     }
   ]
 }
