@@ -1,27 +1,9 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 261.38938695022426,
-  "last_updated": "2026-06-22T13:45:03Z",
-  "pending": [
-    {
-      "id": "PAPER_ASML_2026-06-19",
-      "ticker": "ASML",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-06-19",
-      "entry": 1942.37,
-      "stop_initial": 1814.55,
-      "target": 2200.0,
-      "score": 144.4,
-      "rr": 2.02,
-      "upside_pct": 13.3,
-      "added_at": "2026-06-22T13:45:07Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "cash": 211.38938695022426,
+  "last_updated": "2026-06-22T13:50:02Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_CMI_2026-06-16",
@@ -47,9 +29,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T14:30:07Z",
-      "current_price": 724.844970703125,
-      "pnl_pct": 3.6515782330497277,
-      "pnl_usd": 1.8257891165248639,
+      "current_price": 724.1950073242188,
+      "pnl_pct": 3.5586345930435517,
+      "pnl_usd": 1.7793172965217758,
       "hold_days": 4
     },
     {
@@ -76,9 +58,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T17:15:06Z",
-      "current_price": 416.31500244140625,
-      "pnl_pct": 1.9551522332727949,
-      "pnl_usd": 0.9775761166363975,
+      "current_price": 417.7099914550781,
+      "pnl_pct": 2.296783729660381,
+      "pnl_usd": 1.1483918648301905,
       "hold_days": 4
     },
     {
@@ -101,14 +83,43 @@
       "shares": 0.5908768612621129,
       "size_usd": 50.0,
       "stop": 80.37,
-      "high_since_entry": 87.41000366210938,
+      "high_since_entry": 87.91999816894531,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-17T19:45:06Z",
-      "current_price": 86.9749984741211,
-      "pnl_pct": 2.783028213331469,
-      "pnl_usd": 1.3915141066657346,
+      "current_price": 87.59500122070312,
+      "pnl_pct": 3.515718767080029,
+      "pnl_usd": 1.7578593835400145,
       "hold_days": 4
+    },
+    {
+      "id": "PAPER_ASML_2026-06-19",
+      "ticker": "ASML",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-06-19",
+      "entry": 1942.37,
+      "stop_initial": 1814.55,
+      "target": 2200.0,
+      "score": 144.4,
+      "rr": 2.02,
+      "upside_pct": 13.3,
+      "added_at": "2026-06-22T13:45:07Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 1942.37,
+      "shares": 0.02574174848252393,
+      "size_usd": 50.0,
+      "stop": 1814.55,
+      "high_since_entry": 1942.37,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-22T13:50:06Z",
+      "current_price": 1942.37,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -644,12 +655,12 @@
   ],
   "stats": {
     "total_trades": 15,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 12,
     "losses": 3,
     "win_rate": 80.0,
     "pnl_realized": 11.38562476901281,
-    "pnl_unrealized": 4.194879339826996,
-    "equity": 415.58426629005123
+    "pnl_unrealized": 4.685568544891981,
+    "equity": 416.0749554951162
   }
 }
