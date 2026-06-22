@@ -1,4 +1,4 @@
-const CACHE = 'apexscan-v24';
+const CACHE = 'apexscan-v25';
 
 // App shell – alles was sich selten ändert
 const SHELL = [
@@ -39,9 +39,11 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // JSON: Network-first → Cache-fallback
+  // JSON + Claude's-Picks-Board: Network-first → Cache-fallback
+  // (claude_picks.html wird haeufig iteriert → immer frisch, kein Versions-Bump noetig)
   const isData = DATA_FILES.some(f => e.request.url.includes(f.split('/').pop()));
-  if (isData) {
+  const isLiveHtml = e.request.url.includes('claude_picks.html');
+  if (isData || isLiveHtml) {
     e.respondWith(
       fetch(e.request)
         .then(res => {
