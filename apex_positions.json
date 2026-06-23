@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 315.07550214190957,
-  "last_updated": "2026-06-23T13:35:02Z",
+  "cash": 265.07550214190957,
+  "last_updated": "2026-06-23T13:40:02Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -17,23 +17,6 @@
       "score": 123.7,
       "rr": 2.01,
       "upside_pct": 11.7,
-      "added_at": "2026-06-23T13:35:06Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_ABBV_2026-06-22",
-      "ticker": "ABBV",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Healthcare",
-      "signal_date": "2026-06-22",
-      "entry": 230.93,
-      "stop_initial": 221.72,
-      "target": 250.0,
-      "score": 98.7,
-      "rr": 2.07,
-      "upside_pct": 8.3,
       "added_at": "2026-06-23T13:35:06Z",
       "status": "pending",
       "mode": "paper"
@@ -81,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-22T19:45:11Z",
-      "current_price": 22.540000915527344,
-      "pnl_pct": -1.0969683390638676,
-      "pnl_usd": -0.5484841695319338,
+      "current_price": 22.56999969482422,
+      "pnl_pct": -0.9653370126186065,
+      "pnl_usd": -0.4826685063093032,
       "hold_days": 0
     },
     {
@@ -106,13 +89,42 @@
       "shares": 1.8712574850299402,
       "size_usd": 50.0,
       "stop": 25.53,
-      "high_since_entry": 27.420000076293945,
+      "high_since_entry": 27.479999542236328,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-22T19:45:11Z",
-      "current_price": 27.309999465942383,
-      "pnl_pct": 2.2080818336167063,
-      "pnl_usd": 1.1040409168083531,
+      "current_price": 27.110000610351562,
+      "pnl_pct": 1.4595831225732172,
+      "pnl_usd": 0.7297915612866086,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_ABBV_2026-06-22",
+      "ticker": "ABBV",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Healthcare",
+      "signal_date": "2026-06-22",
+      "entry": 230.93,
+      "stop_initial": 221.72,
+      "target": 250.0,
+      "score": 98.7,
+      "rr": 2.07,
+      "upside_pct": 8.3,
+      "added_at": "2026-06-23T13:35:06Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 232.06500244140625,
+      "shares": 0.21545687403952446,
+      "size_usd": 50.0,
+      "stop": 221.72,
+      "high_since_entry": 232.06500244140625,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-23T13:40:06Z",
+      "current_price": 232.06500244140625,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -777,12 +789,12 @@
   ],
   "stats": {
     "total_trades": 19,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 15,
     "losses": 4,
     "win_rate": 78.94736842105263,
     "pnl_realized": 15.074414435886734,
-    "pnl_unrealized": 0.5555567472764193,
-    "equity": 415.63105888918597
+    "pnl_unrealized": 0.2471230549773054,
+    "equity": 415.32262519688686
   }
 }
