@@ -698,5 +698,23 @@
     "entry_signal": 230.93,
     "entry_actual": 232.06500244140625,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_RCUS_2026-06-22",
+    "ts": "2026-06-23T14:15:07Z",
+    "ticker": "RCUS",
+    "exit_price": 28.19,
+    "reason": "Take Profit",
+    "pnl_pct": 5.501497005988034
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_NVO_2026-06-22",
+    "ts": "2026-06-23T14:15:07Z",
+    "ticker": "NVO",
+    "signal_date": "2026-06-22",
+    "score": 83.3,
+    "source": "scanner"
   }
 ]
