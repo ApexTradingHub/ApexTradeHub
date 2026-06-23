@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 315.58842703805846,
-  "last_updated": "2026-06-23T19:40:02Z",
+  "cash": 265.58842703805846,
+  "last_updated": "2026-06-23T19:45:03Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -37,23 +37,6 @@
       "added_at": "2026-06-23T13:35:06Z",
       "status": "pending",
       "mode": "paper"
-    },
-    {
-      "id": "PAPER_MOM_BFLY_2026-06-23",
-      "ticker": "BFLY",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Unknown",
-      "signal_date": "2026-06-23",
-      "entry": 7.8,
-      "stop_initial": 7.45,
-      "target": 8.23,
-      "score": 82.5,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-06-23T19:40:29Z",
-      "status": "pending",
-      "mode": "paper"
     }
   ],
   "open": [
@@ -81,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 234.13999938964844,
-      "pnl_pct": 0.8941447122196293,
-      "pnl_usd": 0.44707235610981466,
+      "current_price": 234.25999450683594,
+      "pnl_pct": 0.9458522579180796,
+      "pnl_usd": 0.4729261289590398,
       "hold_days": 0
     },
     {
@@ -106,13 +89,42 @@
       "shares": 1.078267095385664,
       "size_usd": 50.0,
       "stop": 43.9,
-      "high_since_entry": 47.35499954223633,
+      "high_since_entry": 47.369998931884766,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.35499954223633,
-      "pnl_pct": 2.122675616793225,
-      "pnl_usd": 1.0613378083966125,
+      "current_price": 47.36000061035156,
+      "pnl_pct": 2.1334605911741042,
+      "pnl_usd": 1.0667302955870521,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_MOM_BFLY_2026-06-23",
+      "ticker": "BFLY",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-06-23",
+      "entry": 7.8,
+      "stop_initial": 7.45,
+      "target": 8.23,
+      "score": 82.5,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-06-23T19:40:29Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 7.8,
+      "shares": 6.410256410256411,
+      "size_usd": 50.0,
+      "stop": 7.45,
+      "high_since_entry": 7.8,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-23T19:45:06Z",
+      "current_price": 7.8,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -841,12 +853,12 @@
   ],
   "stats": {
     "total_trades": 21,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 16,
     "losses": 5,
     "win_rate": 76.19047619047619,
     "pnl_realized": 15.587339332035645,
-    "pnl_unrealized": 1.5084101645064272,
-    "equity": 417.09683720256487
+    "pnl_unrealized": 1.539656424546092,
+    "equity": 417.12808346260454
   }
 }
