@@ -653,5 +653,41 @@
     "exit_price": 86.27999877929688,
     "reason": "Stagnation Exit",
     "pnl_pct": 1.9617097368197476
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CMI_2026-06-16",
+    "ts": "2026-06-23T13:35:06Z",
+    "ticker": "CMI",
+    "exit_price": 693.0700073242188,
+    "reason": "Stagnation Exit",
+    "pnl_pct": -0.8921866210074875
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_TSM_2026-06-22",
+    "ts": "2026-06-23T13:35:06Z",
+    "ticker": "TSM",
+    "signal_date": "2026-06-22",
+    "score": 123.7,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_ABBV_2026-06-22",
+    "ts": "2026-06-23T13:35:06Z",
+    "ticker": "ABBV",
+    "signal_date": "2026-06-22",
+    "score": 98.7,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_JCI_2026-06-22",
+    "ts": "2026-06-23T13:35:06Z",
+    "ticker": "JCI",
+    "signal_date": "2026-06-22",
+    "score": 91.3,
+    "source": "scanner"
   }
 ]
