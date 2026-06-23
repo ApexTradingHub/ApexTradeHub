@@ -1264,8 +1264,10 @@ def open_position(state: dict, pending: dict, entry_actual: float):
 # ---------------------------------------------------------------------------
 # Open -> Closed (TP / SL / Trailing / Time)
 # ---------------------------------------------------------------------------
-def update_open_positions(state: dict, dry_run: bool = False) -> list:
-    """Refresh prices, manage trailing, close if TP/SL/time hit."""
+def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: bool = True) -> list:
+    """Refresh prices, manage trailing, close if TP/SL/time hit.
+    allow_stagnation: Stagnation-Exit nur wenn ein Ersatz in der Pipeline ist (2026-06-23).
+    Sonst flache Position halten statt Slot leeren -> Cash idle."""
     if not state["open"]:
         return []
 
@@ -1362,8 +1364,10 @@ def update_open_positions(state: dict, dry_run: bool = False) -> list:
             exit_price = p["stop"]
         else:
             # Stagnations-Exit: ab Tag 5 mit flachem PnL (-2 % bis +2 %)
+            # NUR wenn ein Ersatz in der Pipeline ist (allow_stagnation) — sonst flache
+            # Position halten statt Slot fuer nichts zu leeren (2026-06-23 User-Wunsch).
             pnl_pct = (cur - entry) / entry * 100
-            if (hold >= STAGNATION_DAYS and
+            if (allow_stagnation and hold >= STAGNATION_DAYS and
                 STAGNATION_PNL_MIN <= pnl_pct <= STAGNATION_PNL_MAX):
                 exit_reason = "Stagnation Exit"
                 exit_price = cur
@@ -1510,9 +1514,19 @@ def run_trader(dry_run: bool = False):
     events0 = apply_manual_overrides(state, dry_run=dry_run)
     all_events.extend(events0)
 
+    # Replacement-Check (2026-06-23): Stagnation-Exit nur erlauben wenn ein Ersatz in der
+    # Pipeline ist (frisches Scanner-Signal ODER Momentum-Kandidat). Sonst flache Position
+    # halten statt Slot fuer nichts zu leeren (idle Cash vermeiden, Slots voll halten).
+    _sig_preview = load_json(SIGNALS_FILE) or []
+    _fresh = select_new_signals(state, _sig_preview)
+    _mom = load_momentum_candidates()
+    replacement_available = bool(_fresh) or bool(_mom)
+    log(f"replacement-check: fresh-scanner={len(_fresh)} momentum={len(_mom)} "
+        f"-> Stagnation {'erlaubt' if replacement_available else 'GESPERRT (Pipeline leer, halten)'}")
+
     # 1. Update open positions (TP/SL/trailing/time-exit)
     log("step 1: update open positions")
-    events1 = update_open_positions(state, dry_run=dry_run)
+    events1 = update_open_positions(state, dry_run=dry_run, allow_stagnation=replacement_available)
     all_events.extend(events1)
 
     # Market-Open-Guard (2026-06-19): Cron kennt keine US-Feiertage. An Feiertagen/WE
