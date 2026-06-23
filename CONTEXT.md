@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-19 (Intraday-Catcher + Option-B-Slot-Split + Holiday-Guard + 2 Bugfixes)
+**Letztes Update:** 2026-06-23 (Trader-Slot-Fixes: Cooldown + Trending + Stagnation-Gate · Claude's-Picks-Board live)
 
 ---
 
@@ -201,6 +201,40 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-06-23** **Trader: Slot-Auslastung — Cooldown + Trending + Stagnation-Gate**:
+  - **Close-Cooldown** (`recently_closed_tickers`, CLOSE_COOLDOWN_DAYS=5): gerade geschlossener
+    Ticker darf 5 Tage NICHT re-geoeffnet werden — in ALLEN 4 Entry-Pfaden (select_new_signals,
+    trigger_pending, momentum, intraday). **Fix fuer ASML-Duplicate-Churn:** ASML an 5 Daten
+    emittiert; nach Stagnation-Close (15.6-Version) oeffnete die 19.6-Version 5 Min spaeter am
+    alten buy_above ($1942) ueber Marktkurs. = BACKLOG #8 als realer Schaden. Trigger_pending hat
+    zusaetzlichen Anti-Churn-Guard (offen ODER Cooldown -> Pending expired).
+  - **yfinance-Trending als 2. Momentum-Quelle** (`fetch_trending_universe`): day_gainers +
+    most_actives gemergt in die Momentum-Universe (durchlaufen DIESELBEN Filter, kein Loosen).
+    Fuellt idle Cash mit in-motion-Namen wenn statisches Top-200-Universe dünn ist (war 0 -> 2-3
+    Kandidaten). Bewusst spekulativer (Small-Cap-Mover wie BWIN/RCUS/KLRA), aber Stop -4%/Hold 7d.
+    Funktioniert: BWIN/RCUS je +5.5% TP, KLRA -4.5% SL = netto positiv.
+  - **Stagnation-Gate** (`update_open_positions(allow_stagnation=...)`): Stagnation-Exit nur wenn
+    Ersatz in Pipeline (fresh-scanner ODER momentum). Pipeline leer -> flache Position HALTEN
+    statt Slot fuer nichts zu leeren (User-Wunsch: Slots voll halten, kein idle Cash). Log:
+    `replacement-check: fresh=X momentum=Y -> Stagnation erlaubt/GESPERRT`.
+
+- **2026-06-22** **Claude's Picks — diskretionaeres Conviction-Board (NEU, 3. System-Layer)**:
+  - `claude_picks.html` + `claude_picks.json` — von Claude kuratierte Top-Picks, **kein Scanner/
+    Trader**, rein diskretionaer auf User-Zuruf aktualisiert. Quellen: Knowledge + WebSearch +
+    SEC EDGAR + yfinance-Charts. Dark-Trading-Terminal-Design: Heatmap-Kacheln, Ticker-Logos
+    (FMP-Image-URL), Sparklines (30d), Ticker-Tape (Indizes/Crypto/VIX/Gold), SVG-Daumen-Verdikte.
+  - Pro Pick: `take` (Einordnung in einfacher Sprache, „kaufen/abwarten weil…"), `entries`
+    (mehrere Optionen), `stop`/`target`, conviction 1-5, horizon swing/long, `why` (dated facts).
+  - **Dashboard-Tab** „🎯 Claude's Picks" (iframe, lazy-load). sw.js **v25** + claude_picks.html
+    auf **network-first** (Board-Iterationen ohne Versions-Bump sichtbar). Outcome-Tracking
+    (Δ seit Aufnahme) zur Selbstkontrolle.
+  - Update via „update die Picks": Claude pflegt JSON + zieht frische Kurse/Sparklines. Picks
+    duerfen reifen (kein Tageszwang). Aktuell: Cross-Sektor (NVDA/VRTX/PLD/CEG/V/KO/DIS).
+
+- **2026-06-20** **SCORE_REBUILD live** (Details in §2 BREAKOUT-Tuning): catalyst-gated
+  perf_120>50-Penalty (-12), Backtest-validiert (Plateau-Monotonie -15pp->-0pp). 80-90-Bucket
+  diagnostiziert (umgekehrte-U-Kurve, WEAK-Seite offen) + geparkt (BACKLOG #11).
 
 - **2026-06-18/19** **Trader: Intraday-Catcher + Option-B + Holiday-Guard + 2 Bugfixes**:
   - **Intraday-Momentum-Catcher** (`apex_trader.py` Step 3c, EXPERIMENT, opt-in `INTRADAY_ENABLED=1`):
@@ -412,6 +446,7 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **MAX_POSITIONS** (Paper, total) | 7 | apex_trader.py | bumped 5→7 für Hybrid-Test 2026-06-12 |
 | **SWING_MAX_POSITIONS** | 5 | apex_trader.py | Option B 06-19: Scanner+Momentum max 5 (= 7−2) |
 | **INTRADAY_RESERVED_SLOTS** | 2 | apex_trader.py | Option B 06-19: für Intraday-Catcher reserviert |
+| **CLOSE_COOLDOWN_DAYS** | 5 | apex_trader.py | 06-23: gerade geschlossener Ticker 5d gegen Re-Entry gesperrt (Anti-Churn) |
 | **CAPITAL_INITIAL** | $400 | apex_trader.py | bumped 300→400 + $100 virtual deposit |
 | **HOLD_DAYS_PER_SETUP.MOMENTUM** | 7 | apex_trader.py | Momentum-Filler-Hold, schnelle Rotation |
 | **Momentum-Filler-Cache** | 6h | apex_trader.py MOMENTUM_CACHE_MAX_AGE_H | yfinance-Schutz, max 2 Downloads/Tag |
