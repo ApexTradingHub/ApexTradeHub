@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 315.58842703805846,
-  "last_updated": "2026-06-23T19:35:03Z",
+  "last_updated": "2026-06-23T19:40:02Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -37,6 +37,23 @@
       "added_at": "2026-06-23T13:35:06Z",
       "status": "pending",
       "mode": "paper"
+    },
+    {
+      "id": "PAPER_MOM_BFLY_2026-06-23",
+      "ticker": "BFLY",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-06-23",
+      "entry": 7.8,
+      "stop_initial": 7.45,
+      "target": 8.23,
+      "score": 82.5,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-06-23T19:40:29Z",
+      "status": "pending",
+      "mode": "paper"
     }
   ],
   "open": [
@@ -64,9 +81,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 234.11500549316406,
-      "pnl_pct": 0.8833744986064475,
-      "pnl_usd": 0.4416872493032237,
+      "current_price": 234.13999938964844,
+      "pnl_pct": 0.8941447122196293,
+      "pnl_usd": 0.44707235610981466,
       "hold_days": 0
     },
     {
@@ -89,13 +106,13 @@
       "shares": 1.078267095385664,
       "size_usd": 50.0,
       "stop": 43.9,
-      "high_since_entry": 47.314998626708984,
+      "high_since_entry": 47.35499954223633,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.275001525878906,
-      "pnl_pct": 1.9501571593245608,
-      "pnl_usd": 0.9750785796622804,
+      "current_price": 47.35499954223633,
+      "pnl_pct": 2.122675616793225,
+      "pnl_usd": 1.0613378083966125,
       "hold_days": 0
     }
   ],
@@ -829,7 +846,7 @@
     "losses": 5,
     "win_rate": 76.19047619047619,
     "pnl_realized": 15.587339332035645,
-    "pnl_unrealized": 1.416765828965504,
-    "equity": 417.005192867024
+    "pnl_unrealized": 1.5084101645064272,
+    "equity": 417.09683720256487
   }
 }
