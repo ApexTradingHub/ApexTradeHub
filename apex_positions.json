@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 267.82625064490355,
-  "last_updated": "2026-06-23T15:30:02Z",
+  "cash": 315.58842703805846,
+  "last_updated": "2026-06-23T15:35:02Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -41,35 +41,6 @@
   ],
   "open": [
     {
-      "id": "PAPER_MOM_KLRA_2026-06-22",
-      "ticker": "KLRA",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Unknown",
-      "signal_date": "2026-06-22",
-      "entry": 22.79,
-      "stop_initial": 21.77,
-      "target": 24.04,
-      "score": 68.4,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-06-22T19:40:31Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 22.79,
-      "shares": 2.1939447125932428,
-      "size_usd": 50.0,
-      "stop": 21.77,
-      "high_since_entry": 22.94,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-06-22T19:45:11Z",
-      "current_price": 21.8799991607666,
-      "pnl_pct": -3.9929830593830524,
-      "pnl_usd": -1.9964915296915262,
-      "hold_days": 0
-    },
-    {
       "id": "PAPER_ABBV_2026-06-22",
       "ticker": "ABBV",
       "setup": "BREAKOUT",
@@ -93,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 233.69500732421875,
-      "pnl_pct": 0.7023915134398853,
-      "pnl_usd": 0.35119575671994263,
+      "current_price": 233.69000244140625,
+      "pnl_pct": 0.7002348406284544,
+      "pnl_usd": 0.3501174203142272,
       "hold_days": 0
     },
     {
@@ -122,9 +93,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 46.55500030517578,
-      "pnl_pct": 0.39744990948117886,
-      "pnl_usd": 0.19872495474058943,
+      "current_price": 46.48500061035156,
+      "pnl_pct": 0.2464931742491924,
+      "pnl_usd": 0.1232465871245962,
       "hold_days": 0
     }
   ],
@@ -763,6 +734,38 @@
       "exit_price": 28.19,
       "exit_reason": "Take Profit",
       "closed_at": "2026-06-23T14:15:07Z"
+    },
+    {
+      "id": "PAPER_MOM_KLRA_2026-06-22",
+      "ticker": "KLRA",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-06-22",
+      "entry": 22.79,
+      "stop_initial": 21.77,
+      "target": 24.04,
+      "score": 68.4,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-06-22T19:40:31Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 22.79,
+      "shares": 2.1939447125932428,
+      "size_usd": 50.0,
+      "stop": 21.77,
+      "high_since_entry": 22.94,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-22T19:45:11Z",
+      "current_price": 21.8799991607666,
+      "pnl_pct": -4.4756472136902135,
+      "pnl_usd": -2.2378236068451067,
+      "hold_days": 0,
+      "exit_price": 21.77,
+      "exit_reason": "Stop Loss",
+      "closed_at": "2026-06-23T15:35:05Z"
     }
   ],
   "expired": [
@@ -820,13 +823,13 @@
     }
   ],
   "stats": {
-    "total_trades": 20,
-    "open_trades": 3,
+    "total_trades": 21,
+    "open_trades": 2,
     "wins": 16,
-    "losses": 4,
-    "win_rate": 80.0,
-    "pnl_realized": 17.82516293888075,
-    "pnl_unrealized": -1.4465708182309942,
-    "equity": 416.3796798266726
+    "losses": 5,
+    "win_rate": 76.19047619047619,
+    "pnl_realized": 15.587339332035645,
+    "pnl_unrealized": 0.4733640074388234,
+    "equity": 416.0617910454973
   }
 }
