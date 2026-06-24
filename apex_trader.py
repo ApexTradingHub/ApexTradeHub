@@ -67,6 +67,14 @@ TRAIL_LADDER = [
     (1.10, 1.06),   # Step 2: high >= entry*1.10 -> SL = entry*1.06  (+6% gesichert)
     (1.14, 1.10),   # Step 3: high >= entry*1.14 -> SL = entry*1.10  (+10% gesichert)
 ]
+# Momentum-Trailing (2026-06-23): ausbrechende Momentum-Namen NICHT hart bei +6% cutten,
+# sondern laufen lassen. Ab dem alten TP-Level (+6%) Trailing aktivieren + Gewinn sichern.
+# Etwas mehr Luft als die generische Ladder (Momentum ist volatiler -> Whipsaw vermeiden).
+MOMENTUM_TRAIL_LADDER = [
+    (1.06, 1.035),  # Step 1: high >= +6%  -> SL +3.5% (statt hartem Verkauf bei +6%)
+    (1.10, 1.075),  # Step 2: high >= +10% -> SL +7.5%
+    (1.15, 1.115),  # Step 3: high >= +15% -> SL +11.5%
+]
 # Backward-Compat: alte Felder bleiben, werden aber nicht mehr genutzt
 TRAILING_TRIGGER_MULT = 1.08
 TRAILING_TARGET_MULT  = 1.05
@@ -111,6 +119,20 @@ HOLD_DAYS_DEFAULT = 21
 
 def hold_days_for(setup: str) -> int:
     return HOLD_DAYS_PER_SETUP.get(setup, HOLD_DAYS_DEFAULT)
+
+
+def trading_days_held(opened_iso: str) -> int:
+    """Anzahl Handelstage (Mo-Fr) seit Eroeffnung — fuer Stagnation-Exit.
+    Fix 2026-06-23: vorher zaehlte der Stagnation-Check Kalendertage inkl. Wochenende,
+    d.h. ein Fr-eroeffneter Trade war Mi schon 'Tag 5'. Feiertage NICHT ausgenommen
+    (selten, verzoegert Exit max. 1 Tag = konservativ, haelt eher laenger)."""
+    try:
+        import numpy as np
+        opened = datetime.fromisoformat(opened_iso.replace("Z", "+00:00")).date()
+        today = datetime.now(timezone.utc).date()
+        return int(np.busday_count(opened, today))
+    except Exception:
+        return 0
 
 
 def recently_closed_tickers(state: dict, days: int = CLOSE_COOLDOWN_DAYS) -> set:
@@ -1322,8 +1344,10 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         # ladder_step: 0 = noch nicht aktiviert, 1/2/3 = Stufe erreicht
         current_step = int(p.get("ladder_step", 0))
         high_se = p["high_since_entry"]
+        # Momentum-Namen nutzen die Momentum-Ladder (laufen lassen statt hartem +6%-Cut)
+        _ladder = MOMENTUM_TRAIL_LADDER if p.get("source") == "momentum_filler" else TRAIL_LADDER
         # Pruefe ob naechste Stufe erreicht ist
-        for step_idx, (trigger_mult, sl_mult) in enumerate(TRAIL_LADDER, start=1):
+        for step_idx, (trigger_mult, sl_mult) in enumerate(_ladder, start=1):
             if step_idx <= current_step:
                 continue   # diese Stufe ist schon aktiv
             if high_se >= entry * trigger_mult:
@@ -1344,6 +1368,8 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 break   # naechste Stufe nicht erreicht -> abbrechen
 
         # === Hold-Days berechnen (fuer Stagnation + Time-Exit) ===
+        # hold       = Kalendertage (Time-Exit, unveraendert)
+        # hold_trade = Handelstage Mo-Fr (Stagnation, Fix 2026-06-23: ohne Wochenende)
         try:
             opened_str = p["opened_at"].replace("Z", "+00:00")
             opened = datetime.fromisoformat(opened_str)
@@ -1351,30 +1377,38 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             p["hold_days"] = hold
         except Exception:
             hold = p.get("hold_days", 0)
+        hold_trade = trading_days_held(p.get("opened_at", ""))
+        p["hold_trading_days"] = hold_trade
+
+        is_momentum = p.get("source") == "momentum_filler"
 
         # === Exit checks (Reihenfolge: TP > SL > Stagnation > Time) ===
         exit_reason = None
         exit_price = cur
 
-        if high is not None and high >= p["target"]:
+        # Momentum: KEIN harter TP — ausbrechen lassen, die Momentum-Trail-Ladder sichert
+        # progressiv Gewinn (Step 1 ab +6%). Normale Setups behalten den harten TP.
+        if (not is_momentum) and high is not None and high >= p["target"]:
             exit_reason = "Take Profit"
             exit_price = p["target"]
         elif cur <= p["stop"]:
             exit_reason = "Stop Loss" + (" (Trailing)" if p.get("trailing_active") else "")
             exit_price = p["stop"]
         else:
-            # Stagnations-Exit: ab Tag 5 mit flachem PnL (-2 % bis +2 %)
+            # Stagnations-Exit: ab Tag 5 (HANDELSTAGE) mit flachem PnL (-2 % bis +2 %)
             # NUR wenn ein Ersatz in der Pipeline ist (allow_stagnation) — sonst flache
             # Position halten statt Slot fuer nichts zu leeren (2026-06-23 User-Wunsch).
             pnl_pct = (cur - entry) / entry * 100
-            if (allow_stagnation and hold >= STAGNATION_DAYS and
+            if (allow_stagnation and hold_trade >= STAGNATION_DAYS and
                 STAGNATION_PNL_MIN <= pnl_pct <= STAGNATION_PNL_MAX):
                 exit_reason = "Stagnation Exit"
                 exit_price = cur
             else:
-                # Time-Exit nach setup-spezifischem Hold-Limit
+                # Time-Exit nach setup-spezifischem Hold-Limit (Kalendertage).
+                # Momentum-Runner mit aktivem Trailing NICHT zwangsschliessen — laufen lassen,
+                # der Trailing-Stop entscheidet (2026-06-23).
                 hold_limit = hold_days_for(p.get("setup", ""))
-                if hold >= hold_limit:
+                if hold >= hold_limit and not (is_momentum and p.get("trailing_active")):
                     exit_reason = "Time Exit"
                     exit_price = cur
 
