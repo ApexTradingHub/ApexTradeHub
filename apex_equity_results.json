@@ -2932,5 +2932,41 @@
     "rr": 1.68,
     "score": 115.6,
     "equity": 640.69
+  },
+  {
+    "date": "2026-06-11",
+    "ticker": "CTVA",
+    "setup": "MEAN_REVERSION",
+    "sector": "Basic Materials",
+    "entry": 75.01,
+    "stop": 73.3,
+    "target": 80.6,
+    "exit_price": 80.6,
+    "exit_reason": "Take Profit",
+    "exit_day": 8,
+    "hold_days": 20,
+    "pnl_pct": 7.45,
+    "pnl_usd": 14.9,
+    "rr": 3.27,
+    "score": 89.5,
+    "equity": 655.59
+  },
+  {
+    "date": "2026-06-16",
+    "ticker": "XOM",
+    "setup": "MEAN_REVERSION",
+    "sector": "Energy",
+    "entry": 142.14,
+    "stop": 135.65,
+    "target": 154.91,
+    "exit_price": 135.65,
+    "exit_reason": "Stop Loss",
+    "exit_day": 5,
+    "hold_days": 20,
+    "pnl_pct": -4.57,
+    "pnl_usd": -9.13,
+    "rr": 1.97,
+    "score": 69.3,
+    "equity": 646.46
   }
 ]
