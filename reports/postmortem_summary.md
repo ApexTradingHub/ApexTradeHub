@@ -1,80 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-06-24T20:20:09.119518+00:00 | Total trades: 165_
+_Updated: 2026-06-24T20:22:25.397963+00:00 | Total trades: 165_
 
 **Analyse-Status**: complete=165
-
-## ⚠ Daten-Qualität: complete OHNE strukturierte News
-
-67 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
-
-- `PFE_2026-03-17`
-- `DOW_2026-03-18`
-- `UI_2026-03-18`
-- `PFE_2026-03-19`
-- `SEE_2026-03-19`
-- `SEE_2026-03-22`
-- `DE_2026-03-22`
-- `SEE_2026-03-23`
-- `EMR_2026-03-23`
-- `AVT_2026-03-23`
-- `CTVA_2026-03-24`
-- `ODFL_2026-03-24`
-- `GEV_2026-03-25`
-- `FFIV_2026-03-25`
-- `CSCO_2026-03-25`
-- `VTRS_2026-03-22`
-- `TJX_2026-04-01`
-- `XEL_2026-04-09`
-- `D_2026-04-09`
-- `LEG_2026-04-13`
-- `JBHT_2026-04-16`
-- `MDT_2026-03-26`
-- `CNH_2026-03-26`
-- `FRT_2026-04-10`
-- `DPZ_2026-03-26`
-- `CDP_2026-04-16`
-- `EG_2026-04-14`
-- `ALL_2026-04-16`
-- `HUBB_2026-04-22`
-- `MGM_2026-04-27`
-- `CNM_2026-03-25`
-- `CZR_2026-04-20`
-- `AKAM_2026-04-16`
-- `AKAM_2026-04-17`
-- `HII_2026-04-29`
-- `DVA_2026-05-05`
-- `CBT_2026-05-05`
-- `JKHY_2026-04-13`
-- `FLR_2026-04-27`
-- `DG_2026-05-07`
-- `BWA_2026-05-01`
-- `RVTY_2026-05-04`
-- `BWA_2026-05-05`
-- `BKNG_2026-05-06`
-- `HD_2026-05-06`
-- `AMTM_2026-05-09`
-- `SYY_2026-04-15`
-- `TEL_2026-05-13`
-- `CHRW_2026-05-15`
-- `SJM_2026-04-14`
-- `BDX_2026-05-06`
-- `TMUS_2026-04-28`
-- `RTX_2026-05-09`
-- `META_2026-05-06`
-- `ODFL_2026-05-29`
-- `BAX_2026-05-21`
-- `CBT_2026-05-27`
-- `SBUX_2026-06-03`
-- `TDG_2026-05-04`
-- `CAH_2026-05-13`
-- `TPR_2026-05-13`
-- `BC_2026-05-26`
-- `GM_2026-05-27`
-- `RRC_2026-05-28`
-- `JCI_2026-06-03`
-- `AXTA_2026-06-04`
-- `CF_2026-06-10`
 
 ## Lesson-Tag Frequency (Claude curated)
 
