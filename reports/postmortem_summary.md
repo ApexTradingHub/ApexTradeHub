@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-06-23T10:24:19.767971 | Total trades: 158_
+_Updated: 2026-06-24T10:02:12.831607 | Total trades: 163_
 
-**Analyse-Status**: complete=147, pending=11
+**Analyse-Status**: complete=147, pending=16
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -139,7 +139,7 @@ _Updated: 2026-06-23T10:24:19.767971 | Total trades: 158_
 | PENN_2026-04-27 | BREAKOUT | -7.45% | Stop Loss D+10 | 110.2 | Consumer Cyclical | Post-Earnings-Spike-Chase - Q1 Earnings 23.4 mit 120% Surprise, Stock +16.7% pre-market; wir fired BREAKOUT 4 Tage spaeter = klassischer Late-Entry-Fade |
 | MOS_2026-04-19 | REVERSAL | -7.09% | Stop Loss D+7 | 76.3 | Basic Materials | REVERSAL 10 Tage nach Brazilian-Phosphate-Idle-Announcement (9.4) + multiple Analyst-PT-Cuts - fundamental schwaechender Stock |
 | S_2026-05-18 | BREAKOUT | -6.78% | Stop Loss D+8 | 122.4 | Unknown | SentinelOne BREAKOUT-Signal am 18.5. — Earnings am 28.5. = nur 10 Tage Abstand. Pre-Earnings-Nervositaet baute Pressure auf, Stop D+8 (also ~26.5., 2 Tage vor Earnings) traf den Drawdown. ABER: Das System hat uns vor dem 28.5.-Disaster gerettet — Q2-Guide-Miss + 8% Layoff-Ankuendigung loesten -18% Post-Earnings-Crash aus. Unser Stop bei -6.78% war besser als das Halten gewesen waere. KEIN Pocket-Pivot-Flag — zweiter Loser ohne PP (siehe HP). Score 122 + EMERGING_BREAKOUT = Setup sah gut aus, aber Earnings-Adjacency-Risk fuer BREAKOUT bestaetigt sich wieder (siehe FLS/BTU/XRAY). |
-| GEV_2026-03-23 | BREAKOUT | -6.56% | Stop Loss D+5 | 89.0 | Industrials | BREAKOUT EXAKT am S&P-100-Inclusion-Tag (23.3) = index-buying war bereits gepriced, klassische 'sell the news' Fade |
+| ASML_2026-06-19 | BREAKOUT | -6.58% | Stop Loss D+2 | 144.4 | Technology | _pending_ |
 
 ## Best 10 Trades
 
@@ -156,7 +156,7 @@ _Updated: 2026-06-23T10:24:19.767971 | Total trades: 158_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | Trump verkuendete am Freitag 23.5. nach US-Close die Verdopplung der Stahl-Tariffs von 25% auf 50%. CLF gappte am Montag 26.5. premarket +35% hoch. Reiner Policy-Tarif-Tailwind: Cleveland-Cliffs ist ein puer US-Stahlproduzent, profitiert maximal von Importzoellen. closing_strength 0.92 = sehr starker Tagesabschluss = der Move war institutionell, kein retail-fade. TP D+1, sauberer +13.6%-Win. |
 
-## Pending Claude-Analyse (11)
+## Pending Claude-Analyse (16)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -171,3 +171,8 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `LUV_2026-06-12`
 - `WELL_2026-06-03`
 - `MOH_2026-06-08`
+- `ASML_2026-06-15`
+- `ASML_2026-06-19`
+- `EMR_2026-06-16`
+- `ASML_2026-06-09`
+- `CARR_2026-06-09`
