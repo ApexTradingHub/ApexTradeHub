@@ -2,9 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-06-24T22:16:00.783808",
+    "updated": "2026-06-24T20:20:09.119518+00:00",
     "total_trades": 165,
-    "analyzed_trades": 42
+    "analyzed_trades": 165
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -13228,19 +13228,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-12",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL flat -0.05% (REV-cut D+23) — Setup Phase-G disabled. CACI-Serien-Verlierer-Muster (siehe 19./23.4-Trades).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_after_oversold_trap",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:49.760275",
@@ -13317,19 +13329,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-28",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MEAN_REVERSION flat -1.24% (Time-Exit D+20) — Setup disabled.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:50.239151",
@@ -13406,19 +13430,47 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Alexandria $0.72 Q2-Dividende (5.8% Yield); BMO-PT auf $54; schwache Occupancy/Revenue",
+            "src": "PRNewswire / Investing.com"
+          }
+        ],
+        "key_events": [
+          "Low-Beta-REIT-Drift",
+          "Teil des ARE-Doppelsignals"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (PP, Score 125) auf Lab-Space-REIT -> Time-Exit +1.29% D+15. Dividende $0.72 (5.8% Yield) + BMO-PT $54, ABER schwache Occupancy/Revenue + Zinssensitivitaet = Low-Beta-Drift ohne Momentum. REIT-BREAKOUTs liefern selten den Move.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "defensive_low_beta_drift",
+          "breakout_no_follow_through",
+          "rate_sensitive",
+          "duplicate_trap"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "REIT/Low-Beta-Namen liefern selten BREAKOUT-Momentum -> niedriger gewichten",
+          "ARE 2x in 7d signalisiert (2./9.6) = Duplicate"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:50.876375",
@@ -13495,19 +13547,47 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Alexandria 30. Jahr Dividenden-Kontinuitaet; schwache Occupancy belastet weiter",
+            "src": "StockTitan"
+          }
+        ],
+        "key_events": [
+          "2. ARE-Signal in 7d",
+          "REIT-Stop im Risk-Off"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 105) — 2. ARE-Signal in 7d (nach 2.6) -> Stop -6.06% D+6. Occupancy-Headwinds + Zinssensitivitaet trafen den REIT im Risk-Off. Duplicate-Re-Signal eines bereits schwachen Namens.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "duplicate_trap",
+          "defensive_low_beta_drift",
+          "rate_sensitive",
+          "macro_risk_off"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Duplicate-Window: ARE schon am 2.6 signalisiert + geflopt -> 9.6 haette geblockt sein muessen",
+          "Close-Cooldown (inzwischen gefixt) deckt das ab"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:51.582236",
@@ -13584,19 +13664,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-05-13",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "REVERSAL flat -0.62% (REV-cut D+25) — Setup Phase-G disabled.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "reversal_no_turn",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:52.298709",
@@ -13673,19 +13765,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-06-01",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MEAN_REVERSION flat +0.27% (Time-Exit D+20) — Setup disabled, totes Kapital 20d.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "defensive_low_beta_drift",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:52.818813",
@@ -13762,19 +13866,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06-08",
+            "title": "Stanley B&D Q2-Dividende $0.83 + neue $500M-Buyback-Authorization",
+            "src": "StockTitan / IR"
+          },
+          {
+            "date": "2026-06",
+            "title": "Wells Fargo hebt SWK-PT auf $90; Margin-Expansion + Aerospace-Divestiture",
+            "src": "Analyst Action"
+          }
+        ],
+        "key_events": [
+          "Turnaround-Win",
+          "Buyback + Dividende"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT-WIN +8.35% TP D+8. Industrial-Turnaround: Margin-Expansion durch Cost-Reduction-Programm, Aerospace-Divestiture (Bilanz-Staerkung + Schuldenabbau), $500M-Buyback + Dividende (Record 8.6). Wells Fargo PT auf $90. Saubere Turnaround-These.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "sector_relative_strength",
+          "capital_return_catalyst",
+          "industrial_turnaround"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Margin-Turnaround + Kapitalrueckfuehrung (Buyback) + Outperformance ggü Sektor",
+          "Industrial mit relativer Staerke (SWK schlug Sektor)"
+        ],
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:53.389256",
@@ -13851,19 +13988,47 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06-17",
+            "title": "Jabil Q3 FY26 Beat: EPS $3.16 vs $3.11, Rev $8.75B vs $8.64B; AI-Rev-Outlook auf $13.6B angehoben; Aktie +9%",
+            "src": "SEC 8-K / Barchart"
+          }
+        ],
+        "key_events": [
+          "Entry 2d vor Earnings",
+          "Beat +9% NACH unserem Stop"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 123 GAP) 2 Handelstage VOR Q3-Earnings (17.6) gekauft. Earnings waren ein BEAT (+9% Pop), aber unsere Position stoppte -6.48% D+4 — Pre-Earnings-Drift/Extension auf bereits-gelaufenem Namen ('No longer cheap'). Earnings-Adjacency-Risk fuer BREAKOUT bestaetigt (wie S/BTU/XRAY).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "breakout_no_follow_through",
+          "secular_ai_catalyst",
+          "high_score_loss_85plus"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Earnings-Blackout-Filter: skip BREAKOUT wenn Earnings in <3 Handelstagen",
+          "Wir wurden VOR dem +9%-Beat ausgestoppt — Timing-Pech + Adjacency"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:53.939867",
@@ -13940,19 +14105,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Southwest 2026-Guidance: >=$4 EPS vs $3.19 est, RASM +9.5%; AWS-Cloud-Transition + Starlink-WiFi",
+            "src": "TIKR"
+          },
+          {
+            "date": "2026-06",
+            "title": "Airlines rallyen als Oel nach US-Iran-Friedensabkommen faellt; UBS hebt LUV-PT auf $61",
+            "src": "Investing.com"
+          }
+        ],
+        "key_events": [
+          "Guidance-Raise-Win",
+          "Oel-Drop-Sektor-Tailwind"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BREAKOUT-WIN +10.11% TP D+5. Treiber-Stack: ueberraschend starke 2026-Guidance (>=$4 EPS vs $3.19 Konsens, RASM +9.5%), AWS-Cloud-Deal + Starlink-Rollout, PLUS Oel-Drop nach US-Iran-Friedensabkommen (Airline-Sektor-Tailwind). Externer Catalyst + Sektor-Rueckenwind = sauberer Win.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "sector_momentum_tailwind",
+          "reversal_win_external_catalyst",
+          "guidance_raise_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BREAKOUT auf Guidance-Raise + Sektor-Tailwind (Oel-Drop fuer Airlines) = hochwertiger Setup",
+          "Externer Macro-Catalyst (Oelpreis) als Sektor-Schub mitlesen"
+        ],
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:54.569165",
@@ -14029,19 +14227,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-06-03",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "MEAN_REVERSION-Win +5.73% (Time-Exit D+20) — Setup ist disabled, kein Forward-Edge. Healthcare-REIT-Bounce.",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:55.173748",
@@ -14118,19 +14328,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06-08",
+            "title": "Mizuho hebt MOH-PT auf $215 (von $200); Illinois-Medicaid-Contract-Win",
+            "src": "Analyst Action"
+          },
+          {
+            "date": "2026-06",
+            "title": "Shareholder-Law-Firm untersucht MOH Cost-Trend-Disclosure (Overhang)",
+            "src": "Simply Wall St"
+          }
+        ],
+        "key_events": [
+          "Flat-Drift trotz Contract-Win",
+          "Litigation-Overhang"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 113) drifted flach -> Time-Exit +0.66% D+15. Illinois-Medicaid-Win + Mizuho-PT-Raise ($215) waren bullish, ABER ein Shareholder-Law-Firm-Investigation zu Cost-Trend-Disclosure = Overhang neutralisierte den Move. Defensive-Drift ohne Follow-Through.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "defensive_low_beta_drift",
+          "legal_overhang",
+          "high_score_no_edge"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "News-Check auf aktive Litigation/Investigation (Overhang killt Momentum)",
+          "Stagnation-Exit frueher"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:55.991599",
@@ -14207,19 +14450,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-15",
+            "title": "ASML Q1 2026 Beat, aber Aktie faellt wegen verschaerfter China-Exportrestriktionen",
+            "src": "CNBC"
+          },
+          {
+            "date": "2026-06-23",
+            "title": "ASML -7.6% in breitem Semiconductor-Selloff (Zins-Angst + AI-Spend-Skepsis); TSMC verzoegert High-NA-EUV-Deployment",
+            "src": "TradingKey / FastCompany"
+          }
+        ],
+        "key_events": [
+          "Stop am Beginn des Semi-Selloffs",
+          "Score 146 = High-Score-Loss"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (PP, Score 146 = hoechster der Gruppe) genau am Beginn des Semi-Selloffs gekauft. Stop -6.42% D+5, als der Sektor (23.6: -7.6%) drehte. High-Score-Loss + Sektor-Momentum kippte gegen uns.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "sector_momentum_reversal",
+          "secular_ai_catalyst",
+          "duplicate_trap"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Sektor-RS-Check: SOXX/Semi-Momentum drehte negativ -> BREAKOUT-Penalty",
+          "Score 146 hat NICHT geschuetzt (high_score_loss-Muster)"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:56.618450",
@@ -14296,19 +14572,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-15",
+            "title": "ASML Q1 2026 Beat, aber Aktie faellt wegen verschaerfter China-Exportrestriktionen",
+            "src": "CNBC"
+          },
+          {
+            "date": "2026-06-23",
+            "title": "ASML -7.6% in breitem Semiconductor-Selloff (Zins-Angst + AI-Spend-Skepsis); TSMC verzoegert High-NA-EUV-Deployment",
+            "src": "TradingKey / FastCompany"
+          }
+        ],
+        "key_events": [
+          "Churn-Re-Entry $1942",
+          "Cooldown-Fix motiviert durch genau diesen Trade"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "DUPLICATE-TRAP in Reinform: ASML am 19.6 RE-geoeffnet bei $1942 (nach Stagnation-Close 5 Min zuvor, falscher Kurs) und sofort in den 23.6-Semi-Crash (-7.6%) gelaufen. Stop -6.58% D+2. Score 144 GAP.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "duplicate_trap",
+          "sector_momentum_reversal",
+          "high_score_loss_85plus",
+          "macro_risk_off"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Close-Cooldown (5d) gegen Re-Entry — INZWISCHEN GEFIXT (2026-06-23)",
+          "Gap-Entry $1942 ueber Marktkurs = unrealistischer Fill"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:57.120381",
@@ -14385,19 +14694,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06-09",
+            "title": "Bernstein startet Emerson mit Outperform",
+            "src": "Analyst Action"
+          },
+          {
+            "date": "2026-06-15",
+            "title": "DA Davidson Neutral auf EMR; +13.9% Vormonat = extended, Bewertungssorge (20x P/E)",
+            "src": "Analyst Action"
+          }
+        ],
+        "key_events": [
+          "Extended-Entry nahe ATH",
+          "Risk-Off-Stop"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 98) extended gekauft (+13.9% Vormonat, nahe ATH $160 vs $143) -> Stop -4.45% D+4 im 19./23.6-Risk-Off. Gemischte Analysten (Bernstein Outperform 9.6 vs DA Davidson Neutral 15.6 + Sell-Ratings auf 20x-P/E-Bewertung). Extension + Macro-Drehung.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "extended_entry",
+          "macro_risk_off",
+          "valuation_concern"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Extension-Penalty (war nahe ATH, +13.9% Vormonat)",
+          "Sektor/Macro-Risk-Off-Filter (19./23.6 traf mehrere unserer Trades)"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:57.830486",
@@ -14474,19 +14816,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-04-15",
+            "title": "ASML Q1 2026 Beat, aber Aktie faellt wegen verschaerfter China-Exportrestriktionen",
+            "src": "CNBC"
+          },
+          {
+            "date": "2026-06-23",
+            "title": "ASML -7.6% in breitem Semiconductor-Selloff (Zins-Angst + AI-Spend-Skepsis); TSMC verzoegert High-NA-EUV-Deployment",
+            "src": "TradingKey / FastCompany"
+          }
+        ],
+        "key_events": [
+          "Flat-Drift 15d",
+          "Teil des ASML-Triple-Signals (9./15./19.6)"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (PP, Score 132) drifted 15 Tage flach -> Time-Exit ~0%. Kein Follow-Through; das saekulare AI-Litho-Thema war intakt, aber der Move stallte VOR dem Semi-Selloff (23.6).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "secular_ai_catalyst",
+          "high_score_no_edge",
+          "duplicate_trap"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Stagnation-Exit frueher (Kapital fuer 15d gebunden ohne Move)",
+          "ASML 3x in 10d signalisiert = Duplicate-Window haette greifen muessen"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:58.654727",
@@ -14563,19 +14938,52 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
-        "key_events": []
+        "web_research": [
+          {
+            "date": "2026-06-04",
+            "title": "Carrier $0.24-Dividende; Q1 Data-Center-Orders +500% aber weichere FY-Guidance vs Peers",
+            "src": "StockTitan"
+          },
+          {
+            "date": "2026-06",
+            "title": "Bernstein initiiert CARR Market-Perform $75; +30% YTD extended",
+            "src": "Analyst Action"
+          }
+        ],
+        "key_events": [
+          "Extended +30% YTD",
+          "Soft-Guidance-Deckel"
+        ]
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 116) extended (+30% YTD) -> Time-Exit +1.11% D+15. Data-Center-Orders +500% (Q1) war stark, ABER weichere FY-Guidance vs Peers + Bernstein nur Market-Perform ($75) deckelten den Move. Extension + Soft-Guidance = Stall.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "extended_entry",
+          "soft_guidance",
+          "secular_ai_catalyst"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Extension-Check (+30% YTD)",
+          "Guidance-Qualitaet vs Peers (CARR guidete schwaecher)"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "barchart.com",
+          "tikr.com",
+          "stocktitan.net",
+          "simplywall.st",
+          "investing.com",
+          "sec.gov",
+          "prnewswire.com",
+          "tradingkey.com"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:59.164329",
@@ -14652,19 +15060,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-06-11",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "MEAN_REVERSION-Win +7.45% (TP D+8) — Setup disabled. Ag-Chemie-Bounce, nicht replizierbar (kein aktives Setup).",
+        "lesson_tags": [
+          "oversold_bounce_with_catalyst",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:15:59.874232",
@@ -14741,19 +15161,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-06-16",
+            "title": "Setup disabled (Phase G / MEAN_REVERSION off) — aus aktivem Learning ausgeschlossen, keine Tiefenrecherche",
+            "src": "internal"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MEAN_REVERSION-Loss -4.57% (Stop D+5) — Setup disabled. Energy-Dip fing kein Bottom.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "fundamental_deterioration",
+          "disabled_setup_no_forward_action"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-06-24T20:20:09.119518+00:00",
+        "confidence": "LOW",
+        "data_sources": [
+          "internal — disabled setup, no deep research"
+        ]
       },
       "auto_meta": {
         "built_at": "2026-06-24T22:16:00.482748",
