@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 318.34483729446873,
-  "last_updated": "2026-06-24T13:45:03Z",
+  "cash": 218.34483729446873,
+  "last_updated": "2026-06-24T13:50:02Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -37,23 +37,6 @@
       "added_at": "2026-06-23T13:35:06Z",
       "status": "pending",
       "mode": "paper"
-    },
-    {
-      "id": "PAPER_MOM_KEEL_2026-06-24",
-      "ticker": "KEEL",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Unknown",
-      "signal_date": "2026-06-24",
-      "entry": 6.63,
-      "stop_initial": 6.34,
-      "target": 7.0,
-      "score": 74.8,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-06-24T13:45:06Z",
-      "status": "pending",
-      "mode": "paper"
     }
   ],
   "open": [
@@ -81,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 237.13499450683594,
-      "pnl_pct": 2.1847292836453454,
-      "pnl_usd": 1.0923646418226727,
+      "current_price": 236.08999633789062,
+      "pnl_pct": 1.7344252059293772,
+      "pnl_usd": 0.8672126029646886,
       "hold_days": 1
     },
     {
@@ -110,9 +93,65 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.34000015258789,
-      "pnl_pct": 2.090328920175668,
-      "pnl_usd": 1.045164460087834,
+      "current_price": 47.2599983215332,
+      "pnl_pct": 1.917802236181923,
+      "pnl_usd": 0.9589011180909615,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_MOM_KEEL_2026-06-24",
+      "ticker": "KEEL",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-06-24",
+      "entry": 6.63,
+      "stop_initial": 6.34,
+      "target": 7.0,
+      "score": 74.8,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-06-24T13:45:06Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 6.63,
+      "shares": 7.541478129713424,
+      "size_usd": 50.0,
+      "stop": 6.34,
+      "high_since_entry": 6.63,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-24T13:50:06Z",
+      "current_price": 6.63,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_EWTX_2026-06-24_1350",
+      "ticker": "EWTX",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-06-24",
+      "stop_initial": 38.45,
+      "target": 41.62,
+      "score": 24.0,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.75,
+      "entry_actual": 39.63999938964844,
+      "shares": 1.2613521889472321,
+      "size_usd": 50.0,
+      "stop": 38.45,
+      "high_since_entry": 39.63999938964844,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-24T13:50:06Z",
+      "status": "open",
+      "current_price": 39.63999938964844,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -873,12 +912,12 @@
   ],
   "stats": {
     "total_trades": 22,
-    "open_trades": 2,
+    "open_trades": 4,
     "wins": 17,
     "losses": 5,
     "win_rate": 77.27272727272727,
     "pnl_realized": 18.343749588445906,
-    "pnl_unrealized": 2.1375291019105065,
-    "equity": 420.48236639637923
+    "pnl_unrealized": 1.8261137210556502,
+    "equity": 420.1709510155244
   }
 }
