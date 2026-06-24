@@ -113,6 +113,12 @@ def join_signal_to_trade(trades, sigs):
         s = lookup.get((t["date"], t["ticker"]), {})
         m = {**s, **t}
         merged.append(m)
+    # 2026-06-24: Nur aktiv gehandelte Setups in die Learn-/Knowledge-Aggregation.
+    # REVERSAL (Phase G disabled) + MEAN_REVERSION (disabled) verfaelschen sonst die
+    # Lifetime-Stats (WR/PF/Calibration) fuer das, was wir wirklich traden. Die
+    # Postmortem-DB bleibt VOLLSTAENDIG (Lessons wie reversal_after_oversold_trap erhalten,
+    # sie begruenden ja warum Reversal tot ist) — nur die abgeleiteten Stats sind bereinigt.
+    merged = [x for x in merged if x.get("setup") in ACTIVE_SETUPS]
     return merged
 
 

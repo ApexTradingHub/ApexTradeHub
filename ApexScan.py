@@ -1347,14 +1347,15 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
         # Catalyst-gated Extension-Penalty: ueberdehnte BREAKOUTs (perf_120>50) OHNE starken
         # Catalyst sind Late-Entries (Backtest 100-110-Trough: Loser perf_120 +61% vs Winner +33%).
         # -12 -> Plateau WR(100+) 47%->54%, Monotonie -15pp->-0pp, alle Signale erhalten (Sweep-Optimum).
-        # Carve-Out schuetzt Semi/AI-Capex-Winner (what_to_replicate). Live HAT zusaetzlich
-        # analyst_upside>15 (Backtest skippt analyst) -> Carve-Out live robuster.
+        # Carve-Out schuetzt Semi/AI-Capex-Winner (what_to_replicate).
+        # 2026-06-24: analyst_upside>15 aus dem Carve-Out ENTFERNT. Knowledge zeigt das Merkmal
+        # ist ANTI-prädiktiv (WR-Lift -12pp, n=28; Postmortem HII bestaetigt). Es als
+        # "strong_catalyst" zu werten (= Penalty-Befreiung) war rueckwaerts. Jetzt deckungsgleich
+        # mit dem validierten Backtest, der analyst eh nie nutzte.
         if setup == "BREAKOUT" and perf_120 > 50:
             _gap_rb     = catalysts.get("up_gap_pct", 0) or 0
-            _analyst_rb = (catalyst_signals or {}).get("analyst_target_upside") or 0
             strong_catalyst = (
                 (catalyst_signals or {}).get("earnings_beat_recent") or
-                _analyst_rb > 15 or
                 (catalysts.get("pocket_pivot_recent") and catalysts.get("volume_climax")) or
                 _gap_rb >= 5.0
             )
