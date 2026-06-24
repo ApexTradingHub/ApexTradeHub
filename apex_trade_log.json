@@ -752,5 +752,23 @@
     "entry_signal": 7.8,
     "entry_actual": 7.8,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_BFLY_2026-06-23",
+    "ts": "2026-06-24T13:45:06Z",
+    "ticker": "BFLY",
+    "exit_price": 8.23,
+    "reason": "Take Profit",
+    "pnl_pct": 5.512820512820521
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_KEEL_2026-06-24",
+    "ts": "2026-06-24T13:45:06Z",
+    "ticker": "KEEL",
+    "signal_date": "2026-06-24",
+    "score": 74.8,
+    "source": "momentum_filler"
   }
 ]
