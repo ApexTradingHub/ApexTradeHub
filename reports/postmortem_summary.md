@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-06-24T10:02:12.831607 | Total trades: 163_
+_Updated: 2026-06-24T22:16:00.783808 | Total trades: 165_
 
-**Analyse-Status**: complete=147, pending=16
+**Analyse-Status**: complete=147, pending=18
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -156,7 +156,7 @@ _Updated: 2026-06-24T10:02:12.831607 | Total trades: 163_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | CLF_2026-05-26 | BREAKOUT | 13.64% | Take Profit D+1 | 103.0 | Unknown | Trump verkuendete am Freitag 23.5. nach US-Close die Verdopplung der Stahl-Tariffs von 25% auf 50%. CLF gappte am Montag 26.5. premarket +35% hoch. Reiner Policy-Tarif-Tailwind: Cleveland-Cliffs ist ein puer US-Stahlproduzent, profitiert maximal von Importzoellen. closing_strength 0.92 = sehr starker Tagesabschluss = der Move war institutionell, kein retail-fade. TP D+1, sauberer +13.6%-Win. |
 
-## Pending Claude-Analyse (16)
+## Pending Claude-Analyse (18)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -176,3 +176,5 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `EMR_2026-06-16`
 - `ASML_2026-06-09`
 - `CARR_2026-06-09`
+- `CTVA_2026-06-11`
+- `XOM_2026-06-16`
