@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 266.1578086368518,
-  "last_updated": "2026-06-24T15:10:02Z",
+  "cash": 318.6552867408356,
+  "last_updated": "2026-06-24T15:15:02Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -64,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 233.2949981689453,
-      "pnl_pct": 0.530022069075074,
-      "pnl_usd": 0.265011034537537,
+      "current_price": 233.27999877929688,
+      "pnl_pct": 0.5235586258627678,
+      "pnl_usd": 0.2617793129313839,
       "hold_days": 1
     },
     {
@@ -93,37 +93,10 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.345001220703125,
-      "pnl_pct": 2.1011138945565477,
-      "pnl_usd": 1.0505569472782739,
+      "current_price": 47.29999923706055,
+      "pnl_pct": 2.0040655781787953,
+      "pnl_usd": 1.0020327890893976,
       "hold_days": 1
-    },
-    {
-      "id": "PAPER_INTRA_EWTX_2026-06-24_1350",
-      "ticker": "EWTX",
-      "setup": "INTRADAY",
-      "source": "intraday_momentum",
-      "sector": "Unknown",
-      "signal_date": "2026-06-24",
-      "stop_initial": 38.45,
-      "target": 41.62,
-      "score": 24.0,
-      "rr": 1.67,
-      "upside_pct": 5.0,
-      "gain_from_open": 1.75,
-      "entry_actual": 39.63999938964844,
-      "shares": 1.2613521889472321,
-      "size_usd": 50.0,
-      "stop": 38.45,
-      "high_since_entry": 39.63999938964844,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-06-24T13:50:06Z",
-      "status": "open",
-      "current_price": 41.05500030517578,
-      "pnl_pct": 3.5696290043255052,
-      "pnl_usd": 1.7848145021627524,
-      "hold_days": 0
     }
   ],
   "closed": [
@@ -857,6 +830,36 @@
       "exit_price": 6.34,
       "exit_reason": "Stop Loss",
       "closed_at": "2026-06-24T14:00:05Z"
+    },
+    {
+      "id": "PAPER_INTRA_EWTX_2026-06-24_1350",
+      "ticker": "EWTX",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-06-24",
+      "stop_initial": 38.45,
+      "target": 41.62,
+      "score": 24.0,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.75,
+      "entry_actual": 39.63999938964844,
+      "shares": 1.2613521889472321,
+      "size_usd": 50.0,
+      "stop": 38.45,
+      "high_since_entry": 39.63999938964844,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-24T13:50:06Z",
+      "status": "closed",
+      "current_price": 41.05500030517578,
+      "pnl_pct": 4.994956207967592,
+      "pnl_usd": 2.497478103983796,
+      "hold_days": 0,
+      "exit_price": 41.62,
+      "exit_reason": "Intraday TP",
+      "closed_at": "2026-06-24T15:15:05Z"
     }
   ],
   "expired": [
@@ -914,13 +917,13 @@
     }
   ],
   "stats": {
-    "total_trades": 23,
-    "open_trades": 3,
-    "wins": 17,
+    "total_trades": 24,
+    "open_trades": 2,
+    "wins": 18,
     "losses": 6,
-    "win_rate": 73.91304347826086,
-    "pnl_realized": 16.156720930829014,
-    "pnl_unrealized": 3.100382483978563,
-    "equity": 419.25819112083036
+    "win_rate": 75.0,
+    "pnl_realized": 18.65419903481281,
+    "pnl_unrealized": 1.2638121020207815,
+    "equity": 419.9190988428564
   }
 }
