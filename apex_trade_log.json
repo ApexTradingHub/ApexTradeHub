@@ -882,5 +882,24 @@
     "gain_from_open": 2.03,
     "score": 28.6,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MHK_2026-06-25_1405",
+    "ts": "2026-06-25T15:45:05Z",
+    "ticker": "MHK",
+    "exit_price": 119.05,
+    "reason": "Intraday Stop",
+    "pnl_pct": -3.002404034730391
+  },
+  {
+    "event": "intraday_open",
+    "id": "PAPER_INTRA_MANE_2026-06-25_1545",
+    "ts": "2026-06-25T15:45:07Z",
+    "ticker": "MANE",
+    "entry": 119.16000366210938,
+    "gain_from_open": 2.55,
+    "score": 23.5,
+    "mode": "paper"
   }
 ]
