@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 268.6552867408356,
-  "last_updated": "2026-06-25T13:45:02Z",
+  "cash": 218.6552867408356,
+  "last_updated": "2026-06-25T13:50:02Z",
   "pending": [
     {
       "id": "PAPER_TSM_2026-06-22",
@@ -60,13 +60,13 @@
       "shares": 0.21545687403952446,
       "size_usd": 50.0,
       "stop": 221.72,
-      "high_since_entry": 240.49960327148438,
+      "high_since_entry": 240.92990112304688,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 240.22999572753906,
-      "pnl_pct": 3.518407859967761,
-      "pnl_usd": 1.7592039299838804,
+      "current_price": 240.16000366210938,
+      "pnl_pct": 3.4882473167176595,
+      "pnl_usd": 1.7441236583588298,
       "hold_days": 2,
       "hold_trading_days": 2
     },
@@ -94,9 +94,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.790000915527344,
-      "pnl_pct": 3.060770951327782,
-      "pnl_usd": 1.530385475663891,
+      "current_price": 47.709999084472656,
+      "pnl_pct": 2.888244267334037,
+      "pnl_usd": 1.4441221336670185,
       "hold_days": 1,
       "hold_trading_days": 2
     },
@@ -130,6 +130,33 @@
       "hold_days": 0,
       "hold_trading_days": 1,
       "trailing_activated_at": "2026-06-25T13:40:05Z"
+    },
+    {
+      "id": "PAPER_INTRA_RKT_2026-06-25_1350",
+      "ticker": "RKT",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-06-25",
+      "stop_initial": 14.71,
+      "target": 15.93,
+      "score": 20.7,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 3.06,
+      "entry_actual": 15.170000076293945,
+      "shares": 3.2959788891586532,
+      "size_usd": 50.0,
+      "stop": 14.71,
+      "high_since_entry": 15.170000076293945,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-25T13:50:06Z",
+      "status": "open",
+      "current_price": 15.170000076293945,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -951,12 +978,12 @@
   ],
   "stats": {
     "total_trades": 24,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 18,
     "losses": 6,
     "win_rate": 75.0,
     "pnl_realized": 18.65419903481281,
-    "pnl_unrealized": 5.097439266036158,
-    "equity": 423.75272600687174
+    "pnl_unrealized": 4.996095652414235,
+    "equity": 423.65138239324983
   }
 }
