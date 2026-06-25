@@ -845,5 +845,23 @@
     "gain_from_open": 3.06,
     "score": 20.7,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_ADPT_2026-06-24",
+    "ts": "2026-06-25T13:55:06Z",
+    "ticker": "ADPT",
+    "exit_price": 20.037599999999998,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 3.4999999999999907
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_TGT_2026-06-24",
+    "ts": "2026-06-25T13:55:07Z",
+    "ticker": "TGT",
+    "signal_date": "2026-06-24",
+    "score": 137.2,
+    "source": "scanner"
   }
 ]
