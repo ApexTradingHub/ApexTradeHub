@@ -1,33 +1,33 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-06-26T10:02:25.584323 | Total trades: 172_
+_Updated: 2026-06-26T12:35:46.508998+00:00 | Total trades: 172_
 
-**Analyse-Status**: complete=165, pending=7
+**Analyse-Status**: complete=172
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `sector_relative_strength` | 28 |
-| `sector_momentum_tailwind` | 28 |
+| `sector_momentum_tailwind` | 31 |
+| `sector_relative_strength` | 29 |
+| `post_earnings_beat_continuation` | 24 |
 | `reversal_after_oversold_trap` | 24 |
-| `post_earnings_beat_continuation` | 22 |
-| `duplicate_trap` | 20 |
-| `reversal_win_external_catalyst` | 18 |
-| `secular_ai_catalyst` | 17 |
+| `duplicate_trap` | 21 |
+| `reversal_win_external_catalyst` | 21 |
+| `secular_ai_catalyst` | 18 |
 | `oversold_bounce_with_catalyst` | 17 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
+| `defensive_low_beta_drift` | 14 |
+| `breakout_no_follow_through` | 13 |
 | `geopolitical_premium_fade` | 12 |
-| `defensive_low_beta_drift` | 12 |
-| `breakout_no_follow_through` | 12 |
 | `fundamental_deterioration` | 11 |
 | `high_score_loss_85plus` | 11 |
 | `earnings_adjacency_risk` | 10 |
 | `reversal_no_turn` | 9 |
 | `pocket_pivot_validation` | 9 |
 | `low_score_loss` | 8 |
-| `ai_capex_supercycle` | 7 |
+| `ai_capex_supercycle` | 8 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -82,16 +82,9 @@ _Updated: 2026-06-26T10:02:25.584323 | Total trades: 172_
 | STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
 | CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
-| LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | _pending_ |
+| LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Pending Claude-Analyse (7)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `BAX_2026-06-10`
-- `DAL_2026-06-15`
-- `SWK_2026-06-15`
-- `TECH_2026-06-18`
-- `TECH_2026-06-24`
-- `LRCX_2026-06-11`
-- `USB_2026-06-11`
