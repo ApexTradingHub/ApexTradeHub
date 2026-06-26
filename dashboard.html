@@ -1905,6 +1905,24 @@ function renderActivityLog(s) {
         icon = '✏️';
         msg = `<b>${tk}</b> manueller Override — ${e.note || 'kein Kommentar'}`;
         break;
+      case 'intraday_open':
+        icon = '⚡';
+        msg = `<b>${tk}</b> Intraday-Position eröffnet bei $${(+e.entry || 0).toFixed(2)} (+${(+e.gain_from_open || 0).toFixed(1)}% vom Open)`;
+        break;
+      case 'intraday_to_swing': {
+        const ipnl = +e.pnl_pct || 0;
+        const modeLabel = e.mode === 'gruen->Breakeven' ? 'grün → Breakeven-Stop'
+                        : e.mode === 'rot->-4%' ? 'rot → −4% Stop' : (e.mode || '');
+        icon = '🔄';
+        msg = `<b>${tk}</b> Intraday → Momentum-Swing am EOD (${ipnl >= 0 ? '+' : ''}${ipnl.toFixed(1)}%, ${modeLabel}) — Stop $${(+e.new_stop || 0).toFixed(2)}`;
+        break;
+      }
+      case 'intraday_rescue': {   // alter Event-Name (Backward-Compat)
+        const rpnl = +e.pnl_pct || 0;
+        icon = '🔄';
+        msg = `<b>${tk}</b> Intraday gerettet → Momentum-Swing (${rpnl >= 0 ? '+' : ''}${rpnl.toFixed(1)}%)`;
+        break;
+      }
     }
     return `<div class="activity-item"><span class="ai-time">${t}</span><span class="ai-icon">${icon}</span><span class="ai-msg">${msg}</span></div>`;
   }).join('');
