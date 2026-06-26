@@ -707,11 +707,6 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
       <span class="stat-sublabel">🔵 Breakout</span>
       <span class="stat-subval" style="color:var(--blue)" id="s-breakout">—</span>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat-row">
-      <span class="stat-sublabel">🟢 Dip</span>
-      <span class="stat-subval" style="color:var(--cyan)" id="s-mr">—</span>
-    </div>
   </div>
   <div class="stat">
     <div class="stat-label">Performance</div>
@@ -844,8 +839,6 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
       <option value="VCP">🔹 Bounceback</option>
       <option value="SHORT_SQUEEZE">🔥 Bet</option>
       <option value="BREAKOUT">🔵 Breakout</option>
-      <option value="MEAN_REVERSION">🟢 Dip</option>
-      <option value="REVERSAL">Reversal</option>
     </select>
     <select class="hist-select" id="f-status" onchange="renderHistory()">
       <option value="">Alle Status</option>
@@ -1041,8 +1034,8 @@ const SETUP_META = {
   VCP:          { label: '🔹 Bounceback', color: 'var(--purple)', badge: 'badge-purple', hold: 40 },
   SHORT_SQUEEZE:{ label: '🔥 Bet',        color: 'var(--orange)', badge: 'badge-orange', hold: 20 },
   BREAKOUT:     { label: '🔵 Breakout',   color: 'var(--blue)',   badge: 'badge-blue',   hold: 21 },
-  MEAN_REVERSION:{ label: '🟢 Dip',       color: 'var(--cyan)',   badge: 'badge-amber',  hold: 20 },
-  REVERSAL:     { label: 'Reversal',      color: 'var(--teal)',   badge: 'badge-teal',   hold: 40 },
+  // MEAN_REVERSION + REVERSAL entfernt 2026-06-26 (Setups disabled) — fallen damit aus
+  // `active` (Filter auf SETUP_META) raus: keine Anzeige/Zaehlung/Charts mehr.
 };
 
 function setupMeta(s) { return SETUP_META[s] || { label: s, color: 'var(--muted2)', badge: 'badge-muted', hold: 15 }; }
@@ -1101,8 +1094,6 @@ function renderStats(sigs, rA, rT) {
   document.getElementById('s-vcp').textContent      = active.filter(s => s.setup === 'VCP').length;
   document.getElementById('s-squeeze').textContent  = active.filter(s => s.setup === 'SHORT_SQUEEZE').length;
   document.getElementById('s-breakout').textContent = active.filter(s => s.setup === 'BREAKOUT').length;
-  const mrEl = document.getElementById('s-mr');
-  if (mrEl) mrEl.textContent = active.filter(s => s.setup === 'MEAN_REVERSION' || s.setup === 'REVERSAL').length;
 
   // Open/closed trades
   const holdDays = k => setupMeta(k).hold;
@@ -1906,7 +1897,7 @@ function toggleTheme() {
   document.getElementById('themeBtn').textContent = isLight ? '🌑' : '🌙';
   localStorage.setItem('apexTheme', isLight ? 'light' : 'dark');
   // re-draw charts mit den korrekten Datenquellen (sigsAll für drawSetup, nicht allR — sonst
-  // fallen alle Setups ohne Closed-Trades raus = nur BREAKOUT+REVERSAL übrig)
+  // fallen alle Setups ohne Closed-Trades raus)
   drawEq();
   if (allR.length) drawDoughnut('exitChart', allR, exitStore);
   if (sigsAll.length) drawSetup(sigsAll);

@@ -511,8 +511,9 @@ def main():
     # Nur aktive Setups tracken
     # Phase H (2026-05-22): track ALL active Phase G/H setups. Was {BREAKOUT, REVERSAL} —
     # a stale filter that silently blocked STAGE_2/VCP/SQUEEZE/MR closed-trade data from
-    # accumulating. REVERSAL kept so legacy open positions still close out cleanly.
-    ACTIVE_SETUPS = {"BREAKOUT", "VCP", "SHORT_SQUEEZE", "STAGE_2", "MEAN_REVERSION", "REVERSAL"}
+    # accumulating. 2026-06-26: MEAN_REVERSION+REVERSAL ENTFERNT (beide disabled, keine
+    # offenen Legacy-Positionen mehr) — sie sollen die Equity-Sim nicht mehr polluten.
+    ACTIVE_SETUPS = {"BREAKOUT", "VCP", "SHORT_SQUEEZE", "STAGE_2"}
     signals = [s for s in signals if s.get("setup") in ACTIVE_SETUPS]
     print(f"Signale geladen: {len(signals)} (Setups: {', '.join(sorted(ACTIVE_SETUPS))})")
     print()
