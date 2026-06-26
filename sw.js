@@ -1,4 +1,4 @@
-const CACHE = 'apexscan-v27';
+const CACHE = 'apexscan-v28';
 
 // App shell – alles was sich selten ändert
 const SHELL = [
@@ -39,10 +39,13 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // JSON + Claude's-Picks-Board: Network-first → Cache-fallback
-  // (claude_picks.html wird haeufig iteriert → immer frisch, kein Versions-Bump noetig)
+  // JSON + beide HTML-Boards: Network-first → Cache-fallback
+  // (2026-06-26: dashboard.html AUCH network-first — wird haeufig editiert, war cache-first
+  //  und kam darum nie ohne Cache-Bump beim User an. Jetzt immer frisch wenn online, offline
+  //  faellt es auf den Cache zurueck.)
   const isData = DATA_FILES.some(f => e.request.url.includes(f.split('/').pop()));
-  const isLiveHtml = e.request.url.includes('claude_picks.html');
+  const isLiveHtml = e.request.url.includes('claude_picks.html')
+                  || e.request.url.includes('dashboard.html');
   if (isData || isLiveHtml) {
     e.respondWith(
       fetch(e.request)
