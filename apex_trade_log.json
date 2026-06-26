@@ -938,5 +938,47 @@
     "exit_price": 224.5800018310547,
     "reason": "Intraday Close (EOD)",
     "pnl_pct": 0.3395561084648849
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_ABBV_2026-06-22",
+    "ts": "2026-06-26T13:35:05Z",
+    "ticker": "ABBV",
+    "old_stop": 221.72,
+    "new_stop": 236.70630249023438,
+    "high": 248.77999877929688,
+    "ladder_step": 1
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_TSM_2026-06-22",
+    "ts": "2026-06-26T13:35:05Z",
+    "ticker": "TSM",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_JCI_2026-06-22",
+    "ts": "2026-06-26T13:35:05Z",
+    "ticker": "JCI",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_GNRC_2026-06-25",
+    "ts": "2026-06-26T13:35:05Z",
+    "ticker": "GNRC",
+    "signal_date": "2026-06-25",
+    "score": 120.1,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_LEG_2026-06-24",
+    "ts": "2026-06-26T13:35:05Z",
+    "ticker": "LEG",
+    "signal_date": "2026-06-24",
+    "score": 117.0,
+    "source": "scanner"
   }
 ]
