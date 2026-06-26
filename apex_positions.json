@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 169.83921943758833,
-  "last_updated": "2026-06-26T19:40:02Z",
+  "last_updated": "2026-06-26T19:45:03Z",
   "pending": [
     {
       "id": "PAPER_GNRC_2026-06-25",
@@ -47,9 +47,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 247.44000244140625,
-      "pnl_pct": 6.625298876715377,
-      "pnl_usd": 3.312649438357688,
+      "current_price": 247.89500427246094,
+      "pnl_pct": 6.821365421117982,
+      "pnl_usd": 3.410682710558991,
       "hold_days": 3,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-06-26T13:35:05Z"
@@ -78,9 +78,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.595001220703125,
-      "pnl_pct": 2.6402474422493794,
-      "pnl_usd": 1.3201237211246897,
+      "current_price": 47.654998779296875,
+      "pnl_pct": 2.7696342287196076,
+      "pnl_usd": 1.3848171143598038,
       "hold_days": 3,
       "hold_trading_days": 3
     },
@@ -108,9 +108,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-25T14:00:08Z",
-      "current_price": 139.58999633789062,
-      "pnl_pct": 0.5396444040316978,
-      "pnl_usd": 0.2698222020158489,
+      "current_price": 139.68499755859375,
+      "pnl_pct": 0.6080689989025301,
+      "pnl_usd": 0.30403449945126504,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -138,21 +138,21 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T13:40:06Z",
-      "current_price": 11.609999656677246,
-      "pnl_pct": 1.8715913964327127,
-      "pnl_usd": 0.9357956982163563,
+      "current_price": 11.595000267028809,
+      "pnl_pct": 1.7399797049041341,
+      "pnl_usd": 0.8699898524520671,
       "hold_days": 0,
       "hold_trading_days": 0
     },
     {
       "id": "PAPER_INTRA_AYI_2026-06-26_1510",
       "ticker": "AYI",
-      "setup": "INTRADAY",
-      "source": "intraday_momentum",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
       "sector": "Unknown",
       "signal_date": "2026-06-26",
       "stop_initial": 350.51,
-      "target": 379.42,
+      "target": 383.03,
       "score": 29.2,
       "rr": 1.67,
       "upside_pct": 5.0,
@@ -160,16 +160,17 @@
       "entry_actual": 361.3500061035156,
       "shares": 0.13836999904651046,
       "size_usd": 50.0,
-      "stop": 350.51,
-      "high_since_entry": 361.3500061035156,
+      "stop": 346.9,
+      "high_since_entry": 365.19000244140625,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T15:10:06Z",
       "status": "open",
-      "current_price": 358.8100891113281,
-      "pnl_pct": -0.7028966235744001,
-      "pnl_usd": -0.35144831178720004,
-      "hold_days": 0
+      "current_price": 359.30999755859375,
+      "pnl_pct": -0.564551960831426,
+      "pnl_usd": -0.282275980415713,
+      "hold_days": 0,
+      "intraday_rescued": true
     }
   ],
   "closed": [
@@ -1216,7 +1217,7 @@
     "losses": 9,
     "win_rate": 70.0,
     "pnl_realized": 19.83813173156555,
-    "pnl_unrealized": 5.486942747927383,
-    "equity": 425.3261621855157
+    "pnl_unrealized": 5.687248196406413,
+    "equity": 425.52646763399474
   }
 }
