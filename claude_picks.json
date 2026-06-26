@@ -1,107 +1,34 @@
 {
-  "updated": "2026-06-24",
-  "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Bewusst über ALLE Sektoren gestreut: die besten sauberen Setups, egal woher.",
+  "updated": "2026-06-26",
+  "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Bewusst über ALLE Sektoren gestreut. Wird aktiv gepflegt: ausgespielte/widerlegte Picks fliegen raus (zuletzt NVDA & DIS), neue kommen rein.",
   "tape": [
     {
       "label": "S&P 500",
-      "price": 732.64,
-      "chg": -0.13
+      "price": 734.3,
+      "chg": 0.14
     },
     {
       "label": "Nasdaq 100",
-      "price": 709.47,
-      "chg": -0.59
+      "price": 716.38,
+      "chg": 0.81
     },
     {
       "label": "Bitcoin",
-      "price": 59753.8,
-      "chg": -4.65
+      "price": 58903.51,
+      "chg": -1.37
     },
     {
       "label": "VIX",
-      "price": 19.92,
-      "chg": 2.21
+      "price": 19.91,
+      "chg": 5.4
     },
     {
       "label": "Gold",
-      "price": 4000.1,
-      "chg": -3.14
+      "price": 4061.4,
+      "chg": 0.77
     }
   ],
   "picks": [
-    {
-      "ticker": "NVDA",
-      "company": "NVIDIA Corporation",
-      "sector": "Technology — Semiconductors",
-      "horizon": "long",
-      "verdict": "buy",
-      "conviction": 4,
-      "thesis": "Pullback im klaren Aufwärtstrend des AI-Leaders — stärkste Megacap-Fundamentals.",
-      "why": [
-        {
-          "date": "2026-06-24",
-          "text": "Weiter gefallen auf ~$198 — UNTER dem $202-Dip-Entry und nur noch ~1.5% ueber dem $195-Stop. Risk-Off-Tape verkauft AI/Semi (deckt sich mit Knowledge: Sektor gegen uns)."
-        },
-        {
-          "date": "2026-05",
-          "text": "Q1-FY27: Rev $81.6B (+85% YoY), Data-Center $75.2B (+92%). Vera-Rubin als nächster Produktzyklus."
-        },
-        {
-          "date": "2026-06-22",
-          "text": "Von $238 (14.5) auf ~$211 zurückgesetzt — Korrektur INNERHALB des Bull, kein Reversal. RSI 50, an der Analysten-Untergrenze (~$210)."
-        }
-      ],
-      "note": "Pullback in den Leader = diszipliniert (nicht ins Hoch chasen). Avg-Target ~$275 (Range $210–$360). Risiko ehrlich: bei $5T-Cap muss er weiter schlagen, kann auf gute News fallen. Stop ~$195.",
-      "added": "2026-06-22",
-      "updated": "2026-06-24",
-      "ref_price": 210.69,
-      "current_price": 198.32,
-      "spark": [
-        220.52,
-        225.57,
-        235.47,
-        225.06,
-        222.06,
-        220.35,
-        223.21,
-        219.25,
-        215.08,
-        214.61,
-        212.35,
-        214.0,
-        210.89,
-        224.1,
-        222.56,
-        214.5,
-        218.66,
-        205.1,
-        208.64,
-        208.19,
-        200.42,
-        204.87,
-        205.19,
-        212.45,
-        207.41,
-        204.65,
-        210.69,
-        208.65,
-        200.04,
-        198.32
-      ],
-      "take": "Binaer hier: $198 ist mein Dip-Entry-Level, aber NVDA testet jetzt die $195-Stop-Linie. Haelt $195 = exzellentes Risk/Reward (Leader im Rabatt). Bricht $195 = These (gesunder Pullback) ist falsch, dann RAUS statt nachkaufen. Klein bleiben, kein Averaging-Down ins fallende Messer.",
-      "entries": [
-        {
-          "label": "Jetzt — an der Analysten-Untergrenze",
-          "price": 211
-        },
-        {
-          "label": "Besser — bei Dip auf",
-          "price": 202
-        }
-      ],
-      "stop": 195,
-      "target": 275
-    },
     {
       "ticker": "VRTX",
       "company": "Vertex Pharmaceuticals",
@@ -122,11 +49,10 @@
       ],
       "note": "Saubere Base (RSI 52, nah am Hoch). Die Pipeline (povetacicept = neuer Markt IgAN) ist der Re-Rating-Hebel weg vom saturierenden CF-Geschäft. Akkumulieren.",
       "added": "2026-06-22",
-      "updated": "2026-06-24",
+      "updated": "2026-06-26",
       "ref_price": 451.63,
-      "current_price": 474.87,
+      "current_price": 480.18,
       "spark": [
-        448.29,
         453.06,
         450.41,
         436.95,
@@ -155,7 +81,8 @@
         451.63,
         466.79,
         468.42,
-        474.87
+        475.2,
+        480.18
       ],
       "take": "Kaufen, weil das stabile Cystic-Fibrosis-Geschäft jetzt einen ZWEITEN Wachstumsmotor bekommt (ein Nieren-Medikament in Phase 3) — und die Aktie ruhig an der Base liegt, nicht überhitzt.",
       "entries": [
@@ -191,11 +118,10 @@
       ],
       "note": "Quality-REIT mit Dividende, zurückgesetzt (RSI 47). Doppelhebel: Logistik-Erholung + Data-Center-Optionalität. Anderes Risikoprofil (REIT) = guter Diversifizierer.",
       "added": "2026-06-22",
-      "updated": "2026-06-24",
+      "updated": "2026-06-26",
       "ref_price": 140.54,
-      "current_price": 141.2,
+      "current_price": 140.53,
       "spark": [
-        142.72,
         140.98,
         141.63,
         139.52,
@@ -224,7 +150,8 @@
         140.54,
         143.83,
         145.25,
-        141.2
+        140.87,
+        140.53
       ],
       "take": "Kaufen, weil ein Top-Immobilien-Vermieter gerade zurückgesetzt ist UND nebenbei ins Data-Center-Geschäft drängt. Zwei Hebel, günstiger Einstieg, Dividende inklusive.",
       "entries": [
@@ -260,11 +187,10 @@
       ],
       "note": "Akkumulieren <$280. Günstigere Alternative: VST (fwd-P/E 18 vs 24, PEG 0.48).",
       "added": "2026-06-22",
-      "updated": "2026-06-24",
+      "updated": "2026-06-26",
       "ref_price": 274.06,
-      "current_price": 268.39,
+      "current_price": 268.69,
       "spark": [
-        293.14,
         274.46,
         274.83,
         267.2,
@@ -293,7 +219,8 @@
         274.06,
         275.53,
         270.26,
-        268.39
+        267.97,
+        268.69
       ],
       "take": "Kaufen, weil Atomstrom der KNAPPSTE Baustein des AI-Strom-Hungers ist — und CEG als einziger Power-Name gerade abgekühlt ist. Du chasest nicht, du sammelst ein.",
       "entries": [
@@ -329,11 +256,10 @@
       ],
       "note": "Kein lautes Katalysator-Event — V ist ein Buy-the-Base-Compounder. Steady, defensiv-wachsend, geringe Drawdowns. Konservativer Anker im Board.",
       "added": "2026-06-22",
-      "updated": "2026-06-24",
+      "updated": "2026-06-26",
       "ref_price": 327.24,
-      "current_price": 332.17,
+      "current_price": 330.52,
       "spark": [
-        326.42,
         320.31,
         322.52,
         325.75,
@@ -362,7 +288,8 @@
         327.24,
         326.6,
         328.48,
-        332.17
+        332.23,
+        330.52
       ],
       "take": "Kaufen als ruhigen Dauerläufer — keine laute Story, aber ein Geldautomat mit Burggraben, sauber an der Base. Der Stabilitäts-Anker neben den High-Beta-Namen.",
       "entries": [
@@ -398,11 +325,10 @@
       ],
       "note": "Kein Momentum-Play — bewusst der ruhige Diversifizierer. Akkumulieren, Dividende kassieren, Volatilität dämpfen.",
       "added": "2026-06-22",
-      "updated": "2026-06-24",
+      "updated": "2026-06-26",
       "ref_price": 79.39,
-      "current_price": 80.65,
+      "current_price": 80.42,
       "spark": [
-        79.52,
         79.75,
         79.93,
         80.3,
@@ -431,7 +357,8 @@
         79.39,
         79.53,
         80.31,
-        80.65
+        80.6,
+        80.42
       ],
       "take": "Kaufen als Ballast — wackeln die Tech-Namen, hält das hier dagegen. Dividende, niedrige Schwankung, ruhig schlafen. Bewusst langweilig.",
       "entries": [
@@ -448,73 +375,142 @@
       "target": 90
     },
     {
-      "ticker": "DIS",
-      "company": "The Walt Disney Company",
-      "sector": "Communication Services",
-      "horizon": "swing",
+      "ticker": "LRCX",
+      "company": "Lam Research",
+      "sector": "Technology — Semiconductor Equipment",
+      "horizon": "long",
       "verdict": "buy",
       "conviction": 4,
-      "thesis": "Saubere Base nahe Hoch, Q2-Beat bestätigt — Entertainment-Swing abseits der Makro-Themen.",
+      "thesis": "AI-WFE-Leader — der Semi-Ausrüster der im Boom WIRKLICH liefert (NVDA hinkt, LRCX führt).",
       "why": [
         {
-          "date": "2026-05-06",
-          "text": "Q2-FY26 Beat — EPS $1.57 vs $1.50, Rev $25.17B. Streaming + Experiences führen, Double-Digit-EPS-Guide."
+          "date": "2026-06",
+          "text": "Record-Q3-FY26: Rev $5.84B +24% YoY, adj. EPS +41% — getrieben von AI-Wafer-Fab-Equipment-Nachfrage. Micron-Q3 hob den ganzen Semi-Sektor."
         },
         {
-          "date": "2026-06-18",
-          "text": "Enge Base $98.6–$104, löst mit Volumen auf. Insider clean (nur RSU-Vesting). Trigger >$105.25."
+          "date": "2026-06-22",
+          "text": "3× Analyst-PT-Raise auf ~$450 (Citi, Wells Fargo, Oppenheimer Outperform/Buy); +29% in 30 Tagen."
         }
       ],
-      "note": "Einziger Swing im Board — sauberster Entry bei Schluss > $105.25. Earnings erst ~Aug → kein Risiko.",
-      "added": "2026-06-22",
-      "updated": "2026-06-24",
-      "ref_price": 103.89,
-      "current_price": 101.42,
-      "spark": [
-        106.16,
-        104.9,
-        105.42,
-        102.72,
-        103.91,
-        102.29,
-        104.08,
-        103.58,
-        103.0,
-        103.28,
-        104.18,
-        103.73,
-        101.83,
-        102.85,
-        101.41,
-        99.39,
-        99.34,
-        99.71,
-        98.87,
-        99.33,
-        98.61,
-        100.34,
-        100.04,
-        101.69,
-        101.28,
-        100.86,
-        103.89,
-        102.45,
-        103.53,
-        101.42
-      ],
-      "take": "Kaufen, sobald sie über $105.25 SCHLIESST — die Base ist reif, die Zahlen stimmen, es fehlt nur die Bestätigung. Darunter ist's Hoffnung, darüber Setup. Nicht vorher reinspringen.",
+      "note": "Ersetzt NVDA auf dem Board: während NVDA der schwächste Major-Semi 2026 ist (China an Huawei verloren, GPU-Mietpreise -31%), liefert LRCX Rekordzahlen. ABER +29% in 30d = überdehnt — Pullback abwarten oder klein starten. Stop ~$360.",
+      "take": "Kaufen (diszipliniert), weil LRCX der Ausrüster ist der im AI-Boom echte Rekordzahlen liefert — nicht nur Story. Ehrlich: schon +29 % in einem Monat gelaufen, also nicht ins Hoch jagen — auf einen Rücksetzer warten oder nur klein einsteigen.",
       "entries": [
         {
-          "label": "Bestätigt — Tagesschluss über",
-          "price": 105.25
+          "label": "Klein jetzt — Momentum läuft",
+          "price": 400
         },
         {
-          "label": "Aggressiv — jetzt, mit engem Stop",
-          "price": 104
+          "label": "Besser — Pullback auf",
+          "price": 375
         }
       ],
-      "stop": 98.5,
-      "target": 124
+      "stop": 360,
+      "target": 450,
+      "added": "2026-06-26",
+      "updated": "2026-06-26",
+      "current_price": 401.82,
+      "spark": [
+        295.23,
+        298.94,
+        284.52,
+        277.76,
+        273.19,
+        291.88,
+        302.03,
+        305.14,
+        322.45,
+        318.71,
+        317.78,
+        317.96,
+        316.9,
+        334.17,
+        343.47,
+        336.17,
+        303.07,
+        324.22,
+        326.93,
+        321.57,
+        362.26,
+        366.55,
+        388.65,
+        369.08,
+        374.18,
+        389.04,
+        409.54,
+        371.33,
+        374.8,
+        401.82
+      ],
+      "ref_price": 401.82
+    },
+    {
+      "ticker": "CAT",
+      "company": "Caterpillar",
+      "sector": "Industrials — Machinery / AI-Power",
+      "horizon": "long",
+      "verdict": "wait",
+      "conviction": 3,
+      "thesis": "Vom Zyklus-Maschinenbauer zum AI-Infrastruktur-Play — Power & Energy liefert Generatoren/Turbinen für Data-Center.",
+      "why": [
+        {
+          "date": "2026-06",
+          "text": "Q1-2026: Sales +22% auf $17.4B, Power&Energy +20% auf ~$7B. Backlog Rekord ~$63B (+79% YoY) = seltene Mehrjahres-Sicht."
+        },
+        {
+          "date": "2026-06",
+          "text": "Chevron+Microsoft 'Project Kilby' (West-Texas AI-Data-Center-Power) — CAT liefert die Engines/Turbinen. +60% YTD, am Allzeithoch."
+        }
+      ],
+      "note": "Neuer Sektor fürs Board (Industrials), aber bewusst 'abwarten': +6% allein heute, +60% YTD, am ATH = das Überdehnungs-Profil vor dem unsere Daten warnen. Risiko: hängt an Big-Tech-AI-Capex (kühlt der ab, fällt CAT hart) + Tariff-Kosten $2.2-2.4B 2026.",
+      "take": "Abwarten, weil CAT eine starke Story hat (AI-Data-Center brauchen Strom, CAT baut die Generatoren) — aber gerade +60 % gelaufen und am Allzeithoch. Ins Hoch kaufen ist riskant; ich warte auf einen Rücksetzer und greife dann zu.",
+      "entries": [
+        {
+          "label": "Abwarten — Pullback auf",
+          "price": 960
+        },
+        {
+          "label": "Stärkerer Dip — zugreifen",
+          "price": 900
+        }
+      ],
+      "stop": 880,
+      "target": 1200,
+      "added": "2026-06-26",
+      "updated": "2026-06-26",
+      "current_price": 1057.01,
+      "spark": [
+        902.3,
+        920.22,
+        888.31,
+        863.95,
+        860.15,
+        872.56,
+        865.95,
+        879.89,
+        908.55,
+        909.93,
+        887.67,
+        875.87,
+        865.36,
+        909.81,
+        926.18,
+        940.48,
+        904.28,
+        915.64,
+        914.7,
+        856.16,
+        897.63,
+        910.57,
+        933.93,
+        945.46,
+        955.92,
+        985.82,
+        1022.28,
+        984.24,
+        994.45,
+        1057.01
+      ],
+      "ref_price": 1057.01
     }
   ]
 }
