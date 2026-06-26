@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 267.36469163478876,
-  "last_updated": "2026-06-26T13:35:02Z",
+  "cash": 217.36469163478876,
+  "last_updated": "2026-06-26T13:40:02Z",
   "pending": [
     {
       "id": "PAPER_GNRC_2026-06-25",
@@ -17,23 +17,6 @@
       "score": 120.1,
       "rr": 1.92,
       "upside_pct": 14.6,
-      "added_at": "2026-06-26T13:35:05Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_LEG_2026-06-24",
-      "ticker": "LEG",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Consumer Cyclical",
-      "signal_date": "2026-06-24",
-      "entry": 11.34,
-      "stop_initial": 10.69,
-      "target": 12.5,
-      "score": 117.0,
-      "rr": 1.77,
-      "upside_pct": 10.2,
       "added_at": "2026-06-26T13:35:05Z",
       "status": "pending",
       "mode": "paper"
@@ -64,9 +47,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 248.29110717773438,
-      "pnl_pct": 6.992051608654359,
-      "pnl_usd": 3.4960258043271795,
+      "current_price": 246.93499755859375,
+      "pnl_pct": 6.407685329864421,
+      "pnl_usd": 3.2038426649322105,
       "hold_days": 2,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-06-26T13:35:05Z"
@@ -95,9 +78,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.349998474121094,
-      "pnl_pct": 2.111890642412346,
-      "pnl_usd": 1.055945321206173,
+      "current_price": 47.63010025024414,
+      "pnl_pct": 2.715939699517472,
+      "pnl_usd": 1.357969849758736,
       "hold_days": 2,
       "hold_trading_days": 3
     },
@@ -125,11 +108,40 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-25T14:00:08Z",
-      "current_price": 140.61000061035156,
-      "pnl_pct": 1.2743021125653504,
-      "pnl_usd": 0.6371510562826752,
+      "current_price": 140.2449951171875,
+      "pnl_pct": 1.0114070380544,
+      "pnl_usd": 0.5057035190272,
       "hold_days": 0,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_LEG_2026-06-24",
+      "ticker": "LEG",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-06-24",
+      "entry": 11.34,
+      "stop_initial": 10.69,
+      "target": 12.5,
+      "score": 117.0,
+      "rr": 1.77,
+      "upside_pct": 10.2,
+      "added_at": "2026-06-26T13:35:05Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 11.3967,
+      "shares": 4.387234901331087,
+      "size_usd": 50.0,
+      "stop": 10.69,
+      "high_since_entry": 11.3967,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-26T13:40:06Z",
+      "current_price": 11.3967,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -1141,12 +1153,12 @@
   ],
   "stats": {
     "total_trades": 29,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 20,
     "losses": 9,
     "win_rate": 68.96551724137932,
     "pnl_realized": 17.36360392876597,
-    "pnl_unrealized": 5.189122181816028,
-    "equity": 422.5538138166048
+    "pnl_unrealized": 5.067516033718147,
+    "equity": 422.4322076685069
   }
 }
