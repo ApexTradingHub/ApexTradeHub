@@ -1341,26 +1341,35 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             elif cur <= p["stop"]:
                 i_reason, i_px = "Intraday Stop", p["stop"]
             elif _is_eod_utc():
+                # EOD->SWING (2026-06-26, User-Wunsch): KEIN hartes Banken mehr am EOD.
+                # ALLE ueberlebenden Intraday (gruen UND rot) -> Momentum-Swing, laufen lassen.
+                # Die Trailing-Ladder bankt erst bei ECHTEN Gewinnen (nicht am willkuerlichen
+                # EOD-Glockenschlag). Gute Gewinne (+5%) sind tagsueber eh schon als Intraday-TP
+                # rausgegangen. Stop differenziert: GRUEN -> Breakeven (Gewinn schuetzen, kein
+                # Gewinner-wird-Verlust), ROT -> -4% (Raum zum Erholen).
                 pnl_now = (cur - entry) / entry * 100
+                p["source"] = "momentum_filler"
+                p["setup"]  = "MOMENTUM"
+                p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
                 if pnl_now >= 0:
-                    i_reason, i_px = "Intraday Close (EOD)", cur   # gruene Intraday am EOD banken
+                    p["stop"] = round(max(p.get("stop", 0) or 0, entry), 2)   # mind. Breakeven
+                    _mode = "gruen->Breakeven"
                 else:
-                    # RESCUE (2026-06-26, User-Wunsch): rote Intraday NICHT am EOD wegrotieren.
-                    # In Momentum-Swing umwandeln -> Trailing-Ladder + bis 7d Hold zum Erholen,
-                    # Stop auf Momentum-Niveau (-4%) fuer etwas mehr Luft. Stop schuetzt Downside.
-                    p["source"] = "momentum_filler"
-                    p["setup"]  = "MOMENTUM"
-                    p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
-                    p["stop"]   = round(entry * (1 - MOMENTUM_SL_PCT), 2)
-                    p["intraday_rescued"] = True
-                    events.append({
-                        "event": "intraday_rescue", "id": p["id"], "ts": now_iso(),
-                        "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
-                        "new_stop": p["stop"], "new_target": p["target"],
-                    })
-                    log(f"  RESCUE: {p['ticker']} rote Intraday ({pnl_now:+.1f}%) -> Momentum-Swing "
-                        f"(Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, bis 7d Hold)")
-                    i_reason = None   # NICHT schliessen — faellt durch zu still_open
+                    p["stop"] = round(entry * (1 - MOMENTUM_SL_PCT), 2)        # -4% Raum
+                    _mode = "rot->-4%"
+                p["intraday_rescued"] = True
+                # Trailing-Ladder-Felder sicherstellen (Intraday-Pos hat sie evtl. nicht) ->
+                # sonst KeyError beim naechsten Run in der Ladder.
+                p.setdefault("ladder_step", 0)
+                p["high_since_entry"] = max(p.get("high_since_entry") or entry, cur, high or cur)
+                events.append({
+                    "event": "intraday_to_swing", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
+                    "new_stop": p["stop"], "mode": _mode,
+                })
+                log(f"  EOD->SWING: {p['ticker']} ({pnl_now:+.1f}%, {_mode}) "
+                    f"Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, Trailing aktiv")
+                i_reason = None   # NICHT schliessen — faellt durch zu still_open
             if i_reason:
                 if not dry_run:
                     close_position(state, p, i_px, i_reason)
