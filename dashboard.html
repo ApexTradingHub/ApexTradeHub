@@ -450,6 +450,11 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 
 /* Paper-Tab — kompakte ausklappbare Zeilen */
 .paper-list { display: flex; flex-direction: column; gap: 6px; }
+/* Einklappbare Paper-Closed-Liste (2026-06-26) */
+.paper-collapse-hd { cursor: pointer; user-select: none; }
+.paper-collapse-hd h2 .hist-chev { font-size: 13px; color: var(--muted2); transition: transform .15s ease; display: inline-block; }
+.paper-collapse-hd.collapsed h2 .hist-chev { transform: rotate(-90deg); }
+#p-closed-list.collapsed { display: none; }
 .paper-row {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -988,10 +993,10 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   </div>
 </div>
 
-<!-- CLOSED TRADES — kompakte Zeilen, klickbar zum Aufklappen -->
+<!-- CLOSED TRADES — kompakte Zeilen, klickbar zum Aufklappen; ganze Liste einklappbar (2026-06-26) -->
 <div class="card anim-3">
-  <div class="card-head">
-    <h2>Geschlossene Trades</h2>
+  <div class="card-head paper-collapse-hd" id="pClosedHd" onclick="togglePaperClosed()">
+    <h2>Geschlossene Trades <span class="hist-chev" id="pClosedChev">▾</span></h2>
     <span class="card-sub" id="p-closed-sub">—</span>
   </div>
   <div id="p-closed-list" class="paper-list">
@@ -1945,6 +1950,29 @@ function toggleHist() {
     const hd = document.getElementById('histHd');
     if (!w) return;
     const saved = localStorage.getItem('apexHistCollapsed');
+    const collapse = (saved === null) ? true : (saved === '1');   // Default: eingeklappt
+    w.classList.toggle('collapsed', collapse);
+    if (hd) hd.classList.toggle('collapsed', collapse);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
+  else apply();
+})();
+
+/* Einklappbare Paper-Trader Closed-Liste (2026-06-26) — Default eingeklappt, Zustand gemerkt */
+function togglePaperClosed() {
+  const w = document.getElementById('p-closed-list');
+  const hd = document.getElementById('pClosedHd');
+  if (!w) return;
+  const collapsed = w.classList.toggle('collapsed');
+  if (hd) hd.classList.toggle('collapsed', collapsed);
+  localStorage.setItem('apexPaperClosedCollapsed', collapsed ? '1' : '0');
+}
+(function initPaperClosedCollapse() {
+  const apply = () => {
+    const w = document.getElementById('p-closed-list');
+    const hd = document.getElementById('pClosedHd');
+    if (!w) return;
+    const saved = localStorage.getItem('apexPaperClosedCollapsed');
     const collapse = (saved === null) ? true : (saved === '1');   // Default: eingeklappt
     w.classList.toggle('collapsed', collapse);
     if (hd) hd.classList.toggle('collapsed', collapse);
