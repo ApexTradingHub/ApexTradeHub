@@ -402,6 +402,15 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 .hist-table tbody tr { transition: background .12s; }
 .hist-table tbody tr:hover td { background: rgba(99,135,255,0.04); }
 
+/* Einklappbare Closed-Trades-Liste (2026-06-26) */
+.hist-collapse-hd { display:flex; justify-content:space-between; align-items:center; cursor:pointer;
+  padding:4px 2px 10px; user-select:none; font-weight:600; font-size:13px; color:var(--text); }
+.hist-collapse-hd:hover { color:var(--accent); }
+.hist-count { color:var(--muted2); font-weight:500; font-size:12px; }
+.hist-chev { transition: transform .15s ease; font-size:12px; color:var(--muted2); }
+.hist-collapse-hd.collapsed .hist-chev { transform: rotate(-90deg); }
+.hist-table-wrap.collapsed { display:none; }
+
 .hist-pnl-pos { font-family: var(--font-mono); font-weight: 600; color: var(--green); }
 .hist-pnl-neg { font-family: var(--font-mono); font-weight: 600; color: var(--red); }
 
@@ -862,9 +871,13 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   </div>
 </div>
 
-<!-- HISTORY TABLE -->
+<!-- HISTORY TABLE (einklappbar 2026-06-26 — Liste wird lang) -->
 <div class="card">
-  <div class="hist-table-wrap">
+  <div class="hist-collapse-hd" id="histHd" onclick="toggleHist()">
+    <span>📋 Geschlossene Trades &amp; History <span id="histCount" class="hist-count"></span></span>
+    <span class="hist-chev" id="histChev">▾</span>
+  </div>
+  <div class="hist-table-wrap" id="histTableWrap">
     <table class="hist-table" id="histTable">
       <thead>
         <tr>
@@ -1443,6 +1456,8 @@ function resetHistFilters() {
 
 function renderHistory() {
   if (!allR.length && !sigsAll.length) return;
+  const _hc = document.getElementById('histCount');
+  if (_hc) _hc.textContent = '(' + (allR || []).length + ')';
 
   /* score/sector lookup from signals */
   const sigMap = {};
@@ -1915,6 +1930,29 @@ function toggleTheme() {
 })();
 
 /* ── INIT ── */
+/* Einklappbare Closed-Trades-Liste (2026-06-26) — Default eingeklappt, Zustand gemerkt */
+function toggleHist() {
+  const w = document.getElementById('histTableWrap');
+  const hd = document.getElementById('histHd');
+  if (!w) return;
+  const collapsed = w.classList.toggle('collapsed');
+  if (hd) hd.classList.toggle('collapsed', collapsed);
+  localStorage.setItem('apexHistCollapsed', collapsed ? '1' : '0');
+}
+(function initHistCollapse() {
+  const apply = () => {
+    const w = document.getElementById('histTableWrap');
+    const hd = document.getElementById('histHd');
+    if (!w) return;
+    const saved = localStorage.getItem('apexHistCollapsed');
+    const collapse = (saved === null) ? true : (saved === '1');   // Default: eingeklappt
+    w.classList.toggle('collapsed', collapse);
+    if (hd) hd.classList.toggle('collapsed', collapse);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
+  else apply();
+})();
+
 (function init() {
   const hash = location.hash.replace('#', '') || 'today';
   if (hash === 'history') showTab('history');

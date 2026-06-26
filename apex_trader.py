@@ -457,6 +457,29 @@ def market_open_today() -> bool:
         return True
 
 
+def market_is_open_now() -> bool:
+    """True NUR waehrend echter NYSE-Handelszeit (9:30-16:00 ET) — nicht nur Handelstag.
+    KRITISCH fuer Live (2026-06-26): der Cron laeuft ab ~13:00 UTC (= 9:00 ET, 30min VOR
+    Open). market_open_today() allein (Tag-Level) hat dann schon einen 'heute'-SPY-Bar und
+    feuerte Entries PRE-MARKET (real beobachtet: 10 Opens um 13:15 UTC = 9:15 ET, 15min vor
+    Open). Day-Level (Feiertage/WE): market_open_today(). Hour-Level: ET 9:30-16:00 via
+    zoneinfo (DST-sicher; Fallback EDT-Annahme UTC-4)."""
+    if not market_open_today():
+        return False
+    try:
+        from zoneinfo import ZoneInfo
+        et = datetime.now(ZoneInfo("America/New_York"))
+    except Exception:
+        et = datetime.now(timezone.utc) - timedelta(hours=4)   # EDT-Fallback (Sommer korrekt)
+    if et.weekday() >= 5:
+        return False
+    mins = et.hour * 60 + et.minute
+    open_now = (9 * 60 + 30) <= mins < (16 * 60)
+    if not open_now:
+        log(f"market: ET {et.strftime('%H:%M')} ausserhalb 09:30-16:00 -> Entries GESPERRT (pre/post-market)")
+    return open_now
+
+
 # ---------------------------------------------------------------------------
 # Telegram-aequivalentes Gate
 # ---------------------------------------------------------------------------
@@ -1318,7 +1341,26 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             elif cur <= p["stop"]:
                 i_reason, i_px = "Intraday Stop", p["stop"]
             elif _is_eod_utc():
-                i_reason, i_px = "Intraday Close (EOD)", cur
+                pnl_now = (cur - entry) / entry * 100
+                if pnl_now >= 0:
+                    i_reason, i_px = "Intraday Close (EOD)", cur   # gruene Intraday am EOD banken
+                else:
+                    # RESCUE (2026-06-26, User-Wunsch): rote Intraday NICHT am EOD wegrotieren.
+                    # In Momentum-Swing umwandeln -> Trailing-Ladder + bis 7d Hold zum Erholen,
+                    # Stop auf Momentum-Niveau (-4%) fuer etwas mehr Luft. Stop schuetzt Downside.
+                    p["source"] = "momentum_filler"
+                    p["setup"]  = "MOMENTUM"
+                    p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
+                    p["stop"]   = round(entry * (1 - MOMENTUM_SL_PCT), 2)
+                    p["intraday_rescued"] = True
+                    events.append({
+                        "event": "intraday_rescue", "id": p["id"], "ts": now_iso(),
+                        "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
+                        "new_stop": p["stop"], "new_target": p["target"],
+                    })
+                    log(f"  RESCUE: {p['ticker']} rote Intraday ({pnl_now:+.1f}%) -> Momentum-Swing "
+                        f"(Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, bis 7d Hold)")
+                    i_reason = None   # NICHT schliessen — faellt durch zu still_open
             if i_reason:
                 if not dry_run:
                     close_position(state, p, i_px, i_reason)
@@ -1563,11 +1605,12 @@ def run_trader(dry_run: bool = False):
     events1 = update_open_positions(state, dry_run=dry_run, allow_stagnation=replacement_available)
     all_events.extend(events1)
 
-    # Market-Open-Guard (2026-06-19): Cron kennt keine US-Feiertage. An Feiertagen/WE
-    # liefert yfinance stale Bars -> Trigger/Entries auf altem Preis = falsch. Skip Step 2+3.
-    market_open = market_open_today()
+    # Market-Open-Guard (2026-06-19, verschaerft 2026-06-26): Entries NUR waehrend echter
+    # NYSE-Handelszeit (9:30-16:00 ET), nicht nur an Handelstagen. Verhindert Pre-Market-Opens
+    # (Cron laeuft ab 13:00 UTC = 9:00 ET). market_is_open_now() kombiniert Tag- + Stunden-Check.
+    market_open = market_is_open_now()
     if not market_open:
-        log("step 2-3: SKIP (Boerse heute zu — Feiertag/WE). Nur Mgmt + Overrides liefen.")
+        log("step 2-3: SKIP (Boerse nicht offen — Feiertag/WE oder ausserhalb 09:30-16:00 ET). Nur Mgmt + Overrides liefen.")
 
     # 2. Walk pending → trigger if cash + price ok (nur bei offener Boerse)
     if market_open:

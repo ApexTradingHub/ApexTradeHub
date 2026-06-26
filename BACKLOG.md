@@ -387,3 +387,26 @@ gehandelt. Geringer praktischer Payoff. Der Score-Rebuild fixte bereits das Buck
 **Trigger zum Anpacken:** naechster substanzieller Score-Tag (dann Loesung B als
 perf_120-Unification, Backtest-First, POWER-Carve-Out erhalten). Quick-Alternative falls
 gezielt: WEAK-Penalty -15->-20 ODER Trend-Konflikt-Penalty (perf_120<0 UND perf_20>0).
+
+---
+
+## 12. Sektor-Bonus entfernen (kein prädiktiver Wert) — getestet 2026-06-26
+
+**Befund:** Die Sektor-RS-Hypothese (Sektor-ETF-Momentum vs SPY als Score-Faktor) wurde an
+83 echten BREAKOUT-Trades getestet — **FALSIFIZIERT**. WR nach Sektor-RS-Bucket ist reines
+Rauschen, nicht-monoton (schwächster Sektor-Bucket hatte die *höchste* WR 67 %). Trennschärfe:
+Sektor schwach (<-2pp vs SPY) = 56 % WR vs Sektor stark (≥+2pp) = 54 % — **kein Edge.**
+
+Die 27+27 `sector_relative_strength`/`sector_momentum_tailwind`-Postmortem-Tags waren
+**Post-hoc-Narrativ** (Gewinner rückblickend gelabelt; Verlierer hatten denselben „Rückenwind").
+Hindsight-Bias — Tag-Häufigkeit ≠ prädiktiver Edge. Klassischer Backtest-First-Save.
+
+**Eigentliche Action:** Der **bereits existierende absolute Sektor-Bonus** in ApexScan.py
+(~Zeile 1319-1335, `sec_perf >= 5 → +6` etc.) zeigt im selben Test **auch keine Trennung**
+(flat ~54 % WR über alle Buckets). Er addiert Noise auf den Score und verwässert die
+Kalibrierung. **Vorschlag: entfernen** — reiner Vereinfachungs-Gewinn (kein Feature-Verlust).
+
+**Warum geparkt:** Niedrige Prio, schadet nicht akut. Vor dem Entfernen kurzer Backtest
+(Score mit/ohne Sektor-Bonus, Signal-Count darf nicht sinken — Signal-Protection). Der
+Stock-vs-SPY-RS-Bonus (Zeile 1311-1317) NICHT anfassen — der ist eine andere Metrik (eigene
+Aktie vs Markt) und nicht mitgetestet.
