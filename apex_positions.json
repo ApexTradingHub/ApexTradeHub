@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 217.36469163478876,
-  "last_updated": "2026-06-26T13:45:02Z",
+  "cash": 167.36469163478876,
+  "last_updated": "2026-06-26T13:50:02Z",
   "pending": [
     {
       "id": "PAPER_GNRC_2026-06-25",
@@ -47,9 +47,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-23T13:40:06Z",
-      "current_price": 247.13999938964844,
-      "pnl_pct": 6.496023437247265,
-      "pnl_usd": 3.2480117186236326,
+      "current_price": 247.26499938964844,
+      "pnl_pct": 6.5498876557571455,
+      "pnl_usd": 3.2749438278785727,
       "hold_days": 3,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-06-26T13:35:05Z"
@@ -78,9 +78,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.650001525878906,
-      "pnl_pct": 2.7588574808638087,
-      "pnl_usd": 1.3794287404319043,
+      "current_price": 47.8650016784668,
+      "pnl_pct": 3.2225126609406476,
+      "pnl_usd": 1.6112563304703238,
       "hold_days": 2,
       "hold_trading_days": 3
     },
@@ -108,9 +108,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-25T14:00:08Z",
-      "current_price": 140.85000610351562,
-      "pnl_pct": 1.4471659822607121,
-      "pnl_usd": 0.7235829911303562,
+      "current_price": 140.73500061035156,
+      "pnl_pct": 1.3643333173809395,
+      "pnl_usd": 0.6821666586904698,
       "hold_days": 0,
       "hold_trading_days": 1
     },
@@ -134,15 +134,42 @@
       "shares": 4.387234901331087,
       "size_usd": 50.0,
       "stop": 10.69,
-      "high_since_entry": 11.666000366210938,
+      "high_since_entry": 11.670000076293945,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T13:40:06Z",
-      "current_price": 11.666000366210938,
-      "pnl_pct": 2.3629679311637437,
-      "pnl_usd": 1.1814839655818719,
+      "current_price": 11.621000289916992,
+      "pnl_pct": 1.9681161206050262,
+      "pnl_usd": 0.9840580603025131,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_ABCL_2026-06-26_1350",
+      "ticker": "ABCL",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-06-26",
+      "stop_initial": 6.66,
+      "target": 7.21,
+      "score": 40.2,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.86,
+      "entry_actual": 6.869999885559082,
+      "shares": 7.278020499694811,
+      "size_usd": 50.0,
+      "stop": 6.66,
+      "high_since_entry": 6.869999885559082,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-26T13:50:06Z",
+      "status": "open",
+      "current_price": 6.869999885559082,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -1154,12 +1181,12 @@
   ],
   "stats": {
     "total_trades": 29,
-    "open_trades": 4,
+    "open_trades": 5,
     "wins": 20,
     "losses": 9,
     "win_rate": 68.96551724137932,
     "pnl_realized": 17.36360392876597,
-    "pnl_unrealized": 6.532507415767764,
-    "equity": 423.89719905055654
+    "pnl_unrealized": 6.552424877341879,
+    "equity": 423.91711651213063
   }
 }
