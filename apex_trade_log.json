@@ -1036,5 +1036,21 @@
     "exit_price": 250.0,
     "reason": "Take Profit",
     "pnl_pct": 7.728437019762224
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_GNRC_2026-06-25",
+    "ts": "2026-06-29T13:35:06Z",
+    "ticker": "GNRC",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CBT_2026-06-26",
+    "ts": "2026-06-29T13:35:06Z",
+    "ticker": "CBT",
+    "signal_date": "2026-06-26",
+    "score": 137.4,
+    "source": "scanner"
   }
 ]

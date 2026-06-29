@@ -2,22 +2,22 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 223.70343794746944,
-  "last_updated": "2026-06-29T13:30:03Z",
+  "last_updated": "2026-06-29T13:35:02Z",
   "pending": [
     {
-      "id": "PAPER_GNRC_2026-06-25",
-      "ticker": "GNRC",
+      "id": "PAPER_CBT_2026-06-26",
+      "ticker": "CBT",
       "setup": "BREAKOUT",
       "source": "scanner",
-      "sector": "Industrials",
-      "signal_date": "2026-06-25",
-      "entry": 296.62,
-      "stop_initial": 274.02,
-      "target": 340.0,
-      "score": 120.1,
-      "rr": 1.92,
-      "upside_pct": 14.6,
-      "added_at": "2026-06-26T13:35:05Z",
+      "sector": "Basic Materials",
+      "signal_date": "2026-06-26",
+      "entry": 93.9,
+      "stop_initial": 89.74,
+      "target": 102.5,
+      "score": 137.4,
+      "rr": 2.07,
+      "upside_pct": 9.2,
+      "added_at": "2026-06-29T13:35:06Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -47,9 +47,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 48.025001525878906,
-      "pnl_pct": 3.5675578024030568,
-      "pnl_usd": 1.7837789012015284,
+      "current_price": 48.15999984741211,
+      "pnl_pct": 3.8586862984861505,
+      "pnl_usd": 1.9293431492430753,
       "hold_days": 5,
       "hold_trading_days": 4
     },
@@ -77,9 +77,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-25T14:00:08Z",
-      "current_price": 140.27999877929688,
-      "pnl_pct": 1.0366184130357186,
-      "pnl_usd": 0.5183092065178593,
+      "current_price": 138.74000549316406,
+      "pnl_pct": -0.07256119463192412,
+      "pnl_usd": -0.03628059731596206,
       "hold_days": 3,
       "hold_trading_days": 2
     },
@@ -107,9 +107,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T13:40:06Z",
-      "current_price": 11.640000343322754,
-      "pnl_pct": 2.134831515462851,
-      "pnl_usd": 1.0674157577314256,
+      "current_price": 11.440099716186523,
+      "pnl_pct": 0.38080949912276607,
+      "pnl_usd": 0.19040474956138304,
       "hold_days": 2,
       "hold_trading_days": 1
     },
@@ -135,9 +135,9 @@
       "ladder_step": 0,
       "opened_at": "2026-06-26T15:10:06Z",
       "status": "open",
-      "current_price": 362.30999755859375,
-      "pnl_pct": 0.2656680334476367,
-      "pnl_usd": 0.13283401672381834,
+      "current_price": 361.9800109863281,
+      "pnl_pct": 0.1743475500681251,
+      "pnl_usd": 0.08717377503406257,
       "hold_days": 2,
       "intraday_rescued": true,
       "hold_trading_days": 1
@@ -1212,6 +1212,24 @@
       "status": "expired",
       "mode": "paper",
       "expired_at": "2026-06-26T13:35:05Z"
+    },
+    {
+      "id": "PAPER_GNRC_2026-06-25",
+      "ticker": "GNRC",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-06-25",
+      "entry": 296.62,
+      "stop_initial": 274.02,
+      "target": 340.0,
+      "score": 120.1,
+      "rr": 1.92,
+      "upside_pct": 14.6,
+      "added_at": "2026-06-26T13:35:05Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-06-29T13:35:06Z"
     }
   ],
   "stats": {
@@ -1221,7 +1239,7 @@
     "losses": 9,
     "win_rate": 70.96774193548387,
     "pnl_realized": 23.702350241446663,
-    "pnl_unrealized": 3.5023378821746314,
-    "equity": 427.20577582964404
+    "pnl_unrealized": 2.1706410765225588,
+    "equity": 425.87407902399195
   }
 }
