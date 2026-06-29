@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-06-26T12:35:46.508998+00:00 | Total trades: 172_
+_Updated: 2026-06-29T11:49:51.270165 | Total trades: 176_
 
-**Analyse-Status**: complete=172
+**Analyse-Status**: complete=172, pending=4
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -84,7 +84,11 @@ _Updated: 2026-06-26T12:35:46.508998+00:00 | Total trades: 172_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Pending Claude-Analyse (0)
+## Pending Claude-Analyse (4)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
+- `HWM_2026-06-17`
+- `TSM_2026-06-18`
+- `ABBV_2026-06-22`
+- `CCL_2026-06-12`
