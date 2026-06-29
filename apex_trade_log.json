@@ -1072,5 +1072,23 @@
     "gain_from_open": 1.68,
     "score": 27.2,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_PAY_2026-06-29_1350",
+    "ts": "2026-06-29T19:45:06Z",
+    "ticker": "PAY",
+    "pnl_pct": -0.55,
+    "new_stop": 22.87,
+    "mode": "rot->-4%"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_FROG_2026-06-29_1625",
+    "ts": "2026-06-29T19:45:06Z",
+    "ticker": "FROG",
+    "pnl_pct": 0.02,
+    "new_stop": 89.54,
+    "mode": "gruen->Breakeven"
   }
 ]
