@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 173.70343794746944,
-  "last_updated": "2026-06-29T16:20:02Z",
+  "cash": 123.70343794746944,
+  "last_updated": "2026-06-29T16:25:03Z",
   "pending": [
     {
       "id": "PAPER_CBT_2026-06-26",
@@ -47,9 +47,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 47.95500183105469,
-      "pnl_pct": 3.4166010671710705,
-      "pnl_usd": 1.7083005335855352,
+      "current_price": 47.920101165771484,
+      "pnl_pct": 3.341336589207177,
+      "pnl_usd": 1.6706682946035882,
       "hold_days": 6,
       "hold_trading_days": 4
     },
@@ -77,9 +77,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-25T14:00:08Z",
-      "current_price": 135.89999389648438,
-      "pnl_pct": -2.1180785205464616,
-      "pnl_usd": -1.0590392602732308,
+      "current_price": 135.97999572753906,
+      "pnl_pct": -2.0604572306480073,
+      "pnl_usd": -1.0302286153240037,
       "hold_days": 4,
       "hold_trading_days": 2
     },
@@ -107,9 +107,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T13:40:06Z",
-      "current_price": 11.505000114440918,
-      "pnl_pct": 0.9502760837866997,
-      "pnl_usd": 0.47513804189334985,
+      "current_price": 11.520000457763672,
+      "pnl_pct": 1.081896143301769,
+      "pnl_usd": 0.5409480716508845,
       "hold_days": 3,
       "hold_trading_days": 1
     },
@@ -135,9 +135,9 @@
       "ladder_step": 0,
       "opened_at": "2026-06-26T15:10:06Z",
       "status": "open",
-      "current_price": 363.0,
-      "pnl_pct": 0.45661930776658205,
-      "pnl_usd": 0.22830965388329102,
+      "current_price": 364.489990234375,
+      "pnl_pct": 0.8689592023861393,
+      "pnl_usd": 0.4344796011930697,
       "hold_days": 3,
       "intraday_rescued": true,
       "hold_trading_days": 1
@@ -164,9 +164,36 @@
       "ladder_step": 0,
       "opened_at": "2026-06-29T13:50:07Z",
       "status": "open",
-      "current_price": 23.809999465942383,
-      "pnl_pct": -0.04198248954641615,
-      "pnl_usd": -0.020991244773208077,
+      "current_price": 23.80500030517578,
+      "pnl_pct": -0.06296973064905906,
+      "pnl_usd": -0.03148486532452953,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_FROG_2026-06-29_1625",
+      "ticker": "FROG",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-06-29",
+      "stop_initial": 86.85,
+      "target": 94.02,
+      "score": 27.2,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.68,
+      "entry_actual": 89.54000091552734,
+      "shares": 0.558409643609121,
+      "size_usd": 50.0,
+      "stop": 86.85,
+      "high_since_entry": 89.54000091552734,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-29T16:25:07Z",
+      "status": "open",
+      "current_price": 89.54000091552734,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -1261,12 +1288,12 @@
   ],
   "stats": {
     "total_trades": 31,
-    "open_trades": 5,
+    "open_trades": 6,
     "wins": 22,
     "losses": 9,
     "win_rate": 70.96774193548387,
     "pnl_realized": 23.702350241446663,
-    "pnl_unrealized": 1.3317177243157372,
-    "equity": 425.0351556717852
+    "pnl_unrealized": 1.5843824867990095,
+    "equity": 425.2878204342684
   }
 }
