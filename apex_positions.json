@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 223.70343794746944,
-  "last_updated": "2026-06-29T13:45:03Z",
+  "cash": 173.70343794746944,
+  "last_updated": "2026-06-29T13:50:02Z",
   "pending": [
     {
       "id": "PAPER_CBT_2026-06-26",
@@ -47,9 +47,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 48.27000045776367,
-      "pnl_pct": 4.09590637571501,
-      "pnl_usd": 2.047953187857505,
+      "current_price": 48.20000076293945,
+      "pnl_pct": 3.9449496404830233,
+      "pnl_usd": 1.9724748202415117,
       "hold_days": 5,
       "hold_trading_days": 4
     },
@@ -77,9 +77,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-25T14:00:08Z",
-      "current_price": 139.11500549316406,
-      "pnl_pct": 0.19753241981484318,
-      "pnl_usd": 0.09876620990742159,
+      "current_price": 139.25,
+      "pnl_pct": 0.29476216456624904,
+      "pnl_usd": 0.14738108228312452,
       "hold_days": 3,
       "hold_trading_days": 2
     },
@@ -107,9 +107,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T13:40:06Z",
-      "current_price": 11.489999771118164,
-      "pnl_pct": 0.8186560242716304,
-      "pnl_usd": 0.4093280121358152,
+      "current_price": 11.480999946594238,
+      "pnl_pct": 0.7396873357571851,
+      "pnl_usd": 0.3698436678785926,
       "hold_days": 3,
       "hold_trading_days": 1
     },
@@ -135,12 +135,39 @@
       "ladder_step": 0,
       "opened_at": "2026-06-26T15:10:06Z",
       "status": "open",
-      "current_price": 359.8399963378906,
-      "pnl_pct": -0.4178800996595054,
-      "pnl_usd": -0.20894004982975273,
+      "current_price": 364.0400085449219,
+      "pnl_pct": 0.7444312705049871,
+      "pnl_usd": 0.37221563525249357,
       "hold_days": 2,
       "intraday_rescued": true,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_INTRA_PAY_2026-06-29_1350",
+      "ticker": "PAY",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-06-29",
+      "stop_initial": 23.11,
+      "target": 25.01,
+      "score": 28.8,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.23,
+      "entry_actual": 23.81999969482422,
+      "shares": 2.0990764332740257,
+      "size_usd": 50.0,
+      "stop": 23.11,
+      "high_since_entry": 23.81999969482422,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-06-29T13:50:07Z",
+      "status": "open",
+      "current_price": 23.81999969482422,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -1234,12 +1261,12 @@
   ],
   "stats": {
     "total_trades": 31,
-    "open_trades": 4,
+    "open_trades": 5,
     "wins": 22,
     "losses": 9,
     "win_rate": 70.96774193548387,
     "pnl_realized": 23.702350241446663,
-    "pnl_unrealized": 2.347107360070989,
-    "equity": 426.05054530754046
+    "pnl_unrealized": 2.861915205655722,
+    "equity": 426.56535315312516
   }
 }
