@@ -1135,5 +1135,14 @@
     "exit_price": 71.08,
     "reason": "Intraday TP",
     "pnl_pct": 5.00502066716964
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_FRSH_2026-06-30_1355",
+    "ts": "2026-06-30T19:45:06Z",
+    "ticker": "FRSH",
+    "pnl_pct": -0.3,
+    "new_stop": 9.76,
+    "mode": "rot->-4%"
   }
 ]
