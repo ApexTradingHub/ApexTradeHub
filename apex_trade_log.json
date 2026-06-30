@@ -1097,5 +1097,14 @@
     "ts": "2026-06-30T13:35:07Z",
     "ticker": "CBT",
     "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_TGT_2026-06-24",
+    "ts": "2026-06-30T13:40:08Z",
+    "ticker": "TGT",
+    "exit_price": 131.64,
+    "reason": "Stop Loss",
+    "pnl_pct": -5.186337584606824
   }
 ]
