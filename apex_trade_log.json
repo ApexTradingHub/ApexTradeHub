@@ -1193,5 +1193,23 @@
     "new_stop": 24.653699684143064,
     "high": 25.260000228881836,
     "ladder_step": 1
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_HSAI_2026-07-01_1345",
+    "ts": "2026-07-01T19:45:06Z",
+    "ticker": "HSAI",
+    "pnl_pct": 0.55,
+    "new_stop": 18.25,
+    "mode": "gruen->Breakeven"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_MRCY_2026-07-01_1345",
+    "ts": "2026-07-01T19:45:06Z",
+    "ticker": "MRCY",
+    "pnl_pct": -0.35,
+    "new_stop": 119.41,
+    "mode": "rot->-4%"
   }
 ]
