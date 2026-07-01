@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 73.61277897751157,
-  "last_updated": "2026-07-01T13:55:02Z",
+  "last_updated": "2026-07-01T14:00:03Z",
   "pending": [],
   "open": [
     {
@@ -25,13 +25,13 @@
       "shares": 1.078267095385664,
       "size_usd": 50.0,
       "stop": 47.29811399999999,
-      "high_since_entry": 49.29999923706055,
+      "high_since_entry": 49.47999954223633,
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-06-23T14:20:06Z",
-      "current_price": 49.189998626708984,
-      "pnl_pct": 6.079913882492592,
-      "pnl_usd": 3.039956941246296,
+      "current_price": 49.470001220703125,
+      "pnl_pct": 6.68374904994562,
+      "pnl_usd": 3.3418745249728103,
       "hold_days": 7,
       "hold_trading_days": 6,
       "trailing_activated_at": "2026-07-01T13:35:07Z"
@@ -60,9 +60,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-06-26T13:40:06Z",
-      "current_price": 11.609999656677246,
-      "pnl_pct": 1.8715913964327127,
-      "pnl_usd": 0.9357956982163563,
+      "current_price": 11.579299926757812,
+      "pnl_pct": 1.602217543304758,
+      "pnl_usd": 0.801108771652379,
       "hold_days": 5,
       "hold_trading_days": 3
     },
@@ -88,9 +88,9 @@
       "ladder_step": 0,
       "opened_at": "2026-06-26T15:10:06Z",
       "status": "open",
-      "current_price": 369.2699890136719,
-      "pnl_pct": 2.1917760554533987,
-      "pnl_usd": 1.0958880277266994,
+      "current_price": 366.6199951171875,
+      "pnl_pct": 1.4584167495937959,
+      "pnl_usd": 0.7292083747968979,
       "hold_days": 4,
       "intraday_rescued": true,
       "hold_trading_days": 3
@@ -111,18 +111,19 @@
       "entry_actual": 23.81999969482422,
       "shares": 2.0990764332740257,
       "size_usd": 50.0,
-      "stop": 22.87,
-      "high_since_entry": 25.170000076293945,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 24.653699684143064,
+      "high_since_entry": 25.260000228881836,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-06-29T13:50:07Z",
       "status": "open",
-      "current_price": 25.170000076293945,
-      "pnl_pct": 5.667507971308095,
-      "pnl_usd": 2.8337539856540475,
+      "current_price": 25.260000228881836,
+      "pnl_pct": 6.04534236988471,
+      "pnl_usd": 3.022671184942355,
       "hold_days": 2,
       "intraday_rescued": true,
-      "hold_trading_days": 2
+      "hold_trading_days": 2,
+      "trailing_activated_at": "2026-07-01T14:00:07Z"
     },
     {
       "id": "PAPER_INTRA_FRSH_2026-06-30_1355",
@@ -146,9 +147,9 @@
       "ladder_step": 0,
       "opened_at": "2026-06-30T13:55:06Z",
       "status": "open",
-      "current_price": 10.4399995803833,
-      "pnl_pct": 2.705357792053965,
-      "pnl_usd": 1.3526788960269824,
+      "current_price": 10.460000038146973,
+      "pnl_pct": 2.9021158622824856,
+      "pnl_usd": 1.4510579311412428,
       "hold_days": 1,
       "intraday_rescued": true,
       "hold_trading_days": 1
@@ -175,9 +176,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-01T13:45:08Z",
       "status": "open",
-      "current_price": 18.200000762939453,
-      "pnl_pct": -0.27396842224957196,
-      "pnl_usd": -0.13698421112478598,
+      "current_price": 18.280000686645508,
+      "pnl_pct": 0.1643873240849743,
+      "pnl_usd": 0.08219366204248715,
       "hold_days": 0
     },
     {
@@ -202,9 +203,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-01T13:45:08Z",
       "status": "open",
-      "current_price": 124.1449966430664,
-      "pnl_pct": -0.19295372355358464,
-      "pnl_usd": -0.09647686177679232,
+      "current_price": 124.79989624023438,
+      "pnl_pct": 0.33355637486704454,
+      "pnl_usd": 0.16677818743352227,
       "hold_days": 0
     }
   ],
@@ -1417,7 +1418,7 @@
     "losses": 11,
     "win_rate": 67.64705882352942,
     "pnl_realized": 23.611691271488777,
-    "pnl_unrealized": 9.024612475968803,
-    "equity": 432.6373914534803
+    "pnl_unrealized": 9.594892636981694,
+    "equity": 433.2076716144933
   }
 }
