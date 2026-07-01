@@ -1144,5 +1144,24 @@
     "pnl_pct": -0.3,
     "new_stop": 9.76,
     "mode": "rot->-4%"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_NVO_2026-06-22",
+    "ts": "2026-07-01T13:35:07Z",
+    "ticker": "NVO",
+    "old_stop": 43.9,
+    "new_stop": 47.29811399999999,
+    "high": 49.29999923706055,
+    "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FROG_2026-06-29_1625",
+    "ts": "2026-07-01T13:35:07Z",
+    "ticker": "FROG",
+    "exit_price": 89.54,
+    "reason": "Stop Loss",
+    "pnl_pct": -1.0224785884924647e-06
   }
 ]
