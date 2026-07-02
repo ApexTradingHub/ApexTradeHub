@@ -2,9 +2,9 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-06-26T12:35:46.508998+00:00",
-    "total_trades": 172,
-    "analyzed_trades": 172
+    "updated": "2026-07-02T10:27:11.345945+00:00",
+    "total_trades": 187,
+    "analyzed_trades": 187
   },
   "trades": {
     "BTU_2026-05-01": {
@@ -16519,6 +16519,1785 @@
       },
       "auto_meta": {
         "built_at": "2026-06-26T14:33:09.054726",
+        "version": "1.0"
+      }
+    },
+    "HWM_2026-06-17": {
+      "core": {
+        "ticker": "HWM",
+        "signal_date": "2026-06-17",
+        "exit_date": "2026-06-25",
+        "setup": "BREAKOUT",
+        "entry": 281.27,
+        "stop": 267.63,
+        "target": 305.0,
+        "exit_price": 267.63,
+        "exit_reason": "Stop Loss",
+        "exit_day": 6,
+        "trigger_day": null,
+        "pnl_pct": -4.85,
+        "pnl_usd": -9.7,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 129.8,
+        "rr": 1.74,
+        "rsi": 67.2,
+        "macd_bull": "YES",
+        "vol_ratio": 1.05,
+        "avg_dv_m": 718.61,
+        "perf_20d": 11.9,
+        "perf_60d": 20.0,
+        "perf_120d": 35.3,
+        "base_range": 17.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.8,
+        "inside_day": false,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -0.72,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.22,
+          "analyst_upside": 7.731525615224366
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": -0.64,
+        "qqq_perf_pct": -0.74,
+        "sector_etf_perf_pct": 2.77,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Howmet Q1-Beat + FY-Guidance-Raise ($9.58-9.73B Rev, EPS $4.88-5.00); Bernstein Outperform $318; +52.6% 1yr",
+            "src": "Kalkine/Yahoo"
+          }
+        ],
+        "key_events": [
+          "Starke Fundamentals aber extended",
+          "Risk-Off-Stop"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 129) auf fundamental STARKEM Namen (Q1-Beat, Guidance-Raise auf $9.58-9.73B Rev, +52.6% 1yr) — aber ueberdehnt gekauft, Stop -4.85% D+6 im 19./23.6-Risk-Off. Wie EMR: gute Fundamentals, aber Extension + Macro-Drehung stoppten den Trade.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "extended_entry",
+          "breakout_no_follow_through",
+          "macro_risk_off"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Extension-Check (+52% 1yr)",
+          "Risk-Off-Fenster 19./23.6 traf mehrere Trades"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:12.611096",
+        "version": "1.0"
+      }
+    },
+    "TSM_2026-06-18": {
+      "core": {
+        "ticker": "TSM",
+        "signal_date": "2026-06-18",
+        "exit_date": "2026-06-25",
+        "setup": "BREAKOUT",
+        "entry": 450.01,
+        "stop": 422.44,
+        "target": 500.0,
+        "exit_price": 422.44,
+        "exit_reason": "Stop Loss",
+        "exit_day": 5,
+        "trigger_day": null,
+        "pnl_pct": -6.13,
+        "pnl_usd": -12.25,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 137.2,
+        "rr": 1.81,
+        "rsi": 63.6,
+        "macd_bull": "YES",
+        "vol_ratio": 1.3,
+        "avg_dv_m": 5755.3,
+        "perf_20d": 15.3,
+        "perf_60d": 34.9,
+        "perf_120d": 55.5,
+        "base_range": 15.0,
+        "horizon": "1-3 weeks",
+        "movement_class": "POWER_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Technology",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 1.56,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 0.58,
+          "analyst_upside": 2.4400242361291458
+        }
+      },
+      "market_context": {
+        "sector": "Technology",
+        "sector_etf": "XLK",
+        "spy_perf_pct": -1.67,
+        "qqq_perf_pct": -3.17,
+        "sector_etf_perf_pct": -3.47,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-23",
+            "title": "TSM -5% im breiten Semi-Selloff (Profit-Taking, Rotation aus AI-Valuation-Namen)",
+            "src": "TradingKey"
+          },
+          {
+            "date": "2026-06",
+            "title": "April-Mai-Sales +24% YoY < +35% erwartet; ITC-Patent-Investigation (Import-Ban-Risiko)",
+            "src": "TradingKey"
+          }
+        ],
+        "key_events": [
+          "Semi-Selloff 06-23",
+          "TSM Repeat-Loser"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 137) in den 23./24.6-Semi-Selloff gekauft. Sektor-weites Profit-Taking, TSMC April-Mai-Sales +24% underperformten die +35%-Erwartung, Capex $52-56B-Sorgen, ITC-Patent-Investigation (Import-Ban-Drohung). Stop -6.13% D+5. TSM ist Wiederholungs-Verlierer.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "sector_momentum_reversal",
+          "high_score_loss_85plus",
+          "repeat_loser_ticker"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Sektor-RS-Reversal-Check (Semi drehte 23.6) — aber Sektor-RS als Feature falsifiziert",
+          "TSM Serien-Verlierer (mehrfach) -> Ticker-Pause nach N Losses erwaegen"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:13.119749",
+        "version": "1.0"
+      }
+    },
+    "ABBV_2026-06-22": {
+      "core": {
+        "ticker": "ABBV",
+        "signal_date": "2026-06-22",
+        "exit_date": "2026-06-28",
+        "setup": "BREAKOUT",
+        "entry": 230.93,
+        "stop": 221.72,
+        "target": 250.0,
+        "exit_price": 250.0,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 8.26,
+        "pnl_usd": 16.52,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 98.7,
+        "rr": 2.07,
+        "rsi": 62.4,
+        "macd_bull": "NO",
+        "vol_ratio": 1.32,
+        "avg_dv_m": 1298.52,
+        "perf_20d": 7.2,
+        "perf_60d": 11.9,
+        "perf_120d": 1.7,
+        "base_range": 7.9,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.75,
+        "inside_day": false,
+        "sector": "Healthcare",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 2.52,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 1.46,
+          "analyst_upside": 10.235089778705264
+        }
+      },
+      "market_context": {
+        "sector": "Healthcare",
+        "sector_etf": "XLV",
+        "spy_perf_pct": -2.07,
+        "qqq_perf_pct": -4.26,
+        "sector_etf_perf_pct": 6.85,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "AbbVie $10.9B-Uebernahme Apogee Therapeutics (Immunologie-Pipeline); Skyrizi-FDA-Paediatrie-Zulassung",
+            "src": "Yahoo/Trefis"
+          },
+          {
+            "date": "2026-06-29",
+            "title": "Positive Phase-3-EPCORE-DLBCL-4-Daten; ABBV 52wk-High, +17% in 5 Tagen (Biotech-Sektor-Rally)",
+            "src": "Yahoo"
+          }
+        ],
+        "key_events": [
+          "Apogee-M&A + Skyrizi-Zulassung",
+          "Biotech-Sektor-Rally"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "BREAKOUT-WIN +8.26% TP D+4. Catalyst-Stack: $10.9B-Apogee-Therapeutics-Akquisition (Immunologie-Pipeline), Skyrizi-FDA-Paediatrie-Zulassung, positive Phase-3-EPCORE-Daten (29.6), PLUS breite Biotech-Sektor-Rally (ABBV/JNJ/LLY neue 52wk-Highs). 5-Tage +17%, 52wk-High.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "ma_pipeline_catalyst",
+          "post_earnings_beat_continuation",
+          "secular_biotech_rally"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "BREAKOUT auf Big-Pharma bei M&A + Pipeline-Katalysator + Sektor-Rally = starkes Setup",
+          "Biotech-Sektor-Rally (mehrere Namen neue Highs) als Rueckenwind mitlesen"
+        ],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:13.637805",
+        "version": "1.0"
+      }
+    },
+    "CCL_2026-06-12": {
+      "core": {
+        "ticker": "CCL",
+        "signal_date": "2026-06-12",
+        "exit_date": "2026-07-03",
+        "setup": "BREAKOUT",
+        "entry": 28.46,
+        "stop": 26.59,
+        "target": 31.75,
+        "exit_price": 29.07,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 2.14,
+        "pnl_usd": 4.29,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 129.0,
+        "rr": 1.77,
+        "rsi": 60.5,
+        "macd_bull": "YES",
+        "vol_ratio": 1.04,
+        "avg_dv_m": 752.86,
+        "perf_20d": 16.5,
+        "perf_60d": 21.5,
+        "perf_120d": 4.1,
+        "base_range": 13.8,
+        "horizon": "1-3 weeks",
+        "movement_class": "EMERGING_BREAKOUT",
+        "closing_strength": 0.99,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 2.2,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 3.3299996999999997,
+          "analyst_upside": 18.545819054146673
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": 0.8,
+        "qqq_perf_pct": 0.64,
+        "sector_etf_perf_pct": 1.48,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-23",
+            "title": "Carnival Rekord-Q2 (EPS $0.41 vs $0.34, Rev $6.7B, Deposits $9B) — Aktie faellt dennoch (vorsichtige Guidance)",
+            "src": "StockTitan"
+          }
+        ],
+        "key_events": [
+          "Rekord-Q2 aber Sell-the-News",
+          "Entry pre-Earnings"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 129) 11 Tage VOR Q2-Earnings (23.6). Carnival meldete Rekord-Q2 (EPS $0.41 vs $0.34, Rekord-Rev $6.7B, Rekord-Deposits $9B, 12. Rekord-Yield-Quartal), ABER Aktie fiel auf vorsichtige Guidance (Sell-the-News). Unser Entry driftete zu +2.14% Time-Exit.",
+        "primary_win_cause": "Time-Exit +2.14% — knapp gruen, aber Earnings-Adjacency verhinderte den grossen Move.",
+        "lesson_tags": [
+          "earnings_adjacency_risk",
+          "sell_the_news",
+          "breakout_no_follow_through"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Earnings-Blackout: Entry 11d vor Earnings = Guidance-Risiko"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:14.156848",
+        "version": "1.0"
+      }
+    },
+    "SW_2026-06-15": {
+      "core": {
+        "ticker": "SW",
+        "signal_date": "2026-06-15",
+        "exit_date": "2026-07-06",
+        "setup": "BREAKOUT",
+        "entry": 43.71,
+        "stop": 40.99,
+        "target": 48.31,
+        "exit_price": 46.17,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 5.63,
+        "pnl_usd": 11.26,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 115.3,
+        "rr": 1.69,
+        "rsi": 63.5,
+        "macd_bull": "YES",
+        "vol_ratio": 1.18,
+        "avg_dv_m": 236.13,
+        "perf_20d": 18.8,
+        "perf_60d": 21.9,
+        "perf_120d": 19.2,
+        "base_range": 19.4,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.01,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 3.14,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 5.9499998,
+          "analyst_upside": 20.117479218153235
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -0.95,
+        "qqq_perf_pct": -2.42,
+        "sector_etf_perf_pct": -0.21,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-23",
+            "title": "Deutsche Bank initiiert Smurfit-WestRock mit Buy; Wells/Truist Buy; Strong-Buy-Konsens PT $54",
+            "src": "ChartMill"
+          },
+          {
+            "date": "2026-06-22",
+            "title": "Abschluss LSE-Delisting (rein technisch, US-NYSE-Listing bleibt)",
+            "src": "TradingView"
+          }
+        ],
+        "key_events": [
+          "DB-Buy-Initiierung",
+          "Packaging-Recovery"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "BREAKOUT-WIN +5.63% (Time-Exit D+15). Smurfit-WestRock (Packaging): Deutsche-Bank initiiert Buy (23.6), Wells/Truist Buy, Strong-Buy-Konsens $54. Erholung vom 10.6-Dip. LSE-Delisting (22.6) war rein technisch. Solider Packaging-Recovery-Win.",
+        "lesson_tags": [
+          "analyst_upgrade_catalyst",
+          "packaging_recovery"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Packaging-Recovery + Analyst-Buy-Initiierungen"
+        ],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:14.678667",
+        "version": "1.0"
+      }
+    },
+    "RL_2026-06-15": {
+      "core": {
+        "ticker": "RL",
+        "signal_date": "2026-06-15",
+        "exit_date": "2026-07-06",
+        "setup": "BREAKOUT",
+        "entry": 406.3,
+        "stop": 385.95,
+        "target": 442.68,
+        "exit_price": 397.61,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": -2.14,
+        "pnl_usd": -4.28,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 112.4,
+        "rr": 1.79,
+        "rsi": 68.0,
+        "macd_bull": "YES",
+        "vol_ratio": 1.15,
+        "avg_dv_m": 354.35,
+        "perf_20d": 26.2,
+        "perf_60d": 21.5,
+        "perf_120d": 14.3,
+        "base_range": 18.8,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.14,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 2.46,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 10.5100006,
+          "analyst_upside": 3.7928024056649523
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -0.95,
+        "qqq_perf_pct": -2.42,
+        "sector_etf_perf_pct": -0.21,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Ralph Lauren FQ4-Beat (EPS $2.80 vs $2.63) + 10%-Dividenden-Hike + FY27-Guidance; Telsey PT $460; +13% Vormonat",
+            "src": "StockInvest/Yahoo"
+          }
+        ],
+        "key_events": [
+          "Beat aber extended",
+          "kein Follow-Through"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 112) Ralph Lauren, Time-Exit -2.14%. FQ4-Beat (EPS $2.80 vs $2.63), +10%-Dividende, FY27-Guidance, 'Next-Great-Chapter'-Plan, Telsey-PT $460, +13% Vormonat — aber ueberdehnt gekauft, driftete negativ, fiel -3.3% Ende Juni.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "extended_entry",
+          "breakout_no_follow_through"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Extended (+13% Vormonat, nahe Hoch) -> Follow-Through blieb aus"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:15.180570",
+        "version": "1.0"
+      }
+    },
+    "TGT_2026-06-24": {
+      "core": {
+        "ticker": "TGT",
+        "signal_date": "2026-06-24",
+        "exit_date": "2026-06-30",
+        "setup": "BREAKOUT",
+        "entry": 138.15,
+        "stop": 131.64,
+        "target": 150.0,
+        "exit_price": 131.64,
+        "exit_reason": "Stop Loss",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": -4.71,
+        "pnl_usd": -9.42,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 137.2,
+        "rr": 1.82,
+        "rsi": 67.7,
+        "macd_bull": "YES",
+        "vol_ratio": 1.21,
+        "avg_dv_m": 662.72,
+        "perf_20d": 12.6,
+        "perf_60d": 18.9,
+        "perf_120d": 47.8,
+        "base_range": 12.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.99,
+        "inside_day": false,
+        "sector": "Consumer Defensive",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.18,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 3.45,
+          "analyst_upside": -5.752167138810183
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Defensive",
+        "sector_etf": "XLP",
+        "spy_perf_pct": 1.85,
+        "qqq_perf_pct": 3.63,
+        "sector_etf_perf_pct": -1.62,
+        "sector_divergence": true,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Bullishe Analysten-Welle: Guggenheim $145, Morgan Stanley $150, Jefferies $161, Wolfe Upgrade Outperform",
+            "src": "StockAnalysis"
+          },
+          {
+            "date": "2026-06-29",
+            "title": "TGT faellt 4.6% auf $133.92 — Retail-Profit-Taking nach +10%-Monat",
+            "src": "GuruFocus"
+          }
+        ],
+        "key_events": [
+          "4x Analyst-PT-Raise -> trotzdem Loss",
+          "analyst_upside-Trap bestaetigt"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 137) trotz bullisher Analysten-PTs (Guggenheim $145, MS $150, Jefferies $161, Wolfe-Upgrade) — fiel 4.6% am 29.6, Stop -4.71% D+4. Retail-Rotation/Profit-Taking nach +10%-Monat. analyst_upside-Bullishness hat WIEDER nicht geschuetzt (bestaetigt Anti-Prediktivitaet).",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "high_score_loss_85plus",
+          "analyst_upside_trap"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Bestaetigt: analyst_upside ist ANTI-prediktiv (TGT hatte 4 PT-Raises + Upgrade, verlor)"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:15.753519",
+        "version": "1.0"
+      }
+    },
+    "TKO_2026-06-26": {
+      "core": {
+        "ticker": "TKO",
+        "signal_date": "2026-06-26",
+        "exit_date": "2026-06-29",
+        "setup": "BREAKOUT",
+        "entry": 216.29,
+        "stop": 205.26,
+        "target": 235.0,
+        "exit_price": 205.26,
+        "exit_reason": "Stop Loss",
+        "exit_day": 2,
+        "trigger_day": null,
+        "pnl_pct": -5.1,
+        "pnl_usd": -10.2,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 86.2,
+        "rr": 1.7,
+        "rsi": 65.9,
+        "macd_bull": "YES",
+        "vol_ratio": 1.05,
+        "avg_dv_m": 341.45,
+        "perf_20d": 8.1,
+        "perf_60d": 7.5,
+        "perf_120d": 5.1,
+        "base_range": 12.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.91,
+        "inside_day": false,
+        "sector": "Communication Services",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 0.79,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 15.18,
+          "analyst_upside": 8.573693718732622
+        }
+      },
+      "market_context": {
+        "sector": "Communication Services",
+        "sector_etf": "XLC",
+        "spy_perf_pct": 1.65,
+        "qqq_perf_pct": 2.49,
+        "sector_etf_perf_pct": 1.6,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-30",
+            "title": "TKO schliesst $800M-ASR-Buyback ab + $0.79-Dividende ($150M)",
+            "src": "StockTitan"
+          },
+          {
+            "date": "2026-06",
+            "title": "2026-EPS-Schaetzung gesenkt $5.20 -> $4.51; Insider Nick Khan verkauft ~$2M",
+            "src": "SimplyWallSt/StockTitan"
+          }
+        ],
+        "key_events": [
+          "EPS-Cut",
+          "Low-Score + Insider-Selling"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 86 = niedrig) TKO Group (WWE/UFC), Stop -5.1% D+2. $800M-Buyback + $0.79-Dividende, ABER 2026-EPS-Schaetzung GESENKT ($5.20->$4.51) + Insider-Verkaeufe (Nick Khan). Low-Score-Loss, schneller D+2-Stop.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "low_score_loss",
+          "estimate_cut",
+          "insider_selling"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Score 86 = unterster Rand -> schwaechere Konviktion, EPS-Cut ignoriert"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:16.406257",
+        "version": "1.0"
+      }
+    },
+    "CMI_2026-06-16": {
+      "core": {
+        "ticker": "CMI",
+        "signal_date": "2026-06-16",
+        "exit_date": "2026-07-07",
+        "setup": "BREAKOUT",
+        "entry": 695.83,
+        "stop": 657.78,
+        "target": 772.24,
+        "exit_price": 713.21,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 2.5,
+        "pnl_usd": 5.0,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 126.3,
+        "rr": 2.01,
+        "rsi": 58.8,
+        "macd_bull": "YES",
+        "vol_ratio": 1.11,
+        "avg_dv_m": 685.17,
+        "perf_20d": 3.6,
+        "perf_60d": 31.6,
+        "perf_120d": 35.7,
+        "base_range": 12.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.72,
+        "inside_day": false,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.41,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 1.71,
+          "analyst_upside": 5.736482992128233
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": -0.35,
+        "qqq_perf_pct": -0.53,
+        "sector_etf_perf_pct": 2.2,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-17",
+            "title": "Cummins liefert ~2GW Natgas-Gensets an Circe Energy fuer AI-Data-Center (2026-2030)",
+            "src": "QuiverQuant"
+          },
+          {
+            "date": "2026-06",
+            "title": "UBS Upgrade Buy, PT $850 (von $565); FY-Rev-Guidance-Raise auf +8-11%; Power Systems Rekord-EBITDA 29.5%",
+            "src": "QuiverQuant"
+          }
+        ],
+        "key_events": [
+          "Circe 2GW AI-Data-Center-Deal",
+          "AI-Power-Thema (wie CAT)"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "BREAKOUT-WIN +2.5% (Time-Exit D+15, modest trotz RIESIGEM Catalyst). Cummins liefert ~2GW Natgas-Gensets an Circe Energy fuer AI-Data-Center (17.6, 2026-2030); UBS-Upgrade Buy PT $850 (von $565!); FY-Guidance-Raise; +115% 1yr. NUR +2.5% weil Entry ueberdehnt — SELBES AI-Power-Thema wie CAT (Picks-Board).",
+        "lesson_tags": [
+          "secular_ai_catalyst",
+          "ai_power_datacenter",
+          "extended_entry"
+        ],
+        "similar_trades": [
+          "CAT (Picks-Board — gleiches AI-Power-Thema)"
+        ],
+        "what_would_have_helped": [
+          "Riesiger Catalyst aber Entry extended (+115% 1yr) -> nur +2.5% mitgenommen; frueher/Pullback"
+        ],
+        "what_to_replicate": [
+          "AI-Power-fuer-Data-Center (Gensets/Turbinen) = validiertes Thema: CMI, CAT, CEG — Rueckgrat des AI-Buildouts. Nicht-Chip-Weg zum AI-Trade."
+        ],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:17.022107",
+        "version": "1.0"
+      }
+    },
+    "CART_2026-06-16": {
+      "core": {
+        "ticker": "CART",
+        "signal_date": "2026-06-16",
+        "exit_date": "2026-07-07",
+        "setup": "BREAKOUT",
+        "entry": 43.42,
+        "stop": 40.6,
+        "target": 49.63,
+        "exit_price": 47.35,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 9.05,
+        "pnl_usd": 18.1,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 91.3,
+        "rr": 2.21,
+        "rsi": 61.4,
+        "macd_bull": "YES",
+        "vol_ratio": 1.08,
+        "avg_dv_m": 167.88,
+        "perf_20d": 7.9,
+        "perf_60d": 19.7,
+        "perf_120d": -1.8,
+        "base_range": 14.4,
+        "horizon": "1-3 weeks",
+        "movement_class": "WEAK_BREAKOUT",
+        "closing_strength": 0.85,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.17,
+          "vcp_strength": 0.07,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 11.05,
+          "analyst_upside": 13.096584483148611
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -0.35,
+        "qqq_perf_pct": -0.53,
+        "sector_etf_perf_pct": -0.11,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-04",
+            "title": "Instacart + Weis Markets starten AI-Caper-Carts; Ace-Hardware-Nationwide-Partnership",
+            "src": "StockTitan"
+          },
+          {
+            "date": "2026-06-16",
+            "title": "CART +4.8% — Investoren fokussieren hoehere-Margin-Ads + Retail-Tech",
+            "src": "QuiverQuant"
+          }
+        ],
+        "key_events": [
+          "AI-Caper-Carts + Ace-Deal",
+          "Ads-Momentum-Win"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "BREAKOUT-WIN +9.05% (Time-Exit D+15). Retail-Tech/Ads-Momentum: AI-Caper-Carts (Weis Markets 4.6), Ace-Hardware-Nationwide-Partnership, Oppenheimer-PT auf $60. +4.8% am 16.6 (hoehere-Margin-Ads + Retail-Tech-Story). Sauberer Momentum-Win.",
+        "lesson_tags": [
+          "retail_tech_catalyst",
+          "ad_monetization_momentum",
+          "post_earnings_beat_continuation"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Retail-Tech/Ads-Momentum (Instacart Caper-Carts + Partnerships) trug den Move"
+        ],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:17.747343",
+        "version": "1.0"
+      }
+    },
+    "COST_2026-05-17": {
+      "core": {
+        "ticker": "COST",
+        "signal_date": "2026-05-17",
+        "exit_date": "2026-06-29",
+        "setup": "STAGE_2",
+        "entry": 1054.19,
+        "stop": 924.56,
+        "target": 1350.96,
+        "exit_price": 924.56,
+        "exit_reason": "Stop Loss",
+        "exit_day": 31,
+        "trigger_day": null,
+        "pnl_pct": -12.3,
+        "pnl_usd": -24.59,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 101.6,
+        "rr": 2.29,
+        "rsi": 65.7,
+        "macd_bull": "YES",
+        "vol_ratio": 1.13,
+        "avg_dv_m": 1814.17,
+        "perf_20d": 5.1,
+        "perf_60d": 6.3,
+        "perf_120d": 17.8,
+        "base_range": 7.3,
+        "horizon": "8-16 weeks",
+        "movement_class": "STAGE_2_BREAKOUT",
+        "closing_strength": 0.53,
+        "inside_day": false,
+        "sector": "Consumer Defensive",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 0.78,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 10,
+          "short_pct": 1.52,
+          "analyst_upside": 2.283826683826673
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Defensive",
+        "sector_etf": "XLP",
+        "spy_perf_pct": 0.58,
+        "qqq_perf_pct": 2.69,
+        "sector_etf_perf_pct": -1.1,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 18.43,
+          "hy_oas": 2.8,
+          "yield_curve": 0.5,
+          "regime": "RISK_ON",
+          "date_used": "2026-05-15"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05-28",
+            "title": "Costco Blowout-Q3 (Net Income +15.2% $2.19B, Sales +11.6% $69.15B) — Aktie faellt dennoch (Valuation 52x P/E)",
+            "src": "CNBC"
+          },
+          {
+            "date": "2026-06",
+            "title": "4 Tariff-Class-Action-Klagen (IEEPA-Refunds) offengelegt",
+            "src": "Motley Fool"
+          }
+        ],
+        "key_events": [
+          "Sell-the-News trotz Rekord-Q3",
+          "STAGE_2 -12% ueber 31d"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "STAGE_2 (einziger Nicht-BREAKOUT) -12.3% Stop nach D+31. Costco meldete Blowout-Q3 (Net Income +15.2%, Sales +11.6%) am 28.5 — aber Aktie FIEL (Sell-the-News: 52x P/E zu teuer) + Tariff-Class-Action-Klagen (IEEPA). STAGE_2's langer 60d-Hold liess einen -12% Drawdown entstehen.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "sell_the_news",
+          "extended_valuation",
+          "stage2_long_hold_drawdown",
+          "high_score_loss_85plus"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "STAGE_2 60d-Hold ist bei Sell-the-News-Reversals gefaehrlich -> engerer Stop/Trailing",
+          "52x-P/E-Extension + Post-Earnings-Fade = klassischer Sell-the-News"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:18.455413",
+        "version": "1.0"
+      }
+    },
+    "MO_2026-06-26": {
+      "core": {
+        "ticker": "MO",
+        "signal_date": "2026-06-26",
+        "exit_date": "2026-06-30",
+        "setup": "BREAKOUT",
+        "entry": 73.72,
+        "stop": 71.34,
+        "target": 80.0,
+        "exit_price": 71.34,
+        "exit_reason": "Stop Loss",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": -3.23,
+        "pnl_usd": -6.46,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 124.1,
+        "rr": 2.64,
+        "rsi": 63.6,
+        "macd_bull": "YES",
+        "vol_ratio": 1.49,
+        "avg_dv_m": 658.56,
+        "perf_20d": 4.1,
+        "perf_60d": 13.5,
+        "perf_120d": 32.9,
+        "base_range": 8.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Consumer Defensive",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.38,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 3.1,
+          "analyst_upside": -4.643393413741704
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Defensive",
+        "sector_etf": "XLP",
+        "spy_perf_pct": 2.44,
+        "qqq_perf_pct": 4.23,
+        "sector_etf_perf_pct": -1.94,
+        "sector_divergence": true,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06",
+            "title": "Altria faellt 3.3% auf Valuation-Sorge (~7.2% ueberbewertet) + Insider-Verkaeufe; $1.06-Dividende bestaetigt",
+            "src": "Simply Wall St"
+          }
+        ],
+        "key_events": [
+          "Valuation-Fade",
+          "Defensive-Drift"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 124) Altria, Stop -3.23% D+3. Fiel 3.3% Mitte Juni auf Valuation (~7.2% ueberbewertet $70 vs $65.50 Fair Value) + Insider-Verkaeufe, trotz $1.06-Dividende. Defensiver Tabak-Wert liefert selten BREAKOUT-Momentum.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "defensive_low_beta_drift",
+          "valuation_concern",
+          "breakout_no_follow_through"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Defensive Low-Beta (Tabak) liefern selten Breakout-Follow-Through -> niedriger gewichten"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:18.969247",
+        "version": "1.0"
+      }
+    },
+    "CART_2026-06-26": {
+      "core": {
+        "ticker": "CART",
+        "signal_date": "2026-06-26",
+        "exit_date": "2026-06-30",
+        "setup": "BREAKOUT",
+        "entry": 47.62,
+        "stop": 44.77,
+        "target": 52.5,
+        "exit_price": 44.77,
+        "exit_reason": "Stop Loss",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": -5.98,
+        "pnl_usd": -11.97,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 94.9,
+        "rr": 1.72,
+        "rsi": 67.8,
+        "macd_bull": "YES",
+        "vol_ratio": 1.25,
+        "avg_dv_m": 202.81,
+        "perf_20d": 18.8,
+        "perf_60d": 26.7,
+        "perf_120d": 8.1,
+        "base_range": 20.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.4,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.77,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 12.659999999999998,
+          "analyst_upside": 5.742077538980195
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": 2.44,
+        "qqq_perf_pct": 4.23,
+        "sector_etf_perf_pct": 2.54,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-25",
+            "title": "Oppenheimer hebt CART-PT auf $60; Momentum aus AI-Caper-Carts + Ads schon eingepreist",
+            "src": "StockTitan"
+          }
+        ],
+        "key_events": [
+          "2. CART-Signal nach Move",
+          "Duplicate-Re-Entry"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 95) — 2. CART-Signal (nach 06-16 +9%-Win), Stop -5.98% D+3. Re-Entry NACH dem Move — das Retail-Tech/Ads-Momentum war schon gelaufen, Duplicate-Trap.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "duplicate_trap",
+          "breakout_no_follow_through"
+        ],
+        "similar_trades": [
+          "CART_2026-06-16"
+        ],
+        "what_would_have_helped": [
+          "Close-Cooldown haette den Re-Entry nach dem gelaufenen Move gebremst"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:19.586878",
+        "version": "1.0"
+      }
+    },
+    "FLR_2026-06-18": {
+      "core": {
+        "ticker": "FLR",
+        "signal_date": "2026-06-18",
+        "exit_date": "2026-06-29",
+        "setup": "BREAKOUT",
+        "entry": 53.75,
+        "stop": 50.27,
+        "target": 60.0,
+        "exit_price": 50.27,
+        "exit_reason": "Stop Loss",
+        "exit_day": 8,
+        "trigger_day": null,
+        "pnl_pct": -6.47,
+        "pnl_usd": -12.95,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 148.8,
+        "rr": 1.8,
+        "rsi": 64.2,
+        "macd_bull": "YES",
+        "vol_ratio": 2.71,
+        "avg_dv_m": 154.02,
+        "perf_20d": 23.6,
+        "perf_60d": 13.0,
+        "perf_120d": 31.1,
+        "base_range": 15.4,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.56,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 8.88,
+          "analyst_upside": -5.539508013417816
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": -0.77,
+        "qqq_perf_pct": -2.13,
+        "sector_etf_perf_pct": 1.27,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-05",
+            "title": "Fluor Q1-2026 MISS: adj. EPS $0.14 vs $0.62 erwartet; $96M Afghanistan-Legal-Charge + Mining-Kostenueberschreitung",
+            "src": "Simply Wall St"
+          },
+          {
+            "date": "2026-06",
+            "title": "Russell-2000-Growth-Index-Add + $1.03B Navy-Contract (Nebenkatalysatoren)",
+            "src": "Simply Wall St"
+          }
+        ],
+        "key_events": [
+          "Q1-Earnings-Miss",
+          "Score 148 High-Loss"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 148 = hoechster) in einen fundamental geschwaechten Namen. Q1-2026 verfehlte massiv (adj. EPS $0.14 vs $0.62 erwartet) — Mining-Kostenueberschreitung + $96M Afghanistan-Legal-Charge, Mission-Solutions-Verlust. Stop -6.47% D+8. Russell-Index-Add + $1.03B-Navy-Contract waren Nebensache. Score 148 hat NICHT geschuetzt.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "fundamental_deterioration",
+          "post_earnings_miss",
+          "high_score_loss_85plus"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Post-Earnings-Miss-Filter: FLR-Q1 (EPS-Miss 77%) war bekannt -> skip BREAKOUT",
+          "Score 148 auf einem Miss-Namen = Warnsignal, nicht Gruen"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "HIGH",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:20.440099",
+        "version": "1.0"
+      }
+    },
+    "ARWR_2026-06-17": {
+      "core": {
+        "ticker": "ARWR",
+        "signal_date": "2026-06-17",
+        "exit_date": "2026-07-08",
+        "setup": "BREAKOUT",
+        "entry": 80.35,
+        "stop": 74.34,
+        "target": 90.73,
+        "exit_price": 80.44,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": 0.11,
+        "pnl_usd": 0.22,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 122.4,
+        "rr": 1.73,
+        "rsi": 61.3,
+        "macd_bull": "YES",
+        "vol_ratio": 2.05,
+        "avg_dv_m": 121.03,
+        "perf_20d": 10.7,
+        "perf_60d": 43.0,
+        "perf_120d": 16.1,
+        "base_range": 18.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.78,
+        "inside_day": false,
+        "sector": "Healthcare",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.0,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 12.25,
+          "analyst_upside": 8.794015301085878
+        }
+      },
+      "market_context": {
+        "sector": "Healthcare",
+        "sector_etf": "XLV",
+        "spy_perf_pct": 0.91,
+        "qqq_perf_pct": 0.48,
+        "sector_etf_perf_pct": 6.33,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": 17.68,
+          "hy_oas": 2.71,
+          "yield_curve": 0.39,
+          "regime": "RISK_ON",
+          "date_used": "2026-06-12"
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-06-22",
+            "title": "Arrowhead: EU-CHMP positive Opinion fuer REDEMPLO (plozasiran, siRNA fuer FCS)",
+            "src": "StockTitan"
+          }
+        ],
+        "key_events": [
+          "CHMP-Positiv aber flat",
+          "kein Follow-Through"
+        ]
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "BREAKOUT (Score 122) Arrowhead, Time-Exit +0.11% (flach). REDEMPLO (plozasiran) EU-CHMP-Positiv-Opinion (22.6) + Board-Addition + Top-Healthcare-Pick, aber der Breakout lieferte keinen Follow-Through — driftete 15d flach.",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "biotech_catalyst_no_move"
+        ],
+        "similar_trades": [],
+        "what_would_have_helped": [
+          "Positiver Regulatory-Catalyst (CHMP) aber kein Momentum -> Stagnation-Exit frueher"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-02T10:27:11.345945+00:00",
+        "confidence": "MED",
+        "data_sources": [
+          "cnbc.com",
+          "yahoo.finance",
+          "stocktitan.net",
+          "simplywall.st",
+          "tradingkey.com",
+          "fool.com",
+          "tikr.com",
+          "gurufocus.com",
+          "sec.gov"
+        ]
+      },
+      "auto_meta": {
+        "built_at": "2026-07-02T12:22:21.007682",
         "version": "1.0"
       }
     }

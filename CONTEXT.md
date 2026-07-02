@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-06-23 (Trader-Slot-Fixes: Cooldown + Trending + Stagnation-Gate · Claude's-Picks-Board live)
+**Letztes Update:** 2026-07-02 (Learn-Stand 187 Trades · AI-Power-Thema validiert · Market-Hours-Guard · Picks kuratiert · Postmortems 187/187)
 
 ---
 
@@ -201,6 +201,33 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-02** **Learn-Stand + Postmortem-Batch (187 Trades, alle analysiert)**:
+  - **Performance (Knowledge, nur getradete Setups):** BREAKOUT lifetime **WR 57% (n=119, PF 2.29)**,
+    90d +$469. Markt BULLISH. ABER **7d/14d schwach** (14d WR 30%) — der 23./24.6-Semi-Selloff +
+    High-Score-Stops (FLR 148, TSM 137, TGT 137 alle Loss). Kein Systemfehler, Regime-Delle.
+  - **NEUES validiertes Thema — AI-Power-für-Data-Center** (`ai_power_datacenter`): CMI (Circe
+    2GW-Gensets-Deal), CAT (Project Kilby, Picks-Board), CEG (Nuklear) = der **Nicht-Chip-Weg**
+    zum AI-Trade. Mehrfach als Gewinn-Treiber + what_to_replicate. Rückgrat des AI-Buildouts.
+  - **Sell-the-News auf Rekord-Earnings:** COST (STAGE_2 -12.3%/31d, Blowout-Q3 aber 52x-P/E fiel)
+    + CCL (Rekord-Q2, fiel auf Guidance). Muster: Rekord + Extension/vorsichtige Guidance = Fade.
+  - **`analyst_upside` Anti-Prediktivität RE-bestätigt:** TGT hatte 4 PT-Raises + Upgrade → verlor.
+    Deckt die Carve-Out-Entfernung (06-24). Learn zeigt zwar +46% (n=7) = Kleine-Stichprobe-Rauschen,
+    NICHT drauf reinfallen. Confirmed-Edges: pocket_pivot +16% (n=50 HIGH), gap_gt_2pct +21% (n=16).
+  - **STAGE_2-Risiko notiert:** 60d-Hold liess COST -12% Drawdown entstehen → engerer Stop/Trailing erwägen.
+
+- **2026-06-24/26** **Scoring/Learn/Trader/Board-Sammelupdate**:
+  - **Scanner:** `analyst_upside>15` aus SCORE_REBUILD-Carve-out ENTFERNT (anti-prädiktiv, n=28).
+  - **Learn:** Reversal/MEAN_REVERSION aus Aggregation gefiltert (`join_signal_to_trade` → ACTIVE_SETUPS);
+    echte WR 46→57%. Reversal-Cleanup auch in Dashboard/apex_signals.json/apex_equity (überall raus).
+  - **Trader:** Stagnation zählt **Handelstage** (nicht Kalender); Momentum läuft höher via **Trailing-Ladder**
+    statt hartem +6%-Cut; **Intraday-EOD→Momentum-Swing** (grün=Breakeven-Stop, rot=-4%, statt Force-Close);
+    **Market-Hours-Guard** `market_is_open_now()` (NYSE 9:30-16:00 ET, blockt Pre-Market-Entries — KRITISCH Live).
+  - **Sektor-RS-Bonus** getestet (n=83) → **FALSIFIZIERT** (kein Edge, Post-hoc-Narrativ). Existierender
+    absoluter Sektor-Bonus auch nutzlos → BACKLOG #12 (entfernen).
+  - **Claude's Picks kuratiert:** NVDA raus (worst-Semi 2026, China/GPU-Deflation) + DIS raus; LRCX + CAT rein.
+  - **Dashboard:** History- + Paper-Closed-Liste einklappbar; Activity-Log formatiert intraday_open/_to_swing;
+    `dashboard.html` network-first in sw.js (Updates kamen sonst nie an); sw v30.
 
 - **2026-06-23** **Trader: Slot-Auslastung — Cooldown + Trending + Stagnation-Gate**:
   - **Close-Cooldown** (`recently_closed_tickers`, CLOSE_COOLDOWN_DAYS=5): gerade geschlossener

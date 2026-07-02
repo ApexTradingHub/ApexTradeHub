@@ -1,32 +1,32 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-02T09:49:15.328229 | Total trades: 187_
+_Updated: 2026-07-02T10:27:11.345945+00:00 | Total trades: 187_
 
-**Analyse-Status**: complete=172, pending=15
+**Analyse-Status**: complete=187
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `sector_momentum_tailwind` | 31 |
+| `sector_momentum_tailwind` | 32 |
 | `sector_relative_strength` | 29 |
-| `post_earnings_beat_continuation` | 24 |
+| `post_earnings_beat_continuation` | 26 |
 | `reversal_after_oversold_trap` | 24 |
-| `duplicate_trap` | 21 |
+| `duplicate_trap` | 22 |
 | `reversal_win_external_catalyst` | 21 |
-| `secular_ai_catalyst` | 18 |
+| `breakout_no_follow_through` | 20 |
+| `secular_ai_catalyst` | 19 |
 | `oversold_bounce_with_catalyst` | 17 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
-| `defensive_low_beta_drift` | 14 |
-| `breakout_no_follow_through` | 13 |
+| `defensive_low_beta_drift` | 15 |
+| `high_score_loss_85plus` | 15 |
+| `fundamental_deterioration` | 12 |
 | `geopolitical_premium_fade` | 12 |
-| `fundamental_deterioration` | 11 |
-| `high_score_loss_85plus` | 11 |
-| `earnings_adjacency_risk` | 10 |
+| `earnings_adjacency_risk` | 11 |
+| `low_score_loss` | 9 |
 | `reversal_no_turn` | 9 |
 | `pocket_pivot_validation` | 9 |
-| `low_score_loss` | 8 |
 | `ai_capex_supercycle` | 8 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
@@ -53,7 +53,7 @@ _Updated: 2026-07-02T09:49:15.328229 | Total trades: 187_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Analyse |
 |---|---|---|---|---|---|---|
-| COST_2026-05-17 | STAGE_2 | -12.3% | Stop Loss D+31 | 101.6 | Consumer Defensive | _pending_ |
+| COST_2026-05-17 | STAGE_2 | -12.3% | Stop Loss D+31 | 101.6 | Consumer Defensive | STAGE_2 (einziger Nicht-BREAKOUT) -12.3% Stop nach D+31. Costco meldete Blowout-Q3 (Net Income +15.2%, Sales +11.6%) am 28.5 — aber Aktie FIEL (Sell-the-News: 52x P/E zu teuer) + Tariff-Class-Action-Klagen (IEEPA). STAGE_2's langer 60d-Hold liess einen -12% Drawdown entstehen. |
 | ENPH_2026-04-20 | REVERSAL | -9.96% | Stop Loss D+7 | 91.1 | Technology | Stop ausgeloest 1 Tag VOR Earnings-Beat - REVERSAL stoppt sich aus dem profitablen Move raus |
 | SW_2026-05-04 | REVERSAL | -9.44% | Stop Loss D+11 | 64.6 | Unknown | REVERSAL gekauft 4 Tage vor Q1-2026-Earnings, die massiv verfehlten: EPS $0.33 vs $0.41 erwartet (-19.5% Surprise), Net Income -83% YoY auf $63M (vs $382M). Net-Marge brach von 5.0% auf 0.8% ein (hoehere Depreciation/Impairment/Restructuring + ~$65M Wetter-Headwinds + schwaechere NA-Volumina). 7-Tage-Verlustserie -9.5%, Stop am 19.5 bei -4.6% Tagesverlust. Oversold-RSI war Falle - der Abverkauf war fundamental getrieben. |
 | WDC_2026-03-18 | BREAKOUT | -9.37% | Stop Loss D+3 | 94.4 | Technology | Stop zu eng fuer hochvolatilen AI-Storage-Stock (170% YTD, 845% 1y) - getoppt nach 3 Tagen, dann massive Continuation verpasst |
@@ -84,22 +84,7 @@ _Updated: 2026-07-02T09:49:15.328229 | Total trades: 187_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Pending Claude-Analyse (15)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `HWM_2026-06-17`
-- `TSM_2026-06-18`
-- `ABBV_2026-06-22`
-- `CCL_2026-06-12`
-- `SW_2026-06-15`
-- `RL_2026-06-15`
-- `TGT_2026-06-24`
-- `TKO_2026-06-26`
-- `CMI_2026-06-16`
-- `CART_2026-06-16`
-- `COST_2026-05-17`
-- `MO_2026-06-26`
-- `CART_2026-06-26`
-- `FLR_2026-06-18`
-- `ARWR_2026-06-17`
