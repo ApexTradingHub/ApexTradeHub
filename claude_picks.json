@@ -1,31 +1,31 @@
 {
-  "updated": "2026-06-26",
-  "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Bewusst über ALLE Sektoren gestreut. Wird aktiv gepflegt: ausgespielte/widerlegte Picks fliegen raus (zuletzt NVDA & DIS), neue kommen rein.",
+  "updated": "2026-07-02",
+  "intro": "Handverlesene Ideen — kuratiert von Claude aus Knowledge-Base, News, SEC-Filings & Charts. Kein Scanner, kein Trader. Über Sektoren gestreut, Qualität vor Quote. Aktiv gepflegt: 07-02 CEG raus (AI-Power-Verlierer), ABBV rein (relative Stärke), LRCX+CAT auf 'abwarten' (AI-Capex korrigiert).",
   "tape": [
     {
       "label": "S&P 500",
-      "price": 734.3,
-      "chg": 0.14
+      "price": 745.76,
+      "chg": -0.14
     },
     {
       "label": "Nasdaq 100",
-      "price": 716.38,
-      "chg": 0.81
+      "price": 725.17,
+      "chg": -1.52
     },
     {
       "label": "Bitcoin",
-      "price": 58903.51,
-      "chg": -1.37
+      "price": 61180.01,
+      "chg": 1.96
     },
     {
       "label": "VIX",
-      "price": 19.91,
-      "chg": 5.4
+      "price": 16.77,
+      "chg": 1.08
     },
     {
       "label": "Gold",
-      "price": 4061.4,
-      "chg": 0.77
+      "price": 4078.9,
+      "chg": 0.26
     }
   ],
   "picks": [
@@ -49,14 +49,10 @@
       ],
       "note": "Saubere Base (RSI 52, nah am Hoch). Die Pipeline (povetacicept = neuer Markt IgAN) ist der Re-Rating-Hebel weg vom saturierenden CF-Geschäft. Akkumulieren.",
       "added": "2026-06-22",
-      "updated": "2026-06-26",
+      "updated": "2026-07-02",
       "ref_price": 451.63,
-      "current_price": 480.18,
+      "current_price": 498.01,
       "spark": [
-        453.06,
-        450.41,
-        436.95,
-        436.58,
         434.31,
         430.44,
         433.54,
@@ -82,7 +78,11 @@
         466.79,
         468.42,
         475.2,
-        480.18
+        480.18,
+        491.34,
+        499.65,
+        496.73,
+        498.01
       ],
       "take": "Kaufen, weil das stabile Cystic-Fibrosis-Geschäft jetzt einen ZWEITEN Wachstumsmotor bekommt (ein Nieren-Medikament in Phase 3) — und die Aktie ruhig an der Base liegt, nicht überhitzt.",
       "entries": [
@@ -118,14 +118,10 @@
       ],
       "note": "Quality-REIT mit Dividende, zurückgesetzt (RSI 47). Doppelhebel: Logistik-Erholung + Data-Center-Optionalität. Anderes Risikoprofil (REIT) = guter Diversifizierer.",
       "added": "2026-06-22",
-      "updated": "2026-06-26",
+      "updated": "2026-07-02",
       "ref_price": 140.54,
-      "current_price": 140.53,
+      "current_price": 136.8,
       "spark": [
-        140.98,
-        141.63,
-        139.52,
-        141.28,
         141.41,
         143.64,
         143.59,
@@ -151,7 +147,11 @@
         143.83,
         145.25,
         140.87,
-        140.53
+        140.53,
+        139.97,
+        138.89,
+        135.47,
+        136.8
       ],
       "take": "Kaufen, weil ein Top-Immobilien-Vermieter gerade zurückgesetzt ist UND nebenbei ins Data-Center-Geschäft drängt. Zwei Hebel, günstiger Einstieg, Dividende inklusive.",
       "entries": [
@@ -166,75 +166,6 @@
       ],
       "stop": 130,
       "target": 160
-    },
-    {
-      "ticker": "CEG",
-      "company": "Constellation Energy",
-      "sector": "Utilities — Nuclear Power",
-      "horizon": "long",
-      "verdict": "buy",
-      "conviction": 4,
-      "thesis": "Größter US-Nuklear-Betreiber + Calpine-Gas — die Strombasis für AI-Data-Center.",
-      "why": [
-        {
-          "date": "2026-02",
-          "text": "Calpine-Übernahme: +21.000 MW Gas/Geothermie auf die Nuklear-Basis, Quartalsumsatz fast verdoppelt auf $11.1B."
-        },
-        {
-          "date": "2026-06-22",
-          "text": "RSI 43, −3% in 20T = zurückgesetzt. Bester Entry der Power-Namen — nicht gechased. Nuklear = knappster, geschützter Baustein der Strom-These."
-        }
-      ],
-      "note": "Akkumulieren <$280. Günstigere Alternative: VST (fwd-P/E 18 vs 24, PEG 0.48).",
-      "added": "2026-06-22",
-      "updated": "2026-06-26",
-      "ref_price": 274.06,
-      "current_price": 268.69,
-      "spark": [
-        274.46,
-        274.83,
-        267.2,
-        262.0,
-        260.67,
-        281.26,
-        285.83,
-        294.07,
-        301.57,
-        288.68,
-        286.31,
-        287.75,
-        265.7,
-        272.65,
-        267.24,
-        264.59,
-        254.83,
-        250.67,
-        251.65,
-        242.3,
-        246.71,
-        253.76,
-        262.35,
-        268.0,
-        267.17,
-        274.06,
-        275.53,
-        270.26,
-        267.97,
-        268.69
-      ],
-      "take": "Kaufen, weil Atomstrom der KNAPPSTE Baustein des AI-Strom-Hungers ist — und CEG als einziger Power-Name gerade abgekühlt ist. Du chasest nicht, du sammelst ein.",
-      "entries": [
-        {
-          "label": "Jetzt akkumulieren — unter",
-          "price": 280
-        },
-        {
-          "label": "Ideal — bei Dip auf",
-          "price": 263
-        }
-      ],
-      "stop": 248,
-      "target": 330
     },
     {
       "ticker": "V",
@@ -256,14 +187,10 @@
       ],
       "note": "Kein lautes Katalysator-Event — V ist ein Buy-the-Base-Compounder. Steady, defensiv-wachsend, geringe Drawdowns. Konservativer Anker im Board.",
       "added": "2026-06-22",
-      "updated": "2026-06-26",
+      "updated": "2026-07-02",
       "ref_price": 327.24,
-      "current_price": 330.52,
+      "current_price": 351.08,
       "spark": [
-        320.31,
-        322.52,
-        325.75,
-        332.64,
         329.91,
         330.75,
         331.12,
@@ -289,7 +216,11 @@
         326.6,
         328.48,
         332.23,
-        330.52
+        330.52,
+        336.23,
+        341.65,
+        343.09,
+        351.08
       ],
       "take": "Kaufen als ruhigen Dauerläufer — keine laute Story, aber ein Geldautomat mit Burggraben, sauber an der Base. Der Stabilitäts-Anker neben den High-Beta-Namen.",
       "entries": [
@@ -325,14 +256,10 @@
       ],
       "note": "Kein Momentum-Play — bewusst der ruhige Diversifizierer. Akkumulieren, Dividende kassieren, Volatilität dämpfen.",
       "added": "2026-06-22",
-      "updated": "2026-06-26",
+      "updated": "2026-07-02",
       "ref_price": 79.39,
-      "current_price": 80.42,
+      "current_price": 81.29,
       "spark": [
-        79.75,
-        79.93,
-        80.3,
-        80.68,
         81.39,
         81.03,
         80.65,
@@ -358,7 +285,11 @@
         79.53,
         80.31,
         80.6,
-        80.42
+        80.42,
+        82.63,
+        82.65,
+        81.27,
+        81.29
       ],
       "take": "Kaufen als Ballast — wackeln die Tech-Namen, hält das hier dagegen. Dividende, niedrige Schwankung, ruhig schlafen. Bewusst langweilig.",
       "entries": [
@@ -379,7 +310,7 @@
       "company": "Lam Research",
       "sector": "Technology — Semiconductor Equipment",
       "horizon": "long",
-      "verdict": "buy",
+      "verdict": "wait",
       "conviction": 4,
       "thesis": "AI-WFE-Leader — der Semi-Ausrüster der im Boom WIRKLICH liefert (NVDA hinkt, LRCX führt).",
       "why": [
@@ -392,28 +323,24 @@
           "text": "3× Analyst-PT-Raise auf ~$450 (Citi, Wells Fargo, Oppenheimer Outperform/Buy); +29% in 30 Tagen."
         }
       ],
-      "note": "Ersetzt NVDA auf dem Board: während NVDA der schwächste Major-Semi 2026 ist (China an Huawei verloren, GPU-Mietpreise -31%), liefert LRCX Rekordzahlen. ABER +29% in 30d = überdehnt — Pullback abwarten oder klein starten. Stop ~$360.",
-      "take": "Kaufen (diszipliniert), weil LRCX der Ausrüster ist der im AI-Boom echte Rekordzahlen liefert — nicht nur Story. Ehrlich: schon +29 % in einem Monat gelaufen, also nicht ins Hoch jagen — auf einen Rücksetzer warten oder nur klein einsteigen.",
+      "note": "Herabgestuft 07-02 auf abwarten: Semi-Sektor im Abverkauf (TSM/ASML/LRCX heute -9.7%). Rekord-Q3 + PTs $450 intakt, ABER Dip-Kauf in einen laufenden Sektor-Abverkauf war der NVDA-Fehler. Warten bis sich der Semi-Selloff beruhigt, dann Leader auf dem Rücksetzer. Stop ~$360.",
+      "take": "Abwarten, weil der ganze Chip-Sektor gerade verkauft wird (LRCX heute -9.7%). Die Firma ist top (Rekordzahlen, Kursziele $450), aber in einen fallenden Sektor zu kaufen ist der Fehler den wir bei NVDA gemacht haben. Erst beruhigen lassen, dann auf dem Rücksetzer zugreifen.",
       "entries": [
         {
-          "label": "Klein jetzt — Momentum läuft",
-          "price": 400
+          "label": "Warten auf Sektor-Stabilisierung, dann",
+          "price": 375
         },
         {
-          "label": "Besser — Pullback auf",
-          "price": 375
+          "label": "Stärkerer Dip",
+          "price": 350
         }
       ],
       "stop": 360,
       "target": 450,
       "added": "2026-06-26",
-      "updated": "2026-06-26",
-      "current_price": 401.82,
+      "updated": "2026-07-02",
+      "current_price": 391.26,
       "spark": [
-        295.23,
-        298.94,
-        284.52,
-        277.76,
         273.19,
         291.88,
         302.03,
@@ -439,7 +366,11 @@
         409.54,
         371.33,
         374.8,
-        401.82
+        401.82,
+        379.09,
+        410.91,
+        433.33,
+        391.26
       ],
       "ref_price": 401.82
     },
@@ -476,13 +407,9 @@
       "stop": 880,
       "target": 1200,
       "added": "2026-06-26",
-      "updated": "2026-06-26",
-      "current_price": 1057.01,
+      "updated": "2026-07-02",
+      "current_price": 991.41,
       "spark": [
-        902.3,
-        920.22,
-        888.31,
-        863.95,
         860.15,
         872.56,
         865.95,
@@ -508,9 +435,82 @@
         1022.28,
         984.24,
         994.45,
-        1057.01
+        1057.01,
+        997.47,
+        1033.19,
+        1064.9,
+        991.41
       ],
       "ref_price": 1057.01
+    },
+    {
+      "ticker": "ABBV",
+      "company": "AbbVie",
+      "sector": "Healthcare — Pharma",
+      "horizon": "long",
+      "verdict": "buy",
+      "conviction": 4,
+      "thesis": "Big-Pharma-Momentum mit M&A-Hebel — Apogee-Übernahme + Skyrizi-Franchise, hält im Tech-Selloff stand.",
+      "why": [
+        {
+          "date": "2026-06",
+          "text": "$10.9B-Übernahme Apogee Therapeutics (Immunologie-Pipeline) + Skyrizi-FDA-Pädiatrie-Zulassung + positive Phase-3-EPCORE-DLBCL-4-Daten."
+        },
+        {
+          "date": "2026-06-26",
+          "text": "52-Wochen-Hoch, +17% in 5 Tagen; breite Biotech-Sektor-Rally (ABBV/JNJ/LLY neue Highs). Wir gewannen +8.3% im Trader-Trade (ABBV 06-22)."
+        }
+      ],
+      "note": "Ersetzt CEG (AI-Power-Verlierer). Anderes Profil als VRTX: Big-Pharma mit M&A + Dividende vs Biotech-Pipeline. Hält HEUTE im Tech-Selloff stand (relative Stärke, -0.2% vs QQQ -1.5%). Ehrlich: am 52wk-High = extended — aber mit echtem M&A-Catalyst (SCORE_REBUILD-Logik: Extension OK mit starkem Catalyst). Stop ~$232.",
+      "take": "Kaufen, weil AbbVie im heutigen Tech-Abverkauf STEIGT statt fällt — getragen von einer echten Übernahme (Apogee $10.9 Mrd) und Medikamenten-Zulassungen, nicht von AI-Hype. Der defensive Wachstums-Anker den das Board braucht während AI-Capex korrigiert. Am Hoch, also klein starten oder Rücksetzer nutzen.",
+      "entries": [
+        {
+          "label": "Jetzt — relative Stärke im Selloff",
+          "price": 251
+        },
+        {
+          "label": "Besser — Rücksetzer auf",
+          "price": 240
+        }
+      ],
+      "stop": 232,
+      "target": 290,
+      "added": "2026-07-02",
+      "updated": "2026-07-02",
+      "current_price": 251.06,
+      "spark": [
+        213.76,
+        212.3,
+        214.5,
+        215.7,
+        213.12,
+        215.4,
+        218.63,
+        217.72,
+        212.93,
+        215.4,
+        217.13,
+        224.94,
+        227.23,
+        223.07,
+        225.42,
+        224.95,
+        224.77,
+        227.73,
+        221.59,
+        222.47,
+        221.23,
+        216.49,
+        230.01,
+        234.76,
+        234.89,
+        243.14,
+        253.35,
+        254.31,
+        251.64,
+        251.06
+      ],
+      "ref_price": 251.06
     }
   ]
 }
