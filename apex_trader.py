@@ -31,9 +31,11 @@ from collections import defaultdict
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
-TRADING_MODE = os.environ.get("TRADING_MODE", "paper").lower()  # "paper" | "live"
-ETORO_API_KEY = os.environ.get("ETORO_API_KEY", "")
-ETORO_ACCOUNT_ID = os.environ.get("ETORO_ACCOUNT_ID", "")
+TRADING_MODE = os.environ.get("TRADING_MODE", "paper").lower()  # "paper" | "live_dry" | "live"
+ETORO_API_KEY  = os.environ.get("ETORO_API_KEY", "")
+ETORO_USER_KEY = os.environ.get("ETORO_USER_KEY", "")
+ETORO_ENV      = os.environ.get("ETORO_ENV", "demo").lower()   # demo | live
+ETORO_ACCOUNT_ID = os.environ.get("ETORO_ACCOUNT_ID", "")   # legacy, nicht mehr genutzt
 
 # Risk parameters
 # 2026-06-12: Bumped 300->400, 5->7 fuer Rotation-Test (User-Request).
@@ -1304,7 +1306,7 @@ def open_position(state: dict, pending: dict, entry_actual: float):
     state["open"].append(pos)
     state["cash"] -= POSITION_SIZE
 
-    if TRADING_MODE == "live":
+    if TRADING_MODE in ("live", "live_dry"):
         try:
             etoro_open_position(pos)
         except Exception as e:
@@ -1420,6 +1422,9 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 })
                 log(f"  trailing step {step_idx}: {p['ticker']} SL ${old_stop:.2f} -> ${p['stop']:.2f}")
                 current_step = step_idx
+                if TRADING_MODE in ("live", "live_dry"):
+                    try: etoro_update_sl_tp(p)
+                    except Exception as e: log(f"  ERR live-trail: {e}")
             else:
                 break   # naechste Stufe nicht erreicht -> abbrechen
 
@@ -1437,6 +1442,9 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                     "ticker": p["ticker"], "old_stop": old_stop, "new_stop": p["stop"],
                     "high": high_se, "gain_pct": round((high_se/entry-1)*100, 1),
                 })
+                if TRADING_MODE in ("live", "live_dry"):
+                    try: etoro_update_sl_tp(p)
+                    except Exception as e: log(f"  ERR live-trail-cont: {e}")
                 log(f"  trailing continuous: {p['ticker']} SL ${old_stop:.2f} -> ${p['stop']:.2f} "
                     f"(High ${high_se:.2f} = +{(high_se/entry-1)*100:.1f}%)")
 
@@ -1524,7 +1532,7 @@ def close_position(state: dict, pos: dict, exit_price: float, reason: str):
     # Cash flow: return position size + pnl
     state["cash"] += pos["size_usd"] + pnl_usd
 
-    if TRADING_MODE == "live":
+    if TRADING_MODE in ("live", "live_dry"):
         try:
             etoro_close_position(pos, exit_price, reason)
         except Exception as e:
@@ -1557,21 +1565,57 @@ def recompute_stats(state: dict):
 # ---------------------------------------------------------------------------
 # eToro stubs (live mode)
 # ---------------------------------------------------------------------------
+def _etoro_client():
+    """Lazy-Init des eToro-Clients. dry_run=True bei TRADING_MODE=live_dry (logged only)."""
+    from etoro_client import EToroClient
+    return EToroClient(
+        api_key=ETORO_API_KEY, user_key=ETORO_USER_KEY, env=ETORO_ENV,
+        dry_run=(TRADING_MODE == "live_dry"),
+    )
+
+
 def etoro_open_position(pos: dict):
-    """Stub: POST /v1/portfolios/{account_id}/positions."""
-    if not (ETORO_API_KEY and ETORO_ACCOUNT_ID):
-        raise RuntimeError("ETORO_API_KEY / ETORO_ACCOUNT_ID missing")
-    log(f"  [eToro] would OPEN {pos['ticker']} ${pos['size_usd']:.0f} "
-        f"SL ${pos['stop']:.2f} TP ${pos['target']:.2f}")
-    # TODO: implement actual eToro API call
+    """Sendet eine echte Market-Order an eToro (oder loggt bei live_dry).
+    Speichert orderId + instrumentId zurueck ins pos-dict fuer spaeteres close/update."""
+    if not (ETORO_API_KEY and ETORO_USER_KEY):
+        raise RuntimeError("ETORO_API_KEY / ETORO_USER_KEY missing")
+    c = _etoro_client()
+    tk = pos["ticker"]
+    iid = c.resolve_ticker(tk)
+    if not iid:
+        log(f"  [eToro] ticker {tk} nicht aufgeloest — skip"); return
+    r = c.open_position(iid, pos["size_usd"], "Buy",
+                        stop_loss=pos["stop"], take_profit=pos["target"])
+    pos["etoro_instrument_id"] = iid
+    pos["etoro_order_id"]      = r.get("orderId") if isinstance(r, dict) else None
+    pos["etoro_reference_id"]  = r.get("referenceId") if isinstance(r, dict) else None
+    log(f"  [eToro] {tk} ({iid}) OPEN sent ${pos['size_usd']:.0f} "
+        f"SL ${pos['stop']:.2f} TP ${pos['target']:.2f} -> orderId {pos.get('etoro_order_id')}")
 
 
 def etoro_close_position(pos: dict, exit_price: float, reason: str):
-    """Stub: DELETE /v1/portfolios/{account_id}/positions/{id}."""
-    if not (ETORO_API_KEY and ETORO_ACCOUNT_ID):
-        raise RuntimeError("ETORO_API_KEY / ETORO_ACCOUNT_ID missing")
-    log(f"  [eToro] would CLOSE {pos['ticker']} @ ${exit_price:.2f} ({reason})")
-    # TODO: implement actual eToro API call
+    """Schliesst die eToro-Position via orderId."""
+    if not (ETORO_API_KEY and ETORO_USER_KEY):
+        raise RuntimeError("ETORO_API_KEY / ETORO_USER_KEY missing")
+    oid = pos.get("etoro_position_id") or pos.get("etoro_order_id")
+    if not oid:
+        log(f"  [eToro] {pos['ticker']} keine orderId -> skip close"); return
+    c = _etoro_client()
+    r = c.close_position(oid)
+    log(f"  [eToro] {pos['ticker']} CLOSE ({reason}) sent -> {r}")
+
+
+def etoro_update_sl_tp(pos: dict):
+    """Zieht Trailing-Stop bei eToro nach — pro Cron-Run bei jedem Ladder/Continuous-Step."""
+    if TRADING_MODE not in ("live", "live_dry"): return
+    if not (ETORO_API_KEY and ETORO_USER_KEY): return
+    oid = pos.get("etoro_position_id") or pos.get("etoro_order_id")
+    if not oid: return
+    try:
+        _etoro_client().update_sl_tp(oid, stop_loss=pos["stop"], take_profit=pos["target"])
+        log(f"  [eToro] {pos['ticker']} SL nachgezogen -> ${pos['stop']:.2f}")
+    except Exception as e:
+        log(f"  [eToro] update_sl_tp fail: {e}")
 
 
 # ---------------------------------------------------------------------------

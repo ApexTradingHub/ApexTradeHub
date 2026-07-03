@@ -276,6 +276,17 @@ def _cli():
             except EToroError as e:
                 print(f"  meta-lookup FEHLER {e.status}: {e.message}")
 
+    elif cmd == "close":
+        # py etoro_client.py close ORDER_ID
+        if len(sys.argv) < 3:
+            print("Usage: close ORDER_ID"); return
+        oid = int(sys.argv[2])
+        try:
+            r = c.close_position(oid)
+            print(f"Close-Result: {json.dumps(r, indent=2)[:400]}")
+        except EToroError as e:
+            print(f"FEHLER {e.status}: {e.message}")
+
     elif cmd == "open":
         # py etoro_client.py open TICKER SIZE_USD [SL_PCT] [TP_PCT]
         # Beispiel: py etoro_client.py open AAPL 50 4 6  -> $50 AAPL, SL -4%, TP +6%
