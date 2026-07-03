@@ -248,15 +248,27 @@ def _cli():
     elif cmd == "balance":
         try:
             r = c.get_balance()
-            print(json.dumps(r, indent=2)[:800])
+            cp = r.get("clientPortfolio", r) if isinstance(r, dict) else {}
+            print(f"Cash: ${cp.get('credit', 0):,.2f}  |  Bonus: ${cp.get('bonusCredit', 0):.2f}")
+            print(f"Positionen: {len(cp.get('positions', []))}  |  Pending Orders: {len(cp.get('ordersForOpen', []))}")
         except EToroError as e:
             print(f"FEHLER {e.status}: {e.message}")
-            print("Hinweis: falls 404 -> genauen Pfad aus api-portal.etoro.com -> User/Portfolio API kopieren")
 
     elif cmd == "positions":
         try:
             r = c.get_positions()
-            print(json.dumps(r, indent=2)[:800])
+            print(f"Cash ${r.get('credit', 0):,.2f}  |  {r.get('n_positions', 0)} offen  |  {r.get('n_pending', 0)} pending")
+            for p in r.get("positions", []):
+                pid = p.get("positionID")
+                iid = p.get("instrumentID")
+                amt = p.get("amount", 0)
+                op  = p.get("openRate", 0)
+                sl  = p.get("stopLossRate", 0)
+                tp  = p.get("takeProfitRate", 0)
+                side = "BUY" if p.get("isBuy") else "SELL"
+                print(f"  POS #{pid}  instr {iid}  {side} ${amt:.2f} @ {op} | SL {sl} TP {tp}")
+            for o in r.get("pending", []):
+                print(f"  ORD #{o.get('orderID')}  instr {o.get('instrumentID')}  ${o.get('amount', 0):.2f}  (pending)")
         except EToroError as e:
             print(f"FEHLER {e.status}: {e.message}")
 
