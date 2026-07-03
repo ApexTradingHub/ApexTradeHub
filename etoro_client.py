@@ -164,13 +164,16 @@ class EToroClient:
                              params={"instrumentIds": ",".join(str(i) for i in instrument_ids)})
 
     # ---------- Write: Trading (RESPEKTIERT DRY-RUN) ----------
-    def open_position(self, instrument_id, size_usd, direction="BUY", stop_loss=None, take_profit=None):
-        """Marktorder oeffnen. Pfad TBD (v2 unified order endpoint).
-        Bei Dry-Run: loggen, nicht senden."""
+    def open_position(self, instrument_id, size_usd, direction="Buy", stop_loss=None, take_profit=None):
+        """Marktorder oeffnen. eToro erwartet 'transaction' mit TitleCase-Werten:
+        Buy | Sell | SellShort | BuyToCover."""
+        # Normalisieren falls User "BUY"/"buy" schickt
+        d = str(direction).strip().lower()
+        tx = {"buy": "Buy", "sell": "Sell", "sellshort": "SellShort", "buytocover": "BuyToCover"}.get(d, direction)
         body = {
             "instrumentId": instrument_id,
             "amount":       float(size_usd),
-            "direction":    direction,
+            "transaction":  tx,
             "leverage":     1,
         }
         if stop_loss   is not None: body["stopLoss"]   = float(stop_loss)
