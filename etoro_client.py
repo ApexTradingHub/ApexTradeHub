@@ -271,9 +271,9 @@ def _cli():
         # Preis via eToro-Rates (bid/ask). Ask fuer BUY, Bid fuer SELL.
         try:
             r = c.get_rates(iid)
-            items = r.get("items", r if isinstance(r, list) else [])
-            it = items[0] if isinstance(items, list) and items else (items if isinstance(items, dict) else {})
-            price = it.get("ask") or it.get("lastPrice") or it.get("last") or it.get("bid")
+            rates = r.get("rates", r.get("items", [])) if isinstance(r, dict) else (r if isinstance(r, list) else [])
+            it = rates[0] if rates else {}
+            price = it.get("ask") or it.get("lastExecution") or it.get("bid")
         except EToroError as e:
             print(f"Rates-FEHLER {e.status}: {e.message}"); return
         if not price:
