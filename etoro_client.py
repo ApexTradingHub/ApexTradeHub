@@ -124,6 +124,13 @@ class EToroClient:
                 return i
         return None
 
+    def get_instruments_meta(self, instrument_ids):
+        """Bulk-Metadata fuer eine Liste von instrumentIds. Liefert Namen/Symbole/Sektor."""
+        if isinstance(instrument_ids, (int, str)):
+            instrument_ids = [instrument_ids]
+        ids_str = ",".join(str(i) for i in instrument_ids)
+        return self._request("GET", "/api/v1/market-data/instruments", params={"instrumentIds": ids_str})
+
     # ---------- Read-Only: TODO endpoints (Pfade aus api-portal.etoro.com noch verifizieren) ----------
     def get_balance(self):
         """Virtuelles Guthaben (Demo) bzw. echtes (Live). Pfad TBD via API-Portal."""
@@ -214,14 +221,24 @@ def _cli():
         tk = sys.argv[2].upper()
         print(f"{tk} -> instrumentId {c.resolve_ticker(tk)}")
 
-    elif cmd == "search":   # Debug: symbol-based search
+    elif cmd == "search":   # Debug: symbol-based search + meta lookup
         if len(sys.argv) < 3:
             print("Usage: search SYMBOL"); return
         r = c.search_instrument(sys.argv[2], by_symbol=True)
         items = r.get("items", []) if isinstance(r, dict) else []
-        print(f"totalItems={r.get('totalItems')}  showing {min(len(items), 5)}:")
-        for i, it in enumerate(items[:5]):
-            print(f"  [{i}] {it}")
+        ids = [it.get("instrumentId") for it in items if it.get("instrumentId", 0) > 0]
+        print(f"totalItems={r.get('totalItems')}  IDs: {ids}")
+        if ids:
+            try:
+                meta = c.get_instruments_meta(ids[:8])
+                m_items = meta.get("items", meta) if isinstance(meta, dict) else meta
+                if isinstance(m_items, list):
+                    for m in m_items[:8]:
+                        print(f"  {m}")
+                else:
+                    print(f"  {meta}")
+            except EToroError as e:
+                print(f"  meta-lookup FEHLER {e.status}: {e.message}")
 
     else:
         print(f"Unbekanntes Kommando: {cmd}")
