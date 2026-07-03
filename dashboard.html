@@ -1703,9 +1703,16 @@ function renderPaper() {
   }
 
   /* === HEADER === */
-  const isLive = s.mode === 'live';
-  setText('p-mode', isLive ? 'LIVE' : 'PAPER');
-  // Mode-Karte + Badge live/paper-Styling
+  // Trader hat 3 Modes (2026-07-03): paper | live_dry | live
+  const stM = (s.stats && s.stats.trading_mode) || s.mode || 'paper';
+  const envM = (s.stats && s.stats.etoro_env) || '';
+  const isLive     = stM === 'live';
+  const isLiveDry  = stM === 'live_dry';
+  const modeLabel  = isLive     ? `LIVE (${envM || 'demo'})`
+                   : isLiveDry  ? `LIVE-DRY (${envM || 'demo'})`
+                   :              'PAPER';
+  setText('p-mode', modeLabel);
+  // Styling: live_dry teilt sich mit paper (cyan) — nur echtes live = orange
   document.querySelectorAll('.stat-paper-mode').forEach(el => el.classList.toggle('live', isLive));
   document.querySelectorAll('.paper-mode-badge').forEach(el => el.classList.toggle('live', isLive));
   setText('p-updated', fmtBerlin(s.last_updated));

@@ -1316,7 +1316,8 @@ def open_position(state: dict, pending: dict, entry_actual: float):
 # ---------------------------------------------------------------------------
 # Open -> Closed (TP / SL / Trailing / Time)
 # ---------------------------------------------------------------------------
-def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: bool = True) -> list:
+def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: bool = True,
+                          market_open: bool = True) -> list:
     """Refresh prices, manage trailing, close if TP/SL/time hit.
     allow_stagnation: Stagnation-Exit nur wenn ein Ersatz in der Pipeline ist (2026-06-23).
     Sonst flache Position halten statt Slot leeren -> Cash idle."""
@@ -1347,7 +1348,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 i_reason, i_px = "Intraday TP", p["target"]
             elif cur <= p["stop"]:
                 i_reason, i_px = "Intraday Stop", p["stop"]
-            elif _is_eod_utc():
+            elif _is_eod_utc() and market_open:   # EOD-Rescue nur an echten Handelstagen
                 # EOD->SWING (2026-06-26, User-Wunsch): KEIN hartes Banken mehr am EOD.
                 # ALLE ueberlebenden Intraday (gruen UND rot) -> Momentum-Swing, laufen lassen.
                 # Die Trailing-Ladder bankt erst bei ECHTEN Gewinnen (nicht am willkuerlichen
@@ -1480,8 +1481,13 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             # NUR wenn ein Ersatz in der Pipeline ist (allow_stagnation) — sonst flache
             # Position halten statt Slot fuer nichts zu leeren (2026-06-23 User-Wunsch).
             pnl_pct = (cur - entry) / entry * 100
-            if (allow_stagnation and hold_trade >= STAGNATION_DAYS and
-                STAGNATION_PNL_MIN <= pnl_pct <= STAGNATION_PNL_MAX):
+            # Automatische Exits (Stagnation/Time) NUR bei offenem Markt — sonst entscheiden wir
+            # auf stalem yfinance-Preis und wuerden Live-Close-Orders auf falscher Basis senden
+            # (2026-07-03 nach AYI-Feiertags-Stagnation). TP/SL bleiben aktiv (preis-getriggert).
+            if not market_open:
+                pass   # keine automatischen Exits am Feiertag/WE
+            elif (allow_stagnation and hold_trade >= STAGNATION_DAYS and
+                  STAGNATION_PNL_MIN <= pnl_pct <= STAGNATION_PNL_MAX):
                 exit_reason = "Stagnation Exit"
                 exit_price = cur
             else:
@@ -1550,6 +1556,8 @@ def recompute_stats(state: dict):
     pnl_real = sum(c.get("pnl_usd", 0) for c in closed)
     pnl_unr  = sum(p.get("pnl_usd", 0) for p in open_pos)
     state["stats"] = {
+        "trading_mode":   TRADING_MODE,
+        "etoro_env":      ETORO_ENV,
         "total_trades":   len(closed),
         "open_trades":    len(open_pos),
         "wins":           wins,
@@ -1677,7 +1685,9 @@ def run_trader(dry_run: bool = False):
 
     # 1. Update open positions (TP/SL/trailing/time-exit)
     log("step 1: update open positions")
-    events1 = update_open_positions(state, dry_run=dry_run, allow_stagnation=replacement_available)
+    events1 = update_open_positions(state, dry_run=dry_run,
+                                    allow_stagnation=replacement_available,
+                                    market_open=market_is_open_now())
     all_events.extend(events1)
 
     # Market-Open-Guard (2026-06-19, verschaerft 2026-06-26): Entries NUR waehrend echter
