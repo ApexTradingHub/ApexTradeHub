@@ -140,12 +140,17 @@ class EToroClient:
         return self._request("GET", f"{self._trade_prefix()}/portfolio")
 
     def get_positions(self):
-        """Offene Positionen — Teil der portfolio-Response bei eToro (kein separater Endpoint)."""
+        """Offene Positionen + pending Orders aus der portfolio-Response.
+        eToro fillt Orders erst am Market-Open (pre-open = 'Ausstehend noch nicht ausgefuehrt')."""
         r = self.get_balance()
         cp = r.get("clientPortfolio", r) if isinstance(r, dict) else {}
+        pending = (cp.get("orders", []) + cp.get("stockOrders", []) +
+                   cp.get("entryOrders", []) + cp.get("ordersForOpen", []))
         return {
             "positions":  cp.get("positions", []),
-            "orders":     cp.get("orders", []) + cp.get("stockOrders", []) + cp.get("entryOrders", []),
+            "pending":    pending,
+            "n_positions": len(cp.get("positions", [])),
+            "n_pending":  len(pending),
             "credit":     cp.get("credit", 0),
             "bonusCredit": cp.get("bonusCredit", 0),
         }
