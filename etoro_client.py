@@ -131,20 +131,25 @@ class EToroClient:
         ids_str = ",".join(str(i) for i in instrument_ids)
         return self._request("GET", "/api/v1/market-data/instruments", params={"instrumentIds": ids_str})
 
-    # ---------- Read-Only: TODO endpoints (Pfade aus api-portal.etoro.com noch verifizieren) ----------
+    def _trade_prefix(self):
+        """/trading/info/demo oder /trading/info/live abhaengig von env."""
+        return f"/api/v1/trading/info/{self.env}"
+
     def get_balance(self):
-        """Virtuelles Guthaben (Demo) bzw. echtes (Live). Pfad TBD via API-Portal."""
-        # Wahrscheinlich: /api/v1/user/portfolio  ODER  /api/v1/user/balance
-        # Bei 404 hier: exakten Pfad aus api-portal.etoro.com -> Portfolio API kopieren.
-        return self._request("GET", "/api/v1/user/portfolio")
+        """Portfolio-Metadaten: Waehrung, buying power, open P&L."""
+        return self._request("GET", f"{self._trade_prefix()}/portfolio")
 
     def get_positions(self):
-        """Offene Positionen. Pfad TBD."""
-        return self._request("GET", "/api/v1/user/positions")
+        """Offene Positionen."""
+        return self._request("GET", f"{self._trade_prefix()}/positions")
+
+    def get_history(self):
+        """Trade-History (geschlossene Positionen)."""
+        return self._request("GET", f"{self._trade_prefix()}/history")
 
     def get_quote(self, instrument_id):
-        """Live-Preis (bid/ask). Pfad TBD."""
-        return self._request("GET", f"/api/v1/market-data/instruments/{instrument_id}/quote")
+        """Live-Preis (bid/ask) fuer einen instrumentId."""
+        return self._request("GET", f"/api/v1/market-data/quotes", params={"instrumentIds": str(instrument_id)})
 
     # ---------- Write: Trading (RESPEKTIERT DRY-RUN) ----------
     def open_position(self, instrument_id, size_usd, direction="BUY", stop_loss=None, take_profit=None):
@@ -158,20 +163,18 @@ class EToroClient:
         }
         if stop_loss   is not None: body["stopLoss"]   = float(stop_loss)
         if take_profit is not None: body["takeProfit"] = float(take_profit)
-        # Demo vs Live: Doku sagt Trading-Endpoints haben /demo/ im Pfad wenn Demo-Key.
-        path = "/api/v2/trading/execution/orders"
-        return self._request("POST", path, body=body, write=True)
+        # v2 unified order endpoint mit env-Prefix (demo|live).
+        return self._request("POST", f"/api/v2/trading/execution/{self.env}/orders", body=body, write=True)
 
     def close_position(self, position_id):
-        """Position schliessen. Pfad TBD."""
-        return self._request("DELETE", f"/api/v1/trading/positions/{position_id}", write=True)
+        return self._request("DELETE", f"/api/v1/trading/execution/{self.env}/positions/{position_id}", write=True)
 
     def update_sl_tp(self, position_id, stop_loss=None, take_profit=None):
         """SL/TP nachziehen (fuer Trailing-Ladder)."""
         body = {}
         if stop_loss   is not None: body["stopLoss"]   = float(stop_loss)
         if take_profit is not None: body["takeProfit"] = float(take_profit)
-        return self._request("PATCH", f"/api/v1/trading/positions/{position_id}", body=body, write=True)
+        return self._request("PATCH", f"/api/v1/trading/execution/{self.env}/positions/{position_id}", body=body, write=True)
 
 
 # ---------- CLI ----------
