@@ -1917,6 +1917,10 @@ function renderActivityLog(s) {
         msg = `<b>${tk}</b> Intraday → Momentum-Swing am EOD (${ipnl >= 0 ? '+' : ''}${ipnl.toFixed(1)}%, ${modeLabel}) — Stop $${(+e.new_stop || 0).toFixed(2)}`;
         break;
       }
+      case 'trailing_continuous':
+        icon = '📈';
+        msg = `<b>${tk}</b> Runner-Trailing — SL $${(+e.old_stop || 0).toFixed(2)} → $${(+e.new_stop || 0).toFixed(2)} (High +${(+e.gain_pct || 0).toFixed(1)}%)`;
+        break;
       case 'intraday_rescue': {   // alter Event-Name (Backward-Compat)
         const rpnl = +e.pnl_pct || 0;
         icon = '🔄';

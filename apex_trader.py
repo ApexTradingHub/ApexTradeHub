@@ -75,6 +75,11 @@ MOMENTUM_TRAIL_LADDER = [
     (1.10, 1.075),  # Step 2: high >= +10% -> SL +7.5%
     (1.15, 1.115),  # Step 3: high >= +15% -> SL +11.5%
 ]
+# Continuous Trail (2026-07-03): NACH Ladder-Step 3 (>+15%) uebernimmt eine Formel
+# SL = high * (1 - MOMENTUM_TRAIL_GIVEBACK). Ladder bleibt bis +15% (Struktur/Anti-Whipsaw),
+# danach linear mit — kein Cap mehr bei +11.5%. Bei +25% Runner -> +17.5% gesichert;
+# +50% -> +41%; +100% -> +88%.
+MOMENTUM_TRAIL_GIVEBACK = 0.06   # 6% Give-Back vom High (nach +15%-Ladder-Ende)
 # Backward-Compat: alte Felder bleiben, werden aber nicht mehr genutzt
 TRAILING_TRIGGER_MULT = 1.08
 TRAILING_TARGET_MULT  = 1.05
@@ -1417,6 +1422,23 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 current_step = step_idx
             else:
                 break   # naechste Stufe nicht erreicht -> abbrechen
+
+        # === Continuous Trail fuer Momentum-Runner NACH Ladder-Ende (2026-07-03) ===
+        # Ab +15% (Ladder ausgereizt) uebernimmt eine kontinuierliche Formel: SL = high*(1-6%).
+        # Verhindert Cap bei +11.5% wenn Runner weiter laufen. Nur Momentum, nur wenn Ladder-Ende.
+        if (p.get("source") == "momentum_filler" and current_step >= len(MOMENTUM_TRAIL_LADDER)
+                and high_se >= entry * MOMENTUM_TRAIL_LADDER[-1][0]):
+            formula_stop = high_se * (1 - MOMENTUM_TRAIL_GIVEBACK)
+            if formula_stop > p["stop"]:
+                old_stop = p["stop"]
+                p["stop"] = round(formula_stop, 2)
+                events.append({
+                    "event": "trailing_continuous", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"], "old_stop": old_stop, "new_stop": p["stop"],
+                    "high": high_se, "gain_pct": round((high_se/entry-1)*100, 1),
+                })
+                log(f"  trailing continuous: {p['ticker']} SL ${old_stop:.2f} -> ${p['stop']:.2f} "
+                    f"(High ${high_se:.2f} = +{(high_se/entry-1)*100:.1f}%)")
 
         # === Hold-Days berechnen (fuer Stagnation + Time-Exit) ===
         # hold       = Kalendertage (Time-Exit, unveraendert)
