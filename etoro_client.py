@@ -150,9 +150,12 @@ class EToroClient:
             "bonusCredit": cp.get("bonusCredit", 0),
         }
 
-    def get_quote(self, instrument_id):
-        """Live-Preis (bid/ask) fuer einen instrumentId."""
-        return self._request("GET", f"/api/v1/market-data/quotes", params={"instrumentIds": str(instrument_id)})
+    def get_quote(self, instrument_ids):
+        """Live-Rates (bid/ask) fuer eine oder mehrere instrumentIds. Endpoint heisst rates, nicht quotes."""
+        if isinstance(instrument_ids, (int, str)):
+            instrument_ids = [instrument_ids]
+        return self._request("GET", "/api/v1/market-data/rates",
+                             params={"instrumentIds": ",".join(str(i) for i in instrument_ids)})
 
     # ---------- Write: Trading (RESPEKTIERT DRY-RUN) ----------
     def open_position(self, instrument_id, size_usd, direction="BUY", stop_loss=None, take_profit=None):
