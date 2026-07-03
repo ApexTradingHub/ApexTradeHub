@@ -58,6 +58,8 @@ class EToroClient:
             "x-request-id": str(uuid.uuid4()),
             "Accept":       "application/json",
             "Content-Type": "application/json",
+            # Cloudflare bannt Python-urllib default UA (Error 1010) — normaler UA reicht:
+            "User-Agent":   "ApexTrader/1.0 (+https://github.com/ApexTradingHub)",
         }
 
     def _request(self, method, path, params=None, body=None, write=False):
