@@ -204,13 +204,26 @@ class EToroClient:
         DELETE /trading/{env}/orders/{orderId}"""
         return self._request("DELETE", f"/api/v1/trading/{self.env}/orders/{order_id}", write=True)
 
-    def close_position(self, position_id, units=None):
-        """Schliesst eine bereits GEFUELLTE Position.
-        DELETE /trading/{env}/positions  (Body: positionId + units).
-        units=None -> ganze Position schliessen."""
-        body = {"positionId": int(position_id)}
-        if units is not None: body["units"] = float(units)
-        return self._request("DELETE", f"/api/v1/trading/{self.env}/positions", body=body, write=True)
+    def close_position(self, position_id, instrument_id=None, units=None):
+        """Schliesst eine bereits GEFUELLTE Position via Market-Close-Order.
+        POST /api/v1/trading/execution/{env}/market-close-orders/positions/{positionId}
+        Body: {InstrumentId, UnitsToDeduct: null|number}.
+        instrument_id=None -> automatisch aus portfolio.positions lookup."""
+        pid = int(position_id)
+        iid = instrument_id
+        if iid is None:
+            # instrumentId aus dem Portfolio holen
+            r = self.get_balance()
+            positions = (r.get("clientPortfolio", {}) or {}).get("positions", [])
+            for p in positions:
+                if int(p.get("positionID", 0)) == pid:
+                    iid = int(p.get("instrumentID", 0)); break
+            if not iid:
+                raise EToroError(0, "?", f"instrumentId fuer positionId {pid} nicht gefunden", None)
+        body = {"InstrumentId": int(iid), "UnitsToDeduct": float(units) if units else None}
+        return self._request("POST",
+            f"/api/v1/trading/execution/{self.env}/market-close-orders/positions/{pid}",
+            body=body, write=True)
 
     def close_or_cancel(self, order_or_position_id):
         """Convenience: erst als Order canceln versuchen (billiger, fuer pending),
