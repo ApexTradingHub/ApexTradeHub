@@ -140,12 +140,15 @@ class EToroClient:
         return self._request("GET", f"{self._trade_prefix()}/portfolio")
 
     def get_positions(self):
-        """Offene Positionen."""
-        return self._request("GET", f"{self._trade_prefix()}/positions")
-
-    def get_history(self):
-        """Trade-History (geschlossene Positionen)."""
-        return self._request("GET", f"{self._trade_prefix()}/history")
+        """Offene Positionen — Teil der portfolio-Response bei eToro (kein separater Endpoint)."""
+        r = self.get_balance()
+        cp = r.get("clientPortfolio", r) if isinstance(r, dict) else {}
+        return {
+            "positions":  cp.get("positions", []),
+            "orders":     cp.get("orders", []) + cp.get("stockOrders", []) + cp.get("entryOrders", []),
+            "credit":     cp.get("credit", 0),
+            "bonusCredit": cp.get("bonusCredit", 0),
+        }
 
     def get_quote(self, instrument_id):
         """Live-Preis (bid/ask) fuer einen instrumentId."""
