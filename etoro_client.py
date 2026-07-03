@@ -151,9 +151,17 @@ class EToroClient:
         }
 
     def get_instrument_details(self, instrument_id):
-        """Instrument-Metadata (symbol, displayName, pipSize) — KEIN Live-Preis.
-        eToro empfiehlt WebSocket fuer Live-Preise; wir nutzen yfinance stattdessen."""
+        """Instrument-Metadata (symbol, displayName, pipSize)."""
         return self._request("GET", f"/api/v1/market-data/instruments/{instrument_id}")
+
+    def get_rates(self, instrument_ids):
+        """Live snapshot rates (bid/ask/execution) fuer bis zu 100 IDs.
+        Endpoint: /market-data/instruments/rates (bestaetigt via api-portal.etoro.com).
+        Rate-Limit: 120 req/60s."""
+        if isinstance(instrument_ids, (int, str)):
+            instrument_ids = [instrument_ids]
+        return self._request("GET", "/api/v1/market-data/instruments/rates",
+                             params={"instrumentIds": ",".join(str(i) for i in instrument_ids)})
 
     # ---------- Write: Trading (RESPEKTIERT DRY-RUN) ----------
     def open_position(self, instrument_id, size_usd, direction="BUY", stop_loss=None, take_profit=None):
@@ -210,7 +218,7 @@ def _cli():
         except EToroError as e:
             print(f"FEHLER {e.status}: {e.message}")
 
-    elif cmd == "quote":   # eToro: nur Metadata (kein Live-Preis). Fuer Live-Preise nutze yfinance.
+    elif cmd == "quote":   # Live rates via /market-data/instruments/rates
         if len(sys.argv) < 3:
             print("Usage: quote TICKER"); return
         tk = sys.argv[2].upper()
@@ -218,9 +226,9 @@ def _cli():
         print(f"{tk} -> instrumentId {iid}")
         if iid:
             try:
-                print(json.dumps(c.get_instrument_details(iid), indent=2)[:600])
+                print(json.dumps(c.get_rates(iid), indent=2)[:600])
             except EToroError as e:
-                print(f"Details-FEHLER {e.status}: {e.message}")
+                print(f"Rates-FEHLER {e.status}: {e.message}")
 
     elif cmd == "resolve":
         if len(sys.argv) < 3:
@@ -260,15 +268,17 @@ def _cli():
         iid = c.resolve_ticker(tk)
         if not iid:
             print(f"Ticker nicht aufgeloest: {tk}"); return
-        # Preis via yfinance (eToro hat keinen simplen REST-Quote-Endpoint)
+        # Preis via eToro-Rates (bid/ask). Ask fuer BUY, Bid fuer SELL.
         try:
-            import yfinance as yf
-            info = yf.Ticker(tk).history(period="1d", interval="1m")
-            price = float(info["Close"].iloc[-1]) if len(info) else None
-        except Exception as e:
-            print(f"yfinance-Fehler: {e}"); price = None
+            r = c.get_rates(iid)
+            items = r.get("items", r if isinstance(r, list) else [])
+            it = items[0] if isinstance(items, list) and items else (items if isinstance(items, dict) else {})
+            price = it.get("ask") or it.get("lastPrice") or it.get("last") or it.get("bid")
+        except EToroError as e:
+            print(f"Rates-FEHLER {e.status}: {e.message}"); return
         if not price:
-            print(f"Kein Preis fuer {tk} — Abbruch"); return
+            print(f"Kein Preis in Rates-Antwort: {r}"); return
+        price = float(price)
         sl_abs = round(price * (1 - sl_pct/100), 2)
         tp_abs = round(price * (1 + tp_pct/100), 2)
         print(f"{tk} ({iid}) @ ${price:.2f} -> SL ${sl_abs} / TP ${tp_abs}")
