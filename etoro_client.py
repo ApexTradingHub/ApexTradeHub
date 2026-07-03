@@ -199,15 +199,36 @@ class EToroClient:
         # v2 unified order endpoint mit env-Prefix (demo|live).
         return self._request("POST", f"/api/v2/trading/execution/{self.env}/orders", body=body, write=True)
 
-    def close_position(self, position_id):
-        return self._request("DELETE", f"/api/v1/trading/execution/{self.env}/positions/{position_id}", write=True)
+    def cancel_order(self, order_id):
+        """Cancels a pending order BEFORE it is executed.
+        DELETE /trading/{env}/orders/{orderId}"""
+        return self._request("DELETE", f"/api/v1/trading/{self.env}/orders/{order_id}", write=True)
+
+    def close_position(self, position_id, units=None):
+        """Schliesst eine bereits GEFUELLTE Position.
+        DELETE /trading/{env}/positions  (Body: positionId + units).
+        units=None -> ganze Position schliessen."""
+        body = {"positionId": int(position_id)}
+        if units is not None: body["units"] = float(units)
+        return self._request("DELETE", f"/api/v1/trading/{self.env}/positions", body=body, write=True)
+
+    def close_or_cancel(self, order_or_position_id):
+        """Convenience: erst als Order canceln versuchen (billiger, fuer pending),
+        bei 404 als Position schliessen (fuer bereits gefuellt)."""
+        try:
+            return self.cancel_order(order_or_position_id)
+        except EToroError as e:
+            if e.status == 404:
+                return self.close_position(order_or_position_id)
+            raise
 
     def update_sl_tp(self, position_id, stop_loss=None, take_profit=None):
-        """SL/TP nachziehen (fuer Trailing-Ladder). eToro-Felder: stopLossRate/takeProfitRate."""
-        body = {}
-        if stop_loss   is not None: body["stopLossRate"]   = float(stop_loss)
-        if take_profit is not None: body["takeProfitRate"] = float(take_profit)
-        return self._request("PATCH", f"/api/v1/trading/execution/{self.env}/positions/{position_id}", body=body, write=True)
+        """SL/TP nachziehen. eToro-Felder: StopLossRate/TakeProfitRate (PascalCase)."""
+        body = {"positionId": int(position_id)}
+        if stop_loss   is not None: body["StopLossRate"]   = float(stop_loss)
+        if take_profit is not None: body["TakeProfitRate"] = float(take_profit)
+        # Pfad wahrscheinlich PATCH auf positions — bei 404 muessen wir den Endpoint noch fixen
+        return self._request("PATCH", f"/api/v1/trading/{self.env}/positions", body=body, write=True)
 
 
 # ---------- CLI ----------
@@ -277,15 +298,26 @@ def _cli():
                 print(f"  meta-lookup FEHLER {e.status}: {e.message}")
 
     elif cmd == "close":
-        # py etoro_client.py close ORDER_ID
-        if len(sys.argv) < 3:
-            print("Usage: close ORDER_ID"); return
+        # py etoro_client.py close ID       -> smart: cancel-order, fallback close-position
+        # py etoro_client.py cancel ID      -> nur cancel (pending order)
+        # py etoro_client.py close-pos ID   -> nur close (filled position)
+        if len(sys.argv) < 3: print("Usage: close ID"); return
         oid = int(sys.argv[2])
         try:
-            r = c.close_position(oid)
-            print(f"Close-Result: {json.dumps(r, indent=2)[:400]}")
-        except EToroError as e:
-            print(f"FEHLER {e.status}: {e.message}")
+            r = c.close_or_cancel(oid); print(f"Result: {json.dumps(r, indent=2)[:400]}")
+        except EToroError as e: print(f"FEHLER {e.status}: {e.message}")
+
+    elif cmd == "cancel":
+        if len(sys.argv) < 3: print("Usage: cancel ORDER_ID"); return
+        try:
+            r = c.cancel_order(int(sys.argv[2])); print(f"Result: {json.dumps(r, indent=2)[:400]}")
+        except EToroError as e: print(f"FEHLER {e.status}: {e.message}")
+
+    elif cmd == "close-pos":
+        if len(sys.argv) < 3: print("Usage: close-pos POSITION_ID"); return
+        try:
+            r = c.close_position(int(sys.argv[2])); print(f"Result: {json.dumps(r, indent=2)[:400]}")
+        except EToroError as e: print(f"FEHLER {e.status}: {e.message}")
 
     elif cmd == "open":
         # py etoro_client.py open TICKER SIZE_USD [SL_PCT] [TP_PCT]
