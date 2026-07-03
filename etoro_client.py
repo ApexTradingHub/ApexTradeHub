@@ -181,8 +181,10 @@ class EToroClient:
             "transaction":  tx,
             "leverage":     1,
         }
-        if stop_loss   is not None: body["stopLoss"]   = float(stop_loss)
-        if take_profit is not None: body["takeProfit"] = float(take_profit)
+        # eToro-Feldnamen: stopLossRate / takeProfitRate (bestaetigt via 1. Order 03-07 —
+        # stopLoss/takeProfit wurden ignoriert, isNoStopLoss=true kam zurueck).
+        if stop_loss   is not None: body["stopLossRate"]   = float(stop_loss)
+        if take_profit is not None: body["takeProfitRate"] = float(take_profit)
         # v2 unified order endpoint mit env-Prefix (demo|live).
         return self._request("POST", f"/api/v2/trading/execution/{self.env}/orders", body=body, write=True)
 
@@ -190,10 +192,10 @@ class EToroClient:
         return self._request("DELETE", f"/api/v1/trading/execution/{self.env}/positions/{position_id}", write=True)
 
     def update_sl_tp(self, position_id, stop_loss=None, take_profit=None):
-        """SL/TP nachziehen (fuer Trailing-Ladder)."""
+        """SL/TP nachziehen (fuer Trailing-Ladder). eToro-Felder: stopLossRate/takeProfitRate."""
         body = {}
-        if stop_loss   is not None: body["stopLoss"]   = float(stop_loss)
-        if take_profit is not None: body["takeProfit"] = float(take_profit)
+        if stop_loss   is not None: body["stopLossRate"]   = float(stop_loss)
+        if take_profit is not None: body["takeProfitRate"] = float(take_profit)
         return self._request("PATCH", f"/api/v1/trading/execution/{self.env}/positions/{position_id}", body=body, write=True)
 
 
