@@ -95,18 +95,37 @@ class EToroClient:
         return self._request("GET", "/api/v1/market-data/search", params={"query": query})
 
     def resolve_ticker(self, ticker):
-        """Ticker (AAPL) -> instrumentId (int). Erster Treffer der Symbol matcht."""
+        """Ticker (AAPL) -> instrumentId (int). Filtert Trending-Kategorien (negative IDs) raus.
+        Sucht Symbol-Match in mehreren Feldern (symbol/symbolFull/ticker/name).
+        Antwortstruktur bei eToro: {page, pageSize, totalItems, items:[...]}"""
         res = self.search_instrument(ticker)
-        # Antwortstruktur: siehe API-Portal Doku. Suche nach 'symbol' == ticker in Ergebnisliste.
-        items = res.get("items") or res.get("results") or res.get("data") or (res if isinstance(res, list) else [])
-        for it in items if isinstance(items, list) else []:
-            sym = (it.get("symbol") or it.get("ticker") or "").upper()
-            if sym == ticker.upper():
-                return it.get("instrumentId") or it.get("id")
-        # Fallback: erster Treffer
-        if items and isinstance(items, list):
-            it = items[0]
-            return it.get("instrumentId") or it.get("id")
+        items = res.get("items", []) if isinstance(res, dict) else (res if isinstance(res, list) else [])
+        tk = ticker.upper()
+
+        def iid(it):
+            v = it.get("instrumentId") or it.get("id")
+            try: return int(v) if v is not None else None
+            except (TypeError, ValueError): return None
+
+        def valid(it):
+            i = iid(it)
+            return i is not None and i > 0   # negative IDs = Kategorien/Trending, nicht handelbar
+
+        # Priority 1: exakter Symbol-Match auf echter Instrument-Zeile
+        for it in items:
+            if not valid(it): continue
+            for field in ("symbolFull", "symbol", "ticker", "instrumentDisplayName"):
+                if (it.get(field) or "").upper() == tk:
+                    return iid(it)
+        # Priority 2: Ticker als Teil vom Namen (VRTX in "Vertex Pharmaceuticals")
+        for it in items:
+            if not valid(it): continue
+            if tk in (it.get("name") or it.get("instrumentDisplayName") or "").upper():
+                return iid(it)
+        # Priority 3: erster VALIDER Treffer
+        for it in items:
+            if valid(it):
+                return iid(it)
         return None
 
     # ---------- Read-Only: TODO endpoints (Pfade aus api-portal.etoro.com noch verifizieren) ----------
@@ -198,6 +217,16 @@ def _cli():
             print("Usage: resolve TICKER"); return
         tk = sys.argv[2].upper()
         print(f"{tk} -> instrumentId {c.resolve_ticker(tk)}")
+
+    elif cmd == "search":   # Debug: rohe Trefferliste anzeigen
+        if len(sys.argv) < 3:
+            print("Usage: search QUERY"); return
+        r = c.search_instrument(sys.argv[2])
+        items = r.get("items", []) if isinstance(r, dict) else []
+        print(f"totalItems={r.get('totalItems')}  showing {min(len(items), 8)}:")
+        for i, it in enumerate(items[:8]):
+            keys = {k: it.get(k) for k in ("instrumentId", "id", "symbol", "symbolFull", "ticker", "name", "instrumentDisplayName") if k in it}
+            print(f"  [{i}] {keys}")
 
     else:
         print(f"Unbekanntes Kommando: {cmd}")
