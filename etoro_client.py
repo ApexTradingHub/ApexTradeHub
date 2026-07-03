@@ -172,19 +172,30 @@ class EToroClient:
     def open_position(self, instrument_id, size_usd, direction="Buy", stop_loss=None, take_profit=None):
         """Marktorder oeffnen. eToro erwartet 'transaction' mit TitleCase-Werten:
         Buy | Sell | SellShort | BuyToCover."""
-        # Normalisieren falls User "BUY"/"buy" schickt
+        # eToro v2 execution: PascalCase-Felder erforderlich (verifiziert 03-07 nach 2. Order
+        # ohne SL/TP-Fill — camelCase 'stopLossRate' wurde ignoriert, PascalCase 'StopLossRate' greift).
         d = str(direction).strip().lower()
+        is_buy = d in ("buy", "buytocover")
         tx = {"buy": "Buy", "sell": "Sell", "sellshort": "SellShort", "buytocover": "BuyToCover"}.get(d, direction)
         body = {
-            "instrumentId": instrument_id,
-            "amount":       float(size_usd),
-            "transaction":  tx,
-            "leverage":     1,
+            "InstrumentID": instrument_id,
+            "Amount":       float(size_usd),
+            "IsBuy":        is_buy,
+            "Leverage":     1,
+            "transaction":  tx,   # camelCase legacy, akzeptiert
         }
-        # eToro-Feldnamen: stopLossRate / takeProfitRate (bestaetigt via 1. Order 03-07 —
-        # stopLoss/takeProfit wurden ignoriert, isNoStopLoss=true kam zurueck).
-        if stop_loss   is not None: body["stopLossRate"]   = float(stop_loss)
-        if take_profit is not None: body["takeProfitRate"] = float(take_profit)
+        if stop_loss is not None:
+            body["StopLossRate"] = float(stop_loss)
+            body["StopLossType"] = "fixed"
+            body["IsNoStopLoss"] = False
+        else:
+            body["IsNoStopLoss"] = True
+        if take_profit is not None:
+            body["TakeProfitRate"] = float(take_profit)
+            body["IsNoTakeProfit"] = False
+        else:
+            body["IsNoTakeProfit"] = True
+        body["IsTslEnabled"] = False
         # v2 unified order endpoint mit env-Prefix (demo|live).
         return self._request("POST", f"/api/v2/trading/execution/{self.env}/orders", body=body, write=True)
 
