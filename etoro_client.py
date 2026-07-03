@@ -246,6 +246,42 @@ def _cli():
             except EToroError as e:
                 print(f"  meta-lookup FEHLER {e.status}: {e.message}")
 
+    elif cmd == "open":
+        # py etoro_client.py open TICKER SIZE_USD [SL_PCT] [TP_PCT]
+        # Beispiel: py etoro_client.py open AAPL 50 4 6  -> $50 AAPL, SL -4%, TP +6%
+        # Respektiert ETORO_DRY_RUN=1 (default) — logged nur.
+        if len(sys.argv) < 4:
+            print("Usage: open TICKER SIZE_USD [SL_PCT] [TP_PCT]"); return
+        tk = sys.argv[2].upper()
+        size = float(sys.argv[3])
+        sl_pct = float(sys.argv[4]) if len(sys.argv) > 4 else 4.0
+        tp_pct = float(sys.argv[5]) if len(sys.argv) > 5 else 6.0
+        iid = c.resolve_ticker(tk)
+        if not iid:
+            print(f"Ticker nicht aufgeloest: {tk}"); return
+        # Quote fuer Entry-Preis holen (fuer SL/TP-Absolut-Werte)
+        try:
+            q = c.get_quote(iid)
+            print(f"Quote: {q}")
+            # Preis extrahieren (Struktur TBD, viele APIs: q['items'][0]['ask'] o.ae.)
+            items = q.get("items", q if isinstance(q, list) else [])
+            price = None
+            if items:
+                it = items[0] if isinstance(items, list) else items
+                price = it.get("ask") or it.get("last") or it.get("price") or it.get("bid")
+            if price:
+                sl_abs = round(price * (1 - sl_pct/100), 2)
+                tp_abs = round(price * (1 + tp_pct/100), 2)
+                print(f"{tk} ({iid}) @ ${price} -> SL ${sl_abs} / TP ${tp_abs}")
+                r = c.open_position(iid, size, "BUY", stop_loss=sl_abs, take_profit=tp_abs)
+                print(f"Result: {r}")
+            else:
+                print("Kein Preis extrahiert — Quote-Struktur checken (nur dry-run ohne SL/TP):")
+                r = c.open_position(iid, size, "BUY")
+                print(f"Result: {r}")
+        except EToroError as e:
+            print(f"FEHLER {e.status}: {e.message}")
+
     else:
         print(f"Unbekanntes Kommando: {cmd}")
 
