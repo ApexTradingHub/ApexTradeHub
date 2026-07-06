@@ -675,7 +675,6 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   <button class="tab-btn" onclick="showTab('history')" id="tab-history">📋 Trade History</button>
   <button class="tab-btn" onclick="showTab('paper')" id="tab-paper">📈 Paper Trading</button>
   <button class="tab-btn" onclick="showTab('etoro')" id="tab-etoro">🤖 eToro</button>
-  <button class="tab-btn" onclick="showTab('picks')" id="tab-picks">🎯 Claude's Picks</button>
 </nav>
 
 <!-- ═══════════════════════════════
@@ -1038,18 +1037,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     </div>
   </div>
 
-  <!-- Claude's Take-Kachel (manuell aus apex_etoro_take.json) -->
-  <div class="card anim-2" style="border-left:3px solid var(--accent, #6387FF);">
-    <div class="card-head">
-      <h2>💬 Claude's Take</h2>
-      <span class="card-sub" id="e-take-time">—</span>
-    </div>
-    <div id="e-take-text" style="padding:6px 4px 4px;font-size:14px;line-height:1.5;color:var(--text)">
-      Noch kein Take. Wird beim nächsten Session-Update gesetzt.
-    </div>
-  </div>
-
-  <!-- 3D Bubble-Chart: Zeit × PnL% × Size -->
+  <!-- Bubble-Chart: Zeit × PnL% × Size -->
   <div class="card anim-2">
     <div class="card-head">
       <h2>📊 Live-Trade Bubble</h2>
@@ -1083,10 +1071,6 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
   </div>
 </div><!-- /page-etoro -->
 
-<div class="page" id="page-picks">
-  <iframe id="picks-frame" title="Claude's Picks" data-src="claude_picks.html"
-    style="width:100%;height:82vh;border:0;border-radius:12px;background:#10131A;display:block;"></iframe>
-</div><!-- /page-picks -->
 
 <!-- ═══════════════════════════════
      JAVASCRIPT
@@ -1101,7 +1085,6 @@ const PF  = 'apex_positions.json';
 const OPF = 'apex_open_positions.json';  // equity-managed lifecycle source-of-truth
 const TLF = 'apex_trade_log.json';       // Trader-Activity-Journal
 const ETF = 'apex_etoro_events.json';    // eToro-Event-Stream (2026-07-06)
-const ETT = 'apex_etoro_take.json';      // Claude's manueller Take (2026-07-06)
 
 /* ── STATE ── */
 let eqInst, setupInst, allR = [], topR = [], sigsAll = [], eqMode = 'both';
@@ -1110,7 +1093,6 @@ let paperState = null;
 let openPositions = [];   // pending/open/expired snapshot
 let tradeLog = [];        // Trader-Activity-Events
 let etoroEvents = [];     // eToro-Event-Stream (open/close/update_sl_tp)
-let etoroTake = null;     // {text, updated_at} — Claude's manueller Take
 let etoroBubbleChart = null;
 
 /* ── CHART DEFAULTS ── */
@@ -1171,7 +1153,6 @@ function showTab(tab) {
   if (tab === 'history') renderHistory();
   if (tab === 'paper')   renderPaper();
   if (tab === 'etoro')   renderEtoro();
-  if (tab === 'picks') { const f = document.getElementById('picks-frame'); if (f && !f.src) f.src = f.dataset.src; }
 }
 
 /* ── STATS RENDER ── */
@@ -1677,14 +1658,13 @@ function renderHistory() {
 async function loadData() {
   const upd = document.getElementById('lastUpdate');
   upd.textContent = 'Lädt…';
-  const [sigs, rA, rT, mkt, pState, opSnap, tlog, elog, take] = await Promise.all([
-    fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF), fetchJ(OPF), fetchJ(TLF), fetchJ(ETF), fetchJ(ETT)
+  const [sigs, rA, rT, mkt, pState, opSnap, tlog, elog] = await Promise.all([
+    fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF), fetchJ(OPF), fetchJ(TLF), fetchJ(ETF)
   ]);
   paperState = pState || null;
   openPositions = Array.isArray(opSnap) ? opSnap : [];
   tradeLog = Array.isArray(tlog) ? tlog : [];
   etoroEvents = Array.isArray(elog) ? elog : [];
-  etoroTake = (take && take.text) ? take : null;
   if (!sigs && !rA) {
     upd.textContent = 'Fehler: Dateien nicht gefunden';
     const badge = document.getElementById('regimeBadge');
@@ -2032,15 +2012,6 @@ function renderEtoro() {
   document.querySelectorAll('#page-etoro .stat-paper-mode').forEach(el => el.classList.toggle('live', isLive));
 
   if (cnt) cnt.textContent = etoroEvents.length;
-
-  // --- Take-Kachel ---
-  const takeText = document.getElementById('e-take-text');
-  const takeTime = document.getElementById('e-take-time');
-  if (etoroTake && etoroTake.text) {
-    takeText.textContent = etoroTake.text;
-    const ts = etoroTake.updated_at || etoroTake.updated || '';
-    takeTime.textContent = ts ? ('Update: ' + ts.replace('T',' ').slice(0,16)) : '—';
-  }
 
   // --- Live-Positionen (nur mit etoro_order_id) ---
   const posEl = document.getElementById('e-pos-list');
