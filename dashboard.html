@@ -1018,7 +1018,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 
 </div><!-- /page-paper -->
 
-<!-- ETORO TAB — Phase 1: reine Event-Ansicht (positions/state kommen wenn live) -->
+<!-- ETORO TAB — echte Live-Ansicht -->
 <div class="page" id="page-etoro">
   <div class="stats anim-2">
     <div class="stat stat-paper-mode">
@@ -1028,23 +1028,57 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
         <span class="pmb-text" id="e-mode">—</span>
       </div>
       <div class="stat-row">
-        <span class="stat-sublabel">Events (rolling 500)</span>
-        <span class="stat-subval" id="e-count">—</span>
+        <span class="stat-sublabel">Live-Positions</span>
+        <span class="stat-subval" id="e-npos">—</span>
       </div>
       <div class="stat-row">
-        <span class="stat-sublabel">Letzter Event</span>
-        <span class="stat-subval" id="e-last">—</span>
+        <span class="stat-sublabel">Events</span>
+        <span class="stat-subval" id="e-count">—</span>
       </div>
     </div>
   </div>
 
+  <!-- Claude's Take-Kachel (manuell aus apex_etoro_take.json) -->
+  <div class="card anim-2" style="border-left:3px solid var(--accent, #6387FF);">
+    <div class="card-head">
+      <h2>💬 Claude's Take</h2>
+      <span class="card-sub" id="e-take-time">—</span>
+    </div>
+    <div id="e-take-text" style="padding:6px 4px 4px;font-size:14px;line-height:1.5;color:var(--text)">
+      Noch kein Take. Wird beim nächsten Session-Update gesetzt.
+    </div>
+  </div>
+
+  <!-- 3D Bubble-Chart: Zeit × PnL% × Size -->
+  <div class="card anim-2">
+    <div class="card-head">
+      <h2>📊 Live-Trade Bubble</h2>
+      <span class="card-sub">X: Öffnungszeit · Y: PnL % · Blase: Position-Size</span>
+    </div>
+    <div style="position:relative;height:320px;padding:8px 4px 4px">
+      <canvas id="e-bubble"></canvas>
+    </div>
+  </div>
+
+  <!-- Live-Positionen Tabelle -->
+  <div class="card anim-3">
+    <div class="card-head">
+      <h2>🟢 Offene eToro-Positionen</h2>
+      <span class="card-sub" id="e-pos-sub">—</span>
+    </div>
+    <div id="e-pos-list" class="paper-list">
+      <div class="empty-state"><span>Noch keine echten eToro-Positions. Sobald der Trader ein neues Signal live öffnet, taucht es hier auf.</span></div>
+    </div>
+  </div>
+
+  <!-- Activity Log -->
   <div class="card anim-3">
     <div class="card-head">
       <h2>⚡ eToro Activity Log</h2>
-      <span class="card-sub">was der Trader an eToro senden würde (live_dry) bzw. gesendet hat (live)</span>
+      <span class="card-sub">Letzter Event: <span id="e-last">—</span></span>
     </div>
     <div id="e-activity-list" class="paper-activity">
-      <div class="empty-state"><span>Noch keine eToro-Events. Sobald der Trader ein Signal öffnet/schließt/trailt, erscheint es hier.</span></div>
+      <div class="empty-state"><span>Noch keine eToro-Events.</span></div>
     </div>
   </div>
 </div><!-- /page-etoro -->
@@ -1067,6 +1101,7 @@ const PF  = 'apex_positions.json';
 const OPF = 'apex_open_positions.json';  // equity-managed lifecycle source-of-truth
 const TLF = 'apex_trade_log.json';       // Trader-Activity-Journal
 const ETF = 'apex_etoro_events.json';    // eToro-Event-Stream (2026-07-06)
+const ETT = 'apex_etoro_take.json';      // Claude's manueller Take (2026-07-06)
 
 /* ── STATE ── */
 let eqInst, setupInst, allR = [], topR = [], sigsAll = [], eqMode = 'both';
@@ -1075,6 +1110,8 @@ let paperState = null;
 let openPositions = [];   // pending/open/expired snapshot
 let tradeLog = [];        // Trader-Activity-Events
 let etoroEvents = [];     // eToro-Event-Stream (open/close/update_sl_tp)
+let etoroTake = null;     // {text, updated_at} — Claude's manueller Take
+let etoroBubbleChart = null;
 
 /* ── CHART DEFAULTS ── */
 const gc = 'rgba(99,135,255,0.06)';
@@ -1640,13 +1677,14 @@ function renderHistory() {
 async function loadData() {
   const upd = document.getElementById('lastUpdate');
   upd.textContent = 'Lädt…';
-  const [sigs, rA, rT, mkt, pState, opSnap, tlog, elog] = await Promise.all([
-    fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF), fetchJ(OPF), fetchJ(TLF), fetchJ(ETF)
+  const [sigs, rA, rT, mkt, pState, opSnap, tlog, elog, take] = await Promise.all([
+    fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF), fetchJ(OPF), fetchJ(TLF), fetchJ(ETF), fetchJ(ETT)
   ]);
   paperState = pState || null;
   openPositions = Array.isArray(opSnap) ? opSnap : [];
   tradeLog = Array.isArray(tlog) ? tlog : [];
   etoroEvents = Array.isArray(elog) ? elog : [];
+  etoroTake = (take && take.text) ? take : null;
   if (!sigs && !rA) {
     upd.textContent = 'Fehler: Dateien nicht gefunden';
     const badge = document.getElementById('regimeBadge');
@@ -1994,6 +2032,50 @@ function renderEtoro() {
   document.querySelectorAll('#page-etoro .stat-paper-mode').forEach(el => el.classList.toggle('live', isLive));
 
   if (cnt) cnt.textContent = etoroEvents.length;
+
+  // --- Take-Kachel ---
+  const takeText = document.getElementById('e-take-text');
+  const takeTime = document.getElementById('e-take-time');
+  if (etoroTake && etoroTake.text) {
+    takeText.textContent = etoroTake.text;
+    const ts = etoroTake.updated_at || etoroTake.updated || '';
+    takeTime.textContent = ts ? ('Update: ' + ts.replace('T',' ').slice(0,16)) : '—';
+  }
+
+  // --- Live-Positionen (nur mit etoro_order_id) ---
+  const posEl = document.getElementById('e-pos-list');
+  const posSub = document.getElementById('e-pos-sub');
+  const npos = document.getElementById('e-npos');
+  const openPos = ((paperState && paperState.open) || []).filter(p => p.etoro_order_id);
+  if (npos) npos.textContent = openPos.length;
+  if (posSub) posSub.textContent = openPos.length + ' Live-Position' + (openPos.length !== 1 ? 'en' : '');
+  if (posEl) {
+    if (!openPos.length) {
+      posEl.innerHTML = '<div class="empty-state"><span>Noch keine echten eToro-Positions.</span></div>';
+    } else {
+      posEl.innerHTML = openPos.map(p => {
+        const pnl = +p.pnl_pct || 0;
+        const pnlCol = pnl >= 0 ? 'var(--green)' : 'var(--red)';
+        return `<div class="paper-row"><div class="paper-row-head">
+          <div class="pr-main">
+            <div class="pr-ticker-block">
+              <div class="pr-ticker">${p.ticker}</div>
+              <div class="pr-setup">${p.setup || '?'} · #${p.etoro_order_id}</div>
+            </div>
+          </div>
+          <div class="pr-stats">
+            <div class="pr-stat"><span class="pr-stat-label">Entry</span>$${(+p.entry_actual || 0).toFixed(2)}</div>
+            <div class="pr-stat"><span class="pr-stat-label">Kurs</span>$${(+p.current_price || 0).toFixed(2)}</div>
+            <div class="pr-stat" style="color:${pnlCol}"><span class="pr-stat-label">PnL</span>${pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}%</div>
+          </div>
+        </div></div>`;
+      }).join('');
+    }
+  }
+
+  // --- Bubble-Chart: X=Zeit, Y=PnL%, Blase=Size ---
+  drawEtoroBubble(openPos, etoroEvents);
+
   if (!list) return;
   if (!etoroEvents.length) {
     list.innerHTML = '<div class="empty-state" style="padding:20px"><span>Noch keine eToro-Events. Sobald der Trader ein Signal öffnet/schließt/trailt, erscheint es hier.</span></div>';
@@ -2041,6 +2123,57 @@ function renderEtoro() {
     }
     return `<div class="activity-item"><span class="ai-time">${t}</span><span class="ai-icon">${icon}</span><span class="ai-msg">${msg}</span></div>`;
   }).join('');
+}
+
+function drawEtoroBubble(openPos, events) {
+  const cv = document.getElementById('e-bubble'); if (!cv) return;
+  // Alle "open"-Events (die haben ts + ticker + size). Merge mit aktuellen open-Positions fuer PnL.
+  const opens = (events || []).filter(e => e.event === 'open' && e.order_id).sort((a,b) => (a.ts||'').localeCompare(b.ts||''));
+  const posByOrder = {};
+  (openPos || []).forEach(p => { posByOrder[p.etoro_order_id] = p; });
+  const points = opens.map(e => {
+    const p = posByOrder[e.order_id];
+    const isOpen = !!p;
+    const pnl = isOpen ? (+p.pnl_pct || 0) : 0;   // closed = 0-Linie (koennen wir spaeter mit close-events koppeln)
+    const t = new Date((e.ts || '').endsWith('Z') || (e.ts || '').includes('+') ? e.ts : e.ts + 'Z');
+    return { x: t.getTime(), y: pnl, r: Math.max(4, Math.sqrt(+e.size_usd || 20) * 1.5), ticker: e.ticker, isOpen };
+  }).filter(p => !isNaN(p.x));
+  if (etoroBubbleChart) etoroBubbleChart.destroy();
+  if (!points.length) {
+    const ctx = cv.getContext('2d');
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.fillStyle = '#8B92A4'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('Noch keine eToro-Trades zum Plotten.', cv.width/2, cv.height/2);
+    return;
+  }
+  etoroBubbleChart = new Chart(cv.getContext('2d'), {
+    type: 'bubble',
+    data: {
+      datasets: [{
+        data: points,
+        backgroundColor: points.map(p => p.isOpen ? (p.y >= 0 ? 'rgba(38,166,154,0.55)' : 'rgba(239,83,80,0.55)') : 'rgba(139,146,164,0.35)'),
+        borderColor:     points.map(p => p.isOpen ? (p.y >= 0 ? '#26A69A' : '#EF5350') : '#8B92A4'),
+        borderWidth: 1.5,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: (ctx) => {
+            const d = ctx.raw;
+            const dt = new Date(d.x);
+            return `${d.ticker}  ${d.isOpen ? 'offen' : 'closed'}  ${d.y >= 0 ? '+' : ''}${d.y.toFixed(2)}%  ${dt.toLocaleString('de-DE',{timeZone:'Europe/Berlin', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}`;
+          }
+        }},
+      },
+      scales: {
+        x: { type: 'linear', ticks: { color: '#8B92A4', callback: v => new Date(v).toLocaleDateString('de-DE',{day:'2-digit', month:'2-digit'}) }, grid: { color: 'rgba(99,135,255,0.06)' } },
+        y: { ticks: { color: '#8B92A4', callback: v => v + '%' }, grid: { color: 'rgba(99,135,255,0.06)' } },
+      },
+    },
+  });
 }
 
 function toggleTheme() {
