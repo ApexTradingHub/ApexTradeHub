@@ -161,6 +161,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 SIGNALS_FILE   = SCRIPT_DIR / "apex_signals.json"
 POSITIONS_FILE = SCRIPT_DIR / "apex_positions.json"
 TRADE_LOG_FILE = SCRIPT_DIR / "apex_trade_log.json"
+ETORO_LOG_FILE = SCRIPT_DIR / "apex_etoro_events.json"   # separater Stream (2026-07-06)
 OVERRIDES_FILE = SCRIPT_DIR / "apex_manual_overrides.json"   # Phase 2: User/Claude-Overrides
 MOMENTUM_CACHE = SCRIPT_DIR / "apex_momentum_cache.json"     # Momentum-Filler (Tages-Cache)
 US_TICKERS     = SCRIPT_DIR / "us_tickers.txt"
@@ -1573,6 +1574,21 @@ def recompute_stats(state: dict):
 # ---------------------------------------------------------------------------
 # eToro stubs (live mode)
 # ---------------------------------------------------------------------------
+def _append_etoro_event(evt: dict):
+    """Haengt Event an apex_etoro_events.json — separater Stream fuer Dashboard-eToro-Tab.
+    Immer mit mode/env/dry_run gestempelt, damit klar ist ob live_dry oder echt live."""
+    try:
+        log_data = load_json(ETORO_LOG_FILE, default=[]) or []
+        evt = {**evt, "ts": now_iso(), "mode": TRADING_MODE, "env": ETORO_ENV,
+               "dry_run": (TRADING_MODE == "live_dry")}
+        log_data.append(evt)
+        # Rolling window: max 500 Events behalten (sonst waechst die Datei ins Endlose)
+        if len(log_data) > 500: log_data = log_data[-500:]
+        save_json(ETORO_LOG_FILE, log_data)
+    except Exception as e:
+        log(f"  [eToro-log] append fail: {e}")
+
+
 def _etoro_client():
     """Lazy-Init des eToro-Clients. dry_run=True bei TRADING_MODE=live_dry (logged only)."""
     from etoro_client import EToroClient
@@ -1599,6 +1615,12 @@ def etoro_open_position(pos: dict):
     pos["etoro_reference_id"]  = r.get("referenceId") if isinstance(r, dict) else None
     log(f"  [eToro] {tk} ({iid}) OPEN sent ${pos['size_usd']:.0f} "
         f"SL ${pos['stop']:.2f} TP ${pos['target']:.2f} -> orderId {pos.get('etoro_order_id')}")
+    _append_etoro_event({
+        "event": "open", "ticker": tk, "instrument_id": iid,
+        "size_usd": pos["size_usd"], "stop": pos["stop"], "target": pos["target"],
+        "setup": pos.get("setup"), "source": pos.get("source"),
+        "order_id": pos.get("etoro_order_id"),
+    })
 
 
 def etoro_close_position(pos: dict, exit_price: float, reason: str):
@@ -1607,10 +1629,19 @@ def etoro_close_position(pos: dict, exit_price: float, reason: str):
         raise RuntimeError("ETORO_API_KEY / ETORO_USER_KEY missing")
     oid = pos.get("etoro_position_id") or pos.get("etoro_order_id")
     if not oid:
-        log(f"  [eToro] {pos['ticker']} keine orderId -> skip close"); return
+        log(f"  [eToro] {pos['ticker']} keine orderId -> skip close")
+        _append_etoro_event({
+            "event": "close_skipped", "ticker": pos["ticker"], "reason": reason,
+            "exit_price": exit_price, "note": "keine etoro_order_id (Position vor Live-Dry im Paper geoeffnet)",
+        })
+        return
     c = _etoro_client()
     r = c.close_position(oid)
     log(f"  [eToro] {pos['ticker']} CLOSE ({reason}) sent -> {r}")
+    _append_etoro_event({
+        "event": "close", "ticker": pos["ticker"], "reason": reason,
+        "exit_price": exit_price, "order_id": oid,
+    })
 
 
 def etoro_update_sl_tp(pos: dict):
@@ -1622,6 +1653,10 @@ def etoro_update_sl_tp(pos: dict):
     try:
         _etoro_client().update_sl_tp(oid, stop_loss=pos["stop"], take_profit=pos["target"])
         log(f"  [eToro] {pos['ticker']} SL nachgezogen -> ${pos['stop']:.2f}")
+        _append_etoro_event({
+            "event": "update_sl_tp", "ticker": pos["ticker"], "order_id": oid,
+            "stop": pos["stop"], "target": pos["target"],
+        })
     except Exception as e:
         log(f"  [eToro] update_sl_tp fail: {e}")
 

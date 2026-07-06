@@ -1,4 +1,4 @@
-const CACHE = 'apexscan-v33';
+const CACHE = 'apexscan-v34';
 
 // App shell – alles was sich selten ändert
 const SHELL = [
@@ -16,6 +16,7 @@ const DATA_FILES = [
   '/ApexTradeHub/apex_positions.json',
   '/ApexTradeHub/apex_open_positions.json',
   '/ApexTradeHub/apex_trade_log.json',
+  '/ApexTradeHub/apex_etoro_events.json',
   '/ApexTradeHub/claude_picks.json'
 ];
 
