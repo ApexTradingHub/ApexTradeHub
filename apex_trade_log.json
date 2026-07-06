@@ -1343,5 +1343,24 @@
     "new_stop": 26.559299659729003,
     "high": 27.420000076293945,
     "ladder_step": 3
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MSTR_2026-07-06_1345",
+    "ts": "2026-07-06T17:20:05Z",
+    "ticker": "MSTR",
+    "exit_price": 103.23,
+    "reason": "Intraday TP",
+    "pnl_pct": 4.999234538516126
+  },
+  {
+    "event": "intraday_open",
+    "id": "PAPER_INTRA_NKTR_2026-07-06_1720",
+    "ts": "2026-07-06T17:20:10Z",
+    "ticker": "NKTR",
+    "entry": 71.29000091552734,
+    "gain_from_open": 1.81,
+    "score": 26.7,
+    "mode": "live"
   }
 ]
