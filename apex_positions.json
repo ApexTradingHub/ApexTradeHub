@@ -1,8 +1,8 @@
 {
-  "mode": "live_dry",
+  "mode": "live",
   "capital_initial": 400.0,
   "cash": 126.14619133939496,
-  "last_updated": "2026-07-06T16:05:02Z",
+  "last_updated": "2026-07-06T16:06:07Z",
   "pending": [
     {
       "id": "PAPER_HRB_2026-07-03",
@@ -133,9 +133,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-02T13:45:07Z",
       "status": "open",
-      "current_price": 133.68499755859375,
-      "pnl_pct": 0.9972364376155736,
-      "pnl_usd": 0.4986182188077868,
+      "current_price": 133.83999633789062,
+      "pnl_pct": 1.1143359524906586,
+      "pnl_usd": 0.5571679762453293,
       "hold_days": 4,
       "intraday_rescued": true,
       "hold_trading_days": 2
@@ -162,9 +162,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-06T13:45:08Z",
       "status": "open",
-      "current_price": 101.58999633789062,
-      "pnl_pct": 3.3311232417821532,
-      "pnl_usd": 1.6655616208910766,
+      "current_price": 101.73999786376953,
+      "pnl_pct": 3.483695608312179,
+      "pnl_usd": 1.7418478041560894,
       "hold_days": 0,
       "etoro_instrument_id": 6473,
       "etoro_order_id": null,
@@ -192,9 +192,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-06T14:15:08Z",
       "status": "open",
-      "current_price": 19.635000228881836,
-      "pnl_pct": 0.6923088660606971,
-      "pnl_usd": 0.34615443303034854,
+      "current_price": 19.625,
+      "pnl_pct": 0.641025641025641,
+      "pnl_usd": 0.3205128205128205,
       "hold_days": 0,
       "etoro_instrument_id": 9287,
       "etoro_order_id": null,
@@ -1567,7 +1567,7 @@
     }
   ],
   "stats": {
-    "trading_mode": "live_dry",
+    "trading_mode": "live",
     "etoro_env": "demo",
     "total_trades": 39,
     "open_trades": 6,
@@ -1575,7 +1575,7 @@
     "losses": 14,
     "win_rate": 64.1025641025641,
     "pnl_realized": 26.145103633372184,
-    "pnl_unrealized": 11.474046603650885,
-    "equity": 437.6202379430458
+    "pnl_unrealized": 11.583240931835913,
+    "equity": 437.72943227123085
   }
 }
