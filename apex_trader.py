@@ -1661,6 +1661,38 @@ def etoro_update_sl_tp(pos: dict):
         log(f"  [eToro] update_sl_tp fail: {e}")
 
 
+def sync_etoro_positions(state: dict):
+    """Holt echte eToro-Positionsdaten und mergt sie in state["open"].
+    Speichert echte openRate/positionID/currentRate als etoro_open_rate/etoro_position_id/etoro_current_rate.
+    Wird bei jedem Run aufgerufen — Order->Position-Uebergang wird so automatisch erfasst."""
+    if TRADING_MODE not in ("live", "live_dry"): return
+    if not (ETORO_API_KEY and ETORO_USER_KEY): return
+    positions_with_oid = [p for p in state.get("open", []) if p.get("etoro_order_id")]
+    if not positions_with_oid: return
+    try:
+        c = _etoro_client()
+        r = c.get_balance()
+        cp = r.get("clientPortfolio", {}) if isinstance(r, dict) else {}
+        etoro_positions = cp.get("positions", [])
+        # Index by orderID: der ist bei eToro Position UND Order konsistent
+        by_order = {int(p.get("orderID", 0)): p for p in etoro_positions if p.get("orderID")}
+        synced = 0
+        for pos in positions_with_oid:
+            oid = int(pos.get("etoro_order_id", 0))
+            ep = by_order.get(oid)
+            if not ep: continue
+            pos["etoro_position_id"]  = ep.get("positionID")
+            pos["etoro_open_rate"]    = ep.get("openRate")
+            pos["etoro_current_rate"] = ep.get("openRate")  # currentRate holen wir spaeter via rates
+            pos["etoro_units"]        = ep.get("units")
+            pos["etoro_open_date"]    = ep.get("openDateTime")
+            synced += 1
+        if synced:
+            log(f"  [eToro] sync: {synced} Position(en) mit Live-Daten aktualisiert")
+    except Exception as e:
+        log(f"  [eToro] sync fail: {e}")
+
+
 # ---------------------------------------------------------------------------
 # Status print
 # ---------------------------------------------------------------------------
@@ -1724,6 +1756,9 @@ def run_trader(dry_run: bool = False):
                                     allow_stagnation=replacement_available,
                                     market_open=market_is_open_now())
     all_events.extend(events1)
+
+    # 1b. eToro-Sync: echte openRate/positionID der Live-Positionen holen (2026-07-06)
+    sync_etoro_positions(state)
 
     # Market-Open-Guard (2026-06-19, verschaerft 2026-06-26): Entries NUR waehrend echter
     # NYSE-Handelszeit (9:30-16:00 ET), nicht nur an Handelstagen. Verhindert Pre-Market-Opens

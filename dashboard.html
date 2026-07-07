@@ -2025,18 +2025,23 @@ function renderEtoro() {
       posEl.innerHTML = '<div class="empty-state"><span>Noch keine echten eToro-Positions.</span></div>';
     } else {
       posEl.innerHTML = openPos.map(p => {
+        // eToro-Fill-Preis bevorzugt (echt), fallback auf yfinance-entry (Paper-Berechnung)
+        const entry = +p.etoro_open_rate || +p.entry_actual || 0;
+        const isRealEntry = !!p.etoro_open_rate;
+        const cur = +p.current_price || 0;
         const pnl = +p.pnl_pct || 0;
         const pnlCol = pnl >= 0 ? 'var(--green)' : 'var(--red)';
+        const entryLbl = isRealEntry ? 'Entry (eToro)' : 'Entry (Paper)';
         return `<div class="paper-row"><div class="paper-row-head">
           <div class="pr-main">
             <div class="pr-ticker-block">
               <div class="pr-ticker">${p.ticker}</div>
-              <div class="pr-setup">${p.setup || '?'} · #${p.etoro_order_id}</div>
+              <div class="pr-setup">${p.setup || '?'} · #${p.etoro_order_id}${p.etoro_position_id ? ' · pos '+p.etoro_position_id : ''}</div>
             </div>
           </div>
           <div class="pr-stats">
-            <div class="pr-stat"><span class="pr-stat-label">Entry</span>$${(+p.entry_actual || 0).toFixed(2)}</div>
-            <div class="pr-stat"><span class="pr-stat-label">Kurs</span>$${(+p.current_price || 0).toFixed(2)}</div>
+            <div class="pr-stat"><span class="pr-stat-label">${entryLbl}</span>$${entry.toFixed(2)}</div>
+            <div class="pr-stat"><span class="pr-stat-label">Kurs</span>$${cur.toFixed(2)}</div>
             <div class="pr-stat" style="color:${pnlCol}"><span class="pr-stat-label">PnL</span>${pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}%</div>
           </div>
         </div></div>`;
