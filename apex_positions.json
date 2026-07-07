@@ -2,8 +2,26 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 279.9076844951579,
-  "last_updated": "2026-07-07T19:00:03Z",
-  "pending": [],
+  "last_updated": "2026-07-07T19:05:02Z",
+  "pending": [
+    {
+      "id": "PAPER_MOM_META_2026-07-07",
+      "ticker": "META",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-07-07",
+      "entry": 623.66,
+      "stop_initial": 595.74,
+      "target": 657.79,
+      "score": 61.2,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-07-07T19:05:34Z",
+      "status": "pending",
+      "mode": "live"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_PAY_2026-06-29_1350",
@@ -27,9 +45,9 @@
       "ladder_step": 3,
       "opened_at": "2026-06-29T13:50:07Z",
       "status": "open",
-      "current_price": 28.475000381469727,
-      "pnl_pct": 19.542404476423986,
-      "pnl_usd": 9.771202238211993,
+      "current_price": 28.5,
+      "pnl_pct": 19.64735669661946,
+      "pnl_usd": 9.82367834830973,
       "hold_days": 8,
       "intraday_rescued": true,
       "hold_trading_days": 6,
@@ -57,9 +75,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-02T13:45:07Z",
       "status": "open",
-      "current_price": 136.86000061035156,
-      "pnl_pct": 3.395908987001585,
-      "pnl_usd": 1.6979544935007924,
+      "current_price": 137.0,
+      "pnl_pct": 3.501676662624632,
+      "pnl_usd": 1.750838331312316,
       "hold_days": 5,
       "intraday_rescued": true,
       "hold_trading_days": 3
@@ -88,9 +106,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-07T14:05:05Z",
-      "current_price": 123.62000274658203,
-      "pnl_pct": -0.2230873967427257,
-      "pnl_usd": -0.11154369837136285,
+      "current_price": 123.91000366210938,
+      "pnl_pct": 0.01097986875275581,
+      "pnl_usd": 0.0054899343763779055,
       "hold_days": 0,
       "etoro_instrument_id": 1574,
       "etoro_order_id": 364720184,
@@ -1699,7 +1717,7 @@
     "losses": 17,
     "win_rate": 62.22222222222222,
     "pnl_realized": 29.906596789135108,
-    "pnl_unrealized": 11.357613033341423,
-    "equity": 441.26529752849933
+    "pnl_unrealized": 11.580006613998425,
+    "equity": 441.48769110915634
   }
 }
