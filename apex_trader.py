@@ -1615,6 +1615,8 @@ def etoro_open_position(pos: dict):
     pos["etoro_instrument_id"] = iid
     pos["etoro_order_id"]      = r.get("orderId") if isinstance(r, dict) else None
     pos["etoro_reference_id"]  = r.get("referenceId") if isinstance(r, dict) else None
+    # 2026-07-08: volle Response mitloggen (Debug-Trail fuer order_dropped-Faelle wie AVNT).
+    pos["etoro_open_response"] = r if isinstance(r, dict) else str(r)
     log(f"  [eToro] {tk} ({iid}) OPEN sent ${pos['size_usd']:.0f} "
         f"SL ${pos['stop']:.2f} TP ${pos['target']:.2f} -> orderId {pos.get('etoro_order_id')}")
     _append_etoro_event({
@@ -1622,6 +1624,7 @@ def etoro_open_position(pos: dict):
         "size_usd": pos["size_usd"], "stop": pos["stop"], "target": pos["target"],
         "setup": pos.get("setup"), "source": pos.get("source"),
         "order_id": pos.get("etoro_order_id"),
+        "response": r if isinstance(r, dict) else str(r),
     })
 
 
