@@ -1436,5 +1436,33 @@
     "new_stop": 27.18,
     "high": 28.920000076293945,
     "gain_pct": 21.4
+  },
+  {
+    "event": "trailing_continuous",
+    "id": "PAPER_INTRA_PAY_2026-06-29_1350",
+    "ts": "2026-07-07T13:50:06Z",
+    "ticker": "PAY",
+    "old_stop": 27.18,
+    "new_stop": 27.18,
+    "high": 28.920000076293945,
+    "gain_pct": 21.4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MRCY_2026-07-01_1345",
+    "ts": "2026-07-07T13:50:06Z",
+    "ticker": "MRCY",
+    "exit_price": 119.41,
+    "reason": "Stop Loss",
+    "pnl_pct": -3.9996800665579353
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_AVNT_2026-07-06",
+    "ts": "2026-07-07T13:50:06Z",
+    "ticker": "AVNT",
+    "signal_date": "2026-07-06",
+    "score": 110.4,
+    "source": "scanner"
   }
 ]
