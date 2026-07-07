@@ -1659,11 +1659,9 @@ def etoro_close_position(pos: dict, exit_price: float, reason: str):
         raise RuntimeError("ETORO_API_KEY / ETORO_USER_KEY missing")
     oid = pos.get("etoro_position_id") or pos.get("etoro_order_id")
     if not oid:
-        log(f"  [eToro] {pos['ticker']} keine orderId -> skip close")
-        _append_etoro_event({
-            "event": "close_skipped", "ticker": pos["ticker"], "reason": reason,
-            "exit_price": exit_price, "note": "keine etoro_order_id (Position vor Live-Dry im Paper geoeffnet)",
-        })
+        # 2026-07-08: silent skip fuer alte Paper-Positions (vor Live-Ära) — kein Event-Spam
+        # im eToro-Log. Nur log-Zeile fuer Nachvollziehbarkeit.
+        log(f"  [eToro] {pos['ticker']} keine orderId -> skip close (Paper-Alt)")
         return
     c = _etoro_client()
     r = c.close_position(oid)

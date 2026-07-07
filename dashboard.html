@@ -2099,6 +2099,14 @@ function renderEtoro() {
         icon = e.dry_run ? '📝' : '🟡';
         msg = `<b>${tk}</b> SL → $${(+e.stop || 0).toFixed(2)} / TP → $${(+e.target || 0).toFixed(2)} ${modeTag}`;
         break;
+      case 'phantom_close':
+        icon = '👻';
+        msg = `<b>${tk}</b> Phantom-Close (${e.reason || '?'}) — orderId #${e.order_id || '?'} nicht mehr bei eToro`;
+        break;
+      case 'close_from_history':
+        icon = '📖';
+        msg = `<b>${tk}</b> aus History: ${e.reason || '?'} @ $${(+e.close_rate || 0).toFixed(2)} · netP $${(+e.net_profit || 0).toFixed(2)}`;
+        break;
     }
     return `<div class="activity-item"><span class="ai-time">${t}</span><span class="ai-icon">${icon}</span><span class="ai-msg">${msg}</span></div>`;
   }).join('');
@@ -2106,16 +2114,31 @@ function renderEtoro() {
 
 function drawEtoroBubble(openPos, events) {
   const cv = document.getElementById('e-bubble'); if (!cv) return;
-  // Alle "open"-Events (die haben ts + ticker + size). Merge mit aktuellen open-Positions fuer PnL.
+  // Merge open-events mit aktuellen open- UND closed-Positions -> echter PnL statt 0-Linie
   const opens = (events || []).filter(e => e.event === 'open' && e.order_id).sort((a,b) => (a.ts||'').localeCompare(b.ts||''));
-  const posByOrder = {};
-  (openPos || []).forEach(p => { posByOrder[p.etoro_order_id] = p; });
+  const openByOrder = {};
+  (openPos || []).forEach(p => { openByOrder[p.etoro_order_id] = p; });
+  // Auch closed-Positions einbeziehen (fuer retrofit-korrigierte wie NKTR)
+  const closedByOrder = {};
+  const allClosed = (paperState && paperState.closed) || [];
+  allClosed.forEach(p => { if (p.etoro_order_id) closedByOrder[p.etoro_order_id] = p; });
   const points = opens.map(e => {
-    const p = posByOrder[e.order_id];
-    const isOpen = !!p;
-    const pnl = isOpen ? (+p.pnl_pct || 0) : 0;   // closed = 0-Linie (koennen wir spaeter mit close-events koppeln)
+    const p = openByOrder[e.order_id];
+    const c = closedByOrder[e.order_id];
+    let pnl = 0, isOpen = false, status = 'unknown';
+    if (p) {
+      pnl = +p.pnl_pct || 0; isOpen = true; status = 'offen';
+    } else if (c) {
+      // aus closed-Position: pnl_pct oder aus etoro_open_rate/close_rate berechnen
+      pnl = +c.pnl_pct || 0;
+      if (!pnl && c.etoro_open_rate && c.etoro_close_rate) {
+        pnl = (c.etoro_close_rate / c.etoro_open_rate - 1) * 100;
+      }
+      status = c.exit_reason || 'closed';
+    }
     const t = new Date((e.ts || '').endsWith('Z') || (e.ts || '').includes('+') ? e.ts : e.ts + 'Z');
-    return { x: t.getTime(), y: pnl, r: Math.max(4, Math.sqrt(+e.size_usd || 20) * 1.5), ticker: e.ticker, isOpen };
+    return { x: t.getTime(), y: pnl, r: Math.max(4, Math.sqrt(+e.size_usd || 20) * 1.5),
+             ticker: e.ticker, isOpen, status };
   }).filter(p => !isNaN(p.x));
   if (etoroBubbleChart) etoroBubbleChart.destroy();
   if (!points.length) {
@@ -2143,13 +2166,13 @@ function drawEtoroBubble(openPos, events) {
           label: (ctx) => {
             const d = ctx.raw;
             const dt = new Date(d.x);
-            return `${d.ticker}  ${d.isOpen ? 'offen' : 'closed'}  ${d.y >= 0 ? '+' : ''}${d.y.toFixed(2)}%  ${dt.toLocaleString('de-DE',{timeZone:'Europe/Berlin', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}`;
+            return `${d.ticker}  ${d.status || (d.isOpen ? 'offen' : 'closed')}  ${d.y >= 0 ? '+' : ''}${d.y.toFixed(2)}%  ${dt.toLocaleString('de-DE',{timeZone:'Europe/Berlin', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}`;
           }
         }},
       },
       scales: {
         x: { type: 'linear', ticks: { color: '#8B92A4', callback: v => new Date(v).toLocaleDateString('de-DE',{day:'2-digit', month:'2-digit'}) }, grid: { color: 'rgba(99,135,255,0.06)' } },
-        y: { ticks: { color: '#8B92A4', callback: v => v + '%' }, grid: { color: 'rgba(99,135,255,0.06)' } },
+        y: { ticks: { color: '#8B92A4', callback: v => (Math.round(v * 100) / 100).toFixed(2) + '%' }, grid: { color: 'rgba(99,135,255,0.06)' } },
       },
     },
   });
