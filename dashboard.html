@@ -2013,13 +2013,16 @@ function renderEtoro() {
 
   if (cnt) cnt.textContent = etoroEvents.length;
 
-  // --- Live-Positionen (nur mit etoro_order_id) ---
+  // --- Live-Positionen (nur ECHT gefillt: mit etoro_position_id) ---
+  // 2026-07-07: order_id allein reicht nicht — Order kann pending oder verworfen sein.
   const posEl = document.getElementById('e-pos-list');
   const posSub = document.getElementById('e-pos-sub');
   const npos = document.getElementById('e-npos');
-  const openPos = ((paperState && paperState.open) || []).filter(p => p.etoro_order_id);
-  if (npos) npos.textContent = openPos.length;
-  if (posSub) posSub.textContent = openPos.length + ' Live-Position' + (openPos.length !== 1 ? 'en' : '');
+  const withOrder = ((paperState && paperState.open) || []).filter(p => p.etoro_order_id);
+  const openPos   = withOrder.filter(p => p.etoro_position_id);
+  const pendingPos = withOrder.filter(p => !p.etoro_position_id);
+  if (npos) npos.textContent = openPos.length + (pendingPos.length ? ' (+' + pendingPos.length + ' pending)' : '');
+  if (posSub) posSub.textContent = openPos.length + ' live' + (pendingPos.length ? ', ' + pendingPos.length + ' wartet auf Fill' : '');
   if (posEl) {
     if (!openPos.length) {
       posEl.innerHTML = '<div class="empty-state"><span>Noch keine echten eToro-Positions.</span></div>';

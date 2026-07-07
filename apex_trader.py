@@ -1435,10 +1435,12 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         # Verhindert Cap bei +11.5% wenn Runner weiter laufen. Nur Momentum, nur wenn Ladder-Ende.
         if (p.get("source") == "momentum_filler" and current_step >= len(MOMENTUM_TRAIL_LADDER)
                 and high_se >= entry * MOMENTUM_TRAIL_LADDER[-1][0]):
-            formula_stop = high_se * (1 - MOMENTUM_TRAIL_GIVEBACK)
-            if formula_stop > p["stop"]:
+            new_stop_rounded = round(high_se * (1 - MOMENTUM_TRAIL_GIVEBACK), 2)
+            # 2026-07-07 Fix: Vergleich auf GERUNDETEM Wert (sonst Endlos-Spam: 27.1848>27.18
+            # ist True, aber round(...,2)=27.18 = alter Wert. PAY spammte 65 Events in 24h).
+            if new_stop_rounded > p["stop"]:
                 old_stop = p["stop"]
-                p["stop"] = round(formula_stop, 2)
+                p["stop"] = new_stop_rounded
                 events.append({
                     "event": "trailing_continuous", "id": p["id"], "ts": now_iso(),
                     "ticker": p["ticker"], "old_stop": old_stop, "new_stop": p["stop"],
@@ -1676,19 +1678,43 @@ def sync_etoro_positions(state: dict):
         etoro_positions = cp.get("positions", [])
         # Index by orderID: der ist bei eToro Position UND Order konsistent
         by_order = {int(p.get("orderID", 0)): p for p in etoro_positions if p.get("orderID")}
+        pending_by_order = {int(o.get("orderID", 0)): o for o in cp.get("ordersForOpen", []) if o.get("orderID")}
         synced = 0
+        phantoms = []
         for pos in positions_with_oid:
             oid = int(pos.get("etoro_order_id", 0))
             ep = by_order.get(oid)
-            if not ep: continue
-            pos["etoro_position_id"]  = ep.get("positionID")
-            pos["etoro_open_rate"]    = ep.get("openRate")
-            pos["etoro_current_rate"] = ep.get("openRate")  # currentRate holen wir spaeter via rates
-            pos["etoro_units"]        = ep.get("units")
-            pos["etoro_open_date"]    = ep.get("openDateTime")
-            synced += 1
-        if synced:
-            log(f"  [eToro] sync: {synced} Position(en) mit Live-Daten aktualisiert")
+            if ep:
+                pos["etoro_position_id"]  = ep.get("positionID")
+                pos["etoro_open_rate"]    = ep.get("openRate")
+                pos["etoro_current_rate"] = ep.get("openRate")
+                pos["etoro_units"]        = ep.get("units")
+                pos["etoro_open_date"]    = ep.get("openDateTime")
+                synced += 1
+            elif oid in pending_by_order:
+                pos["etoro_status"] = "pending_fill"   # noch nicht gefillt (Markt zu/dünn)
+            else:
+                # 2026-07-07: Order+Position nicht mehr bei eToro -> Phantom.
+                # (extern geschlossen, gecancelt, oder Fill nie zustande gekommen).
+                # Wenn schon vorher mal posId gesehen: extern geschlossen. Sonst: Order verworfen.
+                if pos.get("etoro_position_id"):
+                    phantoms.append(("closed_externally", pos))
+                else:
+                    phantoms.append(("order_dropped", pos))
+        for reason, pos in phantoms:
+            cur = pos.get("current_price", pos.get("entry_actual", 0))
+            log(f"  [eToro] {pos['ticker']} PHANTOM ({reason}) — schliesse im Paper-State")
+            try:
+                close_position(state, pos, cur, f"eToro {reason}")
+                state["open"] = [q for q in state["open"] if q.get("id") != pos.get("id")]
+                _append_etoro_event({
+                    "event": "phantom_close", "ticker": pos["ticker"],
+                    "order_id": pos.get("etoro_order_id"), "reason": reason,
+                })
+            except Exception as e:
+                log(f"  [eToro] phantom-close error {pos['ticker']}: {e}")
+        if synced or phantoms:
+            log(f"  [eToro] sync: {synced} live · {len(phantoms)} phantom bereinigt")
     except Exception as e:
         log(f"  [eToro] sync fail: {e}")
 
