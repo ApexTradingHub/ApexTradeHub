@@ -155,6 +155,15 @@ class EToroClient:
             "bonusCredit": cp.get("bonusCredit", 0),
         }
 
+    def get_history(self, min_date=None, page_size=200):
+        """Trade-Historie (geschlossene Positionen). Path: /trading/info/trade/{env}/history.
+        min_date: 'YYYY-MM-DD' oder ISO. Default: letzte 14 Tage."""
+        from datetime import datetime, timedelta, timezone
+        if min_date is None:
+            min_date = (datetime.now(timezone.utc) - timedelta(days=14)).strftime("%Y-%m-%d")
+        return self._request("GET", f"/api/v1/trading/info/trade/{self.env}/history",
+                             params={"minDate": min_date, "pageSize": page_size})
+
     def get_instrument_details(self, instrument_id):
         """Instrument-Metadata (symbol, displayName, pipSize)."""
         return self._request("GET", f"/api/v1/market-data/instruments/{instrument_id}")

@@ -1680,7 +1680,7 @@ def sync_etoro_positions(state: dict):
         by_order = {int(p.get("orderID", 0)): p for p in etoro_positions if p.get("orderID")}
         pending_by_order = {int(o.get("orderID", 0)): o for o in cp.get("ordersForOpen", []) if o.get("orderID")}
         synced = 0
-        phantoms = []
+        unresolved = []   # nicht in positions & nicht in pending -> muessen wir in history nachschauen
         for pos in positions_with_oid:
             oid = int(pos.get("etoro_order_id", 0))
             ep = by_order.get(oid)
@@ -1692,29 +1692,78 @@ def sync_etoro_positions(state: dict):
                 pos["etoro_open_date"]    = ep.get("openDateTime")
                 synced += 1
             elif oid in pending_by_order:
-                pos["etoro_status"] = "pending_fill"   # noch nicht gefillt (Markt zu/dünn)
+                pos["etoro_status"] = "pending_fill"
             else:
-                # 2026-07-07: Order+Position nicht mehr bei eToro -> Phantom.
-                # (extern geschlossen, gecancelt, oder Fill nie zustande gekommen).
-                # Wenn schon vorher mal posId gesehen: extern geschlossen. Sonst: Order verworfen.
-                if pos.get("etoro_position_id"):
-                    phantoms.append(("closed_externally", pos))
-                else:
-                    phantoms.append(("order_dropped", pos))
-        for reason, pos in phantoms:
-            cur = pos.get("current_price", pos.get("entry_actual", 0))
-            log(f"  [eToro] {pos['ticker']} PHANTOM ({reason}) — schliesse im Paper-State")
+                unresolved.append(pos)
+
+        # History-Lookup fuer unresolved (2026-07-07): unterscheidet echt-geschlossen (TP/SL/user)
+        # von order_dropped (nie zustande gekommen). Fuer korrekte Reason im close_position-Call.
+        history_by_order = {}
+        if unresolved:
             try:
-                close_position(state, pos, cur, f"eToro {reason}")
-                state["open"] = [q for q in state["open"] if q.get("id") != pos.get("id")]
+                # min_date auf frueheste opened_at der unresolved Trades (mit 2d Puffer)
+                from datetime import timedelta as _td
+                opens = [pos.get("opened_at","") for pos in unresolved if pos.get("opened_at")]
+                if opens:
+                    md = min(opens)[:10]
+                    md_dt = datetime.fromisoformat(md) - _td(days=2)
+                    md = md_dt.strftime("%Y-%m-%d")
+                else:
+                    md = None
+                hist = c.get_history(min_date=md)
+                items = hist.get("items", hist) if isinstance(hist, dict) else hist
+                if isinstance(items, list):
+                    for it in items:
+                        history_by_order[int(it.get("orderId", 0))] = it
+            except Exception as e:
+                log(f"  [eToro] history-lookup fail: {e}")
+
+        phantoms = 0
+        for pos in unresolved:
+            oid = int(pos.get("etoro_order_id", 0))
+            hit = history_by_order.get(oid)
+            if hit:
+                # Echte geschlossene Position — Reason aus close-vs-SL/TP ableiten
+                close_rate = float(hit.get("closeRate") or 0)
+                sl_rate    = float(hit.get("stopLossRate") or 0)
+                tp_rate    = float(hit.get("takeProfitRate") or 0)
+                net_profit = float(hit.get("netProfit") or 0)
+                if tp_rate and close_rate >= tp_rate * 0.999:
+                    reason = "eToro TP"
+                elif sl_rate and close_rate <= sl_rate * 1.001:
+                    reason = "eToro SL"
+                else:
+                    reason = "eToro closed"
+                pos["etoro_position_id"] = hit.get("positionId")
+                pos["etoro_open_rate"]   = hit.get("openRate")
+                pos["etoro_close_rate"]  = close_rate
+                pos["etoro_net_profit"]  = net_profit
+                log(f"  [eToro] {pos['ticker']} HISTORY: {reason} @ ${close_rate:.2f} (netP ${net_profit:+.2f}) — sync als CLOSED")
+                _append_etoro_event({
+                    "event": "close_from_history", "ticker": pos["ticker"],
+                    "order_id": oid, "position_id": pos["etoro_position_id"],
+                    "close_rate": close_rate, "net_profit": net_profit, "reason": reason,
+                })
+                exit_price = close_rate or pos.get("current_price", pos.get("entry_actual", 0))
+            else:
+                # Wirklich verschwunden (orderId vergeben, aber nie in positions/pending/history)
+                # = Order-Reject oder Cancel vor Fill.
+                reason = "eToro order_dropped"
+                log(f"  [eToro] {pos['ticker']} PHANTOM (order_dropped) — keine History, schliesse im Paper")
                 _append_etoro_event({
                     "event": "phantom_close", "ticker": pos["ticker"],
-                    "order_id": pos.get("etoro_order_id"), "reason": reason,
+                    "order_id": oid, "reason": "order_dropped",
                 })
+                exit_price = pos.get("current_price", pos.get("entry_actual", 0))
+            try:
+                close_position(state, pos, exit_price, reason)
+                state["open"] = [q for q in state["open"] if q.get("id") != pos.get("id")]
+                phantoms += 1
             except Exception as e:
-                log(f"  [eToro] phantom-close error {pos['ticker']}: {e}")
+                log(f"  [eToro] close-from-sync error {pos['ticker']}: {e}")
+
         if synced or phantoms:
-            log(f"  [eToro] sync: {synced} live · {len(phantoms)} phantom bereinigt")
+            log(f"  [eToro] sync: {synced} live · {phantoms} closed via sync/history")
     except Exception as e:
         log(f"  [eToro] sync fail: {e}")
 
