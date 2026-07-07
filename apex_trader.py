@@ -1602,7 +1602,9 @@ def _etoro_client():
 
 def etoro_open_position(pos: dict):
     """Sendet eine echte Market-Order an eToro (oder loggt bei live_dry).
-    Speichert orderId + instrumentId zurueck ins pos-dict fuer spaeteres close/update."""
+    Speichert orderId + instrumentId zurueck ins pos-dict fuer spaeteres close/update.
+    2026-07-08 Fix A: holt echten eToro-Ask VOR Order-Submit und rebased entry/SL/TP
+    darauf. Ohne den Fix hatten wir 0.3-0.6% Divergenz Paper<->Live (yfinance vs Ask)."""
     if not (ETORO_API_KEY and ETORO_USER_KEY):
         raise RuntimeError("ETORO_API_KEY / ETORO_USER_KEY missing")
     c = _etoro_client()
@@ -1610,6 +1612,29 @@ def etoro_open_position(pos: dict):
     iid = c.resolve_ticker(tk)
     if not iid:
         log(f"  [eToro] ticker {tk} nicht aufgeloest — skip"); return
+    # Fix A: echten Ask holen und Position darauf rebasen
+    yf_entry = float(pos.get("entry_actual") or 0)
+    sl_pct   = (float(pos.get("stop") or 0)   / yf_entry - 1) if yf_entry else 0
+    tp_pct   = (float(pos.get("target") or 0) / yf_entry - 1) if yf_entry else 0
+    try:
+        rr = c.get_rates([iid])
+        rates = rr.get("rates", []) if isinstance(rr, dict) else []
+        ask = float(rates[0].get("ask")) if rates else None
+    except Exception as e:
+        log(f"  [eToro] rates fetch fail: {e} — fallback yfinance-entry"); ask = None
+    if ask and ask > 0 and yf_entry > 0:
+        drift_pct = (ask / yf_entry - 1) * 100
+        # Rebase
+        pos["entry_actual"]      = ask
+        pos["shares"]            = pos["size_usd"] / ask
+        pos["stop"]              = round(ask * (1 + sl_pct), 2)
+        pos["target"]            = round(ask * (1 + tp_pct), 2)
+        pos["current_price"]     = ask
+        pos["high_since_entry"]  = ask
+        pos["yfinance_entry"]    = yf_entry   # trail zum Debuggen
+        pos["etoro_ask_at_open"] = ask
+        log(f"  [eToro] {tk} rebased: yfinance ${yf_entry:.2f} -> ask ${ask:.2f} "
+            f"({drift_pct:+.2f}%) | new SL ${pos['stop']:.2f} TP ${pos['target']:.2f}")
     r = c.open_position(iid, pos["size_usd"], "Buy",
                         stop_loss=pos["stop"], take_profit=pos["target"])
     pos["etoro_instrument_id"] = iid
