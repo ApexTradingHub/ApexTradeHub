@@ -1483,5 +1483,33 @@
     "entry_signal": 38.59,
     "entry_actual": 38.68000030517578,
     "mode": "live"
+  },
+  {
+    "event": "trailing_continuous",
+    "id": "PAPER_INTRA_PAY_2026-06-29_1350",
+    "ts": "2026-07-07T14:00:06Z",
+    "ticker": "PAY",
+    "old_stop": 27.18,
+    "new_stop": 27.18,
+    "high": 28.920000076293945,
+    "gain_pct": 21.4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FRSH_2026-06-30_1355",
+    "ts": "2026-07-07T14:00:06Z",
+    "ticker": "FRSH",
+    "exit_price": 10.270000457763672,
+    "reason": "Time Exit",
+    "pnl_pct": 1.0329611048173921
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_PCAR_2026-07-06",
+    "ts": "2026-07-07T14:00:06Z",
+    "ticker": "PCAR",
+    "signal_date": "2026-07-06",
+    "score": 89.0,
+    "source": "scanner"
   }
 ]
