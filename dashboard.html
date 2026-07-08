@@ -2125,20 +2125,24 @@ function drawEtoroBubble(openPos, events) {
   const points = opens.map(e => {
     const p = openByOrder[e.order_id];
     const c = closedByOrder[e.order_id];
-    let pnl = 0, isOpen = false, status = 'unknown';
+    let pnl = 0, isOpen = false, status = 'unknown', isPhantom = false;
     if (p) {
       pnl = +p.pnl_pct || 0; isOpen = true; status = 'offen';
     } else if (c) {
-      // aus closed-Position: pnl_pct oder aus etoro_open_rate/close_rate berechnen
-      pnl = +c.pnl_pct || 0;
-      if (!pnl && c.etoro_open_rate && c.etoro_close_rate) {
-        pnl = (c.etoro_close_rate / c.etoro_open_rate - 1) * 100;
-      }
       status = c.exit_reason || 'closed';
+      // Fix 4: Phantoms (order_dropped) sind kein realer Trade -> PnL=0
+      if (String(status).toLowerCase().includes('order_dropped')) {
+        pnl = 0; isPhantom = true;
+      } else {
+        pnl = +c.pnl_pct || 0;
+        if (!pnl && c.etoro_open_rate && c.etoro_close_rate) {
+          pnl = (c.etoro_close_rate / c.etoro_open_rate - 1) * 100;
+        }
+      }
     }
     const t = new Date((e.ts || '').endsWith('Z') || (e.ts || '').includes('+') ? e.ts : e.ts + 'Z');
     return { x: t.getTime(), y: pnl, r: Math.max(4, Math.sqrt(+e.size_usd || 20) * 1.5),
-             ticker: e.ticker, isOpen, status };
+             ticker: e.ticker, isOpen, status, isPhantom };
   }).filter(p => !isNaN(p.x));
   if (etoroBubbleChart) etoroBubbleChart.destroy();
   if (!points.length) {
@@ -2148,13 +2152,46 @@ function drawEtoroBubble(openPos, events) {
     ctx.fillText('Noch keine eToro-Trades zum Plotten.', cv.width/2, cv.height/2);
     return;
   }
+  // Fix 1: Farben — closed profitable Trades grün (heller), losers rot (heller); Phantoms grau
+  const colorFor = (p, dim) => {
+    if (p.isPhantom) return dim ? 'rgba(139,146,164,0.30)' : '#8B92A4';
+    const isGreen = p.y >= 0;
+    if (p.isOpen) return dim ? (isGreen ? 'rgba(38,166,154,0.55)' : 'rgba(239,83,80,0.55)')
+                              : (isGreen ? '#26A69A' : '#EF5350');
+    // closed: etwas transparenter/desaturierter
+    return dim ? (isGreen ? 'rgba(38,166,154,0.35)' : 'rgba(239,83,80,0.35)')
+                : (isGreen ? '#26A69A' : '#EF5350');
+  };
+  // Fix 2: X-Achse smart — Zeitspanne auswerten, dann Format waehlen
+  const xs = points.map(p => p.x);
+  const spanDays = (Math.max(...xs) - Math.min(...xs)) / 86400000;
+  const fmtX = spanDays < 2
+    ? v => new Date(v).toLocaleString('de-DE', {timeZone:'Europe/Berlin', hour:'2-digit', minute:'2-digit'})
+    : v => new Date(v).toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
+  // Fix 3: Ticker-Labels ueber jeder Blase via afterDatasetsDraw-Plugin
+  const labelPlugin = {
+    id: 'bubble_labels',
+    afterDatasetsDraw(chart) {
+      const {ctx} = chart;
+      chart.data.datasets[0].data.forEach((d, i) => {
+        const el = chart.getDatasetMeta(0).data[i]; if (!el) return;
+        ctx.save();
+        ctx.fillStyle = '#D6DAE3';
+        ctx.font = '600 10px -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(d.ticker, el.x, el.y - (el.options.radius || 8) - 3);
+        ctx.restore();
+      });
+    }
+  };
   etoroBubbleChart = new Chart(cv.getContext('2d'), {
     type: 'bubble',
     data: {
       datasets: [{
         data: points,
-        backgroundColor: points.map(p => p.isOpen ? (p.y >= 0 ? 'rgba(38,166,154,0.55)' : 'rgba(239,83,80,0.55)') : 'rgba(139,146,164,0.35)'),
-        borderColor:     points.map(p => p.isOpen ? (p.y >= 0 ? '#26A69A' : '#EF5350') : '#8B92A4'),
+        backgroundColor: points.map(p => colorFor(p, true)),
+        borderColor:     points.map(p => colorFor(p, false)),
         borderWidth: 1.5,
       }]
     },
@@ -2171,10 +2208,11 @@ function drawEtoroBubble(openPos, events) {
         }},
       },
       scales: {
-        x: { type: 'linear', ticks: { color: '#8B92A4', callback: v => new Date(v).toLocaleDateString('de-DE',{day:'2-digit', month:'2-digit'}) }, grid: { color: 'rgba(99,135,255,0.06)' } },
+        x: { type: 'linear', ticks: { color: '#8B92A4', maxTicksLimit: 5, callback: fmtX }, grid: { color: 'rgba(99,135,255,0.06)' } },
         y: { ticks: { color: '#8B92A4', callback: v => (Math.round(v * 100) / 100).toFixed(2) + '%' }, grid: { color: 'rgba(99,135,255,0.06)' } },
       },
     },
+    plugins: [labelPlugin],
   });
 }
 
