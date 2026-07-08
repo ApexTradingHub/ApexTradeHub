@@ -2,8 +2,43 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 277.57654331591465,
-  "last_updated": "2026-07-08T13:25:02Z",
-  "pending": [],
+  "last_updated": "2026-07-08T13:30:03Z",
+  "pending": [
+    {
+      "id": "PAPER_OGN_2026-07-07",
+      "ticker": "OGN",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Healthcare",
+      "signal_date": "2026-07-07",
+      "entry": 13.63,
+      "stop_initial": 13.22,
+      "target": 15.0,
+      "score": 92.4,
+      "rr": 3.36,
+      "upside_pct": 10.1,
+      "added_at": "2026-07-08T13:30:08Z",
+      "status": "pending",
+      "mode": "live"
+    },
+    {
+      "id": "PAPER_LW_2026-07-07",
+      "ticker": "LW",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Defensive",
+      "signal_date": "2026-07-07",
+      "entry": 46.88,
+      "stop_initial": 44.69,
+      "target": 51.0,
+      "score": 87.7,
+      "rr": 1.88,
+      "upside_pct": 8.8,
+      "added_at": "2026-07-08T13:30:08Z",
+      "status": "pending",
+      "mode": "live"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_PAY_2026-06-29_1350",
