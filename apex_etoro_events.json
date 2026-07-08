@@ -135,5 +135,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "LW",
+    "instrument_id": 4381,
+    "size_usd": 50.0,
+    "stop": 44.7,
+    "target": 51.01,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 364922561,
+    "response": {
+      "token": "b5947dc2-d27b-4135-ac91-26e131cd3f9e",
+      "orderId": 364922561,
+      "referenceId": "11b2719a-921a-4ede-aa92-564125b9ac5a"
+    },
+    "ts": "2026-07-08T13:35:14Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
