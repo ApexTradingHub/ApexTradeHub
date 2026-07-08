@@ -48,6 +48,10 @@ DUPLICATE_WINDOW_DAYS = 3
 # 30d-Window n=4 closed, WR 0% (4/4 loss), AvgLoss -2.70%.
 # Score weakly ANTI-predictive in-sample, no live-validated edge. User skipt sie eh.
 MEAN_REVERSION_ENABLED = False
+# 2026-07-08: STAGE_2 ("Trend") deaktiviert — keine belastbare Historie (n<3 in Lifetime),
+# das eine "🚀 Trend"-Signal war ein slow_stop_4plus-Loser. User-Beobachtung: bisher kein
+# einziger STAGE_2-Win. Bis wir ein anderes Setup mit echtem Edge fuer BEARISH haben, weg damit.
+STAGE_2_ENABLED = False
 
 # Quality filter for Telegram top-2 (setup-specific, data-driven)
 TG_MIN_RR      = 1.5     # 2026-05-22: 2.0->1.5. Backtest: RR>=2.0 (WR 54.5%) gives
@@ -1064,7 +1068,7 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
         position_setup   = False
 
         # Priority: STAGE_2 > VCP > SQUEEZE > BREAKOUT (rare = high conviction)
-        if stage2_data:
+        if stage2_data and STAGE_2_ENABLED:
             chosen_setup = "STAGE_2"
         elif vcp_data:
             chosen_setup = "VCP"

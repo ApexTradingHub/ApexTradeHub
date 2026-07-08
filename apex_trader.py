@@ -160,6 +160,7 @@ def recently_closed_tickers(state: dict, days: int = CLOSE_COOLDOWN_DAYS) -> set
 SCRIPT_DIR = Path(__file__).resolve().parent
 SIGNALS_FILE   = SCRIPT_DIR / "apex_signals.json"
 POSITIONS_FILE = SCRIPT_DIR / "apex_positions.json"
+MARKET_FILE    = SCRIPT_DIR / "apex_market.json"
 TRADE_LOG_FILE = SCRIPT_DIR / "apex_trade_log.json"
 ETORO_LOG_FILE = SCRIPT_DIR / "apex_etoro_events.json"   # separater Stream (2026-07-06)
 OVERRIDES_FILE = SCRIPT_DIR / "apex_manual_overrides.json"   # Phase 2: User/Claude-Overrides
@@ -1894,7 +1895,14 @@ def run_trader(dry_run: bool = False):
 
     # 3b. Momentum-Filler (Fallback): nur wenn SWING-Slots (Option B: max 5) frei.
     # Intraday-Positionen zaehlen NICHT gegen das Swing-Budget.
-    if market_open:
+    # 2026-07-08 C2: Momentum-Filler pausieren im BEARISH-Regime (14d-Daten: WR 30% vs
+    # Lifetime 41%). Intraday-Catcher (Step 3c) bleibt an — der haelt sich mit 57% WR
+    # auch bearish. Scanner (3a) laeuft weiter, Score-Bucket-Fix ist separates Thema.
+    _mkt = load_json(MARKET_FILE) or {}
+    market_bearish = str(_mkt.get("mode", "")).upper() == "BEARISH"
+    if market_open and market_bearish:
+        log("step 3b: SKIP momentum fillers — BEARISH regime (historisch WR 30%/14d)")
+    if market_open and not market_bearish:
         swing_open = sum(1 for p in state["open"] if p.get("source") != "intraday_momentum")
         used = swing_open + len(state["pending"])
         free_slots = max(0, SWING_MAX_POSITIONS - used)
