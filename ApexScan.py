@@ -52,6 +52,8 @@ MEAN_REVERSION_ENABLED = False
 # das eine "🚀 Trend"-Signal war ein slow_stop_4plus-Loser. User-Beobachtung: bisher kein
 # einziger STAGE_2-Win. Bis wir ein anderes Setup mit echtem Edge fuer BEARISH haben, weg damit.
 STAGE_2_ENABLED = False
+# 2026-07-08: Tech-Breakout-Gate bei QQQ-Schwäche (Backtest: Tech+QQQ<0 = WR 14%/PF 0.56).
+TECH_QQQ_GATE_ENABLED = True
 
 # Quality filter for Telegram top-2 (setup-specific, data-driven)
 TG_MIN_RR      = 1.5     # 2026-05-22: 2.0->1.5. Backtest: RR>=2.0 (WR 54.5%) gives
@@ -655,6 +657,13 @@ def get_market_regime():
     if len(spy_close) >= 21:
         spy_perf_20 = float((spy_close.iloc[-1] / spy_close.iloc[-21] - 1) * 100)
 
+    # QQQ 20d-Momentum fuer Tech-Regime-Gate (2026-07-08, Backtest-validiert):
+    # Tech-BREAKOUTs bei QQQ<0 = WR 14%/PF 0.56 (n=7) vs Tech-QQQ>0 = 54%/2.37.
+    qqq_close = qqq["Close"].squeeze().dropna()
+    qqq_perf_20 = 0.0
+    if len(qqq_close) >= 21:
+        qqq_perf_20 = float((qqq_close.iloc[-1] / qqq_close.iloc[-21] - 1) * 100)
+
     # Sector ETF momentum (20d performance)
     sector_etfs = {
         "Energy":            "XLE",
@@ -694,6 +703,7 @@ def get_market_regime():
     return {"risk_on": risk_on, "mode": mode,
             "summary": f"SPY={sr} | QQQ={qr} | Market={mode}",
             "spy_perf_20": spy_perf_20,
+            "qqq_perf_20": qqq_perf_20,
             "sector_momentum": sector_momentum}
 
 
@@ -1079,6 +1089,17 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
         else:
             debug["fail_setup"] += 1
             return None
+
+        # TECH-QQQ-WEAK-GATE (2026-07-08, Backtest-validiert): Tech/Communication-BREAKOUTs
+        # wenn QQQ 20d-Momentum negativ = WR 14% / PF 0.56 (n=7) — der Semi-Reversal-Failure-Mode
+        # (ASML/TSM/LRCX-Loss/KLAC). Non-Tech-QQQ-weak (57%) + Tech-QQQ-stark (54%) bleiben
+        # unberuehrt — nur der toxische Schnittpunkt wird gedroppt (Signal-Loss ~6%).
+        if TECH_QQQ_GATE_ENABLED and chosen_setup == "BREAKOUT":
+            _sec = sector_cache.get(ticker, "Unknown")
+            if _sec in ("Technology", "Communication Services", "Communication") and \
+               market_regime.get("qqq_perf_20", 0) < 0:
+                debug["fail_tech_qqq_weak"] = debug.get("fail_tech_qqq_weak", 0) + 1
+                return None
 
         # Market filter: RISK-OFF → only BREAKOUT-style allowed (STAGE_2/VCP need trend)
         if not market_regime["risk_on"] and relax == 0:

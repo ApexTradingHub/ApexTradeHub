@@ -410,3 +410,29 @@ Kalibrierung. **Vorschlag: entfernen** — reiner Vereinfachungs-Gewinn (kein Fe
 (Score mit/ohne Sektor-Bonus, Signal-Count darf nicht sinken — Signal-Protection). Der
 Stock-vs-SPY-RS-Bonus (Zeile 1311-1317) NICHT anfassen — der ist eine andere Metrik (eigene
 Aktie vs Markt) und nicht mitgetestet.
+
+---
+
+## 13. Score-Anti-Monotonie 130+ — Root-Cause + Fix (2026-07-08, Backtest-validiert)
+
+**Problem:** BREAKOUT-Score-Bucket 130+ hatte WR 17% (n=12) vs Sweet-Spot 90-130 (68-72%).
+
+**FALSIFIZIERTE Hypothesen (Daten):**
+- **Extension-Filter (perf_120/perf_20):** FALSCH. Die 2 Wins im 130+ (LRCX +134%, AMAT +79%)
+  sind die AM STÄRKSTEN extended; groesster Loser FLR hatte niedrigste Extension (+31%).
+  perf_120-Sweep: nur +1pp WR bei 14-19% Signal-Loss. Kein sauberer Loser-Cluster.
+- **Sektor-Concentration-Cap:** FALSCH. CAP=2 gab NULL WR-Lift (57.1%->57.1%), droppte LRCX-Winner,
+  35% Signal-Loss. Gedroppte Trades WR 52-57% (=Baseline). BACKLOG #3 damit auch erledigt/verworfen.
+- **Broad-Regime-Gate (SPY bearish):** zu grob. BREAKOUT bearish PF 1.62 aber immer noch profitabel
+  (avg +1.38%) — pauschaler Stopp wirft Profit weg.
+
+**ROOT-CAUSE (echt):** Tech-Breakouts wenn QQQ selbst schwach = Semi-Reversal-Failure-Mode.
+Kreuztabelle Sektor x QQQ-Regime:
+- TECH + QQQ<0: WR 14% PF 0.56 (n=7) 💀
+- TECH + QQQ>0: WR 54% PF 2.37
+- NON-TECH + QQQ<0: WR 57% PF 1.72 (fine!)
+- NON-TECH + QQQ>0: WR 62% PF 2.97
+
+**FIX (live):** TECH_QQQ_GATE_ENABLED in ApexScan.py — skip BREAKOUT wenn Sektor Tech/Comm
+UND qqq_perf_20<0. Effekt: WR 57.1->59.8%, PF 2.29->2.53, Signal-Loss 6%.
+Vorbehalt: n=7, Monitoring noetig. Rollback = Flag False.
