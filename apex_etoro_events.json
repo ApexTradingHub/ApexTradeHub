@@ -254,5 +254,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "WULF",
+    "instrument_id": 10666,
+    "size_usd": 50.0,
+    "stop": 22.04,
+    "target": 24.34,
+    "setup": "MOMENTUM",
+    "source": "momentum_filler",
+    "order_id": 365147566,
+    "response": {
+      "token": "885be101-3e95-4518-b7ba-bbfa6220141b",
+      "orderId": 365147566,
+      "referenceId": "cbd03a70-9d94-4bd7-8ce7-1dd8bbce8898"
+    },
+    "ts": "2026-07-09T19:55:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
