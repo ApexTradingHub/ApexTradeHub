@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-02 (Learn-Stand 187 Trades · AI-Power-Thema validiert · Market-Hours-Guard · Picks kuratiert · Postmortems 187/187)
+**Letztes Update:** 2026-07-08 (eToro LIVE seit 07-06 · TECH_QQQ_GATE live · STAGE_2/Momentum-bearish disabled · Inverse-ETF verworfen · Dashboard v41)
 
 ---
 
@@ -32,12 +32,12 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 | Setup | Status | Charakteristik | Aktueller WR/PF (lifetime) |
 |---|---|---|---|
-| **BREAKOUT** 🔵 | CONFIRMED | 20d-High-Breakout, SCORE_REALIGN live (06-14) | WR **59.7 % / PF 2.70 (n=77)** ✅ |
-| **STAGE_2** 🚀 Trend | aktiv im Scanner, RAUS im Paper-Trader (Rotations-Konflikt) | 10 open im Equity, 0 closed lifetime |
+| **BREAKOUT** 🔵 | CONFIRMED, **TECH_QQQ_GATE live 07-08** | 20d-High-Breakout | WR **57 % / PF 2.29** (n=119) · Nach Gate: WR **59.8 % / PF 2.53** |
+| ~~STAGE_2~~ 🚀 Trend | **DISABLED 2026-07-08** (User: 0 Wins bisher) | Flag `STAGE_2_ENABLED = False` — Detektor bleibt für Re-Enable |
 | **VCP** 🔹 Bounceback | aktiv (gelockert 28.5.) | Backtest WR 88.9 % n=9 |
 | **SHORT_SQUEEZE** 🔥 Bet | aktiv (strict, ≥15 % short) | n=0 lifetime |
 | ~~MEAN_REVERSION~~ 🟢 Dip | **DISABLED 2026-06-17** (User: "kaufe ich eh nicht") | n=4 30d-window, WR **0 %**, AvgLoss -2.70 %. Score weakly ANTI-predictive in-sample. Flag `MEAN_REVERSION_ENABLED=False` in ApexScan.py. Code-Pfad bleibt fuer Re-Enable. |
-| **MOMENTUM** ⚡ (Filler) | **NEU 06-12** Paper-Trader-only, yfinance Top-200 US | n=0 lifetime (Test) |
+| **MOMENTUM** ⚡ (Filler) | **NEU 06-12** Paper-Trader-only · **BEARISH-Skip live 07-08** (14d WR 30%) | Lifetime WR 41 %, PF 1.29 (n=17) |
 | **INTRADAY** ⚡⚡ Catcher | **NEU 06-18 EXPERIMENT, opt-in `INTRADAY_ENABLED=1`** Paper-only | n=0 (Test, default OFF) |
 | ~~REVERSAL~~ | **disabled** | Legacy, 28 % WR strukturell defekt | sterbende Legacy-Positions in n |
 
@@ -60,6 +60,10 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 - **RSI-Zone (REALIGN): 48-72** (war 48-68, +6 voll im erweiterten Bereich)
 - **⚠ RSI 60-65 = neue DEADZONE (CONFIRMED 2026-06-15, n=40, WR 47.5% / −10pp lift)** — innerhalb der erlaubten Zone gibt's ein Mid-Range-Loch. Action ausstehend: Score-Penalty (~-5) **nach Backtest**. NICHT als Hard-Skip (Loser-Anteil 52.5% vs Baseline 42.5% = killt fast 1:1 Winner mit). Pattern: U-Kurve, RSI 50-60 (+10pp) und RSI 70+ (+18pp) ggf. Bonus-Kandidaten bei groesserem n.
 - **perf_120 Buckets (REALIGN):** <0 = -15 (WEAK), 0-25 = **-3 (DEADZONE)**, 25-50 = +15 (SWEET), >50 = +8
+- **TECH_QQQ_GATE live (2026-07-08):** Skip BREAKOUT wenn Sektor Tech/Communication UND
+  `market_regime.qqq_perf_20 < 0`. Backtest: Tech+QQQ<0 = WR 14%/PF 0.56 (n=7) → nach Gate
+  WR 57.1→59.8%, PF 2.29→2.53, Signal-Loss 6%. Flag `TECH_QQQ_GATE_ENABLED = True`.
+  Vorbehalt n=7 klein, Monitoring nötig.
 - **SCORE_REBUILD live (2026-06-20):** Extension-Penalty **-12** für perf_120>50 OHNE starken
   Catalyst (Catalyst-Carve-Out: earnings_beat / analyst_upside>15 / PP+Vol-Climax / Gap≥5).
   Backtest 250d: Plateau WR(100+) 47→54 %, **Monotonie -15pp→-0pp**, alle 122 Signale erhalten,
@@ -97,7 +101,21 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ---
 
-## 4. Aktive Diskretionäre Positionen / Watch
+## 4. Aktive Live-Positionen (eToro Demo, TRADING_MODE=live seit 07-06)
+
+**eToro-Portfolio ($100k virtuell):**
+- **PCAR** offen, entry $124.47 (echt), SL $118, TP $135 (BREAKOUT scanner)
+- **META** offen, entry $620.41 (echt via Fix A), SL $595, TP $658 (MOMENTUM)
+- Cash: ~$99.9k
+- geschlossen: **NKTR TP +5.30%** (entry $71.39 → close $75.07, netProfit +$2.58)
+- gedropped: **AVNT** (order_dropped bei eToro — echt nie zustande gekommen; Hypothese
+  Demo-Restriction oder SL/TP-Spread-Reject, volle Response wird jetzt geloggt)
+
+**Paper-Legacy** (vor Live-Zeit, ohne etoro_order_id, laufen im Paper aus):
+- PAY (Runner +18%, Trailing-continuous aktiv), FRSH, MRCY, PLTR
+- Migrieren sich über 1-2 Wochen weg (TP/SL/Stagnation)
+
+## 4b. Aktive Diskretionäre Positionen / Watch
 
 - **APP** (gekauft $560 am 27.5., +250 USD) — TP $600 gehittet, „buy & hold to $669"-Plan,
   Stop auf $560 (Break-Even) hochziehen empfohlen
@@ -116,11 +134,15 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 5. Offene Backlog-Items (siehe `BACKLOG.md`)
 
-1. **Pending/Triggered-Status für offene Signale** — wird durch **Phase B (Paper Trader)**
-   gelöst: Trader läuft alle 20 min, schreibt `triggered`-Flag in `apex_positions.json`.
-   Dashboard liest direkt. Item bleibt Backlog bis Phase B live.
-2. **MOMO-Setup** — getestet (PF 1.51 < 2.0 = verworfen), Code als opt-in (`--only-setup MOMO`)
-   in `apex_backtest_v2.py` belassen. Re-test bei klaren DELL-artigen Misses.
+1. **Pending/Triggered-Status für offene Signale** — durch Phase B teilweise gelöst.
+2. **MOMO-Setup** — verworfen (PF 1.51), Code opt-in belassen.
+3. ~~**Sektor-Concurrency-Cap**~~ — **FALSIFIZIERT 2026-07-08** (BACKLOG #13): 0pp WR-Lift,
+   wirft Winner raus, 35% Signal-Loss. Nicht mehr verfolgen.
+4. **BACKLOG #13** — dokumentiert alle falsifizierten Hypothesen zum 130+-Score-Bucket
+   und den gewonnenen TECH_QQQ_GATE-Fix. Auch: Duplicate-Trap (WINDOW=3d zu kurz, BACKLOG #8).
+5. **OFFEN: Bearish-Kandidat #2 (Exposure-Reduktion)** — nach Falsifikation von Inverse-ETF
+   (nur +8.5%/5yr, 19% Whipsaw-WR) noch nicht spezifiziert. Idee: bei BEARISH weniger Slots
+   (5→2) + kleinere Size. Nicht gebaut.
 
 ### Aktive Roadmap (`CLAUDE_CODE_BRIEF.md`)
 - ✅ **Phase A — Obsidian Brain** (`apex_brain.py`) — shipped 2026-06-03 (`0c0a93b`)
@@ -201,6 +223,65 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-08** **Signal-System Robustheit — TECH_QQQ_GATE + STAGE_2/Momentum disabled**:
+  - **STAGE_2 (Trend-Setup) DEAKTIVIERT** in ApexScan.py — kein historischer Edge (n<3
+    Lifetime, User-Beobachtung: 0 Wins). Flag `STAGE_2_ENABLED = False`.
+  - **Momentum-Filler pausiert im BEARISH-Regime** (apex_trader.py `select_momentum_fillers`
+    liest apex_market.json.mode). Daten: 14d bearish WR 30% vs Lifetime 41%. Intraday-Catcher
+    (57% bearish WR) bleibt UNANGETASTET.
+  - **TECH_QQQ_GATE live** (ApexScan.py L~1091, `TECH_QQQ_GATE_ENABLED = True`): Skip BREAKOUT
+    wenn Sektor Tech/Communication UND qqq_perf_20 < 0. Backtest-validiert:
+    - Failure-Mode: Tech+QQQ<0 = **WR 14% / PF 0.56** (n=7, ASML×3/TSM/LRCX-Loss/KLAC)
+    - Nach Gate: WR 57.1→**59.8%**, PF 2.29→**2.53**, Signal-Loss nur 6%
+    - Non-Tech+QQQ<0 (57%) und Tech+QQQ>0 (54%) unberuehrt
+  - **FALSIFIZIERT (BACKLOG #13 dokumentiert)**: Extension-Filter (perf_120/perf_20) →
+    Winner-Drop; Sektor-Concurrency-Cap → 0pp Lift; Broad-Regime-Gate → zu grob.
+  - **Inverse-ETF-Backtest VERWORFEN**: PSQ+QQQ<MA200&mom20<0 = nur +8.5%/5yr,
+    Whipsaw-WR 19%, −17% DD. Cash halten schlaegt Inverse-Timing. Kandidat #2
+    (Bearish-Exposure-Reduktion) noch OFFEN.
+
+- **2026-07-06/07** **eToro LIVE (Demo-Portfolio) + kompletter API-Roundtrip**:
+  - **`etoro_client.py`** — REST-Wrapper mit ALLEN Endpoints: `resolve_ticker`,
+    `search_instrument` (internalSymbolFull), `get_rates` (`/market-data/instruments/rates`,
+    live bid/ask), `get_balance` (`/trading/info/{env}/portfolio`), `get_positions`
+    (aus balance-response), `open_position` (POST `/api/v2/trading/execution/{env}/orders`,
+    PascalCase-Body: InstrumentID/Amount/IsBuy/StopLossRate/TakeProfitRate/StopLossType=fixed),
+    `close_position` (POST `/trading/execution/{env}/market-close-orders/positions/{pid}`,
+    Body: InstrumentId+UnitsToDeduct), `cancel_order`, `update_sl_tp`, `get_history`
+    (`/trading/info/trade/{env}/history?minDate=`).
+  - **Auth-Erkenntnis**: Portal-Labels sind VERDREHT zu API-Headern:
+    - `x-api-key` = **"Öffentlicher Schlüssel"** aus Portal (nicht der generierte Key!)
+    - `x-user-key` = **generierter API-Schlüssel-Wert** (nur 1x angezeigt)
+    - Cloudflare bannt Python-urllib default UA → **User-Agent-Header muss gesetzt sein**
+  - **Trader wired**: `TRADING_MODE = paper | live_dry | live` (env-var).
+    `etoro_open_position` (mit **Fix A**: holt eToro-Ask VOR order, rebased entry/SL/TP/shares
+    auf echten Preis — vorher 0.3-0.6% Divergenz yfinance vs Fill),
+    `etoro_close_position` (via etoro_position_id oder order_id),
+    `etoro_update_sl_tp` (nach jedem trailing_activated/continuous).
+  - **sync_etoro_positions**: bei jedem Run Portfolio+History fetchen. Positions gefunden
+    → openRate/positionID mergen. Nicht gefunden → history checken → wenn dort: `close_from_history`
+    mit netProfit; sonst `phantom_close` (order_dropped).
+  - **Retro-Fix Script** `apex_etoro_retrofit.py`: korrigiert falsch-gelabelte "order_dropped"
+    Closes durch History-Lookup. Angewandt: NKTR korrigiert ($71.29 yfinance → $71.39 real
+    → TP $75.07 +5.30% netP +$2.58). AVNT bestätigt "wirklich order_dropped" (nie in eToro).
+  - **VM-Setup**: run_trader.sh hat ETORO_API_KEY/USER_KEY/ENV/TRADING_MODE exports. Push-Loop
+    committet auch apex_etoro_events.json. git checkout --  erweiterte Liste gegen Dirty-State-Freeze.
+  - **Live-Bilanz 07-08**: NKTR (TP +5.3%, retrofit), PCAR (offen), META (offen), AVNT (dropped).
+    Slippage META $0.55 yfinance→ask war Anlass fuer Fix A. eToro-Gebuehr $1/Trade im
+    normalen Demo — Live Smart-Portfolio angeblich fee-free (User-Info, unverifiziert).
+
+- **2026-07-03** **Dashboard eToro-Tab + Trader-Fixes**:
+  - Neuer Tab `#page-etoro` mit Mode-Badge, Live-Positionen-Tabelle (filter etoro_position_id,
+    nicht order_id — sonst Phantoms sichtbar), Bubble-Chart (Zeit × PnL% × Size), Activity-Log.
+  - **Trader-Fixes**: (1) Trailing-Continuous Compare auf **round(new_stop,2)** statt raw
+    (PAY spammte 65 Events/24h — 27.1848>27.18 True, gerundet identisch). (2) Auto-Exits
+    (Stagnation/Time/EOD) gegated auf **market_is_open_now()** — verhindert AYI-Feiertags-
+    Stagnation-auf-stalem-Preis (kritisch fuer Live). TP/SL bleiben aktiv (preis-getriggert).
+  - **Momentum-Trailing verbessert**: kontinuierliches Trailing NACH Ladder-Ende (>+15%):
+    `SL = high × (1 - MOMENTUM_TRAIL_GIVEBACK)` — kein +11.5%-Cap mehr.
+  - `sw.js` bis v41 gebumpt (mehrere Iterationen im UI).
+  - Claude's Picks Tab + apex_etoro_take.json ENTFERNT (User: brauchen wir nicht).
 
 - **2026-07-02** **Learn-Stand + Postmortem-Batch (187 Trades, alle analysiert)**:
   - **Performance (Knowledge, nur getradete Setups):** BREAKOUT lifetime **WR 57% (n=119, PF 2.29)**,
@@ -479,6 +560,13 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **Momentum-Filler-Cache** | 6h | apex_trader.py MOMENTUM_CACHE_MAX_AGE_H | yfinance-Schutz, max 2 Downloads/Tag |
 | **Source-Field** | "scanner" \| "momentum_filler" | Position-Dict + pending-Dict | für Performance-Trennung |
 | **TG-Send-Modus** | „no signal"-Message wenn 0 neue | ApexScan.py L1875-1878 | Falls Telegram-Channel still ist: Scanner OK, nur alle Tickers in 3d-Duplicate-Filter |
+| **TRADING_MODE** | `paper` \| `live_dry` \| `live` | env-var, run_trader.sh | seit 07-06 auf `live` (eToro Demo-Portfolio) |
+| **ETORO_ENV** | `demo` \| `live` | env-var | derzeit `demo` — virtuelles $100k Konto |
+| **STAGE_2_ENABLED** | False | ApexScan.py L51 | 2026-07-08 disabled, kein Edge |
+| **TECH_QQQ_GATE_ENABLED** | True | ApexScan.py L53 | 2026-07-08 live, verhindert Tech-Breakouts bei QQQ<0 |
+| **MOMENTUM-Bearish-Skip** | aktiv | apex_trader.py Step 3b | liest apex_market.json.mode, skip wenn BEARISH |
+| **eToro-Auth-Mapping** | x-api-key = "Öffentlicher Schlüssel" · x-user-key = generierter Schlüssel-Wert | etoro_client.py | **VERDREHT vs Portal-Labels!** |
+| **eToro-Fee** | ~$1 open + $1 close (normal Demo) | eToro | Live Smart-Portfolio angeblich fee-free (unverifiziert) |
 
 ---
 
