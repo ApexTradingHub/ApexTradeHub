@@ -221,5 +221,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "KC",
+    "instrument_id": 5245,
+    "size_usd": 50.0,
+    "stop": 10.1,
+    "target": 11.15,
+    "setup": "MOMENTUM",
+    "source": "momentum_filler",
+    "order_id": 365146961,
+    "response": {
+      "token": "1cc16119-9b5c-4141-95b0-f978caf520e8",
+      "orderId": 365146961,
+      "referenceId": "fb361e95-2927-4524-9385-af4c10e85492"
+    },
+    "ts": "2026-07-09T15:45:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
