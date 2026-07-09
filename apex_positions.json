@@ -2,7 +2,7 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 323.3428014121524,
-  "last_updated": "2026-07-09T13:25:02Z",
+  "last_updated": "2026-07-09T13:30:03Z",
   "pending": [
     {
       "id": "PAPER_OGN_2026-07-07",
@@ -18,6 +18,40 @@
       "rr": 3.36,
       "upside_pct": 10.1,
       "added_at": "2026-07-08T13:30:08Z",
+      "status": "pending",
+      "mode": "live"
+    },
+    {
+      "id": "PAPER_ANET_2026-07-08",
+      "ticker": "ANET",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-07-08",
+      "entry": 177.55,
+      "stop_initial": 162.34,
+      "target": 209.78,
+      "score": 137.0,
+      "rr": 2.12,
+      "upside_pct": 18.1,
+      "added_at": "2026-07-09T13:30:07Z",
+      "status": "pending",
+      "mode": "live"
+    },
+    {
+      "id": "PAPER_MOM_PENG_2026-07-09",
+      "ticker": "PENG",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Unknown",
+      "signal_date": "2026-07-09",
+      "entry": 78.86,
+      "stop_initial": 75.33,
+      "target": 83.18,
+      "score": 81.4,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-07-09T13:30:07Z",
       "status": "pending",
       "mode": "live"
     }
