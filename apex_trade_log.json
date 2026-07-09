@@ -1666,5 +1666,24 @@
     "entry_signal": 24.42,
     "entry_actual": 24.42,
     "mode": "live"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_WULF_2026-07-09",
+    "ts": "2026-07-09T20:00:09Z",
+    "ticker": "WULF",
+    "old_stop": 22.04,
+    "new_stop": 23.887799999999995,
+    "high": 24.575000762939453,
+    "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_WULF_2026-07-09",
+    "ts": "2026-07-09T20:00:11Z",
+    "ticker": "WULF",
+    "exit_price": 23.887799999999995,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 3.4999999999999867
   }
 ]
