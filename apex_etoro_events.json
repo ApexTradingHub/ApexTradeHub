@@ -168,5 +168,45 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "ANET",
+    "instrument_id": 4294,
+    "size_usd": 50.0,
+    "stop": 170.58,
+    "target": 220.42,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 365120492,
+    "response": {
+      "token": "88ff8c4b-f276-418c-bcb7-c8b547b0cbac",
+      "orderId": 365120492,
+      "referenceId": "e47515d2-c225-4a18-8013-aa73187f2e6b"
+    },
+    "ts": "2026-07-09T13:35:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "PENG",
+    "instrument_id": 9544,
+    "size_usd": 50.0,
+    "stop": 81.49,
+    "target": 89.99,
+    "setup": "MOMENTUM",
+    "source": "momentum_filler",
+    "order_id": 365146501,
+    "response": {
+      "token": "15299fa5-62e6-4af0-bcf3-0a47d63d8457",
+      "orderId": 365146501,
+      "referenceId": "cda70af8-3ad3-434c-97db-567d48e02e9e"
+    },
+    "ts": "2026-07-09T13:35:15Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
