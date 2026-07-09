@@ -241,5 +241,18 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_from_history",
+    "ticker": "PENG",
+    "order_id": 365146501,
+    "position_id": 3560723051,
+    "close_rate": 81.7,
+    "net_profit": -2.34,
+    "reason": "eToro closed",
+    "ts": "2026-07-09T19:50:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
