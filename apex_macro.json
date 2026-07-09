@@ -1,35 +1,34 @@
 {
-  "updated": "2026-07-08 06:15 UTC",
+  "updated": "2026-07-09 06:15 UTC",
   "series": {
     "vix": {
       "id": "VIXCLS",
-      "value": 15.57,
-      "date": "2026-07-06",
-      "delta": -0.24
+      "value": 16.13,
+      "date": "2026-07-07",
+      "delta": 0.56
     },
     "hy_oas": {
       "id": "BAMLH0A0HYM2",
-      "value": 2.72,
-      "date": "2026-07-06",
-      "delta": -0.02
+      "value": 2.67,
+      "date": "2026-07-07",
+      "delta": -0.05
     },
     "yield_curve": {
       "id": "T10Y2Y",
-      "value": 0.36,
-      "date": "2026-07-07",
-      "delta": 0.01
+      "value": 0.35,
+      "date": "2026-07-08",
+      "delta": -0.01
     },
     "fed_funds": {
       "id": "DFF",
       "value": 3.63,
-      "date": "2026-07-06",
+      "date": "2026-07-07",
       "delta": 0.0
     },
     "tbill_3m": {
       "id": "DTB3",
-      "value": 3.74,
-      "date": "2026-07-06",
-      "delta": 0.06
+      "value": null,
+      "error": "HTTP Error 502: Bad Gateway"
     }
   },
   "regime_macro": "RISK_ON",
