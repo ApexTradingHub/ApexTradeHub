@@ -739,40 +739,69 @@ def _is_eod_utc() -> bool:
 
 
 def fetch_intraday_signals() -> list:
-    """Scant Momentum-Pool + Scanner-BREAKOUT/PRE-ROCKET-Signale auf INTRADAY-Momentum.
-    2026-07-10: Universe erweitert. Vorher nur ~50 Momentum-Namen (dünn, Cache oft stale).
-    Neu: + apex_signals.json BREAKOUT + PRE-ROCKET (~150 frische Scanner-Kandidaten/Tag).
-    5m-Bars von heute filtern eh streng — mehr Pool = mehr Chancen, nicht mehr Rauschen."""
-    pool = load_momentum_candidates() or []
-    tickers = {c["ticker"] for c in pool}
-
-    # 2026-07-10 Erweiterung: Scanner-Signale reinziehen
-    try:
-        sig = load_json(SCRIPT_DIR / "apex_signals.json")
-        if isinstance(sig, dict):
-            for setup_key in ("BREAKOUT", "PRE-ROCKET"):
-                for s in sig.get(setup_key, []) or []:
-                    tk = s.get("ticker") if isinstance(s, dict) else s
-                    if tk: tickers.add(tk)
-        elif isinstance(sig, list):
-            for s in sig:
-                if isinstance(s, dict) and s.get("setup") in ("BREAKOUT", "PRE-ROCKET"):
-                    tickers.add(s["ticker"])
-    except Exception as e:
-        log(f"intraday: signals-import fail {e}")
-
-    # yfinance-Batch begrenzen — > 100 crasht oft mit Rate-Limit
-    tickers = sorted(tickers)[:100]
-    if not tickers:
-        log("intraday: kein pool (momentum leer + signals leer)")
-        return []
-
+    """Scant das VOLLE US+EU-Universum auf INTRADAY-Momentum.
+    2026-07-10 Fix: Universe = us_tickers.txt + eu_tickers.txt (~826 Ticker) statt
+    apex_signals.json (das waren Daily-Basis-Kandidaten von gestern Nacht — falsche Frage).
+    Zwei Stufen: (1) 1d-Bar Pre-Filter fuer alle → Top-100 nach gain_from_open,
+    (2) 5m-Deep-Scan auf denen. Verhindert yfinance-Rate-Limit-Crash bei 800+ Ticker."""
     try:
         import yfinance as yf
     except ImportError:
+        log("intraday: yfinance not installed")
         return []
 
-    log(f"intraday: scanning {len(tickers)} tickers (momentum+scanner-signals, 5m bars heute)...")
+    # Universe laden
+    universe = []
+    for fname in ("us_tickers.txt", "eu_tickers.txt"):
+        try:
+            with open(SCRIPT_DIR / fname) as f:
+                universe += [x.strip() for x in f.read().split() if x.strip()]
+        except Exception as e:
+            log(f"intraday: {fname} load fail: {e}")
+    universe = sorted(set(universe))
+    if not universe:
+        log("intraday: universe leer")
+        return []
+    log(f"intraday: pre-filter {len(universe)} tickers mit 1d-bar...")
+
+    # Stufe 1: leichter 1d-Fetch, ranken nach gain_from_open
+    try:
+        pre = yf.download(universe, period="1d", interval="1d",
+                          progress=False, threads=True, auto_adjust=True,
+                          group_by="ticker")
+    except Exception as e:
+        log(f"intraday: pre-fetch fail {e}")
+        return []
+
+    pre_scored = []
+    for tk in universe:
+        try:
+            if hasattr(pre.columns, "levels"):
+                if tk not in pre.columns.get_level_values(0): continue
+                row = pre[tk].iloc[-1]
+            else:
+                row = pre.iloc[-1]
+            o = float(row["Open"]); c = float(row["Close"])
+            if o <= 0 or c < INTRADAY_PRICE_MIN: continue
+            gain = (c / o - 1) * 100
+            if INTRADAY_GAIN_MIN <= gain <= INTRADAY_GAIN_MAX:
+                pre_scored.append((gain, tk))
+        except Exception:
+            continue
+    pre_scored.sort(reverse=True)
+    tickers = [tk for _, tk in pre_scored[:100]]
+
+    # Momentum-Cache-Ticker sicher mit rein (in case sie schon in Bewegung sind)
+    for c in (load_momentum_candidates() or []):
+        if c.get("ticker") and c["ticker"] not in tickers and len(tickers) < 100:
+            tickers.append(c["ticker"])
+
+    if not tickers:
+        log("intraday: kein Ticker im gain-Range nach Pre-Filter")
+        return []
+    log(f"intraday: pre-filter -> {len(tickers)} kandidaten (top-gain: {tickers[:5]})")
+
+    log(f"intraday: deep-scan {len(tickers)} tickers mit 5m-bars...")
     try:
         df = yf.download(
             tickers if len(tickers) > 1 else tickers[0],
