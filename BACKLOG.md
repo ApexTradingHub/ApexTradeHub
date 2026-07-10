@@ -436,3 +436,47 @@ Kreuztabelle Sektor x QQQ-Regime:
 **FIX (live):** TECH_QQQ_GATE_ENABLED in ApexScan.py — skip BREAKOUT wenn Sektor Tech/Comm
 UND qqq_perf_20<0. Effekt: WR 57.1->59.8%, PF 2.29->2.53, Signal-Loss 6%.
 Vorbehalt: n=7, Monitoring noetig. Rollback = Flag False.
+
+---
+
+## 14. Yahoo-Screener als Intraday-Zusatzquelle (2026-07-10, zurueckgestellt)
+
+**Idee:** Intraday-Mover zusaetzlich aus einem Web-Screener ziehen (yfinance
+`Screener().set_predefined_body('...')`), nicht nur aus dem kuratierten us_tickers.txt
+(719) + eu_tickers.txt (107). Bringt Small-/Mid-Caps mit Heute-Explosion die nicht in
+unserer Blue-Chip-Liste stehen.
+
+**Warum NICHT gebaut (2026-07-10):**
+- `day_gainers` / `most_actives` liefern das **Peak-Universum** (+8% bis +30% intraday).
+  Die fallen bei INTRADAY_GAIN_MAX=6% ALLE raus — wir wollen bewusst NICHT im Blow-off kaufen.
+- Viele day_gainers sind Micro-Caps (Pump-and-Dump-Risiko) und bei eToro-Demo eh nicht handelbar.
+- Wir haben stattdessen Ansatz B gebaut: volles us+eu-Universum (826) + 5 Anti-Peak-Chase-Filter
+  (siehe #15). Erst dieses kuratierte Universum ausreizen.
+
+**Wenn spaeter reaktiviert:** NICHT `day_gainers` (Peak), sondern `small_cap_gainers` oder
+`undervalued_growth_stocks` als Screener-Slug. Die 25 Screener-Ticker in den us_tickers-Pool
+mergen, dann derselbe 2-stufige Filter (1d-Pre-Filter -> 5m-Deep-Scan). Trigger fuer
+Reaktivierung: wenn kuratiertes Universum dauerhaft < 1-2 Intras/Tag liefert UND wir mehr wollen.
+
+---
+
+## 15. Intraday-Anti-Peak-Filter — Kalibrierung beobachten (2026-07-10)
+
+**Gebaut (Commit 83da9d3):** 5 Filter im Intraday-Deep-Scan gegen "im Hoch kaufen":
+1. RANGE_POS_MAX=0.90 (nicht am absoluten Top)
+2. VOL_RATIO 1.3-5.0x (Bestaetigung, kein Blow-off)
+3. Konsolidation: letzter 5m-Bar kein neues Tageshoch (HARD-SKIP — aggressivster Filter)
+4. Time-Gate 10:00 ET (Open-Volatility raus)
+5. Gap-Filter 3% vs Vortag-Close (News-Spike raus)
+
+**Validierung:** Alle 4 heute (13:35Z) gekauften Intras (AMAT/JCI/LII/F) hatten range_pos>0.90
+= am Top gekauft, alle 4 rot. Neuer Filter haette alle 4 geskippt.
+
+**Spannung Quantitaet vs Qualitaet:** User will viele Intras/Tag. Filter reduzieren Durchsatz.
+ABER: Durchsatz-Treiber ist das Universum (1->826 Ticker), nicht der Filter. Peak-Buy-Durchsatz
+= negativer EV (heute 4/4 rot). Reconcile-Hebel wenn nach 3-4 Tagen zu duenn (grep intraday: ~/trader.log):
+1. Filter 3 (Konsolidation) Hard-Skip -> Score-Penalty (throughput-killer, schwaechst begruendet)
+2. RANGE_POS_MAX 0.90 -> 0.92
+3. VOL_RATIO_MIN 1.3 -> 1.2
+
+**Monitoring:** In 3-4 Tagen Intra-Count/Tag pruefen. Ziel grob 1-3/Tag. Bei 0/Tag -> Hebel 1 ziehen.
