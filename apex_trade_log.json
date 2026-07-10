@@ -1773,5 +1773,41 @@
     "gain_from_open": 2.99,
     "score": 28.8,
     "mode": "live"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_AMAT_2026-07-10_1535",
+    "ts": "2026-07-10T19:45:06Z",
+    "ticker": "AMAT",
+    "pnl_pct": 0.73,
+    "new_stop": 599.25,
+    "mode": "gruen->Breakeven"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_JCI_2026-07-10_1535",
+    "ts": "2026-07-10T19:45:06Z",
+    "ticker": "JCI",
+    "pnl_pct": 0.15,
+    "new_stop": 143.74,
+    "mode": "gruen->Breakeven"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_LII_2026-07-10_1535",
+    "ts": "2026-07-10T19:45:06Z",
+    "ticker": "LII",
+    "pnl_pct": -0.08,
+    "new_stop": 532.08,
+    "mode": "rot->-4%"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_F_2026-07-10_1535",
+    "ts": "2026-07-10T19:45:06Z",
+    "ticker": "F",
+    "pnl_pct": -0.07,
+    "new_stop": 13.48,
+    "mode": "rot->-4%"
   }
 ]
