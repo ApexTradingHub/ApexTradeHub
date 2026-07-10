@@ -307,5 +307,85 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "AMAT",
+    "instrument_id": 1706,
+    "size_usd": 50.0,
+    "stop": 581.28,
+    "target": 629.22,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 365438352,
+    "response": {
+      "token": "92c52910-28a7-41d7-9108-b848c26f8348",
+      "orderId": 365438352,
+      "referenceId": "7898e359-6e2d-4b7c-be16-71e479b24d3a"
+    },
+    "ts": "2026-07-10T15:35:24Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "JCI",
+    "instrument_id": 1516,
+    "size_usd": 50.0,
+    "stop": 139.43,
+    "target": 150.93,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 365345862,
+    "response": {
+      "token": "5814dd5c-9990-4ebd-ac44-599f3e4bb6ae",
+      "orderId": 365345862,
+      "referenceId": "9832d87d-e236-4ef7-9c5e-5899f4774a85"
+    },
+    "ts": "2026-07-10T15:35:26Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "LII",
+    "instrument_id": 5982,
+    "size_usd": 50.0,
+    "stop": 537.62,
+    "target": 581.96,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 365438353,
+    "response": {
+      "token": "d7c8714e-6b0c-4b4c-8130-19f6c4df8d10",
+      "orderId": 365438353,
+      "referenceId": "b50cf0d4-c2ab-4631-b1f8-74fa53badef5"
+    },
+    "ts": "2026-07-10T15:35:27Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "F",
+    "instrument_id": 1112,
+    "size_usd": 50.0,
+    "stop": 13.62,
+    "target": 14.74,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 365345863,
+    "response": {
+      "token": "04dff185-f2d1-47c7-ae53-354ec4c10e2e",
+      "orderId": 365345863,
+      "referenceId": "058d4001-ca66-48a0-bbe1-cc0807a5327a"
+    },
+    "ts": "2026-07-10T15:35:29Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
