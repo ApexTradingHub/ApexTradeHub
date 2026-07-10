@@ -186,11 +186,13 @@ MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber
 # Reaktiviert/scant NUR die bereits gefilterten Daily-Momentum-Kandidaten (leichter Fetch).
 # ---------------------------------------------------------------------------
 INTRADAY_ENABLED       = os.environ.get("INTRADAY_ENABLED", "0").strip() in ("1", "true", "True", "yes")
-# Option B (2026-06-19): Slot-Split. Swing (BREAKOUT+Momentum) max 5, Intraday reserviert 2.
-INTRADAY_RESERVED_SLOTS = 2       # fix fuer Intraday reservierte Slots
-SWING_MAX_POSITIONS     = MAX_POSITIONS - INTRADAY_RESERVED_SLOTS   # = 5 fuer Scanner+Momentum
-INTRADAY_MAX_POSITIONS = INTRADAY_RESERVED_SLOTS  # max gleichzeitige Intraday-Plays (=2)
-INTRADAY_GAIN_MIN      = 1.5     # min % vom Tages-Open (schon in Bewegung)
+# Option B (2026-06-19): Slot-Split. Swing (BREAKOUT+Momentum) max 4, Intraday reserviert 3.
+# 2026-07-10 Ausbau: Intraday ist bester EV (WR 62%, +1.73%/Trade). Reserved 2->3, Max 2->4.
+# Intraday darf in Swing-Slots wachsen wenn diese frei sind; Reservierung schuetzt nur Untergrenze.
+INTRADAY_RESERVED_SLOTS = 3       # fix fuer Intraday reservierte Slots (2->3)
+SWING_MAX_POSITIONS     = MAX_POSITIONS - INTRADAY_RESERVED_SLOTS   # = 4 fuer Scanner+Momentum
+INTRADAY_MAX_POSITIONS = 4        # max gleichzeitige Intraday-Plays (2->4)
+INTRADAY_GAIN_MIN      = 1.0     # min % vom Tages-Open (schon in Bewegung) — 1.5->1.0
 INTRADAY_GAIN_MAX      = 6.0     # max % vom Open (nicht schon erschoepft/zu spaet)
 INTRADAY_TP_PCT        = 0.05    # +5 % Target (User-Ziel)
 INTRADAY_SL_PCT        = 0.03    # -3 % Stop (intraday dreht schnell -> eng)
@@ -1311,6 +1313,11 @@ def open_position(state: dict, pending: dict, entry_actual: float):
     if TRADING_MODE in ("live", "live_dry"):
         try:
             etoro_open_position(pos)
+        except GapTooLargeError as e:
+            # 2026-07-10 Fix 3: Gap zu gross -> Paper-Rollback, kein eToro-Send.
+            log(f"  ROLLBACK paper (gap-gate): {e}")
+            state["open"].remove(pos)
+            state["cash"] += POSITION_SIZE
         except Exception as e:
             log(f"  ERR live-open: {e}")
 
@@ -1413,6 +1420,9 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 continue   # diese Stufe ist schon aktiv
             if high_se >= entry * trigger_mult:
                 new_stop = entry * sl_mult
+                # 2026-07-10 Fix (WULF-Bug): SL nie ueber current setzen, sonst Sofort-Trigger.
+                # Bei Reverse-Gap (Fix-A rebase auf ask < signal-entry) konnte SL > cur werden.
+                new_stop = min(new_stop, cur * 0.995)
                 old_stop = p["stop"]
                 p["stop"] = max(old_stop, new_stop)   # niemals nach unten
                 p["ladder_step"] = step_idx
@@ -1439,6 +1449,8 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             new_stop_rounded = round(high_se * (1 - MOMENTUM_TRAIL_GIVEBACK), 2)
             # 2026-07-07 Fix: Vergleich auf GERUNDETEM Wert (sonst Endlos-Spam: 27.1848>27.18
             # ist True, aber round(...,2)=27.18 = alter Wert. PAY spammte 65 Events in 24h).
+            # 2026-07-10 Fix (WULF-Bug): SL nie ueber current setzen.
+            new_stop_rounded = min(new_stop_rounded, round(cur * 0.995, 2))
             if new_stop_rounded > p["stop"]:
                 old_stop = p["stop"]
                 p["stop"] = new_stop_rounded
@@ -1601,6 +1613,11 @@ def _etoro_client():
     )
 
 
+class GapTooLargeError(Exception):
+    """2026-07-10 Fix 3: geworfen wenn Gap yfinance-Signal vs eToro-Ask > 3%.
+    Caller in open_position() macht Paper-Rollback (aus state.open entfernen + Cash refund)."""
+
+
 def etoro_open_position(pos: dict):
     """Sendet eine echte Market-Order an eToro (oder loggt bei live_dry).
     Speichert orderId + instrumentId zurueck ins pos-dict fuer spaeteres close/update.
@@ -1625,6 +1642,13 @@ def etoro_open_position(pos: dict):
         log(f"  [eToro] rates fetch fail: {e} — fallback yfinance-entry"); ask = None
     if ask and ask > 0 and yf_entry > 0:
         drift_pct = (ask / yf_entry - 1) * 100
+        # 2026-07-10 GAP-GATE (Fix 3): skip Chase (LW/PENG-Muster, +Gap) UND Reverse-Gap
+        # (WULF-Muster, -Gap). Bei |drift|>3% ist das Setup nicht mehr das, was der
+        # Scanner gesehen hat — Order NICHT senden, paper-side rollback.
+        if abs(drift_pct) > 3.0:
+            log(f"  [eToro] {tk} GAP-GATE skip: ask ${ask:.2f} vs yfinance ${yf_entry:.2f} "
+                f"({drift_pct:+.2f}%) — Setup drifted, order not sent")
+            raise GapTooLargeError(f"{tk}: {drift_pct:+.2f}% gap exceeds 3%")
         # Rebase
         pos["entry_actual"]      = ask
         pos["shares"]            = pos["size_usd"] / ask
