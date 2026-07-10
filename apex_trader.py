@@ -883,12 +883,16 @@ def fetch_intraday_signals() -> list:
             vol_ratio = (today_vol / avg_vol) if avg_vol > 0 else None
             if vol_ratio is not None and not (INTRADAY_VOL_RATIO_MIN <= vol_ratio <= INTRADAY_VOL_RATIO_MAX):
                 continue
-            # (3) Konsolidation: letzter Bar darf NICHT neues Tageshoch sein (= Pause statt FOMO-Spike)
+            # (3) Konsolidation: letzter Bar neues Tageshoch = vertikaler FOMO-Spike statt Pullback.
+            # 2026-07-10: SOFT-Penalty statt Hard-Skip (war throughput-killer). Ticker fliegt nicht
+            # raus, rankt nur niedriger — Pullback-Entries werden bevorzugt, aber starke Trendtage
+            # (neues High auf letztem Bar) nicht komplett ausgeschlossen.
+            consol_penalty = 0.0
             if len(h) >= INTRADAY_CONSOL_BARS:
                 recent_high = float(h.iloc[-INTRADAY_CONSOL_BARS:].max())
                 last_bar_high = float(h.iloc[-1])
                 if last_bar_high >= recent_high and last_bar_high >= hi_today:
-                    continue   # letzter Bar macht neues Tageshoch -> vertikal, kein Pullback-Entry
+                    consol_penalty = 15.0   # vertikal -> Score-Malus (nicht Skip)
             # (4) Time-Gate: kein Entry vor INTRADAY_MIN_ET_HOUR (Open-Volatility-Falle)
             try:
                 last_ts = c.index[-1]
@@ -904,10 +908,11 @@ def fetch_intraday_signals() -> list:
                 if abs(gap_pct) > INTRADAY_GAP_MAX_PCT:
                     continue
 
-            # Score: gain + range-position + vwap-distanz + vol-ratio-bonus
+            # Score: gain + range-position + vwap-distanz + vol-ratio-bonus - consol-penalty
             score = gain_from_open * 3 + range_pos * 20 + ((last / vwap - 1) * 100) * 2
             if vol_ratio is not None:
                 score += min(vol_ratio, 3.0) * 3   # moderater Vol-Bonus, gedeckelt
+            score -= consol_penalty                # Filter 3: vertikaler Spike rankt niedriger
             cands.append({
                 "ticker": t,
                 "last": round(last, 2),
@@ -915,6 +920,7 @@ def fetch_intraday_signals() -> list:
                 "range_pos": round(range_pos, 2),
                 "above_vwap": above_vwap,
                 "vol_ratio": round(vol_ratio, 2) if vol_ratio is not None else None,
+                "consol_penalty": consol_penalty,
                 "score": round(score, 1),
             })
         except Exception:
