@@ -198,6 +198,13 @@ INTRADAY_TP_PCT        = 0.05    # +5 % Target (User-Ziel)
 INTRADAY_SL_PCT        = 0.03    # -3 % Stop (intraday dreht schnell -> eng)
 INTRADAY_PRICE_MIN     = 5.0     # keine Penny-Stocks
 INTRADAY_RANGE_POS_MIN = 0.55    # last muss im oberen Teil der Tagesspanne sein (Momentum intakt)
+# 2026-07-10 Anti-Peak-Chase (Ansatz B): 5 Filter gegen "im Hoch kaufen".
+INTRADAY_RANGE_POS_MAX = 0.90    # NICHT am absoluten Top (>0.90 = parabolisch, mean-revert-Gefahr)
+INTRADAY_VOL_RATIO_MIN = 1.3     # heute-Vol vs. Vortage-Schnitt (Bestaetigung, kein toter Move)
+INTRADAY_VOL_RATIO_MAX = 5.0     # >5x = Blow-off/Panik-Bid, meist Distribution
+INTRADAY_CONSOL_BARS   = 3       # letzte N 5m-Bars: kein neues High im letzten Bar (= Pause statt FOMO)
+INTRADAY_MIN_ET_HOUR   = 10      # kein Entry vor 10:00 ET (Open-Volatility ist Falle)
+INTRADAY_GAP_MAX_PCT   = 3.0     # Open vs Vortag-Close: >3% Gap = News-Spike, nicht reine Intraday-Kraft
 INTRADAY_EOD_UTC       = "19:45" # Hard-Close ab dieser UTC-Zeit (15 Min vor US-Close 20:00)
 INTRADAY_CACHE         = SCRIPT_DIR / "apex_intraday_cache.json"
 
@@ -762,27 +769,36 @@ def fetch_intraday_signals() -> list:
     if not universe:
         log("intraday: universe leer")
         return []
-    log(f"intraday: pre-filter {len(universe)} tickers mit 1d-bar...")
+    log(f"intraday: pre-filter {len(universe)} tickers mit 10d-bar (gap+vol-baseline)...")
 
-    # Stufe 1: leichter 1d-Fetch, ranken nach gain_from_open
+    # Stufe 1: 10d-Fetch — liefert gain_from_open (heute), prev-close (Gap-Filter),
+    # avg-Volumen der Vortage (Vol-Ratio-Baseline). daily_ctx merkt sich pro Ticker.
     try:
-        pre = yf.download(universe, period="1d", interval="1d",
+        pre = yf.download(universe, period="10d", interval="1d",
                           progress=False, threads=True, auto_adjust=True,
                           group_by="ticker")
     except Exception as e:
         log(f"intraday: pre-fetch fail {e}")
         return []
 
+    daily_ctx = {}   # ticker -> {prev_close, avg_vol}
     pre_scored = []
     for tk in universe:
         try:
             if hasattr(pre.columns, "levels"):
                 if tk not in pre.columns.get_level_values(0): continue
-                row = pre[tk].iloc[-1]
+                tdf = pre[tk].dropna()
             else:
-                row = pre.iloc[-1]
-            o = float(row["Open"]); c = float(row["Close"])
+                tdf = pre.dropna()
+            if len(tdf) < 2: continue
+            today_row = tdf.iloc[-1]
+            o = float(today_row["Open"]); c = float(today_row["Close"])
             if o <= 0 or c < INTRADAY_PRICE_MIN: continue
+            prev_close = float(tdf["Close"].iloc[-2])
+            # avg-Vol der Vortage (ohne heute)
+            prior_vol = tdf["Volume"].iloc[:-1]
+            avg_vol = float(prior_vol.mean()) if len(prior_vol) else 0.0
+            daily_ctx[tk] = {"prev_close": prev_close, "avg_vol": avg_vol}
             gain = (c / o - 1) * 100
             if INTRADAY_GAIN_MIN <= gain <= INTRADAY_GAIN_MAX:
                 pre_scored.append((gain, tk))
@@ -848,7 +864,7 @@ def fetch_intraday_signals() -> list:
             rng = hi_today - lo_today
             range_pos = (last - lo_today) / rng if rng > 0 else 0.5
 
-            # === Intraday-Entry-Filter ===
+            # === Basis-Filter ===
             if not (INTRADAY_GAIN_MIN <= gain_from_open <= INTRADAY_GAIN_MAX):
                 continue
             if not above_vwap:
@@ -856,14 +872,49 @@ def fetch_intraday_signals() -> list:
             if range_pos < INTRADAY_RANGE_POS_MIN:
                 continue
 
-            # Score: gain + range-position + vwap-distanz (alles intraday)
+            # === Anti-Peak-Chase-Filter (2026-07-10, Ansatz B) ===
+            ctx = daily_ctx.get(t, {})
+            # (1) Range-Pos-OBERGRENZE: nicht am absoluten Top kaufen
+            if range_pos > INTRADAY_RANGE_POS_MAX:
+                continue
+            # (2) Volume-Ratio: heute-Vol vs Vortage-Schnitt — Bestaetigung, kein Blow-off
+            avg_vol = ctx.get("avg_vol", 0.0)
+            today_vol = float(v.sum())
+            vol_ratio = (today_vol / avg_vol) if avg_vol > 0 else None
+            if vol_ratio is not None and not (INTRADAY_VOL_RATIO_MIN <= vol_ratio <= INTRADAY_VOL_RATIO_MAX):
+                continue
+            # (3) Konsolidation: letzter Bar darf NICHT neues Tageshoch sein (= Pause statt FOMO-Spike)
+            if len(h) >= INTRADAY_CONSOL_BARS:
+                recent_high = float(h.iloc[-INTRADAY_CONSOL_BARS:].max())
+                last_bar_high = float(h.iloc[-1])
+                if last_bar_high >= recent_high and last_bar_high >= hi_today:
+                    continue   # letzter Bar macht neues Tageshoch -> vertikal, kein Pullback-Entry
+            # (4) Time-Gate: kein Entry vor INTRADAY_MIN_ET_HOUR (Open-Volatility-Falle)
+            try:
+                last_ts = c.index[-1]
+                et_hour = last_ts.tz_convert("America/New_York").hour if last_ts.tzinfo else last_ts.hour
+                if et_hour < INTRADAY_MIN_ET_HOUR:
+                    continue
+            except Exception:
+                pass
+            # (5) Gap-Filter: Open vs Vortag-Close — >Gap = News-Spike, nicht reine Intraday-Kraft
+            prev_close = ctx.get("prev_close", 0.0)
+            if prev_close > 0:
+                gap_pct = (open_today / prev_close - 1) * 100
+                if abs(gap_pct) > INTRADAY_GAP_MAX_PCT:
+                    continue
+
+            # Score: gain + range-position + vwap-distanz + vol-ratio-bonus
             score = gain_from_open * 3 + range_pos * 20 + ((last / vwap - 1) * 100) * 2
+            if vol_ratio is not None:
+                score += min(vol_ratio, 3.0) * 3   # moderater Vol-Bonus, gedeckelt
             cands.append({
                 "ticker": t,
                 "last": round(last, 2),
                 "gain_from_open": round(gain_from_open, 2),
                 "range_pos": round(range_pos, 2),
                 "above_vwap": above_vwap,
+                "vol_ratio": round(vol_ratio, 2) if vol_ratio is not None else None,
                 "score": round(score, 1),
             })
         except Exception:
