@@ -274,5 +274,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "AES",
+    "instrument_id": 1590,
+    "size_usd": 50.0,
+    "stop": 14.31,
+    "target": 16.0,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 365345435,
+    "response": {
+      "token": "3af24163-d9b0-4c24-a308-4aa372fa33c3",
+      "orderId": 365345435,
+      "referenceId": "3d2d1302-1b8f-4215-9789-4d65f3a45d56"
+    },
+    "ts": "2026-07-10T13:35:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
