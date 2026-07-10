@@ -2,7 +2,7 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 73.2184836867367,
-  "last_updated": "2026-07-10T19:45:02Z",
+  "last_updated": "2026-07-10T19:50:03Z",
   "pending": [
     {
       "id": "PAPER_OGN_2026-07-07",
@@ -45,9 +45,9 @@
       "ladder_step": 3,
       "opened_at": "2026-06-29T13:50:07Z",
       "status": "open",
-      "current_price": 28.399999618530273,
-      "pnl_pct": 19.22753980849643,
-      "pnl_usd": 9.613769904248215,
+      "current_price": 28.360000610351562,
+      "pnl_pct": 19.059617857651894,
+      "pnl_usd": 9.529808928825947,
       "hold_days": 11,
       "intraday_rescued": true,
       "hold_trading_days": 9,
@@ -77,9 +77,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-09T13:35:07Z",
-      "current_price": 187.19000244140625,
-      "pnl_pct": -0.16000723163569208,
-      "pnl_usd": -0.08000361581784604,
+      "current_price": 187.2449951171875,
+      "pnl_pct": -0.13067624023281726,
+      "pnl_usd": -0.06533812011640863,
       "hold_days": 1,
       "yfinance_entry": 178.43775,
       "etoro_ask_at_open": 187.49,
@@ -165,9 +165,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-10T15:35:20Z",
       "status": "open",
-      "current_price": 603.635009765625,
-      "pnl_pct": 0.7317496479974969,
-      "pnl_usd": 0.36587482399874843,
+      "current_price": 602.5499877929688,
+      "pnl_pct": 0.5506863233990406,
+      "pnl_usd": 0.2753431616995203,
       "hold_days": 0,
       "yfinance_entry": 599.1099853515625,
       "etoro_ask_at_open": 599.25,
@@ -184,7 +184,8 @@
       "etoro_current_rate": 599.21,
       "etoro_units": 0.083439,
       "etoro_open_date": "2026-07-10T15:35:23.91Z",
-      "intraday_rescued": true
+      "intraday_rescued": true,
+      "hold_trading_days": 0
     },
     {
       "id": "PAPER_INTRA_JCI_2026-07-10_1535",
@@ -208,9 +209,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-10T15:35:24Z",
       "status": "open",
-      "current_price": 143.9499969482422,
-      "pnl_pct": 0.14609499668998077,
-      "pnl_usd": 0.07304749834499039,
+      "current_price": 144.02999877929688,
+      "pnl_pct": 0.20175231619372888,
+      "pnl_usd": 0.10087615809686444,
       "hold_days": 0,
       "yfinance_entry": 143.80999755859375,
       "etoro_ask_at_open": 143.74,
@@ -227,7 +228,8 @@
       "etoro_current_rate": 143.73,
       "etoro_units": 0.34785,
       "etoro_open_date": "2026-07-10T15:35:25.393Z",
-      "intraday_rescued": true
+      "intraday_rescued": true,
+      "hold_trading_days": 0
     },
     {
       "id": "PAPER_INTRA_LII_2026-07-10_1535",
@@ -251,9 +253,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-10T15:35:26Z",
       "status": "open",
-      "current_price": 553.7999877929688,
-      "pnl_pct": -0.08119300081754624,
-      "pnl_usd": -0.04059650040877312,
+      "current_price": 554.0,
+      "pnl_pct": -0.04510599909788002,
+      "pnl_usd": -0.02255299954894001,
       "hold_days": 0,
       "yfinance_entry": 554.2498779296875,
       "etoro_ask_at_open": 554.25,
@@ -270,7 +272,8 @@
       "etoro_current_rate": 554.23,
       "etoro_units": 0.090211,
       "etoro_open_date": "2026-07-10T15:35:26.907Z",
-      "intraday_rescued": true
+      "intraday_rescued": true,
+      "hold_trading_days": 0
     },
     {
       "id": "PAPER_INTRA_F_2026-07-10_1535",
@@ -294,9 +297,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-10T15:35:27Z",
       "status": "open",
-      "current_price": 14.029899597167969,
-      "pnl_pct": -0.07194019111132763,
-      "pnl_usd": -0.035970095555663814,
+      "current_price": 14.015000343322754,
+      "pnl_pct": -0.178060232743912,
+      "pnl_usd": -0.089030116371956,
       "hold_days": 0,
       "yfinance_entry": 14.039999961853027,
       "etoro_ask_at_open": 14.04,
@@ -313,7 +316,8 @@
       "etoro_current_rate": 14.03,
       "etoro_units": 3.561253,
       "etoro_open_date": "2026-07-10T15:35:28.597Z",
-      "intraday_rescued": true
+      "intraday_rescued": true,
+      "hold_trading_days": 0
     }
   ],
   "closed": [
@@ -2224,7 +2228,7 @@
     "losses": 22,
     "win_rate": 57.692307692307686,
     "pnl_realized": 23.217395980713878,
-    "pnl_unrealized": 9.896123564449727,
-    "equity": 433.11460725118644
+    "pnl_unrealized": 9.729108562225083,
+    "equity": 432.94759224896177
   }
 }
