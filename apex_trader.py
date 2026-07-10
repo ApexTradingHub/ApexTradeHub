@@ -739,20 +739,40 @@ def _is_eod_utc() -> bool:
 
 
 def fetch_intraday_signals() -> list:
-    """Scant die (bereits gefilterten) Daily-Momentum-Kandidaten auf INTRADAY-Momentum.
-    Leichter Fetch: nur die ~50 Momentum-Namen, 5m-Bars von heute. Returns ranked candidates."""
-    pool = load_momentum_candidates()  # ~50 vorgefilterte Namen (reuse, kein extra Universe-Fetch)
-    if not pool:
-        log("intraday: kein momentum-pool")
+    """Scant Momentum-Pool + Scanner-BREAKOUT/PRE-ROCKET-Signale auf INTRADAY-Momentum.
+    2026-07-10: Universe erweitert. Vorher nur ~50 Momentum-Namen (dünn, Cache oft stale).
+    Neu: + apex_signals.json BREAKOUT + PRE-ROCKET (~150 frische Scanner-Kandidaten/Tag).
+    5m-Bars von heute filtern eh streng — mehr Pool = mehr Chancen, nicht mehr Rauschen."""
+    pool = load_momentum_candidates() or []
+    tickers = {c["ticker"] for c in pool}
+
+    # 2026-07-10 Erweiterung: Scanner-Signale reinziehen
+    try:
+        sig = load_json(SCRIPT_DIR / "apex_signals.json")
+        if isinstance(sig, dict):
+            for setup_key in ("BREAKOUT", "PRE-ROCKET"):
+                for s in sig.get(setup_key, []) or []:
+                    tk = s.get("ticker") if isinstance(s, dict) else s
+                    if tk: tickers.add(tk)
+        elif isinstance(sig, list):
+            for s in sig:
+                if isinstance(s, dict) and s.get("setup") in ("BREAKOUT", "PRE-ROCKET"):
+                    tickers.add(s["ticker"])
+    except Exception as e:
+        log(f"intraday: signals-import fail {e}")
+
+    # yfinance-Batch begrenzen — > 100 crasht oft mit Rate-Limit
+    tickers = sorted(tickers)[:100]
+    if not tickers:
+        log("intraday: kein pool (momentum leer + signals leer)")
         return []
-    tickers = [c["ticker"] for c in pool]
 
     try:
         import yfinance as yf
     except ImportError:
         return []
 
-    log(f"intraday: scanning {len(tickers)} momentum-namen (5m bars heute)...")
+    log(f"intraday: scanning {len(tickers)} tickers (momentum+scanner-signals, 5m bars heute)...")
     try:
         df = yf.download(
             tickers if len(tickers) > 1 else tickers[0],
