@@ -578,3 +578,24 @@ CRH.L raus (jetzt NYSE, in us_tickers), AHOG.AS->AD.AS, DSMFP.AS->DSFIR.AS, ROG.
 3. **Handelszeiten-Ueberlappung:** Trader-Cron laeuft 13-21 UTC (US-Stunden), Xetra
    schliesst 15:30 UTC — EU-Trigger feuern nur im Overlap-Fenster, Exits auf stale
    Kursen moeglich. Bei >5 EU-Positionen: EU-spezifisches Zeitfenster diskutieren.
+
+---
+
+## 19. Ticker-Winrate-Bonus (±10) — nie validiert, Inflations-Verdacht (2026-07-11)
+
+**Kontext (Deepsearch):** `score += (wr - 50) * 0.2` aus ticker_winrate.json (ApexScan
+~Z. 1330). Existiert NICHT im Backtest (pfadabhaengig auf Live-Knowledge) — also nie
+gegen 2 Jahre validiert. Mechanisch prozyklisch: Ticker die zuletzt gewonnen haben
+kriegen +Bonus -> Re-Entry am Top wird belohnt. Waechst mit der Knowledge-DB =
+plausible Quelle der Score-Inflation (Median Maerz 85.7 -> Juni 115.3).
+
+**Pruef-Rezept (eigene Session, ~2h):**
+1. Git-History von ticker_winrate.json: Snapshots pro Signal-Datum auschecken
+   (`git log --format='%H %ad' -- ticker_winrate.json`), Bonus pro Signal rekonstruieren.
+2. Join mit equity_results: Lift der Bonus-Traeger vs Nicht-Traeger (WR-Differenz).
+3. Wenn Lift <= 0: entfernen (wie Sektor-Bonus #12). Signal-Count-Check Pflicht
+   (Bonus bis ±10, Gate-Naehe pruefen).
+
+**Warum geparkt:** Sektor-Bonus-Entfernung + TG_SWEET_BAND (beide 2026-07-11 live)
+zuerst 2-4 Wochen wirken lassen — nicht drei Score-Aenderungen gleichzeitig, sonst
+ist Attribution unmoeglich.
