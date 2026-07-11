@@ -108,8 +108,22 @@ def suppress_output():
         sys.stderr = old_err
 
 
+# 2026-07-11 AP4-Fix (BACKLOG #18): .replace(".","-") ersetzte ALLE Punkte ->
+# SAP.DE wurde SAP-DE (bei Yahoo unbekannt) -> EU-Universe war seit Tag 1 stumm
+# (0 Frames, 0 Signale in 4 Monaten). Yahoo-Format: Class-Shares mit Bindestrich
+# (BRK.B -> BRK-B), Boersen-Suffixe mit Punkt (SAP.DE bleibt SAP.DE).
+# Whitelist = Suffixe unseres EU-Universe; bei Universe-Erweiterung ergaenzen.
+EXCHANGE_SUFFIXES = {"DE", "PA", "AS", "SW", "L", "MC", "MI"}
+
+
 def normalize_ticker(ticker: str) -> str:
-    return str(ticker).strip().upper().replace(".", "-")
+    t = str(ticker).strip().upper()
+    if "." in t:
+        head, _, tail = t.rpartition(".")
+        if tail in EXCHANGE_SUFFIXES:
+            return head.replace(".", "-") + "." + tail
+        return t.replace(".", "-")
+    return t
 
 
 def unique_keep_order(items):

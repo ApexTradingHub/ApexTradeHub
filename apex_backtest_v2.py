@@ -198,10 +198,25 @@ def percent_change(current, past):
     return ((float(current) / float(past)) - 1) * 100
 
 
+# 2026-07-11 AP4-Fix (BACKLOG #18): Punkte nur bei Class-Shares ersetzen,
+# Boersen-Suffixe behalten (SAP.DE). Gleiche Logik wie ApexScan.normalize_ticker.
+EXCHANGE_SUFFIXES = {"DE", "PA", "AS", "SW", "L", "MC", "MI"}
+
+
+def _normalize_ticker(t):
+    t = str(t).strip().upper()
+    if "." in t:
+        head, _, tail = t.rpartition(".")
+        if tail in EXCHANGE_SUFFIXES:
+            return head.replace(".", "-") + "." + tail
+        return t.replace(".", "-")
+    return t
+
+
 def load_tickers(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
-            return [t.strip().upper().replace(".", "-")
+            return [_normalize_ticker(t)
                     for t in f if t.strip()
                     and t.strip().upper() not in DEAD_TICKERS
                     and t.strip().upper() not in BAD_PERFORMERS]

@@ -545,3 +545,31 @@ apex_score_v2_stage2_compare.py. Ergebnis-Files bt_baseline_2y.json / bt_scorev2
 **AP5 (Soft-Diversity-Nudge) Status:** war auf "nach AP2-Entscheid" gated. Entscheid =
 Score bleibt. Nudge-Rationale (10 Score-Punkte tragen ~keine Info) gilt weiterhin —
 falls angepackt, gegen den BESTEHENDEN Score backtesten (Replay-Plan im Brief §AP5).
+
+---
+
+## 18. EU-Universe-Bug — GEFIXT: normalize_ticker zerstoerte Suffixe (2026-07-11, AP4)
+
+**Root-Cause (Brief §1.6 "0 EU-Signale in 4 Monaten"):** `normalize_ticker()` ersetzte
+ALLE Punkte durch Bindestriche (gebaut fuer US-Class-Shares BRK.B -> BRK-B). Damit wurde
+`SAP.DE` zu `SAP-DE` — bei Yahoo unbekannt -> **0/106 EU-Frames seit Tag 1**. Die
+Liquiditaets-Hypothese war falsch (P10 avg_dv = $46M, 0/102 unter der $500k-Schwelle).
+Derselbe Bug war in apex_backtest_v2.py load_tickers -> **alle bisherigen Backtests
+liefen faktisch US-only** (Vergleiche bleiben gueltig, beide Seiten gleich betroffen).
+
+**Fix:** EXCHANGE_SUFFIXES-Whitelist {DE,PA,AS,SW,L,MC,MI} in ApexScan.normalize_ticker
++ apex_backtest_v2._normalize_ticker. Class-Shares weiter BRK.B->BRK-B, Suffixe bleiben.
+Diagnose-Tool: apex_eu_diagnose.py (pro-Ticker Drop-Grund + avg_dv-Verteilung).
+
+**Nach Fix (Diagnose-Lauf 07-11):** 102/106 Frames OK. Drop-Gruende sind NORMALE
+Tagesfilter (fail_trend 54, fail_volume 43 = Setup-Vol-Confirm). Stale Ticker bereinigt:
+CRH.L raus (jetzt NYSE, in us_tickers), AHOG.AS->AD.AS, DSMFP.AS->DSFIR.AS, ROG.SW->RO.SW.
+
+**Offene Punkte (Monitoring):**
+1. **30 EU-Signale sammeln, dann getrennt auswerten** (Edge unbekannt — es gab nie eins).
+2. **eToro-Handelbarkeit pruefen** beim ersten EU-Trigger: resolve_ticker nutzt
+   internalSymbolFull (SAP.DE funktioniert lt. reference_etoro_api, andere Suffixe
+   ungetestet). Resolve-Fail = graceful skip (Paper-only), aber beobachten.
+3. **Handelszeiten-Ueberlappung:** Trader-Cron laeuft 13-21 UTC (US-Stunden), Xetra
+   schliesst 15:30 UTC — EU-Trigger feuern nur im Overlap-Fenster, Exits auf stale
+   Kursen moeglich. Bei >5 EU-Positionen: EU-spezifisches Zeitfenster diskutieren.

@@ -1,0 +1,52 @@
+{
+  "date": "2026-07-11T17:48",
+  "universe": 106,
+  "frames": 102,
+  "no_frame": [
+    "ROG.SW",
+    "CRH.L",
+    "AHOG.AS",
+    "DSMFP.AS"
+  ],
+  "drop_reasons": {
+    "fail_trend": 54,
+    "fail_volume": 43,
+    "fail_setup": 2,
+    "fail_rsi": 2,
+    "fail_base": 1
+  },
+  "examples": {
+    "fail_trend": [
+      "SAP.DE",
+      "SIE.DE",
+      "BMW.DE",
+      "VOW3.DE",
+      "MBG.DE",
+      "BAS.DE",
+      "DTE.DE",
+      "RWE.DE"
+    ],
+    "fail_volume": [
+      "ALV.DE",
+      "MUV2.DE",
+      "BAYN.DE",
+      "DBK.DE",
+      "DHL.DE",
+      "ADS.DE",
+      "HNR1.DE",
+      "HEN3.DE"
+    ],
+    "fail_setup": [
+      "CBK.DE",
+      "NWG.L"
+    ],
+    "fail_rsi": [
+      "SLHN.SW",
+      "EZJ.L"
+    ],
+    "fail_base": [
+      "HEIA.AS"
+    ]
+  },
+  "passed": []
+}
