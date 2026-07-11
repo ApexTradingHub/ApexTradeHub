@@ -112,6 +112,39 @@ SCORE_REALIGN = False
 # Zielt aufs ASML-Fade-Profil (extended + schwache Bestaetigung + KEIN starker Catalyst).
 # Carve-Out schuetzt Semi/AI-Capex-Winner (what_to_replicate). Siehe SCORE_REBUILD_STRATEGY.md.
 SCORE_REBUILD = False
+
+# SCORE_V2 Stufe 2 (2026-07-11, opt-in via --score-v2): LogReg-Ranking aus
+# score_v2_model.json (Stufe-1-Fit, Train <=2026-05-31). REINES RE-RANKING der
+# Pick-Stufe — Signal-Generierung + Gates laufen unveraendert auf dem Original-Score.
+# short_pct-Feature fehlt im Backtest -> Train-Mean (standardisiert 0, neutral).
+SCORE_V2 = False
+SCORE_V2_MODEL = None
+
+
+def _score_v2_prob(sig):
+    """LogReg-Wahrscheinlichkeit aus dem frozen Stufe-1-Modell. Within-Day-Sortierung
+    nach prob = identisches Ranking wie Tages-Perzentil (monotone Transformation)."""
+    import math as _math
+    m = SCORE_V2_MODEL
+    mu, sd, w, b = m["mu"], m["sd"], m["weights"], m["bias"]
+    x = [
+        float(sig.get("rsi") or 50),
+        1.0 if sig.get("macd_bull") else 0.0,
+        min(float(sig.get("vol_ratio") or 1), 5.0),
+        min(float(sig.get("rr") or 2), 5.0),
+        min(max(float(sig.get("perf_20") or 0), -20), 40),
+        min(max(float(sig.get("perf_60") or 0), -30), 60),
+        min(max(float(sig.get("perf_120") or 0), -40), 100),
+        min(float(sig.get("base_range") or 15), 40),
+        float(sig.get("movement_bonus") or 0),
+        float(sig.get("closing_strength") or 0.5),
+        1.0 if sig.get("cat_pocket_pivot") else 0.0,
+        1.0 if sig.get("cat_vol_climax") else 0.0,
+        min(max(float(sig.get("cat_gap_pct") or 0), -5), 10),
+        mu[13],   # short_pct: im Backtest nicht verfuegbar -> neutral (Train-Mean)
+    ]
+    z = b + sum(wj * (xi - mui) / sdi for wj, xi, mui, sdi in zip(w, x, mu, sd))
+    return 1 / (1 + _math.exp(-max(min(z, 30), -30)))
 EXT_PENALTY   = 12.0   # Penalty-Hoehe (Sweep 2026-06-20: -12 = perfekte Monotonie -0pp, alle Signale)
 
 HORIZON_DAYS = {
@@ -961,6 +994,13 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         "perf_120":         round(perf_120, 1),
         "rsi":              round(rsi14, 1),
         "strong_catalyst":  strong_catalyst,
+        # SCORE_V2 Stufe 2 (2026-07-11): Features fuer LogReg-Ranking (reine Metadaten)
+        "macd_bull":        bool(macd_bull),
+        "base_range":       round(base_range, 1) if base_range is not None else None,
+        "movement_bonus":   movement_bonus,
+        "cat_pocket_pivot": bool(catalysts.get("pocket_pivot_recent")),
+        "cat_vol_climax":   bool(catalysts.get("volume_climax")),
+        "cat_gap_pct":      round(catalysts.get("up_gap_pct", 0) or 0, 2),
         # Phase G metadata
         "vcp_contraction":   vcp_data["contraction_pct"] if chosen_setup == "VCP" else None,
         "squeeze_short_pct": squeeze_data["short_pct"] if chosen_setup == "SHORT_SQUEEZE" else None,
@@ -1238,7 +1278,14 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
             signals_today.append(sig)
 
         # Sort by score, take top MAX_OPEN_TRADES
-        signals_today.sort(key=lambda x: x["score"], reverse=True)
+        # SCORE_V2: Pick-Ranking nach LogReg-prob (= Tages-Perzentil-Ranking).
+        # Original-Score bleibt fuer Gates/Filter unveraendert (reines Re-Ranking).
+        if SCORE_V2:
+            for sig in signals_today:
+                sig["v2_prob"] = round(_score_v2_prob(sig), 4)
+            signals_today.sort(key=lambda x: x["v2_prob"], reverse=True)
+        else:
+            signals_today.sort(key=lambda x: x["score"], reverse=True)
         for sig in signals_today[:MAX_OPEN_TRADES]:
             ticker  = sig["ticker"]
             full_df = all_data[ticker]
@@ -1282,6 +1329,7 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
                 "movement_class":   sig.get("movement_class"),
                 "closing_strength": sig.get("closing_strength"),
                 "strong_catalyst":  sig.get("strong_catalyst"),
+                "v2_prob":          sig.get("v2_prob"),
             })
 
     return trades, eq_curve
@@ -1424,6 +1472,8 @@ def main():
     parser.add_argument("--score-realign", action="store_true",
                         help="BREAKOUT-Score an gemessene WR-Kohorten aligniern: RSI 48-72, "
                              "perf_120 0-25 Penalty, 25-50 Sweet-Spot (default off)")
+    parser.add_argument("--score-v2", action="store_true",
+                        help="SCORE_V2 Stufe 2: Pick-Ranking via LogReg (score_v2_model.json)")
     parser.add_argument("--score-rebuild", action="store_true",
                         help="Hebel B: Extension-Penalty mit Catalyst-Carve-Out (default off)")
     parser.add_argument("--ext-penalty", type=float, default=12.0,
@@ -1445,6 +1495,13 @@ def main():
     SCORE_REALIGN = args.score_realign
     SCORE_REBUILD = args.score_rebuild
     EXT_PENALTY = args.ext_penalty
+    global SCORE_V2, SCORE_V2_MODEL
+    SCORE_V2 = args.score_v2
+    if SCORE_V2:
+        with open("score_v2_model.json", encoding="utf-8") as f:
+            SCORE_V2_MODEL = json.load(f)
+        print(f"[TEST] SCORE_V2=ON (LogReg-Ranking, Train {SCORE_V2_MODEL['train_window']}, "
+              f"n_train={SCORE_V2_MODEL['n_train']}) — Pick-Stufe re-ranked, Gates unveraendert")
     if SCORE_REBUILD:
         print(f"[TEST] SCORE_REBUILD=ON (Hebel B-korr: Extension-Penalty -{EXT_PENALTY:.0f} fuer "
               f"perf120>50 + kein-strong-Catalyst; Carve-Out: PP+VolClimax/EarnBeat/Gap>=5)")

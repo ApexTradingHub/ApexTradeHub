@@ -504,3 +504,44 @@ Stattdessen Shadow-Logging live (AP1 Schritt 1b, seit 2026-07-11): range_pos_eod
 above_vwap_eod, dist_to_day_low_pct, high_since_entry_pct im intraday_to_swing-Event.
 Bei n>=15 neuen Konvertierungen pruefen ob range_pos_eod<0.4 (Spike-Fade) Turner von
 Bleedern trennt. Sim-Skript: scratchpad g3_sim.py (Session 07-11), Rezept im Brief §AP1.
+
+---
+
+## 17. SCORE_V2 (LogReg-Rekalibrierung) — FALSIFIZIERT in Stufe 2 (2026-07-11)
+
+**Kontext:** Brief AP2 (CLAUDE_CODE_BRIEF_2026-07-10_SIGNAL_QUALITY.md) — Score war
+rangpraediktiv tot (Spearman -0.066 auf Live-Join n=137). Dreistufiger Plan mit
+vorab fixierten Gates.
+
+**Stufe 1 (Offline-Join-Replay, Commit 05ce1fc):**
+- V2a (Ballast raus ohne Fit): OOS-Spearman -0.119 -> NO-GO.
+  **Lehre: Ballast-Entfernung allein heilt das Ranking nicht.**
+- Baseline-Perzentil (score_pct): -0.202 -> **Inflation ist nicht das Kernproblem.**
+- V2b_pct (LogReg + Tages-Perzentil): +0.233, TopQ-WR 69.2% -> formal GO.
+  ABER Ablation: GO hing KOMPLETT am negativ gelernten movement_bonus-Gewicht
+  (ohne: -0.013). Die Ein-Regime-Inversion vor der der Brief warnte.
+
+**Stufe 2 (2J-Backtest, --score-v2 Flag, 504 Handelstage, Pick-Stufe Top-5/Tag):**
+| | n | WR | PF | Sum |
+|---|---|---|---|---|
+| Baseline (--score-realign) | 203 | 50.2% | 2.02 | +454% |
+| SCORE_V2 | 209 | 45.5% | 1.57 | +266% |
+- WR-Kriterium (>= +2pp) FAIL, PF-Kriterium FAIL -> **NO-GO, verworfen.**
+
+**Kern-Lehren:**
+1. Der movement_bonus-Flip generalisiert NICHT — 2026-Regime-Artefakt. Brief-Warnung
+   ("Vorzeichen NICHT flippen") war korrekt, der 2J-Test hat sie bestaetigt.
+2. WICHTIGE NUANCE: Der aktuelle Score funktioniert als PICK-RANKER ueber 2 Jahre
+   weiterhin (Top-5/Tag: WR 50.2%, PF 2.02, profitabel). Die tote Spearman-Korrelation
+   im 2026-Live-Sample ist womoeglich Regime-Rauschen, nicht struktureller Verfall.
+   Score-Anfassen hat aktuell KEINE datengestuetzte Grundlage.
+3. Walk-Forward auf EIN Regime (Maerz-Juli 2026) reicht nicht als Gate — der
+   2J-Backtest als Stufe-2-Pflicht hat den Fehlschluss abgefangen. Prozess beibehalten.
+
+**Artefakte (opt-in, kein Live-Effekt):** --score-v2 Flag + Feature-Metadaten in
+apex_backtest_v2.py, score_v2_model.json (frozen, mit Caveat), apex_score_v2_stage1.py,
+apex_score_v2_stage2_compare.py. Ergebnis-Files bt_baseline_2y.json / bt_scorev2_2y.json.
+
+**AP5 (Soft-Diversity-Nudge) Status:** war auf "nach AP2-Entscheid" gated. Entscheid =
+Score bleibt. Nudge-Rationale (10 Score-Punkte tragen ~keine Info) gilt weiterhin —
+falls angepackt, gegen den BESTEHENDEN Score backtesten (Replay-Plan im Brief §AP5).
