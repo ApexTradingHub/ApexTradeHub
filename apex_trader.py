@@ -558,6 +558,30 @@ def fetch_trending_universe(limit: int = 25) -> list:
     return list(syms)
 
 
+_SECTOR_CACHE = None
+
+def _sector_for(ticker: str) -> str:
+    """2026-07-11 AP3: Sektor-Lookup fuer Filler/Intraday-Kandidaten (vorher hardcoded
+    "Unknown" -> 56% des Paper-Buchs war sektorblind). Quelle: sector_cache.json
+    (Scanner-gepflegt). Miss -> yfinance .info einmalig, nur in-memory (Cache-File
+    schreibt weiterhin NUR der Scanner — kein Git-Konflikt-Risiko vom VM-Cron)."""
+    global _SECTOR_CACHE
+    if _SECTOR_CACHE is None:
+        _SECTOR_CACHE = load_json(SCRIPT_DIR / "sector_cache.json") or {}
+    sec = _SECTOR_CACHE.get(ticker)
+    if sec:
+        return sec
+    try:
+        import yfinance as yf
+        sec = yf.Ticker(ticker).info.get("sector")
+        if sec:
+            _SECTOR_CACHE[ticker] = sec   # in-memory fuer diesen Run
+            return sec
+    except Exception:
+        pass
+    return "Unknown"
+
+
 def fetch_momentum_universe() -> list:
     """Holt Top-N US-Tickers + yfinance-Trending, computed Momentum-Filter + Score, cached.
     Returns liste von candidate-dicts (kompatibel zur pending-Struktur)."""
@@ -651,7 +675,7 @@ def fetch_momentum_universe() -> list:
                 "vol_ratio": round(vol_ratio, 2),
                 "rr": round(MOMENTUM_TP_PCT / MOMENTUM_SL_PCT, 2),
                 "upside_pct": round(MOMENTUM_TP_PCT * 100, 1),
-                "sector": "Unknown",
+                "sector": _sector_for(t),
             })
         except Exception:
             continue
@@ -944,7 +968,9 @@ def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
 
     open_pos = state.get("open", [])
     # Sub-Limit: max INTRADAY_MAX_POSITIONS gleichzeitig
-    intraday_open = [p for p in open_pos if p.get("source") == "intraday_momentum"]
+    # 2026-07-11 AP1: rescued zaehlen NICHT gegen das Intraday-Sub-Limit (sind Swing)
+    intraday_open = [p for p in open_pos
+                     if p.get("source") == "intraday_momentum" and not p.get("intraday_rescued")]
     if len(intraday_open) >= INTRADAY_MAX_POSITIONS:
         log(f"intraday: sub-limit erreicht ({len(intraday_open)}/{INTRADAY_MAX_POSITIONS})")
         return events
@@ -989,7 +1015,7 @@ def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
             "ticker": tk,
             "setup": "INTRADAY",
             "source": "intraday_momentum",
-            "sector": "Unknown",
+            "sector": _sector_for(tk),
             "signal_date": today,
             "stop_initial": round(cur * (1 - INTRADAY_SL_PCT), 2),
             "target":       round(cur * (1 + INTRADAY_TP_PCT), 2),
@@ -1076,7 +1102,7 @@ def select_new_signals(state: dict, signals: list) -> list:
 
     # Freie SWING-Slots (Option B): SWING_MAX minus (swing-open + pending).
     # Intraday-Positionen zaehlen NICHT gegen das Swing-Budget (eigene reservierte Slots).
-    swing_open = sum(1 for p in state.get("open", []) if p.get("source") != "intraday_momentum")
+    swing_open = sum(1 for p in state.get("open", []) if p.get("source") != "intraday_momentum" or p.get("intraday_rescued"))
     used_slots = swing_open + len(state.get("pending", []))
     free_slots = max(0, SWING_MAX_POSITIONS - used_slots)
     if free_slots == 0:
@@ -1431,6 +1457,31 @@ def open_position(state: dict, pending: dict, entry_actual: float):
 # ---------------------------------------------------------------------------
 # Open -> Closed (TP / SL / Trailing / Time)
 # ---------------------------------------------------------------------------
+def _eod_shadow_features(ticker: str, cur: float) -> dict:
+    """2026-07-11 AP1 Schritt 1b: EOD-Features fuer Shadow-Logging der EOD->SWING-
+    Konvertierung. Faellt bei Fetch-Fehler leise auf {} zurueck (Logging darf die
+    Konvertierung nie blockieren). ~1 Call pro konvertierendem Ticker pro Tag."""
+    try:
+        import yfinance as yf
+        tdf = yf.download(ticker, period="1d", interval="5m",
+                          progress=False, auto_adjust=True)
+        h = tdf["High"].dropna(); l = tdf["Low"].dropna(); c = tdf["Close"].dropna()
+        v = tdf["Volume"].dropna()
+        if len(c) < 4:
+            return {}
+        hi, lo = float(h.max()), float(l.min())
+        rng = hi - lo
+        typical = (h + l + c) / 3
+        vwap = float((typical * v).sum() / v.sum()) if float(v.sum()) > 0 else cur
+        return {
+            "range_pos_eod": round((cur - lo) / rng, 3) if rng > 0 else 0.5,
+            "above_vwap_eod": bool(cur >= vwap),
+            "dist_to_day_low_pct": round((cur / lo - 1) * 100, 2) if lo > 0 else None,
+        }
+    except Exception:
+        return {}
+
+
 def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: bool = True,
                           market_open: bool = True) -> list:
     """Refresh prices, manage trailing, close if TP/SL/time hit.
@@ -1456,7 +1507,9 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         entry = p["entry_actual"]
 
         # === Intraday-Catcher: eigene Exit-Logik (TP/SL/EOD), KEIN Ladder/Stagnation/Time ===
-        if p.get("source") == "intraday_momentum":
+        # 2026-07-11 AP1: rescued Positionen (EOD->SWING) laufen NICHT mehr hier rein —
+        # source bleibt jetzt wahrheitsgemaess "intraday_momentum", Flag trennt die Phasen.
+        if p.get("source") == "intraday_momentum" and not p.get("intraday_rescued"):
             high_i = high if high is not None else cur
             i_reason, i_px = None, cur
             if high_i >= p["target"]:
@@ -1471,7 +1524,12 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 # rausgegangen. Stop differenziert: GRUEN -> Breakeven (Gewinn schuetzen, kein
                 # Gewinner-wird-Verlust), ROT -> -4% (Raum zum Erholen).
                 pnl_now = (cur - entry) / entry * 100
-                p["source"] = "momentum_filler"
+                # 2026-07-11 AP1 Schritt 2: source-Rewrite ENTFERNT. source bleibt
+                # "intraday_momentum" (ehrliche Attribution), intraday_rescued=True ist
+                # der Phasen-Anker. setup=MOMENTUM bleibt (Management-Logik).
+                # G3-Tagestief-Stop wurde retro-simuliert und VERWORFEN (Bleeder nur
+                # +0.35pp statt geforderter +1.5pp — Tagestief lag zu nah am -4%-Level).
+                # Der -4%-Stop ist der nachgewiesene Preis der Runner-Option (PAY +18%).
                 p["setup"]  = "MOMENTUM"
                 p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
                 if pnl_now >= 0:
@@ -1485,10 +1543,16 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 # sonst KeyError beim naechsten Run in der Ladder.
                 p.setdefault("ladder_step", 0)
                 p["high_since_entry"] = max(p.get("high_since_entry") or entry, cur, high or cur)
+                # 2026-07-11 AP1 Schritt 1b: Shadow-Logging der EOD-Features. Bei n>=15
+                # neuen Konvertierungen pruefen ob ein Feature-Gate (Kandidat:
+                # range_pos_eod < 0.4 = Spike-Fade) Turner von Bleedern trennt.
+                shadow = _eod_shadow_features(p["ticker"], cur)
                 events.append({
                     "event": "intraday_to_swing", "id": p["id"], "ts": now_iso(),
                     "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
                     "new_stop": p["stop"], "mode": _mode,
+                    "high_since_entry_pct": round((p["high_since_entry"] / entry - 1) * 100, 2),
+                    **shadow,
                 })
                 log(f"  EOD->SWING: {p['ticker']} ({pnl_now:+.1f}%, {_mode}) "
                     f"Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, Trailing aktiv")
@@ -1519,7 +1583,9 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         current_step = int(p.get("ladder_step", 0))
         high_se = p["high_since_entry"]
         # Momentum-Namen nutzen die Momentum-Ladder (laufen lassen statt hartem +6%-Cut)
-        _ladder = MOMENTUM_TRAIL_LADDER if p.get("source") == "momentum_filler" else TRAIL_LADDER
+        # 2026-07-11 AP1: rescued Intradays behalten Momentum-Management (wie vor dem Fix)
+        _is_momo_mgmt = p.get("source") == "momentum_filler" or p.get("intraday_rescued")
+        _ladder = MOMENTUM_TRAIL_LADDER if _is_momo_mgmt else TRAIL_LADDER
         # Pruefe ob naechste Stufe erreicht ist
         for step_idx, (trigger_mult, sl_mult) in enumerate(_ladder, start=1):
             if step_idx <= current_step:
@@ -1550,7 +1616,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         # === Continuous Trail fuer Momentum-Runner NACH Ladder-Ende (2026-07-03) ===
         # Ab +15% (Ladder ausgereizt) uebernimmt eine kontinuierliche Formel: SL = high*(1-6%).
         # Verhindert Cap bei +11.5% wenn Runner weiter laufen. Nur Momentum, nur wenn Ladder-Ende.
-        if (p.get("source") == "momentum_filler" and current_step >= len(MOMENTUM_TRAIL_LADDER)
+        if (_is_momo_mgmt and current_step >= len(MOMENTUM_TRAIL_LADDER)
                 and high_se >= entry * MOMENTUM_TRAIL_LADDER[-1][0]):
             new_stop_rounded = round(high_se * (1 - MOMENTUM_TRAIL_GIVEBACK), 2)
             # 2026-07-07 Fix: Vergleich auf GERUNDETEM Wert (sonst Endlos-Spam: 27.1848>27.18
@@ -1584,7 +1650,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         hold_trade = trading_days_held(p.get("opened_at", ""))
         p["hold_trading_days"] = hold_trade
 
-        is_momentum = p.get("source") == "momentum_filler"
+        is_momentum = _is_momo_mgmt
 
         # === Exit checks (Reihenfolge: TP > SL > Stagnation > Time) ===
         exit_reason = None
@@ -2033,7 +2099,7 @@ def run_trader(dry_run: bool = False):
     if market_open and market_bearish:
         log("step 3b: SKIP momentum fillers — BEARISH regime (historisch WR 30%/14d)")
     if market_open and not market_bearish:
-        swing_open = sum(1 for p in state["open"] if p.get("source") != "intraday_momentum")
+        swing_open = sum(1 for p in state["open"] if p.get("source") != "intraday_momentum" or p.get("intraday_rescued"))
         used = swing_open + len(state["pending"])
         free_slots = max(0, SWING_MAX_POSITIONS - used)
         if free_slots > 0:

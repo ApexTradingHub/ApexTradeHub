@@ -480,3 +480,27 @@ ABER: Durchsatz-Treiber ist das Universum (1->826 Ticker), nicht der Filter. Pea
 3. VOL_RATIO_MIN 1.3 -> 1.2
 
 **Monitoring:** In 3-4 Tagen Intra-Count/Tag pruefen. Ziel grob 1-3/Tag. Bei 0/Tag -> Hebel 1 ziehen.
+
+---
+
+## 16. G3-Tagestief-Stop fuer Rot-Rescues — FALSIFIZIERT (2026-07-11)
+
+**Hypothese (Brief AP1 Schritt 1-NEU):** Rote EOD->SWING-Rescues bekommen statt
+pauschal `entry*0.96` den engeren Stop `max(entry*0.96, tagestief_conv_tag*0.995)`.
+Recovery-These "haelt das heutige Tief" — Falsifikation des Turns statt 4% Ausbluten.
+
+**Retro-Simulation (6 Rot-Rescues, Daily-Bars, Akzeptanz vorab fixiert):**
+- (a) PAY + FRSH ueberleben: JA (beide Tiefs nie unterschritten) ✓
+- (b) Bleeder MRCY/VERX/PLTR Verbesserung: nur **+0.35pp/Trade** (Soll >= +1.5pp) ✗
+- (c) Netto-Delta: +1.05pp (>= 0) ✓
+- **NO-GO nach Kriterium (b).**
+
+**Warum es nicht traegt:** Die Conv-Tagestiefs lagen nur 1-3.5% unter Entry — der
+G3-Stop hebt kaum an (MRCY +0.86, VERX +-0.00, PLTR +0.18). Die Bleeder fielen durch
+BEIDE Stop-Level durch. Tagestief-Naehe ist keine Turn-Information.
+
+**Konsequenz:** -4%-Stop bleibt (nachgewiesener Preis der Runner-Option: PAY +18-21%).
+Stattdessen Shadow-Logging live (AP1 Schritt 1b, seit 2026-07-11): range_pos_eod,
+above_vwap_eod, dist_to_day_low_pct, high_since_entry_pct im intraday_to_swing-Event.
+Bei n>=15 neuen Konvertierungen pruefen ob range_pos_eod<0.4 (Spike-Fade) Turner von
+Bleedern trennt. Sim-Skript: scratchpad g3_sim.py (Session 07-11), Rezept im Brief §AP1.

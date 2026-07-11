@@ -481,7 +481,21 @@ def gen_report(args, knowledge):
     L.append("")
     L.append(f"Window: last {args.days} days (since {cutoff})  |  Filter: "
              f"setup={args.setup or 'ALL'}, ticker={args.ticker or 'ALL'}")
-    L.append(f"Market: {market.get('mode','?')} — {market.get('summary','')}")
+    # 2026-07-11 Mini-Fix (Brief §1.7): Regime-Header gegen stale/UNKNOWN absichern.
+    # Am 07-09 lief der Report mit "UNKNOWN -> RISK-OFF" weil der Scanner-Cron am
+    # Vorabend gefailt war — das las sich wie ein echtes Regime. Jetzt: explizit
+    # als nicht verwertbar markieren wenn mode=UNKNOWN oder updated aelter als 3 Tage.
+    _mode = market.get("mode", "?")
+    _upd  = market.get("updated", "")
+    try:
+        _stale = (datetime.now() - datetime.strptime(_upd[:10], "%Y-%m-%d")).days > 3
+    except Exception:
+        _stale = True
+    if _mode in ("UNKNOWN", "?") or _stale:
+        L.append(f"Market: NICHT VERWERTBAR (mode={_mode}, updated={_upd or '?'}) — "
+                 f"Regime-Aussagen dieses Reports ignorieren")
+    else:
+        L.append(f"Market: {_mode} — {market.get('summary','')} (updated {_upd})")
     L.append("")
     meta = knowledge.get("meta", {})
     L.append(f"**Knowledge base** — {meta.get('total_trades',0)} lifetime trades  |  "
