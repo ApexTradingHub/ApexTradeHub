@@ -68,6 +68,12 @@ TG_MIN_SCORE   = {                       # Telegram top-2 quality filter per set
     "MEAN_REVERSION": 70,   # Phase H — competes for top-2; wins mostly on no-breakout days
 }
 TG_MIN_SCORE_DEFAULT = 70
+# 2026-07-11 Sweet-Spot-Band (Deepsearch, walk-forward-validiert): BREAKOUT-Scores
+# im Band werden fuer die Top-2 bevorzugt. Live-Sample: Band-WR ~70-83% vs 130+ WR 15-17%
+# (Crowding-Detektor: prozyklische Boni treiben Scores am Cluster-Top ueber 130).
+# OOS-Replay Juni-Juli: Top-2-WR 36->44%, PF 0.62->1.03. KEIN Signal faellt weg.
+# Band driftet mit Score-Inflation -> in 4-6 Wochen gegen frische Daten pruefen.
+TG_SWEET_BAND = (90, 120)
 
 # Hard scan-level score gate per setup (drops candidates below threshold entirely)
 SCAN_MIN_SCORE = {                       # Phase G: setup-specific quality gates
@@ -1355,23 +1361,11 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
             elif rs < -5:  score -= 5   # significant underperformer
             elif rs < -2:  score -= 2
 
-            # 4. Sector Momentum — sector looked up from cache
-            sector_mom = market_regime.get("sector_momentum", {})
-            ticker_sector = sector_cache.get(ticker, "Unknown")
-            sector_map = {
-                "Energy": "Energy", "Technology": "Technology",
-                "Healthcare": "Healthcare", "Financial Services": "Financials",
-                "Industrials": "Industrials", "Consumer Defensive": "Consumer Defensive",
-                "Consumer Cyclical": "Consumer Cyclical", "Basic Materials": "Basic Materials",
-                "Utilities": "Utilities", "Real Estate": "Real Estate",
-                "Communication Services": "Communication",
-            }
-            mapped = sector_map.get(ticker_sector, ticker_sector)
-            sec_perf = sector_mom.get(mapped, 0)
-            if sec_perf >= 5:    score += 6
-            elif sec_perf >= 2:  score += 3
-            elif sec_perf < -5:  score -= 5
-            elif sec_perf < -2:  score -= 2
+            # 4. Sector Momentum-Bonus ENTFERNT (2026-07-11, BACKLOG #12 + Deepsearch):
+            # Kein WR-Lift (flat ueber alle Buckets), aber prozyklische Score-Inflation —
+            # 71/169 Live-Signale bekamen +6, Energy-Mai-Cluster (HAL/HP/SM alle 130+,
+            # alle Verlierer) entstand exakt am Sektor-Top. Signal-Count-Check: -0.6%.
+            # Der Stock-vs-SPY-RS-Bonus (oben) bleibt — andere Metrik, nicht betroffen.
 
         # ---- Phase B fundamental catalysts (earnings, short, analyst) ----
         if catalyst_signals is not None:
@@ -1950,7 +1944,18 @@ def main():
             print(f"  Telegram filter: {n_filtered} signal(s) below quality threshold excluded.")
 
         if quality:
-            top2 = sorted(quality, key=lambda x: x.get("score", 0), reverse=True)[:2]
+            # 2026-07-11 Sweet-Spot-Ranking: BREAKOUT im Band (Tier 1, nach Score),
+            # BREAKOUT ausserhalb (Tier 0, nach Naehe zum Band-Zentrum). Andere Setups
+            # behalten ihre Score-Position (eigene Skalen, Band nicht validiert).
+            def _tg_rank(c):
+                sc = c.get("score", 0)
+                if c.get("setup") != "BREAKOUT":
+                    return (1, sc)
+                if TG_SWEET_BAND[0] <= sc < TG_SWEET_BAND[1]:
+                    return (1, sc)
+                return (0, -abs(sc - (TG_SWEET_BAND[0] + TG_SWEET_BAND[1]) / 2))
+
+            top2 = sorted(quality, key=_tg_rank, reverse=True)[:2]
             n_relaxed = sum(1 for c in top2 if c.get("relax_level", 0) > 0)
             if n_relaxed:
                 print(f"  Note: {n_relaxed}/{len(top2)} pushed signal(s) are relax>0 (score-eligible).")

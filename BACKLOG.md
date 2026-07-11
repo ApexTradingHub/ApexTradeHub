@@ -411,6 +411,11 @@ Kalibrierung. **Vorschlag: entfernen** — reiner Vereinfachungs-Gewinn (kein Fe
 Stock-vs-SPY-RS-Bonus (Zeile 1311-1317) NICHT anfassen — der ist eine andere Metrik (eigene
 Aktie vs Markt) und nicht mitgetestet.
 
+**STATUS 2026-07-11: UMGESETZT (Deepsearch-Session).** Sektor-Bonus aus ApexScan entfernt.
+Zusatz-Evidenz: Bonus war prozyklische Inflations-Quelle (71/169 Signale +6; Energy-Mai-
+Cluster HAL/HP/SM alle 130+ am Sektor-Top, alle Verlierer). Signal-Count-Check via
+Rekonstruktion: 163->162 Signale ueber Gate 70 (-0.6%, Protection OK). RS-Bonus unangetastet.
+
 ---
 
 ## 13. Score-Anti-Monotonie 130+ — Root-Cause + Fix (2026-07-08, Backtest-validiert)
