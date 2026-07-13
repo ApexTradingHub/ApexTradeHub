@@ -431,5 +431,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "EQNR",
+    "instrument_id": 6688,
+    "size_usd": 50.0,
+    "stop": 34.97,
+    "target": 37.87,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 365832769,
+    "response": {
+      "token": "fa663e7a-1946-475c-859b-689ea2735192",
+      "orderId": 365832769,
+      "referenceId": "97439323-c128-4bb3-b069-33528ed8a474"
+    },
+    "ts": "2026-07-13T19:36:56Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
