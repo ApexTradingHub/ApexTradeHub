@@ -1845,5 +1845,31 @@
     "gain_from_open": 3.27,
     "score": 33.0,
     "mode": "live"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_WBD_2026-07-13_1621",
+    "ts": "2026-07-13T19:45:07Z",
+    "ticker": "WBD",
+    "pnl_pct": -0.84,
+    "new_stop": 26.26,
+    "mode": "rot->-4%",
+    "high_since_entry_pct": 1.08,
+    "range_pos_eod": 0.615,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.2
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_EQNR_2026-07-13_1936",
+    "ts": "2026-07-13T19:45:07Z",
+    "ticker": "EQNR",
+    "pnl_pct": 0.03,
+    "new_stop": 36.06,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 0.61,
+    "range_pos_eod": 0.853,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.5
   }
 ]
