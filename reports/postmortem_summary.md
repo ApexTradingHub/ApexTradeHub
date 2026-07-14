@@ -1,6 +1,6 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-13T10:01:40.016952 | Total trades: 210_
+_Updated: 2026-07-14T08:55:41.365632 | Total trades: 210_
 
 **Analyse-Status**: complete=187, pending=23
 
