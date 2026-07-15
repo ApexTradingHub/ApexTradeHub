@@ -120,6 +120,9 @@ SCORE_REBUILD = False
 SCORE_V2 = False
 SCORE_V2_MODEL = None
 
+# Sweet-Spot-Band aufs Pick-Ranking (opt-in via --pick-band). Reines Re-Ranking.
+PICK_BAND = None  # z.B. (90, 120) wenn aktiv
+
 
 def _score_v2_prob(sig):
     """LogReg-Wahrscheinlichkeit aus dem frozen Stufe-1-Modell. Within-Day-Sortierung
@@ -1300,6 +1303,19 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
             for sig in signals_today:
                 sig["v2_prob"] = round(_score_v2_prob(sig), 4)
             signals_today.sort(key=lambda x: x["v2_prob"], reverse=True)
+        elif PICK_BAND:
+            # 2026-07-15: Sweet-Spot-Band aufs Pick-Ranking (analog TG_SWEET_BAND Telegram).
+            # BREAKOUT im Band [90,120) = Tier 1 (nach Score), ausserhalb = Tier 0 (nach
+            # Naehe zum Band-Zentrum). Andere Setups behalten Score-Position. Reines
+            # Re-Ranking der Pick-Stufe — Signal-Count identisch.
+            def _band_rank(s):
+                sc = s.get("score", 0)
+                if s.get("setup") != "BREAKOUT":
+                    return (1, sc)
+                if PICK_BAND[0] <= sc < PICK_BAND[1]:
+                    return (1, sc)
+                return (0, -abs(sc - (PICK_BAND[0] + PICK_BAND[1]) / 2))
+            signals_today.sort(key=_band_rank, reverse=True)
         else:
             signals_today.sort(key=lambda x: x["score"], reverse=True)
         for sig in signals_today[:MAX_OPEN_TRADES]:
@@ -1490,6 +1506,8 @@ def main():
                              "perf_120 0-25 Penalty, 25-50 Sweet-Spot (default off)")
     parser.add_argument("--score-v2", action="store_true",
                         help="SCORE_V2 Stufe 2: Pick-Ranking via LogReg (score_v2_model.json)")
+    parser.add_argument("--pick-band", type=str, default=None,
+                        help="Sweet-Spot-Band aufs Pick-Ranking, z.B. '90,120' (reines Re-Ranking)")
     parser.add_argument("--score-rebuild", action="store_true",
                         help="Hebel B: Extension-Penalty mit Catalyst-Carve-Out (default off)")
     parser.add_argument("--ext-penalty", type=float, default=12.0,
@@ -1511,8 +1529,12 @@ def main():
     SCORE_REALIGN = args.score_realign
     SCORE_REBUILD = args.score_rebuild
     EXT_PENALTY = args.ext_penalty
-    global SCORE_V2, SCORE_V2_MODEL
+    global SCORE_V2, SCORE_V2_MODEL, PICK_BAND
     SCORE_V2 = args.score_v2
+    if args.pick_band:
+        lo, hi = (float(x) for x in args.pick_band.split(","))
+        PICK_BAND = (lo, hi)
+        print(f"[TEST] PICK_BAND={PICK_BAND} — Pick-Ranking bevorzugt BREAKOUT im Band (Re-Ranking)")
     if SCORE_V2:
         with open("score_v2_model.json", encoding="utf-8") as f:
             SCORE_V2_MODEL = json.load(f)
