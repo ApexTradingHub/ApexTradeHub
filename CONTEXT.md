@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-08 (eToro LIVE seit 07-06 · TECH_QQQ_GATE live · STAGE_2/Momentum-bearish disabled · Inverse-ETF verworfen · Dashboard v41)
+**Letztes Update:** 2026-07-15 (eToro LIVE · Brief AP1-4 done · Score: Sektor-Bonus raus + TG-Band 90-120 · Slot-Option-B: Scanner nutzt alle freien Slots + Intraday-Verdraengung · Intraday-Entry-Cutoff 19:15)
 
 ---
 
@@ -223,6 +223,22 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-15** **Slot-Option-B + Score-Prio + Trader-Fixes (KW29-Analyse)**:
+  - **Slot-Option-B** (apex_trader.py): Scanner-BREAKOUT (`select_new_signals`) nutzt jetzt
+    ALLE physisch freien Slots (`MAX_POSITIONS - open - pending`) statt SWING_MAX=4. Grund:
+    0/6 BREAKOUTs in KW29 gekauft, weil rescued Intradays (PAY, F) das Swing-Budget fuellten.
+    Momentum-Filler bleibt SWING_MAX-gedeckelt. Intraday verdraengt bei Vollbelegung die
+    schwaechste Swing-Position (`_find_displaceable_swing`: nur momentum_filler/rescued, nie
+    BREAKOUT/Runner/gruen, max 1/Run) bis zur Reserve-Floor (3). Prio = WR: BREAKOUT>Intraday>Filler.
+  - **Score-Prio** (ApexScan.py): Sektor-Momentum-Bonus (±6) ENTFERNT (prozyklische Inflation,
+    BACKLOG #12). Telegram-Top-2 bevorzugt `TG_SWEET_BAND=(90,120)` — walk-forward +8pp WR OOS.
+    Trader-Pick (Top-1) noch NICHT auf Band (AP5-Pfad). Winrate-Bonus-Pruefung = BACKLOG #19.
+  - **Trader-Fixes**: (a) EOD-Rescue pusht neuen SL zu eToro (WBD-Bug: Paper/eToro-Divergenz);
+    (b) `INTRADAY_ENTRY_CUTOFF_UTC=19:15` — keine Intraday-Entries mehr kurz vor EOD (EQNR-Fall).
+  - **Score-V2 FALSIFIZIERT** (BACKLOG #17): 2J-Backtest WR 45.5% vs Baseline 50.2% -> Score bleibt.
+  - **EU-Universe-Bug gefixt** (BACKLOG #18): normalize_ticker zerstoerte .DE-Suffixe -> 0 EU-Signale.
+  - **Rescue-Attribution ehrlich** (BACKLOG-Brief AP1): source bleibt intraday_momentum + Flag.
 
 - **2026-07-08** **Signal-System Robustheit — TECH_QQQ_GATE + STAGE_2/Momentum disabled**:
   - **STAGE_2 (Trend-Setup) DEAKTIVIERT** in ApexScan.py — kein historischer Edge (n<3
