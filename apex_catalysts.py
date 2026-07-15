@@ -279,9 +279,12 @@ def score_delta_for_catalyst_signals(signals: dict, setup: str,
         # Short squeeze potential — BREAKOUT only
         if signals.get("short_squeeze_setup") and setup == "BREAKOUT":
             delta += 5
-        # Analyst bullish — both setups
-        if signals.get("analyst_bullish"):
-            delta += 3
+        # Analyst bullish — 2026-07-15 ENTFERNT (+3 war). Daten zeigen instabil: Lift
+        # +10.6pp gesamt kommt komplett aus 6 fruehen Zufalls-Wins; juengere Haelfte
+        # +0.9pp = kein Edge. Deckt sich mit Fable-Brief (§1.7 "instabil, nicht anfassen"),
+        # HII-Postmortem (analyst 19.4% anti-prädiktiv) + Carve-Out-Entfernung 06-24.
+        # Konsistent mit Sektor-Bonus-Entfernung (#12): keine nicht-prädiktiven Komponenten.
+        # Das 🎯-Badge bleibt (rein informativ, kein Score-Effekt mehr).
     return delta
 
 
