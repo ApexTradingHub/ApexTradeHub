@@ -176,6 +176,8 @@ DEAD_TICKERS = {
 BAD_PERFORMERS = {
     "VRSK", "ALGN", "DDOG", "OWL", "APTV", "FICO", "CMC", "KSS",
     "IFF", "GT", "FSLR", "MKTX", "AFG", "JKHY", "J", "KMI",
+    "TSM",  # 2026-07-15: WR 25%/n=4, kum -5.2% (erfuellt Kriterium WR<=25% & cum<0).
+            # ASML bewusst NICHT (WR 40%, kum +5.0% = positiv, erfuellt Kriterium nicht).
 }
 
 
