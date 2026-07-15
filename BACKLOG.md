@@ -635,3 +635,26 @@ killen. Carve-Out einbauen + im Backtest die gedroppten Winner zaehlen.
 
 **Blacklist-Nebenaktion:** TSM (25% WR/4), ASML (40%/5) sind chronische Semi-ADR-
 Underperformer -> Blacklist-Kandidaten (wie BAD_PERFORMERS-Set).
+
+**BACKTEST-ERGEBNIS (2026-07-15, apex_sector_rs_gate_backtest.py):**
+Baseline (144 BREAKOUT-Trades): WR 51.4%, PF 1.77, sum +255%.
+Beste Variante **TECH sec<0 + Catalyst-Carve-Out**: WR 54.5% (+3.1pp), PF 2.10,
+sum +296% (Profit STEIGT), Retention 92%. Droppt 12 Trades: 10 Loser / 2 Winner
+(83% Loser-Anteil). Fängt exakt den Ziel-Cluster: WDC/KLAC/LRCX/CGNX/UI/DT/TKO/
+FFIV/CSCO/XYZ (alle Tech in schwachem Sektor).
+
+**FORMAL NO-GO** an den vorab fixierten Kriterien: Retention 92% < 95%-Signal-
+Protection-Bar. KEINE Variante schafft beide (Cluster fangen = ~8% Signal-Loss).
+
+**ABER differenziert:** Der 95%-Bar hat die Escape-Hatch "Loser-Anteil rechtfertigen"
+(feedback-signal-protection) — 83% Loser-Drop erfüllt das. PF steigt deutlich (1.77->2.10),
+Profit STEIGT trotz Drop. Der Haken: droppt **CIEN +16.6%** (Post-Earnings-Winner, den
+der Carve-Out verpasste — Beat war 13d alt, außerhalb des recent-beat-Fensters).
+
+**Vorbehalt Regime:** Effekt v.a. vom Juni-Semi-Selloff getrieben = event-spezifisch,
+Generalisierung unklar (nur 2026-Sample, kein 2J-Backtest möglich da Sektor-ETF-Historie).
+
+**OFFENE ENTSCHEIDUNG (User):** (a) TECH sec<0 hart schalten (8% Signal-Loss akzeptieren,
+Loser-Anteil rechtfertigt), (b) SOFT-Penalty statt Hard-Gate (Sektor-schwacher Tech-BO
+kriegt Score-Malus -> rankt niedriger in Pick/Telegram, KEIN Signal-Loss, wie TG_SWEET_BAND),
+(c) verwerfen (regime-spezifisch, CIEN-Kosten). Empfehlung: (b) — signal-protection-neutral.
