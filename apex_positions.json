@@ -1947,8 +1947,8 @@
       "opened_at": "2026-07-10T15:35:24Z",
       "status": "closed",
       "current_price": 143.7449951171875,
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.0,
+      "pnl_pct": -3.248921664115778,
+      "pnl_usd": -1.624460832057889,
       "hold_days": 0,
       "yfinance_entry": 143.80999755859375,
       "etoro_ask_at_open": 143.74,
@@ -1967,9 +1967,12 @@
       "etoro_open_date": "2026-07-10T15:35:25.393Z",
       "intraday_rescued": true,
       "hold_trading_days": 0,
-      "exit_price": 143.74,
-      "exit_reason": "Stop Loss",
-      "closed_at": "2026-07-10T20:00:06Z"
+      "exit_price": 139.07,
+      "exit_reason": "eToro SL",
+      "closed_at": "2026-07-10T20:00:06Z",
+      "etoro_close_rate": 139.07,
+      "etoro_net_profit": -1.62,
+      "reconciled_2026_07_15": true
     },
     {
       "id": "PAPER_INTRA_AMAT_2026-07-10_1535",
@@ -2043,8 +2046,8 @@
       "opened_at": "2026-07-13T19:36:52Z",
       "status": "closed",
       "current_price": 36.09000015258789,
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.0,
+      "pnl_pct": 1.4975041597337757,
+      "pnl_usd": 0.748752079866888,
       "hold_days": 0,
       "yfinance_entry": 36.05500030517578,
       "etoro_ask_at_open": 36.06,
@@ -2063,9 +2066,12 @@
       "etoro_open_date": "2026-07-13T19:36:55.43Z",
       "intraday_rescued": true,
       "hold_trading_days": 0,
-      "exit_price": 36.06,
-      "exit_reason": "Stop Loss",
-      "closed_at": "2026-07-13T20:00:07Z"
+      "exit_price": 36.6,
+      "exit_reason": "eToro closed",
+      "closed_at": "2026-07-13T20:00:07Z",
+      "etoro_close_rate": 36.6,
+      "etoro_net_profit": 0.78,
+      "reconciled_2026_07_15": true
     },
     {
       "id": "PAPER_INTRA_LII_2026-07-10_1535",
