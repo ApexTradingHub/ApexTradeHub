@@ -1035,6 +1035,22 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
         <span class="stat-subval" id="e-count">—</span>
       </div>
     </div>
+    <div class="stat">
+      <div class="stat-label">Realisierte G/V (eToro)</div>
+      <div class="stat-value" id="e-realized">—</div>
+      <div class="stat-row">
+        <span class="stat-sublabel">Rendite</span>
+        <span class="stat-subval" id="e-realized-pct">—</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-sublabel">Geschlossen · WR</span>
+        <span class="stat-subval" id="e-realized-n">—</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-sublabel">Offen (unrealisiert)</span>
+        <span class="stat-subval" id="e-unrealized">—</span>
+      </div>
+    </div>
   </div>
 
   <!-- Bubble-Chart: Zeit × PnL% × Size -->
@@ -2013,6 +2029,28 @@ function renderEtoro() {
 
   if (cnt) cnt.textContent = etoroEvents.length;
 
+  // --- Realisierte G/V über alle geschlossenen eToro-Trades ---
+  // Zählt nur Trades die real auf eToro liefen (etoro_net_profit gesetzt = echter Fill/Close).
+  const closedAll = (paperState && paperState.closed) || [];
+  const etClosed = closedAll.filter(c => typeof c.etoro_net_profit === 'number');
+  const realizedUsd = etClosed.reduce((s, c) => s + (+c.etoro_net_profit || 0), 0);
+  const investedUsd = etClosed.reduce((s, c) => s + (+c.size_usd || 50), 0);
+  const realizedPct = investedUsd > 0 ? (realizedUsd / investedUsd) * 100 : 0;
+  const etWins = etClosed.filter(c => (+c.etoro_net_profit || 0) > 0).length;
+  const rvEl = document.getElementById('e-realized');
+  const rpEl = document.getElementById('e-realized-pct');
+  const rnEl = document.getElementById('e-realized-n');
+  const posCol = v => v >= 0 ? 'var(--green)' : 'var(--red)';
+  if (rvEl) {
+    rvEl.textContent = (realizedUsd >= 0 ? '+$' : '−$') + Math.abs(realizedUsd).toFixed(2);
+    rvEl.style.color = posCol(realizedUsd);
+  }
+  if (rpEl) {
+    rpEl.textContent = (realizedPct >= 0 ? '+' : '') + realizedPct.toFixed(2) + '%';
+    rpEl.style.color = posCol(realizedPct);
+  }
+  if (rnEl) rnEl.textContent = etClosed.length + ' · ' + (etClosed.length ? Math.round(etWins / etClosed.length * 100) : 0) + '%';
+
   // --- Live-Positionen (nur ECHT gefillt: mit etoro_position_id) ---
   // 2026-07-07: order_id allein reicht nicht — Order kann pending oder verworfen sein.
   const posEl = document.getElementById('e-pos-list');
@@ -2023,6 +2061,13 @@ function renderEtoro() {
   const pendingPos = withOrder.filter(p => !p.etoro_position_id);
   if (npos) npos.textContent = openPos.length + (pendingPos.length ? ' (+' + pendingPos.length + ' pending)' : '');
   if (posSub) posSub.textContent = openPos.length + ' live' + (pendingPos.length ? ', ' + pendingPos.length + ' wartet auf Fill' : '');
+  // Unrealisierte G/V der offenen eToro-Positionen (aus pnl_pct × Size)
+  const unrealUsd = openPos.reduce((s, p) => s + (+p.size_usd || 50) * (+p.pnl_pct || 0) / 100, 0);
+  const unrEl = document.getElementById('e-unrealized');
+  if (unrEl) {
+    unrEl.textContent = (unrealUsd >= 0 ? '+$' : '−$') + Math.abs(unrealUsd).toFixed(2);
+    unrEl.style.color = unrealUsd >= 0 ? 'var(--green)' : 'var(--red)';
+  }
   if (posEl) {
     if (!openPos.length) {
       posEl.innerHTML = '<div class="empty-state"><span>Noch keine echten eToro-Positions.</span></div>';
