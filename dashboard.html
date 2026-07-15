@@ -1053,14 +1053,14 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     </div>
   </div>
 
-  <!-- Bubble-Chart: Zeit × PnL% × Size -->
+  <!-- Realisierter G/V-Verlauf (kumulativ über geschlossene eToro-Trades) -->
   <div class="card anim-2">
     <div class="card-head">
-      <h2>📊 Live-Trade Bubble</h2>
-      <span class="card-sub">X: Öffnungszeit · Y: PnL % · Blase: Position-Size</span>
+      <h2>📈 Realisierter G/V-Verlauf</h2>
+      <span class="card-sub">Kumulierte realisierte G/V ($) über alle geschlossenen eToro-Trades</span>
     </div>
     <div style="position:relative;height:320px;padding:8px 4px 4px">
-      <canvas id="e-bubble"></canvas>
+      <canvas id="e-equity"></canvas>
     </div>
   </div>
 
@@ -2160,106 +2160,105 @@ function renderEtoro() {
 }
 
 function drawEtoroBubble(openPos, events) {
-  const cv = document.getElementById('e-bubble'); if (!cv) return;
-  // Merge open-events mit aktuellen open- UND closed-Positions -> echter PnL statt 0-Linie
-  const opens = (events || []).filter(e => e.event === 'open' && e.order_id).sort((a,b) => (a.ts||'').localeCompare(b.ts||''));
-  const openByOrder = {};
-  (openPos || []).forEach(p => { openByOrder[p.etoro_order_id] = p; });
-  // Auch closed-Positions einbeziehen (fuer retrofit-korrigierte wie NKTR)
-  const closedByOrder = {};
+  const cv = document.getElementById('e-equity'); if (!cv) return;
+  // Kumulativer realisierter G/V-Verlauf: alle geschlossenen eToro-Trades chronologisch,
+  // Running-Sum von etoro_net_profit ($). Startpunkt 0.
   const allClosed = (paperState && paperState.closed) || [];
-  allClosed.forEach(p => { if (p.etoro_order_id) closedByOrder[p.etoro_order_id] = p; });
-  const points = opens.map(e => {
-    const p = openByOrder[e.order_id];
-    const c = closedByOrder[e.order_id];
-    let pnl = 0, isOpen = false, status = 'unknown', isPhantom = false;
-    if (p) {
-      pnl = +p.pnl_pct || 0; isOpen = true; status = 'offen';
-    } else if (c) {
-      status = c.exit_reason || 'closed';
-      // Fix 4: Phantoms (order_dropped) sind kein realer Trade -> PnL=0
-      if (String(status).toLowerCase().includes('order_dropped')) {
-        pnl = 0; isPhantom = true;
-      } else {
-        pnl = +c.pnl_pct || 0;
-        if (!pnl && c.etoro_open_rate && c.etoro_close_rate) {
-          pnl = (c.etoro_close_rate / c.etoro_open_rate - 1) * 100;
-        }
-      }
-    }
-    const t = new Date((e.ts || '').endsWith('Z') || (e.ts || '').includes('+') ? e.ts : e.ts + 'Z');
-    return { x: t.getTime(), y: pnl, r: Math.max(4, Math.sqrt(+e.size_usd || 20) * 1.5),
-             ticker: e.ticker, isOpen, status, isPhantom };
-  }).filter(p => !isNaN(p.x));
+  const trades = allClosed
+    .filter(c => typeof c.etoro_net_profit === 'number')
+    .slice()
+    .sort((a, b) => String(a.closed_at || a.etoro_open_date || '').localeCompare(String(b.closed_at || b.etoro_open_date || '')));
+
   if (etoroBubbleChart) etoroBubbleChart.destroy();
-  if (!points.length) {
-    const ctx = cv.getContext('2d');
+  const ctx = cv.getContext('2d');
+  if (!trades.length) {
     ctx.clearRect(0, 0, cv.width, cv.height);
     ctx.fillStyle = '#8B92A4'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText('Noch keine eToro-Trades zum Plotten.', cv.width/2, cv.height/2);
+    ctx.fillText('Noch keine geschlossenen eToro-Trades.', cv.width / 2, cv.height / 2);
     return;
   }
-  // Fix 1: Farben — closed profitable Trades grün (heller), losers rot (heller); Phantoms grau
-  const colorFor = (p, dim) => {
-    if (p.isPhantom) return dim ? 'rgba(139,146,164,0.30)' : '#8B92A4';
-    const isGreen = p.y >= 0;
-    if (p.isOpen) return dim ? (isGreen ? 'rgba(38,166,154,0.55)' : 'rgba(239,83,80,0.55)')
-                              : (isGreen ? '#26A69A' : '#EF5350');
-    // closed: etwas transparenter/desaturierter
-    return dim ? (isGreen ? 'rgba(38,166,154,0.35)' : 'rgba(239,83,80,0.35)')
-                : (isGreen ? '#26A69A' : '#EF5350');
-  };
-  // Fix 2: X-Achse smart — Zeitspanne auswerten, dann Format waehlen
-  const xs = points.map(p => p.x);
-  const spanDays = (Math.max(...xs) - Math.min(...xs)) / 86400000;
-  const fmtX = spanDays < 2
-    ? v => new Date(v).toLocaleString('de-DE', {timeZone:'Europe/Berlin', hour:'2-digit', minute:'2-digit'})
-    : v => new Date(v).toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
-  // Fix 3: Ticker-Labels ueber jeder Blase via afterDatasetsDraw-Plugin
-  const labelPlugin = {
-    id: 'bubble_labels',
-    afterDatasetsDraw(chart) {
-      const {ctx} = chart;
-      chart.data.datasets[0].data.forEach((d, i) => {
-        const el = chart.getDatasetMeta(0).data[i]; if (!el) return;
-        ctx.save();
-        ctx.fillStyle = '#D6DAE3';
-        ctx.font = '600 10px -apple-system, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText(d.ticker, el.x, el.y - (el.options.radius || 8) - 3);
-        ctx.restore();
-      });
-    }
-  };
-  etoroBubbleChart = new Chart(cv.getContext('2d'), {
-    type: 'bubble',
+
+  // Kumulierte Kurve inkl. Startpunkt 0
+  let run = 0;
+  const cum = [0];
+  const meta = [{ ticker: 'Start', net: 0, when: '' }];
+  trades.forEach(c => {
+    run += (+c.etoro_net_profit || 0);
+    cum.push(Math.round(run * 100) / 100);
+    meta.push({
+      ticker: c.ticker,
+      net: +c.etoro_net_profit || 0,
+      when: String(c.closed_at || '').replace('T', ' ').slice(0, 16),
+      reason: c.exit_reason || ''
+    });
+  });
+  const labels = meta.map((m, i) => i === 0 ? 'Start' : m.ticker);
+  const final = cum[cum.length - 1];
+  const isPos = final >= 0;
+  const line = isPos ? '#00FF88' : '#FF3B5C';
+
+  // Vertikaler Gradient-Fill unter der Linie
+  const grad = ctx.createLinearGradient(0, 0, 0, cv.height || 320);
+  grad.addColorStop(0, isPos ? 'rgba(0,255,136,0.28)' : 'rgba(255,59,92,0.28)');
+  grad.addColorStop(1, isPos ? 'rgba(0,255,136,0.01)' : 'rgba(255,59,92,0.01)');
+
+  // Punktfarbe je nach Einzeltrade grün/rot; Startpunkt neutral
+  const ptColor = meta.map((m, i) => i === 0 ? '#5A6490' : (m.net >= 0 ? '#00FF88' : '#FF3B5C'));
+
+  etoroBubbleChart = new Chart(ctx, {
+    type: 'line',
     data: {
+      labels,
       datasets: [{
-        data: points,
-        backgroundColor: points.map(p => colorFor(p, true)),
-        borderColor:     points.map(p => colorFor(p, false)),
-        borderWidth: 1.5,
+        label: 'Kumulierte G/V',
+        data: cum,
+        borderColor: line,
+        borderWidth: 2,
+        pointRadius: cum.length <= 40 ? 3.5 : 0,
+        pointHoverRadius: 6,
+        pointBackgroundColor: ptColor,
+        pointBorderColor: ptColor,
+        fill: { target: 'origin', above: grad, below: 'rgba(255,59,92,0.10)' },
+        tension: 0.25,
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
+      animation: { duration: 1100, easing: 'easeOutQuart' },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: {
-          label: (ctx) => {
-            const d = ctx.raw;
-            const dt = new Date(d.x);
-            return `${d.ticker}  ${d.status || (d.isOpen ? 'offen' : 'closed')}  ${d.y >= 0 ? '+' : ''}${d.y.toFixed(2)}%  ${dt.toLocaleString('de-DE',{timeZone:'Europe/Berlin', day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'})}`;
+        tooltip: {
+          backgroundColor: '#0B0E1F', borderColor: 'rgba(99,135,255,0.2)', borderWidth: 1,
+          bodyColor: '#CDD5F0', titleColor: '#5A6490',
+          callbacks: {
+            title: items => {
+              const m = meta[items[0].dataIndex];
+              return m.ticker === 'Start' ? 'Start' : (m.ticker + (m.reason ? ' · ' + m.reason : ''));
+            },
+            label: c => {
+              const m = meta[c.dataIndex];
+              const cumV = (c.parsed.y >= 0 ? '+$' : '−$') + Math.abs(c.parsed.y).toFixed(2);
+              if (c.dataIndex === 0) return ' Start: $0.00';
+              const net = (m.net >= 0 ? '+$' : '−$') + Math.abs(m.net).toFixed(2);
+              return [' Trade: ' + net, ' Kumuliert: ' + cumV, ' ' + m.when];
+            }
           }
-        }},
+        }
       },
       scales: {
-        x: { type: 'linear', ticks: { color: '#8B92A4', maxTicksLimit: 5, callback: fmtX }, grid: { color: 'rgba(99,135,255,0.06)' } },
-        y: { ticks: { color: '#8B92A4', callback: v => (Math.round(v * 100) / 100).toFixed(2) + '%' }, grid: { color: 'rgba(99,135,255,0.06)' } },
-      },
-    },
-    plugins: [labelPlugin],
+        x: {
+          grid: { color: gc },
+          ticks: { color: tc, font: { size: 9, family: "'JetBrains Mono'" }, maxTicksLimit: 16, maxRotation: 0, autoSkip: true },
+          border: { color: gc }
+        },
+        y: {
+          grid: { color: gc },
+          ticks: { color: tc, font: { size: 10, family: "'JetBrains Mono'" }, callback: v => (v >= 0 ? '$' : '−$') + Math.abs(v) },
+          border: { color: gc }
+        }
+      }
+    }
   });
 }
 
