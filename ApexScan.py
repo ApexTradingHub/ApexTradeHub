@@ -54,6 +54,14 @@ MEAN_REVERSION_ENABLED = False
 STAGE_2_ENABLED = False
 # 2026-07-08: Tech-Breakout-Gate bei QQQ-Schwäche (Backtest: Tech+QQQ<0 = WR 14%/PF 0.56).
 TECH_QQQ_GATE_ENABLED = True
+# 2026-07-15: Sektor-RS-Gate (BACKLOG #20, Backtest apex_sector_rs_gate_backtest.py):
+# Tech/Comm-BREAKOUT skippen wenn der SEKTOR-ETF (XLK/XLC) 20d-Momentum negativ ist —
+# faengt den Semi-Selloff-Cluster (LRCX/KLAC/CGNX), den TECH_QQQ_GATE verpasst (QQQ war
+# teils noch positiv, XLK/Semi brach ein). Backtest: kept-WR 51.4->54.5%, PF 1.77->2.10,
+# Profit STEIGT, droppt 10L/2W (83% Loser). Catalyst-Carve-Out schuetzt SE-Typ. Restkosten:
+# CIEN +16.6 (13d-alter Beat, Carve verpasst). Scan-Time = "no-buy bis Sektor gruen"
+# (taegliches Re-Scan re-emittiert automatisch). Rollback = Flag False.
+SECTOR_RS_GATE_ENABLED = True
 
 # Quality filter for Telegram top-2 (setup-specific, data-driven)
 TG_MIN_RR      = 1.5     # 2026-05-22: 2.0->1.5. Backtest: RR>=2.0 (WR 54.5%) gives
@@ -1120,6 +1128,27 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
                market_regime.get("qqq_perf_20", 0) < 0:
                 debug["fail_tech_qqq_weak"] = debug.get("fail_tech_qqq_weak", 0) + 1
                 return None
+
+        # SEKTOR-RS-GATE (2026-07-15, BACKLOG #20): Tech/Comm-BREAKOUT skippen wenn der
+        # Sektor-ETF selbst schwach ist (perf_20 < 0), auch wenn QQQ breit noch OK ist —
+        # deckt die Semi-Selloff-Zelle (LRCX/KLAC/CGNX), die das QQQ-Gate verpasst. Mit
+        # Catalyst-Carve-Out (Earnings-Beat / PP+VolClimax / Gap>=5) analog SCORE_REBUILD.
+        if SECTOR_RS_GATE_ENABLED and chosen_setup == "BREAKOUT":
+            _sec = sector_cache.get(ticker, "Unknown")
+            _sec_key = {"Technology": "Technology",
+                        "Communication Services": "Communication",
+                        "Communication": "Communication"}.get(_sec)
+            if _sec_key is not None:
+                _sec_mom = market_regime.get("sector_momentum", {}).get(_sec_key, 0)
+                _gap_rs = catalysts.get("up_gap_pct", 0) or 0
+                _strong_rs = bool(
+                    (catalyst_signals or {}).get("earnings_beat_recent") or
+                    (catalysts.get("pocket_pivot_recent") and catalysts.get("volume_climax")) or
+                    _gap_rs >= 5.0
+                )
+                if _sec_mom < 0 and not _strong_rs:
+                    debug["fail_sector_rs_weak"] = debug.get("fail_sector_rs_weak", 0) + 1
+                    return None
 
         # Market filter: RISK-OFF → only BREAKOUT-style allowed (STAGE_2/VCP need trend)
         if not market_regime["risk_on"] and relax == 0:

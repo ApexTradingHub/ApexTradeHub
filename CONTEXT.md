@@ -64,6 +64,12 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
   `market_regime.qqq_perf_20 < 0`. Backtest: Tech+QQQ<0 = WR 14%/PF 0.56 (n=7) → nach Gate
   WR 57.1→59.8%, PF 2.29→2.53, Signal-Loss 6%. Flag `TECH_QQQ_GATE_ENABLED = True`.
   Vorbehalt n=7 klein, Monitoring nötig.
+- **SECTOR_RS_GATE live (2026-07-15, BACKLOG #20):** Skip Tech/Comm-BREAKOUT wenn der
+  SEKTOR-ETF (XLK/XLC) `sector_momentum < 0` UND kein starker Catalyst (Earnings-Beat/
+  PP+VolClimax/Gap≥5). Ergaenzt TECH_QQQ_GATE (deckt Sektor-Schwaeche die QQQ verpasst,
+  z.B. Semi-Selloff). Backtest: kept-WR 51.4→54.5%, PF 1.77→2.10, Profit STEIGT, droppt
+  10L/2W (83% Loser). Flag `SECTOR_RS_GATE_ENABLED = True`. Scan-Time = no-buy bis Sektor
+  gruen (Re-Scan re-emittiert). Restkosten: CIEN +16.6 (13d-Beat, Carve verpasst).
 - **SCORE_REBUILD live (2026-06-20):** Extension-Penalty **-12** für perf_120>50 OHNE starken
   Catalyst (Catalyst-Carve-Out: earnings_beat / analyst_upside>15 / PP+Vol-Climax / Gap≥5).
   Backtest 250d: Plateau WR(100+) 47→54 %, **Monotonie -15pp→-0pp**, alle 122 Signale erhalten,

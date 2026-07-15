@@ -658,3 +658,5 @@ Generalisierung unklar (nur 2026-Sample, kein 2J-Backtest möglich da Sektor-ETF
 Loser-Anteil rechtfertigt), (b) SOFT-Penalty statt Hard-Gate (Sektor-schwacher Tech-BO
 kriegt Score-Malus -> rankt niedriger in Pick/Telegram, KEIN Signal-Loss, wie TG_SWEET_BAND),
 (c) verwerfen (regime-spezifisch, CIEN-Kosten). Empfehlung: (b) — signal-protection-neutral.
+
+**STATUS 2026-07-15: LIVE geschaltet** (SECTOR_RS_GATE_ENABLED=True, ApexScan.py). Entscheidung: Hard-Skip am Scan-Ursprung (= no-buy bis Sektor gruen via taegliches Re-Scan), NICHT Score-Malus (haette mit TG_SWEET_BAND kollidiert: gedrueckter Score landet im bevorzugten 90-120-Band). TECH-scoped + Catalyst-Carve. Monitoring: in 2-3 Wochen Signal-Loss + WR gegen Learn pruefen; CIEN-Typ-Winner (13d-alter Beat) beobachten.
