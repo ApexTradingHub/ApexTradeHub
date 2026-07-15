@@ -444,6 +444,27 @@ def gen_summary(pm):
                  f"{m.get('score','?')} | {m.get('sector','?')} | {analysis} |")
     L.append("")
 
+    # 2026-07-15: Recent-Window Best/Worst — die All-Time-Listen oben zeigen die
+    # Extreme (oft Maerz-Mai). Diese Sektion zeigt die letzten 30 Tage nach signal_date,
+    # damit aktuelle Trades sichtbar bleiben.
+    from datetime import datetime as _dt, timedelta as _td
+    cutoff = (_dt.now() - _td(days=30)).strftime("%Y-%m-%d")
+    recent = [t for t in trades.values() if t["core"]["signal_date"] >= cutoff]
+    if recent:
+        rec_sorted = sorted(recent, key=lambda t: t["core"]["pnl_pct"])
+        L.append(f"## Recent (30d) — Worst 5 / Best 5  (n={len(recent)})")
+        L.append("")
+        L.append("| Trade | Setup | PnL% | Exit | Score | Sektor | Tags |")
+        L.append("|---|---|---|---|---|---|---|")
+        show = rec_sorted[:5] + list(reversed(rec_sorted[-5:])) if len(rec_sorted) > 10 else rec_sorted
+        for t in show:
+            c = t["core"]; m = t["signal_metadata"]; ca = t["claude_analysis"]
+            tags = ",".join(ca.get("lesson_tags", [])[:3]) or "—"
+            L.append(f"| {c['ticker']}_{c['signal_date']} | {c['setup']} | "
+                     f"{c['pnl_pct']}% | {c['exit_reason']} D+{c['exit_day']} | "
+                     f"{m.get('score','?')} | {m.get('sector','?')} | {tags} |")
+        L.append("")
+
     # Pending analysis queue
     pending = [k for k, t in trades.items() if t["claude_analysis"]["status"] == "pending"]
     L.append(f"## Pending Claude-Analyse ({len(pending)})")

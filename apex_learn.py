@@ -597,26 +597,38 @@ def gen_report(args, knowledge):
     L.append("")
     tickers = {k: v for k, v in knowledge.get("tickers", {}).items() if v["n"] >= 3}
     if tickers:
-        top = sorted(tickers.items(), key=lambda x: (x[1]["wr"], x[1]["n"]), reverse=True)[:10]
-        bot = sorted(tickers.items(), key=lambda x: (x[1]["wr"], -x[1]["n"]))[:10]
-        L.append("**🏆 Top-Performer (sortiert WR):**")
-        L.append("")
-        L.append("| Ticker | n | WR | Avg PnL% | Best | Worst | Setups |")
-        L.append("|---|---|---|---|---|---|---|")
-        for tk, d in top:
+        ranked = sorted(tickers.items(), key=lambda x: (x[1]["wr"], x[1]["n"]), reverse=True)
+
+        def _row(tk, d):
             setups_disp = ",".join(disp(s) for s in d['setups_seen'])
-            L.append(f"| {tk} | {d['n']} | {d['wr']:.0%} | {d['avg_pnl_pct']:+.2f}% | "
-                     f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {setups_disp} |")
-        L.append("")
-        L.append("**💀 Worst-Performer (sortiert WR):**")
-        L.append("")
-        L.append("| Ticker | n | WR | Avg PnL% | Best | Worst | Setups |")
-        L.append("|---|---|---|---|---|---|---|")
-        for tk, d in bot:
-            setups_disp = ",".join(disp(s) for s in d['setups_seen'])
-            L.append(f"| {tk} | {d['n']} | {d['wr']:.0%} | {d['avg_pnl_pct']:+.2f}% | "
-                     f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {setups_disp} |")
-        L.append("")
+            return (f"| {tk} | {d['n']} | {d['wr']:.0%} | {d['avg_pnl_pct']:+.2f}% | "
+                    f"{d['best_pnl']:+.1f}% | {d['worst_pnl']:+.1f}% | {setups_disp} |")
+
+        HDR = ["| Ticker | n | WR | Avg PnL% | Best | Worst | Setups |",
+               "|---|---|---|---|---|---|---|"]
+        # 2026-07-15 Fix: Bei wenigen qualifizierten Tickern (n>=3) ueberlappten
+        # Top-10 und Worst-10 komplett (zeigten dieselben Ticker). Jetzt: <12 Ticker ->
+        # EINE Rangliste; sonst NICHT-ueberlappende Top-6 / Bottom-6.
+        if len(ranked) < 12:
+            L.append(f"**Per-Ticker Ranking (nach WR, n≥3, {len(ranked)} Ticker):**")
+            L.append("")
+            L.extend(HDR)
+            for tk, d in ranked:
+                L.append(_row(tk, d))
+            L.append("")
+        else:
+            L.append("**🏆 Top-6 (nach WR):**")
+            L.append("")
+            L.extend(HDR)
+            for tk, d in ranked[:6]:
+                L.append(_row(tk, d))
+            L.append("")
+            L.append("**💀 Bottom-6 (nach WR):**")
+            L.append("")
+            L.extend(HDR)
+            for tk, d in ranked[-6:]:
+                L.append(_row(tk, d))
+            L.append("")
 
     # === 8. Failure-Modes ===
     L.append("## 8. Failure-Modes (Lifetime)")
