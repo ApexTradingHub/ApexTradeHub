@@ -44,6 +44,11 @@ CAPITAL_INITIAL = 400.0         # Test-Portfolio Startkapital
 POSITION_SIZE   = 50.0          # USD pro Trade
 MAX_POSITIONS   = 7             # gleichzeitig offene Positionen
 CASH_RESERVE    = 50.0          # Mindest-Cash-Reserve (Puffer)
+# 2026-07-15: Sweet-Spot-Band aufs Trader-Pick-Ranking (analog TG_SWEET_BAND in ApexScan,
+# schon fuer Telegram live). Vereinheitlicht Trader mit Telegram-Kanal. BREAKOUT im Band
+# [90,120) wird bevorzugt, ausserhalb nach Naehe zum Band-Zentrum. 2J-Backtest: WR
+# 52.9->54.1%, PF 1.59->1.68, Profit +36pp (Re-Ranking, kein Signal-Loss). Rollback = None.
+PICK_BAND = (90.0, 120.0)
 
 # Setup-Filter — BREAKOUT only.
 # 2026-06-12: STAGE_2 wieder raus. Widerspricht der Rotations-These (Hold 60d,
@@ -1160,8 +1165,21 @@ def select_new_signals(state: dict, signals: list) -> list:
             best_per_ticker[t] = s
     candidates = list(best_per_ticker.values())
 
-    # Nach Score sortieren (beste zuerst)
-    candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
+    # 2026-07-15: Pick-Ranking via Sweet-Spot-Band (statt rohem Score). BREAKOUT im Band
+    # [90,120) = Tier 1 (nach Score), ausserhalb = Tier 0 (nach Naehe zum Band-Zentrum).
+    # Vereinheitlicht mit Telegram (TG_SWEET_BAND). Reines Re-Ranking, kein Signal-Loss.
+    if PICK_BAND:
+        lo, hi, mid = PICK_BAND[0], PICK_BAND[1], (PICK_BAND[0] + PICK_BAND[1]) / 2
+        def _pick_rank(x):
+            sc = f(x.get("score"))
+            if x.get("setup") != "BREAKOUT":
+                return (1, sc)
+            if lo <= sc < hi:
+                return (1, sc)
+            return (0, -abs(sc - mid))
+        candidates.sort(key=_pick_rank, reverse=True)
+    else:
+        candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
 
     # Option B (2026-07-15): Scanner-BREAKOUT ist das BESTE Setup (WR ~70%) und darf ALLE
     # physisch freien Slots nutzen — NICHT nur das SWING-Teilbudget. Vorher deckelte

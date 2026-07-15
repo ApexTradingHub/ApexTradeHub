@@ -609,3 +609,8 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 *Diese Datei lebt. Bei Inkonsistenzen mit den Code-Files: Code-Files sind autoritativ,
 diese Datei wird aktualisiert.*
+
+- **2026-07-15** **Pick-Band + Blacklist + Analyst-Analyse**:
+  - **PICK_BAND live** (apex_trader.py `select_new_signals`): Trader-Pick sortiert jetzt via Sweet-Spot-Band [90,120) statt rohem Score — vereinheitlicht mit Telegram-Band (schon live). BREAKOUT im Band bevorzugt, 130+/120+ ans Ende. 2J-Backtest WR 52.9->54.1%, PF 1.59->1.68, Profit +36pp (Re-Ranking, kein Signal-Loss). Formal knapp unter +2pp-Bar aber Backtest unterschaetzt (fehlende Live-Boni = kein 130+-Bucket im BT). Rollback = PICK_BAND=None.
+  - **TSM blacklisted** (BAD_PERFORMERS, WR 25%/kum -5.2%). ASML NICHT (40%/+5%).
+  - **Analyst +3 geprueft, BEHALTEN** (User-Entscheid): instabil (+10.6pp gesamt nur aus 6 fruehen Zufalls-Wins, juengere Haelfte +0.9pp) aber klein, bleibt.
