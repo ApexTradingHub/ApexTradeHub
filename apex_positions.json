@@ -2,8 +2,60 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 218.77952152570816,
-  "last_updated": "2026-07-15T13:25:02Z",
-  "pending": [],
+  "last_updated": "2026-07-15T13:30:03Z",
+  "pending": [
+    {
+      "id": "PAPER_RHI_2026-07-13",
+      "ticker": "RHI",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-07-13",
+      "entry": 34.99,
+      "stop_initial": 32.56,
+      "target": 39.74,
+      "score": 141.3,
+      "rr": 1.95,
+      "upside_pct": 13.6,
+      "added_at": "2026-07-15T13:30:08Z",
+      "status": "pending",
+      "mode": "live"
+    },
+    {
+      "id": "PAPER_GS_2026-07-14",
+      "ticker": "GS",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Financial Services",
+      "signal_date": "2026-07-14",
+      "entry": 1127.25,
+      "stop_initial": 1075.21,
+      "target": 1225.0,
+      "score": 123.3,
+      "rr": 1.88,
+      "upside_pct": 8.7,
+      "added_at": "2026-07-15T13:30:08Z",
+      "status": "pending",
+      "mode": "live"
+    },
+    {
+      "id": "PAPER_HRB_2026-07-13",
+      "ticker": "HRB",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-07-13",
+      "entry": 40.62,
+      "stop_initial": 38.61,
+      "target": 44.0,
+      "score": 98.5,
+      "rr": 1.68,
+      "upside_pct": 8.3,
+      "added_at": "2026-07-15T13:30:08Z",
+      "status": "pending",
+      "mode": "live"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_PAY_2026-06-29_1350",
@@ -27,9 +79,9 @@
       "ladder_step": 3,
       "opened_at": "2026-06-29T13:50:07Z",
       "status": "open",
-      "current_price": 28.270000457763672,
-      "pnl_pct": 18.68178345907528,
-      "pnl_usd": 9.34089172953764,
+      "current_price": 28.68000030517578,
+      "pnl_pct": 20.40302549377269,
+      "pnl_usd": 10.201512746886346,
       "hold_days": 15,
       "intraday_rescued": true,
       "hold_trading_days": 12,
@@ -2343,7 +2395,7 @@
     "losses": 26,
     "win_rate": 54.385964912280706,
     "pnl_realized": 17.902725067494337,
-    "pnl_unrealized": 7.6825765330083,
-    "equity": 426.46209805871644
+    "pnl_unrealized": 8.543197550357005,
+    "equity": 427.32271907606514
   }
 }
