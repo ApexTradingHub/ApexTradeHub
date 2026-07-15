@@ -488,5 +488,65 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "RHI",
+    "instrument_id": 1897,
+    "size_usd": 50.0,
+    "stop": 33.1,
+    "target": 40.4,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 366350406,
+    "response": {
+      "token": "14ac4a8e-835f-442d-a625-650a9d7ab34b",
+      "orderId": 366350406,
+      "referenceId": "4fdc2634-f166-441d-ac50-f4dc9df3139f"
+    },
+    "ts": "2026-07-15T13:35:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "GS",
+    "instrument_id": 1467,
+    "size_usd": 50.0,
+    "stop": 1085.57,
+    "target": 1236.8,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 366350410,
+    "response": {
+      "token": "c4c04493-aba1-4080-8e48-d6bb84cb0c2e",
+      "orderId": 366350410,
+      "referenceId": "f7f5013a-b822-4ea0-a62b-58deff4fd802"
+    },
+    "ts": "2026-07-15T13:35:16Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "HRB",
+    "instrument_id": 6736,
+    "size_usd": 50.0,
+    "stop": 38.72,
+    "target": 44.13,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 366350413,
+    "response": {
+      "token": "f8311eb4-eb15-43b9-a5e9-de25e87cccf4",
+      "orderId": 366350413,
+      "referenceId": "1e80b07c-2ce9-43d0-92df-ecedf2d3cb30"
+    },
+    "ts": "2026-07-15T13:35:17Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
