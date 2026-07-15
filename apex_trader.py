@@ -971,9 +971,29 @@ def fetch_intraday_signals() -> list:
     return cands
 
 
+def _find_displaceable_swing(state: dict):
+    """Option B (2026-07-15): schwaechste verdraengbare Swing-Position, damit Intraday
+    seine Reserve-Slots zurueckholen kann wenn Scanner/Momentum alles vollgemacht haben.
+    STRENG geschuetzt: NUR Momentum-Filler + rescued Intradays (schwache Setups, WR ~41-42%),
+    NIE ein frischer Scanner-BREAKOUT (WR 70%), NIE ein Runner, NIE etwas Gruenes.
+    Returns die schwaechste Kandidat-Position (tiefster pnl) oder None."""
+    cands = []
+    for p in state.get("open", []):
+        is_weak = (p.get("source") == "momentum_filler") or p.get("intraday_rescued")
+        if not is_weak:
+            continue                                   # Scanner-BREAKOUT: unantastbar
+        if int(p.get("ladder_step", 0)) > 0 or p.get("trailing_active"):
+            continue                                   # Runner: unantastbar
+        if f(p.get("pnl_pct")) >= 0.0:
+            continue                                   # laeuft (>=0): nicht kicken
+        cands.append(p)
+    return min(cands, key=lambda p: f(p.get("pnl_pct"))) if cands else None
+
+
 def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
     """Oeffnet Intraday-Plays DIREKT (market entry, kein pending/trigger).
-    Nur waehrend Marktstunden, vor EOD-Fenster, mit freien Slots + Cash + Sub-Limit."""
+    Nur waehrend Marktstunden, vor EOD-Fenster, mit freien Slots + Cash + Sub-Limit.
+    Option B: verdraengt bei Bedarf schwache Swing-Positionen bis zur Intraday-Reserve."""
     events = []
     if not INTRADAY_ENABLED:
         return events
@@ -990,13 +1010,12 @@ def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
     if len(intraday_open) >= INTRADAY_MAX_POSITIONS:
         log(f"intraday: sub-limit erreicht ({len(intraday_open)}/{INTRADAY_MAX_POSITIONS})")
         return events
-    # Globales Slot-Limit + Cash
-    if len(open_pos) >= MAX_POSITIONS:
-        log("intraday: globale slots voll")
-        return events
+    # Cash-Check: raus nur wenn kein Cash UND keine Verdraengung Cash freigeben kann.
     if state.get("cash", 0) < POSITION_SIZE:
-        log("intraday: cash < position_size")
-        return events
+        can_free = len(open_pos) >= MAX_POSITIONS and _find_displaceable_swing(state) is not None
+        if not can_free:
+            log("intraday: cash < position_size (keine Verdraengung moeglich)")
+            return events
 
     cands = fetch_intraday_signals()
     if not cands:
@@ -1009,18 +1028,46 @@ def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
                if str(p.get("closed_at", "")).startswith(today)
                and p.get("source") == "intraday_momentum"}
 
-    n_free_global = MAX_POSITIONS - len(open_pos)
     n_free_intra  = INTRADAY_MAX_POSITIONS - len(intraday_open)
-    can_open = min(n_free_global, n_free_intra)
+    # Option B: Intraday darf bis zur RESERVE-Floor (INTRADAY_RESERVED_SLOTS) schwache
+    # Swing-Positionen verdraengen — aber max 1 pro Run (Churn-Schutz). Ueber die Reserve
+    # hinaus (bis INTRADAY_MAX) nur echte freie Slots. Slot-Sicherung passiert im Loop.
+    floor_deficit = max(0, INTRADAY_RESERVED_SLOTS - len(intraday_open))
+    can_open = n_free_intra
 
     prices = batch_prices([c["ticker"] for c in cands[:can_open + 5]])
     opened = 0
+    displaced = 0   # Option B: max 1 Verdraengung pro Run (Churn-Schutz)
     for c in cands:
         if opened >= can_open:
             break
         tk = c["ticker"]
         if tk in busy or tk in tracked:
             continue
+        # === Slot-Sicherung (Option B) ===
+        if len(state["open"]) >= MAX_POSITIONS:
+            # Global voll: nur per Verdraengung, und nur bis zur Intraday-Reserve, max 1/Run.
+            if displaced >= 1 or floor_deficit <= 0:
+                log("intraday: global voll (Reserve erreicht oder Verdraengung schon genutzt)")
+                break
+            victim = _find_displaceable_swing(state)
+            if victim is None:
+                log("intraday: global voll + kein verdraengbarer Slot")
+                break
+            vprice = victim.get("current_price") or victim.get("entry_actual")
+            vpnl = f(victim.get("pnl_pct"))
+            if not dry_run:
+                close_position(state, victim, vprice, "Displaced by intraday")
+                # close_position entfernt NICHT aus open (dok. Pattern) -> explizit raus
+                state["open"] = [q for q in state["open"] if q.get("id") != victim.get("id")]
+            events.append({
+                "event": "displaced_by_intraday", "id": victim.get("id"), "ts": now_iso(),
+                "ticker": victim["ticker"], "for_ticker": tk, "victim_pnl_pct": vpnl,
+            })
+            log(f"  DISPLACE: {victim['ticker']} ({vpnl:+.1f}%, {victim.get('source')}) "
+                f"-> Slot fuer Intraday {tk}")
+            displaced += 1
+            floor_deficit -= 1
         if state.get("cash", 0) < POSITION_SIZE:
             break
         cur = prices.get(tk, c["last"])
@@ -1116,11 +1163,13 @@ def select_new_signals(state: dict, signals: list) -> list:
     # Nach Score sortieren (beste zuerst)
     candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
 
-    # Freie SWING-Slots (Option B): SWING_MAX minus (swing-open + pending).
-    # Intraday-Positionen zaehlen NICHT gegen das Swing-Budget (eigene reservierte Slots).
-    swing_open = sum(1 for p in state.get("open", []) if p.get("source") != "intraday_momentum" or p.get("intraday_rescued"))
-    used_slots = swing_open + len(state.get("pending", []))
-    free_slots = max(0, SWING_MAX_POSITIONS - used_slots)
+    # Option B (2026-07-15): Scanner-BREAKOUT ist das BESTE Setup (WR ~70%) und darf ALLE
+    # physisch freien Slots nutzen — NICHT nur das SWING-Teilbudget. Vorher deckelte
+    # SWING_MAX=4 auch den Scanner; rescued Intradays fuellten das Budget -> 0/6 BREAKOUTs
+    # in KW29 gekauft trotz 3 leeren Slots. Die Intraday-Reserve wird jetzt durch
+    # Verdraengung geschuetzt (select_intraday_plays), nicht durch Leer-Halten von Slots.
+    used_slots = len(state.get("open", [])) + len(state.get("pending", []))
+    free_slots = max(0, MAX_POSITIONS - used_slots)
     if free_slots == 0:
         return []
 
