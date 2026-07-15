@@ -1375,10 +1375,20 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
             if catalysts["vcp_signal"]:          score += 5
 
         # Historical winrate bonus (both setups)
+        # 2026-07-15: Bonus + Point-in-Time-Winrate mitloggen (BACKLOG #19). Praediktivitaet
+        # war nicht messbar (ticker_winrate.json nur 1 Git-Commit, kein Point-in-Time; Ledger-
+        # Rekonstruktion nur n=13). Ab jetzt bei Emission mitschreiben -> in ~3 Mon saubere
+        # Point-in-Time-Daten zum Beurteilen. Reine Instrumentierung, kein Verhaltens-Change.
+        _wr_bonus = 0.0
+        _wr_pit = None
+        _wr_n = 0
         wr_data = TICKER_WINRATE.get(ticker)
         if wr_data and wr_data.get("total", 0) >= 2:
             wr = wr_data["winrate"]
-            score += (wr - 50) * 0.2  # +10 for 100% WR, -10 for 0% WR
+            _wr_bonus = (wr - 50) * 0.2  # +10 for 100% WR, -10 for 0% WR
+            _wr_pit = wr
+            _wr_n = wr_data.get("total", 0)
+            score += _wr_bonus
 
         # RS and Sector bonuses ONLY for BREAKOUT (mean-reversion REVERSAL bets
         # AGAINST momentum — high RS/Sector mom would penalize valid REVERSAL setups)
@@ -1473,6 +1483,10 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
             "movement_bonus":   movement_bonus,
             "closing_strength": round(closing_strength, 2),
             "inside_day":       inside_day,
+            # 2026-07-15 BACKLOG #19: Winrate-Bonus Point-in-Time-Logging (Praediktivitaets-Study)
+            "winrate_bonus":    round(_wr_bonus, 1),
+            "winrate_pit":      _wr_pit,
+            "winrate_n":        _wr_n,
             # Phase G: setup-specific metadata
             "vcp_contraction":  vcp_data["contraction_pct"] if chosen_setup == "VCP" else None,
             "vcp_base_range":   vcp_data["base_range_pct"] if chosen_setup == "VCP" else None,

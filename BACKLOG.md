@@ -660,3 +660,5 @@ kriegt Score-Malus -> rankt niedriger in Pick/Telegram, KEIN Signal-Loss, wie TG
 (c) verwerfen (regime-spezifisch, CIEN-Kosten). Empfehlung: (b) — signal-protection-neutral.
 
 **STATUS 2026-07-15: LIVE geschaltet** (SECTOR_RS_GATE_ENABLED=True, ApexScan.py). Entscheidung: Hard-Skip am Scan-Ursprung (= no-buy bis Sektor gruen via taegliches Re-Scan), NICHT Score-Malus (haette mit TG_SWEET_BAND kollidiert: gedrueckter Score landet im bevorzugten 90-120-Band). TECH-scoped + Catalyst-Carve. Monitoring: in 2-3 Wochen Signal-Loss + WR gegen Learn pruefen; CIEN-Typ-Winner (13d-alter Beat) beobachten.
+
+**STATUS 2026-07-15: INSTRUMENTIERT.** Git-Rekonstruktion war infeasible (ticker_winrate.json nur 1 Commit). Ledger-Point-in-Time nur n=13 (bedeutungslos). Footprint 25% der BREAKOUT-Signale, Mittel-Bonus +0.5 (ausbalanciert, KEINE Inflations-Quelle wie befuerchtet). Praediktivitaet aktuell NICHT messbar -> Bonus BLEIBT. Instrumentierung eingebaut: apex_signals.json loggt jetzt winrate_bonus/winrate_pit/winrate_n bei Emission. In ~3 Mon saubere Point-in-Time-Daten -> dann sauber beurteilen (Split winrate_pit>50 vs <50 gegen Outcome).
