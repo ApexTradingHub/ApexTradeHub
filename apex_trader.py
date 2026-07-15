@@ -206,6 +206,10 @@ INTRADAY_CONSOL_BARS   = 3       # letzte N 5m-Bars: kein neues High im letzten 
 INTRADAY_MIN_ET_HOUR   = 10      # kein Entry vor 10:00 ET (Open-Volatility ist Falle)
 INTRADAY_GAP_MAX_PCT   = 3.0     # Open vs Vortag-Close: >3% Gap = News-Spike, nicht reine Intraday-Kraft
 INTRADAY_EOD_UTC       = "19:45" # Hard-Close ab dieser UTC-Zeit (15 Min vor US-Close 20:00)
+# 2026-07-15 (EQNR-Fall): kein NEUER Intraday-Entry mehr ab dieser Zeit. EQNR wurde
+# 19:36 geoeffnet (9 Min vor EOD-Cutoff) -> sofort EOD-konvertiert, bei BE gestorben.
+# Ein Intraday-Play braucht Zeit zum Arbeiten; 30 Min Restlaufzeit reichen nicht.
+INTRADAY_ENTRY_CUTOFF_UTC = "19:15"
 INTRADAY_CACHE         = SCRIPT_DIR / "apex_intraday_cache.json"
 
 
@@ -769,6 +773,17 @@ def _is_eod_utc() -> bool:
         return False
 
 
+def _is_intraday_entry_cutoff() -> bool:
+    """True wenn zu spaet fuer NEUE Intraday-Entries (>= INTRADAY_ENTRY_CUTOFF_UTC).
+    Frueher als _is_eod_utc: verhindert Minuten-vor-Schluss-Kaeufe (EQNR-Fall 2026-07-15)."""
+    try:
+        hh, mm = (int(x) for x in INTRADAY_ENTRY_CUTOFF_UTC.split(":"))
+        now = datetime.now(timezone.utc)
+        return (now.hour, now.minute) >= (hh, mm)
+    except Exception:
+        return False
+
+
 def fetch_intraday_signals() -> list:
     """Scant das VOLLE US+EU-Universum auf INTRADAY-Momentum.
     2026-07-10 Fix: Universe = us_tickers.txt + eu_tickers.txt (~826 Ticker) statt
@@ -962,8 +977,9 @@ def select_intraday_plays(state: dict, dry_run: bool = False) -> list:
     events = []
     if not INTRADAY_ENABLED:
         return events
-    if _is_eod_utc():
-        log("intraday: EOD-Fenster -> keine neuen Entries")
+    if _is_intraday_entry_cutoff():
+        log(f"intraday: Entry-Cutoff ({INTRADAY_ENTRY_CUTOFF_UTC} UTC) -> keine neuen Entries "
+            f"(zu wenig Restlaufzeit vor EOD)")
         return events
 
     open_pos = state.get("open", [])
@@ -1556,6 +1572,12 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 })
                 log(f"  EOD->SWING: {p['ticker']} ({pnl_now:+.1f}%, {_mode}) "
                     f"Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, Trailing aktiv")
+                # 2026-07-15 Fix (WBD-Bug): Rescue aendert Paper-SL (BE/-4%) + neuen TP —
+                # MUSS zu eToro gepusht werden, sonst laeuft eToro mit dem alten Intraday-SL
+                # (-3%) weiter und schliesst divergent (WBD: eToro 26.60 vs Paper-Stop 26.26).
+                if TRADING_MODE in ("live", "live_dry"):
+                    try: etoro_update_sl_tp(p)
+                    except Exception as e: log(f"  ERR live-rescue-sl: {e}")
                 i_reason = None   # NICHT schliessen — faellt durch zu still_open
             if i_reason:
                 if not dry_run:
