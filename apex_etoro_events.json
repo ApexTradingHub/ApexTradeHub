@@ -561,5 +561,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "CMG",
+    "instrument_id": 1945,
+    "size_usd": 50.0,
+    "stop": 34.27,
+    "target": 39.33,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 366358958,
+    "response": {
+      "token": "fbabe649-b490-49a1-960f-5f664531a360",
+      "orderId": 366358958,
+      "referenceId": "9ff1cfd3-c548-4896-8153-fc56d42b8d5f"
+    },
+    "ts": "2026-07-15T15:30:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
