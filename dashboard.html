@@ -2178,13 +2178,20 @@ function drawEtoroBubble(openPos, events) {
     return;
   }
 
-  // Kumulierte Kurve inkl. Startpunkt 0
+  // Zeit-Parser (akzeptiert 'Z'/naked ISO = UTC)
+  const toMs = iso => {
+    if (!iso) return NaN;
+    const s = String(iso);
+    return new Date(s.endsWith('Z') || s.includes('+') ? s : s + 'Z').getTime();
+  };
+  // Kumulierte Kurve als {x: Zeit, y: G/V$} — Startpunkt = Öffnung des ersten Trades
+  const t0 = toMs(trades[0].opened_at || trades[0].etoro_open_date || trades[0].closed_at);
   let run = 0;
-  const cum = [0];
+  const pts = [{ x: t0, y: 0 }];
   const meta = [{ ticker: 'Start', net: 0, when: '' }];
   trades.forEach(c => {
     run += (+c.etoro_net_profit || 0);
-    cum.push(Math.round(run * 100) / 100);
+    pts.push({ x: toMs(c.closed_at || c.etoro_open_date), y: Math.round(run * 100) / 100 });
     meta.push({
       ticker: c.ticker,
       net: +c.etoro_net_profit || 0,
@@ -2192,9 +2199,14 @@ function drawEtoroBubble(openPos, events) {
       reason: c.exit_reason || ''
     });
   });
-  const labels = meta.map((m, i) => i === 0 ? 'Start' : m.ticker);
-  const final = cum[cum.length - 1];
+  const final = pts[pts.length - 1].y;
   const isPos = final >= 0;
+  // X-Achsen-Format je nach Zeitspanne
+  const xs = pts.map(p => p.x).filter(v => !isNaN(v));
+  const spanDays = (Math.max(...xs) - Math.min(...xs)) / 86400000;
+  const fmtX = spanDays < 3
+    ? v => new Date(v).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+    : v => new Date(v).toLocaleDateString('de-DE', { timeZone: 'Europe/Berlin', day: '2-digit', month: '2-digit' });
   const line = isPos ? '#00FF88' : '#FF3B5C';
 
   // Vertikaler Gradient-Fill unter der Linie
@@ -2208,10 +2220,9 @@ function drawEtoroBubble(openPos, events) {
   etoroBubbleChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels,
       datasets: [{
         label: 'Kumulierte G/V',
-        data: cum,
+        data: pts,
         borderColor: line,
         borderWidth: 2,
         pointRadius: cum.length <= 40 ? 3.5 : 0,
@@ -2248,8 +2259,9 @@ function drawEtoroBubble(openPos, events) {
       },
       scales: {
         x: {
+          type: 'linear',
           grid: { color: gc },
-          ticks: { color: tc, font: { size: 9, family: "'JetBrains Mono'" }, maxTicksLimit: 16, maxRotation: 0, autoSkip: true },
+          ticks: { color: tc, font: { size: 9, family: "'JetBrains Mono'" }, maxTicksLimit: 8, maxRotation: 0, autoSkip: true, callback: fmtX },
           border: { color: gc }
         },
         y: {
