@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-07-15T09:01:27.161525",
+    "updated": "2026-07-15T20:26:30.718847",
     "total_trades": 145,
     "date_range": [
       "2026-03-17",
@@ -440,6 +440,19 @@
       "lift": 0.1,
       "confidence": "MED"
     }
+  },
+  "perf120_catalyst_split": {
+    "n_total": 20,
+    "wr_total": 0.7,
+    "with_catalyst": {
+      "n": 14,
+      "wr": 0.714
+    },
+    "without_catalyst": {
+      "n": 6,
+      "wr": 0.667
+    },
+    "lift": 0.048
   },
   "score_calibration": {
     "BREAKOUT": {

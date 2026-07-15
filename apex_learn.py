@@ -291,6 +291,29 @@ def compute_catalyst_effectiveness(merged):
     return out
 
 
+def compute_perf120_catalyst_split(merged):
+    """2026-07-15: perf_120<0-BREAKOUTs sind bimodal — MIT Catalyst gewinnen sie
+    (SE +13%, STX/CIEN), OHNE verlieren sie (HRB/GIS/DT). Der Learn-Report sagt
+    'perf_120<0 = 70% WR' aggregiert; dieser Split zeigt WARUM: der Catalyst trennt.
+    Verhindert dass perf_120<0 pauschal als 'gut' ODER 'schlecht' gelesen wird."""
+    bo = [t for t in merged if t.get("setup") == "BREAKOUT" and (t.get("perf_120d") or 0) < 0]
+    if len(bo) < 8:
+        return None
+    def has_cat(t):
+        return bool(t.get("cat_pocket_pivot") or t.get("cat_earnings_beat")
+                    or (t.get("cat_gap_pct") or 0) >= 2.0)
+    withc = [t for t in bo if has_cat(t)]
+    without = [t for t in bo if not has_cat(t)]
+    out = {"n_total": len(bo), "wr_total": round(_wr(bo), 3)}
+    if withc:
+        out["with_catalyst"] = {"n": len(withc), "wr": round(_wr(withc), 3)}
+    if without:
+        out["without_catalyst"] = {"n": len(without), "wr": round(_wr(without), 3)}
+    if withc and without:
+        out["lift"] = round(_wr(withc) - _wr(without), 3)
+    return out
+
+
 def compute_score_calibration(merged):
     """Per-Setup: actual WR by score bucket — validiert Score-Gate-Setting."""
     by_setup = defaultdict(list)
@@ -354,6 +377,7 @@ def update_knowledge_base(merged):
         "tickers":            compute_ticker_stats(merged),
         "setups":             compute_setup_stats(merged),
         "catalysts":          compute_catalyst_effectiveness(merged),
+        "perf120_catalyst_split": compute_perf120_catalyst_split(merged),
         "score_calibration":  compute_score_calibration(merged),
         "failure_modes":      compute_failure_modes(merged),
     }
@@ -580,6 +604,27 @@ def gen_report(args, knowledge):
         L.append(f"| {cat} | {d['n_present']} | {d['wr_when_present']:.1%} | "
                  f"{d['wr_when_absent']:.1%} | {sign}{d['lift']:.1%} | {d['confidence']} |")
     L.append("")
+
+    # === 5b. perf_120<0 × Catalyst (bimodal — Catalyst trennt Winner von Loser) ===
+    pcs = knowledge.get("perf120_catalyst_split")
+    if pcs:
+        L.append("## 5b. Beaten-Down-BREAKOUT (perf_120<0): Catalyst-Split")
+        L.append("")
+        L.append(f"perf_120<0 gesamt: WR {pcs['wr_total']:.1%} (n={pcs['n_total']}). "
+                 "Aggregat verschleiert — der Catalyst trennt:")
+        L.append("")
+        L.append("| perf_120<0 | n | WR |")
+        L.append("|---|---|---|")
+        if pcs.get("with_catalyst"):
+            L.append(f"| **MIT Catalyst** (PP/Gap≥2/Beat) | {pcs['with_catalyst']['n']} | {pcs['with_catalyst']['wr']:.1%} |")
+        if pcs.get("without_catalyst"):
+            L.append(f"| OHNE Catalyst | {pcs['without_catalyst']['n']} | {pcs['without_catalyst']['wr']:.1%} |")
+        if "lift" in pcs:
+            L.append("")
+            L.append(f"→ Catalyst-Lift bei beaten-down BREAKOUT: **{'+' if pcs['lift']>0 else ''}{pcs['lift']:.1%}**. "
+                     "Lehre: perf_120<0 ist KEIN Skip-Kriterium — die Catalyst-Präsenz entscheidet "
+                     "(SE +13% mit Beat vs HRB/GIS/DT ohne).")
+        L.append("")
 
     # === 6. Score Calibration ===
     L.append("## 6. Score-Gate Calibration (Lifetime — validiert Gate-Setting)")
