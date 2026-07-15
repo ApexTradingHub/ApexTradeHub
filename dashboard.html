@@ -1671,9 +1671,9 @@ function renderHistory() {
 }
 
 /* ── LOAD ── */
-async function loadData() {
+async function loadData(silent = false) {
   const upd = document.getElementById('lastUpdate');
-  upd.textContent = 'Lädt…';
+  if (!silent) upd.textContent = 'Lädt…';
   const [sigs, rA, rT, mkt, pState, opSnap, tlog, elog] = await Promise.all([
     fetchJ(SF), fetchJ(EF), fetchJ(EF2), fetchJ(MF), fetchJ(PF), fetchJ(OPF), fetchJ(TLF), fetchJ(ETF)
   ]);
@@ -1710,9 +1710,11 @@ async function loadData() {
   renderSector(sigs);
   renderLog(allR);
 
-  /* if history tab is active, also render it */
-  if (location.hash === '#history') renderHistory();
-  if (location.hash === '#paper')   renderPaper();
+  /* aktiven Tab neu rendern (auch eToro/paper/history) */
+  const activeTab = (location.hash || '#today').replace('#', '');
+  if (activeTab === 'history')    renderHistory();
+  else if (activeTab === 'paper') renderPaper();
+  else if (activeTab === 'etoro') renderEtoro();
 }
 
 /* ── PAPER TRADING RENDER ── */
@@ -2334,6 +2336,12 @@ function togglePaperClosed() {
   const hash = location.hash.replace('#', '') || 'today';
   if (hash === 'history') showTab('history');
   loadData();
+
+  // Auto-Refresh alle 60s (silent, kein "Lädt…"-Flackern). Pausiert wenn der Tab
+  // im Hintergrund ist (spart Requests) und refresht sofort beim Zurückkehren.
+  const REFRESH_MS = 60000;
+  setInterval(() => { if (!document.hidden) loadData(true); }, REFRESH_MS);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) loadData(true); });
 })();
 </script>
 
