@@ -599,3 +599,39 @@ plausible Quelle der Score-Inflation (Median Maerz 85.7 -> Juni 115.3).
 **Warum geparkt:** Sektor-Bonus-Entfernung + TG_SWEET_BAND (beide 2026-07-11 live)
 zuerst 2-4 Wochen wirken lassen — nicht drei Score-Aenderungen gleichzeitig, sonst
 ist Attribution unmoeglich.
+
+---
+
+## 20. Sektor-relative-Strength-Gate für BREAKOUT (2026-07-15, HEUTE bauen)
+
+**Root-Cause (Learn 07-15 + Postmortem 25 Pending):** Der 30d-WR-Einbruch (32.6% vs
+Lifetime 51%) kommt v.a. aus dem **Semi-Selloff Ende Juni** (LRCX -9.2, KLAC -9.3,
+CGNX -6.7, alle Tech, alle D+3-4). Web-verifiziert: sektorweiter Baerenmove (Memory-
+Kosten, AI-Spending-Scrutiny, TSMC-Stake, Samsung-Streik). Gemeinsamer Nenner:
+**Sektor-ETF divergierte -2.6 bis -3.65% negativ TROTZ positivem SPY.**
+
+**Warum TECH_QQQ_GATE das NICHT deckt:** feuert nur bei `qqq_perf_20 < 0`. Im Semi-
+Selloff war QQQ teils noch positiv/flach, aber XLK/Semi brach ein. = die "neue Zelle"
+vor der der Fable-Brief (§1.5) warnte.
+
+**Hypothese (falsifizierbar):** BREAKOUT skippen wenn Sektor-ETF-Momentum (sector_etf
+_perf_20) < Schwelle X UND negativ vs SPY divergiert (sector_perf - spy_perf < -Y).
+Datenbeleg: Postmortem-Sektor-Divergenz-Loser-Tabelle + die 3 Semi-Trades.
+
+**Backtest-Plan (Backtest-First, VOR Live):**
+1. Join Signale mit equity_results, Feature sector_etf_perf_20 (aus market_context /
+   Sektor-ETF-Historie rekonstruieren, wie in apex_score_v2_stage1.py gemacht).
+2. Sweep Schwellen (sector_perf_20 < 0 / < -2 / divergenz < -2pp / -5pp).
+3. Akzeptanz VORAB: WR-Lift der gepickten Trades >= +3pp UND Signal-Count >= 95%
+   Baseline (Signal-Protection) UND kein Winner-Cluster gedroppt (SE/STX-Typ mit
+   Catalyst muss durch — Catalyst-Carve-Out wie SCORE_REBUILD pruefen).
+4. NUR wenn GO: Flag SECTOR_RS_GATE_ENABLED in ApexScan.py, analog TECH_QQQ_GATE.
+
+**WICHTIG — der Catalyst-Konflikt (nicht ignorieren):** Learn sagt `Breakout x perf_120
+<0` = 70% WR (n=20), aber die perf_120<0-Loser (HRB/GIS/DT) hatten KEINEN Catalyst,
+SE (perf_120 -26.5, WON +13%) HATTE einen (Earnings-Beat). Der Bucket ist bimodal —
+Catalyst trennt. Ein pauschales Sektor/Momentum-Gate darf die Catalyst-Winner nicht
+killen. Carve-Out einbauen + im Backtest die gedroppten Winner zaehlen.
+
+**Blacklist-Nebenaktion:** TSM (25% WR/4), ASML (40%/5) sind chronische Semi-ADR-
+Underperformer -> Blacklist-Kandidaten (wie BAD_PERFORMERS-Set).
