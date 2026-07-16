@@ -634,5 +634,41 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "WULF",
+    "order_id": 365147566,
+    "position_id": 3561004357,
+    "close_rate": 22.07,
+    "net_profit": -2.08,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 23.887799999999995,
+      "reason": "Stop Loss (Trailing)",
+      "pnl_pct": 3.5
+    },
+    "ts": "2026-07-16T18:35:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "RHI",
+    "order_id": 366350406,
+    "position_id": 3562524462,
+    "close_rate": 40.45,
+    "net_profit": 6.6,
+    "reason": "eToro TP",
+    "paper_had": {
+      "exit_price": 40.4,
+      "reason": "Take Profit",
+      "pnl_pct": 13.01
+    },
+    "ts": "2026-07-16T18:35:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
