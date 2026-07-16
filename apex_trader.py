@@ -1982,7 +1982,18 @@ def sync_etoro_positions(state: dict):
     if TRADING_MODE not in ("live", "live_dry"): return
     if not (ETORO_API_KEY and ETORO_USER_KEY): return
     positions_with_oid = [p for p in state.get("open", []) if p.get("etoro_order_id")]
-    if not positions_with_oid: return
+    # 2026-07-16 (RHI-Bug): Backfill-Kandidaten = im Paper GESCHLOSSENE Live-Trades ohne
+    # eToro-Close-Daten. Race: wenn die Paper-Exit-Bedingung im selben Run feuert, in dem
+    # eToro schon geschlossen hat (Portfolio-API hinkt ~3min nach), gewinnt Paper das Rennen
+    # -> etoro_close_rate/net bleiben leer + kein Event, und der Sync schaut nie wieder hin.
+    # RHI 07-16: Paper buchte +13.01% (theoret. Target 40.40), real +13.2% (Fill 40.45 ueber
+    # TP 40.37, netP $6.60 statt $6.50). Nur die letzten 7 Tage (History-Fetch begrenzen).
+    from datetime import timedelta as _td_bf
+    _bf_cutoff = (datetime.now(timezone.utc) - _td_bf(days=7)).strftime("%Y-%m-%d")
+    backfill_needed = [c for c in state.get("closed", [])
+                       if c.get("etoro_order_id") and not c.get("etoro_close_rate")
+                       and str(c.get("closed_at", ""))[:10] >= _bf_cutoff]
+    if not positions_with_oid and not backfill_needed: return
     try:
         c = _etoro_client()
         r = c.get_balance()
@@ -2011,11 +2022,12 @@ def sync_etoro_positions(state: dict):
         # History-Lookup fuer unresolved (2026-07-07): unterscheidet echt-geschlossen (TP/SL/user)
         # von order_dropped (nie zustande gekommen). Fuer korrekte Reason im close_position-Call.
         history_by_order = {}
-        if unresolved:
+        if unresolved or backfill_needed:
             try:
-                # min_date auf frueheste opened_at der unresolved Trades (mit 2d Puffer)
+                # min_date auf frueheste opened_at (unresolved + backfill) mit 2d Puffer
                 from datetime import timedelta as _td
                 opens = [pos.get("opened_at","") for pos in unresolved if pos.get("opened_at")]
+                opens += [c_.get("opened_at","") for c_ in backfill_needed if c_.get("opened_at")]
                 if opens:
                     md = min(opens)[:10]
                     md_dt = datetime.fromisoformat(md) - _td(days=2)
@@ -2074,8 +2086,63 @@ def sync_etoro_positions(state: dict):
             except Exception as e:
                 log(f"  [eToro] close-from-sync error {pos['ticker']}: {e}")
 
-        if synced or phantoms:
-            log(f"  [eToro] sync: {synced} live · {phantoms} closed via sync/history")
+        # 2026-07-16 (RHI-Bug): Backfill der echten eToro-Close-Daten fuer Trades, die das
+        # Paper selbst geschlossen hat bevor der Sync die eToro-Schliessung sah. Korrigiert
+        # die Buecher auf die REALITAET (eToro-Fill ist die Wahrheit fuer Live-Trades) und
+        # loggt das Event nach, damit es im eToro-Tab erscheint.
+        backfilled = 0
+        for c_ in backfill_needed:
+            oid = int(c_.get("etoro_order_id", 0))
+            hit = history_by_order.get(oid)
+            if not hit:
+                continue   # History hinkt noch -> naechster Run versucht es erneut
+            close_rate = float(hit.get("closeRate") or 0)
+            if close_rate <= 0:
+                continue
+            net_profit = float(hit.get("netProfit") or 0)
+            sl_rate    = float(hit.get("stopLossRate") or 0)
+            tp_rate    = float(hit.get("takeProfitRate") or 0)
+            if tp_rate and close_rate >= tp_rate * 0.999:
+                real_reason = "eToro TP"
+            elif sl_rate and close_rate <= sl_rate * 1.001:
+                real_reason = "eToro SL"
+            else:
+                real_reason = "eToro closed"
+            # PnL aus eToros WAHRHEIT: openRate (echter Fill) + netProfit (echtes Geld
+            # inkl. Spread/Fees), nicht aus unserem entry_actual/theoretischem Exit.
+            hist_open = f(hit.get("openRate")) or f(c_.get("etoro_open_rate"))
+            entry = hist_open or f(c_.get("entry_actual"))
+            old_pnl = f(c_.get("pnl_pct"))
+            c_["etoro_position_id"] = c_.get("etoro_position_id") or hit.get("positionId")
+            c_["etoro_open_rate"]   = c_.get("etoro_open_rate") or hist_open or None
+            c_["etoro_close_rate"]  = close_rate
+            c_["etoro_net_profit"]  = net_profit
+            c_["paper_exit_price"]  = c_.get("exit_price")     # Audit: was das Paper buchte
+            c_["paper_exit_reason"] = c_.get("exit_reason")
+            c_["paper_pnl_pct"]     = old_pnl
+            c_["exit_price"]        = close_rate
+            c_["exit_reason"]       = real_reason
+            if entry > 0:
+                c_["pnl_pct"] = (close_rate / entry - 1) * 100
+            if net_profit:
+                c_["pnl_usd"] = net_profit          # eToros echtes Geld ist die Wahrheit
+            elif entry > 0:
+                c_["pnl_usd"] = f(c_.get("size_usd"), 50.0) * c_["pnl_pct"] / 100
+            c_["etoro_backfilled_at"] = now_iso()
+            _append_etoro_event({
+                "event": "close_backfill", "ticker": c_["ticker"], "order_id": oid,
+                "position_id": c_.get("etoro_position_id"), "close_rate": close_rate,
+                "net_profit": net_profit, "reason": real_reason,
+                "paper_had": {"exit_price": c_.get("paper_exit_price"),
+                              "reason": c_.get("paper_exit_reason"), "pnl_pct": round(old_pnl, 2)},
+            })
+            log(f"  [eToro] {c_['ticker']} BACKFILL: {real_reason} @ ${close_rate:.2f} "
+                f"(netP ${net_profit:+.2f}) — Paper hatte {old_pnl:+.2f}%, real {c_['pnl_pct']:+.2f}%")
+            backfilled += 1
+
+        if synced or phantoms or backfilled:
+            log(f"  [eToro] sync: {synced} live · {phantoms} closed via sync/history"
+                + (f" · {backfilled} backfilled" if backfilled else ""))
     except Exception as e:
         log(f"  [eToro] sync fail: {e}")
 

@@ -662,3 +662,27 @@ kriegt Score-Malus -> rankt niedriger in Pick/Telegram, KEIN Signal-Loss, wie TG
 **STATUS 2026-07-15: LIVE geschaltet** (SECTOR_RS_GATE_ENABLED=True, ApexScan.py). Entscheidung: Hard-Skip am Scan-Ursprung (= no-buy bis Sektor gruen via taegliches Re-Scan), NICHT Score-Malus (haette mit TG_SWEET_BAND kollidiert: gedrueckter Score landet im bevorzugten 90-120-Band). TECH-scoped + Catalyst-Carve. Monitoring: in 2-3 Wochen Signal-Loss + WR gegen Learn pruefen; CIEN-Typ-Winner (13d-alter Beat) beobachten.
 
 **STATUS 2026-07-15: INSTRUMENTIERT.** Git-Rekonstruktion war infeasible (ticker_winrate.json nur 1 Commit). Ledger-Point-in-Time nur n=13 (bedeutungslos). Footprint 25% der BREAKOUT-Signale, Mittel-Bonus +0.5 (ausbalanciert, KEINE Inflations-Quelle wie befuerchtet). Praediktivitaet aktuell NICHT messbar -> Bonus BLEIBT. Instrumentierung eingebaut: apex_signals.json loggt jetzt winrate_bonus/winrate_pit/winrate_n bei Emission. In ~3 Mon saubere Point-in-Time-Daten -> dann sauber beurteilen (Split winrate_pit>50 vs <50 gegen Outcome).
+
+---
+
+## 21. eToro-Close-Backfill — GEFIXT (2026-07-16, RHI-Bug)
+
+**Befund (User):** RHI sprang bei Open durch den TP, eToro verkaufte 15:32 mit ~13.3%, aber
+es stand NICHT im eToro-Tab und das Paper buchte nur +13.01%.
+
+**Root-Cause (Race):** eToro-TP feuerte 13:32 UTC (Fill 40.45 UEBER TP 40.37). Beim 13:35-Run
+zeigte eToros Portfolio-API RHI noch als offen (Lag ~3min) -> Sync tat nichts. Danach schloss
+der Paper-Trader selbst bei seinem theoretischen Target 40.40 (+13.01%) und rief
+etoro_close_position -> scheiterte (auf eToro laengst zu) -> KEIN Event. **Und der Sync schaut
+nie wieder auf geschlossene Positionen** -> echte Close-Rate fuer immer verloren.
+Gegenprobe: ANET + CMG (beide eToro-SL, Paper hatte NICHT selbst geschlossen) wurden korrekt
+via close_from_history erfasst. Nur wenn Paper das Rennen gewinnt, geht es verloren.
+
+**Fix:** sync_etoro_positions backfillt jetzt bereits geschlossene Live-Trades ohne
+etoro_close_rate (letzte 7 Tage) aus der History: setzt echte close_rate/net_profit, korrigiert
+pnl_pct (aus eToros openRate) + pnl_usd (= netProfit, echtes Geld), leitet den echten Reason
+ab (TP/SL/closed) und loggt ein close_backfill-Event -> erscheint im eToro-Tab. Audit-Felder
+paper_exit_price/paper_exit_reason/paper_pnl_pct bleiben erhalten. History-Lag ist egal: wenn
+noch nicht da, versucht es der naechste Run erneut.
+
+**RHI-Effekt:** Take Profit 40.40/+13.01%/$6.50 -> eToro TP 40.45/+13.21%/$6.60.
