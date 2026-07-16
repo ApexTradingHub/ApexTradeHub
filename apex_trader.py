@@ -216,6 +216,12 @@ INTRADAY_EOD_UTC       = "19:45" # Hard-Close ab dieser UTC-Zeit (15 Min vor US-
 # Ein Intraday-Play braucht Zeit zum Arbeiten; 30 Min Restlaufzeit reichen nicht.
 INTRADAY_ENTRY_CUTOFF_UTC = "19:15"
 INTRADAY_CACHE         = SCRIPT_DIR / "apex_intraday_cache.json"
+# 2026-07-16: Reject-Log — welche Intraday-Kandidaten wurden von welchem Filter geblockt?
+# Tages-dedupliziert (letzte Beobachtung pro Ticker/Tag), 14d-Retention. Auswertung in
+# 2-3 Wochen: was wurde aus den Abgelehnten (RHI/MAT-Frage: sperren wir die Staerksten aus)?
+# MUSS in run_trader.sh in die git-add-Liste, sonst bleibt es auf der VM.
+INTRADAY_REJECTS_FILE  = SCRIPT_DIR / "apex_intraday_rejects.json"
+INTRADAY_REJECTS_KEEP_DAYS = 14
 
 
 # ---------------------------------------------------------------------------
@@ -789,6 +795,32 @@ def _is_intraday_entry_cutoff() -> bool:
         return False
 
 
+def _persist_intraday_rejects(rejects: list):
+    """2026-07-16: Reject-Log schreiben, TAGES-dedupliziert (letzte Beobachtung pro Ticker/Tag).
+    Ohne Dedup waeren es ~95 Rejects x 12 Scans/h = unbrauchbar. So bleibt pro Ticker/Tag EIN
+    Eintrag mit dem zuletzt gesehenen Zustand + Ablehnungsgrund. Retention 14d.
+    Auswertungs-Frage (in 2-3 Wochen): Was wurde aus den Abgelehnten? Sperren
+    RANGE_POS_MAX=0.90 / GAIN_MAX=6.0 die staerksten Mover aus (RHI/MAT 16.07.) — oder
+    schuetzen sie vor Peak-Kaeufen (4x rot am 10.07.)? Erst Daten, dann Schwellen anfassen."""
+    if not rejects:
+        return
+    try:
+        today = today_date().isoformat()
+        data = load_json(INTRADAY_REJECTS_FILE) or {}
+        if not isinstance(data, dict):
+            data = {}
+        day = data.setdefault(today, {})
+        for r in rejects:
+            day[r["ticker"]] = {k: v for k, v in r.items() if k != "ticker"}
+            day[r["ticker"]]["ts"] = now_iso()
+        # Retention: nur die letzten N Tage behalten
+        cutoff = (today_date() - timedelta(days=INTRADAY_REJECTS_KEEP_DAYS)).isoformat()
+        data = {d: v for d, v in data.items() if d >= cutoff}
+        save_json(INTRADAY_REJECTS_FILE, data)
+    except Exception as e:
+        log(f"intraday: reject-log write fail: {e}")   # nie den Scan blockieren
+
+
 def fetch_intraday_signals() -> list:
     """Scant das VOLLE US+EU-Universum auf INTRADAY-Momentum.
     2026-07-10 Fix: Universe = us_tickers.txt + eu_tickers.txt (~826 Ticker) statt
@@ -874,6 +906,7 @@ def fetch_intraday_signals() -> list:
         return []
 
     cands = []
+    _intraday_rejects = []   # 2026-07-16: gesammelte Filter-Rejects (siehe _persist_intraday_rejects)
     for t in tickers:
         try:
             if len(tickers) == 1:
@@ -908,25 +941,43 @@ def fetch_intraday_signals() -> list:
             rng = hi_today - lo_today
             range_pos = (last - lo_today) / rng if rng > 0 else 0.5
 
-            # === Basis-Filter ===
-            if not (INTRADAY_GAIN_MIN <= gain_from_open <= INTRADAY_GAIN_MAX):
-                continue
-            if not above_vwap:
-                continue
-            if range_pos < INTRADAY_RANGE_POS_MIN:
-                continue
-
-            # === Anti-Peak-Chase-Filter (2026-07-10, Ansatz B) ===
+            # === Filter mit Reject-Logging (2026-07-16) ===
+            # Warum: am 16.07. liefen RHI +7.5%, MAT +6.5%, DXCM +5.7% den ganzen Tag, wir
+            # kauften aber nur IR (+3.1%, verblasste). Offene Frage: sperren RANGE_POS_MAX=0.90
+            # und GAIN_MAX=6.0 die STAERKSTEN Mover aus? Gegen-Evidenz vom 10.07. (4 Peak-Kaeufe
+            # bei range_pos>0.90 = alle rot). n auf beiden Seiten winzig -> messen statt raten.
+            # Rejects werden tages-dedupliziert geloggt; Auswertung in 2-3 Wochen: was wurde aus
+            # den Abgelehnten? Erst dann ggf. Schwellen anfassen.
             ctx = daily_ctx.get(t, {})
-            # (1) Range-Pos-OBERGRENZE: nicht am absoluten Top kaufen
-            if range_pos > INTRADAY_RANGE_POS_MAX:
-                continue
-            # (2) Volume-Ratio: heute-Vol vs Vortage-Schnitt — Bestaetigung, kein Blow-off
             avg_vol = ctx.get("avg_vol", 0.0)
             today_vol = float(v.sum())
             vol_ratio = (today_vol / avg_vol) if avg_vol > 0 else None
+
+            def _rej(reason):
+                _intraday_rejects.append({
+                    "ticker": t, "reason": reason,
+                    "gain": round(gain_from_open, 2), "range_pos": round(range_pos, 2),
+                    "vol_ratio": round(vol_ratio, 2) if vol_ratio is not None else None,
+                    "above_vwap": bool(above_vwap), "last": round(last, 2),
+                })
+
+            # === Basis-Filter ===
+            if gain_from_open < INTRADAY_GAIN_MIN:
+                _rej("gain_too_low"); continue
+            if gain_from_open > INTRADAY_GAIN_MAX:
+                _rej("gain_too_high"); continue      # <- Verdacht: sperrt die staerksten Mover aus
+            if not above_vwap:
+                _rej("below_vwap"); continue
+            if range_pos < INTRADAY_RANGE_POS_MIN:
+                _rej("range_pos_too_low"); continue
+
+            # === Anti-Peak-Chase-Filter (2026-07-10, Ansatz B) ===
+            # (1) Range-Pos-OBERGRENZE: nicht am absoluten Top kaufen
+            if range_pos > INTRADAY_RANGE_POS_MAX:
+                _rej("range_pos_too_high"); continue  # <- Verdacht: starke Trends laufen am Hoch
+            # (2) Volume-Ratio: heute-Vol vs Vortage-Schnitt — Bestaetigung, kein Blow-off
             if vol_ratio is not None and not (INTRADAY_VOL_RATIO_MIN <= vol_ratio <= INTRADAY_VOL_RATIO_MAX):
-                continue
+                _rej("vol_ratio_out" if vol_ratio < INTRADAY_VOL_RATIO_MIN else "vol_blowoff"); continue
             # (3) Konsolidation: letzter Bar neues Tageshoch = vertikaler FOMO-Spike statt Pullback.
             # 2026-07-10: SOFT-Penalty statt Hard-Skip (war throughput-killer). Ticker fliegt nicht
             # raus, rankt nur niedriger — Pullback-Entries werden bevorzugt, aber starke Trendtage
@@ -942,7 +993,7 @@ def fetch_intraday_signals() -> list:
                 last_ts = c.index[-1]
                 et_hour = last_ts.tz_convert("America/New_York").hour if last_ts.tzinfo else last_ts.hour
                 if et_hour < INTRADAY_MIN_ET_HOUR:
-                    continue
+                    _rej("before_10et"); continue
             except Exception:
                 pass
             # (5) Gap-Filter: Open vs Vortag-Close — >Gap = News-Spike, nicht reine Intraday-Kraft
@@ -950,7 +1001,7 @@ def fetch_intraday_signals() -> list:
             if prev_close > 0:
                 gap_pct = (open_today / prev_close - 1) * 100
                 if abs(gap_pct) > INTRADAY_GAP_MAX_PCT:
-                    continue
+                    _rej("gap_too_large"); continue
 
             # Score: gain + range-position + vwap-distanz + vol-ratio-bonus - consol-penalty
             score = gain_from_open * 3 + range_pos * 20 + ((last / vwap - 1) * 100) * 2
@@ -972,6 +1023,7 @@ def fetch_intraday_signals() -> list:
 
     cands.sort(key=lambda x: -x["score"])
     save_json(INTRADAY_CACHE, {"updated_at": now_iso(), "candidates": cands})
+    _persist_intraday_rejects(_intraday_rejects)
     log(f"intraday: {len(cands)} kandidaten (top: {[c['ticker'] for c in cands[:3]]})")
     return cands
 

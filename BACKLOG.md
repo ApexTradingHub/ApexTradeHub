@@ -686,3 +686,28 @@ paper_exit_price/paper_exit_reason/paper_pnl_pct bleiben erhalten. History-Lag i
 noch nicht da, versucht es der naechste Run erneut.
 
 **RHI-Effekt:** Take Profit 40.40/+13.01%/$6.50 -> eToro TP 40.45/+13.21%/$6.60.
+
+---
+
+## 22. Intraday-Reject-Log — sperren wir die staerksten Mover aus? (2026-07-16, MESSEN)
+
+**Widerspruechliche Evidenz, n winzig auf beiden Seiten:**
+- **10.07.:** 4 Intradays bei range_pos>0.90 gekauft -> ALLE 4 rot. Daraufhin Anti-Peak-Filter gebaut (RANGE_POS_MAX=0.90 etc.).
+- **16.07.:** RHI +7.5%, MAT +6.5%, DXCM +5.7% liefen den GANZEN Tag und hielten ihre Hochs (MAT schloss AUF dem Tageshoch, range_pos 1.00). Gekauft haben wir nur IR (+3.1% Peak, verblasste auf -1.1%) — einer der Schwaechsten. RHI war durch den Close-Cooldown gesperrt (korrekt), MAT/DXCM vermutlich durch RANGE_POS_MAX=0.90.
+
+**Konkreter Verdacht (2 Schwellen):**
+1. `RANGE_POS_MAX = 0.90` — starke Trends laufen per Definition am Hoch entlang und machen staendig neue Highs. Genau das filtern wir raus.
+2. `GAIN_MAX = 6.0` — Mover wachsen aus dem Vorfilter HERAUS wenn sie am staerksten laufen (RHI +7.5%, MAT +6.5% ueberschritten es).
+
+**NICHT geaendert** — 4 Trades gegen 1 Tag ist keine Datenbasis. Stattdessen instrumentiert:
+`apex_intraday_rejects.json` loggt tages-dedupliziert jeden abgelehnten Kandidaten mit Grund
+(gain_too_high / range_pos_too_high / vol_ratio_out / below_vwap / before_10et / gap_too_large)
++ gain/range_pos/vol_ratio/last. Retention 14d.
+
+**Auswertung in 2-3 Wochen:** Join der Rejects mit dem Tagesverlauf (was wurde aus ihnen bis
+Close?) -> WR/avg-Move der Abgelehnten je Ablehnungsgrund. Wenn `range_pos_too_high` +
+`gain_too_high` systematisch Gewinner aussperren -> Schwellen lockern (0.90->0.95, 6.0->8.0).
+Wenn sie ueberwiegend Fader treffen -> bestaetigt, so lassen.
+
+**ACHTUNG run_trader.sh:** apex_intraday_rejects.json MUSS in die git-add-Liste, sonst bleibt
+das Log auf der VM (wie apex_intraday_cache.json, das nie committed wurde).
