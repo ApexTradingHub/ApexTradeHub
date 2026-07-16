@@ -1,8 +1,8 @@
 {
   "mode": "live",
   "capital_initial": 400.0,
-  "cash": 64.2619472550804,
-  "last_updated": "2026-07-15T21:55:03Z",
+  "cash": 111.37177384467577,
+  "last_updated": "2026-07-16T13:00:02Z",
   "pending": [],
   "open": [
     {
@@ -32,7 +32,7 @@
       "pnl_usd": 10.873216564946743,
       "hold_days": 16,
       "intraday_rescued": true,
-      "hold_trading_days": 12,
+      "hold_trading_days": 13,
       "trailing_activated_at": "2026-07-01T14:00:07Z"
     },
     {
@@ -73,7 +73,7 @@
         "orderId": 365345435,
         "referenceId": "3d2d1302-1b8f-4215-9789-4d65f3a45d56"
       },
-      "hold_trading_days": 3,
+      "hold_trading_days": 4,
       "etoro_position_id": 3561192886,
       "etoro_open_rate": 14.74,
       "etoro_current_rate": 14.74,
@@ -122,7 +122,7 @@
       "etoro_units": 3.561253,
       "etoro_open_date": "2026-07-10T15:35:28.597Z",
       "intraday_rescued": true,
-      "hold_trading_days": 3
+      "hold_trading_days": 4
     },
     {
       "id": "PAPER_RHI_2026-07-13",
@@ -162,7 +162,7 @@
         "orderId": 366350406,
         "referenceId": "4fdc2634-f166-441d-ac50-f4dc9df3139f"
       },
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "etoro_status": "pending_fill",
       "etoro_position_id": 3562524462,
       "etoro_open_rate": 35.73,
@@ -208,7 +208,7 @@
         "orderId": 366350410,
         "referenceId": "f7f5013a-b822-4ea0-a62b-58deff4fd802"
       },
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "etoro_position_id": 3562518901,
       "etoro_open_rate": 1143.7,
       "etoro_current_rate": 1143.7,
@@ -253,58 +253,13 @@
         "orderId": 366350413,
         "referenceId": "1e80b07c-2ce9-43d0-92df-ecedf2d3cb30"
       },
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "etoro_status": "pending_fill",
       "etoro_position_id": 3562522971,
       "etoro_open_rate": 40.88,
       "etoro_current_rate": 40.88,
       "etoro_units": 1.221896,
       "etoro_open_date": "2026-07-15T13:43:45.613Z"
-    },
-    {
-      "id": "PAPER_CMG_2026-07-13",
-      "ticker": "CMG",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Consumer Cyclical",
-      "signal_date": "2026-07-13",
-      "entry": 35.85,
-      "stop_initial": 33.99,
-      "target": 39.33,
-      "score": 89.7,
-      "rr": 1.69,
-      "upside_pct": 8.8,
-      "added_at": "2026-07-15T15:25:10Z",
-      "status": "open",
-      "mode": "live",
-      "entry_actual": 36.33,
-      "shares": 1.3762730525736306,
-      "size_usd": 50.0,
-      "stop": 34.27,
-      "high_since_entry": 36.77000045776367,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-07-15T15:30:09Z",
-      "current_price": 34.6598014831543,
-      "pnl_pct": -4.597298422366368,
-      "pnl_usd": -2.298649211183184,
-      "hold_days": 0,
-      "yfinance_entry": 36.02925,
-      "etoro_ask_at_open": 36.33,
-      "etoro_instrument_id": 1945,
-      "etoro_order_id": 366358958,
-      "etoro_reference_id": "9ff1cfd3-c548-4896-8153-fc56d42b8d5f",
-      "etoro_open_response": {
-        "token": "fbabe649-b490-49a1-960f-5f664531a360",
-        "orderId": 366358958,
-        "referenceId": "9ff1cfd3-c548-4896-8153-fc56d42b8d5f"
-      },
-      "hold_trading_days": 0,
-      "etoro_position_id": 3562660181,
-      "etoro_open_rate": 36.28,
-      "etoro_current_rate": 36.28,
-      "etoro_units": 1.376651,
-      "etoro_open_date": "2026-07-15T15:30:12.53Z"
     }
   ],
   "closed": [
@@ -2357,6 +2312,56 @@
       "exit_price": 170.55,
       "exit_reason": "eToro SL",
       "closed_at": "2026-07-15T15:25:09Z"
+    },
+    {
+      "id": "PAPER_CMG_2026-07-13",
+      "ticker": "CMG",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-07-13",
+      "entry": 35.85,
+      "stop_initial": 33.99,
+      "target": 39.33,
+      "score": 89.7,
+      "rr": 1.69,
+      "upside_pct": 8.8,
+      "added_at": "2026-07-15T15:25:10Z",
+      "status": "closed",
+      "mode": "live",
+      "entry_actual": 36.33,
+      "shares": 1.3762730525736306,
+      "size_usd": 50.0,
+      "stop": 34.27,
+      "high_since_entry": 36.77000045776367,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-07-15T15:30:09Z",
+      "current_price": 34.6598014831543,
+      "pnl_pct": -5.780346820809252,
+      "pnl_usd": -2.890173410404626,
+      "hold_days": 0,
+      "yfinance_entry": 36.02925,
+      "etoro_ask_at_open": 36.33,
+      "etoro_instrument_id": 1945,
+      "etoro_order_id": 366358958,
+      "etoro_reference_id": "9ff1cfd3-c548-4896-8153-fc56d42b8d5f",
+      "etoro_open_response": {
+        "token": "fbabe649-b490-49a1-960f-5f664531a360",
+        "orderId": 366358958,
+        "referenceId": "9ff1cfd3-c548-4896-8153-fc56d42b8d5f"
+      },
+      "hold_trading_days": 1,
+      "etoro_position_id": 3562660181,
+      "etoro_open_rate": 36.28,
+      "etoro_current_rate": 36.28,
+      "etoro_units": 1.376651,
+      "etoro_open_date": "2026-07-15T15:30:12.53Z",
+      "etoro_close_rate": 34.23,
+      "etoro_net_profit": -2.82,
+      "exit_price": 34.23,
+      "exit_reason": "eToro SL",
+      "closed_at": "2026-07-16T13:00:35Z"
     }
   ],
   "expired": [
@@ -2524,13 +2529,13 @@
   "stats": {
     "trading_mode": "live",
     "etoro_env": "demo",
-    "total_trades": 58,
-    "open_trades": 7,
+    "total_trades": 59,
+    "open_trades": 6,
     "wins": 31,
-    "losses": 27,
-    "win_rate": 53.44827586206896,
-    "pnl_realized": 13.385150796866572,
-    "pnl_unrealized": 11.262487898921213,
-    "equity": 425.5244351540016
+    "losses": 28,
+    "win_rate": 52.54237288135594,
+    "pnl_realized": 10.494977386461946,
+    "pnl_unrealized": 13.561137110104397,
+    "equity": 424.9329109547802
   }
 }
