@@ -614,5 +614,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "IR",
+    "instrument_id": 9062,
+    "size_usd": 50.0,
+    "stop": 82.06,
+    "target": 88.83,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 366556763,
+    "response": {
+      "token": "4d9967da-f589-4f07-a3ad-7d17e1576ec7",
+      "orderId": 366556763,
+      "referenceId": "6114836e-ef4c-4d15-a24c-d540c79dcd4e"
+    },
+    "ts": "2026-07-16T17:36:50Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
