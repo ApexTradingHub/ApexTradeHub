@@ -1992,5 +1992,62 @@
     "entry_signal": 35.85,
     "entry_actual": 36.02925,
     "mode": "live"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_RHI_2026-07-13",
+    "ts": "2026-07-16T13:35:06Z",
+    "ticker": "RHI",
+    "old_stop": 33.1,
+    "new_stop": 36.465,
+    "high": 40.79999923706055,
+    "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_RHI_2026-07-13",
+    "ts": "2026-07-16T13:35:08Z",
+    "ticker": "RHI",
+    "old_stop": 36.465,
+    "new_stop": 37.895,
+    "high": 40.79999923706055,
+    "ladder_step": 2
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_RHI_2026-07-13",
+    "ts": "2026-07-16T13:35:08Z",
+    "ticker": "RHI",
+    "old_stop": 37.895,
+    "new_stop": 39.325,
+    "high": 40.79999923706055,
+    "ladder_step": 3
+  },
+  {
+    "event": "close",
+    "id": "PAPER_RHI_2026-07-13",
+    "ts": "2026-07-16T13:35:09Z",
+    "ticker": "RHI",
+    "exit_price": 40.4,
+    "reason": "Take Profit",
+    "pnl_pct": 13.006993006993003
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MTCH_2026-07-15",
+    "ts": "2026-07-16T13:35:09Z",
+    "ticker": "MTCH",
+    "signal_date": "2026-07-15",
+    "score": 121.9,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CDW_2026-07-13",
+    "ts": "2026-07-16T13:35:09Z",
+    "ticker": "CDW",
+    "signal_date": "2026-07-13",
+    "score": 86.8,
+    "source": "scanner"
   }
 ]
