@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-15 (eToro LIVE · Brief AP1-4 done · Score: Sektor-Bonus raus + TG-Band 90-120 · Slot-Option-B: Scanner nutzt alle freien Slots + Intraday-Verdraengung · Intraday-Entry-Cutoff 19:15)
+**Letztes Update:** 2026-07-16 (eToro LIVE · SECTOR_RS_GATE + PICK_BAND live · eToro-Close-Backfill (RHI-Bug) · Intraday-Reject-Log · Postmortem 216/0-pending · MCP-News statt WebSearch)
 
 ---
 
@@ -229,6 +229,38 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-16** **eToro-Close-Backfill + Reject-Log + Postmortem-Wartung**:
+  - **eToro-Close-Backfill live** (apex_trader.py `sync_etoro_positions`): Race gefixt — wenn
+    die Paper-Exit-Bedingung im selben Run feuert, in dem eToro schon geschlossen hat
+    (Portfolio-API-Lag ~3min), gewann Paper das Rennen → `etoro_close_rate`/`net` blieben leer,
+    kein Event, Sync schaute nie wieder auf `closed[]`. **RHI 16.07.**: eToro-TP feuerte 13:32
+    (Fill 40.45 ÜBER TP 40.37 = Gap durch den TP), Paper buchte 13:35 seinen theoret. Target
+    40.40 (+13.01%/$6.50) — real +13.21%/$6.60. Fix backfillt `closed[]`-Live-Trades ohne
+    Close-Daten aus der History (7d-Fenster), korrigiert pnl auf eToros Wahrheit (netProfit =
+    echtes Geld), loggt `close_backfill`-Event. Audit-Felder `paper_exit_price/reason/pnl_pct`
+    bleiben. **RHI wurde 18:35 automatisch korrigiert** ✓. BACKLOG #21.
+  - **Intraday-Reject-Log** (`apex_intraday_rejects.json`, tages-dedupliziert, 14d-Retention):
+    loggt jeden abgelehnten Kandidaten + Grund. Offene Frage (BACKLOG #22): sperren
+    `RANGE_POS_MAX=0.90` / `GAIN_MAX=6.0` die STÄRKSTEN Mover aus? 16.07. liefen RHI +7.5%,
+    MAT +6.5%, DXCM +5.7% den ganzen Tag, gekauft wurde nur IR (+3.1% Peak → verblasste).
+    Gegen-Evidenz 10.07.: 4 Peak-Käufe bei range_pos>0.90 = alle rot. n winzig beidseitig →
+    messen statt raten. **TODO: Datei muss noch einmalig getrackt + in run_trader.sh-Liste.**
+  - **Postmortem 216 complete / 0 pending**, News jetzt via **MCP `news`-Tool** statt WebSearch
+    (strukturiert, datumsgenau, mappt direkt auf `web_research`). Learn-Sektion **5b** neu
+    (perf_120<0 × Catalyst-Split). 2 Report-Bugs gefixt (Heatmap-Duplikate, Recent-30d-Sektion).
+  - **EU weiterhin 0 Signale** — aber statistisch unauffällig: Fix erst 3 Scan-Tage alt,
+    erwartet wären ~1.5 (P(0)=22%). 105/105 Frames laden, Liquidität kein Problem.
+    **Offen: Grundsatzentscheid EU abkapseln vs. anpassen.**
+  - **Trader-Freeze 35min** (19:25–20:00 UTC): `sed` trug `apex_intraday_rejects.json` in die
+    git-add-Liste ein BEVOR die Datei existierte → `git add` fatal → `set -e` killt Script nach
+    dem Staging, vor dem Commit → dirty Index → Folge-Runs scheitern am `git pull`. **Lehre:
+    Cron stoppen bevor am Live-System gearbeitet wird** (Memory-Regel).
+
+- **2026-07-15** **Pick-Band + Blacklist + Analyst-Analyse**:
+  - **PICK_BAND live** (apex_trader.py `select_new_signals`): Trader-Pick sortiert jetzt via Sweet-Spot-Band [90,120) statt rohem Score — vereinheitlicht mit Telegram-Band (schon live). BREAKOUT im Band bevorzugt, 130+/120+ ans Ende. 2J-Backtest WR 52.9->54.1%, PF 1.59->1.68, Profit +36pp (Re-Ranking, kein Signal-Loss). Formal knapp unter +2pp-Bar aber Backtest unterschaetzt (fehlende Live-Boni = kein 130+-Bucket im BT). Rollback = PICK_BAND=None.
+  - **TSM blacklisted** (BAD_PERFORMERS, WR 25%/kum -5.2%). ASML NICHT (40%/+5%).
+  - **Analyst +3 geprueft, BEHALTEN** (User-Entscheid): instabil (+10.6pp gesamt nur aus 6 fruehen Zufalls-Wins, juengere Haelfte +0.9pp) aber klein, bleibt.
 
 - **2026-07-15** **Slot-Option-B + Score-Prio + Trader-Fixes (KW29-Analyse)**:
   - **Slot-Option-B** (apex_trader.py): Scanner-BREAKOUT (`select_new_signals`) nutzt jetzt
@@ -574,8 +606,8 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **HOLD_DAYS MEAN_REVERSION** | 20 | dito | dito |
 | **DUPLICATE_WINDOW_DAYS** | 3 | ApexScan.py L45 | Scanner — skipped Signals die in 3d schon emittiert wurden |
 | **MAX_POSITIONS** (Paper, total) | 7 | apex_trader.py | bumped 5→7 für Hybrid-Test 2026-06-12 |
-| **SWING_MAX_POSITIONS** | 5 | apex_trader.py | Option B 06-19: Scanner+Momentum max 5 (= 7−2) |
-| **INTRADAY_RESERVED_SLOTS** | 2 | apex_trader.py | Option B 06-19: für Intraday-Catcher reserviert |
+| **SWING_MAX_POSITIONS** | **4** (= 7−3) | apex_trader.py | 07-15 Option-B: gilt nur noch fuer Momentum-Filler — **Scanner-BREAKOUT nutzt ALLE freien Slots** |
+| **INTRADAY_RESERVED_SLOTS** | **3** | apex_trader.py | 07-10 2→3; Intraday darf bis dahin schwache Swings verdraengen (max 1/Run) |
 | **CLOSE_COOLDOWN_DAYS** | 5 | apex_trader.py | 06-23: gerade geschlossener Ticker 5d gegen Re-Entry gesperrt (Anti-Churn) |
 | **CAPITAL_INITIAL** | $400 | apex_trader.py | bumped 300→400 + $100 virtual deposit |
 | **HOLD_DAYS_PER_SETUP.MOMENTUM** | 7 | apex_trader.py | Momentum-Filler-Hold, schnelle Rotation |
@@ -585,7 +617,15 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **TRADING_MODE** | `paper` \| `live_dry` \| `live` | env-var, run_trader.sh | seit 07-06 auf `live` (eToro Demo-Portfolio) |
 | **ETORO_ENV** | `demo` \| `live` | env-var | derzeit `demo` — virtuelles $100k Konto |
 | **STAGE_2_ENABLED** | False | ApexScan.py L51 | 2026-07-08 disabled, kein Edge |
-| **TECH_QQQ_GATE_ENABLED** | True | ApexScan.py L53 | 2026-07-08 live, verhindert Tech-Breakouts bei QQQ<0 |
+| **TECH_QQQ_GATE_ENABLED** | True | ApexScan.py L56 | 07-08 live: skip Tech/Comm-BO wenn `qqq_perf_20 < 0` |
+| **SECTOR_RS_GATE_ENABLED** | True | ApexScan.py L~58 | **07-15 live**: skip Tech/Comm-BO wenn Sektor-ETF (XLK/XLC) `sector_momentum < 0` UND kein starker Catalyst. Deckt die Zelle die QQQ verpasst (Semi-Selloff). Rollback = False |
+| **TG_SWEET_BAND** | (90, 120) | ApexScan.py L~71 | **07-11 live**: Telegram-Top-2 bevorzugt BREAKOUT im Band; 130+ ans Ende |
+| **PICK_BAND** | (90.0, 120.0) | apex_trader.py L~48 | **07-15 live**: Trader-Pick-Ranking analog TG_SWEET_BAND (vereinheitlicht). Rollback = None |
+| **INTRADAY_MAX_POSITIONS** | 4 | apex_trader.py | 07-10 2→4 |
+| **INTRADAY_GAIN_MIN/MAX** | 1.0 / 6.0 % | apex_trader.py | **GAIN_MAX unter Verdacht** (BACKLOG #22): Mover wachsen aus dem Vorfilter heraus wenn sie am staerksten laufen |
+| **INTRADAY_RANGE_POS_MAX** | 0.90 | apex_trader.py | Anti-Peak (07-10). **Unter Verdacht** (BACKLOG #22): starke Trends laufen am Hoch |
+| **INTRADAY_ENTRY_CUTOFF_UTC** | "19:15" | apex_trader.py | 07-15: keine neuen Intradays kurz vor EOD (EQNR-Fall). EOD-Close-Cutoff bleibt 19:45 |
+| **eToro-Close-Backfill** | 7d-Fenster | apex_trader.py `sync_etoro_positions` | **07-16 live**: holt echte Close-Rate/netProfit nach wenn Paper das Rennen gegen den API-Lag gewann (RHI-Bug) |
 | **MOMENTUM-Bearish-Skip** | aktiv | apex_trader.py Step 3b | liest apex_market.json.mode, skip wenn BEARISH |
 | **eToro-Auth-Mapping** | x-api-key = "Öffentlicher Schlüssel" · x-user-key = generierter Schlüssel-Wert | etoro_client.py | **VERDREHT vs Portal-Labels!** |
 | **eToro-Fee** | ~$1 open + $1 close (normal Demo) | eToro | Live Smart-Portfolio angeblich fee-free (unverifiziert) |
@@ -609,8 +649,3 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 *Diese Datei lebt. Bei Inkonsistenzen mit den Code-Files: Code-Files sind autoritativ,
 diese Datei wird aktualisiert.*
-
-- **2026-07-15** **Pick-Band + Blacklist + Analyst-Analyse**:
-  - **PICK_BAND live** (apex_trader.py `select_new_signals`): Trader-Pick sortiert jetzt via Sweet-Spot-Band [90,120) statt rohem Score — vereinheitlicht mit Telegram-Band (schon live). BREAKOUT im Band bevorzugt, 130+/120+ ans Ende. 2J-Backtest WR 52.9->54.1%, PF 1.59->1.68, Profit +36pp (Re-Ranking, kein Signal-Loss). Formal knapp unter +2pp-Bar aber Backtest unterschaetzt (fehlende Live-Boni = kein 130+-Bucket im BT). Rollback = PICK_BAND=None.
-  - **TSM blacklisted** (BAD_PERFORMERS, WR 25%/kum -5.2%). ASML NICHT (40%/+5%).
-  - **Analyst +3 geprueft, BEHALTEN** (User-Entscheid): instabil (+10.6pp gesamt nur aus 6 fruehen Zufalls-Wins, juengere Haelfte +0.9pp) aber klein, bleibt.
