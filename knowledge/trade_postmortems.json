@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-07-15T14:09:56.022381",
-    "total_trades": 212,
+    "updated": "2026-07-16T20:30:46.882925",
+    "total_trades": 216,
     "analyzed_trades": 187
   },
   "trades": {
@@ -20883,6 +20883,456 @@
       },
       "auto_meta": {
         "built_at": "2026-07-15T14:09:55.720144",
+        "version": "1.0"
+      }
+    },
+    "ZBRA_2026-07-01": {
+      "core": {
+        "ticker": "ZBRA",
+        "signal_date": "2026-07-01",
+        "exit_date": "2026-07-22",
+        "setup": "BREAKOUT",
+        "entry": 264.1,
+        "stop": 247.65,
+        "target": 292.37,
+        "exit_price": 255.17,
+        "exit_reason": "Time Exit",
+        "exit_day": 15,
+        "trigger_day": null,
+        "pnl_pct": -3.38,
+        "pnl_usd": -6.76,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 102.2,
+        "rr": 1.72,
+        "rsi": 64.7,
+        "macd_bull": "YES",
+        "vol_ratio": 1.0,
+        "avg_dv_m": 250.89,
+        "perf_20d": 5.3,
+        "perf_60d": 26.9,
+        "perf_120d": 8.5,
+        "base_range": 18.4,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.53,
+        "inside_day": false,
+        "sector": "Technology",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -1.11,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 11.41,
+          "analyst_upside": 22.8084188911704
+        }
+      },
+      "market_context": {
+        "sector": "Technology",
+        "sector_etf": "XLK",
+        "spy_perf_pct": 0.66,
+        "qqq_perf_pct": -2.54,
+        "sector_etf_perf_pct": -4.45,
+        "sector_divergence": true,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-07-08",
+            "title": "Zebra gewinnt aus Business-Strength (Healthcare/Manufacturing/Retail) — aber 'amid headwinds'",
+            "src": "Zacks"
+          },
+          {
+            "date": "2026-07-14",
+            "title": "Robotics-Vergleich UiPath vs Zebra; ZBRA +11%% YTD (kein akuter Catalyst)",
+            "src": "Motley Fool"
+          }
+        ],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": "Tech-BREAKOUT bei negativ divergierendem Sektor: XLK -4.45%% waehrend SPY +0.66%% (DIV=True). Score 102, kein starker Catalyst. 15d flach gehalten, Time-Exit -3.38%%. GENAU die Zelle, die das am 2026-07-15 live geschaltete SECTOR_RS_GATE ab jetzt skippt (Tech/Comm + sector_momentum<0 + kein Catalyst).",
+        "primary_win_cause": null,
+        "lesson_tags": [
+          "sector_divergence_loser",
+          "breakout_no_follow_through",
+          "time_exit_negative",
+          "tech_qqq_gate_gap"
+        ],
+        "similar_trades": [
+          "LRCX_2026-06-29",
+          "CGNX_2026-06-30",
+          "DT_2026-07-01"
+        ],
+        "what_would_have_helped": [
+          "SECTOR_RS_GATE (live seit 07-15) haette ZBRA geskippt — Validierungs-Datenpunkt"
+        ],
+        "what_to_replicate": [],
+        "analyzed_at": "2026-07-16T20:32:18.659962",
+        "confidence": "HIGH"
+      },
+      "auto_meta": {
+        "built_at": "2026-07-16T20:30:45.136905",
+        "version": "1.0"
+      }
+    },
+    "BBY_2026-07-10": {
+      "core": {
+        "ticker": "BBY",
+        "signal_date": "2026-07-10",
+        "exit_date": "2026-07-16",
+        "setup": "BREAKOUT",
+        "entry": 80.55,
+        "stop": 76.83,
+        "target": 87.3,
+        "exit_price": 87.3,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 8.38,
+        "pnl_usd": 16.76,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 120.2,
+        "rr": 1.81,
+        "rsi": 71.1,
+        "macd_bull": "YES",
+        "vol_ratio": 0.94,
+        "avg_dv_m": 317.25,
+        "perf_20d": 10.9,
+        "perf_60d": 35.2,
+        "perf_120d": 25.0,
+        "base_range": 11.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.89,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 0.74,
+          "vcp_strength": 0.09,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 9.9,
+          "analyst_upside": -4.40821256038646
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -0.56,
+        "qqq_perf_pct": -2.59,
+        "sector_etf_perf_pct": 0.05,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-07-09",
+            "title": "Best Buy: Q1 besser als erwartet (EPS+Rev-Beat, Comp-Sales +2%%, International +7%%), ~5%% Yield",
+            "src": "Seeking Alpha"
+          },
+          {
+            "date": "2026-07-15",
+            "title": "Best Buys RGB-TV-Push zieht — exklusive Verkaufsrechte fuer erste 12 Monate (Jefferies)",
+            "src": "Proactive Investors"
+          },
+          {
+            "date": "2026-07-16",
+            "title": "BBY Golden-Cross diesen Monat",
+            "src": "247WallSt"
+          }
+        ],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "Post-Earnings-Continuation mit echtem Produkt-Catalyst: Q1-Beat (EPS+Revenue ueber Erwartung, Comp-Sales +2%%, International +7%%) PLUS exklusive RGB-TV-Rechte fuer die ersten 12 Monate (Jefferies: steigender Traffic/Buzz) PLUS Golden-Cross. TP +8.38%% D+4. RSI 71.1 = ueberkauft-Entry, lief TROTZDEM — Catalyst schlaegt Extension (wie STX/CIEN/SE).",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "catalyst_beats_extension",
+          "product_catalyst"
+        ],
+        "similar_trades": [
+          "SE_2026-07-01",
+          "STX_2026-04-16",
+          "CIEN_2026-03-18"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Bestaetigter Earnings-Beat + exklusiver Produkt-Vorteil = valider BREAKOUT auch bei RSI>70"
+        ],
+        "analyzed_at": "2026-07-16T20:32:18.659962",
+        "confidence": "HIGH"
+      },
+      "auto_meta": {
+        "built_at": "2026-07-16T20:30:45.613516",
+        "version": "1.0"
+      }
+    },
+    "MPC_2026-07-10": {
+      "core": {
+        "ticker": "MPC",
+        "signal_date": "2026-07-10",
+        "exit_date": "2026-07-16",
+        "setup": "BREAKOUT",
+        "entry": 284.25,
+        "stop": 271.51,
+        "target": 308.17,
+        "exit_price": 308.17,
+        "exit_reason": "Take Profit",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": 8.42,
+        "pnl_usd": 16.83,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 101.4,
+        "rr": 1.88,
+        "rsi": 69.6,
+        "macd_bull": "YES",
+        "vol_ratio": 0.78,
+        "avg_dv_m": 691.66,
+        "perf_20d": 7.8,
+        "perf_60d": 27.2,
+        "perf_120d": 61.2,
+        "base_range": 14.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "POWER_BREAKOUT",
+        "closing_strength": 0.64,
+        "inside_day": false,
+        "sector": "Energy",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.07,
+          "vcp_strength": 0.05,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 3.04,
+          "analyst_upside": -4.096126735743988
+        }
+      },
+      "market_context": {
+        "sector": "Energy",
+        "sector_etf": "XLE",
+        "spy_perf_pct": -0.56,
+        "qqq_perf_pct": -2.59,
+        "sector_etf_perf_pct": 3.76,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-07-09",
+            "title": "Veteran-Analyst Sankey (CNBC): 'Crude ist nicht das Problem' — US-Refining-Kapazitaet ist der Engpass, haelt Margins hoch",
+            "src": "247WallSt"
+          },
+          {
+            "date": "2026-07-10",
+            "title": "Oel spikt, Iran-Waffenstillstand brueckelt — Energy-Aktien repricen schnell",
+            "src": "247WallSt"
+          },
+          {
+            "date": "2026-07-15",
+            "title": "Refining-Margins erklaeren die Energy-Rally (MPC/VLO schlagen S&P deutlich)",
+            "src": "247WallSt"
+          }
+        ],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "Energy-BREAKOUT mit doppeltem Rueckenwind: Refining-Margins stark (der eigentliche Treiber — 'Crude ist nicht das Problem, US-Refining-Kapazitaet ist der Engpass', Sankey/CNBC 9.7.) PLUS Oel-Spike durch brechenden Iran-Waffenstillstand (10.7.) PLUS Sektor-ETF +3.76%% vs SPY -0.56%%. TP +8.42%% D+4. perf_120 61.2 = stark extended, lief trotzdem — erneut Catalyst schlaegt Extension.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "catalyst_beats_extension",
+          "geopolitical_premium",
+          "energy_refining_margin"
+        ],
+        "similar_trades": [
+          "BBY_2026-07-10",
+          "STX_2026-04-16"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Sektor-ETF-Tailwind >3%% vs SPY + fundamentaler Margin-Treiber = starker Rueckenwind trotz Extension"
+        ],
+        "analyzed_at": "2026-07-16T20:32:18.659962",
+        "confidence": "HIGH"
+      },
+      "auto_meta": {
+        "built_at": "2026-07-16T20:30:46.099629",
+        "version": "1.0"
+      }
+    },
+    "RHI_2026-07-13": {
+      "core": {
+        "ticker": "RHI",
+        "signal_date": "2026-07-13",
+        "exit_date": "2026-07-17",
+        "setup": "BREAKOUT",
+        "entry": 34.99,
+        "stop": 32.56,
+        "target": 39.74,
+        "exit_price": 39.74,
+        "exit_reason": "Take Profit",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": 13.58,
+        "pnl_usd": 27.15,
+        "outcome": "WIN"
+      },
+      "signal_metadata": {
+        "score": 141.3,
+        "rr": 1.95,
+        "rsi": 64.5,
+        "macd_bull": "YES",
+        "vol_ratio": 1.29,
+        "avg_dv_m": 90.36,
+        "perf_20d": 12.7,
+        "perf_60d": 31.9,
+        "perf_120d": 31.7,
+        "base_range": 17.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 1.0,
+        "inside_day": false,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.82,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 26.5,
+          "analyst_upside": -14.457881427367248
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": 0.21,
+        "qqq_perf_pct": -0.7,
+        "sector_etf_perf_pct": -0.71,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [
+          {
+            "date": "2026-07-15",
+            "title": "Robert Half: hohe ROE, solide Liquiditaet, Shareholder-Returns — aber harter Wettbewerb + wenige Langfrist-Vertraege",
+            "src": "Zacks"
+          },
+          {
+            "date": "2026-07-16",
+            "title": "Kursspung bei Boersenoeffnung DURCH das TP-Level (eToro-Fill 40.45 ueber TP 40.37) — technischer Move, kein News-Event",
+            "src": "market_context"
+          }
+        ],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "complete",
+        "primary_failure_cause": null,
+        "primary_win_cause": "Industrials-BREAKOUT, Score 141.3 = hoechster der Kohorte, TP +13.58%% D+3 — ein GEGENBEISPIEL zur '130+ ist toxisch'-These. Kein einzelner grosser News-Catalyst (Zacks 15.7.: hohe ROE/Liquiditaet, aber auch harter Wettbewerb); der Move war technisch: Sprung bei Boersenoeffnung 16.7. DURCH das TP-Level. Sektor neutral (-0.71%%), perf_120 31.7 (moderat), RSI 64.5 (nicht ueberkauft) = sauberes Profil trotz hohem Score. WICHTIG: das am 15.7. live geschaltete PICK_BAND (90-120) haette RHI ans Ende gerankt — Kosten-Datenpunkt fuer die Band-Entscheidung.",
+        "lesson_tags": [
+          "high_score_winner",
+          "clean_breakout_profile",
+          "pick_band_cost"
+        ],
+        "similar_trades": [
+          "LRCX_2026-06-11",
+          "CIEN_2026-03-18"
+        ],
+        "what_would_have_helped": [],
+        "what_to_replicate": [
+          "Hoher Score MIT sauberem Profil (RSI<65, moderate Extension, Sektor nicht negativ) kann liefern — Score allein ist weder Kauf- noch Skip-Grund"
+        ],
+        "analyzed_at": "2026-07-16T20:32:18.659962",
+        "confidence": "MED"
+      },
+      "auto_meta": {
+        "built_at": "2026-07-16T20:30:46.580482",
         "version": "1.0"
       }
     }

@@ -1,17 +1,17 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-16T09:04:52.920829 | Total trades: 213_
+_Updated: 2026-07-16T20:30:46.882925 | Total trades: 216_
 
-**Analyse-Status**: complete=212, pending=1
+**Analyse-Status**: complete=216
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `sector_momentum_tailwind` | 33 |
-| `breakout_no_follow_through` | 33 |
+| `sector_momentum_tailwind` | 34 |
+| `breakout_no_follow_through` | 34 |
 | `sector_relative_strength` | 29 |
-| `post_earnings_beat_continuation` | 28 |
+| `post_earnings_beat_continuation` | 29 |
 | `high_score_loss_85plus` | 26 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 22 |
@@ -84,7 +84,7 @@ _Updated: 2026-07-16T09:04:52.920829 | Total trades: 213_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Recent (30d) — Worst 5 / Best 5  (n=42)
+## Recent (30d) — Worst 5 / Best 5  (n=45)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -93,14 +93,13 @@ _Updated: 2026-07-16T09:04:52.920829 | Total trades: 213_
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | semi_selloff_2026q2,high_score_loss_85plus,sector_divergence_loser |
 | CGNX_2026-06-30 | BREAKOUT | -6.74% | Stop Loss D+4 | 127.3 | Technology | semi_selloff_2026q2,high_score_loss_85plus,sector_divergence_loser |
 | ASML_2026-06-19 | BREAKOUT | -6.58% | Stop Loss D+2 | 144.4 | Technology | duplicate_trap,sector_momentum_reversal,high_score_loss_85plus |
+| RHI_2026-07-13 | BREAKOUT | 13.58% | Take Profit D+3 | 141.3 | Industrials | high_score_winner,clean_breakout_profile,pick_band_cost |
 | SE_2026-07-01 | BREAKOUT | 13.31% | Take Profit D+5 | 102.8 | Consumer Cyclical | post_earnings_beat_continuation,oversold_bounce_with_catalyst,catalyst_beats_extension |
 | TECH_2026-06-24 | BREAKOUT | 10.77% | Take Profit D+1 | 90.5 | Healthcare | ma_buyout_catalyst,duplicate_trap,reversal_win_external_catalyst |
 | TECH_2026-06-18 | BREAKOUT | 10.69% | Take Profit D+4 | 89.6 | Healthcare | ma_buyout_catalyst,activist_catalyst,reversal_win_external_catalyst |
 | CART_2026-06-16 | BREAKOUT | 9.05% | Time Exit D+15 | 91.3 | Consumer Cyclical | retail_tech_catalyst,ad_monetization_momentum,post_earnings_beat_continuation |
-| NVO_2026-06-22 | BREAKOUT | 8.37% | Take Profit D+8 | 83.3 | Healthcare | sector_momentum_tailwind,post_earnings_beat_continuation |
 
-## Pending Claude-Analyse (1)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `ZBRA_2026-07-01`
