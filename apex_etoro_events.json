@@ -594,5 +594,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "MTCH",
+    "instrument_id": 1968,
+    "size_usd": 50.0,
+    "stop": 38.3,
+    "target": 44.39,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 366498605,
+    "response": {
+      "token": "1dd785cc-2e3d-47c3-85d4-c3b42b07359c",
+      "orderId": 366498605,
+      "referenceId": "ee7e4388-e132-4123-9232-c64b8f500c91"
+    },
+    "ts": "2026-07-16T13:40:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
