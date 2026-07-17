@@ -2,22 +2,22 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 115.04260729519099,
-  "last_updated": "2026-07-17T13:25:02Z",
+  "last_updated": "2026-07-17T13:30:03Z",
   "pending": [
     {
-      "id": "PAPER_CDW_2026-07-13",
-      "ticker": "CDW",
+      "id": "PAPER_TRIP_2026-07-16",
+      "ticker": "TRIP",
       "setup": "BREAKOUT",
       "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-07-13",
-      "entry": 145.26,
-      "stop_initial": 137.31,
-      "target": 158.54,
-      "score": 86.8,
-      "rr": 1.67,
-      "upside_pct": 9.1,
-      "added_at": "2026-07-16T13:35:09Z",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-07-16",
+      "entry": 14.84,
+      "stop_initial": 13.79,
+      "target": 16.81,
+      "score": 114.8,
+      "rr": 1.88,
+      "upside_pct": 13.3,
+      "added_at": "2026-07-17T13:30:09Z",
       "status": "pending",
       "mode": "live"
     }
@@ -77,9 +77,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-10T13:35:07Z",
-      "current_price": 14.8149995803833,
-      "pnl_pct": 0.30466879067908736,
-      "pnl_usd": 0.15233439533954368,
+      "current_price": 14.800000190734863,
+      "pnl_pct": 0.20311571249061414,
+      "pnl_usd": 0.10155785624530705,
       "hold_days": 6,
       "yfinance_entry": 14.765000343322754,
       "etoro_ask_at_open": 14.77,
@@ -208,7 +208,7 @@
       "shares": 1.2373174956693889,
       "size_usd": 50.0,
       "stop": 38.3,
-      "high_since_entry": 41.029998779296875,
+      "high_since_entry": 41.03,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-16T13:40:08Z",
@@ -2652,6 +2652,24 @@
       "status": "expired",
       "mode": "live",
       "expired_at": "2026-07-13T13:30:08Z"
+    },
+    {
+      "id": "PAPER_CDW_2026-07-13",
+      "ticker": "CDW",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-07-13",
+      "entry": 145.26,
+      "stop_initial": 137.31,
+      "target": 158.54,
+      "score": 86.8,
+      "rr": 1.67,
+      "upside_pct": 9.1,
+      "added_at": "2026-07-16T13:35:09Z",
+      "status": "expired",
+      "mode": "live",
+      "expired_at": "2026-07-17T13:30:09Z"
     }
   ],
   "stats": {
@@ -2663,7 +2681,7 @@
     "losses": 30,
     "win_rate": 50.81967213114754,
     "pnl_realized": 10.432314333480662,
-    "pnl_unrealized": 13.91926918225611,
-    "equity": 428.9618764774471
+    "pnl_unrealized": 13.868492643161874,
+    "equity": 428.9110999383529
   }
 }
