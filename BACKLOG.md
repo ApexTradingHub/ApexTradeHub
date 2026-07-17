@@ -895,3 +895,83 @@ Dann: WR/PF der EU-Trades vs US-Baseline (Lifetime 51.7% / PF 1.78).
 -> n=30 in grob 60 Handelstagen (~3 Monate, also ca. Oktober 2026). Kostet bis dahin nichts.
 
 **Rollback:** `EU_GUARD_ENABLED = False` / `INTRADAY_EU_ENABLED = True`.
+
+### 23b. EU-Intraday-Bucket — geprueft, GEPARKT (2026-07-17, User-Frage)
+
+**Frage:** Statt EU ganz aus dem Intraday zu nehmen — gibt es ein eigenes Zeitfenster
+("Bucket") in dem EU-Intras funktionieren?
+
+**Struktur (machbar, aber mit Bedingungen):**
+- `INTRADAY_MIN_ET_HOUR=10` (=14:00 UTC) ist fuer EU **sinnlos**: es soll die erste
+  US-Handelsstunde abfangen, trifft bei EU aber eine Session die seit 7h laeuft. Es
+  schneidet 5 von 8.5 EU-Stunden weg, aus einem Grund der fuer EU nicht gilt.
+- **Der Exit ist das echte Problem, nicht der Entry:** `INTRADAY_EOD_UTC=19:45` liegt
+  4h15 NACH EU-Close. Ein EU-Bucket braucht zwingend einen **eigenen EOD-Cutoff (~15:15
+  UTC)**, sonst haelt man "Intraday"-Plays over-night auf eingefrorenen Kursen.
+- Option A: Bucket im bestehenden Cron, Fenster 13:00-14:45 (~7 Laeufe/Tag), Aufwand
+  klein-mittel, kein neuer Cron. Option B: Cron auf 07-21 vorziehen -> Fenster 08:00-14:45
+  (7h15), aber VM-Last x2 und faktisch der "zweiter Trader"-Weg durch die Hintertuer.
+
+**Daten (Mini-Backtest, echte 5m-Bars, 60d = yfinance-Limit, Filter aus apex_trader.py
+importiert):**
+
+| | EU (105 Ticker) | US (Stichprobe 152) |
+|---|---:|---:|
+| Kandidaten/Tag | 27.1 | 42.5 |
+| **Follow-Through** (Entry->Close, ohne TP/SL) | **+0.026%** | **-0.189%** |
+| Anteil positiv | 50.5% | 42.5% |
+| WR mit TP+5/SL-3 | 50.1% | 42.2% |
+| PF | 1.00 | 0.67 |
+| Top-1/Tag nach vol_ratio | -0.160% | -0.286% |
+
+**Befund 1: Kandidaten gibt es reichlich** (27/Tag) — der Filter ist NICHT der Engpass.
+**Befund 2: EU ist nicht schlechter als US — in dieser Messung sogar besser.** Die These
+"EU-Blue-Chips haben kein Intraday-Momentum" ist damit NICHT belegt; US hat unter
+identischen Filtern einen *negativen* Follow-Through.
+**Befund 3: der +5%-TP wird in beiden Maerkten fast nie erreicht** (EU 7/1706, US 16/2550).
+
+**WARNUNG — die Sim ist zu grob, sie bildet unseren Trader NICHT ab:** 16 TPs/2550 (Sim)
+vs **4 TPs/8 (echter Trader, +1.74%/Trade)**. Die Diskrepanz ist zu gross fuer Zufall.
+Fehlend: (a) **Konsolidations-Regel** (letzter 5m-Bar kein neues Tageshoch = HARD-SKIP,
+der aggressivste Filter ueberhaupt), (b) der **Vorfilter** (Top-100 nach gain aus 826),
+(c) `vol_ratio` ist hier "5m-Bar vs Tagesschnitt", im Trader "Tagesvolumen vs Vortage-
+Schnitt" = eine andere Metrik. Der echte Trader ist 10-40x selektiver. Die Zahlen oben
+beschreiben die **Signal-Klasse**, nicht unser System.
+
+**ENTSCHEID: GEPARKT.** Nicht weil EU schlecht waere, sondern weil das Fundament fehlt —
+**wir wissen nicht ob der Intraday-Kanal ueberhaupt einen Edge hat (n=8 live, siehe #25).**
+Einen EU-Bucket auf ein unvalidiertes Konzept zu setzen verdoppelt die Unsicherheit statt
+Edge zu addieren.
+
+**Trigger zum Anpacken:** validierter US-Intraday-Edge (#25) — dann ist der Bucket
+Option A in ~2h gebaut (EU-Time-Gate + EU-EOD-Cutoff 15:15 + `INTRADAY_EU_ENABLED=True`).
+Rezepte: scratchpad/eu_bucket_{1..4}_*.py (Session 07-17), Kandidaten-Caches
+eu_cands.json / us_cands.json.
+
+---
+
+## 25. Der Intraday-Kanal ist nie validiert worden (2026-07-17)
+
+**Aufgefallen bei der EU-Bucket-Pruefung.** Wir haben einen kompletten Signal-Kanal
+(Intraday-Momentum-Catcher, seit 06-18) der nie gegen eine Stichprobe validiert wurde:
+- **Live: n=8 geschlossene Intradays** — 4x TP (+4.99%), 2x Stop (-3.02%), 2x EOD (-0.02%)
+  = +1.74%/Trade. Sieht gut aus, ist aber **statistisch nichts** (4/8 TP kann Zufall sein).
+- **Der Backtest kann ihn nicht pruefen** (#24 + yfinance liefert 5m nur 60 Tage).
+- **Eine grobe 60d-Sim (ohne Konsolidations-Filter/Vorfilter) findet KEINEN Edge**:
+  US-Follow-Through **-0.189%**, nur 42.5% positiv, Top-1/Tag sogar -0.286% (= je
+  "staerker" das Signal, desto schlechter -> Mean-Reversion statt Momentum).
+  **Das ist kein Beweis** (die Sim ist 10-40x weniger selektiv als der Trader), aber es
+  ist auch **keine Entwarnung** — es gibt schlicht keinen Nachweis in beide Richtungen.
+
+**Warum das zaehlt:** Der Kanal hat 3 von 7 Slots reserviert (`INTRADAY_RESERVED_SLOTS=3`)
+und darf Swings verdraengen. Falls er keinen Edge hat, kostet er nicht nur seine eigenen
+Trades, sondern auch die verdraengten Scanner-BREAKOUTs (WR 52% lifetime).
+
+**Naechster Schritt (laeuft schon):** Das **Reject-Log (#22, ab 17.07. live)** sammelt
+genau die noetigen Daten — welche Kandidaten lehnen wir ab, was wird aus ihnen. Zusammen
+mit den Live-Intras ergibt das in 2-3 Wochen die erste echte Datenbasis. Dann:
+1. Sperren `range_pos_too_high`/`gain_too_high` die Gewinner aus? (#22-Frage)
+2. **Hat der Kanal ueberhaupt einen Edge?** (diese Frage) — wenn n>=20 und WR/avg klar
+   unter den Scanner-BREAKOUTs liegen: Slot-Reserve reduzieren oder Kanal abschalten.
+
+**Nicht vorher anfassen** — n=8 rechtfertigt weder Ausbau (EU-Bucket #23b) noch Abbau.
