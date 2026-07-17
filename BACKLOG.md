@@ -421,6 +421,64 @@ schneiden) zusammen = Magnitude-UND-Frequenz-Hebel.
 
 **Trigger:** zusammen mit #9 im naechsten Trader-Tuning-Tag.
 
+**STATUS 2026-07-17: NO-GO — der "Bug" ist ein Schutz. Punkt geschlossen (kein Code).**
+
+**1. Die Diagnose war falsch.** Nicht Bedingung #4 blockiert — der Pfad dorthin ist dicht.
+Zwei Stellen zaehlen unterschiedlich:
+
+| Stelle | zaehlt | heute (6 open + 1 pending) | Folge |
+|---|---|---|---|
+| `select_new_signals` L1301 | open **+ pending** | 7 -> `free_slots=0` | neue Signale **sterben** (nie pending) |
+| `is_replacement_eligible` L1384 | nur `len(open)` | 6 >= 7 = **False** | "slot frei" -> **#4 wird nie erreicht** |
+
+Deadlock: fuer neue Signale ist das Buch voll, fuer die Rotation ist es leer. Und
+`is_replacement_eligible` wird NUR aus `trigger_pending` gerufen — ein neues Signal kann
+per Konstruktion **nie** ein Replacement ausloesen, egal wie gut es ist (JBHT score 138.9
+starb so am 17.07.). Empirie: **0 Replacement-Events** in der gesamten Historie (53
+pending_added, 43 open) — konsistent.
+
+**2. Und es ist gut so.** Die Kernfrage ist nicht "feuert Rotation", sondern "haetten die
+Verworfenen Geld gebracht". Der Equity-Tracker simuliert JEDES Signal — also messbar
+(ab 06-04, Trader-Start):
+
+| | n | WR | avg | PF | Summe |
+|---|---:|---:|---:|---:|---:|
+| vom Trader **genommen** | 24 | 54.2% | +1.43% | 1.69 | **+34.4pp** |
+| mangels Slot **liegengelassen** | 38 | 36.8% | -0.34% | 0.89 | **-12.9pp** |
+
+**Delta -1.77pp/Trade — die Slot-Knappheit hat uns geschuetzt.** Rotation haette in diesem
+Zeitraum Geld verbrannt. Der Schaden hat eine Adresse:
+
+| liegengelassen | n | WR | Summe |
+|---|---:|---:|---:|
+| im Band 90-120 | 22 | 36.4% | +1.0pp |
+| **ueber 120** | 10 | 30.0% | **-14.8pp** |
+| unter 90 | 6 | 50.0% | +0.9pp |
+
+**Der komplette Verlust sitzt im 120+-Bucket** (ASML 144 -> -6.6%, TSM 137 -> -6.1%,
+CGNX 127 -> -6.7%, LRCX 125 -> -9.2%, KLAC 118 -> -9.3% = die Semi-Selloff-Loser).
+**Unabhaengige Bestaetigung von PICK_BAND/TG_SWEET_BAND** aus einer ganz anderen Richtung:
+die Slot-Knappheit hat zufaellig genau das gefiltert, was das Band absichtlich filtert.
+Nebenbefund: das Pick-Ranking funktioniert — die Genommenen schlagen die Liegengelassenen
+um 18pp WR.
+
+**Caveats (ehrlich):**
+- **LRCX score 161 -> +14.87%** ist der eine grosse verpasste Gewinner. Bei n=38 kein Beweis.
+- **Ein Regime** (Juni-Juli 2026, BEARISH, 30d-WR 34%). In einem BULLISH-Regime koennte die
+  Knappheit teuer werden — dann waeren die Verworfenen die besseren Trades.
+- Equity-Sim nutzt statischen Stop (#24), nicht die echte Trader-Mechanik.
+- "liegengelassen" mischt zwei Gruende: schlechter gerankt (free_slots>0) und Buch voll
+  (free_slots=0). Fuer die Richtung reicht es, fuer eine Praezisionsaussage nicht.
+
+**Konsequenz:** Fix-Optionen 1/2/3 alle NICHT umsetzen. Die Zaehl-Inkonsistenz **nicht
+"aufraeumen"** — sie ist aktuell der Schutz. Wer sie glattzieht, oeffnet die Rotation
+genau in das 120+-Bucket hinein.
+
+**Re-Test-Trigger:** Regime-Wechsel auf BULLISH (SPY+QQQ) **und** 30d-WR wieder >= 50%.
+Dann dieselbe Messung wiederholen (Skript-Rezept: scratchpad/bl10_worth.py, Session 07-17)
+— wenn "liegengelassen" dann POSITIV dreht, ist Rotation ein echter Hebel und der Deadlock
+gehoert gefixt. Vorher waere es Geldverbrennen mit Extra-Schritten.
+
 ---
 
 ## 11. perf_120-Unification (80-90-Bucket / WEAK-Seite) — geparkt 2026-06-20
