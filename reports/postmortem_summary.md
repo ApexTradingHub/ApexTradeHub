@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-16T20:30:46.882925 | Total trades: 216_
+_Updated: 2026-07-17T09:00:05.096644 | Total trades: 220_
 
-**Analyse-Status**: complete=216
+**Analyse-Status**: complete=216, pending=4
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -97,9 +97,13 @@ _Updated: 2026-07-16T20:30:46.882925 | Total trades: 216_
 | SE_2026-07-01 | BREAKOUT | 13.31% | Take Profit D+5 | 102.8 | Consumer Cyclical | post_earnings_beat_continuation,oversold_bounce_with_catalyst,catalyst_beats_extension |
 | TECH_2026-06-24 | BREAKOUT | 10.77% | Take Profit D+1 | 90.5 | Healthcare | ma_buyout_catalyst,duplicate_trap,reversal_win_external_catalyst |
 | TECH_2026-06-18 | BREAKOUT | 10.69% | Take Profit D+4 | 89.6 | Healthcare | ma_buyout_catalyst,activist_catalyst,reversal_win_external_catalyst |
-| CART_2026-06-16 | BREAKOUT | 9.05% | Time Exit D+15 | 91.3 | Consumer Cyclical | retail_tech_catalyst,ad_monetization_momentum,post_earnings_beat_continuation |
+| MPC_2026-07-10 | BREAKOUT | 8.42% | Take Profit D+4 | 101.4 | Energy | sector_momentum_tailwind,catalyst_beats_extension,geopolitical_premium |
 
-## Pending Claude-Analyse (0)
+## Pending Claude-Analyse (4)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
+- `CMG_2026-07-13`
+- `ILMN_2026-07-02`
+- `BAX_2026-07-02`
+- `HOOD_2026-07-02`
