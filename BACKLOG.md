@@ -310,6 +310,73 @@ Ein-Knopf-Pro-Lauf (nicht alle 3 Optionen buendeln).
 
 **Trigger:** naechster Tuning-Tag. Groesster Einzelhebel fuer Equity-Wachstum.
 
+**STATUS 2026-07-17: THESE WIDERLEGT bei n=61 — Punkt geschlossen.**
+Der Befund stammte aus **n=11**. Nachgemessen am selben Trader mit **n=61**:
+
+| | 06-18 (n=11) | **07-17 (n=61)** |
+|---|---|---|
+| AvgWin | +3.34% | **+4.01%** |
+| AvgLoss | -4.13% | **-3.44%** |
+| These "AvgWin < AvgLoss" | ja | **WIDERLEGT** |
+
+- **Give-back nur +0.97pp/Winner** (Peak Ø +4.98% -> Exit Ø +4.01%). Der behauptete
+  "groesste Einzelhebel" ist ein Rundungsfehler. **Option 2 (Ladder lockern) waere sogar
+  die falsche Richtung** — siehe unten.
+- **Fix-Option 1/2/3 alle obsolet.** Getestete Alternative (BE-Stufe `(1.04, 1.00)` vor
+  Step 1, Retro-Sim auf echten Trades, Akzeptanz vorab fixiert): **NO-GO** — nur 4/32
+  Swing-Trades betroffen, Netto-Delta +8.2pp < Bar +10pp, und davon waren +12.1pp ein
+  Sim-Artefakt (PENG lief in der Sim auf den Initialstop -12.1%, real via eToro bei -4.7%
+  geschlossen) -> real ~+0.8pp = nichts. Runner (PAY) blieben unbeschaedigt, aber es gab
+  nichts zu gewinnen.
+
+**WO der echte Befund sitzt** (dieselben Daten, nach Quelle aufgeschluesselt):
+
+| Quelle | n | davon Peak>=+4% | endete rot | Quote |
+|---|---:|---:|---:|---:|
+| scanner | 20 | 9 | 1 | **11%** |
+| momentum_filler | 12 | 9 | 3 | 33% |
+| **intraday_rescued** | 14 | 5 | 3 | **60%** |
+| intraday_momentum | 8 | 0 | 0 | — |
+
+**Die Swing-TRAIL_LADDER funktioniert** (11% Ausfall bei scanner). Der Cluster sitzt im
+**Rescue-Pfad** (rote EOD->SWING-Konvertierungen) — das ist **BACKLOG #16**, dort bereits
+G3-Stop getestet+falsifiziert und seit 07-11 Shadow-Logging aktiv (range_pos_eod etc.,
+wartet auf n>=15). Intradays tauchen gar nicht auf, weil ihr TP schon bei +5% greift —
+eine BE-Stufe bei +4% waere dort per Konstruktion sinnlos.
+
+**Lehre:** Der 06-18-Befund war Small-Sample-Rauschen (n=11), das sich als Struktur-Aussage
+tarnte — und die vorgeschlagene Fix-Richtung war gegenlaeufig zur Realitaet. Erst messen
+(n aktuell?), dann simulieren, dann bauen. Kein Code angefasst.
+
+---
+
+## 24. Backtest kennt unsere Exit-Mechanik NICHT — Blindstelle (2026-07-17)
+
+**Befund (bei der #9-Pruefung aufgefallen):** `apex_backtest_v2.py` simuliert fuer BREAKOUT
+einen **statischen** Stop:
+```python
+active_sl = rev_dynamic_sl if setup_type == "REVERSAL" else sl   # ~L1092
+```
+Keine `TRAIL_LADDER`, kein Stagnation-Exit, keine EOD-Konvertierung, kein Rescue-Pfad.
+Der 2J-Backtest (WR 50.2%, PF 2.02, +454%) simuliert damit **einen Trader den wir nicht
+haben** — er misst reine Signal-Qualitaet mit TP/SL/Time-Exit.
+
+**Konsequenz — wichtig fuer die Interpretation aller bisherigen Backtests:**
+- Fuer **Signal-Fragen** (SCORE_V2 #17, PICK_BAND, Sektor-RS-Gate #20, Extension #13) bleibt
+  alles gueltig: beide Vergleichsseiten sind gleich betroffen, der Vergleich ist fair.
+- Fuer **Exit-/Money-Management-Fragen** (#9, #10, Trailing, Stagnation, Rescue) ist der
+  Backtest **blind**. "Backtest-First" ist dort nicht durchfuehrbar, ohne vorher die
+  Exit-Mechanik nachzubauen — was 2026-07-17 der Grund war, auf Retro-Sim auszuweichen
+  (n=32 Swings, mittlere Abweichung 2.55pp/Trade = nur Richtungsindikator).
+
+**Wenn angepackt:** Trader-Exit-Logik als opt-in Flag in apex_backtest_v2.py (Muster:
+`--score-v2`), damit der Default-Backtest vergleichbar bleibt. Aufwand mittel; Risiko:
+Nachbau divergiert vom echten Trader -> die Konstanten (TRAIL_LADDER, STAGNATION_*) aus
+apex_trader.py **importieren** statt kopieren.
+
+**Trigger:** wenn eine Exit-/MM-Frage ernsthaft entschieden werden soll (#10 Rotation ist
+der naechste Kandidat) — vorher ist der Nachbau Selbstzweck.
+
 ---
 
 ## 10. Rotation / Replacement-Logik miskalibriert — entdeckt 2026-06-18
