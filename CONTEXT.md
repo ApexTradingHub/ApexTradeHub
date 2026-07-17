@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-17 (eToro LIVE · SECTOR_RS_GATE + PICK_BAND live · **EU-Takt-Guard: "messen statt bauen"** · eToro-Close-Backfill (RHI-Bug) · Intraday-Reject-Log — Tracking noch offen)
+**Letztes Update:** 2026-07-17 (eToro LIVE · SECTOR_RS_GATE + PICK_BAND live · **EU-Takt-Guard: "messen statt bauen"** · **run_trader.sh Push-Guard** (Freeze-Fix, Logs tracken sich selbst) · eToro-Close-Backfill (RHI-Bug) · Reject-Log misst ab heute)
 
 ---
 
@@ -173,6 +173,41 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 - **Trader** läuft auf **Oracle Always-Free VM** (Ubuntu 22.04, E2.1.Micro,
   1 GB RAM + 2 GB Swap, Public IP). `~/run_trader.sh` = git pull + python +
   git push. Cron `*/15 13-21 * * 1-5`. Robust gegen GH-Throttling.
+
+#### ⚠️ `~/run_trader.sh` — liegt AUSSERHALB des Repos (Keys!), nur auf der VM
+Enthält `ETORO_API_KEY`/`ETORO_USER_KEY` im Klartext → **darf nie ins Git**. Damit ist die
+Datei aber auch **nicht versioniert**: stirbt die VM, ist sie weg. Struktur zum Rekonstruieren
+(Stand 2026-07-17, Backups liegen als `~/run_trader.sh.bak-<datum>` daneben):
+
+```
+#!/bin/bash                      # KEIN "set -e" — siehe Leitsatz unten
+cd ~/ApexTradeHub || exit 1
+if ! git diff --cached --quiet; then git commit -m "Trader recover ..." || true; fi   # dirty-Index-Selbstheilung
+git checkout -- <state-files> 2>/dev/null || true
+git pull --rebase origin master || echo "WARN: pull fail -> lokaler Stand"
+export INTRADAY_ENABLED=1 / ETORO_API_KEY / ETORO_USER_KEY / ETORO_ENV=demo / TRADING_MODE=live
+python3 apex_trader.py >> ~/trader.log 2>&1 ; PY_RC=$?      # <- laeuft IMMER
+for f in apex_positions apex_trade_log apex_manual_overrides apex_etoro_events apex_intraday_rejects (.json); do
+  [ -f "$f" ] || continue                                   # noch nicht da -> kein fatal
+  if ! git ls-files --error-unmatch "$f" >/dev/null 2>&1 || ! git diff --quiet "$f"; then
+    git add "$f" || true; NEED_PUSH=1; fi                   # trackt neue Logs automatisch
+done
+[ NEED_PUSH ] && { git commit || true; git pull --rebase || true; git push || echo "WARN: push fail"; }
+echo "$(date) Trader run done (py_rc=$PY_RC)" >> ~/trader.log    # laeuft IMMER
+```
+
+**LEITSATZ (2026-07-17, nach dem 35-Min-Freeze am 16.07.): Git darf NIE die Positions-Logik
+killen.** Das alte `set -e` galt global — ein `git add <nicht-existente-datei>` killte das
+Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run scheiterte am
+`git pull --rebase` → 35 Min ungemanagte Positionen. Drei Konsequenzen, alle oben verbaut:
+1. **Kein `set -e`**, jeder Git-Call mit `|| true` / Fallback-Log. Python läuft immer.
+2. **`[ -f ]` + `ls-files`-Check**: Dateien dürfen in die Liste, bevor sie existieren — und
+   tracken sich beim ersten Auftauchen selbst. (`git diff --quiet` sieht untracked Files
+   NICHT — die Falle die `apex_etoro_events.json` und `apex_intraday_cache.json` erwischt hat.)
+3. **`git pull --rebase` direkt VOR dem Push** (zwischen dem Pull oben und dem Push unten
+   liegt der ganze Python-Lauf → Race mit Scanner-/Equity-Cron und Windows-Pushes).
+4. **`Trader run done` läuft immer** → die Zeile heisst jetzt "Python lief", nicht "Git war
+   zufrieden". Vorher log das Monitoring bei jedem Git-Fehler einen toten Trader vor.
 - **Scanner, Equity, Knowledge** weiter auf GitHub Actions, aber Push-Step
   gehärtet: `/tmp`-Backup statt Stash, 5x Retry-Loop, Conflict-Resolution
   bevorzugt Worker's Files.
@@ -230,6 +265,22 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-07-17** **run_trader.sh Push-Guard — Git darf die Positions-Logik nicht killen**:
+  - Konsequenz aus dem 35-Min-Freeze (16.07.). `set -e` galt global → ein `git add` auf eine
+    noch nicht existente Datei killte das Script zwischen Staging und Commit → dirty Index →
+    Dauer-Freeze am `git pull --rebase`. Details + rekonstruierbare Struktur: §Infrastruktur.
+  - Vier Fixes: (1) kein `set -e`, Python läuft immer; (2) `[ -f ]` + `ls-files`-Check →
+    Dateien dürfen vor ihrer Existenz in der Liste stehen **und tracken sich selbst** beim
+    ersten Auftauchen; (3) `git pull --rebase` direkt vor dem Push (Race-Fix); (4) dirty-Index-
+    Selbstheilung am Run-Start; (5) `Trader run done (py_rc=$?)` läuft immer = ehrliches
+    Monitoring.
+  - **Damit ist BACKLOG #22 entschärft**: `apex_intraday_rejects.json` steht bereits in der
+    Liste und trackt sich beim ersten Deep-Scan selbst — kein manueller `git add`, keine
+    Reihenfolge-Falle mehr.
+  - Verifiziert auf der VM: `bash ~/run_trader.sh` → EXIT 0, `Trader run done (py_rc=0)`,
+    Index sauber, Push OK — **mit der exakten Freeze-Konstellation** (rejects.json in der
+    Liste, existiert nicht) → folgenlos übersprungen. Backups: `~/run_trader.sh.bak-<datum>`.
+
 - **2026-07-17** **EU-Grundsatzentscheid: "messen statt bauen"** (BACKLOG #23):
   - **Der Befund war kein Filter-, sondern ein TAKT-Problem.** EU-Boersen schliessen 15:30 UTC,
     Trader-Cron laeuft 13:00–21:00 = 2.5h Ueberlappung. Verschaerft durch die Trigger-Mechanik:
@@ -265,7 +316,8 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
     `RANGE_POS_MAX=0.90` / `GAIN_MAX=6.0` die STÄRKSTEN Mover aus? 16.07. liefen RHI +7.5%,
     MAT +6.5%, DXCM +5.7% den ganzen Tag, gekauft wurde nur IR (+3.1% Peak → verblasste).
     Gegen-Evidenz 10.07.: 4 Peak-Käufe bei range_pos>0.90 = alle rot. n winzig beidseitig →
-    messen statt raten. **TODO: Datei muss noch einmalig getrackt + in run_trader.sh-Liste.**
+    messen statt raten. ~~TODO: Datei einmalig tracken + in run_trader.sh-Liste~~ **erledigt
+    07-17: der neue Push-Guard trackt sie beim ersten Auftauchen selbst (ls-files-Check).**
   - **Postmortem 216 complete / 0 pending**, News jetzt via **MCP `news`-Tool** statt WebSearch
     (strukturiert, datumsgenau, mappt direkt auf `web_research`). Learn-Sektion **5b** neu
     (perf_120<0 × Catalyst-Split). 2 Report-Bugs gefixt (Heatmap-Duplikate, Recent-30d-Sektion).
