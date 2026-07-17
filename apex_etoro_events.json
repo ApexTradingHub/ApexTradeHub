@@ -683,5 +683,27 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "AES",
+    "reason": "Stagnation Exit",
+    "exit_price": 14.795000076293945,
+    "order_id": 3561192886,
+    "ts": "2026-07-17T13:35:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "F",
+    "reason": "Stagnation Exit",
+    "exit_price": 14.079999923706055,
+    "order_id": 3561298161,
+    "ts": "2026-07-17T13:35:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
