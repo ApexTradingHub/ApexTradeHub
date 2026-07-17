@@ -781,5 +781,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "TRIP",
+    "instrument_id": 1123,
+    "size_usd": 50.0,
+    "stop": 13.79,
+    "target": 16.81,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 367020368,
+    "response": {
+      "token": "c767c62c-ac38-46f5-ac50-2c80ee70759a",
+      "orderId": 367020368,
+      "referenceId": "765cd5ed-2aaa-4fa4-be23-53fdc83f7b7a"
+    },
+    "ts": "2026-07-17T13:55:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
