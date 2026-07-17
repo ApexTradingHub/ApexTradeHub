@@ -1131,6 +1131,28 @@ function setupMeta(s) { return SETUP_META[s] || { label: s, color: 'var(--muted2
 const fmtPct = n => n == null ? '—' : (n >= 0 ? '+' : '') + (+n).toFixed(1) + '%';
 const tod = () => new Date().toISOString().slice(0, 10);
 
+/* 2026-07-17: Exit-Badge fuer TRADER-Positionen (apex_positions.json).
+   Vorher: .includes('Stop') ? 'SL' : 'TE' — "eToro SL" enthaelt kein "Stop", also fiel
+   es in den else-Zweig: 37 von 61 Trades wurden als "Time Exit" angezeigt, obwohl es
+   genau EINEN echten gab (FRSH). Auch RHI (+13.2% via eToro-TP) stand als Time Exit da.
+   Reihenfolge ist wichtig: "Stop Loss (Trailing)" enthaelt BEIDES -> trailing zuerst.
+   NUR fuer Trader-Reasons — die Equity-Daten (Trade Log / Trade History) kennen nur
+   'Take Profit'/'Stop Loss'/'Time Exit', deren Logik bleibt bewusst unangetastet. */
+function traderExitBadge(reason) {
+  const r = (reason || '').toLowerCase();
+  if (!r)                          return '?';
+  if (r.includes('order_dropped')) return 'DROP';   // Order kam nie zustande
+  if (r.includes('trailing'))      return 'TRAIL';  // vor 'stop' — enthaelt beides
+  if (r.includes('take profit') || r.includes('tp')) return 'TP';
+  if (r.includes('stagnation'))    return 'STAG';   // vor 'stop'? nein, aber sicher ist sicher
+  if (r.includes('sl') || r.includes('stop')) return 'SL';
+  if (r.includes('eod') || r.includes('intraday close')) return 'EOD';
+  if (r.includes('time exit'))     return 'TE';
+  if (r.includes('manual'))        return 'MAN';
+  if (r.includes('etoro closed'))  return 'ETORO';  // Grund unklar (siehe apex_trader Fallback)
+  return '?';
+}
+
 async function fetchJ(p) {
   try {
     const r = await fetch(p + '?t=' + Date.now());
@@ -1883,8 +1905,7 @@ function renderPaper() {
       const pnlPct = +p.pnl_pct || 0;
       const pnlUsd = +p.pnl_usd || 0;
       const isWin = pnlPct > 0;
-      const reasonShort = (p.exit_reason || '').includes('Take Profit') ? 'TP'
-        : (p.exit_reason || '').includes('Stop') ? 'SL' : 'TE';
+      const reasonShort = traderExitBadge(p.exit_reason);
       const sizeUsd = +p.size_usd || 0;
       return `<div class="paper-row" id="cl-row-${idx}">
         <div class="paper-row-head" onclick="document.getElementById('cl-row-${idx}').classList.toggle('expanded')">
@@ -1894,7 +1915,7 @@ function renderPaper() {
             <div class="pr-chevron"></div>
           </div>
           <div class="pr-stats">
-            <div class="pr-stat pr-hide-mobile"><span class="pr-stat-label">Ergebnis</span><span style="color:${isWin?'var(--green)':'var(--red)'}">${reasonShort}</span></div>
+            <div class="pr-stat pr-hide-mobile"><span class="pr-stat-label">Ergebnis</span><span title="${p.exit_reason || ''}" style="color:${isWin?'var(--green)':'var(--red)'}">${reasonShort}</span></div>
             <div class="pr-stat"><span class="pr-stat-label">PnL %</span><span class="${cls(pnlPct)}">${fmtPct(pnlPct)}</span></div>
             <div class="pr-stat"><span class="pr-stat-label">PnL $</span><span class="${cls(pnlUsd)}">${fmtUsd(pnlUsd)}</span></div>
             <div class="pr-stat"><span class="pr-stat-label">Hold</span>${p.hold_days || 0}d</div>
