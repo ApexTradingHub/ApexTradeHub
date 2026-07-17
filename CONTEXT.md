@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-16 (eToro LIVE · SECTOR_RS_GATE + PICK_BAND live · eToro-Close-Backfill (RHI-Bug) · Intraday-Reject-Log · Postmortem 216/0-pending · MCP-News statt WebSearch)
+**Letztes Update:** 2026-07-17 (eToro LIVE · SECTOR_RS_GATE + PICK_BAND live · **EU-Takt-Guard: "messen statt bauen"** · eToro-Close-Backfill (RHI-Bug) · Intraday-Reject-Log — Tracking noch offen)
 
 ---
 
@@ -229,6 +229,26 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-17** **EU-Grundsatzentscheid: "messen statt bauen"** (BACKLOG #23):
+  - **Der Befund war kein Filter-, sondern ein TAKT-Problem.** EU-Boersen schliessen 15:30 UTC,
+    Trader-Cron laeuft 13:00–21:00 = 2.5h Ueberlappung. Verschaerft durch die Trigger-Mechanik:
+    `trigger_pending` prueft `high_today >= entry`, **kauft aber zum aktuellen Preis** — ein
+    EU-Signal das 08:00 UTC triggert wird 13:00 gesehen und 5h zu spaet ausgefuehrt. Nach EU-Close
+    liefert yfinance den Close-Bar weiter, ohne ihn als stale zu markieren.
+  - **"Anpassen" traegt nicht** (Trigger aufs 2.5h-Fenster begrenzen = jede Morgen-Bewegung
+    verpasst, Signale expiren). **"Abkapseln"** (eigener EU-Cron) = hoher Aufwand fuer einen Edge
+    den wir bei **0 Signalen in 4 Monaten** nie gesehen haben.
+  - **Der Hebel:** Der Equity-Tracker simuliert alle Signale auf **Daily-Bars, unabhaengig vom
+    Live-Takt** → EU-Edge messbar ohne EU-Euro und ohne zweiten Cron.
+  - Umgesetzt: EU bleibt im **Scanner** (= Datenquelle), `INTRADAY_EU_ENABLED=False` (825→719
+    Ticker), `EU_GUARD_ENABLED=True` (`_eu_entry_blocked`: Live-Entry nur 07:00–15:15 UTC, kein
+    WE, fail-closed). Guard sitzt nach dem Expiry- und vor beiden Kauf-Pfaden → Pending wartet
+    auf echte Preise statt zu verfallen.
+  - **Entscheid vertagt auf Daten:** bei n>=30 EU-Trades im Equity-Tracker (~3 Mon, ca. Okt 2026)
+    WR/PF gegen US-Baseline (51.7%/1.78). Danach: eigener Cron / EU raus / bestaetigt.
+  - Verhaltens-Tests: Suffix-Erkennung (7 EU-Boersen, BRK-B negativ), Cutoff-Grenzen 15:14 vs
+    15:15, Wochenende, Rollback-Flag, Universum EU-frei. Alle PASS.
 
 - **2026-07-16** **eToro-Close-Backfill + Reject-Log + Postmortem-Wartung**:
   - **eToro-Close-Backfill live** (apex_trader.py `sync_etoro_positions`): Race gefixt — wenn
@@ -626,6 +646,8 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 | **INTRADAY_RANGE_POS_MAX** | 0.90 | apex_trader.py | Anti-Peak (07-10). **Unter Verdacht** (BACKLOG #22): starke Trends laufen am Hoch |
 | **INTRADAY_ENTRY_CUTOFF_UTC** | "19:15" | apex_trader.py | 07-15: keine neuen Intradays kurz vor EOD (EQNR-Fall). EOD-Close-Cutoff bleibt 19:45 |
 | **eToro-Close-Backfill** | 7d-Fenster | apex_trader.py `sync_etoro_positions` | **07-16 live**: holt echte Close-Rate/netProfit nach wenn Paper das Rennen gegen den API-Lag gewann (RHI-Bug) |
+| **EU_GUARD_ENABLED** | True | apex_trader.py `_eu_entry_blocked` | **07-17 live**: EU-Live-Entry nur 07:00–15:15 UTC (EU-Boerse schliesst 15:30, wir laufen bis 21:00 → sonst Kauf auf 2.5h altem Close-Bar). Sitzt in `trigger_pending` nach dem Expiry-, vor dem Kauf-Check. Rollback = False |
+| **INTRADAY_EU_ENABLED** | **False** | apex_trader.py | **07-17**: EU raus aus dem Intraday-Universum (825→719 Ticker) — 5m-Bars nach EU-Close eingefroren = Peak-Kauf auf totem Chart. EU-Edge wird stattdessen ueber den Equity-Tracker vermessen (BACKLOG #23). Rollback = True |
 | **MOMENTUM-Bearish-Skip** | aktiv | apex_trader.py Step 3b | liest apex_market.json.mode, skip wenn BEARISH |
 | **eToro-Auth-Mapping** | x-api-key = "Öffentlicher Schlüssel" · x-user-key = generierter Schlüssel-Wert | etoro_client.py | **VERDREHT vs Portal-Labels!** |
 | **eToro-Fee** | ~$1 open + $1 close (normal Demo) | eToro | Live Smart-Portfolio angeblich fee-free (unverifiziert) |

@@ -223,6 +223,26 @@ INTRADAY_CACHE         = SCRIPT_DIR / "apex_intraday_cache.json"
 INTRADAY_REJECTS_FILE  = SCRIPT_DIR / "apex_intraday_rejects.json"
 INTRADAY_REJECTS_KEEP_DAYS = 14
 
+# --- 2026-07-17: EU-Takt-Guard (Grundsatzentscheid "messen statt bauen") -----------
+# EU-Boersen (Xetra/Paris/Amsterdam/London/...) schliessen 15:30 UTC, unser Trader-Cron
+# laeuft 13:00-21:00 UTC -> nur 2.5h echte Ueberlappung. Nach EU-Close liefert yfinance
+# den Close-Bar unveraendert weiter, ohne ihn als stale zu markieren: ein Entry um 18:00
+# UTC handelte auf 2.5h alten Daten, ein Stop-Check ebenso. Nie passiert (0 EU-Positionen
+# seit Tag 1), aber strukturell real und nur durch Zufall folgenlos.
+# Entscheid: EU bleibt im SCANNER (der Equity-Tracker simuliert Signale auf Daily-Bars,
+# voellig unabhaengig vom Live-Takt = sauberer Edge-Nachweis ohne Timing-Risiko und ohne
+# Geld). LIVE gehandelt wird EU nur, wenn die EU-Boerse wirklich offen ist.
+# Auswertung bei n>=30 EU-Equity-Trades -> BACKLOG #23.
+EU_GUARD_ENABLED    = True      # Rollback = False
+EU_SUFFIXES         = {"DE", "PA", "AS", "SW", "L", "MC", "MI"}  # sync: ApexScan.EXCHANGE_SUFFIXES
+EU_MARKET_OPEN_UTC  = "07:00"
+EU_ENTRY_CUTOFF_UTC = "15:15"   # 15 Min Puffer vor EU-Close (15:30 UTC)
+# EU raus aus dem INTRADAY-Universum: dort ist der Takt-Konflikt am schaerfsten. Nach
+# 15:30 UTC sind die 5m-Bars eingefroren -> der Vorfilter liest den KOMPLETTEN EU-Tag als
+# "gain_from_open", das Time-Gate (et_hour>=10) winkt die letzte EU-Bar durch und wir
+# kaufen den Peak eines toten Charts. Rollback = True.
+INTRADAY_EU_ENABLED = False
+
 
 # ---------------------------------------------------------------------------
 # Utils
@@ -795,6 +815,41 @@ def _is_intraday_entry_cutoff() -> bool:
         return False
 
 
+def _is_eu_ticker(ticker: str) -> bool:
+    """EU-Ticker an der Exchange-Endung erkennen (SAP.DE, AD.AS, RIO.L ...).
+    US-Class-Shares haben KEINEN Punkt mehr wenn sie hier ankommen (BRK.B -> BRK-B,
+    siehe ApexScan.normalize_ticker), es kann also nur ein Exchange-Suffix sein."""
+    if not ticker or "." not in ticker:
+        return False
+    return ticker.rsplit(".", 1)[-1].upper() in EU_SUFFIXES
+
+
+def _eu_entry_blocked(ticker: str) -> str | None:
+    """2026-07-17: LIVE-Entry in EU-Titel nur waehrend echter EU-Handelszeit.
+    Gibt den Blockier-Grund zurueck (fuer's Log), oder None wenn erlaubt.
+    Wichtig: blockiert nur den ENTRY, nicht das Pending — das Signal wartet auf ein
+    Fenster, in dem der Preis echt ist, statt auf einem Close-Bar von vor Stunden
+    ausgefuehrt zu werden."""
+    if not EU_GUARD_ENABLED or not _is_eu_ticker(ticker):
+        return None
+    try:
+        now = datetime.now(timezone.utc)
+        if now.weekday() >= 5:
+            return "EU-Boerse zu (Wochenende)"
+        hhmm = (now.hour, now.minute)
+        op  = tuple(int(x) for x in EU_MARKET_OPEN_UTC.split(":"))
+        cut = tuple(int(x) for x in EU_ENTRY_CUTOFF_UTC.split(":"))
+        if hhmm < op:
+            return f"EU-Boerse noch zu (oeffnet {EU_MARKET_OPEN_UTC} UTC)"
+        if hhmm >= cut:
+            return (f"EU-Entry-Cutoff {EU_ENTRY_CUTOFF_UTC} UTC "
+                    f"(Boerse schliesst 15:30 -> Preis waere stale)")
+        return None
+    except Exception as e:
+        log(f"EU-Guard check fail ({e}) -> fail-closed, kein Entry")
+        return "EU-Guard-Fehler"
+
+
 def _persist_intraday_rejects(rejects: list):
     """2026-07-16: Reject-Log schreiben, TAGES-dedupliziert (letzte Beobachtung pro Ticker/Tag).
     Ohne Dedup waeren es ~95 Rejects x 12 Scans/h = unbrauchbar. So bleibt pro Ticker/Tag EIN
@@ -833,9 +888,14 @@ def fetch_intraday_signals() -> list:
         log("intraday: yfinance not installed")
         return []
 
-    # Universe laden
+    # Universe laden. 2026-07-17: EU standardmaessig raus (INTRADAY_EU_ENABLED=False) —
+    # nach EU-Close 15:30 UTC sind die 5m-Bars eingefroren und wir wuerden den Peak eines
+    # toten Charts kaufen. EU-Edge wird stattdessen ueber den Equity-Tracker vermessen.
+    sources = ["us_tickers.txt"]
+    if INTRADAY_EU_ENABLED:
+        sources.append("eu_tickers.txt")
     universe = []
-    for fname in ("us_tickers.txt", "eu_tickers.txt"):
+    for fname in sources:
         try:
             with open(SCRIPT_DIR / fname) as f:
                 universe += [x.strip() for x in f.read().split() if x.strip()]
@@ -1496,6 +1556,17 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
                 log(f"  expired: {p['ticker']} (signal {p['signal_date']}, "
                     f"{days_since}d alt, nicht re-validiert)")
                 continue
+
+        # 1b. EU-Takt-Guard (2026-07-17): EU-Boerse schliesst 15:30 UTC, wir laufen bis
+        # 21:00 -> ausserhalb des Fensters waere jeder Kurs ein alter Close-Bar. Bewusst
+        # NACH dem Expiry-Check: das Signal soll normal verfallen duerfen, nur eben nicht
+        # auf toten Daten ausgefuehrt werden. Bleibt pending -> naechster Run im Fenster
+        # (13:00-15:15 UTC) fuehrt aus.
+        eu_block = _eu_entry_blocked(p["ticker"])
+        if eu_block:
+            still_pending.append(p)
+            log(f"  EU-Guard: {p['ticker']} wartet — {eu_block}")
+            continue
 
         # 2. Capacity & cash checks
         # === Phase-1 Replacement: wenn Slots voll, pruefe ob Pending qualifiziert ===

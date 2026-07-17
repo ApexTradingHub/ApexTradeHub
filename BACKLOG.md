@@ -711,3 +711,62 @@ Wenn sie ueberwiegend Fader treffen -> bestaetigt, so lassen.
 
 **ACHTUNG run_trader.sh:** apex_intraday_rejects.json MUSS in die git-add-Liste, sonst bleibt
 das Log auf der VM (wie apex_intraday_cache.json, das nie committed wurde).
+
+---
+
+## 23. EU-Grundsatzentscheid: "messen statt bauen" — umgesetzt 2026-07-17
+
+**Die Frage (User, 16.07.):** EU und US abkapseln (eigener Cron/Filter/Zeitfenster) ODER EU
+so anpassen dass es in unsere Signal-Logik passt?
+
+**Der eigentliche Befund — es ist kein Filter-, sondern ein TAKT-Problem:**
+EU-Boersen schliessen **15:30 UTC**, unser Trader-Cron laeuft **13:00-21:00 UTC** = nur 2.5h
+echte Ueberlappung. Und der Trigger-Mechanismus macht es schlimmer: `trigger_pending` prueft
+`high_today >= entry` (Tageshoch), **kauft aber zum aktuellen Preis**. Ein SAP-Signal das um
+08:00 UTC durch `buy_above` springt wird erst um 13:00 gesehen — der Trigger traegt, aber
+ausgefuehrt wird 5h spaeter zu einem beliebigen Kurs. Nach 15:30 UTC liefert yfinance den
+Close-Bar unveraendert weiter, ohne ihn als stale zu markieren -> Entry/Stop-Check auf 2.5h
+alten Daten. Nie passiert (0 EU-Positionen seit Tag 1), aber strukturell real.
+
+**Warum "anpassen" nicht traegt:** Begrenzt man EU-Trigger auf das 2.5h-Fenster, verpasst man
+jede Morgen-Bewegung und die Signale expiren an `MAX_TRIGGER_DAYS`. Der Takt ist Physik,
+kein Parameter.
+
+**Warum "abkapseln" (eigener EU-Cron 07:00-15:30) nicht JETZT:** hoher Aufwand (zweiter Cron,
+EU-Gates ueberall, eToro-EU-Handelbarkeit ungetestet) fuer einen Edge den wir bei **0 Signalen
+in 4 Monaten** noch nie gesehen haben. Doppelte Komplexitaet bei $400 Kapital.
+
+**ENTSCHEID (User 17.07.): messen statt bauen.** Der Hebel: **der Equity-Tracker simuliert
+alle Signale auf Daily-Bars — voellig unabhaengig vom Live-Takt.** Wir koennen den EU-Edge
+also sauber vermessen, ohne einen EU-Euro zu riskieren und ohne einen zweiten Cron.
+
+**Umgesetzt (apex_trader.py):**
+1. **EU bleibt im Scanner** — unveraendert. Signale werden emittiert + vom Equity-Tracker
+   simuliert = die Datenquelle fuer den Entscheid.
+2. `INTRADAY_EU_ENABLED = False` — EU raus aus dem Intraday-Universum (825 -> 719 Ticker).
+   Dort ist der Takt-Konflikt am schaerfsten: nach 15:30 UTC eingefrorene 5m-Bars, der
+   Vorfilter liest den KOMPLETTEN EU-Tag als `gain_from_open`, das Time-Gate (et_hour>=10)
+   winkt die letzte EU-Bar durch -> Peak-Kauf auf totem Chart.
+3. `EU_GUARD_ENABLED = True` + `_eu_entry_blocked()` — LIVE-Entry in EU-Titel nur im Fenster
+   07:00-15:15 UTC (15 Min Puffer vor Close), nicht am Wochenende. Sitzt in `trigger_pending`
+   NACH dem Expiry-Check (Signal darf normal verfallen) und VOR beiden Kauf-Pfaden
+   (Replacement + regulaerer Trigger). Blockiert nur den Entry, das Pending wartet auf ein
+   Fenster mit echten Preisen. Fail-closed bei Exception.
+
+**Auswertung — Trigger: n>=30 EU-Trades in apex_equity_results.json.** Zaehlen mit:
+```python
+import json; from apex_trader import _is_eu_ticker
+r = json.load(open('apex_equity_results.json'))
+eu = [t for t in (r if isinstance(r, list) else r.get('trades', [])) if _is_eu_ticker(t.get('ticker',''))]
+print(len(eu), 'EU-Trades')
+```
+Dann: WR/PF der EU-Trades vs US-Baseline (Lifetime 51.7% / PF 1.78).
+- **EU-Edge >= US-Baseline** -> eigener EU-Cron lohnt sich, dann sauber bauen (Option
+  "abkapseln" mit Daten statt Bauchgefuehl).
+- **EU-Edge deutlich drunter** -> EU-Ticker ganz raus, Scan wird schneller.
+- **Immer noch ~0 Signale nach 3 Monaten** -> Antwort ist eh "raus".
+
+**Erwartete Dauer:** bei US-Pass-Rate (0.478%/Ticker-Tag) x 106 EU-Ticker ~ 0.5 Signale/Tag
+-> n=30 in grob 60 Handelstagen (~3 Monate, also ca. Oktober 2026). Kostet bis dahin nichts.
+
+**Rollback:** `EU_GUARD_ENABLED = False` / `INTRADAY_EU_ENABLED = True`.
