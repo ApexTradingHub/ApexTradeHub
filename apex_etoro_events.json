@@ -885,5 +885,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "PATH",
+    "instrument_id": 6921,
+    "size_usd": 50.0,
+    "stop": 12.06,
+    "target": 13.07,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 367632373,
+    "response": {
+      "token": "a0361586-c03f-43b5-983d-ef425d8dc469",
+      "orderId": 367632373,
+      "referenceId": "01b55c16-124a-41f3-94e9-1f7cf13d6784"
+    },
+    "ts": "2026-07-20T18:31:36Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
