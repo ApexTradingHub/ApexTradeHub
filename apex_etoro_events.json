@@ -865,5 +865,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "IOT",
+    "instrument_id": 9433,
+    "size_usd": 50.0,
+    "stop": 35.4,
+    "target": 45.04,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 367381829,
+    "response": {
+      "token": "7e1e4073-26a2-4c58-977a-0f6206f527c6",
+      "orderId": 367381829,
+      "referenceId": "d7784674-54d6-4623-a7b2-495d84c098ff"
+    },
+    "ts": "2026-07-20T15:20:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
