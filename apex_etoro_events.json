@@ -827,5 +827,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "LCID",
+    "instrument_id": 9256,
+    "size_usd": 50.0,
+    "stop": 7.27,
+    "target": 7.86,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 367379660,
+    "response": {
+      "token": "0ed76d30-1bb5-401d-96b6-4970575cede9",
+      "orderId": 367379660,
+      "referenceId": "121764a8-5aea-4cbd-81c9-d7d3e7e8d35a"
+    },
+    "ts": "2026-07-20T14:11:49Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
