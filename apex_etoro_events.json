@@ -847,5 +847,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "LCID",
+    "order_id": 367379660,
+    "position_id": 3565076335,
+    "close_rate": 7.27,
+    "net_profit": -1.27,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 7.27,
+      "reason": "Intraday Stop",
+      "pnl_pct": -2.94
+    },
+    "ts": "2026-07-20T14:35:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
