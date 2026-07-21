@@ -1,8 +1,8 @@
 {
   "mode": "live",
   "capital_initial": 400.0,
-  "cash": 58.11904474433911,
-  "last_updated": "2026-07-20T21:55:02Z",
+  "cash": 105.14948275473257,
+  "last_updated": "2026-07-21T13:00:03Z",
   "pending": [],
   "open": [
     {
@@ -32,7 +32,7 @@
       "pnl_usd": 12.311082800711693,
       "hold_days": 21,
       "intraday_rescued": true,
-      "hold_trading_days": 15,
+      "hold_trading_days": 16,
       "trailing_activated_at": "2026-07-01T14:00:07Z"
     },
     {
@@ -73,58 +73,13 @@
         "orderId": 366350413,
         "referenceId": "1e80b07c-2ce9-43d0-92df-ecedf2d3cb30"
       },
-      "hold_trading_days": 3,
+      "hold_trading_days": 4,
       "etoro_status": "pending_fill",
       "etoro_position_id": 3562522971,
       "etoro_open_rate": 40.88,
       "etoro_current_rate": 40.88,
       "etoro_units": 1.221896,
       "etoro_open_date": "2026-07-15T13:43:45.613Z"
-    },
-    {
-      "id": "PAPER_MTCH_2026-07-15",
-      "ticker": "MTCH",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Communication Services",
-      "signal_date": "2026-07-15",
-      "entry": 39.86,
-      "stop_initial": 37.97,
-      "target": 44.39,
-      "score": 121.9,
-      "rr": 2.18,
-      "upside_pct": 10.4,
-      "added_at": "2026-07-16T13:35:09Z",
-      "status": "open",
-      "mode": "live",
-      "entry_actual": 40.41,
-      "shares": 1.2373174956693889,
-      "size_usd": 50.0,
-      "stop": 38.3,
-      "high_since_entry": 41.03,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-07-16T13:40:08Z",
-      "current_price": 39.02000045776367,
-      "pnl_pct": -3.4397415051628926,
-      "pnl_usd": -1.719870752581446,
-      "hold_days": 4,
-      "yfinance_entry": 40.05929999999999,
-      "etoro_ask_at_open": 40.41,
-      "etoro_instrument_id": 1968,
-      "etoro_order_id": 366498605,
-      "etoro_reference_id": "ee7e4388-e132-4123-9232-c64b8f500c91",
-      "etoro_open_response": {
-        "token": "1dd785cc-2e3d-47c3-85d4-c3b42b07359c",
-        "orderId": 366498605,
-        "referenceId": "ee7e4388-e132-4123-9232-c64b8f500c91"
-      },
-      "hold_trading_days": 2,
-      "etoro_position_id": 3563142250,
-      "etoro_open_rate": 40.35,
-      "etoro_current_rate": 40.35,
-      "etoro_units": 1.23793,
-      "etoro_open_date": "2026-07-16T13:40:13.117Z"
     },
     {
       "id": "PAPER_DXCM_2026-07-16",
@@ -164,7 +119,7 @@
         "orderId": 367020271,
         "referenceId": "b0082914-974c-4ea5-859b-55fbe4909ba3"
       },
-      "hold_trading_days": 1,
+      "hold_trading_days": 2,
       "etoro_position_id": 3563829101,
       "etoro_open_rate": 77.06,
       "etoro_current_rate": 77.06,
@@ -209,7 +164,7 @@
         "orderId": 367020368,
         "referenceId": "765cd5ed-2aaa-4fa4-be23-53fdc83f7b7a"
       },
-      "hold_trading_days": 1,
+      "hold_trading_days": 2,
       "etoro_position_id": 3564242175,
       "etoro_open_rate": 14.81,
       "etoro_current_rate": 14.81,
@@ -254,7 +209,7 @@
         "orderId": 367381829,
         "referenceId": "d7784674-54d6-4623-a7b2-495d84c098ff"
       },
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "etoro_position_id": 3565137599,
       "etoro_open_rate": 38.85,
       "etoro_current_rate": 38.85,
@@ -303,7 +258,7 @@
       "etoro_units": 4.019292,
       "etoro_open_date": "2026-07-20T18:31:36.217Z",
       "intraday_rescued": true,
-      "hold_trading_days": 0
+      "hold_trading_days": 1
     }
   ],
   "closed": [
@@ -2775,6 +2730,56 @@
       "paper_exit_reason": "Intraday Stop",
       "paper_pnl_pct": -2.9372496662216374,
       "etoro_backfilled_at": "2026-07-20T14:35:08Z"
+    },
+    {
+      "id": "PAPER_MTCH_2026-07-15",
+      "ticker": "MTCH",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Communication Services",
+      "signal_date": "2026-07-15",
+      "entry": 39.86,
+      "stop_initial": 37.97,
+      "target": 44.39,
+      "score": 121.9,
+      "rr": 2.18,
+      "upside_pct": 10.4,
+      "added_at": "2026-07-16T13:35:09Z",
+      "status": "closed",
+      "mode": "live",
+      "entry_actual": 40.41,
+      "shares": 1.2373174956693889,
+      "size_usd": 50.0,
+      "stop": 38.3,
+      "high_since_entry": 41.03,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-07-16T13:40:08Z",
+      "current_price": 39.02000045776367,
+      "pnl_pct": -5.939123979213063,
+      "pnl_usd": -2.969561989606531,
+      "hold_days": 4,
+      "yfinance_entry": 40.05929999999999,
+      "etoro_ask_at_open": 40.41,
+      "etoro_instrument_id": 1968,
+      "etoro_order_id": 366498605,
+      "etoro_reference_id": "ee7e4388-e132-4123-9232-c64b8f500c91",
+      "etoro_open_response": {
+        "token": "1dd785cc-2e3d-47c3-85d4-c3b42b07359c",
+        "orderId": 366498605,
+        "referenceId": "ee7e4388-e132-4123-9232-c64b8f500c91"
+      },
+      "hold_trading_days": 3,
+      "etoro_position_id": 3563142250,
+      "etoro_open_rate": 40.35,
+      "etoro_current_rate": 40.35,
+      "etoro_units": 1.23793,
+      "etoro_open_date": "2026-07-16T13:40:13.117Z",
+      "etoro_close_rate": 38.01,
+      "etoro_net_profit": -2.9,
+      "exit_price": 38.01,
+      "exit_reason": "eToro SL",
+      "closed_at": "2026-07-21T13:00:36Z"
     }
   ],
   "expired": [
@@ -2978,13 +2983,13 @@
   "stats": {
     "trading_mode": "live",
     "etoro_env": "demo",
-    "total_trades": 66,
-    "open_trades": 7,
+    "total_trades": 67,
+    "open_trades": 6,
     "wins": 33,
-    "losses": 33,
-    "win_rate": 50.0,
-    "pnl_realized": 3.9702954779165593,
-    "pnl_unrealized": 7.738303055963248,
-    "equity": 415.85734780030236
+    "losses": 34,
+    "win_rate": 49.25373134328358,
+    "pnl_realized": 1.0007334883100283,
+    "pnl_unrealized": 9.458173808544695,
+    "equity": 414.6076565632772
   }
 }
