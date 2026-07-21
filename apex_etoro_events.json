@@ -928,5 +928,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "GPN",
+    "instrument_id": 4310,
+    "size_usd": 50.0,
+    "stop": 77.74,
+    "target": 92.95,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 367828032,
+    "response": {
+      "token": "fb4dec55-db2f-4640-93a6-2dee9fd5f17c",
+      "orderId": 367828032,
+      "referenceId": "d0df93ed-7966-42f2-a87e-302c222da4bf"
+    },
+    "ts": "2026-07-21T13:35:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
