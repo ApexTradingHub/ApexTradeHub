@@ -984,5 +984,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "GM",
+    "instrument_id": 1501,
+    "size_usd": 50.0,
+    "stop": 77.02,
+    "target": 83.37,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 367829092,
+    "response": {
+      "token": "cfc38e9b-d003-45e5-8d75-647b471d376f",
+      "orderId": 367829092,
+      "referenceId": "4fcd0b87-c4d8-4cfc-9205-3756f7a8d3d5"
+    },
+    "ts": "2026-07-21T18:11:33Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
