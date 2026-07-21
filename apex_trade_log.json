@@ -2663,5 +2663,31 @@
     "gain_from_open": 4.18,
     "score": 36.6,
     "mode": "live"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_GM_2026-07-21_1811",
+    "ts": "2026-07-21T19:45:07Z",
+    "ticker": "GM",
+    "pnl_pct": 0.6,
+    "new_stop": 79.4,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 0.88,
+    "range_pos_eod": 0.958,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 6.79
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_TDY_2026-07-21_1816",
+    "ts": "2026-07-21T19:45:08Z",
+    "ticker": "TDY",
+    "pnl_pct": -1.57,
+    "new_stop": 631.68,
+    "mode": "rot->-4%",
+    "high_since_entry_pct": 0.6,
+    "range_pos_eod": 0.638,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 4.05
   }
 ]
