@@ -966,5 +966,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "TRIP",
+    "order_id": 367020368,
+    "position_id": 3564242175,
+    "close_rate": 13.81,
+    "net_profit": -3.37,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 13.79,
+      "reason": "Stop Loss",
+      "pnl_pct": -7.08
+    },
+    "ts": "2026-07-21T15:05:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
