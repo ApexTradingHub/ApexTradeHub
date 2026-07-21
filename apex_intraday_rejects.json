@@ -4010,31 +4010,31 @@
   },
   "2026-07-21": {
     "EFX": {
-      "reason": "below_vwap",
-      "gain": 4.97,
-      "range_pos": 0.69,
-      "vol_ratio": 2.43,
-      "above_vwap": false,
-      "last": 166.84,
-      "ts": "2026-07-21T16:06:33Z"
+      "reason": "gap_too_large",
+      "gain": 5.51,
+      "range_pos": 0.74,
+      "vol_ratio": 2.45,
+      "above_vwap": true,
+      "last": 167.69,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "A": {
       "reason": "below_vwap",
-      "gain": 3.95,
-      "range_pos": 0.65,
-      "vol_ratio": 0.38,
+      "gain": 4.06,
+      "range_pos": 0.67,
+      "vol_ratio": 0.39,
       "above_vwap": false,
-      "last": 131.38,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 131.52,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ILMN": {
-      "reason": "range_pos_too_high",
-      "gain": 5.43,
-      "range_pos": 0.9,
-      "vol_ratio": 0.3,
+      "reason": "vol_ratio_out",
+      "gain": 5.09,
+      "range_pos": 0.85,
+      "vol_ratio": 0.33,
       "above_vwap": true,
-      "last": 189.8,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 189.19,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "PATH": {
       "reason": "below_vwap",
@@ -4056,30 +4056,30 @@
     },
     "RVTY": {
       "reason": "below_vwap",
-      "gain": 5.32,
-      "range_pos": 0.7,
+      "gain": 5.69,
+      "range_pos": 0.74,
       "vol_ratio": 0.58,
       "above_vwap": false,
-      "last": 109.31,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 109.7,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "MTD": {
-      "reason": "below_vwap",
-      "gain": 3.54,
-      "range_pos": 0.73,
+      "reason": "vol_ratio_out",
+      "gain": 3.72,
+      "range_pos": 0.76,
       "vol_ratio": 0.53,
-      "above_vwap": false,
-      "last": 1280.41,
-      "ts": "2026-07-21T16:06:33Z"
+      "above_vwap": true,
+      "last": 1282.65,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "WRB": {
-      "reason": "below_vwap",
-      "gain": 2.46,
-      "range_pos": 0.53,
-      "vol_ratio": 0.55,
-      "above_vwap": false,
-      "last": 73.24,
-      "ts": "2026-07-21T16:06:33Z"
+      "reason": "vol_ratio_out",
+      "gain": 2.64,
+      "range_pos": 0.56,
+      "vol_ratio": 0.56,
+      "above_vwap": true,
+      "last": 73.36,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ESTC": {
       "reason": "below_vwap",
@@ -4092,39 +4092,39 @@
     },
     "INTU": {
       "reason": "vol_ratio_out",
-      "gain": 3.74,
-      "range_pos": 0.7,
+      "gain": 3.5,
+      "range_pos": 0.66,
       "vol_ratio": 0.3,
       "above_vwap": true,
-      "last": 290.51,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 289.85,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "WDAY": {
       "reason": "below_vwap",
-      "gain": 2.5,
-      "range_pos": 0.6,
-      "vol_ratio": 0.35,
+      "gain": 2.19,
+      "range_pos": 0.52,
+      "vol_ratio": 0.36,
       "above_vwap": false,
-      "last": 142.51,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 142.09,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ADBE": {
       "reason": "below_vwap",
-      "gain": 2.18,
-      "range_pos": 0.59,
+      "gain": 1.96,
+      "range_pos": 0.53,
       "vol_ratio": 0.49,
       "above_vwap": false,
-      "last": 227.7,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 227.21,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ISRG": {
       "reason": "below_vwap",
       "gain": 2.9,
       "range_pos": 0.66,
-      "vol_ratio": 0.37,
+      "vol_ratio": 0.38,
       "above_vwap": false,
       "last": 357.48,
-      "ts": "2026-07-21T16:06:33Z"
+      "ts": "2026-07-21T16:11:29Z"
     },
     "MDB": {
       "reason": "below_vwap",
@@ -4145,31 +4145,31 @@
       "ts": "2026-07-21T15:11:31Z"
     },
     "HOOD": {
-      "reason": "range_pos_too_high",
-      "gain": 5.02,
-      "range_pos": 0.96,
-      "vol_ratio": 0.46,
+      "reason": "vol_ratio_out",
+      "gain": 4.34,
+      "range_pos": 0.83,
+      "vol_ratio": 0.47,
       "above_vwap": true,
-      "last": 107.98,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 107.28,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AVTR": {
       "reason": "vol_ratio_out",
-      "gain": 3.89,
-      "range_pos": 0.82,
-      "vol_ratio": 0.3,
+      "gain": 4.08,
+      "range_pos": 0.85,
+      "vol_ratio": 0.31,
       "above_vwap": true,
-      "last": 10.69,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 10.7,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CRM": {
       "reason": "below_vwap",
-      "gain": 1.94,
-      "range_pos": 0.61,
+      "gain": 1.62,
+      "range_pos": 0.52,
       "vol_ratio": 0.29,
       "above_vwap": false,
-      "last": 170.3,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 169.76,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "RHI": {
       "reason": "below_vwap",
@@ -4181,40 +4181,40 @@
       "ts": "2026-07-21T15:11:31Z"
     },
     "DELL": {
-      "reason": "range_pos_too_high",
-      "gain": 3.1,
-      "range_pos": 1.0,
-      "vol_ratio": 0.28,
+      "reason": "vol_ratio_out",
+      "gain": 2.85,
+      "range_pos": 0.9,
+      "vol_ratio": 0.29,
       "above_vwap": true,
-      "last": 406.71,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 405.76,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ORCL": {
       "reason": "vol_ratio_out",
-      "gain": 1.99,
-      "range_pos": 0.76,
-      "vol_ratio": 0.25,
+      "gain": 1.92,
+      "range_pos": 0.74,
+      "vol_ratio": 0.26,
       "above_vwap": true,
-      "last": 125.26,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 125.17,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "UPST": {
-      "reason": "range_pos_too_high",
-      "gain": 4.05,
-      "range_pos": 0.93,
+      "reason": "vol_ratio_out",
+      "gain": 3.77,
+      "range_pos": 0.87,
       "vol_ratio": 0.36,
       "above_vwap": true,
-      "last": 29.82,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 29.74,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "GM": {
       "reason": "range_pos_too_high",
-      "gain": 4.56,
-      "range_pos": 0.91,
-      "vol_ratio": 1.07,
+      "gain": 4.8,
+      "range_pos": 0.95,
+      "vol_ratio": 1.08,
       "above_vwap": true,
-      "last": 79.56,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 79.75,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AKAM": {
       "reason": "below_vwap",
@@ -4227,21 +4227,21 @@
     },
     "APP": {
       "reason": "below_vwap",
-      "gain": 1.73,
+      "gain": 1.71,
       "range_pos": 0.55,
       "vol_ratio": 0.29,
       "above_vwap": false,
-      "last": 427.32,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 427.26,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "DHR": {
       "reason": "below_vwap",
-      "gain": 2.47,
-      "range_pos": 0.57,
-      "vol_ratio": 3.58,
+      "gain": 2.38,
+      "range_pos": 0.55,
+      "vol_ratio": 3.65,
       "above_vwap": false,
-      "last": 173.01,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 172.85,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SNOW": {
       "reason": "below_vwap",
@@ -4272,12 +4272,12 @@
     },
     "MMM": {
       "reason": "below_vwap",
-      "gain": 2.06,
-      "range_pos": 0.5,
-      "vol_ratio": 1.99,
+      "gain": 2.11,
+      "range_pos": 0.51,
+      "vol_ratio": 2.01,
       "above_vwap": false,
-      "last": 172.58,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 172.66,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "PAYC": {
       "reason": "below_vwap",
@@ -4308,21 +4308,21 @@
     },
     "SM": {
       "reason": "vol_ratio_out",
-      "gain": 2.8,
-      "range_pos": 0.87,
+      "gain": 2.58,
+      "range_pos": 0.8,
       "vol_ratio": 0.31,
       "above_vwap": true,
-      "last": 32.28,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 32.21,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CDNS": {
       "reason": "range_pos_too_high",
-      "gain": 3.14,
-      "range_pos": 0.92,
-      "vol_ratio": 0.42,
+      "gain": 3.15,
+      "range_pos": 0.93,
+      "vol_ratio": 0.43,
       "above_vwap": true,
-      "last": 341.19,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 341.24,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "TWLO": {
       "reason": "below_vwap",
@@ -4353,30 +4353,30 @@
     },
     "SNDK": {
       "reason": "range_pos_too_high",
-      "gain": 3.06,
-      "range_pos": 0.92,
-      "vol_ratio": 0.52,
+      "gain": 3.01,
+      "range_pos": 0.91,
+      "vol_ratio": 0.53,
       "above_vwap": true,
-      "last": 1556.4,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 1555.67,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "NOC": {
       "reason": "range_pos_too_high",
-      "gain": 4.45,
-      "range_pos": 0.93,
-      "vol_ratio": 1.38,
+      "gain": 4.29,
+      "range_pos": 0.91,
+      "vol_ratio": 1.4,
       "above_vwap": true,
-      "last": 511.79,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 511.04,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "PINS": {
       "reason": "vol_ratio_out",
-      "gain": 1.86,
-      "range_pos": 0.81,
-      "vol_ratio": 0.18,
+      "gain": 1.9,
+      "range_pos": 0.83,
+      "vol_ratio": 0.19,
       "above_vwap": true,
-      "last": 22.74,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 22.75,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "BILL": {
       "reason": "below_vwap",
@@ -4389,30 +4389,30 @@
     },
     "CMG": {
       "reason": "vol_ratio_out",
-      "gain": 2.55,
-      "range_pos": 0.83,
-      "vol_ratio": 0.24,
+      "gain": 2.61,
+      "range_pos": 0.84,
+      "vol_ratio": 0.25,
       "above_vwap": true,
-      "last": 33.38,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 33.4,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CHRD": {
       "reason": "vol_ratio_out",
-      "gain": 2.1,
-      "range_pos": 0.73,
+      "gain": 2.13,
+      "range_pos": 0.74,
       "vol_ratio": 0.3,
       "above_vwap": true,
-      "last": 132.59,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 132.63,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "HPE": {
       "reason": "range_pos_too_high",
-      "gain": 2.64,
-      "range_pos": 0.98,
-      "vol_ratio": 0.23,
+      "gain": 2.56,
+      "range_pos": 0.94,
+      "vol_ratio": 0.24,
       "above_vwap": true,
-      "last": 46.83,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 46.8,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "RMD": {
       "reason": "vol_ratio_out",
@@ -4425,12 +4425,12 @@
     },
     "LULU": {
       "reason": "vol_ratio_out",
-      "gain": 1.77,
-      "range_pos": 0.68,
-      "vol_ratio": 0.36,
+      "gain": 1.6,
+      "range_pos": 0.63,
+      "vol_ratio": 0.37,
       "above_vwap": true,
-      "last": 115.82,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 115.62,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ACN": {
       "reason": "below_vwap",
@@ -4442,13 +4442,13 @@
       "ts": "2026-07-21T15:11:31Z"
     },
     "UNH": {
-      "reason": "vol_ratio_out",
-      "gain": 2.33,
+      "reason": "range_pos_too_high",
+      "gain": 2.34,
       "range_pos": 0.9,
       "vol_ratio": 0.24,
       "above_vwap": true,
-      "last": 432.32,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 432.39,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "LYFT": {
       "reason": "below_vwap",
@@ -4461,12 +4461,12 @@
     },
     "TSLA": {
       "reason": "vol_ratio_out",
-      "gain": 2.73,
-      "range_pos": 0.79,
-      "vol_ratio": 0.55,
+      "gain": 2.86,
+      "range_pos": 0.82,
+      "vol_ratio": 0.56,
       "above_vwap": true,
-      "last": 381.12,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 381.59,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "TEAM": {
       "reason": "below_vwap",
@@ -4542,12 +4542,12 @@
     },
     "BTU": {
       "reason": "vol_ratio_out",
-      "gain": 2.54,
-      "range_pos": 0.8,
-      "vol_ratio": 0.3,
+      "gain": 2.41,
+      "range_pos": 0.77,
+      "vol_ratio": 0.31,
       "above_vwap": true,
-      "last": 23.44,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 23.41,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "COR": {
       "reason": "range_pos_too_high",
@@ -4560,12 +4560,12 @@
     },
     "XRAY": {
       "reason": "range_pos_too_high",
-      "gain": 2.76,
-      "range_pos": 0.96,
-      "vol_ratio": 0.26,
+      "gain": 2.87,
+      "range_pos": 1.0,
+      "vol_ratio": 0.27,
       "above_vwap": true,
-      "last": 13.59,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 13.6,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "APA": {
       "reason": "vol_ratio_out",
@@ -4596,12 +4596,12 @@
     },
     "MU": {
       "reason": "range_pos_too_high",
-      "gain": 4.34,
-      "range_pos": 1.0,
-      "vol_ratio": 0.56,
+      "gain": 4.74,
+      "range_pos": 0.98,
+      "vol_ratio": 0.58,
       "above_vwap": true,
-      "last": 965.49,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 969.23,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CNX": {
       "reason": "vol_ratio_out",
@@ -4613,31 +4613,31 @@
       "ts": "2026-07-21T16:01:38Z"
     },
     "HPQ": {
-      "reason": "range_pos_too_high",
-      "gain": 2.41,
-      "range_pos": 0.96,
-      "vol_ratio": 0.35,
+      "reason": "vol_ratio_out",
+      "gain": 1.83,
+      "range_pos": 0.73,
+      "vol_ratio": 0.36,
       "above_vwap": true,
-      "last": 24.86,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 24.73,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CNC": {
       "reason": "range_pos_too_high",
-      "gain": 2.32,
+      "gain": 2.33,
       "range_pos": 0.94,
-      "vol_ratio": 0.3,
+      "vol_ratio": 0.31,
       "above_vwap": true,
       "last": 66.97,
-      "ts": "2026-07-21T16:06:33Z"
+      "ts": "2026-07-21T16:11:29Z"
     },
     "WELL": {
       "reason": "range_pos_too_high",
-      "gain": 2.02,
-      "range_pos": 0.94,
+      "gain": 2.08,
+      "range_pos": 0.97,
       "vol_ratio": 0.22,
       "above_vwap": true,
-      "last": 247.16,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 247.3,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "HUBS": {
       "reason": "gain_too_low",
@@ -4695,30 +4695,30 @@
     },
     "BRBR": {
       "reason": "below_vwap",
-      "gain": 4.24,
-      "range_pos": 0.61,
+      "gain": 4.16,
+      "range_pos": 0.6,
       "vol_ratio": 0.16,
       "above_vwap": false,
-      "last": 12.53,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 12.52,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "EPAM": {
       "reason": "below_vwap",
-      "gain": 2.11,
-      "range_pos": 0.66,
-      "vol_ratio": 0.22,
+      "gain": 2.07,
+      "range_pos": 0.65,
+      "vol_ratio": 0.24,
       "above_vwap": false,
-      "last": 88.54,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 88.5,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CRL": {
       "reason": "below_vwap",
-      "gain": 1.65,
-      "range_pos": 0.56,
-      "vol_ratio": 0.34,
+      "gain": 1.88,
+      "range_pos": 0.61,
+      "vol_ratio": 0.35,
       "above_vwap": false,
-      "last": 219.12,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 219.62,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "BLKB": {
       "reason": "below_vwap",
@@ -4758,21 +4758,21 @@
     },
     "CI": {
       "reason": "below_vwap",
-      "gain": 1.39,
-      "range_pos": 0.57,
+      "gain": 1.49,
+      "range_pos": 0.6,
       "vol_ratio": 0.23,
       "above_vwap": false,
-      "last": 285.92,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 286.2,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SOLV": {
       "reason": "range_pos_too_high",
-      "gain": 1.96,
-      "range_pos": 0.93,
+      "gain": 1.91,
+      "range_pos": 0.91,
       "vol_ratio": 0.24,
       "above_vwap": true,
-      "last": 79.0,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 78.96,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "EXPE": {
       "reason": "vol_ratio_out",
@@ -4794,21 +4794,21 @@
     },
     "AMD": {
       "reason": "vol_ratio_out",
-      "gain": 1.54,
-      "range_pos": 0.83,
+      "gain": 1.65,
+      "range_pos": 0.87,
       "vol_ratio": 0.51,
       "above_vwap": true,
-      "last": 533.87,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 534.41,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "C": {
       "reason": "range_pos_too_high",
-      "gain": 2.5,
-      "range_pos": 1.0,
+      "gain": 2.71,
+      "range_pos": 0.98,
       "vol_ratio": 0.27,
       "above_vwap": true,
-      "last": 132.8,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 133.07,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "IQV": {
       "reason": "below_vwap",
@@ -4830,12 +4830,12 @@
     },
     "HUM": {
       "reason": "vol_ratio_out",
-      "gain": 1.52,
-      "range_pos": 0.83,
+      "gain": 1.62,
+      "range_pos": 0.86,
       "vol_ratio": 0.12,
       "above_vwap": true,
-      "last": 405.49,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 405.88,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CHTR": {
       "reason": "vol_ratio_out",
@@ -4848,57 +4848,57 @@
     },
     "ARE": {
       "reason": "below_vwap",
-      "gain": 1.55,
-      "range_pos": 0.65,
+      "gain": 1.57,
+      "range_pos": 0.66,
       "vol_ratio": 0.15,
       "above_vwap": false,
-      "last": 50.37,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 50.38,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "INCY": {
       "reason": "vol_ratio_out",
-      "gain": 2.11,
-      "range_pos": 0.74,
-      "vol_ratio": 0.33,
+      "gain": 2.03,
+      "range_pos": 0.71,
+      "vol_ratio": 0.34,
       "above_vwap": true,
-      "last": 117.86,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 117.77,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AVAV": {
-      "reason": "range_pos_too_high",
-      "gain": 5.89,
-      "range_pos": 0.95,
-      "vol_ratio": 0.35,
+      "reason": "vol_ratio_out",
+      "gain": 5.41,
+      "range_pos": 0.86,
+      "vol_ratio": 0.4,
       "above_vwap": true,
-      "last": 150.1,
-      "ts": "2026-07-21T15:41:32Z"
+      "last": 149.41,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "TER": {
       "reason": "vol_ratio_out",
-      "gain": 3.65,
-      "range_pos": 0.84,
-      "vol_ratio": 0.49,
+      "gain": 3.77,
+      "range_pos": 0.86,
+      "vol_ratio": 0.5,
       "above_vwap": true,
-      "last": 374.16,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 374.6,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "WST": {
       "reason": "vol_ratio_out",
-      "gain": 1.68,
+      "gain": 1.7,
       "range_pos": 0.77,
-      "vol_ratio": 0.29,
+      "vol_ratio": 0.31,
       "above_vwap": true,
-      "last": 356.64,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 356.69,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "WDC": {
-      "reason": "range_pos_too_high",
-      "gain": 3.34,
-      "range_pos": 0.9,
-      "vol_ratio": 0.53,
+      "reason": "vol_ratio_out",
+      "gain": 3.12,
+      "range_pos": 0.87,
+      "vol_ratio": 0.54,
       "above_vwap": true,
-      "last": 547.49,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 546.33,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "IBKR": {
       "reason": "range_pos_too_high",
@@ -4907,7 +4907,7 @@
       "vol_ratio": 0.49,
       "above_vwap": true,
       "last": 94.79,
-      "ts": "2026-07-21T16:06:33Z"
+      "ts": "2026-07-21T16:11:29Z"
     },
     "GEHC": {
       "reason": "range_pos_too_high",
@@ -4919,13 +4919,13 @@
       "ts": "2026-07-21T14:31:37Z"
     },
     "OWL": {
-      "reason": "range_pos_too_high",
-      "gain": 1.76,
-      "range_pos": 0.92,
+      "reason": "vol_ratio_out",
+      "gain": 1.55,
+      "range_pos": 0.81,
       "vol_ratio": 0.29,
       "above_vwap": true,
-      "last": 9.52,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 9.49,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "RRC": {
       "reason": "range_pos_too_high",
@@ -4974,12 +4974,12 @@
     },
     "CMC": {
       "reason": "vol_ratio_out",
-      "gain": 1.71,
-      "range_pos": 0.81,
-      "vol_ratio": 0.26,
+      "gain": 1.63,
+      "range_pos": 0.78,
+      "vol_ratio": 0.27,
       "above_vwap": true,
-      "last": 67.57,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 67.53,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ARWR": {
       "reason": "vol_ratio_out",
@@ -5019,12 +5019,12 @@
     },
     "CEG": {
       "reason": "range_pos_too_high",
-      "gain": 2.67,
+      "gain": 2.71,
       "range_pos": 0.97,
       "vol_ratio": 0.3,
       "above_vwap": true,
-      "last": 262.55,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 262.66,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ACHR": {
       "reason": "below_vwap",
@@ -5090,22 +5090,22 @@
       "ts": "2026-07-21T15:16:33Z"
     },
     "SNPS": {
-      "reason": "range_pos_too_high",
-      "gain": 2.2,
-      "range_pos": 0.97,
-      "vol_ratio": 0.29,
+      "reason": "vol_ratio_out",
+      "gain": 1.94,
+      "range_pos": 0.87,
+      "vol_ratio": 0.3,
       "above_vwap": true,
-      "last": 386.3,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 385.34,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SMCI": {
       "reason": "range_pos_too_high",
-      "gain": 3.56,
-      "range_pos": 0.98,
-      "vol_ratio": 0.4,
+      "gain": 3.42,
+      "range_pos": 0.94,
+      "vol_ratio": 0.41,
       "above_vwap": true,
-      "last": 25.28,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 25.25,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SHOP": {
       "reason": "vol_ratio_out",
@@ -5127,12 +5127,12 @@
     },
     "ACM": {
       "reason": "vol_ratio_out",
-      "gain": 1.97,
-      "range_pos": 0.79,
-      "vol_ratio": 0.17,
+      "gain": 1.8,
+      "range_pos": 0.72,
+      "vol_ratio": 0.2,
       "above_vwap": true,
-      "last": 68.96,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 68.85,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "PAYX": {
       "reason": "vol_ratio_out",
@@ -5154,12 +5154,12 @@
     },
     "CIEN": {
       "reason": "range_pos_too_high",
-      "gain": 3.01,
-      "range_pos": 0.95,
-      "vol_ratio": 0.53,
+      "gain": 3.21,
+      "range_pos": 0.99,
+      "vol_ratio": 0.55,
       "above_vwap": true,
-      "last": 409.68,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 410.47,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ERIE": {
       "reason": "vol_ratio_out",
@@ -5172,21 +5172,21 @@
     },
     "ULTA": {
       "reason": "vol_ratio_out",
-      "gain": 1.68,
-      "range_pos": 0.89,
+      "gain": 1.66,
+      "range_pos": 0.88,
       "vol_ratio": 0.38,
       "above_vwap": true,
-      "last": 493.55,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 493.46,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "STX": {
       "reason": "range_pos_too_high",
-      "gain": 3.71,
-      "range_pos": 1.0,
-      "vol_ratio": 0.53,
+      "gain": 3.58,
+      "range_pos": 0.97,
+      "vol_ratio": 0.55,
       "above_vwap": true,
-      "last": 895.01,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 893.92,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "MRK": {
       "reason": "vol_ratio_out",
@@ -5217,21 +5217,21 @@
     },
     "LHX": {
       "reason": "range_pos_too_high",
-      "gain": 1.8,
-      "range_pos": 0.94,
-      "vol_ratio": 0.59,
+      "gain": 1.67,
+      "range_pos": 0.9,
+      "vol_ratio": 0.6,
       "above_vwap": true,
-      "last": 280.12,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 279.75,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "BALL": {
       "reason": "range_pos_too_high",
-      "gain": 2.27,
+      "gain": 2.48,
       "range_pos": 1.0,
-      "vol_ratio": 0.17,
+      "vol_ratio": 0.18,
       "above_vwap": true,
-      "last": 63.0,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 63.13,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "IDXX": {
       "reason": "vol_ratio_out",
@@ -5243,22 +5243,22 @@
       "ts": "2026-07-21T14:26:32Z"
     },
     "RIVN": {
-      "reason": "vol_ratio_out",
-      "gain": 1.5,
-      "range_pos": 0.86,
+      "reason": "range_pos_too_high",
+      "gain": 1.7,
+      "range_pos": 0.92,
       "vol_ratio": 0.15,
       "above_vwap": true,
-      "last": 17.64,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 17.67,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "LLY": {
       "reason": "vol_ratio_out",
-      "gain": 1.62,
-      "range_pos": 0.79,
-      "vol_ratio": 0.25,
+      "gain": 1.57,
+      "range_pos": 0.77,
+      "vol_ratio": 0.26,
       "above_vwap": true,
-      "last": 1161.47,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 1160.89,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "BSX": {
       "reason": "range_pos_too_high",
@@ -5271,12 +5271,12 @@
     },
     "BCO": {
       "reason": "range_pos_too_high",
-      "gain": 2.53,
-      "range_pos": 0.95,
-      "vol_ratio": 0.32,
+      "gain": 2.57,
+      "range_pos": 0.97,
+      "vol_ratio": 0.33,
       "above_vwap": true,
-      "last": 121.56,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 121.61,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "GDDY": {
       "reason": "gain_too_low",
@@ -5345,19 +5345,19 @@
       "reason": "range_pos_too_high",
       "gain": 1.42,
       "range_pos": 0.98,
-      "vol_ratio": 0.18,
+      "vol_ratio": 0.2,
       "above_vwap": true,
       "last": 97.41,
-      "ts": "2026-07-21T15:56:30Z"
+      "ts": "2026-07-21T16:11:29Z"
     },
     "VTRS": {
       "reason": "vol_ratio_out",
-      "gain": 1.8,
-      "range_pos": 0.9,
+      "gain": 1.74,
+      "range_pos": 0.88,
       "vol_ratio": 0.23,
       "above_vwap": true,
-      "last": 17.28,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 17.27,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "RTX": {
       "reason": "vol_ratio_out",
@@ -5379,12 +5379,12 @@
     },
     "TECK": {
       "reason": "range_pos_too_high",
-      "gain": 2.19,
-      "range_pos": 0.93,
-      "vol_ratio": 0.6,
+      "gain": 2.36,
+      "range_pos": 0.99,
+      "vol_ratio": 0.61,
       "above_vwap": true,
-      "last": 56.39,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 56.48,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "JNJ": {
       "reason": "range_pos_too_high",
@@ -5415,21 +5415,21 @@
     },
     "AXTA": {
       "reason": "range_pos_too_high",
-      "gain": 1.5,
-      "range_pos": 0.95,
+      "gain": 1.65,
+      "range_pos": 1.0,
       "vol_ratio": 0.22,
       "above_vwap": true,
-      "last": 32.54,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 32.59,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "IEX": {
       "reason": "vol_ratio_out",
-      "gain": 1.43,
-      "range_pos": 0.59,
-      "vol_ratio": 0.3,
+      "gain": 1.45,
+      "range_pos": 0.6,
+      "vol_ratio": 0.29,
       "above_vwap": true,
-      "last": 221.57,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 221.63,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "GD": {
       "reason": "range_pos_too_high",
@@ -5441,13 +5441,13 @@
       "ts": "2026-07-21T14:21:31Z"
     },
     "AHR": {
-      "reason": "range_pos_too_high",
-      "gain": 1.55,
-      "range_pos": 0.91,
+      "reason": "vol_ratio_out",
+      "gain": 1.52,
+      "range_pos": 0.9,
       "vol_ratio": 0.43,
       "above_vwap": true,
-      "last": 57.88,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 57.87,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CNQ": {
       "reason": "range_pos_too_high",
@@ -5469,30 +5469,30 @@
     },
     "HAS": {
       "reason": "below_vwap",
-      "gain": 2.94,
-      "range_pos": 0.34,
-      "vol_ratio": 2.26,
+      "gain": 3.77,
+      "range_pos": 0.41,
+      "vol_ratio": 2.29,
       "above_vwap": false,
-      "last": 86.99,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 87.7,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "TPL": {
       "reason": "vol_ratio_out",
-      "gain": 2.43,
-      "range_pos": 0.81,
+      "gain": 2.28,
+      "range_pos": 0.76,
       "vol_ratio": 0.21,
       "above_vwap": true,
-      "last": 417.94,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 417.35,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "IRM": {
-      "reason": "range_pos_too_high",
-      "gain": 2.21,
-      "range_pos": 0.92,
+      "reason": "vol_ratio_out",
+      "gain": 2.02,
+      "range_pos": 0.85,
       "vol_ratio": 0.17,
       "above_vwap": true,
-      "last": 128.0,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 127.76,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "FDX": {
       "reason": "vol_ratio_out",
@@ -5507,19 +5507,19 @@
       "reason": "range_pos_too_high",
       "gain": 1.92,
       "range_pos": 0.98,
-      "vol_ratio": 0.28,
+      "vol_ratio": 0.29,
       "above_vwap": true,
       "last": 19.88,
-      "ts": "2026-07-21T16:06:33Z"
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SOLS": {
       "reason": "range_pos_too_high",
-      "gain": 3.85,
+      "gain": 3.92,
       "range_pos": 1.0,
       "vol_ratio": 0.35,
       "above_vwap": true,
-      "last": 59.42,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 59.45,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "FMC": {
       "reason": "vol_ratio_out",
@@ -5541,21 +5541,21 @@
     },
     "DD": {
       "reason": "range_pos_too_high",
-      "gain": 1.53,
+      "gain": 1.57,
       "range_pos": 1.0,
-      "vol_ratio": 0.27,
+      "vol_ratio": 0.3,
       "above_vwap": true,
-      "last": 139.09,
-      "ts": "2026-07-21T15:51:33Z"
+      "last": 139.15,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "WAT": {
       "reason": "below_vwap",
-      "gain": 4.4,
+      "gain": 4.42,
       "range_pos": 0.56,
-      "vol_ratio": 0.73,
+      "vol_ratio": 0.74,
       "above_vwap": false,
-      "last": 361.22,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 361.29,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "DLR": {
       "reason": "range_pos_too_high",
@@ -5568,12 +5568,12 @@
     },
     "ARW": {
       "reason": "range_pos_too_high",
-      "gain": 1.94,
+      "gain": 2.13,
       "range_pos": 1.0,
-      "vol_ratio": 0.24,
+      "vol_ratio": 0.25,
       "above_vwap": true,
-      "last": 214.6,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 215.01,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "DOW": {
       "reason": "vol_ratio_out",
@@ -5585,22 +5585,22 @@
       "ts": "2026-07-21T15:46:36Z"
     },
     "APTV": {
-      "reason": "vol_ratio_out",
-      "gain": 1.62,
-      "range_pos": 0.88,
-      "vol_ratio": 0.17,
+      "reason": "range_pos_too_high",
+      "gain": 1.93,
+      "range_pos": 0.97,
+      "vol_ratio": 0.18,
       "above_vwap": true,
-      "last": 58.91,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 59.09,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SWKS": {
       "reason": "range_pos_too_high",
-      "gain": 2.03,
+      "gain": 2.05,
       "range_pos": 0.95,
       "vol_ratio": 0.36,
       "above_vwap": true,
-      "last": 63.24,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 63.25,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "LYB": {
       "reason": "range_pos_too_high",
@@ -5622,48 +5622,48 @@
     },
     "FCX": {
       "reason": "range_pos_too_high",
-      "gain": 1.7,
-      "range_pos": 0.97,
-      "vol_ratio": 0.35,
+      "gain": 1.8,
+      "range_pos": 1.0,
+      "vol_ratio": 0.36,
       "above_vwap": true,
-      "last": 62.13,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 62.19,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AVT": {
       "reason": "range_pos_too_high",
-      "gain": 2.09,
-      "range_pos": 0.96,
-      "vol_ratio": 0.18,
+      "gain": 2.25,
+      "range_pos": 1.0,
+      "vol_ratio": 0.19,
       "above_vwap": true,
-      "last": 88.72,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 88.86,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SOFI": {
-      "reason": "range_pos_too_high",
-      "gain": 2.11,
-      "range_pos": 0.95,
-      "vol_ratio": 0.38,
+      "reason": "vol_ratio_out",
+      "gain": 1.72,
+      "range_pos": 0.78,
+      "vol_ratio": 0.4,
       "above_vwap": true,
-      "last": 17.44,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 17.37,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AVNT": {
       "reason": "range_pos_too_high",
-      "gain": 1.54,
-      "range_pos": 0.97,
+      "gain": 1.63,
+      "range_pos": 1.0,
       "vol_ratio": 0.1,
       "above_vwap": true,
-      "last": 36.83,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 36.86,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AAPL": {
       "reason": "range_pos_too_high",
-      "gain": 1.68,
-      "range_pos": 0.97,
+      "gain": 1.79,
+      "range_pos": 0.99,
       "vol_ratio": 0.32,
       "above_vwap": true,
-      "last": 328.77,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 329.13,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "HII": {
       "reason": "range_pos_too_high",
@@ -5676,21 +5676,21 @@
     },
     "CAVA": {
       "reason": "range_pos_too_high",
-      "gain": 1.7,
+      "gain": 1.77,
       "range_pos": 0.93,
-      "vol_ratio": 0.35,
+      "vol_ratio": 0.36,
       "above_vwap": true,
-      "last": 63.36,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 63.4,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "ARM": {
       "reason": "range_pos_too_high",
-      "gain": 2.23,
-      "range_pos": 1.0,
-      "vol_ratio": 0.4,
+      "gain": 2.15,
+      "range_pos": 0.97,
+      "vol_ratio": 0.41,
       "above_vwap": true,
-      "last": 291.91,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 291.66,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "AEIS": {
       "reason": "range_pos_too_high",
@@ -5699,7 +5699,7 @@
       "vol_ratio": 0.49,
       "above_vwap": true,
       "last": 297.53,
-      "ts": "2026-07-21T16:06:33Z"
+      "ts": "2026-07-21T16:11:29Z"
     },
     "OXY": {
       "reason": "range_pos_too_high",
@@ -5711,31 +5711,31 @@
       "ts": "2026-07-21T15:46:36Z"
     },
     "MSCI": {
-      "reason": "range_pos_too_high",
-      "gain": 2.57,
-      "range_pos": 0.97,
-      "vol_ratio": 1.92,
+      "reason": "gap_too_large",
+      "gain": 1.87,
+      "range_pos": 0.82,
+      "vol_ratio": 1.99,
       "above_vwap": true,
-      "last": 575.42,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 571.47,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "EMN": {
       "reason": "range_pos_too_high",
-      "gain": 1.54,
-      "range_pos": 0.98,
+      "gain": 1.46,
+      "range_pos": 0.96,
       "vol_ratio": 0.52,
       "above_vwap": true,
-      "last": 69.44,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 69.39,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "CLF": {
       "reason": "vol_ratio_out",
-      "gain": 1.64,
-      "range_pos": 0.85,
-      "vol_ratio": 0.48,
+      "gain": 1.48,
+      "range_pos": 0.79,
+      "vol_ratio": 0.5,
       "above_vwap": true,
-      "last": 9.29,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 9.27,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "FANG": {
       "reason": "range_pos_too_high",
@@ -5756,49 +5756,67 @@
       "ts": "2026-07-21T15:46:36Z"
     },
     "F": {
-      "reason": "range_pos_too_high",
-      "gain": 1.66,
-      "range_pos": 0.93,
-      "vol_ratio": 0.34,
+      "reason": "vol_ratio_out",
+      "gain": 1.52,
+      "range_pos": 0.88,
+      "vol_ratio": 0.35,
       "above_vwap": true,
-      "last": 14.39,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 14.36,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "HON": {
       "reason": "range_pos_too_high",
-      "gain": 1.58,
-      "range_pos": 0.94,
-      "vol_ratio": 0.22,
+      "gain": 1.7,
+      "range_pos": 0.98,
+      "vol_ratio": 0.23,
       "above_vwap": true,
-      "last": 231.49,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 231.76,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "TDY": {
       "reason": "range_pos_too_high",
-      "gain": 2.4,
-      "range_pos": 0.96,
-      "vol_ratio": 0.44,
+      "gain": 3.12,
+      "range_pos": 0.91,
+      "vol_ratio": 0.56,
       "above_vwap": true,
-      "last": 646.06,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 650.56,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "SYY": {
       "reason": "range_pos_too_high",
-      "gain": 1.72,
-      "range_pos": 0.94,
+      "gain": 1.67,
+      "range_pos": 0.92,
       "vol_ratio": 0.18,
       "above_vwap": true,
-      "last": 81.68,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 81.64,
+      "ts": "2026-07-21T16:11:29Z"
     },
     "VST": {
-      "reason": "range_pos_too_high",
-      "gain": 1.59,
-      "range_pos": 0.9,
-      "vol_ratio": 0.28,
+      "reason": "vol_ratio_out",
+      "gain": 1.53,
+      "range_pos": 0.88,
+      "vol_ratio": 0.29,
       "above_vwap": true,
-      "last": 163.55,
-      "ts": "2026-07-21T16:06:33Z"
+      "last": 163.45,
+      "ts": "2026-07-21T16:11:29Z"
+    },
+    "TEL": {
+      "reason": "range_pos_too_high",
+      "gain": 1.88,
+      "range_pos": 0.99,
+      "vol_ratio": 0.34,
+      "above_vwap": true,
+      "last": 210.02,
+      "ts": "2026-07-21T16:11:29Z"
+    },
+    "ASH": {
+      "reason": "range_pos_too_high",
+      "gain": 1.44,
+      "range_pos": 1.0,
+      "vol_ratio": 0.08,
+      "above_vwap": true,
+      "last": 68.92,
+      "ts": "2026-07-21T16:11:29Z"
     }
   }
 }
