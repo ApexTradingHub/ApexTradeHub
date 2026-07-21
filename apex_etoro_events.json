@@ -948,5 +948,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "PATH",
+    "order_id": 367632373,
+    "position_id": 3565193569,
+    "close_rate": 11.94,
+    "net_profit": -1.89,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 11.960000038146973,
+      "reason": "eToro order_dropped",
+      "pnl_pct": -3.86
+    },
+    "ts": "2026-07-21T13:40:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
