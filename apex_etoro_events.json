@@ -1004,5 +1004,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "TDY",
+    "instrument_id": 8843,
+    "size_usd": 50.0,
+    "stop": 638.26,
+    "target": 690.9,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 367829107,
+    "response": {
+      "token": "f50bf290-7744-4e71-9b15-f3348d7b3dfe",
+      "orderId": 367829107,
+      "referenceId": "c1ff5c7b-ffc2-4e54-8756-ed03392e31f2"
+    },
+    "ts": "2026-07-21T18:16:46Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
