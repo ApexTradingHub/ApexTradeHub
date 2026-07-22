@@ -187,6 +187,13 @@ MOMENTUM_MIN_SCORE         = 60     # eigene Score-Scale, NICHT mit Scanner verg
 MOMENTUM_TP_PCT            = 0.06   # +6 % Target (User-These: schnelle 5%-Spruenge)
 MOMENTUM_SL_PCT            = 0.04   # -4 % Stop
 MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber jetzigem Kurs)
+# 2026-07-22 Above-VWAP-Gate fuer EOD->SWING-Rescue. Befund (n=18 closed): der Rescue ist
+# netto -1.01pp (13/18 schaden) — Intradays konvertieren ~breakeven und bluten als Swing zum
+# -4%-Stop. Gate: nur noch rescuen wenn die Position bei EOD UEBER VWAP schliesst (Staerke-
+# Signal). Unter VWAP = flacher Bleeder -> stattdessen bei EOD schliessen (kleiner Gewinn/Verlust
+# festhalten statt ausbluten). Fail-open: bei Fetch-Fehler (VWAP unbekannt) wird gerescued wie
+# bisher. Exit-Mechanik = backtest-blind (#24), daher Rollback-Flag. Rollback = False.
+RESCUE_REQUIRE_ABOVE_VWAP  = True
 
 # ---------------------------------------------------------------------------
 # Intraday-Momentum-Catcher (2026-06-18) — EXPERIMENT, opt-in via env-flag.
@@ -1734,45 +1741,57 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 # rausgegangen. Stop differenziert: GRUEN -> Breakeven (Gewinn schuetzen, kein
                 # Gewinner-wird-Verlust), ROT -> -4% (Raum zum Erholen).
                 pnl_now = (cur - entry) / entry * 100
-                # 2026-07-11 AP1 Schritt 2: source-Rewrite ENTFERNT. source bleibt
-                # "intraday_momentum" (ehrliche Attribution), intraday_rescued=True ist
-                # der Phasen-Anker. setup=MOMENTUM bleibt (Management-Logik).
-                # G3-Tagestief-Stop wurde retro-simuliert und VERWORFEN (Bleeder nur
-                # +0.35pp statt geforderter +1.5pp — Tagestief lag zu nah am -4%-Level).
-                # Der -4%-Stop ist der nachgewiesene Preis der Runner-Option (PAY +18%).
-                p["setup"]  = "MOMENTUM"
-                p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
-                if pnl_now >= 0:
-                    p["stop"] = round(max(p.get("stop", 0) or 0, entry), 2)   # mind. Breakeven
-                    _mode = "gruen->Breakeven"
-                else:
-                    p["stop"] = round(entry * (1 - MOMENTUM_SL_PCT), 2)        # -4% Raum
-                    _mode = "rot->-4%"
-                p["intraday_rescued"] = True
-                # Trailing-Ladder-Felder sicherstellen (Intraday-Pos hat sie evtl. nicht) ->
-                # sonst KeyError beim naechsten Run in der Ladder.
-                p.setdefault("ladder_step", 0)
-                p["high_since_entry"] = max(p.get("high_since_entry") or entry, cur, high or cur)
-                # 2026-07-11 AP1 Schritt 1b: Shadow-Logging der EOD-Features. Bei n>=15
-                # neuen Konvertierungen pruefen ob ein Feature-Gate (Kandidat:
-                # range_pos_eod < 0.4 = Spike-Fade) Turner von Bleedern trennt.
+                # 2026-07-22 Above-VWAP-Gate: Shadow-Features VOR der Entscheidung holen.
                 shadow = _eod_shadow_features(p["ticker"], cur)
-                events.append({
-                    "event": "intraday_to_swing", "id": p["id"], "ts": now_iso(),
-                    "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
-                    "new_stop": p["stop"], "mode": _mode,
-                    "high_since_entry_pct": round((p["high_since_entry"] / entry - 1) * 100, 2),
-                    **shadow,
-                })
-                log(f"  EOD->SWING: {p['ticker']} ({pnl_now:+.1f}%, {_mode}) "
-                    f"Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, Trailing aktiv")
-                # 2026-07-15 Fix (WBD-Bug): Rescue aendert Paper-SL (BE/-4%) + neuen TP —
-                # MUSS zu eToro gepusht werden, sonst laeuft eToro mit dem alten Intraday-SL
-                # (-3%) weiter und schliesst divergent (WBD: eToro 26.60 vs Paper-Stop 26.26).
-                if TRADING_MODE in ("live", "live_dry"):
-                    try: etoro_update_sl_tp(p)
-                    except Exception as e: log(f"  ERR live-rescue-sl: {e}")
-                i_reason = None   # NICHT schliessen — faellt durch zu still_open
+                # Nur rescuen wenn ueber VWAP (Staerke). Explizit False (nicht None/unbekannt)
+                # -> stattdessen bei EOD schliessen (flacher Bleeder wird nicht zum Swing).
+                if RESCUE_REQUIRE_ABOVE_VWAP and shadow.get("above_vwap_eod") is False:
+                    i_reason, i_px = "Intraday Close (EOD, below VWAP)", cur
+                    events.append({
+                        "event": "eod_close_below_vwap", "id": p["id"], "ts": now_iso(),
+                        "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2), **shadow,
+                    })
+                    log(f"  EOD-CLOSE (unter VWAP, kein Rescue): {p['ticker']} "
+                        f"({pnl_now:+.1f}%) @ ${cur:.2f}")
+                    # faellt unten in den if i_reason-Block -> close_position
+                else:
+                    # 2026-07-11 AP1 Schritt 2: source-Rewrite ENTFERNT. source bleibt
+                    # "intraday_momentum" (ehrliche Attribution), intraday_rescued=True ist
+                    # der Phasen-Anker. setup=MOMENTUM bleibt (Management-Logik).
+                    # G3-Tagestief-Stop wurde retro-simuliert und VERWORFEN (Bleeder nur
+                    # +0.35pp statt geforderter +1.5pp — Tagestief lag zu nah am -4%-Level).
+                    # Der -4%-Stop ist der nachgewiesene Preis der Runner-Option (PAY +18%).
+                    p["setup"]  = "MOMENTUM"
+                    p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
+                    if pnl_now >= 0:
+                        p["stop"] = round(max(p.get("stop", 0) or 0, entry), 2)   # mind. Breakeven
+                        _mode = "gruen->Breakeven"
+                    else:
+                        p["stop"] = round(entry * (1 - MOMENTUM_SL_PCT), 2)        # -4% Raum
+                        _mode = "rot->-4%"
+                    p["intraday_rescued"] = True
+                    # Trailing-Ladder-Felder sicherstellen (Intraday-Pos hat sie evtl. nicht) ->
+                    # sonst KeyError beim naechsten Run in der Ladder.
+                    p.setdefault("ladder_step", 0)
+                    p["high_since_entry"] = max(p.get("high_since_entry") or entry, cur, high or cur)
+                    # Shadow oben schon geholt (Above-VWAP-Gate). intraday_to_swing loggt es mit;
+                    # bei n>=15 pruefen ob range_pos_eod<0.4 Turner von Bleedern trennt (#16).
+                    events.append({
+                        "event": "intraday_to_swing", "id": p["id"], "ts": now_iso(),
+                        "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
+                        "new_stop": p["stop"], "mode": _mode,
+                        "high_since_entry_pct": round((p["high_since_entry"] / entry - 1) * 100, 2),
+                        **shadow,
+                    })
+                    log(f"  EOD->SWING: {p['ticker']} ({pnl_now:+.1f}%, {_mode}) "
+                        f"Stop ${p['stop']:.2f}, Target ${p['target']:.2f}, Trailing aktiv")
+                    # 2026-07-15 Fix (WBD-Bug): Rescue aendert Paper-SL (BE/-4%) + neuen TP —
+                    # MUSS zu eToro gepusht werden, sonst laeuft eToro mit dem alten Intraday-SL
+                    # (-3%) weiter und schliesst divergent (WBD: eToro 26.60 vs Paper-Stop 26.26).
+                    if TRADING_MODE in ("live", "live_dry"):
+                        try: etoro_update_sl_tp(p)
+                        except Exception as e: log(f"  ERR live-rescue-sl: {e}")
+                    i_reason = None   # NICHT schliessen — faellt durch zu still_open
             if i_reason:
                 if not dry_run:
                     close_position(state, p, i_px, i_reason)
