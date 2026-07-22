@@ -655,10 +655,15 @@ Das entkraeftet die "Runner-Option rechtfertigt -4%-Stop"-Begruendung von 07-11 
 **Caveats:** n=18, ein Regime (BEARISH), Exit-Mechanik backtest-blind (#24). Selektive Regel
 (shadow range_pos_eod<0.4) noch nicht testbar (6/15).
 
-**OFFENE ENTSCHEIDUNG (User, 07-22 nicht beantwortet):** (a) Above-VWAP-Gate fuer Rescue
-[Empfehlung — nutzt above_vwap_eod, killt flache Bleeder, behaelt Runner-Chance], (b) Rescue
-ganz aus, (c) erst Shadow n>=15 sammeln, (d) nur dokumentieren. **Keine Live-Aenderung ohne Go.**
-Auswertungs-Skript: scratchpad reject_eval.py + die Rescue-Query (Session 07-22).
+**ENTSCHEIDUNG 07-22: Above-VWAP-Gate LIVE** (commit d2ed7c4, RESCUE_REQUIRE_ABOVE_VWAP=True).
+Rescue nur noch wenn Position bei EOD UEBER VWAP schliesst; sonst Intraday Close (EOD, below
+VWAP). Fail-open bei Fetch-Fehler, Rollback=Flag-False. 4 Verhaltenstests PASS. Feuert ab
+2026-07-23 EOD (~19:45 UTC). Exit-Mechanik backtest-blind -> Flag + Monitoring.
+**MONITORING:** in 2-3 Wochen die neuen `eod_close_below_vwap`-Events vs `intraday_to_swing`
+vergleichen: schneidet das Gate die Bleeder (endeten die below-VWAP-Closes besser als sie als
+Swing geblutet haetten)? UND hat es Runner gekostet (above-VWAP-Rescues WR/PnL)? Bei n>=10
+je Gruppe auswerten. Wenn below-VWAP-Closes im Schnitt > was der Rescue gebracht haette ->
+bestaetigt. Auswertungs-Skript: scratchpad reject_eval.py + Rescue-Query (Session 07-22).
 
 ---
 
