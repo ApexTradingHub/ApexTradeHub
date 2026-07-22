@@ -120,6 +120,41 @@ Daten und klassische Literatur (Minervini VCP, O'Neil CANSLIM, Weinstein Stage-2
 
 ---
 
+## 4b. VCP 2J-VALIDIERT + Schwellen-Fehler entdeckt (Update 2026-07-22 abends)
+
+VCP-Feature in den Backtest gebaut (apex_backtest_v2.py reichte cat_vcp_strength nicht durch)
+→ jetzt 2J-testbar. **Ergebnis: VCP bestätigt, ABER die aktuelle Schwelle sitzt falsch.**
+
+| VCP-Strength (ATR-Kontraktion) | n | WR | PF |
+|---|---:|---:|---:|
+| = 0 (keine) | 110 | 49.1% | 1.34 |
+| **0–0.10 (mild)** | **30** | **80.0%** | **6.54** |
+| 0.10–0.20 | 20 | 45.0% | 1.47 |
+| 0.20–0.30 | 6 | 66.7% | 3.98 |
+| **≥ 0.30 (= aktuelle `vcp_signal`-Schwelle!)** | **3** | **33.3%** | 0.87 |
+| **Aggregat > 0** | **59** | **64.4%** | **3.30** (+10.0pp vs Baseline 54.4%) |
+
+**Der Kern-Fund:** `catalysts["vcp_signal"] = vcp_strength >= 0.30` vergibt die +5 an **3 von 169**
+Signalen über 2 Jahre — und ausgerechnet den schlechtesten Eimer (33% WR). Die 56 Gewinner bei
+moderater Kontraktion bekommen NULL VCP-Bonus. **Der Edge liegt bei JEDER Kontraktion (>0), am
+stärksten mild (0–0.10).**
+
+**Konkreter, backtestbarer Change (kein „Gewicht erhöhen", sondern Schwelle reparieren):**
+```
+ALT:  if catalysts["vcp_signal"]:        score += 5      # vcp_strength >= 0.30, fires 3x/2J
+NEU:  if catalysts["vcp_strength"] > 0:  score += W      # jede Kontraktion, fires 59x/2J
+```
+- Bonus **flach**, NICHT nach Stärke graduiert (Nicht-Monotonie: 0.10–0.20 ist schwach → ein
+  gradierter Bonus würde den 0–0.10-Spike überfitten).
+- W via Sweep bestimmen (5 / 8 / 12) — Kriterium: hebt die PICK-WR ohne Signal-Verlust.
+- Betrifft Live (ApexScan.py L589 + L906-analog) UND Backtest identisch.
+- Gilt für BEIDE: der `vcp_signal`-Threshold ≥0.30 stammt aus Minervinis Lehrbuch, unsere
+  Daten sagen aber: für DIESEN Katalysator-Zweck ist jede Kontraktion das Signal.
+
+**Live-only-Caveat aufgelöst:** Anders als Abschnitt 5 befürchtet IST VCP jetzt backtestbar
+(Feature war nur nicht durchgereicht, wird aber berechnet). +10pp über 2J (schwächer als
+Live +31.5pp, aber gleiche Richtung, n=59 robust). Kein Blind-Flug mehr.
+
 ## 5. Disziplin & nächste Schritte
 
 - **Sofort umsetzbar & in BEIDEN Quellen bestätigt:** Score-Gate 70→80 (separate Analyse,

@@ -1020,6 +1020,10 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         "cat_pocket_pivot": bool(catalysts.get("pocket_pivot_recent")),
         "cat_vol_climax":   bool(catalysts.get("volume_climax")),
         "cat_gap_pct":      round(catalysts.get("up_gap_pct", 0) or 0, 2),
+        # 2026-07-22: VCP-Katalysator-Staerke (ATR-Kontraktion) auch fuer NICHT-VCP-Setups
+        # mitschreiben. Analyse zeigte cat_vcp_strength>0 auf BREAKOUT = +38pp WR (Live n=28),
+        # war aber nie backtestbar weil hier nicht durchgereicht. Jetzt 2J-validierbar.
+        "cat_vcp_strength": round(catalysts.get("vcp_strength", 0) or 0, 2),
         # Phase G metadata
         "vcp_contraction":   vcp_data["contraction_pct"] if chosen_setup == "VCP" else None,
         "squeeze_short_pct": squeeze_data["short_pct"] if chosen_setup == "SHORT_SQUEEZE" else None,
@@ -1362,6 +1366,11 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
                 "closing_strength": sig.get("closing_strength"),
                 "strong_catalyst":  sig.get("strong_catalyst"),
                 "v2_prob":          sig.get("v2_prob"),
+                # 2026-07-22: Katalysator-Flags durchreichen fuer Feature-Praediktivitaet
+                "cat_vcp_strength": sig.get("cat_vcp_strength"),
+                "cat_pocket_pivot": sig.get("cat_pocket_pivot"),
+                "cat_vol_climax":   sig.get("cat_vol_climax"),
+                "cat_gap_pct":      sig.get("cat_gap_pct"),
             })
 
     return trades, eq_curve
