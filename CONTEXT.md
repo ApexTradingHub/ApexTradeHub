@@ -156,7 +156,7 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
   - BREAKOUT only, Top-1 nach Score pro Scan-Tag, Telegram-äquivalentes Gate
   - $300 Kapital, $50 × max 5 Positionen (= $250 deployed + $50 Cash-Reserve)
   - Trailing: high ≥ Entry×1.08 → SL auf Entry×1.05 (einmaliger Sprung)
-  - **Cron: `*/15 13-21 * * 1-5` auf Oracle-VM** (GH-Workflow geloescht 2026-06-05)
+  - **Cron: `*/5 13-21 * * 1-5` auf Oracle-VM** (07-22 verifiziert: */5, nicht */15) (GH-Workflow geloescht 2026-06-05)
   - Freshness-Gate: Signale älter als MAX_TRIGGER_DAYS=3d werden gar nicht erst aufgenommen
   - State: `apex_positions.json` (pending/open/closed/expired + stats)
   - Journal: `apex_trade_log.json` (append-only, alle Events)
@@ -172,7 +172,7 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 ### Infrastruktur 2026-06-05+
 - **Trader** läuft auf **Oracle Always-Free VM** (Ubuntu 22.04, E2.1.Micro,
   1 GB RAM + 2 GB Swap, Public IP). `~/run_trader.sh` = git pull + python +
-  git push. Cron `*/15 13-21 * * 1-5`. Robust gegen GH-Throttling.
+  git push. Cron `*/5 13-21 * * 1-5` (alle 5 Min, 07-22 verifiziert). Robust gegen GH-Throttling.
 
 #### ⚠️ `~/run_trader.sh` — liegt AUSSERHALB des Repos (Keys!), nur auf der VM
 Enthält `ETORO_API_KEY`/`ETORO_USER_KEY` im Klartext → **darf nie ins Git**. Damit ist die
@@ -588,7 +588,7 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
     Scanner stashte + pull-rebase + stash pop → CONFLICT auf market.json.
 - **2026-06-05** **Trader-Migration auf Oracle Cloud Always-Free VM:**
   - Ubuntu 22.04 + E2.1.Micro (1 CPU, 1 GB RAM + 2 GB Swap, Public IP)
-  - GitHub Deploy-Key fuer Push, `~/run_trader.sh` + cron `*/15 13-21 1-5`
+  - GitHub Deploy-Key fuer Push, `~/run_trader.sh` + cron `*/5 13-21 1-5`
   - Verlaesslicher als GH-Actions-Cron (echtes Linux-Cron, kein Throttling)
   - GH-Workflow `.github/workflows/apex_trader.yml` GELOESCHT (kein
     doppelter Trader). Andere Workflows (Scanner, Equity, Knowledge) bleiben
