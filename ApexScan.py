@@ -69,7 +69,8 @@ TG_MIN_RR      = 1.5     # 2026-05-22: 2.0->1.5. Backtest: RR>=2.0 (WR 54.5%) gi
                          # 1.5 matches the strict-scan RR floor.
 TG_MIN_UPSIDE  = 8.0
 TG_MIN_SCORE   = {                       # Telegram top-2 quality filter per setup
-    "BREAKOUT":      70,
+    "BREAKOUT":      80,   # 2026-07-22 70->80 (Gate-Sweep, siehe apex_trader.py). Konsistent
+                           # mit dem Trader-Pick-Gate: 80+ = handelbar. SCAN_MIN_SCORE bleibt 70.
     "VCP":           70,
     "SHORT_SQUEEZE": 65,
     "STAGE_2":       60,

@@ -59,7 +59,11 @@ ALLOWED_SETUPS  = {"BREAKOUT"}
 TG_MIN_RR       = 1.5
 TG_MIN_UPSIDE   = 8.0
 TG_MIN_SCORE    = {
-    "BREAKOUT":      70,
+    # 2026-07-22: BREAKOUT 70->80. Gate-Sweep (160 Live-Outcomes + 169 2J-Backtest, BEIDE
+    # bestaetigt): sub-80 = 33-37% WR, Gate 80 hebt WR +2.2pp (Equity) / 54.4->56.2% (Backtest),
+    # Profit steigt, 88% Signal-Retention (gedroppte 65% Loser). Peak bei 80, kippt ab 85.
+    # SCAN_MIN_SCORE bleibt 70 -> Equity-Tracker misst sub-80 weiter (Verifikation + Protection).
+    "BREAKOUT":      80,
     "VCP":           70,
     "SHORT_SQUEEZE": 65,
     "STAGE_2":       60,
@@ -2175,12 +2179,20 @@ def sync_etoro_positions(state: dict):
                 sl_rate    = float(hit.get("stopLossRate") or 0)
                 tp_rate    = float(hit.get("takeProfitRate") or 0)
                 net_profit = float(hit.get("netProfit") or 0)
-                if tp_rate and close_rate >= tp_rate * 0.999:
+                # 2026-07-17: Fallback auf unseren EIGENEN Stop/Target wenn eToro in der
+                # History keine stopLossRate/takeProfitRate mitliefert (passiert regelmaessig).
+                # Vorher landeten solche Faelle pauschal auf "eToro closed" und verfaelschten
+                # die Failure-Mode-Statistik im Learn-Report: PENG (-4.71%) und WULF (-4.17%)
+                # schlossen exakt auf dem Stop, standen aber als "eToro closed" im Log.
+                # Reihenfolge TP-vor-SL bleibt (TP ist das seltenere Ereignis).
+                sl_ref = sl_rate or f(pos.get("stop")) or f(pos.get("stop_initial")) or 0
+                tp_ref = tp_rate or f(pos.get("target")) or 0
+                if tp_ref and close_rate >= tp_ref * 0.999:
                     reason = "eToro TP"
-                elif sl_rate and close_rate <= sl_rate * 1.001:
+                elif sl_ref and close_rate <= sl_ref * 1.001:
                     reason = "eToro SL"
                 else:
-                    reason = "eToro closed"
+                    reason = "eToro closed"   # wirklich unklar: weder Stop noch Target nah
                 pos["etoro_position_id"] = hit.get("positionId")
                 pos["etoro_open_rate"]   = hit.get("openRate")
                 pos["etoro_close_rate"]  = close_rate
