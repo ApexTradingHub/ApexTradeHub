@@ -1190,5 +1190,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "EQT",
+    "instrument_id": 6689,
+    "size_usd": 50.0,
+    "stop": 51.74,
+    "target": 56.01,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 368001565,
+    "response": {
+      "token": "e3d37a86-f78a-48da-ac6d-6155bf7c012d",
+      "orderId": 368001565,
+      "referenceId": "6dc931ca-dca9-421d-ad65-ccac16310843"
+    },
+    "ts": "2026-07-22T16:56:40Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
