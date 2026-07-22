@@ -1037,5 +1037,36 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "HRB",
+    "reason": "Stagnation Exit",
+    "exit_price": 41.040000915527344,
+    "order_id": 3562522971,
+    "ts": "2026-07-22T13:30:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "ISP.MI",
+    "instrument_id": 1288,
+    "size_usd": 50.0,
+    "stop": 6.23,
+    "target": 7.02,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 368014542,
+    "response": {
+      "token": "7d51e68c-fabe-4abd-98fb-27a27d5c062d",
+      "orderId": 368014542,
+      "referenceId": "92d1eae3-9e9c-451d-abb9-c5e1cfe2f817"
+    },
+    "ts": "2026-07-22T13:30:19Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
