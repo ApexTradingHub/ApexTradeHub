@@ -1068,5 +1068,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "EOG",
+    "instrument_id": 1581,
+    "size_usd": 50.0,
+    "stop": 139.43,
+    "target": 158.09,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 368000941,
+    "response": {
+      "token": "395814b9-e3e3-4376-ac8d-4dd060846130",
+      "orderId": 368000941,
+      "referenceId": "3fd801ce-eb28-4d3d-80a2-32a136670771"
+    },
+    "ts": "2026-07-22T13:35:14Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]

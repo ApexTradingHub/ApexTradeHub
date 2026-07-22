@@ -2716,5 +2716,32 @@
     "signal_date": "2026-07-21",
     "score": 113.5,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_IOT_2026-07-17",
+    "ts": "2026-07-22T13:35:08Z",
+    "ticker": "IOT",
+    "exit_price": 35.4,
+    "reason": "Stop Loss",
+    "pnl_pct": -8.90375707668554
+  },
+  {
+    "event": "open",
+    "id": "PAPER_EOG_2026-07-21",
+    "ts": "2026-07-22T13:35:14Z",
+    "ticker": "EOG",
+    "entry_signal": 142.03,
+    "entry_actual": 142.74015,
+    "mode": "live"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CHRD_2026-07-21",
+    "ts": "2026-07-22T13:35:14Z",
+    "ticker": "CHRD",
+    "signal_date": "2026-07-21",
+    "score": 111.0,
+    "source": "scanner"
   }
 ]
