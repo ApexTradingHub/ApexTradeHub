@@ -635,6 +635,31 @@ above_vwap_eod, dist_to_day_low_pct, high_since_entry_pct im intraday_to_swing-E
 Bei n>=15 neuen Konvertierungen pruefen ob range_pos_eod<0.4 (Spike-Fade) Turner von
 Bleedern trennt. Sim-Skript: scratchpad g3_sim.py (Session 07-11), Rezept im Brief §AP1.
 
+**BEFUND 2026-07-22 — der Rescue-MECHANISMUS selbst ist netto-negativ (n=18 closed):**
+Nicht nur der Stop, das Konzept. P&L bei Konvertierung vs final:
+
+| | Ø |
+|---|---:|
+| @Konvertierung (EOD) | **+0.01%** (breakeven) |
+| final (nach Rescue als Swing) | **-1.00%** |
+| Rescue-Beitrag | **-1.01pp** |
+| half / schadete | **5x / 13x** |
+
+Muster: Intradays konvertieren ~flach, werden Swing mit -4%-Stop, 13/18 bluten zum Stop
+(VERX -0.5->-4, MRCY -0.35->-4, JCI +0.15->-3.25, AMAT +0.73->-2.96, LII, TDY...). Haetten
+wir NICHT gerescued (EOD-Close bei ~breakeven), waere der Kanal ~breakeven statt -$9. Preis:
+5 Winner aufgegeben, davon 2 grosse (GM +5.29, NKTR +7.04). **WICHTIG: PAY (+21%) ist KEIN
+Rescue** (source intraday_momentum, nicht rescued) — der Rescue-Pfad hat NULL PAY-artige Treffer.
+Das entkraeftet die "Runner-Option rechtfertigt -4%-Stop"-Begruendung von 07-11 fuer DIESEN Pfad.
+
+**Caveats:** n=18, ein Regime (BEARISH), Exit-Mechanik backtest-blind (#24). Selektive Regel
+(shadow range_pos_eod<0.4) noch nicht testbar (6/15).
+
+**OFFENE ENTSCHEIDUNG (User, 07-22 nicht beantwortet):** (a) Above-VWAP-Gate fuer Rescue
+[Empfehlung — nutzt above_vwap_eod, killt flache Bleeder, behaelt Runner-Chance], (b) Rescue
+ganz aus, (c) erst Shadow n>=15 sammeln, (d) nur dokumentieren. **Keine Live-Aenderung ohne Go.**
+Auswertungs-Skript: scratchpad reject_eval.py + die Rescue-Query (Session 07-22).
+
 ---
 
 ## 17. SCORE_V2 (LogReg-Rekalibrierung) — FALSIFIZIERT in Stufe 2 (2026-07-11)
