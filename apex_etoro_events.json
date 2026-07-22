@@ -1170,5 +1170,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "MMM",
+    "instrument_id": 1026,
+    "size_usd": 50.0,
+    "stop": 165.16,
+    "target": 187.68,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 368001337,
+    "response": {
+      "token": "b77d7a01-7999-4e8d-8eeb-cc08560833f1",
+      "orderId": 368001337,
+      "referenceId": "63f990ad-0097-4d87-8409-e7f1bfecca99"
+    },
+    "ts": "2026-07-22T15:10:10Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
