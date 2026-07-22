@@ -837,6 +837,22 @@ Wenn sie ueberwiegend Fader treffen -> bestaetigt, so lassen.
 **ACHTUNG run_trader.sh:** apex_intraday_rejects.json MUSS in die git-add-Liste, sonst bleibt
 das Log auf der VM (wie apex_intraday_cache.json, das nie committed wurde).
 
+**AUSWERTUNG 2026-07-22 (4 Tage, 848 Rejects, 199 Anti-Peak):** Fuer jeden Anti-Peak-Reject
+den hypothetischen Intraday-Play ab Ablehnungspreis simuliert (TP+5/SL-3/EOD, echte 5m-Bars):
+
+| Filter | n | WR | avg | TP-Rate | Ø-max danach |
+|---|---:|---:|---:|---:|---:|
+| range_pos_too_high | 194 | 31% | -0.63% | 1% | +0.38% |
+| gain_too_high | 5 | 80% | +1.31% | 20% | +2.55% |
+
+**ERGEBNIS: RANGE_POS_MAX=0.90 ist VALIDIERT — filtert Fader, nicht Gewinner.** Abgelehnte
+Mover verblassen (-0.63% avg, nur 1% haetten TP erreicht, Best-Case-Move nur +0.38%). range_pos
+>0.90 = Kauf am Tageshoch = Mean-Reversion. **NICHT lockern.** Damit ist die 10.07.-vs-16.07.-
+Frage (RHI/MAT) entschieden: die 4 Peak-Kaeufe am 10.07. (alle rot) waren die Regel, nicht MAT.
+`GAIN_MAX=6.0`: n=5 zu klein (1 Continuation SMCI +5.2%), weiter beobachten, kein Change.
+Nebenschluss: der Intraday-CATCHER ist nicht das Problem — Verluste sitzen im MOMENTUM-Subtyp
++ intraday_rescued (28% WR). Reject-Log-Monitoring kann runterprioren; Fokus auf #16 (Rescue).
+
 ---
 
 ## 23. EU-Grundsatzentscheid: "messen statt bauen" — umgesetzt 2026-07-17
