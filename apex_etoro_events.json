@@ -1314,5 +1314,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "WYNN",
+    "instrument_id": 1835,
+    "size_usd": 50.0,
+    "stop": 93.66,
+    "target": 101.39,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 368394680,
+    "response": {
+      "token": "8af844ba-97bc-4be3-ae82-49d19646b292",
+      "orderId": 368394680,
+      "referenceId": "fcf39749-c93b-4b14-adba-6a3f91aaefc5"
+    },
+    "ts": "2026-07-23T19:11:32Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
