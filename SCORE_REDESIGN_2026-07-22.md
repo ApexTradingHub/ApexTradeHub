@@ -155,6 +155,41 @@ NEU:  if catalysts["vcp_strength"] > 0:  score += W      # jede Kontraktion, fir
 (Feature war nur nicht durchgereicht, wird aber berechnet). +10pp über 2J (schwächer als
 Live +31.5pp, aber gleiche Richtung, n=59 robust). Kein Blind-Flug mehr.
 
+## 4c. GEWICHT-SWEEP AUSGEWERTET (2026-07-23) — VCP gehoert in die PRIORITAET, nicht den Score
+
+Backtest mit `--emit-all-candidates` (alle 303 BREAKOUT-Kandidaten mit Outcome, ein Lauf) →
+Gewichte post-hoc gesweept. Sanity: Baseline-Post-hoc reproduziert die echten Picks exakt
+(n=169, WR 54.4%) = Methodik valide.
+
+**Schema A (VCP als Score-Bonus) ist MARGINAL:**
+| Variante | WR | PF | Summe | VCP-Anteil |
+|---|---:|---:|---:|---:|
+| Baseline (>=0.30 @ +5) | 54.4% | 1.81 | +304pp | 35% |
+| >0 @ +8 (Sweep-Optimum) | 55.0% | 1.85 | +316pp | 37% |
+| >0 @ +12 | 54.4% | 1.82 | +307pp | 37% |
+
+Nur +0.6pp — weil die VCP-Gewinner SCHON gepickt werden (Anteil steigt nur 35→37%). Gleiche
+Lehre wie rr: ein Score-Nudge aendert das Top-N-Ranking kaum.
+
+**Schema B (VCP als PICK-PRIORITAET, wie PICK_BAND) ist der echte Hebel:**
+| Ranking | WR | PF | Summe | VCP-Anteil |
+|---|---:|---:|---:|---:|
+| Baseline (Band-Key) | 54.4% | 1.81 | +304pp | 35% |
+| **VCP-first → Band-Key** | **56.8%** | **2.03** | **+361pp** | 46% |
+
+**+2.4pp WR, PF +12%, +57pp/2J** — 4x Schema A. Mit FAITHFUL Live-Band-Key als Sub-Ranking
+bestaetigt. Mechanismus: VCP-first zieht VCP-Gewinner ins Buch (35→46%), die gewinnen 59.0%
+(n=122) vs 49.2% ohne VCP (n=181). VCP-mild (0-0.30) = 59.3% (n=118, wo der Edge lebt).
+
+**KONKRETER DEPLOY (validiert):** In `apex_trader.py _pick_rank` (+ ApexScan Telegram + Backtest
+PICK_BAND) VCP als oberste Tier einfuegen:
+```
+ALT:  key = (band_tier, score/-nearness)                     # nur Band
+NEU:  key = (1 if cat_vcp_strength>0 else 0, band_tier, ...)  # VCP-first, dann Band
+```
+cat_vcp_strength steht im Signal (ApexScan L1065/1476), Trader hat es. Kein Score-Change noetig
+(Schwelle/Gewicht irrelevant — es ist ein reines Re-Ranking, Signal-Count identisch, wie das Band).
+
 ## 5. Disziplin & nächste Schritte
 
 - **Sofort umsetzbar & in BEIDEN Quellen bestätigt:** Score-Gate 70→80 (separate Analyse,

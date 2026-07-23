@@ -123,6 +123,11 @@ SCORE_V2_MODEL = None
 # Sweet-Spot-Band aufs Pick-Ranking (opt-in via --pick-band). Reines Re-Ranking.
 PICK_BAND = None  # z.B. (90, 120) wenn aktiv
 
+# 2026-07-22: alle Kandidaten (nicht nur Top-N-Picks) mit Outcome ausgeben, damit
+# Score-Gewichte POST-HOC durchgesweept werden koennen (ein Lauf statt N). Opt-in.
+EMIT_ALL_CANDIDATES = False
+_ALL_CANDIDATES = []
+
 
 def _score_v2_prob(sig):
     """LogReg-Wahrscheinlichkeit aus dem frozen Stufe-1-Modell. Within-Day-Sortierung
@@ -1322,6 +1327,24 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
             signals_today.sort(key=_band_rank, reverse=True)
         else:
             signals_today.sort(key=lambda x: x["score"], reverse=True)
+        # 2026-07-22: ALLE Kandidaten mit Outcome erfassen (opt-in), fuer Post-hoc-Gewicht-Sweep.
+        # Aendert die echten Picks NICHT (die laufen weiter ueber [:MAX_OPEN_TRADES]).
+        if EMIT_ALL_CANDIDATES:
+            for _rank, _sig in enumerate(signals_today):
+                if _sig.get("setup") != "BREAKOUT":
+                    continue
+                _ep, _reason, _ed, _td = evaluate_outcome(
+                    _sig["ticker"], all_data[_sig["ticker"]], _sig["full_idx"], _sig)
+                if _ep is None:
+                    continue
+                _pnl = (_ep - _sig["buy_above"]) / _sig["buy_above"] * 100
+                _ALL_CANDIDATES.append({
+                    "date": _sig["scan_date"], "ticker": _sig["ticker"],
+                    "score": _sig["score"], "rank": _rank,
+                    "picked": _rank < MAX_OPEN_TRADES,
+                    "cat_vcp_strength": _sig.get("cat_vcp_strength"),
+                    "pnl_pct": round(_pnl, 2), "exit_reason": _reason,
+                })
         for sig in signals_today[:MAX_OPEN_TRADES]:
             ticker  = sig["ticker"]
             full_df = all_data[ticker]
@@ -1521,6 +1544,8 @@ def main():
                         help="Hebel B: Extension-Penalty mit Catalyst-Carve-Out (default off)")
     parser.add_argument("--ext-penalty", type=float, default=12.0,
                         help="Hoehe der Extension-Penalty fuer --score-rebuild (default 12, Sweep-Optimum)")
+    parser.add_argument("--emit-all-candidates", action="store_true",
+                        help="Alle BREAKOUT-Kandidaten (nicht nur Picks) mit Outcome -> bt_all_candidates.json (Post-hoc-Gewicht-Sweep)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
@@ -1538,7 +1563,8 @@ def main():
     SCORE_REALIGN = args.score_realign
     SCORE_REBUILD = args.score_rebuild
     EXT_PENALTY = args.ext_penalty
-    global SCORE_V2, SCORE_V2_MODEL, PICK_BAND
+    global SCORE_V2, SCORE_V2_MODEL, PICK_BAND, EMIT_ALL_CANDIDATES
+    EMIT_ALL_CANDIDATES = args.emit_all_candidates
     SCORE_V2 = args.score_v2
     if args.pick_band:
         lo, hi = (float(x) for x in args.pick_band.split(","))
@@ -1612,6 +1638,11 @@ def main():
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(trades, f, indent=2, ensure_ascii=False)
     print(f"\nErgebnisse gespeichert: {out_file}")
+
+    if EMIT_ALL_CANDIDATES:
+        with open("bt_all_candidates.json", "w", encoding="utf-8") as f:
+            json.dump(_ALL_CANDIDATES, f, ensure_ascii=False)
+        print(f"Alle Kandidaten ({len(_ALL_CANDIDATES)}) -> bt_all_candidates.json")
 
     build_chart(trades, eq_curve)
 
