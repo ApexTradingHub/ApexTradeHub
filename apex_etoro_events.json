@@ -1223,5 +1223,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "SLG",
+    "instrument_id": 9104,
+    "size_usd": 50.0,
+    "stop": 52.4,
+    "target": 56.72,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 368394152,
+    "response": {
+      "token": "06966b6b-edfd-4aa3-99d7-3ffdaafb307b",
+      "orderId": 368394152,
+      "referenceId": "0d3c4828-0ac8-4b7a-91c6-8790e5568b86"
+    },
+    "ts": "2026-07-23T14:41:39Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
