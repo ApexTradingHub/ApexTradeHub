@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-22T09:17:05.737968 | Total trades: 225_
+_Updated: 2026-07-23T09:14:25.195195 | Total trades: 229_
 
-**Analyse-Status**: complete=216, pending=9
+**Analyse-Status**: complete=216, pending=13
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -64,10 +64,10 @@ _Updated: 2026-07-22T09:17:05.737968 | Total trades: 225_
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
 | BTU_2026-05-01 | REVERSAL | -8.73% | Stop Loss D+3 | 82.2 | Energy | REVERSAL 4 Tage vor Q1 Earnings - Earnings am 5.5 zeigten Net Loss & EBITDA -43%, Production Cut |
 | ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | _pending_ |
+| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | _pending_ |
 | CACI_2026-05-01 | REVERSAL | -8.03% | Stop Loss D+3 | 72.6 | Technology | REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben |
 | AMTM_2026-04-01 | REVERSAL | -8.01% | Stop Loss D+23 | 59.7 | Industrials | DEAD_CAT_BOUNCE - Stock war -20% YTD, REVERSAL kaufte trotz fundamentaler Schwaeche; nahm 23 Tage zum Stop |
 | APH_2026-05-12 | REVERSAL | -7.84% | Stop Loss D+5 | 86.5 | Unknown | REVERSAL in einen Valuation-Unwind eines Momentum-Stocks gekauft (+105% 1J). Trotz STARKER Q1-Earnings (Beat + Guidance-Raise auf +41-43% EPS-Wachstum) brach der Kurs ein wegen: Analyst-Downgrades Buy->Hold (BofA, Jefferies, Zacks; Bedenken zu Bewertung + Aerospace-Connectivity-Backlog-Slowdown) UND ~$250M Insider-Verkaeufe in 24-72h (CEO verkaufte $18.7M am 5.5). Stock -13.2% in einer Woche. base_range 27.6 = extrem breit = fallendes Messer. Stop nach nur 5 Tagen. Mean-Reversion eines parabolischen Momentum-Unwinds ist kein REVERSAL-Setup. |
-| LKQ_2026-05-06 | REVERSAL | -7.61% | Stop Loss D+5 | 91.3 | Unknown | Fundamentale Margin-Compression + Securities-Lawsuit = REVERSAL traf strukturell geschwaechten Stock |
 
 ## Best 10 Trades
 
@@ -84,7 +84,7 @@ _Updated: 2026-07-22T09:17:05.737968 | Total trades: 225_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Recent (30d) — Worst 5 / Best 5  (n=43)
+## Recent (30d) — Worst 5 / Best 5  (n=44)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -92,14 +92,14 @@ _Updated: 2026-07-22T09:17:05.737968 | Total trades: 225_
 | KLAC_2026-06-29 | BREAKOUT | -9.28% | Stop Loss D+3 | 117.8 | Technology | semi_selloff_2026q2,high_score_loss_85plus,sector_divergence_loser |
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | semi_selloff_2026q2,high_score_loss_85plus,sector_divergence_loser |
 | ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | — |
-| TRIP_2026-07-16 | BREAKOUT | -7.08% | Stop Loss D+3 | 114.8 | Consumer Cyclical | — |
+| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | — |
 | RHI_2026-07-13 | BREAKOUT | 13.58% | Take Profit D+3 | 141.3 | Industrials | high_score_winner,clean_breakout_profile,pick_band_cost |
 | SE_2026-07-01 | BREAKOUT | 13.31% | Take Profit D+5 | 102.8 | Consumer Cyclical | post_earnings_beat_continuation,oversold_bounce_with_catalyst,catalyst_beats_extension |
 | TECH_2026-06-24 | BREAKOUT | 10.77% | Take Profit D+1 | 90.5 | Healthcare | ma_buyout_catalyst,duplicate_trap,reversal_win_external_catalyst |
 | MPC_2026-07-10 | BREAKOUT | 8.42% | Take Profit D+4 | 101.4 | Energy | sector_momentum_tailwind,catalyst_beats_extension,geopolitical_premium |
 | BBY_2026-07-10 | BREAKOUT | 8.38% | Take Profit D+4 | 120.2 | Consumer Cyclical | post_earnings_beat_continuation,catalyst_beats_extension,product_catalyst |
 
-## Pending Claude-Analyse (9)
+## Pending Claude-Analyse (13)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -112,3 +112,7 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `PCAR_2026-07-06`
 - `TRIP_2026-07-16`
 - `LW_2026-07-07`
+- `MTCH_2026-07-15`
+- `IOT_2026-07-17`
+- `DXCM_2026-07-16`
+- `DLTR_2026-07-16`
