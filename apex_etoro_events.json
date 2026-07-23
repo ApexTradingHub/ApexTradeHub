@@ -1256,5 +1256,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "SMCI",
+    "instrument_id": 1069,
+    "size_usd": 50.0,
+    "stop": 30.94,
+    "target": 33.48,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 368342773,
+    "response": {
+      "token": "31728824-d7c0-486d-97db-447ef46422a0",
+      "orderId": 368342773,
+      "referenceId": "1ff76b8c-995c-4776-b5b3-72b90435b6bf"
+    },
+    "ts": "2026-07-23T17:46:35Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
