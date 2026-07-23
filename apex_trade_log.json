@@ -3594,5 +3594,41 @@
     "signal_date": "2026-07-21",
     "score": 111.0,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_PAY_2026-06-29_1350",
+    "ts": "2026-07-23T13:50:06Z",
+    "ticker": "PAY",
+    "exit_price": 28.46,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 19.479430581957544
+  },
+  {
+    "event": "open",
+    "id": "PAPER_CHRD_2026-07-21",
+    "ts": "2026-07-23T13:50:09Z",
+    "ticker": "CHRD",
+    "entry_signal": 130.34,
+    "entry_actual": 130.99169999999998,
+    "mode": "live"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CHRD_2026-07-21",
+    "ts": "2026-07-23T13:50:09Z",
+    "ticker": "CHRD",
+    "signal_date": "2026-07-21",
+    "score": 111.0,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SJM_2026-07-22",
+    "ts": "2026-07-23T13:50:09Z",
+    "ticker": "SJM",
+    "signal_date": "2026-07-22",
+    "score": 107.0,
+    "source": "scanner"
   }
 ]
