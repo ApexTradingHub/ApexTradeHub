@@ -1373,7 +1373,12 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
             if catalysts["pocket_pivot_recent"]: score += 10
             if catalysts["volume_climax"]:       score += 5
             if catalysts["gap_signal"]:          score += 8
-            if catalysts["vcp_signal"]:          score += 5
+            # 2026-07-23 Schema A: Schwelle vcp_signal(>=0.30) -> vcp_strength>0. Sweep zeigte
+            # der Edge liegt bei JEDER ATR-Kontraktion (>0: 64% WR n=59), die alte >=0.30-Schwelle
+            # traf nur 3/169 (schlechtester Eimer). Gewicht +5 -> +8 (Sweep-Optimum). Kleiner
+            # Hebel (+0.6pp allein), wirkt uebers Gate/Band. Der grosse Hebel ist Schema B
+            # (VCP-Pick-Prio, _pick_rank). Rollback: >0 -> vcp_signal, 8 -> 5.
+            if catalysts["vcp_strength"] > 0:    score += 8
 
         # Historical winrate bonus (both setups)
         # 2026-07-15: Bonus + Point-in-Time-Winrate mitloggen (BACKLOG #19). Praediktivitaet
@@ -1995,11 +2000,13 @@ def main():
             # behalten ihre Score-Position (eigene Skalen, Band nicht validiert).
             def _tg_rank(c):
                 sc = c.get("score", 0)
+                # 2026-07-23 Schema B: VCP-first (Spiegel apex_trader _pick_rank), Telegram-konsistent.
+                vcp = 1 if float(c.get("cat_vcp_strength") or 0) > 0 else 0
                 if c.get("setup") != "BREAKOUT":
-                    return (1, sc)
+                    return (0, 1, sc)
                 if TG_SWEET_BAND[0] <= sc < TG_SWEET_BAND[1]:
-                    return (1, sc)
-                return (0, -abs(sc - (TG_SWEET_BAND[0] + TG_SWEET_BAND[1]) / 2))
+                    return (vcp, 1, sc)
+                return (vcp, 0, -abs(sc - (TG_SWEET_BAND[0] + TG_SWEET_BAND[1]) / 2))
 
             top2 = sorted(quality, key=_tg_rank, reverse=True)[:2]
             n_relaxed = sum(1 for c in top2 if c.get("relax_level", 0) > 0)

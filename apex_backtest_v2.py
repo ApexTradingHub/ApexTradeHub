@@ -908,7 +908,7 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         if catalysts["pocket_pivot_recent"]: score += 10
         if catalysts["volume_climax"]:       score += 5
         if catalysts["gap_signal"]:          score += 8
-        if catalysts["vcp_signal"]:          score += 5
+        if catalysts["vcp_strength"] > 0:    score += 8   # 2026-07-23 Schema A (Spiegel ApexScan)
 
     # Phase B catalysts (earnings only — short/analyst skipped in backtest_mode)
     if catalyst_signals is not None:
@@ -1319,11 +1319,13 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
             # Re-Ranking der Pick-Stufe — Signal-Count identisch.
             def _band_rank(s):
                 sc = s.get("score", 0)
+                # 2026-07-23 Schema B: VCP-first (Spiegel apex_trader _pick_rank).
+                vcp = 1 if float(s.get("cat_vcp_strength") or 0) > 0 else 0
                 if s.get("setup") != "BREAKOUT":
-                    return (1, sc)
+                    return (0, 1, sc)
                 if PICK_BAND[0] <= sc < PICK_BAND[1]:
-                    return (1, sc)
-                return (0, -abs(sc - (PICK_BAND[0] + PICK_BAND[1]) / 2))
+                    return (vcp, 1, sc)
+                return (vcp, 0, -abs(sc - (PICK_BAND[0] + PICK_BAND[1]) / 2))
             signals_today.sort(key=_band_rank, reverse=True)
         else:
             signals_today.sort(key=lambda x: x["score"], reverse=True)

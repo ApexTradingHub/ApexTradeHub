@@ -49,6 +49,12 @@ CASH_RESERVE    = 50.0          # Mindest-Cash-Reserve (Puffer)
 # [90,120) wird bevorzugt, ausserhalb nach Naehe zum Band-Zentrum. 2J-Backtest: WR
 # 52.9->54.1%, PF 1.59->1.68, Profit +36pp (Re-Ranking, kein Signal-Loss). Rollback = None.
 PICK_BAND = (90.0, 120.0)
+# 2026-07-23 Schema B: VCP-first Pick-Prioritaet (der grosse Score-Hebel). VCP-Kandidaten
+# (cat_vcp_strength>0 = ATR-Kontraktion) werden VOR dem Band gepickt. 2J-Backtest (faithful
+# Live-Band-Key, Sanity: reproduziert echte Picks): WR 54.4->56.8%, PF 1.81->2.03, +57pp,
+# VCP-Anteil im Buch 35->46%. VCP>0 = 59% WR vs 49% ohne. Reines Re-Ranking, Signal-Count
+# identisch. 4x groesser als Schema A (Score-Bonus). Rollback = False.
+VCP_PICK_PRIORITY = True
 
 # Setup-Filter — BREAKOUT only.
 # 2026-06-12: STAGE_2 wieder raus. Widerspricht der Rotations-These (Hold 60d,
@@ -1295,14 +1301,18 @@ def select_new_signals(state: dict, signals: list) -> list:
         lo, hi, mid = PICK_BAND[0], PICK_BAND[1], (PICK_BAND[0] + PICK_BAND[1]) / 2
         def _pick_rank(x):
             sc = f(x.get("score"))
+            # Schema B: VCP-first (ATR-Kontraktion) VOR dem Band. Non-BREAKOUT: vcp=0, Band-Tier 1
+            # wie bisher. Prepend als oberste Sortier-Ebene -> VCP-Kandidaten zuerst ins Buch.
+            vcp = 1 if (VCP_PICK_PRIORITY and f(x.get("cat_vcp_strength")) > 0) else 0
             if x.get("setup") != "BREAKOUT":
-                return (1, sc)
+                return (0, 1, sc)
             if lo <= sc < hi:
-                return (1, sc)
-            return (0, -abs(sc - mid))
+                return (vcp, 1, sc)
+            return (vcp, 0, -abs(sc - mid))
         candidates.sort(key=_pick_rank, reverse=True)
     else:
-        candidates.sort(key=lambda x: f(x.get("score")), reverse=True)
+        candidates.sort(key=lambda x: (1 if (VCP_PICK_PRIORITY and f(x.get("cat_vcp_strength")) > 0) else 0,
+                                       f(x.get("score"))), reverse=True)
 
     # Option B (2026-07-15): Scanner-BREAKOUT ist das BESTE Setup (WR ~70%) und darf ALLE
     # physisch freien Slots nutzen — NICHT nur das SWING-Teilbudget. Vorher deckelte
