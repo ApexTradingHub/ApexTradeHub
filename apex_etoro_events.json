@@ -1334,5 +1334,16 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "EQT",
+    "reason": "Stop Loss",
+    "exit_price": 53.34,
+    "order_id": 3566321876,
+    "ts": "2026-07-23T19:35:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
