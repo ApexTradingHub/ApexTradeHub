@@ -190,6 +190,25 @@ NEU:  key = (1 if cat_vcp_strength>0 else 0, band_tier, ...)  # VCP-first, dann 
 cat_vcp_strength steht im Signal (ApexScan L1065/1476), Trader hat es. Kein Score-Change noetig
 (Schwelle/Gewicht irrelevant — es ist ein reines Re-Ranking, Signal-Count identisch, wie das Band).
 
+## 4d. A+B KOMBI live-deployed + validiert (2026-07-23)
+
+Nach Deploy von Schema A (Score) + B (Prioritaet) ein Kombi-Backtest (bt_vcp_AB.json, 2J):
+
+| Variante | n | WR | PF | Summe |
+|---|---:|---:|---:|---:|
+| Baseline (vor 07-23) | 169 | 54.4% | 1.81 | +304pp |
+| **A+B (deployed)** | **219** | **55.7%** | **1.85** | **+395pp** |
+| Schema B allein (post-hoc) | 169 | 56.8% | 2.03 | +361pp |
+
+**A+B schlaegt die Baseline auf allen Metriken.** Nicht antizipiert: Schema A hob den Durchsatz
+169→219 (VCP-Signale mit Score 72-80 rutschen dank +8 wieder ueber Gate 80). VCP-Anteil im Buch
+35→58%, VCP-WR 61.1% vs non-VCP 48.4%. Synergie: Gate 80 schneidet Schrott, Schema A laesst
+VCP-Perlen wieder rein.
+
+**Tradeoff (Quantitaet vs Qualitaet):** A+B = meister Profit (+395pp), aber WR/PF etwas unter
+Schema-B-allein (56.8%/2.03). **Entscheid 07-23: A+B laeuft weiter** (User). Rollback-Hebel falls
+spaeter WR/PF>Durchsatz gewuenscht: Schema A zuruecknehmen (2 Zeilen), Schema B bleibt.
+
 ## 5. Disziplin & nächste Schritte
 
 - **Sofort umsetzbar & in BEIDEN Quellen bestätigt:** Score-Gate 70→80 (separate Analyse,
