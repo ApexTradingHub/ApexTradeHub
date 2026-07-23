@@ -4361,5 +4361,23 @@
     "entry_signal": 130.34,
     "entry_actual": 130.99169999999998,
     "mode": "live"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_SMCI_2026-07-23_1746",
+    "ts": "2026-07-23T18:10:07Z",
+    "ticker": "SMCI",
+    "exit_price": 30.94,
+    "reason": "Intraday Stop",
+    "pnl_pct": -2.9789902790843503
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CHRD_2026-07-21",
+    "ts": "2026-07-23T18:10:12Z",
+    "ticker": "CHRD",
+    "signal_date": "2026-07-21",
+    "score": 111.0,
+    "source": "scanner"
   }
 ]

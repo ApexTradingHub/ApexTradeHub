@@ -1276,5 +1276,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "SMCI",
+    "order_id": 368342773,
+    "position_id": 3567187558,
+    "close_rate": 30.94,
+    "net_profit": -1.46,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 30.94,
+      "reason": "Intraday Stop",
+      "pnl_pct": -2.98
+    },
+    "ts": "2026-07-23T18:10:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
