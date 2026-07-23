@@ -1294,5 +1294,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "LW",
+    "instrument_id": 4381,
+    "size_usd": 50.0,
+    "stop": 47.25,
+    "target": 51.15,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 368394636,
+    "response": {
+      "token": "07e6d48b-2d8f-467c-b1a9-6151bfd12ddf",
+      "orderId": 368394636,
+      "referenceId": "1e20501f-bb9b-4229-9ffb-a6ab1c1b74d9"
+    },
+    "ts": "2026-07-23T18:36:33Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
