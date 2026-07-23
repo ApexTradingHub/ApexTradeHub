@@ -3522,5 +3522,23 @@
     "range_pos_eod": 0.966,
     "above_vwap_eod": true,
     "dist_to_day_low_pct": 6.14
+  },
+  {
+    "event": "open",
+    "id": "PAPER_CHRD_2026-07-21",
+    "ts": "2026-07-23T13:30:12Z",
+    "ticker": "CHRD",
+    "entry_signal": 130.34,
+    "entry_actual": 130.99169999999998,
+    "mode": "live"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CHRD_2026-07-21",
+    "ts": "2026-07-23T13:30:12Z",
+    "ticker": "CHRD",
+    "signal_date": "2026-07-21",
+    "score": 111.0,
+    "source": "scanner"
   }
 ]
