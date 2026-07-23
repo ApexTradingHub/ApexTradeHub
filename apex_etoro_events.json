@@ -1345,5 +1345,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "EQT",
+    "order_id": 368001565,
+    "position_id": 3566321876,
+    "close_rate": 53.3,
+    "net_profit": 0.0,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 53.34,
+      "reason": "Stop Loss",
+      "pnl_pct": 0.0
+    },
+    "ts": "2026-07-23T19:40:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
