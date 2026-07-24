@@ -1396,5 +1396,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "CNH",
+    "instrument_id": 1194,
+    "size_usd": 50.0,
+    "stop": 10.66,
+    "target": 11.54,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 368652458,
+    "response": {
+      "token": "04b1a641-ba26-4aeb-a483-6f1913bd2333",
+      "orderId": 368652458,
+      "referenceId": "e3ae5ddb-05b0-45a0-90c3-fb30733783ef"
+    },
+    "ts": "2026-07-24T17:21:33Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
