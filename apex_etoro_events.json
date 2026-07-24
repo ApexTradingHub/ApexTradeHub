@@ -1376,5 +1376,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "SJM",
+    "instrument_id": 1827,
+    "size_usd": 50.0,
+    "stop": 113.01,
+    "target": 129.98,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 368569365,
+    "response": {
+      "token": "97232ce8-4c3e-4033-abd4-b56daf37c490",
+      "orderId": 368569365,
+      "referenceId": "87b88242-76e8-4410-babc-61a9085f3058"
+    },
+    "ts": "2026-07-24T14:50:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
