@@ -2,7 +2,7 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 144.66940875015115,
-  "last_updated": "2026-07-24T13:25:02Z",
+  "last_updated": "2026-07-24T13:30:03Z",
   "pending": [
     {
       "id": "PAPER_SJM_2026-07-22",
@@ -18,6 +18,23 @@
       "rr": 2.53,
       "upside_pct": 10.3,
       "added_at": "2026-07-23T13:50:09Z",
+      "status": "pending",
+      "mode": "live"
+    },
+    {
+      "id": "PAPER_CHRD_2026-07-21",
+      "ticker": "CHRD",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Energy",
+      "signal_date": "2026-07-21",
+      "entry": 130.34,
+      "stop_initial": 123.63,
+      "target": 142.22,
+      "score": 111.0,
+      "rr": 1.77,
+      "upside_pct": 9.1,
+      "added_at": "2026-07-24T13:30:09Z",
       "status": "pending",
       "mode": "live"
     }
@@ -47,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-22T13:30:14Z",
-      "current_price": 6.400000095367432,
-      "pnl_pct": -0.8827614160224286,
-      "pnl_usd": -0.4413807080112143,
+      "current_price": 6.40500020980835,
+      "pnl_pct": -0.80532430217826,
+      "pnl_usd": -0.40266215108913,
       "hold_days": 1,
       "yfinance_entry": 6.4319999999999995,
       "etoro_ask_at_open": 6.457,
@@ -182,9 +199,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-22T15:10:09Z",
-      "current_price": 169.5749969482422,
-      "pnl_pct": -2.2453467756717655,
-      "pnl_usd": -1.1226733878358828,
+      "current_price": 170.3350067138672,
+      "pnl_pct": -1.8072250453293432,
+      "pnl_usd": -0.9036125226646716,
       "hold_days": 1,
       "yfinance_entry": 170.95049999999998,
       "etoro_ask_at_open": 173.47,
@@ -3623,7 +3640,7 @@
     "losses": 44,
     "win_rate": 45.0,
     "pnl_realized": -9.09310175688882,
-    "pnl_unrealized": -2.389663162288547,
-    "equity": 392.27974558786264
+    "pnl_unrealized": -2.1318837401952515,
+    "equity": 392.53752500995586
   }
 }
