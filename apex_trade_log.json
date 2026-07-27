@@ -5562,5 +5562,23 @@
     "entry_signal": 47.96,
     "entry_actual": 48.199799999999996,
     "mode": "live"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CNH_2026-07-24_1721",
+    "ts": "2026-07-27T15:15:09Z",
+    "ticker": "CNH",
+    "exit_price": 10.99,
+    "reason": "Stop Loss",
+    "pnl_pct": 0.0
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_BMY_2026-07-24",
+    "ts": "2026-07-27T15:15:10Z",
+    "ticker": "BMY",
+    "signal_date": "2026-07-24",
+    "score": 84.9,
+    "source": "scanner"
   }
 ]

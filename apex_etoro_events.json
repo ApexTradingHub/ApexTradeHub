@@ -1498,5 +1498,16 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "CNH",
+    "reason": "Stop Loss",
+    "exit_price": 10.99,
+    "order_id": 3567709405,
+    "ts": "2026-07-27T15:15:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
