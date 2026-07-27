@@ -1458,5 +1458,45 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "EMR",
+    "instrument_id": 1544,
+    "size_usd": 50.0,
+    "stop": 143.28,
+    "target": 161.84,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 369114023,
+    "response": {
+      "token": "2451a98c-d7f5-4551-a042-98f9392620cb",
+      "orderId": 369114023,
+      "referenceId": "a31357f6-b8e1-4cc8-b579-09f21e5a4d83"
+    },
+    "ts": "2026-07-27T13:35:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "SW",
+    "instrument_id": 4387,
+    "size_usd": 50.0,
+    "stop": 46.03,
+    "target": 55.46,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 369114024,
+    "response": {
+      "token": "3d7cc739-5e92-4a8a-acb1-20d21112e2a3",
+      "orderId": 369114024,
+      "referenceId": "0925c604-0bfd-4d4b-b860-2d2ce40e1147"
+    },
+    "ts": "2026-07-27T13:35:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
