@@ -1509,5 +1509,43 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "CNH",
+    "order_id": 368652458,
+    "position_id": 3567709405,
+    "close_rate": 11.01,
+    "net_profit": 0.23,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 10.99,
+      "reason": "Stop Loss",
+      "pnl_pct": 0.0
+    },
+    "ts": "2026-07-27T15:20:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "BMY",
+    "instrument_id": 1603,
+    "size_usd": 50.0,
+    "stop": 60.52,
+    "target": 67.94,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 369146225,
+    "response": {
+      "token": "b578ad2a-c0b0-4f0e-9f4b-adfd32402f13",
+      "orderId": 369146225,
+      "referenceId": "481c7109-51bb-43dc-9bd6-d0c72088e317"
+    },
+    "ts": "2026-07-27T15:20:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
