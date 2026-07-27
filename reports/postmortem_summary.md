@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-24T09:11:25.694517 | Total trades: 232_
+_Updated: 2026-07-27T10:29:40.880022 | Total trades: 234_
 
-**Analyse-Status**: complete=216, pending=16
+**Analyse-Status**: complete=216, pending=18
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -84,7 +84,7 @@ _Updated: 2026-07-24T09:11:25.694517 | Total trades: 232_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Recent (30d) — Worst 5 / Best 5  (n=47)
+## Recent (30d) — Worst 5 / Best 5  (n=35)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -95,11 +95,11 @@ _Updated: 2026-07-24T09:11:25.694517 | Total trades: 232_
 | IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | — |
 | RHI_2026-07-13 | BREAKOUT | 13.58% | Take Profit D+3 | 141.3 | Industrials | high_score_winner,clean_breakout_profile,pick_band_cost |
 | SE_2026-07-01 | BREAKOUT | 13.31% | Take Profit D+5 | 102.8 | Consumer Cyclical | post_earnings_beat_continuation,oversold_bounce_with_catalyst,catalyst_beats_extension |
-| TECH_2026-06-24 | BREAKOUT | 10.77% | Take Profit D+1 | 90.5 | Healthcare | ma_buyout_catalyst,duplicate_trap,reversal_win_external_catalyst |
 | MPC_2026-07-10 | BREAKOUT | 8.42% | Take Profit D+4 | 101.4 | Energy | sector_momentum_tailwind,catalyst_beats_extension,geopolitical_premium |
 | BBY_2026-07-10 | BREAKOUT | 8.38% | Take Profit D+4 | 120.2 | Consumer Cyclical | post_earnings_beat_continuation,catalyst_beats_extension,product_catalyst |
+| UAA_2026-06-30 | BREAKOUT | 5.97% | Time Exit D+15 | 107.8 | Consumer Cyclical | breakout_slow_winner |
 
-## Pending Claude-Analyse (16)
+## Pending Claude-Analyse (18)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -119,3 +119,5 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `GPN_2026-07-20`
 - `DG_2026-07-13`
 - `AES_2026-07-09`
+- `META_2026-07-10`
+- `ETSY_2026-07-10`
