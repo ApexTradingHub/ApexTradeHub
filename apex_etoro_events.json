@@ -1547,5 +1547,36 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "HAS",
+    "reason": "Take Profit",
+    "exit_price": 96.06,
+    "order_id": 3566153921,
+    "ts": "2026-07-28T19:00:10Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "BA",
+    "instrument_id": 1010,
+    "size_usd": 50.0,
+    "stop": 215.6,
+    "target": 233.38,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 369453276,
+    "response": {
+      "token": "64b2986c-5c8b-4d39-9092-b8c9bc7b90e7",
+      "orderId": 369453276,
+      "referenceId": "01f4e80f-5425-405b-9ba5-1ba91856aba7"
+    },
+    "ts": "2026-07-28T19:02:10Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]

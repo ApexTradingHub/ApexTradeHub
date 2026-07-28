@@ -5619,5 +5619,33 @@
     "new_stop": 176.9394,
     "high": 184.27999877929688,
     "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_HAS_2026-07-21",
+    "ts": "2026-07-28T19:00:10Z",
+    "ticker": "HAS",
+    "exit_price": 96.06,
+    "reason": "Take Profit",
+    "pnl_pct": 7.9932546374367615
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_BX_2026-07-27",
+    "ts": "2026-07-28T19:00:11Z",
+    "ticker": "BX",
+    "signal_date": "2026-07-27",
+    "score": 83.5,
+    "source": "scanner"
+  },
+  {
+    "event": "intraday_open",
+    "id": "PAPER_INTRA_BA_2026-07-28_1902",
+    "ts": "2026-07-28T19:02:10Z",
+    "ticker": "BA",
+    "entry": 222.18499755859375,
+    "gain_from_open": 3.83,
+    "score": 36.5,
+    "mode": "live"
   }
 ]
