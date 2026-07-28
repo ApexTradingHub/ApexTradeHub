@@ -1578,5 +1578,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "HAS",
+    "order_id": 368014708,
+    "position_id": 3566153921,
+    "close_rate": 98.0,
+    "net_profit": 5.11,
+    "reason": "eToro TP",
+    "paper_had": {
+      "exit_price": 96.06,
+      "reason": "Take Profit",
+      "pnl_pct": 7.99
+    },
+    "ts": "2026-07-28T19:05:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
