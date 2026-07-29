@@ -1726,5 +1726,18 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_from_history",
+    "ticker": "BX",
+    "order_id": 369636886,
+    "position_id": 3569799866,
+    "close_rate": 128.0,
+    "net_profit": -2.55,
+    "reason": "eToro closed",
+    "ts": "2026-07-29T20:05:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
