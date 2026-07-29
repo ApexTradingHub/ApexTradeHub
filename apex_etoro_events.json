@@ -1640,5 +1640,35 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "phantom_close",
+    "ticker": "BA",
+    "order_id": 369453276,
+    "reason": "order_dropped",
+    "ts": "2026-07-29T13:35:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "VOD.L",
+    "instrument_id": 7078,
+    "size_usd": 50.0,
+    "stop": 115.11,
+    "target": 134.67,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 369637020,
+    "response": {
+      "token": "d36ff5d8-bd4c-4782-a93f-0bc408a7efb9",
+      "orderId": 369637020,
+      "referenceId": "35bbe6d0-bc01-468d-afc7-708dfd950238"
+    },
+    "ts": "2026-07-29T13:35:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
