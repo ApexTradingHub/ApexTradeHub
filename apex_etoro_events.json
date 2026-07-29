@@ -1670,5 +1670,41 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "ISP.MI",
+    "order_id": 368014542,
+    "position_id": 3566130237,
+    "close_rate": 6.486,
+    "net_profit": 0.1,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 6.466000080108643,
+      "reason": "Stagnation Exit",
+      "pnl_pct": 0.14
+    },
+    "ts": "2026-07-29T13:40:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "BA",
+    "order_id": 369453276,
+    "position_id": 3569172755,
+    "close_rate": 215.06,
+    "net_profit": -1.61,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 215.5,
+      "reason": "eToro order_dropped",
+      "pnl_pct": -3.05
+    },
+    "ts": "2026-07-29T13:40:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
