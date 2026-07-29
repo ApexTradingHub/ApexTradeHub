@@ -127,7 +127,11 @@ CLOSE_COOLDOWN_DAYS = 5
 
 # Hold-Window: Time-Exit pro Setup (matched apex_equity.py horizon_to_days)
 HOLD_DAYS_PER_SETUP = {
-    "BREAKOUT":       21,
+    # 2026-07-29 21->30: Haltedauer-Sweep (2J-Backtest, sauber backtestbar): 30d ist das
+    # Optimum (+60pp/2J vs 15d, +28pp vs 21d), robust in BEIDEN Regimes (Bull +45pp, Baer +15pp),
+    # WR-Kosten ~2pp, PF stabil. Slow-Winner (24% Time-Exits, 79% positiv, 70-96% des Wegs zum TP)
+    # erreichen ihren TP. Vereinheitlicht mit Equity/Backtest (behebt 15-vs-21-Diskrepanz #7).
+    "BREAKOUT":       30,
     "VCP":            40,
     "STAGE_2":        60,
     "SHORT_SQUEEZE":  20,

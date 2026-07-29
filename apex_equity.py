@@ -85,7 +85,7 @@ def is_quality_signal(signal):
 
 # Horizon -> maximale Haltezeit in Handelstagen
 HORIZON_DAYS = {
-    "1-3 weeks":   15,   # BREAKOUT
+    "1-3 weeks":   30,   # BREAKOUT — 2026-07-29 15->30 (Hold-Sweep-Optimum, = Live-Trader + Backtest)
     "2-4 weeks":   20,   # SHORT_SQUEEZE
     "2-6 weeks":   30,   # legacy
     "3-8 weeks":   40,   # legacy REVERSAL (disabled in Phase G)

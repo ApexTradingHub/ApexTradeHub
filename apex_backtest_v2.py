@@ -128,6 +128,11 @@ PICK_BAND = None  # z.B. (90, 120) wenn aktiv
 EMIT_ALL_CANDIDATES = False
 _ALL_CANDIDATES = []
 
+# 2026-07-29 Punkt 4: Haltedauer-Sweep. Jeder gepickte Trade wird zusaetzlich unter
+# laengeren Holds ausgewertet (pnl_hold_N im Trade-Output) -> ein Lauf, alle Varianten.
+HOLD_SWEEP = False
+HOLD_SWEEP_DAYS = [15, 21, 30, 45]
+
 
 def _score_v2_prob(sig):
     """LogReg-Wahrscheinlichkeit aus dem frozen Stufe-1-Modell. Within-Day-Sortierung
@@ -156,7 +161,7 @@ def _score_v2_prob(sig):
 EXT_PENALTY   = 12.0   # Penalty-Hoehe (Sweep 2026-06-20: -12 = perfekte Monotonie -0pp, alle Signale)
 
 HORIZON_DAYS = {
-    "1-3 weeks":   15,   # BREAKOUT
+    "1-3 weeks":   30,   # BREAKOUT — 2026-07-29 15->30 (Hold-Sweep-Optimum, = Live-Trader + Equity)
     "2-4 weeks":   20,   # SHORT_SQUEEZE
     "2-6 weeks":   30,   # legacy
     "4-8 weeks":   40,   # VCP
@@ -1039,13 +1044,13 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
 # =============================================================
 # TRADE OUTCOME
 # =============================================================
-def evaluate_outcome(ticker, full_df, scan_idx, signal):
+def evaluate_outcome(ticker, full_df, scan_idx, signal, hold_override=None):
     """
     First waits for buy_above to be triggered (High >= entry).
     Only then tracks stop/target. If trigger never reached -> no trade.
     Returns (exit_price, exit_reason, exit_day, trigger_day) or (None,)*4.
     """
-    hold_days   = HORIZON_DAYS.get(signal["horizon"], 21)
+    hold_days   = hold_override if hold_override is not None else HORIZON_DAYS.get(signal["horizon"], 21)
     entry       = signal["buy_above"]
     tp          = signal["target"]
     sl          = signal["stop"]
@@ -1363,6 +1368,14 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
             equity += pnl_usd
             eq_curve.append(round(equity, 2))
 
+            # 2026-07-29 Haltedauer-Sweep: denselben Trade unter laengeren Holds auswerten.
+            hold_pnls = {}
+            if HOLD_SWEEP and sig.get("setup") == "BREAKOUT":
+                for H in HOLD_SWEEP_DAYS:
+                    ep_h, rs_h, ed_h, _ = evaluate_outcome(ticker, full_df, idx, sig, hold_override=H)
+                    hold_pnls[f"pnl_{H}"] = round((ep_h - entry)/entry*100, 2) if ep_h is not None else None
+                    hold_pnls[f"reason_{H}"] = rs_h
+
             trades.append({
                 "date":        sig["scan_date"],
                 "ticker":      ticker,
@@ -1396,6 +1409,7 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
                 "cat_pocket_pivot": sig.get("cat_pocket_pivot"),
                 "cat_vol_climax":   sig.get("cat_vol_climax"),
                 "cat_gap_pct":      sig.get("cat_gap_pct"),
+                **hold_pnls,
             })
 
     return trades, eq_curve
@@ -1548,6 +1562,8 @@ def main():
                         help="Hoehe der Extension-Penalty fuer --score-rebuild (default 12, Sweep-Optimum)")
     parser.add_argument("--emit-all-candidates", action="store_true",
                         help="Alle BREAKOUT-Kandidaten (nicht nur Picks) mit Outcome -> bt_all_candidates.json (Post-hoc-Gewicht-Sweep)")
+    parser.add_argument("--hold-sweep", action="store_true",
+                        help="Jeden BREAKOUT-Pick zusaetzlich unter Holds 15/21/30/45 auswerten (pnl_N im Output)")
     args = parser.parse_args()
 
     # Stash CLI RSI overrides into module-level globals for scan_slice to pick up
@@ -1565,8 +1581,9 @@ def main():
     SCORE_REALIGN = args.score_realign
     SCORE_REBUILD = args.score_rebuild
     EXT_PENALTY = args.ext_penalty
-    global SCORE_V2, SCORE_V2_MODEL, PICK_BAND, EMIT_ALL_CANDIDATES
+    global SCORE_V2, SCORE_V2_MODEL, PICK_BAND, EMIT_ALL_CANDIDATES, HOLD_SWEEP
     EMIT_ALL_CANDIDATES = args.emit_all_candidates
+    HOLD_SWEEP = args.hold_sweep
     SCORE_V2 = args.score_v2
     if args.pick_band:
         lo, hi = (float(x) for x in args.pick_band.split(","))
