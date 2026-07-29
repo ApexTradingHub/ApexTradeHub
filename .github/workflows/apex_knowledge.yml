@@ -44,7 +44,7 @@ jobs:
           cp -r /tmp/kn/knowledge . 2>/dev/null
           cp -r /tmp/kn/reports . 2>/dev/null
 
-          git add knowledge/apex_knowledge.json reports/learn_latest.md reports/learn_*.md reports/postmortem_summary.md 2>/dev/null
+          git add knowledge/apex_knowledge.json knowledge/trade_postmortems.json reports/learn_latest.md reports/learn_*.md reports/postmortem_summary.md 2>/dev/null
           if git diff --staged --quiet; then
             echo "Keine Aenderungen."
             exit 0
