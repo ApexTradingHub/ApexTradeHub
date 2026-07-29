@@ -246,9 +246,17 @@ beim nächsten Equity-Refactor mitnehmen.
 
 ---
 
-## 7. HORIZON_DAYS-Konflikt: Code 15 vs Doku 21 für BREAKOUT — discovered 2026-06-15
+## 7. HORIZON_DAYS-Konflikt: Code 15 vs Doku 21 — GELÖST 2026-07-29 (auf 30 vereinheitlicht)
 
-**Problem:** Drei Quellen-of-Truth für BREAKOUT-Hold widersprechen sich:
+**STATUS 2026-07-29: BEHOBEN + optimiert.** Haltedauer-Sweep (bt_hold_sweep.json, 2J, alle
+Holds in einem Lauf via `--hold-sweep`): 30d = Optimum (+60pp/2J vs 15d, +28pp vs 21d, 45d nur
++2pp mehr). Robust in beiden Regimes (Bull +45, Baer +15). Mechanismus: 24% Time-Exits (79%
+positiv, 70-96% des Wegs zum TP) erreichen bei 30d ihren TP. WR-Kosten ~2pp, Give-back 10/122.
+**Alle drei Quellen (Trader 21, Equity 15, Backtest 15) jetzt auf 30** (commit dd47fd3).
+Vorbehalt: Live-Stagnations-Exit kappt flache Trades bei 5d -> Live-Benefit partiell. Monitoring:
+in 2-3 Wo Time-Exit-Anteil + avg-PnL der Late-Exits gegen Learn. Der urspruengliche Konflikt:
+
+**Problem (historisch):** Drei Quellen-of-Truth für BREAKOUT-Hold widersprachen sich:
 
 | Quelle | BREAKOUT hold | Aktuell |
 |---|---|---|
