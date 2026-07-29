@@ -1706,5 +1706,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "TGT",
+    "instrument_id": 1490,
+    "size_usd": 50.0,
+    "stop": 138.54,
+    "target": 160.09,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 369635095,
+    "response": {
+      "token": "8d299eaa-0735-421c-8958-b5aa4fe6269d",
+      "orderId": 369635095,
+      "referenceId": "9d6b764d-17b2-44fc-8c25-49ddebb0fd87"
+    },
+    "ts": "2026-07-29T13:45:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
