@@ -1,33 +1,33 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-07-29T09:30:28.707471 | Total trades: 239_
+_Updated: 2026-07-29T16:21:24.774449 | Total trades: 239_
 
-**Analyse-Status**: complete=216, pending=23
+**Analyse-Status**: complete=239
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
+| `breakout_no_follow_through` | 35 |
 | `sector_momentum_tailwind` | 34 |
-| `breakout_no_follow_through` | 34 |
+| `post_earnings_beat_continuation` | 32 |
+| `high_score_loss_85plus` | 30 |
 | `sector_relative_strength` | 29 |
-| `post_earnings_beat_continuation` | 29 |
-| `high_score_loss_85plus` | 26 |
 | `reversal_after_oversold_trap` | 24 |
-| `duplicate_trap` | 22 |
+| `duplicate_trap` | 23 |
 | `reversal_win_external_catalyst` | 21 |
 | `secular_ai_catalyst` | 20 |
 | `defensive_low_beta_drift` | 18 |
 | `oversold_bounce_with_catalyst` | 18 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
-| `fundamental_deterioration` | 12 |
+| `fundamental_deterioration` | 13 |
 | `geopolitical_premium_fade` | 12 |
 | `earnings_adjacency_risk` | 11 |
-| `low_score_loss` | 10 |
+| `low_score_loss` | 11 |
+| `macro_selloff_correlates_all_stocks` | 10 |
 | `reversal_no_turn` | 9 |
 | `pocket_pivot_validation` | 9 |
-| `ai_capex_supercycle` | 8 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -63,8 +63,8 @@ _Updated: 2026-07-29T09:30:28.707471 | Total trades: 239_
 | KLAC_2026-06-29 | BREAKOUT | -9.28% | Stop Loss D+3 | 117.8 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
 | BTU_2026-05-01 | REVERSAL | -8.73% | Stop Loss D+3 | 82.2 | Energy | REVERSAL 4 Tage vor Q1 Earnings - Earnings am 5.5 zeigten Net Loss & EBITDA -43%, Production Cut |
-| ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | _pending_ |
-| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | _pending_ |
+| ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | High-Score-Loss (137): Insider-Verkaeufe $584M/3M, Cloud-Titan-Konzentration (MSFT/Meta), Networking-De-Risking. -8.6% Stop. |
+| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | BREAKOUT nach ~29% 6-Tage-Rally gekauft = extended; drehte auf Valuation-Unwind + Enterprise-Growth-Deceleration + Macro-Headwinds. -8.5% Stop D+3. |
 | CACI_2026-05-01 | REVERSAL | -8.03% | Stop Loss D+3 | 72.6 | Technology | REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben |
 | AMTM_2026-04-01 | REVERSAL | -8.01% | Stop Loss D+23 | 59.7 | Industrials | DEAD_CAT_BOUNCE - Stock war -20% YTD, REVERSAL kaufte trotz fundamentaler Schwaeche; nahm 23 Tage zum Stop |
 | APH_2026-05-12 | REVERSAL | -7.84% | Stop Loss D+5 | 86.5 | Unknown | REVERSAL in einen Valuation-Unwind eines Momentum-Stocks gekauft (+105% 1J). Trotz STARKER Q1-Earnings (Beat + Guidance-Raise auf +41-43% EPS-Wachstum) brach der Kurs ein wegen: Analyst-Downgrades Buy->Hold (BofA, Jefferies, Zacks; Bedenken zu Bewertung + Aerospace-Connectivity-Backlog-Slowdown) UND ~$250M Insider-Verkaeufe in 24-72h (CEO verkaufte $18.7M am 5.5). Stock -13.2% in einer Woche. base_range 27.6 = extrem breit = fallendes Messer. Stop nach nur 5 Tagen. Mean-Reversion eines parabolischen Momentum-Unwinds ist kein REVERSAL-Setup. |
@@ -91,36 +91,15 @@ _Updated: 2026-07-29T09:30:28.707471 | Total trades: 239_
 | UPST_2026-06-29 | BREAKOUT | -9.55% | Stop Loss D+6 | 102.2 | Financial Services | macro_selloff_correlates_all_stocks,negative_perf120_breakout,high_beta_macro_risk |
 | KLAC_2026-06-29 | BREAKOUT | -9.28% | Stop Loss D+3 | 117.8 | Technology | semi_selloff_2026q2,high_score_loss_85plus,sector_divergence_loser |
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | semi_selloff_2026q2,high_score_loss_85plus,sector_divergence_loser |
-| ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | — |
-| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | — |
+| ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | high_score_loss_85plus,insider_distribution,customer_concentration_risk |
+| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | extended_rally_fade,valuation_unwind,high_score_loss_85plus |
 | RHI_2026-07-13 | BREAKOUT | 13.58% | Take Profit D+3 | 141.3 | Industrials | high_score_winner,clean_breakout_profile,pick_band_cost |
 | SE_2026-07-01 | BREAKOUT | 13.31% | Take Profit D+5 | 102.8 | Consumer Cyclical | post_earnings_beat_continuation,oversold_bounce_with_catalyst,catalyst_beats_extension |
-| ABT_2026-07-16 | BREAKOUT | 10.04% | Take Profit D+8 | 92.7 | Healthcare | — |
-| LW_2026-07-23 | BREAKOUT | 10.0% | Take Profit D+2 | 101.9 | Consumer Defensive | — |
-| HAS_2026-07-21 | BREAKOUT | 8.53% | Take Profit D+5 | 104.2 | Consumer Cyclical | — |
+| ABT_2026-07-16 | BREAKOUT | 10.04% | Take Profit D+8 | 92.7 | Healthcare | post_earnings_beat_continuation,guidance_raise,catalyst_beats_extension |
+| LW_2026-07-23 | BREAKOUT | 10.0% | Take Profit D+2 | 101.9 | Consumer Defensive | post_earnings_beat_continuation,guidance_beat |
+| HAS_2026-07-21 | BREAKOUT | 8.53% | Take Profit D+5 | 104.2 | Consumer Cyclical | post_earnings_beat_continuation,product_catalyst,vcp_breakout |
 
-## Pending Claude-Analyse (23)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `CMG_2026-07-13`
-- `ILMN_2026-07-02`
-- `BAX_2026-07-02`
-- `HOOD_2026-07-02`
-- `ANET_2026-07-08`
-- `GS_2026-07-14`
-- `PCAR_2026-07-06`
-- `TRIP_2026-07-16`
-- `LW_2026-07-07`
-- `MTCH_2026-07-15`
-- `IOT_2026-07-17`
-- `DXCM_2026-07-16`
-- `DLTR_2026-07-16`
-- `GPN_2026-07-20`
-- `DG_2026-07-13`
-- `AES_2026-07-09`
-- `META_2026-07-10`
-- `ETSY_2026-07-10`
-- `JBHT_2026-07-16`
-- `HRB_2026-07-13`
-- _(+ 3 mehr)_
