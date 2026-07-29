@@ -145,9 +145,35 @@ sich häufen.
 
 ---
 
-## 4. Macro-VIX/HY-Gate für BREAKOUT — getestet & FALSIFIED 2026-06-14
+## 4. Macro-VIX/HY-Gate für BREAKOUT — FALSIFIED 2026-06-14 + Regime-Tiefe-Bremse FALSIFIED 2026-07-29
 
-**Hypothese:** BREAKOUT-WR fällt bei VIX≥22 oder HY-OAS≥4.0 zum Entry-Zeitpunkt.
+**STATUS 2026-07-29: Regime-Bremse (2. Anlauf) — DATENWIDRIG, nicht gebaut.** User wollte eine
+Baermarkt-Bremse gegen den anhaltenden eToro-Verlust. Getestet auf 219 BREAKOUT-Trades (2J),
+gesplittet nach REGIME-TIEFE (nicht binaeres risk_on): SPY/QQQ MA20/50/200-State pro Trade-Datum.
+
+| Regime-Tiefe | n | WR | Summe |
+|---|---:|---:|---:|
+| beide OK+ (risk_on) | 154 | 54.5% | +237pp |
+| einer WEAK | 18 | 66.7% | +40pp |
+| beide WEAK | 34 | 47.1% | +57pp |
+| **tiefer Baer (beide WEAK + SPY<MA200)** | 13 | **76.9%** | +62pp (avg +4.74%) |
+
+**Der TIEFSTE Baer-Bucket hat die HOECHSTE WR (76.9%).** Kein Bucket netto negativ. Eine Bremse
+wuerde die BESTEN Trades killen. Mechanik: im tiefen Baer brechen kaum Aktien aus — die wenigen,
+die es GEGEN den Markt tun, sind Survivor (echte RS + Katalysator, meist Post-Beat). Der Baer
+filtert selbst. Bestaetigt #4 aus 2. Richtung (MA-basiert statt VIX). **KEINE dritte Regime-Bremse
+vorschlagen ohne fundamental neue Evidenz.**
+
+**Warum verlieren wir JETZT trotzdem:** (1) Small-Sample — 30d n=40 WR 37.5% vs Lifetime 50.9%,
+raue Phase um den wahren Wert. (2) Der Juli-2026-Baer ist z.T. out-of-sample (Backtest bis Juni
+2026). Verfuegbare Evidenz spricht gegen eine Bremse; fuer GENAU diese Phase nicht beweisbar.
+**Offene Alternativen (falls Kapitalerhalt-Ziel):** Drawdown-Positionsgroessen-Drossel (Risk-Mgmt,
+kein Alpha, whipsaw-Risiko) ODER Post-Beat-Filter (Signal-Qualitaet, killt aber Signal-Count).
+Beide Backtest-First, keine ohne User-Entscheid. Skript: scratchpad/regime_depth.py.
+
+---
+
+**Hypothese (urspruenglich):** BREAKOUT-WR fällt bei VIX≥22 oder HY-OAS≥4.0 zum Entry-Zeitpunkt.
 Motivation: AFRM/IBKR-Postmortems mit Lesson `macro_selloff_correlates_all_stocks`.
 
 **Setup:** `apex_macro.py` zieht FRED-Series (VIXCLS, BAMLH0A0HYM2, T10Y2Y, DFF, DTB3) →
