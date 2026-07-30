@@ -1752,5 +1752,16 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close",
+    "ticker": "MMM",
+    "reason": "Stop Loss (Trailing)",
+    "exit_price": 176.9394,
+    "order_id": 3566222615,
+    "ts": "2026-07-30T13:35:10Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
