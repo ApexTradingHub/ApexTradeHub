@@ -1801,5 +1801,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "JBLU",
+    "instrument_id": 1816,
+    "size_usd": 50.0,
+    "stop": 5.63,
+    "target": 6.11,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 370174243,
+    "response": {
+      "token": "054630dc-6c28-4466-a005-5357c2394c54",
+      "orderId": 370174243,
+      "referenceId": "5edf15ef-5659-4a4e-9ff1-09648fae93f1"
+    },
+    "ts": "2026-07-30T14:16:46Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
