@@ -2122,10 +2122,15 @@ def etoro_update_sl_tp(pos: dict):
     """Zieht Trailing-Stop bei eToro nach — pro Cron-Run bei jedem Ladder/Continuous-Step."""
     if TRADING_MODE not in ("live", "live_dry"): return
     if not (ETORO_API_KEY and ETORO_USER_KEY): return
-    oid = pos.get("etoro_position_id") or pos.get("etoro_order_id")
-    if not oid: return
+    # 2026-07-29: Update-Endpoint braucht die eToro-positionID (nicht orderID). Ist sie noch
+    # nicht gesynct (frisch geoeffnet), skippen — der naechste Run nach sync_etoro_positions
+    # hat sie. Vorher wurde faelschlich order_id genommen -> 404.
+    pid = pos.get("etoro_position_id")
+    if not pid:
+        log(f"  [eToro] {pos['ticker']} SL-Update skip (position_id noch nicht gesynct)")
+        return
     try:
-        _etoro_client().update_sl_tp(oid, stop_loss=pos["stop"], take_profit=pos["target"])
+        _etoro_client().update_sl_tp(pid, stop_loss=pos["stop"], take_profit=pos["target"])
         log(f"  [eToro] {pos['ticker']} SL nachgezogen -> ${pos['stop']:.2f}")
         _append_etoro_event({
             "event": "update_sl_tp", "ticker": pos["ticker"], "order_id": oid,

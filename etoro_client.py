@@ -245,12 +245,19 @@ class EToroClient:
             raise
 
     def update_sl_tp(self, position_id, stop_loss=None, take_profit=None):
-        """SL/TP nachziehen. eToro-Felder: StopLossRate/TakeProfitRate (PascalCase)."""
-        body = {"positionId": int(position_id)}
-        if stop_loss   is not None: body["StopLossRate"]   = float(stop_loss)
-        if take_profit is not None: body["TakeProfitRate"] = float(take_profit)
-        # Pfad wahrscheinlich PATCH auf positions — bei 404 muessen wir den Endpoint noch fixen
-        return self._request("PATCH", f"/api/v1/trading/{self.env}/positions", body=body, write=True)
+        """SL/TP auf offener Position nachziehen. VERIFIZIERT 2026-07-29 (Prober, 202 mit
+        operationId): PATCH /api/v2/trading/{env}/positions/{positionId}, camelCase-Body.
+        Vorher [404] RouteNotFound (war v1 + PascalCase + id im Body + /positions ohne id) ->
+        JEDER Trailing-Stop scheiterte still seit Live-Start. position_id MUSS die eToro-
+        positionID sein (nicht orderID)."""
+        body = {}
+        if stop_loss is not None:
+            body["stopLossRate"] = float(stop_loss)
+            body["stopLossType"] = "fixed"     # wir managen Trailing selbst, pushen fixe SL
+        if take_profit is not None:
+            body["takeProfitRate"] = float(take_profit)
+        return self._request("PATCH", f"/api/v2/trading/{self.env}/positions/{int(position_id)}",
+                             body=body, write=True)
 
 
 # ---------- CLI ----------
