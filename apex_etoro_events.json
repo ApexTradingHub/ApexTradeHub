@@ -1821,5 +1821,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "OWL",
+    "instrument_id": 1057,
+    "size_usd": 50.0,
+    "stop": 9.69,
+    "target": 10.49,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 370176728,
+    "response": {
+      "token": "cdcbf776-41f6-46b7-9f9a-d8eccc3ce63c",
+      "orderId": 370176728,
+      "referenceId": "8e3661f1-0971-43c5-af6c-98cc125286e6"
+    },
+    "ts": "2026-07-30T16:01:52Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
