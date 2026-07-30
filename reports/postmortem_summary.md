@@ -2,7 +2,7 @@
 
 _Updated: 2026-07-30T09:20:02.834597 | Total trades: 240_
 
-**Analyse-Status**: complete=239, pending=1
+**Analyse-Status**: complete=240
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -11,7 +11,7 @@ _Updated: 2026-07-30T09:20:02.834597 | Total trades: 240_
 | `breakout_no_follow_through` | 35 |
 | `sector_momentum_tailwind` | 34 |
 | `post_earnings_beat_continuation` | 32 |
-| `high_score_loss_85plus` | 30 |
+| `high_score_loss_85plus` | 31 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 23 |
@@ -25,7 +25,7 @@ _Updated: 2026-07-30T09:20:02.834597 | Total trades: 240_
 | `geopolitical_premium_fade` | 12 |
 | `earnings_adjacency_risk` | 11 |
 | `low_score_loss` | 11 |
-| `macro_selloff_correlates_all_stocks` | 10 |
+| `macro_selloff_correlates_all_stocks` | 11 |
 | `reversal_no_turn` | 9 |
 | `pocket_pivot_validation` | 9 |
 
@@ -99,8 +99,7 @@ _Updated: 2026-07-30T09:20:02.834597 | Total trades: 240_
 | LW_2026-07-23 | BREAKOUT | 10.0% | Take Profit D+2 | 101.9 | Consumer Defensive | post_earnings_beat_continuation,guidance_beat |
 | HAS_2026-07-21 | BREAKOUT | 8.53% | Take Profit D+5 | 104.2 | Consumer Cyclical | post_earnings_beat_continuation,product_catalyst,vcp_breakout |
 
-## Pending Claude-Analyse (1)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `URI_2026-07-23`

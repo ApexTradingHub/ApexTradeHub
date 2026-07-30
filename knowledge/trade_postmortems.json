@@ -23661,19 +23661,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-07-23",
+            "title": "URI Q2-Beat (EPS +21.9%, Guidance-Raise) ABER 20.9% ueberbewertet (GF-Value), Insider-Verkauf EVP $1.7M 24.07, Aktie -6%/Monat trotz Earnings",
+            "src": "WebSearch 2026-07-30 (GuruFocus/MarketBeat)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "High-Score-BREAKOUT (122, toxischer 120+-Bucket) in ueberbewerteten Titel (20.9% ueber GF-Value) im Baer-Tape. Trotz starker Q2 (EPS $12.76 +21.9%, Guidance-Raise) fiel die Aktie = sell-the-news/valuation_unwind, dazu Insider-Verkauf (EVP $1.7M am 24.07). -5.33% Stop. Bestaetigt: hoher Score schuetzt nicht, 120+ nicht besser (PICK_BAND).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "valuation_unwind",
+          "insider_distribution",
+          "macro_selloff_correlates_all_stocks",
+          "pick_band_cost"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-07-30T21:08:43.980677",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-07-30T09:20:02.534390",
