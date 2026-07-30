@@ -204,6 +204,10 @@ MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber
 # festhalten statt ausbluten). Fail-open: bei Fetch-Fehler (VWAP unbekannt) wird gerescued wie
 # bisher. Exit-Mechanik = backtest-blind (#24), daher Rollback-Flag. Rollback = False.
 RESCUE_REQUIRE_ABOVE_VWAP  = True
+# 2026-07-29: Self-Healing SL-Reconcile in sync_etoro_positions — gleicht eToros SL jeden Run
+# mit dem Paper-Stop ab, re-pusht bei Drift >0.3%. Absicherung gegen stille Trailing-Push-
+# Fehler (der update_sl_tp-404-Bug lief wochenlang unbemerkt). Rollback = False.
+SL_RECONCILE_ENABLED = True
 
 # ---------------------------------------------------------------------------
 # Intraday-Momentum-Catcher (2026-06-18) — EXPERIMENT, opt-in via env-flag.
@@ -2179,6 +2183,20 @@ def sync_etoro_positions(state: dict):
                 pos["etoro_units"]        = ep.get("units")
                 pos["etoro_open_date"]    = ep.get("openDateTime")
                 synced += 1
+                # 2026-07-29 Self-Healing SL-Reconcile: eToros stopLossRate mit dem Paper-Stop
+                # abgleichen. Faengt jeden verschluckten/async-fehlgeschlagenen Trailing-Push
+                # (update_sl_tp gibt 202, Verarbeitung ist async -> hier beim naechsten Run
+                # pruefen ob der SL WIRKLICH sitzt). Kein Extra-API-Call: stopLossRate steckt
+                # schon in der Portfolio-Response. Verhindert dass wir still auf den langsamen
+                # 5-Min-Paper-Close zurueckfallen (MMM-Slippage). Toleranz 0.3% (Rundung).
+                if SL_RECONCILE_ENABLED and pos.get("etoro_position_id"):
+                    e_sl = f(ep.get("stopLossRate"))
+                    p_sl = f(pos.get("stop"))
+                    if p_sl and e_sl is not None and abs(e_sl - p_sl) / p_sl > 0.003:
+                        log(f"  [eToro] {pos['ticker']} SL-DRIFT eToro ${e_sl:.2f} vs Paper "
+                            f"${p_sl:.2f} -> re-push")
+                        try: etoro_update_sl_tp(pos)
+                        except Exception as e: log(f"  [eToro] SL-reconcile fail: {e}")
             elif oid in pending_by_order:
                 pos["etoro_status"] = "pending_fill"
             else:
