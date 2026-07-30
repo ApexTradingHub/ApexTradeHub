@@ -1763,5 +1763,43 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "MMM",
+    "order_id": 368001337,
+    "position_id": 3566222615,
+    "close_rate": 175.64,
+    "net_profit": 0.63,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 176.9394,
+      "reason": "Stop Loss (Trailing)",
+      "pnl_pct": 2.0
+    },
+    "ts": "2026-07-30T13:40:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "ABNB",
+    "instrument_id": 8047,
+    "size_usd": 50.0,
+    "stop": 144.62,
+    "target": 165.2,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 369935984,
+    "response": {
+      "token": "3050f908-9573-4d30-b29a-f2492c65c1a5",
+      "orderId": 369935984,
+      "referenceId": "92e47d62-44f0-49c1-ad74-68230deab81d"
+    },
+    "ts": "2026-07-30T13:40:14Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
