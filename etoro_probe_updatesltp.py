@@ -18,17 +18,16 @@ c.dry_run = False            # echt testen, nicht dry-run
 env = c.env                  # "demo"
 print(f"[{env.upper()}] dry_run={c.dry_run} — teste Update-SL/TP-Endpoints fuer Position {POSITION_ID}\n")
 
-body_pascal = {"positionId": POSITION_ID, "StopLossRate": SL, "TakeProfitRate": TP}
-body_id_path = {"StopLossRate": SL, "TakeProfitRate": TP}   # wenn id im Pfad
+body_pascal = {"StopLossRate": SL, "TakeProfitRate": TP}             # id im Pfad
+body_with_id = {"positionId": POSITION_ID, "StopLossRate": SL, "TakeProfitRate": TP}
+body_camel = {"stopLossRate": SL, "takeProfitRate": TP}             # falls camelCase erwartet
 
-# (method, path, body, note)
+# (method, path, body, note) — Runde 2: eToro-Doku (llms.txt) sagt
+# PATCH /api/v1/trading/{demo|real}/positions/{positionId}  (id im PFAD, KEIN /execution/)
 candidates = [
-    ("PATCH", f"/api/v1/trading/execution/{env}/positions", body_pascal, "Memory-dokumentiert (+/execution/)"),
-    ("PATCH", f"/api/v1/trading/execution/{env}/positions/{POSITION_ID}", body_id_path, "execution + id im Pfad"),
-    ("PATCH", f"/api/v2/trading/execution/{env}/positions", body_pascal, "v2 execution (wie orders)"),
-    ("PUT",   f"/api/v1/trading/execution/{env}/positions", body_pascal, "PUT statt PATCH"),
-    ("POST",  f"/api/v1/trading/execution/{env}/edit-positions", body_pascal, "edit-positions"),
-    ("PATCH", f"/api/v1/trading/execution/{env}/positions/{POSITION_ID}", body_pascal, "execution+id+voller Body"),
+    ("PATCH", f"/api/v1/trading/{env}/positions/{POSITION_ID}", body_pascal, "DOKU: id im Pfad, PascalCase-Body"),
+    ("PATCH", f"/api/v1/trading/{env}/positions/{POSITION_ID}", body_with_id, "id im Pfad + auch im Body"),
+    ("PATCH", f"/api/v1/trading/{env}/positions/{POSITION_ID}", body_camel, "id im Pfad, camelCase-Body"),
 ]
 
 hit = None
