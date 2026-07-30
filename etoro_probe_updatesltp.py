@@ -18,23 +18,20 @@ c.dry_run = False            # echt testen, nicht dry-run
 env = c.env                  # "demo"
 print(f"[{env.upper()}] dry_run={c.dry_run} — teste Update-SL/TP-Endpoints fuer Position {POSITION_ID}\n")
 
-body_pascal = {"StopLossRate": SL, "TakeProfitRate": TP}             # id im Pfad
-body_with_id = {"positionId": POSITION_ID, "StopLossRate": SL, "TakeProfitRate": TP}
-body_camel = {"stopLossRate": SL, "takeProfitRate": TP}             # falls camelCase erwartet
-
-# (method, path, body, note) — Runde 2: eToro-Doku (llms.txt) sagt
-# PATCH /api/v1/trading/{demo|real}/positions/{positionId}  (id im PFAD, KEIN /execution/)
+# Runde 3: EXAKTE API-Referenz-Spec (api-portal.etoro.com .../modify-stop-loss...):
+# PATCH /api/v2/trading/{demo|real}/positions/{positionId}, camelCase-Body, Erfolg = 202
+body_doc = {"stopLossRate": SL, "takeProfitRate": TP, "stopLossType": "fixed"}
+body_min = {"stopLossRate": SL, "takeProfitRate": TP}   # ohne stopLossType
 candidates = [
-    ("PATCH", f"/api/v1/trading/{env}/positions/{POSITION_ID}", body_pascal, "DOKU: id im Pfad, PascalCase-Body"),
-    ("PATCH", f"/api/v1/trading/{env}/positions/{POSITION_ID}", body_with_id, "id im Pfad + auch im Body"),
-    ("PATCH", f"/api/v1/trading/{env}/positions/{POSITION_ID}", body_camel, "id im Pfad, camelCase-Body"),
+    ("PATCH", f"/api/v2/trading/{env}/positions/{POSITION_ID}", body_doc, "DOKU-Spec: v2, camelCase, stopLossType"),
+    ("PATCH", f"/api/v2/trading/{env}/positions/{POSITION_ID}", body_min, "v2, camelCase, ohne stopLossType"),
 ]
 
 hit = None
 for method, path, body, note in candidates:
     try:
         r = c._request(method, path, body=body, write=True)
-        print(f"  200 OK  {method} {path}   [{note}]")
+        print(f"  2xx OK (202 erwartet)  {method} {path}   [{note}]")
         print(f"          response: {str(r)[:200]}")
         hit = (method, path, note); break
     except EToroError as e:
