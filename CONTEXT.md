@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-17 (eToro LIVE · SECTOR_RS_GATE + PICK_BAND live · **EU-Takt-Guard: "messen statt bauen"** · **run_trader.sh Push-Guard** (Freeze-Fix, Logs tracken sich selbst) · eToro-Close-Backfill (RHI-Bug) · Reject-Log misst ab heute)
+**Letztes Update:** 2026-07-30 (eToro LIVE · **Gate 80** · **VCP-Pick-Prioritaet** · **Hold 30d** · **eToro-Trailing-Endpoint-FIX** (404 seit Live-Start!) + Self-Healing-SL-Reconcile · Rescue-VWAP-Gate · Regime-Bremse falsifiziert · 30d-WR 40% = Baer, 90d +$290)
 
 ---
 
@@ -264,6 +264,57 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-29/30** **eToro-Trailing-Endpoint-FIX (kritisch) + Self-Healing-SL-Reconcile**:
+  update_sl_tp gab seit Live-Start **[404] RouteNotFound** (still verschluckt) -> KEIN Trailing-
+  Stop erreichte je eToro, jede Position lief mit dem Initial-Stop (User-Report SJM). Reiner
+  unbemerkter Kapitalverlust (MMM: Close 175.64 statt Trailing-Stop 176.94 = 5-Min-Paper-Close-
+  Slippage weil eToro-SL nie gepflegt). Root-Cause: Endpoint war nie verifizierter Platzhalter.
+  Korrekt (Prober 3 Runden, 202 mit operationId): `PATCH /api/v2/trading/{env}/positions/{positionId}`
+  camelCase `{stopLossRate, takeProfitRate, stopLossType:"fixed"}`. ALLES war falsch (v1/PascalCase/
+  id-im-Body/kein-id-im-Pfad). ACHTUNG eToro-Inkonsistenz: Open-Order will PascalCase, Update-Position
+  camelCase! Fix commit d294588 + Reconcile aller 7 Positionen (etoro_reconcile_stops.py, 7 OK).
+  **Self-Healing** (3f6c104, SL_RECONCILE_ENABLED): sync_etoro_positions gleicht jeden Run eToros
+  stopLossRate mit Paper-Stop ab (aus Portfolio-Response, kein Extra-Call), re-pusht bei Drift >0.3%
+  -> keine stille Divergenz > 1 Run. 2 Close-Wege: Paper-Stop-Hit -> Trader schliesst aktiv (Market);
+  eToro-server-SL-Hit -> eToro schliesst selbst, Trader liest via close_from_history. Prober-Tool:
+  etoro_probe_updatesltp.py. Endpoint in reference_etoro_api-Memory korrigiert.
+
+- **2026-07-29** **BREAKOUT-Haltedauer 15/21 -> 30 (Punkt 4)**: Haltedauer-Sweep (`--hold-sweep`,
+  alle Holds in einem Lauf via evaluate_outcome(hold_override)): 30d Optimum (+60pp/2J vs 15d,
+  45d nur +2pp mehr), robust Bull +45/Baer +15, WR-Kosten ~2pp. Behebt BACKLOG #7 (Trader 21,
+  Equity/Backtest 15 -> alle 30). TP/SL selbst solide. 24% Time-Exits (79% positiv, 70-96% zum TP)
+  erreichen jetzt ihren TP. commit dd47fd3. Vorbehalt: Live-Stagnations-Exit (5d) kappt flache
+  Trades -> Live-Benefit partiell.
+
+- **2026-07-29** **Regime-Bremse FALSIFIZIERT** (BACKLOG #4, 2. Anlauf): User wollte Baer-Bremse.
+  219 BREAKOUT-Trades nach Regime-TIEFE gesplittet: der TIEFSTE Baer (beide WEAK + SPY<MA200, wo
+  wir JETZT sind) hat die HOECHSTE WR (76.9%), kein Bucket netto negativ. Baer-Breakouts sind
+  Survivor. KEINE Bremse gebaut. Aktuelle Verluste = Small-Sample (30d n=37) + z.T. out-of-sample.
+  **KEINE dritte Regime-Bremse ohne fundamental neue Evidenz.** Skript regime_depth.py.
+
+- **2026-07-23** **VCP-Fix: Schema A (Score) + B (Pick-Prioritaet)** (commit 59e5368, 2J-validiert):
+  Gewicht-Sweep (bt_all_candidates, `--emit-all-candidates`): VCP gehoert in die PICK-PRIORITAET,
+  nicht den Score. **A** (klein, +0.6pp): vcp_signal>=0.30 -> vcp_strength>0, Gewicht +5->+8
+  (ApexScan L1376 + Backtest). **B** (gross, +2.4pp): VCP-first im _pick_rank (apex_trader) +
+  _tg_rank (ApexScan) + _band_rank (Backtest). A+B-Kombi 2J: WR 54.4->55.7%, PF ->1.85, +395pp,
+  VCP-Anteil 35->58%. Schema-B-allein waere 56.8%/2.03/+361 (User: A+B laeuft, Schema-A-Rollback
+  als Hebel gemerkt). LEHRE: Score-Gewicht aendert Top-N-Ranking kaum (wie rr), Prioritaet ist der Hebel.
+
+- **2026-07-22/23** **Gate 80 + eToro-Reason-Fix + Rescue-VWAP-Gate** (commit 89302ac/d2ed7c4):
+  **Gate 80** (TG_MIN_SCORE BREAKOUT 70->80, ApexScan+Trader): sub-80 = 33-37% WR, Equity +2.2pp/
+  2J 54.4->56.2%, 88% Retention. SCAN_MIN_SCORE bleibt 70 (Equity misst sub-80 weiter). **eToro-
+  Reason-Fix**: sl_ref/tp_ref-Fallback auf pos["stop"]/target wenn eToro keine Rate liefert (WULF).
+  **Rescue-VWAP-Gate** (RESCUE_REQUIRE_ABOVE_VWAP): Rescue war netto -1.01pp (n=18, 13/18 schaden)
+  -> nur noch rescuen wenn EOD ueber VWAP. Dashboard-Badge-Fix (37/61 falsch als TE, SW v48).
+  **Intraday-Analyse**: Reject-Filter RANGE_POS_MAX=0.90 validiert (filtert Fader), Rescue der Bluter.
+
+- **2026-07-22/29** **Diagnose + Postmortem-Pipeline**: eToro real -$48/WR 28% = REGIME (voll BEARISH,
+  90d noch +). TE-Beschoenigung: ehrliche Scanner-WR ~30% statt 52%. Winner = Post-Earnings-Beat
+  (ABT/HAS/LW), Loser = Baer-Stops (high-score schuetzt nicht). **Pipeline-Bug gefixt** (d001f59):
+  trade_postmortems.json war nicht in Knowledge-Cron-git-add -> Pendings persistierten nie (9->23);
+  jetzt drin, 240 complete/0 pending. **MCP-News gesperrt (FMP) -> WebSearch.**
+
 
 - **2026-07-17** **run_trader.sh Push-Guard — Git darf die Positions-Logik nicht killen**:
   - Konsequenz aus dem 35-Min-Freeze (16.07.). `set -e` galt global → ein `git add` auf eine
@@ -671,7 +722,7 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 | Konzept | Wert | Quelle der Wahrheit | Wo verwendet |
 |---|---|---|---|
 | **TRIGGER_WINDOW** | 3 Trading-Days | apex_equity.py L100 | Paper-Trader, Dashboard History, Backtest v2 |
-| **HOLD_DAYS BREAKOUT** | 21 | apex_equity.py horizon_to_days | Paper-Trader, Dashboard, Backtest |
+| **HOLD_DAYS BREAKOUT** | **30** | apex_trader.py + apex_equity.py + Backtest | **07-29 15/21->30** (Hold-Sweep-Optimum, +60pp/2J, behebt #7). ALLE DREI Quellen jetzt 30 |
 | **HOLD_DAYS VCP** | 40 | dito | dito |
 | **HOLD_DAYS STAGE_2** | 60 | dito | dito |
 | **HOLD_DAYS SHORT_SQUEEZE** | 20 | dito | dito |
@@ -693,6 +744,12 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 | **SECTOR_RS_GATE_ENABLED** | True | ApexScan.py L~58 | **07-15 live**: skip Tech/Comm-BO wenn Sektor-ETF (XLK/XLC) `sector_momentum < 0` UND kein starker Catalyst. Deckt die Zelle die QQQ verpasst (Semi-Selloff). Rollback = False |
 | **TG_SWEET_BAND** | (90, 120) | ApexScan.py L~71 | **07-11 live**: Telegram-Top-2 bevorzugt BREAKOUT im Band; 130+ ans Ende |
 | **PICK_BAND** | (90.0, 120.0) | apex_trader.py L~48 | **07-15 live**: Trader-Pick-Ranking analog TG_SWEET_BAND (vereinheitlicht). Rollback = None |
+| **TG_MIN_SCORE BREAKOUT (Gate 80)** | **80** | ApexScan.py + apex_trader.py | **07-22 70->80**: sub-80 = 33-37% WR, +2.2pp. SCAN_MIN_SCORE bleibt 70 (Equity misst sub-80 weiter). VCP/SQUEEZE-Gates unveraendert (70/65) -> tauchen an BO-armen Tagen in TG auf (kosmetisch, Trader handelt nur BREAKOUT) |
+| **VCP_PICK_PRIORITY** | True | apex_trader.py | **07-23 live**: VCP-Kandidaten (cat_vcp_strength>0) VOR dem Band gepickt (_pick_rank/_tg_rank/_band_rank). +2.4pp WR, VCP-Anteil 35->58%. Schema A (Score) auch: vcp_strength>0 @ +8. Rollback = False |
+| **RESCUE_REQUIRE_ABOVE_VWAP** | True | apex_trader.py | **07-22 live**: EOD->SWING-Rescue nur wenn ueber VWAP (Rescue war netto -1.01pp). Rollback = False |
+| **SL_RECONCILE_ENABLED** | True | apex_trader.py sync | **07-29 live**: gleicht eToro-SL jeden Run mit Paper-Stop ab, re-pusht bei Drift >0.3%. Absicherung nach dem update_sl_tp-404-Bug. Rollback = False |
+| **eToro Update-SL/TP-Endpoint** | `PATCH /api/v2/trading/{env}/positions/{positionId}` | etoro_client.py | **07-29 FIX** (war v1 -> [404], jeder Trailing-Push verschluckt seit Live-Start). camelCase-Body {stopLossRate,takeProfitRate,stopLossType}. Erfolg 202. ACHTUNG: Open-Order will PascalCase, Update camelCase! |
+| **EU_GUARD / INTRADAY_EU_ENABLED** | True / False | apex_trader.py | 07-17: EU-Live-Entry nur 07:00-15:15 UTC; EU raus aus Intraday-Universum. EU-Edge via Equity-Tracker messen (BACKLOG #23) |
 | **INTRADAY_MAX_POSITIONS** | 4 | apex_trader.py | 07-10 2→4 |
 | **INTRADAY_GAIN_MIN/MAX** | 1.0 / 6.0 % | apex_trader.py | **GAIN_MAX unter Verdacht** (BACKLOG #22): Mover wachsen aus dem Vorfilter heraus wenn sie am staerksten laufen |
 | **INTRADAY_RANGE_POS_MAX** | 0.90 | apex_trader.py | Anti-Peak (07-10). **Unter Verdacht** (BACKLOG #22): starke Trends laufen am Hoch |
