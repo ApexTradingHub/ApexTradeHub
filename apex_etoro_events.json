@@ -1907,5 +1907,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "WY",
+    "instrument_id": 1738,
+    "size_usd": 50.0,
+    "stop": 24.1,
+    "target": 26.09,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 370492630,
+    "response": {
+      "token": "bedbaa89-2ca0-421b-915c-89f0d4e17354",
+      "orderId": 370492630,
+      "referenceId": "099d91eb-52d1-4079-afd8-5c0a6c38988f"
+    },
+    "ts": "2026-07-31T18:11:33Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
