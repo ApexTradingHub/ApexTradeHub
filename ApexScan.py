@@ -17,6 +17,7 @@ try:
         get_catalyst_data,
         derive_catalyst_signals,
         score_delta_for_catalyst_signals,
+        get_fetch_stats,
     )
     CATALYSTS_AVAILABLE = True
 except ImportError:
@@ -1937,6 +1938,24 @@ def main():
     print("Debug summary:")
     for k, v in debug.most_common(12):
         print(f"  {k}: {v}")
+
+    # Earnings-Health-Guard (2026-07-31): macht einen systemischen Earnings-Fetch-
+    # Ausfall sofort sichtbar (der lxml-Bug war ~30 Tage still tot). Alarmiert wenn
+    # nennenswert gefetcht wurde, aber ~kein earnings-Fetch durchkam (fehlende Dep /
+    # kaputter Endpoint) -> -15 Blackout + +8 PEAD waeren offline.
+    if CATALYSTS_AVAILABLE:
+        _es = get_fetch_stats()
+        _att = _es["earnings_attempts"]
+        _ok, _empty, _err = _es["earnings_ok"], _es["earnings_empty"], _es["earnings_errors"]
+        print(f"Earnings-Health: {_ok} ok / {_empty} empty / {_err} errors "
+              f"of {_att} fetches")
+        if _att >= 20 and _ok == 0:
+            print("  ⚠️⚠️ EARNINGS-LAYER TOT: 0 erfolgreiche earnings-Fetches — "
+                  "Blackout(-15) + PEAD(+8) sind OFFLINE. lxml fehlt / Endpoint kaputt? "
+                  "Siehe reference-free-data-sources (lxml in pip-install pruefen).")
+        elif _att >= 20 and _err > _att * 0.5:
+            print(f"  ⚠️ Earnings-Fetch groesstenteils fehlerhaft ({_err}/{_att}) — "
+                  "Dependency/Endpoint pruefen.")
 
     candidates = enrich_sector(candidates)
     candidates = apply_sector_cap(candidates)

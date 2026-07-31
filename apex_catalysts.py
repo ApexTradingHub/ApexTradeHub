@@ -28,6 +28,23 @@ warnings.filterwarnings("ignore")
 CATALYST_CACHE_FILE = "catalyst_cache.json"
 CATALYST_TTL_HOURS  = 24
 
+# Visibility-Guard (2026-07-31): der Earnings-Layer war ~30 Tage still tot, weil
+# t.earnings_dates ohne lxml einen ImportError warf, den `except: pass` schluckte.
+# Diese Zaehler machen einen systemischen Fetch-Ausfall sichtbar (ApexScan druckt
+# am Ende eine Health-Zeile). NUR echte Fetches werden gezaehlt (Cache-Hits nicht).
+_FETCH_STATS = {"earnings_attempts": 0, "earnings_ok": 0,
+                "earnings_empty": 0, "earnings_errors": 0}
+
+
+def get_fetch_stats() -> dict:
+    """Snapshot der Earnings-Fetch-Zaehler seit Prozessstart (bzw. letztem Reset)."""
+    return dict(_FETCH_STATS)
+
+
+def reset_fetch_stats() -> None:
+    for k in _FETCH_STATS:
+        _FETCH_STATS[k] = 0
+
 
 @contextlib.contextmanager
 def _suppress():
@@ -78,6 +95,7 @@ def fetch_catalyst_data(ticker: str) -> dict:
             t = yf.Ticker(ticker)
 
         # --- Earnings dates (historical + upcoming) ---
+        _FETCH_STATS["earnings_attempts"] += 1
         try:
             with _suppress():
                 ed = t.earnings_dates
@@ -96,8 +114,12 @@ def fetch_catalyst_data(ticker: str) -> dict:
                         out["earnings"].append({"date": date_iso, "surprise_pct": surp})
                     except Exception:
                         continue
+                _FETCH_STATS["earnings_ok"] += 1
+            else:
+                _FETCH_STATS["earnings_empty"] += 1
         except Exception:
-            pass
+            # z.B. ImportError(lxml) — GENAU der stille Ausfall, den der Guard sichtbar macht.
+            _FETCH_STATS["earnings_errors"] += 1
 
         # --- Info data: short interest, analyst target ---
         try:
