@@ -276,6 +276,14 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
   VOD.L-Result (already_saved re-evaluiert nie) manuell entfernt + Equity-Kurve neu berechnet ->
   naechster Equity-Run haelt es raus (Guard: re-eval -> None). Sibling-Scan: nur AMP.MI als EU-TP
   uebrig, verifiziert ECHT (High 12.58 >= Target 12.36). LEHRE: .L/EU-Ticker sind yfinance-100x-Prone.
+  **NACHTRAG (commit f36e9cc): 2. Phantom-Klasse — Signal-Bar-Look-Ahead.** User-Frage "AVY heute?":
+  AVY meldete am Signal-Tag (07-30) Earnings, echter Intraday-Spike auf High 187.91 = der SIGNAL-Bar.
+  yfinance lieferte bei `start=sig_date+1` wegen Timezone-Boundary gelegentlich den Signal-Bar selbst
+  zurueck -> `h>=target` feuerte -> Phantom-TP 186.09 (real ab 07-31 nur 174.17). Fix: evaluate_trade
+  filtert jetzt strikt `data.index.date > sig_date.date()`. AVY-Phantom entfernt. **Full-Re-Eval letzte
+  30d: nur VOD.L + AVY waren echte Phantome.** Die restlichen "Time Exit->TP"-Diffs = Hold-Aenderung
+  15->30d (erwartet, KEINE Bad-Prints); LW 07-23 = Same-Bar-Trigger+Stop-Eigenheit (Target real erreicht,
+  behalten). Merke: bei so einem Re-Eval NICHT Hold-Staleness mit Phantomen verwechseln.
 
 - **2026-07-31** **Earnings-Schicht war ~30 Scan-Tage LIVE TOT — reaktiviert (Root-Cause: fehlendes lxml)**
   (commits 4d3bc33 + **7024f1a**): User-Frage zu Earnings deckte auf: `cat_earnings_next_days` bei
