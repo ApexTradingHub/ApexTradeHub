@@ -240,6 +240,14 @@ def evaluate_trade(signal, today):
         return None
     data = data[needed].dropna()
     data = _sanitize_ohlc(data)
+    # Look-ahead-Guard: NUR Bars strikt NACH dem Signal-Tag werten. yfinance liefert
+    # bei start=sig_date+1 wegen Timezone-/Boundary-Quirks gelegentlich den Signal-Bar
+    # SELBST zurueck -> Same-Bar-Phantom-TP (z.B. AVY 2026-07-30: Earnings-Spike-High
+    # 187.91 = Signal-Bar; am 07-31 real nur 174.17, Target 186.09 nie erreicht).
+    try:
+        data = data[data.index.date > sig_date.date()]
+    except Exception:
+        pass
     if data is None or data.empty:
         return None
 
