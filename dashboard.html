@@ -252,6 +252,20 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 .pos { color: var(--green) !important; }
 .neg { color: var(--red) !important; }
 
+/* eToro Gewonnene/Verlorene Trades */
+.etrade-sum { display:flex; flex-wrap:wrap; gap:6px 18px; padding:11px 12px; font-size:12px; color:var(--muted2); border-bottom:1px solid var(--border); }
+.etrade-sum b { color:var(--text); font-family:var(--font-mono); font-weight:600; }
+.etrade-hd, .etrade-row { display:grid; grid-template-columns: 1.25fr 1.45fr 1.15fr 1fr; gap:8px; align-items:center; padding:8px 12px; }
+.etrade-hd { font-size:10px; color:var(--muted2); text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border); }
+.etrade-row { border-bottom:1px solid var(--border); font-size:12px; }
+.etrade-row:last-child { border-bottom:none; }
+.etrade-rsn { padding:1px 6px; border-radius:4px; font-size:10.5px; white-space:nowrap; }
+@media (max-width:640px){
+  .etrade-hd { display:none; }
+  .etrade-row { grid-template-columns: 1fr auto; grid-template-areas:"tk gv" "px rsn"; row-gap:3px; }
+  .etrade-c1{grid-area:tk} .etrade-c2{grid-area:px} .etrade-c3{grid-area:rsn;justify-self:start} .etrade-c4{grid-area:gv;text-align:right}
+}
+
 /* ━━ SIGNAL TABLE ━━ */
 .signal-table-wrap { overflow-x: auto; }
 .signal-table { width: 100%; border-collapse: collapse; }
@@ -1061,6 +1075,17 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
     </div>
     <div style="position:relative;height:320px;padding:8px 4px 4px">
       <canvas id="e-equity"></canvas>
+    </div>
+  </div>
+
+  <!-- Gewonnene & verlorene Trades -->
+  <div class="card anim-3">
+    <div class="card-head">
+      <h2>🏆 Gewonnene &amp; verlorene Trades</h2>
+      <span class="card-sub" id="e-trades-sub">—</span>
+    </div>
+    <div id="e-trades-list">
+      <div class="empty-state" style="padding:20px"><span>Noch keine geschlossenen eToro-Trades.</span></div>
     </div>
   </div>
 
@@ -2122,6 +2147,7 @@ function renderEtoro() {
 
   // --- Bubble-Chart: X=Zeit, Y=PnL%, Blase=Size ---
   drawEtoroBubble(openPos, etoroEvents);
+  renderEtoroTrades();
 
   if (!list) return;
   if (!etoroEvents.length) {
@@ -2171,13 +2197,81 @@ function renderEtoro() {
         icon = '👻';
         msg = `<b>${tk}</b> Phantom-Close (${e.reason || '?'}) — orderId #${e.order_id || '?'} nicht mehr bei eToro`;
         break;
-      case 'close_from_history':
-        icon = '📖';
-        msg = `<b>${tk}</b> aus History: ${e.reason || '?'} @ $${(+e.close_rate || 0).toFixed(2)} · netP $${(+e.net_profit || 0).toFixed(2)}`;
+      case 'close_from_history': {
+        const _net = +e.net_profit || 0;
+        icon = _net >= 0 ? '✅' : '🔴';
+        msg = `<b>${tk}</b> CLOSE (History) — <b>${e.reason || '?'}</b> @ $${(+e.close_rate || 0).toFixed(2)} · netP <span class="${_net>=0?'pos':'neg'}">${_net>=0?'+':''}$${_net.toFixed(2)}</span> ${modeTag}`;
         break;
+      }
+      case 'close_backfill': {
+        const _net = +e.net_profit || 0;
+        icon = _net >= 0 ? '✅' : '🔴';
+        msg = `<b>${tk}</b> CLOSE (backfill) — <b>${e.reason || '?'}</b> @ $${(+e.close_rate || 0).toFixed(2)} · netP <span class="${_net>=0?'pos':'neg'}">${_net>=0?'+':''}$${_net.toFixed(2)}</span> ${modeTag}`;
+        break;
+      }
     }
     return `<div class="activity-item"><span class="ai-time">${t}</span><span class="ai-icon">${icon}</span><span class="ai-msg">${msg}</span></div>`;
   }).join('');
+}
+
+function renderEtoroTrades() {
+  const list = document.getElementById('e-trades-list');
+  const sub  = document.getElementById('e-trades-sub');
+  if (!list) return;
+  const money = v => (v >= 0 ? '+$' : '-$') + Math.abs(v).toFixed(2);
+  const tc = v => (v >= 0 ? 'pos' : 'neg');
+  const allClosed = (paperState && paperState.closed) || [];
+  const trades = allClosed
+    .filter(c => typeof c.etoro_net_profit === 'number')
+    .slice()
+    .sort((a, b) => String(b.closed_at || b.etoro_backfilled_at || '')
+                     .localeCompare(String(a.closed_at || a.etoro_backfilled_at || '')));
+  if (!trades.length) {
+    list.innerHTML = '<div class="empty-state" style="padding:20px"><span>Noch keine geschlossenen eToro-Trades.</span></div>';
+    if (sub) sub.textContent = '—';
+    return;
+  }
+  const wins   = trades.filter(t => t.etoro_net_profit > 0);
+  const losses = trades.filter(t => t.etoro_net_profit < 0);
+  const decided = wins.length + losses.length;
+  const total  = trades.reduce((s, t) => s + t.etoro_net_profit, 0);
+  const wr     = decided ? wins.length / decided * 100 : 0;
+  const avgW   = wins.length   ? wins.reduce((s, t) => s + t.etoro_net_profit, 0) / wins.length : 0;
+  const avgL   = losses.length ? losses.reduce((s, t) => s + t.etoro_net_profit, 0) / losses.length : 0;
+  const best   = trades.reduce((m, t) => t.etoro_net_profit > m.etoro_net_profit ? t : m, trades[0]);
+  const worst  = trades.reduce((m, t) => t.etoro_net_profit < m.etoro_net_profit ? t : m, trades[0]);
+
+  if (sub) sub.innerHTML = `${wins.length}W / ${losses.length}L · WR ${wr.toFixed(0)}% · Total <span class="${tc(total)}">${money(total)}</span>`;
+
+  const summary = `<div class="etrade-sum">
+    <span>Trades <b>${trades.length}</b></span>
+    <span>Gewonnen <b class="pos">${wins.length}</b> · Verloren <b class="neg">${losses.length}</b></span>
+    <span>WR <b>${wr.toFixed(0)}%</b></span>
+    <span>Total <b class="${tc(total)}">${money(total)}</b></span>
+    <span>Ø Win <b class="pos">${money(avgW)}</b> · Ø Loss <b class="neg">${money(avgL)}</b></span>
+    <span>Best <b class="pos">${best.ticker} ${money(best.etoro_net_profit)}</b> · Worst <b class="neg">${worst.ticker} ${money(worst.etoro_net_profit)}</b></span>
+  </div>`;
+
+  const header = `<div class="etrade-hd"><span>Ticker</span><span>Entry → Exit</span><span>Grund</span><span style="text-align:right">G/V</span></div>`;
+
+  const rows = trades.map(t => {
+    const entry = (+(t.etoro_open_rate || t.entry_actual) || 0);
+    const exit  = (+(t.etoro_close_rate || t.exit_price) || 0);
+    const net   = t.etoro_net_profit;
+    const pct   = (typeof t.pnl_pct === 'number') ? t.pnl_pct : (entry > 0 ? (exit / entry - 1) * 100 : 0);
+    const rsn   = t.exit_reason || '?';
+    const isTP  = /TP|Target|Take/i.test(rsn);
+    const isSL  = /\bSL\b|Stop/i.test(rsn);
+    const badge = isTP ? 'exit-tp' : isSL ? 'exit-sl' : 'exit-te';
+    return `<div class="etrade-row">
+      <span class="etrade-c1"><b>${t.ticker || '?'}</b> <span style="color:var(--muted2);font-size:10.5px">${t.setup || ''}</span></span>
+      <span class="etrade-c2" style="font-family:var(--font-mono)">$${entry.toFixed(2)} → $${exit.toFixed(2)}</span>
+      <span class="etrade-c3"><span class="etrade-rsn ${badge}">${rsn}</span></span>
+      <span class="etrade-c4 ${tc(net)}" style="font-family:var(--font-mono);font-weight:600;text-align:right">${money(net)} <span style="color:var(--muted2);font-weight:400;font-size:10.5px">(${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%)</span></span>
+    </div>`;
+  }).join('');
+
+  list.innerHTML = summary + header + rows;
 }
 
 function drawEtoroBubble(openPos, events) {
