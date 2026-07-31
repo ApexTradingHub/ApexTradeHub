@@ -284,6 +284,10 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
   von ApexScan+Backtest importiert, NICHT apex_trader. **VERIFY: naechster Scan (Fr 20:42 UTC) muss
   wieder `cat_earnings_next_days != None` / beat/blackout-Flags zeigen.** LEHRE: unpinntes yfinance in CI
   kann still Deps nachziehen; jeder in CI genutzte yfinance-Endpoint braucht seine Parsing-Deps explizit.
+  **+ Visibility-Guard (commit 48f2816):** apex_catalysts zaehlt earnings-Fetch-Outcomes (`_FETCH_STATS`,
+  `get_fetch_stats()`), ApexScan druckt am Runde-Ende `Earnings-Health: X ok / Y empty / Z errors of N`
+  und ALARMIERT bei >=20 Fetches & 0 ok ("EARNINGS-LAYER TOT") — damit so ein stiller 30-Tage-Ausfall
+  nie wieder unbemerkt bleibt. Wenn die Health-Zeile im Scan-Log 0 ok zeigt: sofort lxml/pip-install pruefen.
 
 - **2026-07-29/30** **eToro-Trailing-Endpoint-FIX (kritisch) + Self-Healing-SL-Reconcile**:
   update_sl_tp gab seit Live-Start **[404] RouteNotFound** (still verschluckt) -> KEIN Trailing-
