@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-31 (**Earnings-Schicht reaktiviert** — Blackout+PEAD waren ~30d live tot, Root-Cause **fehlendes lxml** in Actions-pip-install (kein IP-Block!), 1-Zeilen-Fix, kein Cron/Chore noetig · eToro LIVE · **Gate 80** · **VCP-Pick-Prioritaet** · **Hold 30d** · **eToro-Trailing-Endpoint-FIX** (404 seit Live-Start!) + Self-Healing-SL-Reconcile · Rescue-VWAP-Gate · Regime-Bremse falsifiziert · 30d-WR 40% = Baer, 90d +$290)
+**Letztes Update:** 2026-07-31 (**Trailing-Fruehstufe +4%->+2%** (regime-konditional!) · **Earnings-Schicht reaktiviert** — Blackout+PEAD waren ~30d live tot, Root-Cause **fehlendes lxml** in Actions-pip-install (kein IP-Block!), 1-Zeilen-Fix, kein Cron/Chore noetig · eToro LIVE · **Gate 80** · **VCP-Pick-Prioritaet** · **Hold 30d** · **eToro-Trailing-Endpoint-FIX** (404 seit Live-Start!) + Self-Healing-SL-Reconcile · Rescue-VWAP-Gate · Regime-Bremse falsifiziert · 30d-WR 40% = Baer, 90d +$290)
 
 ---
 
@@ -264,6 +264,27 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-07-31** **Trailing-Fruehstufe +4% -> +2% gesichert** (commit c7c882a, beide Ladders):
+  User-Beobachtung "viele duempeln bei +2-4%". Befund: unter +6% war **NICHTS geschuetzt** — nur
+  **15% von 92 Trades erreichten je Step 1**, bei 85% feuerte die Ladder nie. 12 Trades liefen
+  >=+3% und endeten <=+1% (**-30.4pp**). **Neues Tool `trail_sweep.py`**: rekonstruiert Trade-Pfade
+  aus Tagesbars (Trailing ist in apex_backtest_v2 NICHT simulierbar — der kennt nur TP/SL/Zeit),
+  adverse-first, Horizont = echtes Exit-Datum (exogene Exits bleiben, nur der Trail variiert).
+  Validiert: CURRENT-Sim -29.8pp vs. real -21.8pp (Delta = Tagesbar-Granularitaet + TP-Gap-Fills,
+  wirkt auf alle Varianten gleich). **Ergebnis +4%->+2%: -29.8 -> -17.1pp, WR 46.7->50.0%,
+  Trail-Stops 3->13** (= mehr Rotation). **Die 9 grossen Gewinner (+84.8pp von -21.8pp gesamt!)
+  bleiben unberuehrt** — PAY/RHI/HAS/ABBV/NKTR/JBL in JEDER Variante identisch, weil ein Trail nur
+  bei Rueckkehr feuert; wer ueber +4% weiter ausbricht laeuft ungebremst. Nur NVO -5.8pp.
+  **FALSIFIZIERT dabei:** (a) zeit-konditionale Variante (nur stagnierende Trades ab Tag 3/5 eng
+  stellen, um schnelle Runner zu schonen) bringt NICHTS (-29.1 vs -29.8) — der Give-Back passiert
+  in den **ersten 1-2 Tagen**, Schutz muss sofort greifen; (b) aggressiv +2.5%->+1% (in-sample
+  besser mit -8.7pp, aber Rauschen + kostete hier schon 2 Runner).
+  **⚠ REGIME-KONDITIONAL:** Sample = Baer-/Chop-Phase Jun-Jul 2026. Bei extremem Positiv-Skew
+  (9 Trades tragen alles) wuerde die Fruehstufe im BULLENMARKT genau die Runner kappen.
+  **Bei Regime-Wechsel auf BULLISH neu bewerten. Rollback = Zeile `(1.04, 1.02)` raus.**
+  Akzeptanz-Kriterien (vorab fixiert): nach ~20 neuen Trades WR hoeher UND Gesamt-PnL nicht
+  schlechter; wenn viele Winner gekappt werden -> raus.
 
 - **2026-07-31** **Phantom-TP-Fix: yfinance-Bad-Print-Guard im Equity-Tracker** (commit 4467d63):
   User sah VOD.L im Signale-/History-Tab als "Take Profit +11.12%", real aber −2% & bei eToro noch
