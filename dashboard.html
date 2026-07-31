@@ -2259,7 +2259,15 @@ function renderEtoroTrades() {
     const exit  = (+(t.etoro_close_rate || t.exit_price) || 0);
     const net   = t.etoro_net_profit;
     const pct   = (typeof t.pnl_pct === 'number') ? t.pnl_pct : (entry > 0 ? (exit / entry - 1) * 100 : 0);
-    const rsn   = t.exit_reason || '?';
+    let rsn = t.exit_reason || '?';
+    // Display-Fallback fuer Alt-Trades: unklassifizierte eToro-Closes aus Paper-
+    // Target/Stop ableiten (~ = inferred, nicht eToro-bestaetigt). Neue Closes
+    // bekommen das Label bereits trader-seitig (apex_trader backfill).
+    if (/^eToro closed$/i.test(rsn)) {
+      const tg = +t.target || 0, st = +t.stop || 0;
+      if (tg && exit >= tg * 0.997)      rsn = 'eToro TP~';
+      else if (st && exit <= st * 1.003) rsn = 'eToro SL~';
+    }
     const isTP  = /TP|Target|Take/i.test(rsn);
     const isSL  = /\bSL\b|Stop/i.test(rsn);
     const badge = isTP ? 'exit-tp' : isSL ? 'exit-sl' : 'exit-te';

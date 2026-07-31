@@ -2293,10 +2293,20 @@ def sync_etoro_positions(state: dict):
             net_profit = float(hit.get("netProfit") or 0)
             sl_rate    = float(hit.get("stopLossRate") or 0)
             tp_rate    = float(hit.get("takeProfitRate") or 0)
+            # Fallback (2026-07-31): eToros History liefert oft KEINE stopLoss/takeProfit-
+            # Rate -> frueher landete alles pauschal als "eToro closed". Wenn die Rate
+            # fehlt, den Close gegen Paper-Target/Stop pruefen und TP/SL ableiten. Das
+            # "~" markiert das Label als INFERRED (aus Paper-Levels), nicht eToro-bestaetigt.
+            p_tgt = f(c_.get("target"))
+            p_stp = f(c_.get("stop"))
             if tp_rate and close_rate >= tp_rate * 0.999:
                 real_reason = "eToro TP"
             elif sl_rate and close_rate <= sl_rate * 1.001:
                 real_reason = "eToro SL"
+            elif p_tgt and close_rate >= p_tgt * 0.997:
+                real_reason = "eToro TP~"
+            elif p_stp and close_rate <= p_stp * 1.003:
+                real_reason = "eToro SL~"
             else:
                 real_reason = "eToro closed"
             # PnL aus eToros WAHRHEIT: openRate (echter Fill) + netProfit (echtes Geld
