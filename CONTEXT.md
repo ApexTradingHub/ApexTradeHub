@@ -265,6 +265,18 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
+- **2026-07-31** **Phantom-TP-Fix: yfinance-Bad-Print-Guard im Equity-Tracker** (commit 4467d63):
+  User sah VOD.L im Signale-/History-Tab als "Take Profit +11.12%", real aber −2% & bei eToro noch
+  OFFEN. Ursache: yfinance lieferte fuer VOD.L (.L = London, Pence) am 30.07. einen **korrupten
+  Tagesbar High=12047.50** statt ~120 (100x-LSE-Skalierungs-Glitch). `evaluate_trade`s `h >= tp`
+  feuerte auf dem Muell-High -> Phantom-TP. Der Live-Trader nutzt den Intraday-Last (sauber) und liess
+  korrekt offen -> Divergenz. **Fix:** `_sanitize_ohlc()` (apex_equity.py) verwirft Bars mit
+  High > 2x Body-Top bzw. Low < Body-Bottom/2 (nie real fuer Large/Mid-Cap; faengt 100x trivial),
+  angewandt in evaluate_trade + compute_open_positions. Konstante `BADPRINT_MAX_RATIO=2.0`. Frozen
+  VOD.L-Result (already_saved re-evaluiert nie) manuell entfernt + Equity-Kurve neu berechnet ->
+  naechster Equity-Run haelt es raus (Guard: re-eval -> None). Sibling-Scan: nur AMP.MI als EU-TP
+  uebrig, verifiziert ECHT (High 12.58 >= Target 12.36). LEHRE: .L/EU-Ticker sind yfinance-100x-Prone.
+
 - **2026-07-31** **Earnings-Schicht war ~30 Scan-Tage LIVE TOT — reaktiviert (Root-Cause: fehlendes lxml)**
   (commits 4d3bc33 + **7024f1a**): User-Frage zu Earnings deckte auf: `cat_earnings_next_days` bei
   **98-100% aller BREAKOUT-Signale = None**, 0% beat/blackout-Flags in letzten 30 Scan-Tagen. Also
