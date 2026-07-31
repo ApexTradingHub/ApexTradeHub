@@ -131,9 +131,24 @@ def fetch_catalyst_data(ticker: str) -> dict:
 def get_catalyst_data(ticker: str, force_refresh: bool = False) -> dict:
     """Cached fetch. Hits yfinance only if stale or forced."""
     cache = _load_cache()
-    if not force_refresh and ticker in cache and _is_fresh(cache[ticker]):
-        return cache[ticker]
+    old = cache.get(ticker) if isinstance(cache.get(ticker), dict) else None
+    if not force_refresh and old is not None and _is_fresh(old):
+        return old
     data = fetch_catalyst_data(ticker)
+    # MERGE-GUARD (2026-07-31): yfinance `t.earnings_dates` wird auf GitHub-Actions-
+    # Datacenter-IPs geblockt und faellt in den stillen except -> earnings=[]. Der
+    # committete Cache-Seed traegt gute Earnings-Termine; ein leerer Live-Fetch darf
+    # sie NICHT ueberschreiben (sonst gehen -15 Blackout + +8 PEAD still verloren, was
+    # ~30 Scan-Tage lang unbemerkt passiert ist). `t.info` (short/analyst) ueberlebt auf
+    # Actions -> die werden normal aktualisiert, nur bei None faellt der Guard zurueck.
+    if old is not None:
+        if not data.get("earnings") and old.get("earnings"):
+            data["earnings"] = old["earnings"]
+            data["_earnings_stale"] = True   # audit: earnings aus altem Cache
+        if data.get("short_pct_float") is None and old.get("short_pct_float") is not None:
+            data["short_pct_float"] = old["short_pct_float"]
+        if data.get("analyst_target_upside_pct") is None and old.get("analyst_target_upside_pct") is not None:
+            data["analyst_target_upside_pct"] = old["analyst_target_upside_pct"]
     cache[ticker] = data
     _save_cache(cache)
     return data
@@ -193,15 +208,21 @@ def derive_catalyst_signals(catalyst_data: dict, as_of_date=None) -> dict:
                 out["earnings_in_blackout"] = True
 
         if past:
-            last_dt, last_surp = past[0]
-            days_since = (as_of_date - last_dt).days
-            if last_surp is not None:
-                out["earnings_last_surprise"] = last_surp
-            if 0 <= days_since <= 30 and last_surp is not None:
-                if last_surp > 0:
-                    out["earnings_beat_recent"] = True
-                elif last_surp < 0:
-                    out["earnings_miss_recent"] = True
+            # Beat/Miss + last_surprise auf die juengste Quartalszeile MIT bekannter
+            # Surprise stuetzen. Die frisch gemeldete Zeile hat oft noch surprise=None
+            # (Yahoo fuellt die Surprise erst Stunden/Tage nach dem Report) -> nur auf
+            # past[0] zu schauen liess am Report-Tag jedes Beat-Flag ausfallen.
+            # (past ist nach Datum absteigend sortiert -> erstes non-None = juengstes.)
+            known = next(((d, s) for (d, s) in past if s is not None), None)
+            if known is not None:
+                k_dt, k_surp = known
+                out["earnings_last_surprise"] = k_surp
+                days_since = (as_of_date - k_dt).days
+                if 0 <= days_since <= 30:
+                    if k_surp > 0:
+                        out["earnings_beat_recent"] = True
+                    elif k_surp < 0:
+                        out["earnings_miss_recent"] = True
     except Exception:
         pass
 

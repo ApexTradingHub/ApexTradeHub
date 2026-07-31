@@ -2,8 +2,12 @@
 __pycache__/
 *.pyc
 
+# catalyst_cache.json is now TRACKED (committed seed): earnings dates can't be
+# refetched on GitHub-Actions IPs (Yahoo blocks t.earnings_dates), so the repo
+# carries the calendar and the merge-guard in get_catalyst_data preserves it.
+# Refresh locally (residential IP) + commit ~2x/week.
+
 # Local caches / artifacts (regenerated each run)
-catalyst_cache.json
 apex_backtest_chart.png
 apex_equity_chart.png
 apex_equity_top2_chart.png
