@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-31 (**Earnings-Schicht reaktiviert** — Blackout+PEAD waren ~30d live tot, catalyst_cache jetzt getrackt · eToro LIVE · **Gate 80** · **VCP-Pick-Prioritaet** · **Hold 30d** · **eToro-Trailing-Endpoint-FIX** (404 seit Live-Start!) + Self-Healing-SL-Reconcile · Rescue-VWAP-Gate · Regime-Bremse falsifiziert · 30d-WR 40% = Baer, 90d +$290)
+**Letztes Update:** 2026-07-31 (**Earnings-Schicht reaktiviert** — Blackout+PEAD waren ~30d live tot, Root-Cause **fehlendes lxml** in Actions-pip-install (kein IP-Block!), 1-Zeilen-Fix, kein Cron/Chore noetig · eToro LIVE · **Gate 80** · **VCP-Pick-Prioritaet** · **Hold 30d** · **eToro-Trailing-Endpoint-FIX** (404 seit Live-Start!) + Self-Healing-SL-Reconcile · Rescue-VWAP-Gate · Regime-Bremse falsifiziert · 30d-WR 40% = Baer, 90d +$290)
 
 ---
 
@@ -265,22 +265,25 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
 
-- **2026-07-31** **Earnings-Schicht war ~30 Scan-Tage LIVE TOT — reaktiviert** (commit 4d3bc33):
-  User-Frage zu Earnings deckte auf: `cat_earnings_next_days` bei **98-100% aller BREAKOUT-Signale
-  = None**, 0% beat/blackout-Flags in letzten 30 Scan-Tagen. Also **-15 Blackout (Gap-Schutz) UND
-  +8 PEAD (backtest-validiert!) live komplett offline** — wir kauften ungeschuetzt in Earnings-Gaps
-  (ILMN 07-30) und der validierte Post-Beat-Edge wurde nie vergeben. Root-Cause: `catalyst_cache.json`
-  war **gitignored** -> GH-Actions-Scanner startet cache-los -> muss earnings kalt fetchen -> yfinance
-  `t.earnings_dates` ist auf Actions-Datacenter-IPs **geblockt** -> stiller `except` -> earnings=[].
-  `t.info` (analyst/short) ueberlebt auf Actions -> hat den Ausfall maskiert (Signale hatten analyst,
-  aber keine earnings). Diagnose wasserdicht: Cache lokal gesund (784 Eintr., ILMN/SWK je 25 rows),
-  derive funktioniert (AAPL->blackout, SWK->beat) — nur der Actions-Fetch war blind. **3 Fixes:**
-  (1) Cache jetzt **getrackt** (committeter Seed traegt den Earnings-Kalender); (2) **Merge-Guard** in
-  `get_catalyst_data`: leerer/geblockter Fetch ueberschreibt gute gecachte earnings NICHT (short/analyst
-  refreshen weiter live); (3) derive nutzt juengste Quartalszeile MIT bekannter Surprise — die frisch
-  gemeldete hat oft `surprise=None` (Yahoo fuellt spaeter nach), was am Report-Tag jedes Beat-Flag
-  nullte. `apex_catalysts` nur von ApexScan+Backtest importiert, NICHT apex_trader -> kein Trader-Impact.
-  **CHORE:** Cache ~2x/Woche lokal (Residential-IP) prewarmen + committen, sonst veraltet der Kalender.
+- **2026-07-31** **Earnings-Schicht war ~30 Scan-Tage LIVE TOT — reaktiviert (Root-Cause: fehlendes lxml)**
+  (commits 4d3bc33 + **7024f1a**): User-Frage zu Earnings deckte auf: `cat_earnings_next_days` bei
+  **98-100% aller BREAKOUT-Signale = None**, 0% beat/blackout-Flags in letzten 30 Scan-Tagen. Also
+  **-15 Blackout (Gap-Schutz) UND +8 PEAD (backtest-validiert!) live komplett offline** — wir kauften
+  ungeschuetzt in Earnings-Gaps (ILMN 07-30) und der validierte Post-Beat-Edge wurde nie vergeben.
+  **ROOT-CAUSE (korrigiert — NICHT der zuerst vermutete IP-Block):** yfinance `t.earnings_dates`
+  braucht **lxml**, das in der Actions-pip-install-Zeile fehlte (`yfinance pandas requests pytz tqdm
+  matplotlib`, kein lxml). Ein unpinntes yfinance-Upgrade vor ~1 Monat machte earnings_dates
+  lxml-pflichtig -> `ImportError` -> stiller `except: pass` -> earnings=[]. `t.info` (analyst/short)
+  braucht kein lxml -> ueberlebte -> maskierte den Ausfall. Lokaler Dev hat lxml 6.0.2 -> lokaler
+  Cache sah gesund aus. VM-Probe (`t.earnings_dates` -> "Missing optional dependency 'lxml'") war der
+  Beweis. **FIX (7024f1a): `lxml` in alle 3 Cron-Workflows** (nur ApexScan fetcht, aber Zeilen konsistent)
+  -> Actions baut den Kalender wieder selbst pro Lauf, **kein Cron/Seed/Chore noetig**. Der zuerst
+  committete Cache-Seed (4d3bc33) wurde in 7024f1a **wieder ent-trackt** (gitignored). BEHALTEN aus
+  4d3bc33: Merge-Guard in `get_catalyst_data` + derive-Fallback auf juengste Quartalszeile MIT bekannter
+  Surprise (frisch gemeldete = `surprise=None`, Yahoo-Lag) — harmlose Defensive. `apex_catalysts` nur
+  von ApexScan+Backtest importiert, NICHT apex_trader. **VERIFY: naechster Scan (Fr 20:42 UTC) muss
+  wieder `cat_earnings_next_days != None` / beat/blackout-Flags zeigen.** LEHRE: unpinntes yfinance in CI
+  kann still Deps nachziehen; jeder in CI genutzte yfinance-Endpoint braucht seine Parsing-Deps explizit.
 
 - **2026-07-29/30** **eToro-Trailing-Endpoint-FIX (kritisch) + Self-Healing-SL-Reconcile**:
   update_sl_tp gab seit Live-Start **[404] RouteNotFound** (still verschluckt) -> KEIN Trailing-
