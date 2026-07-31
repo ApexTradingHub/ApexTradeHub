@@ -1889,5 +1889,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "SJM",
+    "order_id": 368569365,
+    "position_id": 3567641111,
+    "close_rate": 119.97,
+    "net_profit": 0.93,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 120.41999816894531,
+      "reason": "eToro order_dropped",
+      "pnl_pct": 2.21
+    },
+    "ts": "2026-07-31T13:40:09Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
