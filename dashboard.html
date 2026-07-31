@@ -469,6 +469,7 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 .paper-collapse-hd h2 .hist-chev { font-size: 13px; color: var(--muted2); transition: transform .15s ease; display: inline-block; }
 .paper-collapse-hd.collapsed h2 .hist-chev { transform: rotate(-90deg); }
 #p-closed-list.collapsed { display: none; }
+#e-trades-list.collapsed { display: none; }
 .paper-row {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -1080,8 +1081,8 @@ body.light .header::after { background: linear-gradient(90deg, #8B7355, transpar
 
   <!-- Gewonnene & verlorene Trades -->
   <div class="card anim-3">
-    <div class="card-head">
-      <h2>🏆 Gewonnene &amp; verlorene Trades</h2>
+    <div class="card-head paper-collapse-hd" id="eTradesHd" onclick="toggleEtoroTrades()">
+      <h2>🏆 Gewonnene &amp; verlorene Trades <span class="hist-chev" id="eTradesChev">▾</span></h2>
       <span class="card-sub" id="e-trades-sub">—</span>
     </div>
     <div id="e-trades-list">
@@ -2451,6 +2452,27 @@ function togglePaperClosed() {
   if (hd) hd.classList.toggle('collapsed', collapsed);
   localStorage.setItem('apexPaperClosedCollapsed', collapsed ? '1' : '0');
 }
+function toggleEtoroTrades() {
+  const w = document.getElementById('e-trades-list');
+  const hd = document.getElementById('eTradesHd');
+  if (!w) return;
+  const collapsed = w.classList.toggle('collapsed');
+  if (hd) hd.classList.toggle('collapsed', collapsed);
+  localStorage.setItem('apexEtoroTradesCollapsed', collapsed ? '1' : '0');
+}
+(function initEtoroTradesCollapse() {
+  const apply = () => {
+    const w = document.getElementById('e-trades-list');
+    const hd = document.getElementById('eTradesHd');
+    if (!w) return;
+    const saved = localStorage.getItem('apexEtoroTradesCollapsed');
+    const collapse = (saved === null) ? false : (saved === '1');   // Default: ausgeklappt
+    w.classList.toggle('collapsed', collapse);
+    if (hd) hd.classList.toggle('collapsed', collapse);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
+  else apply();
+})();
 (function initPaperClosedCollapse() {
   const apply = () => {
     const w = document.getElementById('p-closed-list');
