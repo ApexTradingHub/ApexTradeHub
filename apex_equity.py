@@ -30,6 +30,11 @@ CHART_FILE        = "apex_equity_chart.png"
 CHART_FILE_TOP2   = "apex_equity_top2_chart.png"
 TRADE_SIZE        = 200.0
 START_CAPITAL     = 0.0
+# Bad-Print-Guard: yfinance liefert bei .L/LSE-Tickern gelegentlich 100x-Glitches
+# (VOD.L 2026-07-30 High=12047 statt ~120 Pence) -> Phantom-TP. Eine Bar deren High/Low
+# absurd weit vom Body (Open/Close) abweicht, wird verworfen. Faktor 2.0 = ein High > 2x
+# Body-Top bzw. Low < Body-Bottom/2 ist fuer unser Large/Mid-Cap-Universum nie real.
+BADPRINT_MAX_RATIO = 2.0
 
 # Qualitätsfilter — muss identisch zu ApexScan.py sein
 # TG-Gate constants — MIRROR ApexScan.py (post-2026-05-22 changes)
@@ -174,6 +179,24 @@ def already_saved(signal, saved):
     )
 
 
+def _sanitize_ohlc(df):
+    """Verwirft korrupte yfinance-Bars (100x-Skalierungs-Glitches, v.a. .L/LSE-Ticker).
+    Eine Bar gilt als korrupt, wenn High > BADPRINT_MAX_RATIO x Body-Top oder
+    Low < Body-Bottom / BADPRINT_MAX_RATIO. Verhindert Phantom-TP/SL aus Bad-Prints."""
+    if df is None or getattr(df, "empty", True):
+        return df
+    try:
+        body_hi = df[["Open", "Close"]].max(axis=1)
+        body_lo = df[["Open", "Close"]].min(axis=1)
+        bad = (df["High"] > body_hi * BADPRINT_MAX_RATIO) | \
+              ((df["Low"] > 0) & (df["Low"] < body_lo / BADPRINT_MAX_RATIO))
+        if bool(bad.any()):
+            df = df[~bad]
+    except Exception:
+        pass
+    return df
+
+
 # =============================================================
 # TRADE EVALUATION
 # =============================================================
@@ -216,7 +239,8 @@ def evaluate_trade(signal, today):
     if any(c not in data.columns for c in needed):
         return None
     data = data[needed].dropna()
-    if data.empty:
+    data = _sanitize_ohlc(data)
+    if data is None or data.empty:
         return None
 
     exit_price    = None
@@ -655,6 +679,7 @@ def compute_open_positions(signals, closed_results, today):
             post = df[df.index.date > sd]
         except Exception:
             continue
+        post = _sanitize_ohlc(post)   # Bad-Print-Guard (VOD.L-100x-Glitch)
 
         base = {
             "ticker":   s["ticker"],
