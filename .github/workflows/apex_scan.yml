@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: pip install yfinance pandas requests pytz tqdm matplotlib
+      - run: pip install yfinance lxml pandas requests pytz tqdm matplotlib
       - name: ApexScan
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
