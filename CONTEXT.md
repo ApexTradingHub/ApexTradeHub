@@ -58,7 +58,20 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 **BREAKOUT-Tuning aktuell (Stand 2026-06-15):**
 - **RSI-Zone (REALIGN): 48-72** (war 48-68, +6 voll im erweiterten Bereich)
-- **⚠ RSI 60-65 = neue DEADZONE (CONFIRMED 2026-06-15, n=40, WR 47.5% / −10pp lift)** — innerhalb der erlaubten Zone gibt's ein Mid-Range-Loch. Action ausstehend: Score-Penalty (~-5) **nach Backtest**. NICHT als Hard-Skip (Loser-Anteil 52.5% vs Baseline 42.5% = killt fast 1:1 Winner mit). Pattern: U-Kurve, RSI 50-60 (+10pp) und RSI 70+ (+18pp) ggf. Bonus-Kandidaten bei groesserem n.
+- **~~RSI 60-65 DEADZONE~~ — FALSIFIZIERT 2026-07-31, KEINE Action.** Der Juni-Fund (n=40, -10pp)
+  hat sich **out-of-sample umgedreht**: seit 06-15 ist 60-65 **+4.6pp** (WR 44.1 vs Baseline 39.5),
+  waehrend 65-70 von +5.4 auf **-7.0pp** kippte — Buckets tauschen die Plaetze = Rauschen/Regime,
+  keine Struktur. Ueber alle 174 gejointen BREAKOUT-Trades: 60-65 = **-3.0pp**, 65-70 = **-3.3pp**
+  (praktisch identisch -> es gibt gar kein 60-65-"Loch"). Echtes Muster ist die **U-Kurve**: Mitte
+  (60-70) mittelmaessig, Raender gut (50-60 +12.5pp n=11, 70+ **+22.2pp** n=15).
+  **KEINE Score-Penalty** (die frueher hier notierte "-5 nach Backtest" ist damit erledigt), weil:
+  (1) Befund out-of-sample gedreht, (2) 60-65 ≈ 65-70, eine Strafe nur auf 60-65 waere willkuerlich,
+  (3) **97% unserer Signale liegen in 60-70** -> jede Penalty dort trifft die Haelfte aller Signale
+  und drueckt sie mit Gate 80 unter die Schwelle = Signal-Protection-Verstoss.
+  **KERNEINSICHT: RSI ist in unserem Signalset fast eine KONSTANTE, keine Variable** — ein 20d-Hoch-
+  Ausbruch erzeugt mechanisch RSI 60-70. Deshalb kann RSI kaum diskriminieren; nicht daran tunen.
+  Die guten Raender haetten Edge, aber wir bekommen dort schlicht keine Signale (1 bzw. 0 in den
+  letzten 10 Scan-Tagen). **Nicht erneut aufrollen ohne fundamental neue Evidenz.**
 - **perf_120 Buckets (REALIGN):** <0 = -15 (WEAK), 0-25 = **-3 (DEADZONE)**, 25-50 = +15 (SWEET), >50 = +8
 - **TECH_QQQ_GATE live (2026-07-08):** Skip BREAKOUT wenn Sektor Tech/Communication UND
   `market_regime.qqq_perf_20 < 0`. Backtest: Tech+QQQ<0 = WR 14%/PF 0.56 (n=7) → nach Gate
