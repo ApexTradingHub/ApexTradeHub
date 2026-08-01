@@ -2263,10 +2263,9 @@ function renderEtoroTrades() {
     // Exit-Label: trennt MECHANISMUS (was hat geschlossen) vom ERGEBNIS (Plus/Minus).
     // Ein Stop, der UEBER dem Entry feuert, ist ein Trailing-Stop = Gewinnmitnahme —
     // vorher stand da rot "eToro SL" obwohl der Trade im Plus schloss (SJM/MMM/OWL).
-    const rawRsn  = t.exit_reason || '?';
-    const trailed = !!(t.trailing_active || t.trailing_activated_at || (+t.ladder_step || 0) > 0);
+    const rawRsn = t.exit_reason || '?';
     const _tg = +t.target || 0, _st = +t.stop || 0;
-    let kind = 'unknown', inferred = false;
+    let kind = 'unknown';
     if (/TP|Take.?Profit|Target/i.test(rawRsn))        kind = 'tp';
     else if (/\bSL\b|Stop/i.test(rawRsn))              kind = (net > 0) ? 'trail' : 'sl';
     else if (/Stagnation/i.test(rawRsn))               kind = 'stag';
@@ -2274,8 +2273,8 @@ function renderEtoroTrades() {
     else if (/EOD|VWAP/i.test(rawRsn))                 kind = 'eod';
     else if (/^eToro closed$/i.test(rawRsn)) {
       // eToros History liefert oft keine SL/TP-Rate -> aus Paper-Levels ableiten
-      if (_tg && exit >= _tg * 0.997)      { kind = 'tp';                       inferred = true; }
-      else if (_st && exit <= _st * 1.005) { kind = (net > 0) ? 'trail' : 'sl'; inferred = true; }
+      if (_tg && exit >= _tg * 0.997)      kind = 'tp';
+      else if (_st && exit <= _st * 1.005) kind = (net > 0) ? 'trail' : 'sl';
     }
     const LBL = {
       tp:    ['Take-Profit',   'exit-tp'],
@@ -2286,15 +2285,11 @@ function renderEtoroTrades() {
       eod:   ['EOD-Close',     'exit-te'],
       unknown: ['Geschlossen', 'exit-te'],
     };
-    const [lblTxt, badge] = LBL[kind] || LBL.unknown;
-    const rsn = lblTxt + (inferred ? ' ≈' : '');
-    const rsnTitle = `eToro-Grund: ${rawRsn}`
-      + (inferred ? ' · Typ aus Paper-Target/Stop abgeleitet (≈)' : '')
-      + (kind === 'trail' ? ` · Stop lag bei $${_st.toFixed(2)}, ueber Entry -> Gewinn gesichert` : '');
+    const [rsn, badge] = LBL[kind] || LBL.unknown;
     return `<div class="etrade-row">
       <span class="etrade-c1"><b>${t.ticker || '?'}</b> <span style="color:var(--muted2);font-size:10.5px">${t.setup || ''}</span></span>
       <span class="etrade-c2" style="font-family:var(--font-mono)">$${entry.toFixed(2)} → $${exit.toFixed(2)}</span>
-      <span class="etrade-c3"><span class="etrade-rsn ${badge}" title="${rsnTitle}">${rsn}</span></span>
+      <span class="etrade-c3"><span class="etrade-rsn ${badge}">${rsn}</span></span>
       <span class="etrade-c4 ${tc(net)}" style="font-family:var(--font-mono);font-weight:600;text-align:right">${money(net)} <span style="color:var(--muted2);font-weight:400;font-size:10.5px">(${pct >= 0 ? '+' : ''}${pct.toFixed(1)}%)</span></span>
     </div>`;
   }).join('');
