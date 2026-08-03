@@ -917,6 +917,43 @@ Frage (RHI/MAT) entschieden: die 4 Peak-Kaeufe am 10.07. (alle rot) waren die Re
 Nebenschluss: der Intraday-CATCHER ist nicht das Problem — Verluste sitzen im MOMENTUM-Subtyp
 + intraday_rescued (28% WR). Reject-Log-Monitoring kann runterprioren; Fokus auf #16 (Rescue).
 
+### 3. Bestaetigung am TRENDTAG (2026-08-03) — der haerteste Testfall, Filter haelt
+
+User-Frage: "Trump-News am WE, Erleichterungsrally — da gaebe es sicher viele Intras, oder sind
+die alle zur Oeffnung gesprungen?" Markt: Trump blaest Iran-Schlag ab, Dow +600 (+1%), Oel -5%.
+**221 Kandidaten gescannt, 0 gekauft.** Zwei Hypothesen getestet:
+
+**(a) "Alles passierte in der Eroeffnungsluecke" — WIDERLEGT.** 128 der 222 Kandidaten machten
+>= +2% Tagesplus, aber nur **12 (9%)** waren luecken-getrieben. Ø Gap nur +1.40%, Ø **maximale
+Intraday-Chance ab Open +3.71%** — die Bewegung fand also IM Handel statt (SOFI +6.8%, ORCL +6.4%,
+SNOW +6.4%, META +6.1% ab Open).
+
+**(b) "Dann haben die Filter die Gewinner ausgesperrt" — EBENFALLS WIDERLEGT.** Ergebnis NACH dem
+Ablehnungszeitpunkt (Close vs. Kurs bei Reject):
+
+| Grund | n | Ø danach | positiv | erreichte >= +2% |
+|---|---:|---:|---:|---:|
+| vol_ratio_out | 108 | **-0.68%** | 21% | **0%** |
+| range_pos_too_high | 71 | **-0.31%** | 44% | **1%** |
+| below_vwap | 28 | **-0.55%** | 25% | 0% |
+| gain_too_high | 3 | +1.66% | 67% | 33% |
+
+Von 71 range_pos-Rejects fielen **40 zurueck**, genau **1** erreichte danach noch +2% (TP ist +5%).
+Lockern haette an diesem Tag Geld gekostet, nicht verdient.
+
+**Die eigentliche Erkenntnis (neu):** Es ist ein **TIMING-/Takt-Problem, kein Filter-Problem.**
+Die Moves liefen frueh (ca. 09:30-11:00 ET) und waren ausgelaufen, als wir sie sahen — deshalb
+standen sie bei range_pos 0.92-0.99, am Tageshoch ohne Restweg. Der Filter hat nicht die Chance
+gekillt, er hat korrekt "hier ist nichts mehr" gesagt. Wer diese Moves will, braucht einen
+frueheren Einstieg (INTRADAY_MIN_ET_HOUR=10 kostet an Trendtagen die beste Stunde) — das ist eine
+eigene, regime-konditionale Frage und NICHT durch Filter-Lockern zu loesen.
+`GAIN_MAX=6.0` bleibt die einzige offene Kategorie (n=3 heute, n=5 im Juli, beide leicht positiv;
+FSLR heute bei >6% abgelehnt lief auf +11% Intraday) — weiter beobachten, n weiterhin zu klein.
+
+**FAZIT #22 nach 3 unabhaengigen Auswertungen (10.07. Chop, 22.07. n=194, 03.08. Trendtag):
+RANGE_POS_MAX=0.90 / below_vwap / vol_ratio_min sind validiert. Frage gilt als BEANTWORTET,
+nicht erneut aufrollen.**
+
 ---
 
 ## 23. EU-Grundsatzentscheid: "messen statt bauen" — umgesetzt 2026-07-17
