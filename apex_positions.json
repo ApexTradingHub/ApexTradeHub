@@ -2,7 +2,7 @@
   "mode": "live",
   "capital_initial": 400.0,
   "cash": 96.46213545580508,
-  "last_updated": "2026-08-03T18:40:03Z",
+  "last_updated": "2026-08-03T18:45:02Z",
   "pending": [],
   "open": [
     {
@@ -74,9 +74,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-29T13:45:08Z",
-      "current_price": 149.9199981689453,
-      "pnl_pct": 3.5073171561345684,
-      "pnl_usd": 1.7536585780672842,
+      "current_price": 149.7100067138672,
+      "pnl_pct": 3.36233548320021,
+      "pnl_usd": 1.681167741600105,
       "hold_days": 5,
       "yfinance_entry": 144.7550048828125,
       "etoro_ask_at_open": 144.84,
@@ -119,9 +119,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-30T13:40:10Z",
-      "current_price": 151.3000030517578,
-      "pnl_pct": -0.11223143080622325,
-      "pnl_usd": -0.056115715403111624,
+      "current_price": 151.1199951171875,
+      "pnl_pct": -0.23107208213672598,
+      "pnl_usd": -0.11553604106836297,
       "hold_days": 4,
       "yfinance_entry": 151.28500366210938,
       "etoro_ask_at_open": 151.47,
@@ -164,9 +164,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-07-30T19:15:09Z",
-      "current_price": 24.21500015258789,
-      "pnl_pct": -0.6360272770295871,
-      "pnl_usd": -0.31801363851479353,
+      "current_price": 24.2450008392334,
+      "pnl_pct": -0.5129222846393211,
+      "pnl_usd": -0.25646114231966055,
       "hold_days": 3,
       "yfinance_entry": 24.47,
       "etoro_ask_at_open": 24.37,
@@ -207,9 +207,9 @@
       "ladder_step": 0,
       "opened_at": "2026-07-31T18:11:28Z",
       "status": "open",
-      "current_price": 25.059999465942383,
-      "pnl_pct": 0.8450682734099855,
-      "pnl_usd": 0.4225341367049927,
+      "current_price": 25.104999542236328,
+      "pnl_pct": 1.0261550995425621,
+      "pnl_usd": 0.5130775497712811,
       "hold_days": 3,
       "yfinance_entry": 24.850000381469727,
       "etoro_ask_at_open": 24.85,
@@ -251,9 +251,9 @@
       "ladder_step": 0,
       "opened_at": "2026-08-03T18:41:41Z",
       "status": "open",
-      "current_price": 88.55,
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.0,
+      "current_price": 88.5250015258789,
+      "pnl_pct": -0.028230913744879627,
+      "pnl_usd": -0.014115456872439813,
       "hold_days": 0,
       "yfinance_entry": 88.5199966430664,
       "etoro_ask_at_open": 88.55,
@@ -264,7 +264,12 @@
         "token": "20ae5166-1bdb-4108-8a02-a458eaab3a93",
         "orderId": 370960422,
         "referenceId": "a37e7a4f-a35e-41c0-82d6-0d85bfa80222"
-      }
+      },
+      "etoro_position_id": 3574641331,
+      "etoro_open_rate": 88.51,
+      "etoro_current_rate": 88.51,
+      "etoro_units": 0.564652,
+      "etoro_open_date": "2026-08-03T18:41:45.14Z"
     }
   ],
   "closed": [
@@ -4427,7 +4432,7 @@
     "losses": 49,
     "win_rate": 47.87234042553192,
     "pnl_realized": -6.218905077008506,
-    "pnl_unrealized": 0.22160233796528744,
-    "equity": 396.6837377937704
+    "pnl_unrealized": 0.2276716282218384,
+    "equity": 396.68980708402694
   }
 }
