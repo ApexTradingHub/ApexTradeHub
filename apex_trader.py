@@ -1650,8 +1650,28 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
             # FIRE
             entry_actual = max(p["entry"], min(cur_price, p["entry"] * 1.005))
             # Simulate fill: at entry if high>=entry, but cap slippage at +0.5%
+            opened = True
             if not dry_run:
-                open_position(state, p, entry_actual)
+                opened = open_position(state, p, entry_actual)
+            if not opened:
+                # 2026-08-03 (MHK-Endlosschleife): Gap-Gate-Rollback -> Signal PARKEN.
+                # trigger_pending nimmt p hier aus pending, und open_position nahm es beim
+                # Rollback wieder aus open -> p war danach in KEINEM Bucket, also auch nicht
+                # in tracked_keys -> select_new_signals hat es jeden Run frisch aufgenommen.
+                # Ergebnis: 31 Phantom-"open"-Events in 2.5h, alle 5 Min, ohne echte Order.
+                # Ein gap-gate-Reject ist endgueltig (Setup >3% gedriftet = nicht mehr das
+                # Setup des Scanners), also expired statt Retry.
+                p["status"] = "expired"
+                p["expired_at"] = now_iso()
+                p["expired_reason"] = "gap_gate"
+                state["expired"].append(p)
+                events.append({
+                    "event": "expired", "id": p["id"], "ts": now_iso(),
+                    "ticker": p["ticker"],
+                    "reason": "gap-gate rollback: Setup >3% gedriftet, kein Retry",
+                })
+                log(f"  PARKED (gap-gate): {p['ticker']} — Signal verbraucht, kein Retry")
+                continue
             events.append({
                 "event": "open", "id": p["id"], "ts": now_iso(),
                 "ticker": p["ticker"], "entry_signal": p["entry"],
@@ -1665,8 +1685,10 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
     return events
 
 
-def open_position(state: dict, pending: dict, entry_actual: float):
-    """Move from pending to open."""
+def open_position(state: dict, pending: dict, entry_actual: float) -> bool:
+    """Move from pending to open. Gibt False zurueck, wenn der Open zurueckgerollt
+    wurde (Gap-Gate) — der Aufrufer MUSS das Signal dann parken, sonst wird es jeden
+    Run neu aufgenommen (MHK-Endlosschleife 2026-08-03)."""
     shares = POSITION_SIZE / entry_actual
     pos = {
         **pending,
@@ -1696,8 +1718,10 @@ def open_position(state: dict, pending: dict, entry_actual: float):
             log(f"  ROLLBACK paper (gap-gate): {e}")
             state["open"].remove(pos)
             state["cash"] += POSITION_SIZE
+            return False
         except Exception as e:
             log(f"  ERR live-open: {e}")
+    return True
 
 
 # ---------------------------------------------------------------------------
