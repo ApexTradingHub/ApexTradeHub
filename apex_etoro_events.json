@@ -1953,5 +1953,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "GDDY",
+    "instrument_id": 4061,
+    "size_usd": 50.0,
+    "stop": 85.89,
+    "target": 92.98,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 370960422,
+    "response": {
+      "token": "20ae5166-1bdb-4108-8a02-a458eaab3a93",
+      "orderId": 370960422,
+      "referenceId": "a37e7a4f-a35e-41c0-82d6-0d85bfa80222"
+    },
+    "ts": "2026-08-03T18:41:45Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
