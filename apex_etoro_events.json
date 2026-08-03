@@ -1973,5 +1973,23 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "GDDY",
+    "order_id": 370960422,
+    "position_id": 3574641331,
+    "close_rate": 88.54,
+    "net_profit": 0.02,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 88.55,
+      "reason": "Stop Loss",
+      "pnl_pct": 0.0
+    },
+    "ts": "2026-08-03T20:05:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
