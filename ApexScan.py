@@ -1069,6 +1069,8 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
                     "cat_earnings_next_days": (catalyst_signals or {}).get("earnings_next_days"),
                     "cat_short_pct": (catalyst_signals or {}).get("short_pct_float"),
                     "cat_analyst_upside": (catalyst_signals or {}).get("analyst_target_upside"),
+                    "cat_analyst_target": (catalyst_signals or {}).get("analyst_target_price"),
+                    "cat_analyst_n": (catalyst_signals or {}).get("analyst_count"),
                     "movement_class": "MEAN_REVERSION", "movement_bonus": 0,
                     "closing_strength": round(_mr_cs, 2), "inside_day": _mr_id,
                     "vcp_contraction": None, "vcp_base_range": None,
@@ -1485,6 +1487,8 @@ def scan_ticker(ticker, data, market_regime, debug, sector_cache, relax=0):
             "cat_earnings_next_days": (catalyst_signals or {}).get("earnings_next_days"),
             "cat_short_pct":    (catalyst_signals or {}).get("short_pct_float"),
             "cat_analyst_upside": (catalyst_signals or {}).get("analyst_target_upside"),
+            "cat_analyst_target": (catalyst_signals or {}).get("analyst_target_price"),
+            "cat_analyst_n": (catalyst_signals or {}).get("analyst_count"),
             # Phase E quality classification
             "movement_class":   movement_class,
             "movement_bonus":   movement_bonus,

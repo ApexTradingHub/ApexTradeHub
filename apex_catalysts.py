@@ -88,6 +88,13 @@ def fetch_catalyst_data(ticker: str) -> dict:
         "earnings": [],                    # [{date: ISO, surprise_pct: float|None}, ...]
         "short_pct_float": None,           # 0..100
         "analyst_target_upside_pct": None, # vs current price
+        # 2026-08-04: ABSOLUTES Kursziel + Analystenzahl mitschneiden. Die abgeleitete
+        # upside_pct aendert sich auch wenn nur der KURS laeuft -> daraus sind echte
+        # PT-Revisionen nicht isolierbar. Mit dem absoluten Ziel je Signal-Datum baut sich
+        # eine Revisions-Zeitreihe auf (BX-Hypothese: PT-Cuts vor dem Signal = negativ).
+        # Reines Logging, KEIN Score-Effekt — erst auswerten wenn n reicht (~6-8 Wochen).
+        "analyst_target_price": None,      # absolut, targetMeanPrice
+        "analyst_count": None,             # numberOfAnalystOpinions (Kontext fuer Delta-Rauschen)
     }
 
     try:
@@ -134,6 +141,17 @@ def fetch_catalyst_data(ticker: str) -> dict:
                         pass
                 target  = info.get("targetMeanPrice")
                 current = info.get("currentPrice") or info.get("regularMarketPrice")
+                if target:
+                    try:
+                        out["analyst_target_price"] = float(target)
+                    except Exception:
+                        pass
+                nan_ = info.get("numberOfAnalystOpinions")
+                if nan_ is not None:
+                    try:
+                        out["analyst_count"] = int(nan_)
+                    except Exception:
+                        pass
                 if target and current:
                     try:
                         c = float(current)
@@ -171,6 +189,9 @@ def get_catalyst_data(ticker: str, force_refresh: bool = False) -> dict:
             data["short_pct_float"] = old["short_pct_float"]
         if data.get("analyst_target_upside_pct") is None and old.get("analyst_target_upside_pct") is not None:
             data["analyst_target_upside_pct"] = old["analyst_target_upside_pct"]
+        for _k in ("analyst_target_price", "analyst_count"):
+            if data.get(_k) is None and old.get(_k) is not None:
+                data[_k] = old[_k]
     cache[ticker] = data
     _save_cache(cache)
     return data
@@ -203,6 +224,8 @@ def derive_catalyst_signals(catalyst_data: dict, as_of_date=None) -> dict:
         "earnings_last_surprise":  None,   # float (most recent surprise %)
         "short_pct_float":         None,
         "analyst_target_upside":   None,
+        "analyst_target_price":    None,   # absolut (Revisions-Zeitreihe, 2026-08-04)
+        "analyst_count":           None,
     }
 
     # --- Earnings filtering ---
@@ -265,6 +288,13 @@ def derive_catalyst_signals(catalyst_data: dict, as_of_date=None) -> dict:
             out["analyst_target_upside"] = float(upside)
             if float(upside) >= 15.0:
                 out["analyst_bullish"] = True
+        # Absolutes Ziel + Analystenzahl nur DURCHREICHEN (kein Score-Effekt, reines Logging)
+        tp = catalyst_data.get("analyst_target_price")
+        if tp is not None:
+            out["analyst_target_price"] = float(tp)
+        ac = catalyst_data.get("analyst_count")
+        if ac is not None:
+            out["analyst_count"] = int(ac)
     except Exception:
         pass
 
