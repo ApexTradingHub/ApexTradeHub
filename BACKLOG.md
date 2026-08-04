@@ -1092,3 +1092,39 @@ mit den Live-Intras ergibt das in 2-3 Wochen die erste echte Datenbasis. Dann:
    unter den Scanner-BREAKOUTs liegen: Slot-Reserve reduzieren oder Kanal abschalten.
 
 **Nicht vorher anfassen** — n=8 rechtfertigt weder Ausbau (EU-Bucket #23b) noch Abbau.
+
+
+---
+
+## 27. VCP-Pick-Prioritaet: Mindestschwelle? — FALSIFIZIERT 2026-08-04
+
+**Ausloeser:** SNOW-Signal 29.07. (Score 108.4, VCP 0.00) machte +14.27%, wurde aber nie gekauft —
+es stand auf **Rang 12**, hinter neun Kandidaten mit VCP>0, darunter **BX mit Score 83.5 (VCP 0.05),
+das gekauft wurde und -5.02% verlor**. Auch BAX (113.9) und DOCU (116.3) wurden so nach hinten
+geschoben. Verdacht: `VCP > 0` ist eine harte Tier-Grenze auf Rausch-Niveau-Werten (0.03/0.04/0.05)
+— ein Mindest-VCP muesste echte Kontraktionen (PINS 0.16) bevorzugen, ohne Score-108-Kandidaten
+hinter Score-83-Kandidaten zu schieben.
+
+**Test:** `bt_all_candidates.json` (303 Kandidaten, 86 Scan-Tage, 2024-07 bis 2026-06 — endet VOR
+SNOW, also unabhaengig vom ausloesenden Einzelfall). Post-hoc-Re-Ranking mit `_pick_rank`-Logik
+(PICK_BAND 90-120) ueber Schwellen 0 / 0.05 / 0.10 / 0.15 / 0.20 + Baseline ohne VCP-Prio.
+Gleiche Trade-Anzahl je Variante -> reiner Ranking-Effekt, kein Signal-Protection-Thema.
+
+| Variante | Top-1 WR | Top-1 Summe | Top-2 WR | Top-2 Summe |
+|---|---:|---:|---:|---:|
+| ohne VCP-Prio | 51.2% | +124.2pp | 53.9% | +294.0pp |
+| **VCP > 0 (LIVE)** | **54.7%** | **+181.4pp** | **55.9%** | **+322.7pp** |
+| VCP >= 0.05 | 54.7% | +182.3pp | 54.6% | +291.9pp |
+| VCP >= 0.10 | 47.7% | +107.3pp | 52.0% | +231.4pp |
+| VCP >= 0.15 | 51.2% | +130.0pp | 53.3% | +241.1pp |
+| VCP >= 0.20 | 51.2% | +134.4pp | 53.3% | +258.3pp |
+
+**ERGEBNIS: Die Live-Einstellung `VCP > 0` ist in BEIDEN Simulationen das Optimum. Jede Anhebung
+verschlechtert; ab >=0.10 ist es sogar schlechter als GAR KEINE VCP-Prioritaet.** Die kleinen
+VCP-Werte sind also kein Rauschen — sie tragen Signal, und eine hoehere Huerde wirft den Nutzen weg
+(das Tier greift zu selten). **KEINE Aenderung. Nicht erneut aufrollen.**
+
+**LEHRE (wichtiger als das Ergebnis):** SNOW war ein sichtbarer, teurer Einzelfall (+14.3% verpasst,
+dafuer BX -5% gekauft) — genau die Art Anekdote, die eine funktionierende Regel kaputtmacht. Die
+Regel kostet gelegentlich einen SNOW und verdient im Schnitt +58pp (Top-1) bzw. +29pp (Top-2)
+gegenueber keiner Prioritaet. Sichtbare Kosten, unsichtbarer Nutzen — immer gegen n testen.
