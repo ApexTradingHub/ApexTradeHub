@@ -1991,5 +1991,45 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "VRSN",
+    "instrument_id": 4178,
+    "size_usd": 50.0,
+    "stop": 285.53,
+    "target": 330.66,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371111485,
+    "response": {
+      "token": "77c30e6e-afba-4e6b-a65c-fee23f061d93",
+      "orderId": 371111485,
+      "referenceId": "32c0d47f-a016-4d27-8b0a-eabdadb504f4"
+    },
+    "ts": "2026-08-04T13:35:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "KKR",
+    "instrument_id": 1739,
+    "size_usd": 50.0,
+    "stop": 101.87,
+    "target": 118.4,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371111487,
+    "response": {
+      "token": "6ea9ac13-84ae-4e98-9504-40bfd9cb6fd7",
+      "orderId": 371111487,
+      "referenceId": "1ccd34cd-128a-481d-a44d-5c133bc8b9d4"
+    },
+    "ts": "2026-08-04T13:35:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
