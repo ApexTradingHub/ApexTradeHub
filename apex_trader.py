@@ -87,21 +87,27 @@ TG_MIN_SCORE_DEFAULT = 70
 # Trailing-Stop feuert nur bei Rueckkehr, wer ueber +4% weiter ausbricht laeuft ungebremst.
 # ⚠ REGIME-KONDITIONAL: Sample ist die Baer-/Chop-Phase Jun-Jul 2026. Im Bullenmarkt gibt es
 # mehr echte Runner -> Fruehstufe bei BULLISH-Regime neu bewerten (Rollback = diese Zeile raus).
+# 2026-08-04 Nachzug (User-Beobachtung an PINS): zwischen +4% und +10% stand der Stop STILL
+# (die alte Stufe +6%->+2% war identisch zu Step 1 = wirkungslos). PINS lief auf +5.5% mit einem
+# Stop bei +2% = 3.5pp Rueckgabe-Risiko. Zwischenstufen nachgezogen + eigene Stufe bei +8%.
+# trail_sweep (95 Trades, Tagesbar-Pfade): -13.1pp -> -6.3pp, WR unveraendert 51.6%, Ø Win
+# STEIGT (+3.48% -> +3.62%). Kosten: 2 Stops mehr, LUV gibt 1.3pp ab. Kein weiterer Runner beruehrt.
 TRAIL_LADDER = [
-    (1.04, 1.02),   # Step 1: high >= entry*1.04 -> SL = entry*1.02  (+2% gesichert)  [NEU]
-    (1.06, 1.02),   # Step 2: durch Step 1 subsumiert (gleicher SL) — bleibt fuer Step-Nummern-
-                    #         Stabilitaet bestehender offener Positionen (ladder_step im State)
-    (1.10, 1.06),   # Step 3: high >= entry*1.10 -> SL = entry*1.06  (+6% gesichert)
-    (1.14, 1.10),   # Step 4: high >= entry*1.14 -> SL = entry*1.10  (+10% gesichert)
+    (1.04, 1.02),   # Step 1: high >= +4%  -> SL +2%   gesichert
+    (1.06, 1.04),   # Step 2: high >= +6%  -> SL +4%   (war +2% = no-op)
+    (1.08, 1.06),   # Step 3: high >= +8%  -> SL +6%   [NEU 04.08.]
+    (1.10, 1.07),   # Step 4: high >= +10% -> SL +7%   (war +6%)
+    (1.14, 1.11),   # Step 5: high >= +14% -> SL +11%  (war +10%)
 ]
 # Momentum-Trailing (2026-06-23): ausbrechende Momentum-Namen NICHT hart bei +6% cutten,
 # sondern laufen lassen. Ab dem alten TP-Level (+6%) Trailing aktivieren + Gewinn sichern.
 # Etwas mehr Luft als die generische Ladder (Momentum ist volatiler -> Whipsaw vermeiden).
 MOMENTUM_TRAIL_LADDER = [
-    (1.04, 1.02),   # Step 1: high >= +4%  -> SL +2% gesichert  [NEU 2026-07-31, s. TRAIL_LADDER]
-    (1.06, 1.035),  # Step 2: high >= +6%  -> SL +3.5% (statt hartem Verkauf bei +6%)
-    (1.10, 1.075),  # Step 3: high >= +10% -> SL +7.5%
-    (1.15, 1.115),  # Step 4: high >= +15% -> SL +11.5%  (danach Continuous-Trail, s.u.)
+    (1.04, 1.02),   # Step 1: high >= +4%  -> SL +2%    gesichert  [31.07.]
+    (1.06, 1.04),   # Step 2: high >= +6%  -> SL +4%    (war +3.5%) [04.08.]
+    (1.08, 1.06),   # Step 3: high >= +8%  -> SL +6%    [NEU 04.08.]
+    (1.10, 1.075),  # Step 4: high >= +10% -> SL +7.5%
+    (1.15, 1.115),  # Step 5: high >= +15% -> SL +11.5%  (danach Continuous-Trail, s.u.)
 ]
 # Continuous Trail (2026-07-03): NACH Ladder-Step 3 (>+15%) uebernimmt eine Formel
 # SL = high * (1 - MOMENTUM_TRAIL_GIVEBACK). Ladder bleibt bis +15% (Struktur/Anti-Whipsaw),
