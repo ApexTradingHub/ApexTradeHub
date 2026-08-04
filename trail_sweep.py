@@ -14,6 +14,12 @@ Methodik (bewusst konservativ):
   - Bars strikt NACH dem Entry-Tag (kein Pre-Entry-Low-Artefakt).
   - Feuert nichts bis zum Ende -> tatsaechlicher Exit-Preis (Realitaet).
 VALIDIERUNG: Variante "CURRENT" muss die echte Gesamt-PnL ungefaehr treffen.
+
+⚠ GRENZE DIESES WERKZEUGS (Fund 2026-08-04): Tagesbars sind NUR fuer Givebacks >= ~2pp
+brauchbar. Der Stop wird hier einmal pro Tag gegen das Tagestief geprueft, mit dem Stand vom
+VORTAGESHOCH — ein enger Stop kann also gar nicht intraday feuern. Live ratcht der Trader alle
+5 Minuten nach. Konkret gemessen fuer "1pp-Giveback ab +3%": Tagesbars +21.2pp, 5-Min-Bars
+-10.3pp (Modell LOW). Fuer enge Leitern IMMER trail_sweep_intraday.py nehmen.
 """
 import json, warnings, sys
 warnings.filterwarnings("ignore")
