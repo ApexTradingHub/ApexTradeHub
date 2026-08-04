@@ -2,14 +2,14 @@
 
 _Updated: 2026-08-04T09:30:47.547326 | Total trades: 244_
 
-**Analyse-Status**: complete=242, pending=2
+**Analyse-Status**: complete=244
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `breakout_no_follow_through` | 35 |
-| `post_earnings_beat_continuation` | 34 |
+| `breakout_no_follow_through` | 36 |
+| `post_earnings_beat_continuation` | 35 |
 | `sector_momentum_tailwind` | 34 |
 | `high_score_loss_85plus` | 31 |
 | `sector_relative_strength` | 29 |
@@ -99,9 +99,7 @@ _Updated: 2026-08-04T09:30:47.547326 | Total trades: 244_
 | BAX_2026-07-28 | BREAKOUT | 9.43% | Take Profit D+2 | 113.9 | Healthcare | post_earnings_beat_continuation,pre_earnings_gamble_won,guidance_raise_catalyst |
 | AMP.MI_2026-07-27 | BREAKOUT | 8.9% | Take Profit D+4 | 98.0 | Healthcare | post_earnings_beat_continuation,pre_earnings_gamble_won,margin_expansion_catalyst |
 
-## Pending Claude-Analyse (2)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `BMY_2026-07-24`
-- `BX_2026-07-27`

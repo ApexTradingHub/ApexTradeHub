@@ -23970,19 +23970,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-07-30",
+            "title": "BMY Q2 2026: adj EPS $2.04 vs $1.59 est, Umsatz $12.97B vs $11.75B, FY-Guidance stark angehoben (EPS 6.75-7.00, Umsatz 49-50B); Treiber Iza-Bren/Opdivo Qvantig/Breyanzi",
+            "src": "WebSearch 2026-08-04 (Benzinga/Quartz/SeekingAlpha)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Q2-Bericht 30.07.: adj. EPS $2.04 vs $1.59 erwartet (+28%), Umsatz $12.97B vs $11.75B, und vor allem ein massiver Guidance-Raise (FY-EPS 6.05-6.35 -> 6.75-7.00; Umsatz 46-47.5B -> 49-50B). Treiber: Iza-Bren (triple-negative Brustkrebs), Opdivo Qvantig, Breyanzi. Aktie +15.7% auf Monatssicht, nahe 52w-Hoch -> TP gerissen (+8.16% Equity / real +7.68%, netto +$3.86). SAUBERER Fall im Gegensatz zu BAX/AMP.MI: Signal 24.07., Earnings 30.07. = 6 Tage Abstand, also AUSSERHALB des 0-5d-Blackout-Fensters. Wir waren positioniert bevor der Katalysator kam, ohne die Gap-Wette einzugehen — genau das Profil, das der Blackout-Malus erlauben soll.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "guidance_raise_catalyst",
+          "pharma_pipeline_catalyst",
+          "defensive_healthcare",
+          "trailing_early_step_untouched"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Einstieg 6+ Tage vor Earnings = Katalysator-Exposure OHNE Blackout-Risiko. Besser als die BAX/AMP.MI-Muster (2-3 Tage vorher = echte Gap-Wette).",
+          "Erster Live-Beleg fuer die Trailing-Fruehstufe (31.07.): Stop bei +4% auf +2% gezogen, Kurs fiel NIE dorthin zurueck, Trade lief voll bis zum Target durch. Fruehstufe kostet nichts wenn der Runner laeuft."
+        ],
+        "analyzed_at": "2026-08-04T19:41:46.665109+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-04T09:30:46.807443",
@@ -24059,19 +24074,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-07-29",
+            "title": "BX -3.8% am 29.07. trotz starker Q2: sektorweiter Selloff Alternative-Asset-Manager (Private-Credit/Liquiditaets-Sorgen) + PT-Cuts Oppenheimer 156->139, JPMorgan 136->132; YTD ca. -20%",
+            "src": "WebSearch 2026-08-04 (Investing.com/QuiverQuant/InsiderMonkey)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "SEKTOR-Deroute statt Firmen-Problem: BX lieferte starke Q2-Zahlen, fiel aber trotzdem — sektorweiter Selloff der Alternative-Asset-Manager (Private-Credit- und Liquiditaets-Sorgen), verstaerkt durch eine Serie von Kurszielsenkungen (Oppenheimer $156->$139 am 19.07., JPMorgan $136->$132 am 16.07.). -3.8% allein am 29.07., YTD rund -20%. Der BREAKOUT wurde also gegen einen fallenden Sektor gekauft -> Stop -5.02%. Klassischer 'Sektor-Divergenz-Loser' aus der Watchlist: Einzeltitel-Setup intakt, Sektor-Drift dominiert.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_divergence_loser",
+          "analyst_downgrade_pressure",
+          "sector_derating",
+          "breakout_no_follow_through",
+          "financials_private_credit_stress"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Ein Sektor-RS-Gate fuer Financials analog zum bestehenden Tech/Comm-Gate (SECTOR_RS_GATE deckt aktuell nur Technology/Communication ab). BX hatte alle Einzel-Merkmale, aber XLF/Alt-Manager waren im Abverkauf — genau die Zelle, die das Gate bei Tech schon abfaengt.",
+          "Analyst-PT-CUTS als negatives Signal: zwei Senkungen in den 11 Tagen vor dem Signal. Wir tracken analyst_upside (anti-praediktiv), aber nicht die RICHTUNG der Revisionen."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-04T19:41:46.665109+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-04T09:30:47.247130",
