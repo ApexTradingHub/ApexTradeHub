@@ -3164,5 +3164,55 @@
     "signal_date": "2026-08-04",
     "score": 134.9,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_TGT_2026-07-28",
+    "ts": "2026-08-05T13:35:12Z",
+    "ticker": "TGT",
+    "exit_price": 147.2100067138672,
+    "reason": "Stagnation Exit",
+    "pnl_pct": 1.6362929535122785
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_JCI_2026-08-04",
+    "ts": "2026-08-05T13:35:17Z",
+    "ticker": "JCI",
+    "reason": "gap-gate rollback: Setup >3% gedriftet, kein Retry"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_M_2026-08-04",
+    "ts": "2026-08-05T13:35:18Z",
+    "ticker": "M",
+    "reason": "gap-gate rollback: Setup >3% gedriftet, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_WAT_2026-08-04",
+    "ts": "2026-08-05T13:35:18Z",
+    "ticker": "WAT",
+    "signal_date": "2026-08-04",
+    "score": 108.6,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_BX_2026-08-04",
+    "ts": "2026-08-05T13:35:18Z",
+    "ticker": "BX",
+    "signal_date": "2026-08-04",
+    "score": 108.4,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_GE_2026-08-04",
+    "ts": "2026-08-05T13:35:18Z",
+    "ticker": "GE",
+    "signal_date": "2026-08-04",
+    "score": 104.9,
+    "source": "scanner"
   }
 ]
