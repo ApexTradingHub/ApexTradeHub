@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-07-31 (**Trailing-Fruehstufe +4%->+2%** (regime-konditional!) · **Earnings-Schicht reaktiviert** — Blackout+PEAD waren ~30d live tot, Root-Cause **fehlendes lxml** in Actions-pip-install (kein IP-Block!), 1-Zeilen-Fix, kein Cron/Chore noetig · eToro LIVE · **Gate 80** · **VCP-Pick-Prioritaet** · **Hold 30d** · **eToro-Trailing-Endpoint-FIX** (404 seit Live-Start!) + Self-Healing-SL-Reconcile · Rescue-VWAP-Gate · Regime-Bremse falsifiziert · 30d-WR 40% = Baer, 90d +$290)
+**Letztes Update:** 2026-08-05 (**Equity-Tracker Gap-Gate — Metrik war ~1/3 zu gut, jetzt 223 Trades/WR 44.4%/+249pp** · Trailing-Leiter komplett (4/6/8/10/14) · Regime auf MIXED gedreht · Earnings-Schicht + Analysten-Kursziel-Mitschnitt live)
 
 ---
 
@@ -277,6 +277,26 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-08-05** **Equity-Tracker bekommt das GAP-GATE — zentrale Metrik war systematisch zu gut**
+  (commit 1f805a70): Der Tracker unterstellte IMMER einen Fill zum Trigger-Preis, auch wenn die
+  Aktie weit darueber EROEFFNETE — diesen Preis gab es dann nie mehr. Musterfall MHK 31.07.:
+  Trigger 122.39, Open 127.85 (+4.5%) nach +42.8% EPS-Surprise, gebucht **+9.43%**, realistisch
+  ~+4.8%. Der LIVE-Trader lehnt genau das per `GapTooLargeError` ab (gleiche 3%-Schwelle)
+  -> **Tracker und Trader massen unterschiedliche Universen.** Das erklaert die lange offene Frage,
+  warum eToro bei -11.7% steht waehrend der Tracker positiv aussieht.
+  **Umfang (ganze Historie, nicht neu!): 27 von 245 pruefbaren Ergebnissen (11%), +106.2pp von
+  +337.4pp = fast ein Drittel des ausgewiesenen Gewinns.** Durchgehend seit April, Mai am
+  schlimmsten (18%). Maerz war zufaellig sauber.
+  **Fix:** `GAP_GATE_PCT = 3.0` in apex_equity.py; `evaluate_trade` skippt, wenn der Trigger-Tag
+  >3% ueber dem Trigger eroeffnet. Zusaetzlich die 27 Alt-Ergebnisse **purged** (already_saved
+  haette sie nie neu bewertet -> sonst halb alt/halb neu), Equity-Kurve neu gerechnet.
+  **Neue Basis: 250 -> 223 Trades, WR 46.0 -> 44.4%, Summe +355.4 -> +249.1pp.** Schlechter, aber
+  vereinnahmbar. Knowledge/Learn/Score-Gate-Kalibrierung bauen darauf auf und ziehen beim naechsten
+  Cron nach — **alte Learn-Zahlen vor dem 05.08. sind entsprechend zu hoch.**
+  Backup: apex_equity_results.json.bak-gapgate. Verifiziert: MHK geskippt, SNOW (+1.77% Gap) bleibt.
+  **NEBENBEFUND (ungetestet):** Trades mit wirklich erreichbarem Entry (Gap<=0.5%, n=40 seit 01.06.)
+  haben WR 32.5% / -59.5pp — die positive Bilanz kam ueberwiegend aus dem geschenkten Gap.
 
 - **2026-07-31** **Trailing-Fruehstufe +4% -> +2% gesichert** (commit c7c882a, beide Ladders):
   User-Beobachtung "viele duempeln bei +2-4%". Befund: unter +6% war **NICHTS geschuetzt** — nur
