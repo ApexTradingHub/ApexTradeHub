@@ -35,6 +35,15 @@ START_CAPITAL     = 0.0
 # absurd weit vom Body (Open/Close) abweicht, wird verworfen. Faktor 2.0 = ein High > 2x
 # Body-Top bzw. Low < Body-Bottom/2 ist fuer unser Large/Mid-Cap-Universum nie real.
 BADPRINT_MAX_RATIO = 2.0
+# GAP-GATE (2026-08-05): Der Tracker unterstellte bisher IMMER einen Fill zum Trigger-Preis —
+# auch wenn die Aktie weit darueber EROEFFNETE. Dann gab es diesen Preis nie mehr, und der
+# gebuchte Gewinn war nicht vereinnahmbar (MHK 31.07.: Trigger 122.39, Open 127.85 = +4.5%,
+# gebucht +9.43%, real ~+4.8%). Der LIVE-Trader lehnt genau das ab (apex_trader GapTooLargeError,
+# gleiche 3%-Schwelle) -> Tracker und Trader massen unterschiedliche Universen.
+# Befund ueber die ganze Historie: 27 von 245 Ergebnissen (11%) betroffen, +106.2pp von
+# +337.4pp Gesamt-PnL = fast ein Drittel des ausgewiesenen Gewinns. Kein Juni-Phaenomen,
+# durchgehend seit April (Mai am schlimmsten: 18%).
+GAP_GATE_PCT = 3.0        # Open > entry*(1+3%) am Trigger-Tag -> Trade nicht handelbar, skip
 
 # Qualitätsfilter — muss identisch zu ApexScan.py sein
 # TG-Gate constants — MIRROR ApexScan.py (post-2026-05-22 changes)
@@ -275,6 +284,10 @@ def evaluate_trade(signal, today):
             if i >= MAX_TRIGGER_DAYS:
                 return None
             if h >= entry:
+                # GAP-GATE: eroeffnet der Trigger-Tag mehr als GAP_GATE_PCT ueber dem Trigger,
+                # gab es den Einstiegspreis nie — der Live-Trader lehnt hier ab. Also kein Trade.
+                if o > entry * (1 + GAP_GATE_PCT / 100.0):
+                    return None
                 trigger_day = i
                 if l <= sl:
                     return None
