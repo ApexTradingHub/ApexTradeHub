@@ -2065,5 +2065,101 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "PINS",
+    "order_id": 370175423,
+    "position_id": 3571910122,
+    "close_rate": 23.61,
+    "net_profit": -1.54,
+    "reason": "eToro SL",
+    "paper_had": {
+      "exit_price": 25.584999084472656,
+      "reason": "eToro order_dropped",
+      "pnl_pct": 4.99
+    },
+    "ts": "2026-08-05T13:40:07Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "TGT",
+    "order_id": 369635095,
+    "position_id": 3569894790,
+    "close_rate": 148.0,
+    "net_profit": 1.1,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 147.2100067138672,
+      "reason": "Stagnation Exit",
+      "pnl_pct": 1.64
+    },
+    "ts": "2026-08-05T13:40:07Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "WAT",
+    "instrument_id": 4183,
+    "size_usd": 50.0,
+    "stop": 374.42,
+    "target": 431.97,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371516022,
+    "response": {
+      "token": "fe19e732-341d-47d1-a51d-7e752f8f9ac4",
+      "orderId": 371516022,
+      "referenceId": "d806efa1-e4de-4201-88e3-e2c8664cd303"
+    },
+    "ts": "2026-08-05T13:40:11Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "BX",
+    "instrument_id": 1752,
+    "size_usd": 50.0,
+    "stop": 130.85,
+    "target": 152.5,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371516023,
+    "response": {
+      "token": "c3705b8b-cd4d-47dd-b01e-a081f879ed84",
+      "orderId": 371516023,
+      "referenceId": "eab58a15-c509-4a91-ab7d-af2cd07ec5a7"
+    },
+    "ts": "2026-08-05T13:40:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "GE",
+    "instrument_id": 1017,
+    "size_usd": 50.0,
+    "stop": 364.76,
+    "target": 411.78,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371516024,
+    "response": {
+      "token": "6be4b9fc-09ae-4429-a5ab-ba2789809bb6",
+      "orderId": 371516024,
+      "referenceId": "31fb4dd3-3668-4256-b46a-4480339c6f89"
+    },
+    "ts": "2026-08-05T13:40:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
