@@ -1061,6 +1061,7 @@ def evaluate_outcome(ticker, full_df, scan_idx, signal, hold_override=None):
 
     trigger_day = None
     MAX_TRIGGER_DAYS = 3
+    GAP_GATE_PCT     = 3.0   # Open > entry*(1+3%) am Trigger-Tag -> nicht handelbar
     setup_type = signal.get("setup", "BREAKOUT")
     # Phase F.3 REVERSAL exit management state
     rev_trailing_active = False
@@ -1080,6 +1081,13 @@ def evaluate_outcome(ticker, full_df, scan_idx, signal, hold_override=None):
             if i >= MAX_TRIGGER_DAYS:
                 return None, None, None, None
             if h >= entry:
+                # GAP-GATE (2026-08-05, identisch zu apex_equity + apex_trader): eroeffnet der
+                # Trigger-Tag mehr als GAP_GATE_PCT ueber dem Trigger, gab es den Einstiegspreis
+                # nie — der Live-Trader lehnt hier per GapTooLargeError ab. Ohne diesen Check
+                # bucht der Backtest die Eroeffnungsluecke als Gratis-Gewinn (im Equity-Tracker
+                # waren das 27 von 245 Trades = +106pp von +337pp).
+                if o > entry * (1 + GAP_GATE_PCT / 100.0):
+                    return None, None, None, None
                 trigger_day = i
                 if l <= sl:
                     return None, None, None, None
