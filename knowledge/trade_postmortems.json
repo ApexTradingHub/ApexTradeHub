@@ -24178,19 +24178,33 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-03",
+            "title": "MHK Q2-Beat (EPS $3.67 vs $2.57, +42.8%) -> Gap-Open 127.85 am 03.08. weit ueber Trigger 122.39; Target 133.93 spaeter real erreicht (Hoch 137.87), Einstieg aber nicht",
+            "src": "WebSearch/Kursdaten 2026-08-05"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "BUCHWERT, NICHT VEREINNAHMBAR. Der Equity-Tracker bucht +9.43% (Target 133.93 wurde real erreicht, Hoch 137.87 am 05.08.) — der EINSTIEG war aber nie moeglich: MHK eroeffnete am 03.08. bei 127.85, also **+4.5% ueber dem Trigger 122.39** (Q2-Beat 30.07.: EPS $3.67 vs $2.57 = +42.8% Surprise). Der Live-Trader hat korrekt per GAP-GATE abgelehnt (Drift +6.36% vs. dem auf entry*1.005 gedeckelten Paper-Fill). Realistisch waeren aus dem Open ~+4.8% gewesen, nicht +9.43%. KEIN verpasster Trade, sondern eine Tracker-Ueberzeichnung.",
+        "lesson_tags": [
+          "equity_tracker_unachievable_entry",
+          "gap_gate_correct_reject",
+          "post_earnings_beat_continuation",
+          "tracker_vs_live_divergence"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Bestaetigt das GAP-GATE: es verhindert genau die Trades, deren Tracker-Ergebnis auf einem unerreichbaren Fill beruht.",
+          "OFFENER SYSTEM-PUNKT: der Equity-Tracker kennt das Gap-Gate NICHT und misst deshalb ein anderes Universum als der Trader (Scan 05.08.: 13 von 106 Ergebnissen seit 01.06. haetten vom Gate abgelehnt werden muessen, +10.5pp der gebuchten Summe)."
+        ],
+        "analyzed_at": "2026-08-05T20:07:35.654361+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-05T09:27:23.439801",
@@ -24267,19 +24281,35 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-04",
+            "title": "SNOW auf 4-Jahres-Hoch $315.42; Palantir-Blockbuster (+26%) zog Enterprise-Software-Sektor mit; BTIG-Ziel 325->340; YTD +40.2%",
+            "src": "WebSearch 2026-08-05 (Yahoo/StockStory/Benzinga)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Echter, weitgehend erreichbarer Gewinner: Open am 30.07. bei 285.00 = nur +1.77% ueber dem Trigger 280.05 (unter der 3%-Gap-Gate-Schwelle, also handelbar), Target 320 real erreicht (Hoch 323.02 am 05.08.), +14.27%. Treiber: AI-Daten-These reaktiviert, 4-Jahres-Hoch 315.42, und am 04.08. ein sektorweiter Schub durch Palantirs Blockbuster-Zahlen (+26%), der Snowflake/Datadog/CrowdStrike mitzog. BTIG hob das Ziel auf $340. WARUM WIR IHN NICHT HATTEN: Rang 12 im Pick-Ranking — VCP_PICK_PRIORITY schob neun Kandidaten mit VCP>0 davor, darunter BX (Score 83.5, VCP 0.05), das gekauft wurde und -5% verlor. Die Schwelle wurde geprueft (BACKLOG #27) und ist OPTIMAL — SNOW ist der sichtbare Preis einer im Schnitt profitablen Regel, kein Regelfehler.",
+        "lesson_tags": [
+          "vcp_priority_opportunity_cost",
+          "sector_sympathy_move",
+          "secular_ai_catalyst",
+          "slot_scarcity_cost",
+          "tech_momentum_win"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_would_have_helped": [
+          "Mehr freie Slots — SNOW war Rang 12 bei ~3 verfuegbaren Plaetzen. Die Slot-Knappheit war der bindende Filter, nicht die VCP-Regel (Kapital-/Risiko-Frage, keine Backtest-Frage)."
+        ],
+        "what_to_replicate": [
+          "Sektor-Sympathie: ein Blockbuster-Print eines Sektor-Leaders (PLTR +26%) hebt die Peers. Das ist ein Katalysator, den wir nicht modellieren."
+        ],
+        "analyzed_at": "2026-08-05T20:07:35.654361+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-05T09:27:23.879828",

@@ -2,21 +2,21 @@
 
 _Updated: 2026-08-05T09:27:24.180119 | Total trades: 246_
 
-**Analyse-Status**: complete=244, pending=2
+**Analyse-Status**: complete=246
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
+| `post_earnings_beat_continuation` | 36 |
 | `breakout_no_follow_through` | 36 |
-| `post_earnings_beat_continuation` | 35 |
 | `sector_momentum_tailwind` | 34 |
 | `high_score_loss_85plus` | 31 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 23 |
+| `secular_ai_catalyst` | 21 |
 | `reversal_win_external_catalyst` | 21 |
-| `secular_ai_catalyst` | 20 |
 | `defensive_low_beta_drift` | 18 |
 | `oversold_bounce_with_catalyst` | 18 |
 | `oil_peak_chase` | 15 |
@@ -93,15 +93,13 @@ _Updated: 2026-08-05T09:27:24.180119 | Total trades: 246_
 | TRIP_2026-07-16 | BREAKOUT | -7.08% | Stop Loss D+3 | 114.8 | Consumer Cyclical | short_gt_15pct_confirmed,analyst_downgrade,structural_decline |
 | META_2026-07-10 | BREAKOUT | -6.22% | Stop Loss D+10 | 115.4 | Communication Services | ai_capex_overhang,high_score_loss_85plus,sector_divergence_loser |
 | GPN_2026-07-20 | BREAKOUT | -5.78% | Stop Loss D+3 | 119.9 | Industrials | macro_selloff_correlates_all_stocks,duplicate_trap |
-| SNOW_2026-07-29 | BREAKOUT | 14.27% | Take Profit D+4 | 108.4 | Technology | — |
+| SNOW_2026-07-29 | BREAKOUT | 14.27% | Take Profit D+4 | 108.4 | Technology | vcp_priority_opportunity_cost,sector_sympathy_move,secular_ai_catalyst |
 | RHI_2026-07-13 | BREAKOUT | 13.58% | Take Profit D+3 | 141.3 | Industrials | high_score_winner,clean_breakout_profile,pick_band_cost |
 | ABT_2026-07-16 | BREAKOUT | 10.04% | Take Profit D+8 | 92.7 | Healthcare | post_earnings_beat_continuation,guidance_raise,catalyst_beats_extension |
 | LW_2026-07-23 | BREAKOUT | 10.0% | Take Profit D+2 | 101.9 | Consumer Defensive | post_earnings_beat_continuation,guidance_beat |
-| MHK_2026-07-31 | BREAKOUT | 9.43% | Take Profit D+2 | 90.2 | Consumer Cyclical | — |
+| MHK_2026-07-31 | BREAKOUT | 9.43% | Take Profit D+2 | 90.2 | Consumer Cyclical | equity_tracker_unachievable_entry,gap_gate_correct_reject,post_earnings_beat_continuation |
 
-## Pending Claude-Analyse (2)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `MHK_2026-07-31`
-- `SNOW_2026-07-29`
