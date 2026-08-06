@@ -19,6 +19,7 @@ Aufruf:
 
 import sys
 import io
+import os
 import json
 import argparse
 import contextlib
@@ -1061,7 +1062,9 @@ def evaluate_outcome(ticker, full_df, scan_idx, signal, hold_override=None):
 
     trigger_day = None
     MAX_TRIGGER_DAYS = 3
-    GAP_GATE_PCT     = 3.0   # Open > entry*(1+3%) am Trigger-Tag -> nicht handelbar
+    # Per Env umschaltbar, damit A/B-Kontrolllaeufe ohne Code-Edit moeglich sind
+    # (BT_GAP_GATE_PCT=999 -> Gate praktisch aus).
+    GAP_GATE_PCT     = float(os.environ.get('BT_GAP_GATE_PCT', '3.0'))
     setup_type = signal.get("setup", "BREAKOUT")
     # Phase F.3 REVERSAL exit management state
     rev_trailing_active = False
