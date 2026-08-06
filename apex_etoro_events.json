@@ -2298,5 +2298,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "MOS",
+    "instrument_id": 1146,
+    "size_usd": 50.0,
+    "stop": 21.97,
+    "target": 25.98,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371793415,
+    "response": {
+      "token": "679f5b50-6575-41d4-bbd4-d397b141905b",
+      "orderId": 371793415,
+      "referenceId": "7b6d4e27-3807-4c8e-b119-dfbf63c58608"
+    },
+    "ts": "2026-08-06T16:45:10Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
