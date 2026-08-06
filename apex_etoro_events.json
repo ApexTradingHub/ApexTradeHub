@@ -2318,5 +2318,25 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "CHRD",
+    "instrument_id": 8782,
+    "size_usd": 50.0,
+    "stop": 128.94,
+    "target": 139.57,
+    "setup": "INTRADAY",
+    "source": "intraday_momentum",
+    "order_id": 371855220,
+    "response": {
+      "token": "8b928ae7-10a9-45a0-a406-25cfb49f9b45",
+      "orderId": 371855220,
+      "referenceId": "fc1221ba-8811-4435-91c1-49affbebcb38"
+    },
+    "ts": "2026-08-06T18:56:41Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
