@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-08-05 (**Equity-Tracker Gap-Gate — Metrik war ~1/3 zu gut, jetzt 223 Trades/WR 44.4%/+249pp** · Trailing-Leiter komplett (4/6/8/10/14) · Regime auf MIXED gedreht · Earnings-Schicht + Analysten-Kursziel-Mitschnitt live)
+**Letztes Update:** 2026-08-06 (**Gap-Gate in Trader+Equity+Backtest vereinheitlicht** — Equity-Metrik war ~1/3 zu gut (jetzt 223 Trades/WR 44.4%/+249pp), Backtest kaum betroffen (7.6%) · OFFEN: Score-Gradient nicht monoton, Gate 80 fraglich — erst neue Learn-Kalibrierung abwarten · Trailing-Leiter 4/6/8/10/14 · Regime MIXED)
 
 ---
 
@@ -277,6 +277,32 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-08-05/06** **Gap-Gate auch in Backtest + top2; Reichweite des Bugs eingegrenzt**
+  (commits 79e9d39b, 15e9df13): `apex_backtest_v2.evaluate_outcome` hatte denselben Fehler wie der
+  Equity-Tracker (Fill zum Trigger, egal wie weit die Aktie darueber EROEFFNETE) -> gefixt, gleiche
+  3%-Schwelle wie apex_equity + apex_trader. Alle drei messen jetzt dasselbe Universum.
+  `apex_equity_top2.json` (Telegram-Linie der Equity-Kurve) ebenfalls bereinigt: 13 von 86 raus,
+  86->73 Trades, WR 55.8->54.8%, +172.1->+128.9pp.
+  **DASHBOARD-SCOPE geprueft:** Die Signal-LISTE (`renderToday`) ist NICHT betroffen (nur Levels/
+  Score, keine Ergebnisse). Betroffen sind aber die **Equity-Kurve (eqChart) und die Zaehler auf dem
+  Signale-Reiter**, der Trade-History-Reiter, das Exit-Doughnut und der Vergleich alle-vs-Telegram.
+  **ENTWARNUNG zur Reichweite (A/B-Kontrolllauf, `BT_GAP_GATE_PCT=999` schaltet das Gate ab):**
+  Im Backtest entfernt das Gate nur **17 von 223 Trades (7.6%)** und aendert den Gate-80-Lift um
+  **0.5pp** (-6.1 -> -5.6pp). **Der Gap-Bug hat die backtest-basierten Entscheidungen (Gate 80,
+  VCP A+B, Hold 30d) also NICHT entwertet.** Im Equity-Tracker war er dagegen gravierend (11% der
+  Trades = 31% des gebuchten Gewinns) — der Unterschied kommt daher, dass der Backtest ueber 2 Jahre
+  und 779 Ticker mittelt.
+  **NEUER, UNABHAENGIGER BEFUND (nicht gehandelt):** In diesem 2J-Fenster steigt die Score-Ordnung
+  NICHT monoton — 70-80: 55.6% | 80-90: 54.5% | 90-100: 46.5% | 100+: 46.4%. **Gate 80 wirft damit
+  den besten Bucket weg (Lift -6.1pp, mit UND ohne Gap-Gate)**, was der Original-Validierung
+  ("sub-80 = 33-37% WR") widerspricht. **NICHT zurueckgedreht**, weil (a) die Original-Validierung
+  moeglicherweise auf Live-Signalen statt der Backtest-Engine lief, (b) n=45 im Schluessel-Bucket,
+  (c) die Live-Kalibrierung aus der Wissensbasis stammt, die heute bereinigt wurde -> **der naechste
+  Learn-Lauf liefert die erste ehrliche Score-Kalibrierung. Vorher nichts an Gate 80 aendern.**
+  METHODEN-WARNUNG: ein erster Vergleich gegen `bt_gate_study_2y.json` war UNGUELTIG (anderes
+  Startdatum, alle Setups statt BREAKOUT-only, null gemeinsame Trades). Nur der gematchte
+  Kontrolllauf zaehlt — bei Backtest-Vergleichen IMMER Zeitraum/Setup/Flags gegenpruefen.
 
 - **2026-08-05** **Equity-Tracker bekommt das GAP-GATE — zentrale Metrik war systematisch zu gut**
   (commit 1f805a70): Der Tracker unterstellte IMMER einen Fill zum Trigger-Preis, auch wenn die
