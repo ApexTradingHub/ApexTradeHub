@@ -2211,5 +2211,63 @@
     "mode": "live",
     "env": "demo",
     "dry_run": false
+  },
+  {
+    "event": "close_backfill",
+    "ticker": "ABNB",
+    "order_id": 369935984,
+    "position_id": 3570714974,
+    "close_rate": 150.01,
+    "net_profit": -0.47,
+    "reason": "eToro closed",
+    "paper_had": {
+      "exit_price": 149.85499572753906,
+      "reason": "Stagnation Exit",
+      "pnl_pct": -1.07
+    },
+    "ts": "2026-08-06T16:20:08Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "NWS",
+    "instrument_id": 9588,
+    "size_usd": 50.0,
+    "stop": 32.35,
+    "target": 36.78,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371793254,
+    "response": {
+      "token": "af5edce7-081a-439a-83ae-b31b690b363d",
+      "orderId": 371793254,
+      "referenceId": "a90db6ab-9dd9-4319-b1d1-874c73009f4b"
+    },
+    "ts": "2026-08-06T16:20:12Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
+  },
+  {
+    "event": "open",
+    "ticker": "ZBH",
+    "instrument_id": 4290,
+    "size_usd": 50.0,
+    "stop": 92.06,
+    "target": 105.0,
+    "setup": "BREAKOUT",
+    "source": "scanner",
+    "order_id": 371854453,
+    "response": {
+      "token": "603b8895-8254-42cc-afcd-b126cc80ce01",
+      "orderId": 371854453,
+      "referenceId": "d1bdd9d9-aa9c-4248-8520-8867ace01afa"
+    },
+    "ts": "2026-08-06T16:20:13Z",
+    "mode": "live",
+    "env": "demo",
+    "dry_run": false
   }
 ]
