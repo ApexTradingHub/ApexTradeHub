@@ -3342,5 +3342,21 @@
     "signal_date": "2026-08-04",
     "score": 98.4,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_CLX_2026-08-04",
+    "ts": "2026-08-06T16:40:10Z",
+    "ticker": "CLX",
+    "reason": "gap-gate rollback: Setup >3% gedriftet, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOS_2026-08-05",
+    "ts": "2026-08-06T16:40:10Z",
+    "ticker": "MOS",
+    "signal_date": "2026-08-05",
+    "score": 98.3,
+    "source": "scanner"
   }
 ]
