@@ -3407,5 +3407,24 @@
     "gain_from_open": 1.88,
     "score": 26.2,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_HRB_2026-08-07_1516",
+    "ts": "2026-08-07T19:45:07Z",
+    "ticker": "HRB",
+    "pnl_pct": -0.88,
+    "range_pos_eod": 0.514,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.67
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_HRB_2026-08-07_1516",
+    "ts": "2026-08-07T19:45:07Z",
+    "ticker": "HRB",
+    "exit_price": 46.15999984741211,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.8803947822608139
   }
 ]
