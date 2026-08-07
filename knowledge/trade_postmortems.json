@@ -24386,19 +24386,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-05",
+            "title": "EOG -6.5% auf $134.23 trotz starker Q2 (04.08.): WTI -5.69%/Brent -5.26% auf US-Iran-Fortschritte (Hormuz); Energie-Sektor nur -1.1% -> Upstream-Beta",
+            "src": "WebSearch 2026-08-07 (QuiverQuant/TradingKey/GuruFocus)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "MAKRO-Schock, kein Firmenproblem: EOG lieferte am 04.08. starke Q2-Zahlen, fiel aber am 05.08. **-6.5% auf $134.23**, weil WTI -5.69% ($75.77) und Brent -5.26% einbrachen — Fortschritte in den US-Iran-Gespraechen (Strait of Hormuz) nahmen die Geopolitik-Praemie aus dem Oel. EOGs -5.5% lief WEIT vor dem Energie-Sektor (-1.1%): reine Upstream-Namen haengen 1:1 am Rohoelpreis. Stop -3.75%. Direkt dieselbe Nachrichtenlage, die uns am 03.08. die Erleichterungsrally brachte — was Aktien breit hob, zerstoerte die Oel-Long-These.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "geopolitical_premium_fade",
+          "commodity_macro_shock",
+          "sector_divergence_loser",
+          "energy_oil_beta",
+          "news_cuts_both_ways"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Energie-BREAKOUTs sind faktisch Oelpreis-Wetten. Ein Rohoel-Momentum-Filter (analog dem Sektor-RS-Gate) waere die passende Zelle — bisher deckt SECTOR_RS_GATE nur Tech/Comm ab.",
+          "Bewusst machen: dieselbe Schlagzeile (Iran-Deeskalation) war fuer den Gesamtmarkt bullish und fuer Energie baerisch. Ein einzelner Makro-Regime-Indikator kann das nicht abbilden."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-07T07:39:10.968588+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-06T09:31:18.113249",
@@ -24475,19 +24490,32 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-04",
+            "title": "EMR Q3 2026: EPS $1.71 vs $1.69 est, Umsatz $4.873B vs $4.850B, FY26-Guidance angehoben (Automations-Software); 7d-Rendite +9.16%",
+            "src": "WebSearch 2026-08-07 (QuiverQuant/SeekingAlpha/StockStory)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Q3-Zahlen 04.08.: EPS $1.71 vs $1.69, Umsatz $4.873B vs $4.850B — knapper Beat, aber mit ANGEHOBENER FY26-Guidance auf starker Industrieautomations-/Software-Nachfrage. 7-Tage-Rendite +9.16%, TP +8.11%. Bemerkenswert: der Beat selbst war marginal (+1.2% EPS), der Kurstreiber war die GUIDANCE. Passt zum Muster BAX/BMY — nicht die Surprise-Hoehe entscheidet, sondern ob der Ausblick angehoben wird.",
+        "lesson_tags": [
+          "guidance_raise_catalyst",
+          "post_earnings_beat_continuation",
+          "industrial_automation_demand",
+          "small_beat_big_guidance"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Guidance-Raise schlaegt Beat-Hoehe. Wir tracken `earnings_beat_recent` (ja/nein), aber nicht ob die Guidance angehoben wurde — das waere der aussagekraeftigere Marker."
+        ],
+        "analyzed_at": "2026-08-07T07:39:10.968588+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-06T09:31:18.611508",
@@ -24564,19 +24592,32 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-03",
+            "title": "Vodafone schliesst VodafoneZiggo-Verkauf an Liberty Global ab (EUR 1.0 Mrd + 10% Ziggo); Kurs Anfang August 114-116p, keine Meldung die den Rueckgang erklaert",
+            "src": "WebSearch 2026-08-07 (Stockopedia/LSE/StockTitan)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Kein einzelner Ausloeser auffindbar — VOD.L driftete von ~121.8 auf ~114-116p ab, Stop -5.02%. Kontext: am 03.08. schloss Vodafone den Verkauf der VodafoneZiggo-Anteile an Liberty Global ab (EUR 1.0 Mrd. Cash + 10% an Ziggo Group). Keine Meldung, die den Rueckgang erklaert; eher Ausbruch ohne Anschlusskaeufe (breakout_no_follow_through) in einem niedrig-Beta-Telco-Titel. ZUSATZ-KONTEXT: VOD.L war auch der Ticker des yfinance-100x-Bad-Prints (Phantom-TP +11.12%, entfernt am 31.07.) — der ECHTE Trade war dieser hier, ein Verlust.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "eu_signal_loss",
+          "low_beta_telco_drift",
+          "no_identifiable_catalyst"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Datenpunkt fuer den EU-Entscheid (BACKLOG #23, n>=30): bisher EU-Bilanz gemischt — AMP.MI +8.9% gewonnen, VOD.L -5.0% verloren, ISP.MI +0.5% flach."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-07T07:39:10.968588+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-06T09:31:19.118202",
@@ -24653,19 +24694,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-07-29",
+            "title": "Elastic erweitert OpenAI-Kooperation (Reasoning-Modelle in Elasticsearch), Aktie +10.7%; danach Palantir-Sektorschub 04.08.; naechste Earnings erst 27.08.",
+            "src": "WebSearch 2026-08-07 (Investing.com/Zacks)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "OpenAI-Kooperation als Katalysator: Ende Juli erweiterte Elastic die Zusammenarbeit mit OpenAI (Reasoning-Modelle in Elasticsearch fuer Enterprise-Workflows), Aktie darauf +10.7%. Danach Sektor-Rueckenwind durch Palantirs Blockbuster am 04.08. (+26%), der Enterprise-Software breit hob. TP +11.93%. Earnings standen NICHT im Weg (naechster Termin erst 27.08.) — sauberer Katalysator-Trade ohne Event-Risiko im Haltefenster.",
+        "lesson_tags": [
+          "ai_partnership_catalyst",
+          "sector_sympathy_move",
+          "secular_ai_catalyst",
+          "clean_earnings_runway",
+          "tech_momentum_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Zweiter Fall binnen einer Woche (nach SNOW), in dem ein Sektor-Leader-Print die Peers zieht. Sektor-Sympathie ist ein realer Katalysator, den wir nicht modellieren.",
+          "Earnings-Abstand >3 Wochen = Haltefenster ohne Gap-Risiko (Gegenbeispiel PINS)."
+        ],
+        "analyzed_at": "2026-08-07T07:39:10.968588+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-06T09:31:19.574759",
