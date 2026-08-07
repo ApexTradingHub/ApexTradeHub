@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 91.66748784251024,
-  "last_updated": "2026-08-07T13:25:03Z",
+  "last_updated": "2026-08-07T13:30:02Z",
   "pending": [
     {
       "id": "PAPER_XYZ_2026-08-05",
@@ -17,23 +17,6 @@
       "score": 98.3,
       "rr": 1.81,
       "upside_pct": 8.8,
-      "added_at": "2026-08-06T16:15:10Z",
-      "status": "pending",
-      "mode": "live"
-    },
-    {
-      "id": "PAPER_AMS.MC_2026-08-03",
-      "ticker": "AMS.MC",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-08-03",
-      "entry": 54.31,
-      "stop_initial": 52.0,
-      "target": 60.0,
-      "score": 99.3,
-      "rr": 2.46,
-      "upside_pct": 10.5,
       "added_at": "2026-08-06T16:15:10Z",
       "status": "pending",
       "mode": "live"
@@ -110,9 +93,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-05T13:40:09Z",
-      "current_price": 399.80999755859375,
-      "pnl_pct": 0.8551530090796967,
-      "pnl_usd": 0.42757650453984836,
+      "current_price": 400.7200012207031,
+      "pnl_pct": 1.0847084457653775,
+      "pnl_usd": 0.5423542228826888,
       "hold_days": 1,
       "yfinance_entry": 394.61324999999994,
       "etoro_ask_at_open": 396.42,
@@ -200,9 +183,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-06T16:20:12Z",
-      "current_price": 97.18000030517578,
-      "pnl_pct": 0.3407334075124285,
-      "pnl_usd": 0.17036670375621424,
+      "current_price": 96.88999938964844,
+      "pnl_pct": 0.0413003506953466,
+      "pnl_usd": 0.0206501753476733,
       "hold_days": 0,
       "yfinance_entry": 97.8,
       "etoro_ask_at_open": 96.85,
@@ -283,7 +266,7 @@
       "shares": 0.37616611495636476,
       "size_usd": 50.0,
       "stop": 127.6,
-      "high_since_entry": 135.72250366210938,
+      "high_since_entry": 135.723,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-06T18:56:38Z",
@@ -4989,6 +4972,24 @@
       "mode": "live",
       "expired_at": "2026-08-06T16:40:10Z",
       "expired_reason": "gap_gate"
+    },
+    {
+      "id": "PAPER_AMS.MC_2026-08-03",
+      "ticker": "AMS.MC",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-08-03",
+      "entry": 54.31,
+      "stop_initial": 52.0,
+      "target": 60.0,
+      "score": 99.3,
+      "rr": 2.46,
+      "upside_pct": 10.5,
+      "added_at": "2026-08-06T16:15:10Z",
+      "status": "expired",
+      "mode": "live",
+      "expired_at": "2026-08-07T13:30:08Z"
     }
   ],
   "stats": {
@@ -5000,7 +5001,7 @@
     "losses": 54,
     "win_rate": 47.57281553398058,
     "pnl_realized": -15.581406051697808,
-    "pnl_unrealized": -2.784803157782763,
-    "equity": 388.88268468472745
+    "pnl_unrealized": -2.8197419678484636,
+    "equity": 388.84774587466177
   }
 }
