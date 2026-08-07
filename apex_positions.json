@@ -1,8 +1,8 @@
 {
-  "mode": "live",
+  "mode": "paper",
   "capital_initial": 400.0,
   "cash": 91.66748784251024,
-  "last_updated": "2026-08-06T21:55:03Z",
+  "last_updated": "2026-08-07T13:00:02Z",
   "pending": [
     {
       "id": "PAPER_XYZ_2026-08-05",
@@ -78,7 +78,7 @@
         "orderId": 371111487,
         "referenceId": "1ccd34cd-128a-481d-a44d-5c133bc8b9d4"
       },
-      "hold_trading_days": 2,
+      "hold_trading_days": 3,
       "etoro_status": "pending_fill",
       "etoro_position_id": 3574945826,
       "etoro_open_rate": 106.89,
@@ -124,7 +124,7 @@
         "orderId": 371516022,
         "referenceId": "d806efa1-e4de-4201-88e3-e2c8664cd303"
       },
-      "hold_trading_days": 1,
+      "hold_trading_days": 2,
       "etoro_position_id": 3575759108,
       "etoro_open_rate": 396.41,
       "etoro_current_rate": 396.41,
@@ -169,7 +169,7 @@
         "orderId": 371516024,
         "referenceId": "31fb4dd3-3668-4256-b46a-4480339c6f89"
       },
-      "hold_trading_days": 1,
+      "hold_trading_days": 2,
       "etoro_position_id": 3575759113,
       "etoro_open_rate": 382.18,
       "etoro_current_rate": 382.18,
@@ -214,7 +214,7 @@
         "orderId": 371854453,
         "referenceId": "d1bdd9d9-aa9c-4248-8520-8867ace01afa"
       },
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "etoro_position_id": 3576748480,
       "etoro_open_rate": 96.83,
       "etoro_current_rate": 96.83,
@@ -259,7 +259,7 @@
         "orderId": 371793415,
         "referenceId": "7b6d4e27-3807-4c8e-b119-dfbf63c58608"
       },
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "etoro_position_id": 3576757625,
       "etoro_open_rate": 23.48,
       "etoro_current_rate": 23.48,
@@ -308,7 +308,7 @@
       "etoro_units": 0.376166,
       "etoro_open_date": "2026-08-06T18:56:41.323Z",
       "intraday_rescued": true,
-      "hold_trading_days": 0
+      "hold_trading_days": 1
     }
   ],
   "closed": [
@@ -4992,7 +4992,7 @@
     }
   ],
   "stats": {
-    "trading_mode": "live",
+    "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 103,
     "open_trades": 6,
