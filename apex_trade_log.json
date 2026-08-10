@@ -3518,5 +3518,33 @@
     "new_stop": 61.86478499999999,
     "high": 63.529998779296875,
     "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_HP_2026-08-07",
+    "ts": "2026-08-10T14:00:08Z",
+    "ticker": "HP",
+    "old_stop": 38.499942,
+    "new_stop": 38.863149,
+    "high": 40.029998779296875,
+    "ladder_step": 4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_HP_2026-08-07",
+    "ts": "2026-08-10T14:00:08Z",
+    "ticker": "HP",
+    "exit_price": 40.0,
+    "reason": "Take Profit",
+    "pnl_pct": 10.130036040054309
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DASH_2026-08-07",
+    "ts": "2026-08-10T14:00:08Z",
+    "ticker": "DASH",
+    "signal_date": "2026-08-07",
+    "score": 145.4,
+    "source": "scanner"
   }
 ]
