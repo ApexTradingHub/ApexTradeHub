@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-08-07T08:00:47.484009 | Total trades: 254_
+_Updated: 2026-08-10T08:17:28.762575 | Total trades: 257_
 
-**Analyse-Status**: complete=250, pending=4
+**Analyse-Status**: complete=250, pending=7
 
 ## Lesson-Tag Frequency (Claude curated)
 
@@ -84,22 +84,22 @@ _Updated: 2026-08-07T08:00:47.484009 | Total trades: 254_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Recent (30d) — Worst 5 / Best 5  (n=37)
+## Recent (30d) — Worst 5 / Best 5  (n=32)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
-| ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | high_score_loss_85plus,insider_distribution,customer_concentration_risk |
 | IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | extended_rally_fade,valuation_unwind,high_score_loss_85plus |
 | TRIP_2026-07-16 | BREAKOUT | -7.08% | Stop Loss D+3 | 114.8 | Consumer Cyclical | short_gt_15pct_confirmed,analyst_downgrade,structural_decline |
-| META_2026-07-10 | BREAKOUT | -6.22% | Stop Loss D+10 | 115.4 | Communication Services | ai_capex_overhang,high_score_loss_85plus,sector_divergence_loser |
 | GPN_2026-07-20 | BREAKOUT | -5.78% | Stop Loss D+3 | 119.9 | Industrials | macro_selloff_correlates_all_stocks,duplicate_trap |
+| PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | — |
+| DXCM_2026-07-16 | BREAKOUT | -5.63% | Stop Loss D+4 | 102.8 | Healthcare | macro_selloff_correlates_all_stocks |
 | SNOW_2026-07-29 | BREAKOUT | 14.27% | Take Profit D+4 | 108.4 | Technology | vcp_priority_opportunity_cost,sector_sympathy_move,secular_ai_catalyst |
 | RHI_2026-07-13 | BREAKOUT | 13.58% | Take Profit D+3 | 141.3 | Industrials | high_score_winner,clean_breakout_profile,pick_band_cost |
 | ESTC_2026-07-29 | BREAKOUT | 11.93% | Take Profit D+5 | 105.6 | Technology | ai_partnership_catalyst,sector_sympathy_move,secular_ai_catalyst |
 | ABT_2026-07-16 | BREAKOUT | 10.04% | Take Profit D+8 | 92.7 | Healthcare | post_earnings_beat_continuation,guidance_raise,catalyst_beats_extension |
 | LW_2026-07-23 | BREAKOUT | 10.0% | Take Profit D+2 | 101.9 | Consumer Defensive | post_earnings_beat_continuation,guidance_beat |
 
-## Pending Claude-Analyse (4)
+## Pending Claude-Analyse (7)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -107,3 +107,6 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `ILMN_2026-07-30`
 - `TFX_2026-08-03`
 - `AVT_2026-08-04`
+- `ABNB_2026-07-28`
+- `M_2026-08-04`
+- `LIN_2026-05-21`
