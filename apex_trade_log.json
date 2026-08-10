@@ -3471,5 +3471,33 @@
     "new_stop": 37.773528,
     "high": 39.189998626708984,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_KKR_2026-08-03",
+    "ts": "2026-08-10T13:45:07Z",
+    "ticker": "KKR",
+    "exit_price": 101.87,
+    "reason": "Stop Loss",
+    "pnl_pct": -5.675925925925922
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_HP_2026-08-07",
+    "ts": "2026-08-10T13:45:07Z",
+    "ticker": "HP",
+    "old_stop": 37.773528,
+    "new_stop": 38.499942,
+    "high": 39.3650016784668,
+    "ladder_step": 3
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_FOXA_2026-08-07",
+    "ts": "2026-08-10T13:45:07Z",
+    "ticker": "FOXA",
+    "signal_date": "2026-08-07",
+    "score": 128.1,
+    "source": "scanner"
   }
 ]
