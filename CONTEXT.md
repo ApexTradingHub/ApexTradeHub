@@ -10,6 +10,19 @@ ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
 ## 1. Workflow-Goldene Regeln (NICHT verletzen)
 
+- **WELCHE DATENQUELLE FUER WELCHE FRAGE (Fund 2026-08-07, wichtig):** Backtest und Live-/Equity-
+  Daten messen NICHT dieselbe Population. Im identischen Fenster (17.03.-30.06.26): LIVE n=121 vs
+  BACKTEST n=27; **Pocket-Pivot-Anteil 42% vs 78%, VCP>0 14% vs 56%, Score>=100 52% vs 26%**.
+  Ursachen: (a) der Backtest scannt nur **96 Termine in 2 Jahren = ~woechentlich**, live scannen wir
+  **taeglich**; (b) `apex_backtest_v2.py` hat **kein sector_momentum** -> TECH_QQQ_GATE und
+  SECTOR_RS_GATE laufen dort NICHT.
+  -> **BACKTEST = Mechanik-Pruefstand.** Nur fuer A/B DERSELBEN Trades unter verschiedenen Regeln
+     (Haltedauer, Trailing-Leitern, Exit-Logik). Der Sampling-Unterschied kuerzt sich in beiden Armen weg.
+  -> **LIVE/EQUITY = Wahrheit ueber den tatsaechlichen Signalfluss.** Fuer Kalibrierungsfragen
+     (Score-Gates, Katalysator-Effekte, Sektor-Verhalten), weil dort alle Gates + die echte Kadenz drin sind.
+  -> **NIE Katalysator- oder Score-Effekte zwischen den beiden Quellen vergleichen.** Genau das hat
+     2026-08-06/07 zu zwei Schein-Widerspruechen gefuehrt (Gate 80 und Pocket Pivot).
+
 - **CONFIRMED-only-Code-Änderungen**: Keine System-Änderungen aufgrund von TENTATIVE/MED-Findings.
   Brauche `n ≥ 30` UND einen klaren Effekt-Größenwert für Code-Changes an Filtern/Gates.
 - **Anti-Cherry-Pick**: Akzeptanzkriterien vor jedem Tuning-Backtest fixieren, NICHT danach.
