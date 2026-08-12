@@ -3575,5 +3575,23 @@
     "new_stop": 135.5784,
     "high": 138.3000030517578,
     "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_FOXA_2026-08-07",
+    "ts": "2026-08-12T13:45:07Z",
+    "ticker": "FOXA",
+    "exit_price": 61.86478499999999,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.9999999999999967
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SE_2026-08-10",
+    "ts": "2026-08-12T13:45:08Z",
+    "ticker": "SE",
+    "signal_date": "2026-08-10",
+    "score": 93.1,
+    "source": "scanner"
   }
 ]
