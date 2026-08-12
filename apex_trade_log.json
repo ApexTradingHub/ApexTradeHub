@@ -3727,5 +3727,31 @@
     "gain_from_open": 1.87,
     "score": 27.4,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_CLMT_2026-08-12_1502",
+    "ts": "2026-08-12T19:45:07Z",
+    "ticker": "CLMT",
+    "pnl_pct": 0.86,
+    "new_stop": 46.92,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 1.41,
+    "range_pos_eod": 0.839,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.89
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_LNT_2026-08-12_1846",
+    "ts": "2026-08-12T19:45:07Z",
+    "ticker": "LNT",
+    "pnl_pct": -0.04,
+    "new_stop": 67.43,
+    "mode": "rot->-4%",
+    "high_since_entry_pct": 0.31,
+    "range_pos_eod": 0.837,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.86
   }
 ]
