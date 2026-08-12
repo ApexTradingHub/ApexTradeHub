@@ -3602,5 +3602,63 @@
     "entry_signal": 115.77,
     "entry_actual": 116.34884999999998,
     "mode": "paper"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_SE_2026-08-10",
+    "ts": "2026-08-12T13:55:07Z",
+    "ticker": "SE",
+    "old_stop": 109.65,
+    "new_stop": 118.67582699999998,
+    "high": 131.89999389648438,
+    "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_SE_2026-08-10",
+    "ts": "2026-08-12T13:55:07Z",
+    "ticker": "SE",
+    "old_stop": 118.67582699999998,
+    "new_stop": 121.00280399999998,
+    "high": 131.89999389648438,
+    "ladder_step": 2
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_SE_2026-08-10",
+    "ts": "2026-08-12T13:55:07Z",
+    "ticker": "SE",
+    "old_stop": 121.00280399999998,
+    "new_stop": 123.32978099999998,
+    "high": 131.89999389648438,
+    "ladder_step": 3
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_SE_2026-08-10",
+    "ts": "2026-08-12T13:55:07Z",
+    "ticker": "SE",
+    "old_stop": 123.32978099999998,
+    "new_stop": 124.4932695,
+    "high": 131.89999389648438,
+    "ladder_step": 4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_SE_2026-08-10",
+    "ts": "2026-08-12T13:55:07Z",
+    "ticker": "SE",
+    "exit_price": 130.0,
+    "reason": "Take Profit",
+    "pnl_pct": 11.732947940611375
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_TTWO_2026-08-10",
+    "ts": "2026-08-12T13:55:07Z",
+    "ticker": "TTWO",
+    "signal_date": "2026-08-10",
+    "score": 112.4,
+    "source": "scanner"
   }
 ]
