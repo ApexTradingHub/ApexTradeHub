@@ -3762,5 +3762,41 @@
     "exit_price": 97.9000015258789,
     "reason": "Stagnation Exit",
     "pnl_pct": 1.0841523240876738
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CHRD_2026-08-06_1856",
+    "ts": "2026-08-13T13:55:06Z",
+    "ticker": "CHRD",
+    "exit_price": 135.5784,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000004
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CLMT_2026-08-12_1502",
+    "ts": "2026-08-13T13:55:06Z",
+    "ticker": "CLMT",
+    "exit_price": 46.92,
+    "reason": "Stop Loss",
+    "pnl_pct": 0.010655620537360836
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_LLY_2026-08-10",
+    "ts": "2026-08-13T13:55:07Z",
+    "ticker": "LLY",
+    "signal_date": "2026-08-10",
+    "score": 105.5,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_UBER_2026-08-10",
+    "ts": "2026-08-13T13:55:07Z",
+    "ticker": "UBER",
+    "signal_date": "2026-08-10",
+    "score": 94.2,
+    "source": "scanner"
   }
 ]
