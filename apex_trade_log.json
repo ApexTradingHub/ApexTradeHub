@@ -3896,5 +3896,23 @@
     "signal_date": "2026-08-13",
     "score": 113.8,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_WAT_2026-08-04",
+    "ts": "2026-08-14T13:35:07Z",
+    "ticker": "WAT",
+    "exit_price": 412.27680000000004,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 4.000000000000005
+  },
+  {
+    "event": "open",
+    "id": "PAPER_CRM_2026-08-13",
+    "ts": "2026-08-14T13:35:08Z",
+    "ticker": "CRM",
+    "entry_signal": 199.79,
+    "entry_actual": 199.97999572753906,
+    "mode": "paper"
   }
 ]
