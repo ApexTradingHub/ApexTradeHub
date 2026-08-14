@@ -2,42 +2,8 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 199.84088288404064,
-  "last_updated": "2026-08-14T13:25:02Z",
+  "last_updated": "2026-08-14T13:30:02Z",
   "pending": [
-    {
-      "id": "PAPER_TTWO_2026-08-10",
-      "ticker": "TTWO",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Communication Services",
-      "signal_date": "2026-08-10",
-      "entry": 251.43,
-      "stop_initial": 238.46,
-      "target": 275.0,
-      "score": 112.4,
-      "rr": 1.82,
-      "upside_pct": 9.4,
-      "added_at": "2026-08-12T13:55:07Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_UBER_2026-08-10",
-      "ticker": "UBER",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-08-10",
-      "entry": 76.45,
-      "stop_initial": 72.34,
-      "target": 85.0,
-      "score": 94.2,
-      "rr": 2.08,
-      "upside_pct": 11.2,
-      "added_at": "2026-08-13T13:55:07Z",
-      "status": "pending",
-      "mode": "paper"
-    },
     {
       "id": "PAPER_MELI_2026-08-11",
       "ticker": "MELI",
@@ -52,6 +18,40 @@
       "rr": 1.73,
       "upside_pct": 8.5,
       "added_at": "2026-08-13T17:25:07Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_CPB_2026-08-13",
+      "ticker": "CPB",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Defensive",
+      "signal_date": "2026-08-13",
+      "entry": 23.49,
+      "stop_initial": 22.4,
+      "target": 26.0,
+      "score": 90.9,
+      "rr": 2.32,
+      "upside_pct": 10.7,
+      "added_at": "2026-08-14T13:30:08Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_CRM_2026-08-13",
+      "ticker": "CRM",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-08-13",
+      "entry": 199.79,
+      "stop_initial": 187.69,
+      "target": 220.0,
+      "score": 113.8,
+      "rr": 1.67,
+      "upside_pct": 10.1,
+      "added_at": "2026-08-14T13:30:08Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -187,9 +187,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-13T14:00:10Z",
-      "current_price": 1209.77001953125,
-      "pnl_pct": -2.0000632234944864,
-      "pnl_usd": -1.0000316117472432,
+      "current_price": 1194.989990234375,
+      "pnl_pct": -3.197350239426554,
+      "pnl_usd": -1.598675119713277,
       "hold_days": 0,
       "hold_trading_days": 1
     }
@@ -5403,6 +5403,42 @@
       "status": "expired",
       "mode": "live",
       "expired_at": "2026-08-10T13:30:10Z"
+    },
+    {
+      "id": "PAPER_TTWO_2026-08-10",
+      "ticker": "TTWO",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Communication Services",
+      "signal_date": "2026-08-10",
+      "entry": 251.43,
+      "stop_initial": 238.46,
+      "target": 275.0,
+      "score": 112.4,
+      "rr": 1.82,
+      "upside_pct": 9.4,
+      "added_at": "2026-08-12T13:55:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-08-14T13:30:08Z"
+    },
+    {
+      "id": "PAPER_UBER_2026-08-10",
+      "ticker": "UBER",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-08-10",
+      "entry": 76.45,
+      "stop_initial": 72.34,
+      "target": 85.0,
+      "score": 94.2,
+      "rr": 2.08,
+      "upside_pct": 11.2,
+      "added_at": "2026-08-13T13:55:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-08-14T13:30:08Z"
     }
   ],
   "stats": {
@@ -5414,7 +5450,7 @@
     "losses": 59,
     "win_rate": 49.137931034482754,
     "pnl_realized": -7.408011010167416,
-    "pnl_unrealized": 2.707186334843585,
-    "equity": 402.5480692188842
+    "pnl_unrealized": 2.1085428268775512,
+    "equity": 401.9494257109182
   }
 }

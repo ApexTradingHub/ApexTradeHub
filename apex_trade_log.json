@@ -3864,5 +3864,37 @@
     "new_stop": 213.84611099999998,
     "high": 218.3800048828125,
     "ladder_step": 1
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_TTWO_2026-08-10",
+    "ts": "2026-08-14T13:30:08Z",
+    "ticker": "TTWO",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_UBER_2026-08-10",
+    "ts": "2026-08-14T13:30:08Z",
+    "ticker": "UBER",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CPB_2026-08-13",
+    "ts": "2026-08-14T13:30:08Z",
+    "ticker": "CPB",
+    "signal_date": "2026-08-13",
+    "score": 90.9,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CRM_2026-08-13",
+    "ts": "2026-08-14T13:30:08Z",
+    "ticker": "CRM",
+    "signal_date": "2026-08-13",
+    "score": 113.8,
+    "source": "scanner"
   }
 ]
