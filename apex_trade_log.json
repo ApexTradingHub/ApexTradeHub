@@ -3943,5 +3943,18 @@
     "exit_price": 66.98,
     "reason": "Intraday Stop",
     "pnl_pct": -3.0048516342128706
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_NBIS_2026-08-14_1401",
+    "ts": "2026-08-14T19:45:06Z",
+    "ticker": "NBIS",
+    "pnl_pct": 1.37,
+    "new_stop": 269.31,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 3.47,
+    "range_pos_eod": 0.739,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 6.23
   }
 ]
