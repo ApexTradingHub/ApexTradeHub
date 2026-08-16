@@ -2,16 +2,31 @@
 
 _Updated: 2026-08-14T08:03:08.801788 | Total trades: 271_
 
-**Analyse-Status**: complete=250, pending=21
+**Analyse-Status**: complete=271
+
+## ⚠ Daten-Qualität: complete OHNE strukturierte News
+
+10 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
+
+- `PINS_2026-07-29`
+- `ILMN_2026-07-30`
+- `TFX_2026-08-03`
+- `ABNB_2026-07-28`
+- `LIN_2026-05-21`
+- `BMRN_2026-07-28`
+- `BMRN_2026-08-07`
+- `TPR_2026-07-29`
+- `A_2026-07-23`
+- `EW_2026-05-26`
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
+| `breakout_no_follow_through` | 44 |
 | `post_earnings_beat_continuation` | 37 |
-| `breakout_no_follow_through` | 37 |
-| `sector_momentum_tailwind` | 34 |
-| `high_score_loss_85plus` | 31 |
+| `sector_momentum_tailwind` | 36 |
+| `high_score_loss_85plus` | 33 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 23 |
@@ -26,7 +41,7 @@ _Updated: 2026-08-14T08:03:08.801788 | Total trades: 271_
 | `earnings_adjacency_risk` | 11 |
 | `low_score_loss` | 11 |
 | `macro_selloff_correlates_all_stocks` | 11 |
-| `sector_divergence_loser` | 10 |
+| `sector_divergence_loser` | 11 |
 | `reversal_no_turn` | 9 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
@@ -84,43 +99,22 @@ _Updated: 2026-08-14T08:03:08.801788 | Total trades: 271_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Recent (30d) — Worst 5 / Best 5  (n=40)
+## Recent (30d) — Worst 5 / Best 5  (n=34)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
 | IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | extended_rally_fade,valuation_unwind,high_score_loss_85plus |
-| TRIP_2026-07-16 | BREAKOUT | -7.08% | Stop Loss D+3 | 114.8 | Consumer Cyclical | short_gt_15pct_confirmed,analyst_downgrade,structural_decline |
-| MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | — |
+| MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
 | GPN_2026-07-20 | BREAKOUT | -5.78% | Stop Loss D+3 | 119.9 | Industrials | macro_selloff_correlates_all_stocks,duplicate_trap |
-| PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | — |
+| PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | earnings_gap_through_stop,guidance_disappointment,hold_through_earnings_risk |
+| ILMN_2026-07-30 | BREAKOUT | -5.57% | Stop Loss D+5 | 114.2 | Healthcare | sell_the_news,valuation_unwind,extended_perf120 |
 | SNOW_2026-07-29 | BREAKOUT | 14.27% | Take Profit D+4 | 108.4 | Technology | vcp_priority_opportunity_cost,sector_sympathy_move,secular_ai_catalyst |
-| DOCU_2026-07-28 | BREAKOUT | 12.84% | Take Profit D+12 | 116.3 | Technology | — |
+| DOCU_2026-07-28 | BREAKOUT | 12.84% | Take Profit D+12 | 116.3 | Technology | sector_rotation_win,sector_sympathy_move,guidance_raise_catalyst |
 | ESTC_2026-07-29 | BREAKOUT | 11.93% | Take Profit D+5 | 105.6 | Technology | ai_partnership_catalyst,sector_sympathy_move,secular_ai_catalyst |
-| BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | — |
-| BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | — |
+| BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | sector_rotation_win,software_momentum,high_score_win_exception |
+| BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (21)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `PINS_2026-07-29`
-- `ILMN_2026-07-30`
-- `TFX_2026-08-03`
-- `AVT_2026-08-04`
-- `ABNB_2026-07-28`
-- `M_2026-08-04`
-- `LIN_2026-05-21`
-- `BEN_2026-08-03`
-- `BMRN_2026-07-28`
-- `BMRN_2026-08-07`
-- `TPR_2026-07-29`
-- `A_2026-07-23`
-- `IR_2026-08-03`
-- `WY_2026-08-05`
-- `GE_2026-08-04`
-- `MOS_2026-08-05`
-- `BILL_2026-07-28`
-- `DOCU_2026-07-28`
-- `KKR_2026-08-03`
-- `BX_2026-08-04`
-- _(+ 1 mehr)_

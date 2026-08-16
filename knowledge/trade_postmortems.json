@@ -24802,15 +24802,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Q2-Bericht am 04.08. NACH Boersenschluss: Umsatz $1.18B vs $1.15B und EPS 43c vs 36c geschlagen, aber schwache Q3-Guidance (WM-Effekt entfaellt, Prime-Day verschoben) -> -8.3% nachboerslich; am 05.08. Eroeffnung 23.98 nach Vortages-Close 25.58 = Gap -6.25%. Der Trailing-Stop bei +2% wurde UEBERSPRUNGEN, Fill 5% darunter. KERNPUNKT: Der Earnings-Blackout gilt nur fuer den EINSTIEG, nicht fuers HALTEN.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "earnings_gap_through_stop",
+          "guidance_disappointment",
+          "hold_through_earnings_risk",
+          "sell_the_news"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Eine Regel 'vor Earnings schliessen/verkleinern' waere hier -5.7% wert gewesen. ABER BAX/BMY/AMP.MI/MHK haben durch Earnings GEWONNEN — erst messen ob Halten durch Earnings negative Erwartung hat, dann bauen."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-07T08:00:45.872751",
@@ -24891,15 +24898,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Signal am Tag des Q2-Berichts (30.07.: EPS $1.35 vs $1.25, Guidance angehoben, +3.9% nachboerslich). Danach drehte es: Stop -5.57% am 06.08. Das Profil war schon im Signal ungesund — perf_120 +53.5% (stark extended) und analyst_upside -15.9%, also Kurs UEBER dem Konsensziel. Klassisches sell-the-news auf ausgereiztem Titel.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sell_the_news",
+          "valuation_unwind",
+          "extended_perf120",
+          "high_score_loss_85plus"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-07T08:00:46.327677",
@@ -24980,15 +24992,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Teleflex (Healthcare), Stop -4.88% nach 4 Tagen. Score 89.2 — knapp ueber Gate 80. Schneller Fehlausbruch ohne erkennbaren Ausloeser.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "quick_stop_1_3d",
+          "gate80_borderline_loss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-07T08:00:46.751694",
@@ -25065,19 +25081,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Technology-BREAKOUT, TP +9.29% in 3 Tagen. Score 123.5. Lief mit der breiten Tech-Staerke der ersten August-Woche, bevor am 13./14.08. die Gewinnmitnahmen einsetzten.",
+        "lesson_tags": [
+          "fast_tp_under_4d",
+          "tech_momentum_win",
+          "sector_momentum_tailwind"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-07T08:00:47.183847",
@@ -25158,15 +25184,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Consumer-Cyclical-BREAKOUT, TP +9.14% ueber 11 Tage. Score 107.1. Lief durch die Konsolidierung hindurch, ohne den Stop zu beruehren.",
+        "lesson_tags": [
+          "clean_breakout_follow_through",
+          "sweet_band_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-10T08:17:27.629611",
@@ -25243,19 +25272,30 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Macys, Stop -5.46%. Score 134.9 — aus dem 120+-Bucket (lifetime nur 46.7% WR). Consumer-Discretionary-Einzelhandel genau in der Woche, in der die Juli-Einzelhandelsumsaetze -0.6% statt +0.1% brachten. Marktkontext 07.-14.08.: S&P500/Nasdaq schlossen zwar die dritte Gewinnwoche in Folge, aber mit Gewinnmitnahmen in Mega-Cap-Tech und schwachen Daten (Einzelhandel Juli -0.6% statt +0.1% erwartet, UMich-Sentiment 51.0 von 55.2). Kein Crash, sondern Konsolidierung — genug Chop, um enge Breakout-Stops einzusammeln.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "retail_data_miss",
+          "consumer_weakness",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-10T08:17:28.050305",
@@ -25336,15 +25376,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "LEGACY: STAGE_2-Signal mit 80-Bar-Horizont (8-16 Wochen). Das Setup ist seit 08.07. ABGESCHALTET (kein historischer Edge, 0 Wins). Dieser Trade lief nur noch aus und endete mit Time Exit -5.24%. Kein Erkenntniswert fuer die aktive Strategie.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "legacy_stage2_disabled",
+          "time_exit_negative",
+          "long_horizon_drift"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "LOW"
       },
       "auto_meta": {
         "built_at": "2026-08-10T08:17:28.462328",
@@ -25421,19 +25465,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Financials-Signal, das die Sektor-Rally NICHT mitnahm: Stop -4.32% am 10.08., also VOR dem Sektor-Schub am 13./14.08. Marktkontext 07.-14.08.: S&P500/Nasdaq schlossen zwar die dritte Gewinnwoche in Folge, aber mit Gewinnmitnahmen in Mega-Cap-Tech und schwachen Daten (Einzelhandel Juli -0.6% statt +0.1% erwartet, UMich-Sentiment 51.0 von 55.2). Kein Crash, sondern Konsolidierung — genug Chop, um enge Breakout-Stops einzusammeln.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "stopped_before_sector_move",
+          "timing_cost"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Der Sektor drehte 3 Tage nach unserem Stop. Kein Filter haette das gerettet — reines Timing-Pech, kein Systemfehler."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-11T07:58:17.764076",
@@ -25514,15 +25570,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Healthcare-BREAKOUT, TP +8.46%. Ruhiger, katalysatorloser Laeufer — der Sektor war in der ersten August-Haelfte einer der stabilsten, waehrend Tech konsolidierte.",
+        "lesson_tags": [
+          "defensive_healthcare",
+          "sector_momentum_tailwind",
+          "clean_breakout_follow_through"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-11T07:58:18.190070",
@@ -25603,15 +25663,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zweites BMRN-Signal binnen 10 Tagen, TP +9.5% an EINEM Tag (07.08.->08.08.). Score 128.5. Der Titel war in einem sauberen Aufwaertstrend — Wiederholungssignale desselben Tickers waren hier profitabel, entgegen der Duplicate-Trap-Sorge.",
+        "lesson_tags": [
+          "repeat_signal_win",
+          "fast_tp_under_4d",
+          "defensive_healthcare"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-11T07:58:18.601079",
@@ -25692,15 +25756,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Tapestry, TP +8.6%. Score 86.1 — aus dem 80-90-Bucket, das live 56.0% WR hat. Beleg, dass Gate 80 die richtige Schwelle trifft: knapp darueber, und es lief.",
+        "lesson_tags": [
+          "gate80_borderline_win",
+          "consumer_cyclical",
+          "sweet_band_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-11T07:58:19.026224",
@@ -25781,15 +25849,19 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Agilent (Healthcare/Life-Science), TP +8.19% ueber 18 Tage. Langsamer, unspektakulaerer Laeufer im stabilen Sektor. Score 94.6 — aus dem 90-100-Bucket, live der beste (64.0% WR).",
+        "lesson_tags": [
+          "sweet_band_win",
+          "defensive_healthcare",
+          "slow_grind_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-12T08:05:07.341307",
@@ -25866,19 +25938,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Ingersoll Rand, Stop -5.07%. Industrials wie GE, gleiches Muster: Ausbruch ohne Anschluss in der Konsolidierungswoche. Marktkontext 07.-14.08.: S&P500/Nasdaq schlossen zwar die dritte Gewinnwoche in Folge, aber mit Gewinnmitnahmen in Mega-Cap-Tech und schwachen Daten (Einzelhandel Juli -0.6% statt +0.1% erwartet, UMich-Sentiment 51.0 von 55.2). Kein Crash, sondern Konsolidierung — genug Chop, um enge Breakout-Stops einzusammeln.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "slow_stop_4plus",
+          "chop_market_stop"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-13T08:06:49.275593",
@@ -25955,19 +26037,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Weyerhaeuser (Real Estate/Holz), Stop -4.25%. Zinssensibel und in der schwachen Konsum-/Baudatenlage (Einzelhandel -0.6%) unter Druck. Marktkontext 07.-14.08.: S&P500/Nasdaq schlossen zwar die dritte Gewinnwoche in Folge, aber mit Gewinnmitnahmen in Mega-Cap-Tech und schwachen Daten (Einzelhandel Juli -0.6% statt +0.1% erwartet, UMich-Sentiment 51.0 von 55.2). Kein Crash, sondern Konsolidierung — genug Chop, um enge Breakout-Stops einzusammeln.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "rate_sensitive_loser",
+          "breakout_no_follow_through",
+          "chop_market_stop"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-13T08:06:49.803299",
@@ -26044,19 +26136,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Industrials-BREAKOUT, Stop -4.09% nach 10 Tagen. Marktkontext 07.-14.08.: S&P500/Nasdaq schlossen zwar die dritte Gewinnwoche in Folge, aber mit Gewinnmitnahmen in Mega-Cap-Tech und schwachen Daten (Einzelhandel Juli -0.6% statt +0.1% erwartet, UMich-Sentiment 51.0 von 55.2). Kein Crash, sondern Konsolidierung — genug Chop, um enge Breakout-Stops einzusammeln.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "slow_stop_4plus",
+          "chop_market_stop"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:05.604763",
@@ -26133,19 +26235,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Woche 07.-14.08.: S&P500/Nasdaq dritte Gewinnwoche in Folge, aber Gewinnmitnahmen in Mega-Cap-Tech; Einzelhandelsumsaetze Juli -0.6% (erwartet +0.1%), UMich-Sentiment 51.0 (von 55.2). Gesunde Konsolidierung, keine Korrektur",
+            "src": "WebSearch 2026-08-16 (TradingStrategyGuides/Schwab)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Groesster Verlust des Batches (-6.35%). Basic Materials/Duenger — zyklisch und rohstoffabhaengig, dieselbe Kategorie wie EOG. Marktkontext 07.-14.08.: S&P500/Nasdaq schlossen zwar die dritte Gewinnwoche in Folge, aber mit Gewinnmitnahmen in Mega-Cap-Tech und schwachen Daten (Einzelhandel Juli -0.6% statt +0.1% erwartet, UMich-Sentiment 51.0 von 55.2). Kein Crash, sondern Konsolidierung — genug Chop, um enge Breakout-Stops einzusammeln.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "commodity_macro_shock",
+          "sector_divergence_loser",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Zweiter Rohstoff-Fall nach EOG. Ein Commodity-Momentum-Filter fuer Energy+Materials waere die passende Zelle — SECTOR_RS_GATE deckt nur Tech/Comm ab."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:06.085165",
@@ -26222,19 +26336,29 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-13",
+            "title": "Software-Applications-Rally: DOCU +9.6% auf $62.99 (nachboerslich $64.09), synchron ueber den Sektor; Fundament war der vorige Beat-and-Raise mit angehobener FY27-Guidance",
+            "src": "WebSearch 2026-08-16 (Alphastreet/24-7WallSt/QuiverQuant)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Software-/Fintech-Rotation derselben Woche wie DOCU (siehe dort), TP +11.2%. Score 127.3 — aus dem 120+-Bucket, der lifetime nur 46.7% WR hat; hier lief er.",
+        "lesson_tags": [
+          "sector_rotation_win",
+          "software_momentum",
+          "high_score_win_exception"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:06.562103",
@@ -26311,19 +26435,32 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-13",
+            "title": "Software-Applications-Rally: DOCU +9.6% auf $62.99 (nachboerslich $64.09), synchron ueber den Sektor; Fundament war der vorige Beat-and-Raise mit angehobener FY27-Guidance",
+            "src": "WebSearch 2026-08-16 (Alphastreet/24-7WallSt/QuiverQuant)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Sektor-Rotation in Software-Applications am 13.08. (DOCU +9.6%, synchron ueber die Peers). Fundament war der vorherige Beat-and-Raise mit angehobener FY27-Guidance, der Ausloeser aber die Sektor-Bewegung — Investoren rotierten in die Gruppe, nicht in den Einzeltitel. TP +12.84% — groesster Gewinner des Batches.",
+        "lesson_tags": [
+          "sector_rotation_win",
+          "sector_sympathy_move",
+          "guidance_raise_catalyst",
+          "software_momentum"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Beat-and-Raise als Fundament + Sektor-Bewegung als Ausloeser. Das Muster 'Guidance-Raise wirkt laenger nach als der Beat' zieht sich jetzt durch BAX/BMY/EMR/DOCU."
+        ],
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:07.030938",
@@ -26400,19 +26537,32 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Alt-Asset-Manager Sektor-Rally: BX +8.0%, KKR +6.3%, STT +3.6%, AMP +3.9% — ausgeloest durch Bericht ueber Nvidia-AI-Infrastruktur-Deal; breite Rotation zurueck in den Sektor, kein firmenspezifischer Treiber",
+            "src": "WebSearch 2026-08-16 (Alphastreet/Kalkine)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Sektor-Rotation zurueck in Alternative-Asset-Manager: am 13./14.08. sprang die ganze Gruppe (BX +8.0%, KKR +6.3%, STT +3.6%, AMP +3.9%), ausgeloest von einem Bericht ueber einen Nvidia-AI-Infrastruktur-Deal. Kein firmenspezifischer Treiber — reine Sektor-Sympathie. BEMERKENSWERT: derselbe Sektor bescherte uns Ende Juli den BX-Verlust (-5.02%), als Private-Credit-Sorgen und PT-Cuts ihn abverkauften. Dieselbe Zelle, entgegengesetzte Richtung, drei Wochen spaeter. TP +10.17%.",
+        "lesson_tags": [
+          "sector_rotation_win",
+          "sector_sympathy_move",
+          "financials_alt_managers",
+          "ai_infrastructure_theme"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Sektor-Sympathie ist ein realer Katalysator, den wir nicht modellieren — dritter Fall binnen drei Wochen (SNOW/ESTC via Palantir, jetzt BX/KKR via Nvidia-Bericht)."
+        ],
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:07.511059",
@@ -26489,19 +26639,32 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Alt-Asset-Manager Sektor-Rally: BX +8.0%, KKR +6.3%, STT +3.6%, AMP +3.9% — ausgeloest durch Bericht ueber Nvidia-AI-Infrastruktur-Deal; breite Rotation zurueck in den Sektor, kein firmenspezifischer Treiber",
+            "src": "WebSearch 2026-08-16 (Alphastreet/Kalkine)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Sektor-Rotation zurueck in Alternative-Asset-Manager: am 13./14.08. sprang die ganze Gruppe (BX +8.0%, KKR +6.3%, STT +3.6%, AMP +3.9%), ausgeloest von einem Bericht ueber einen Nvidia-AI-Infrastruktur-Deal. Kein firmenspezifischer Treiber — reine Sektor-Sympathie. BEMERKENSWERT: derselbe Sektor bescherte uns Ende Juli den BX-Verlust (-5.02%), als Private-Credit-Sorgen und PT-Cuts ihn abverkauften. Dieselbe Zelle, entgegengesetzte Richtung, drei Wochen spaeter. TP +10.72%.",
+        "lesson_tags": [
+          "sector_rotation_win",
+          "sector_sympathy_move",
+          "financials_alt_managers",
+          "same_ticker_regime_flip"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "BX ist der Lehrfall: 27.07.-Signal -5.02% (Sektor-Deroute), 04.08.-Signal +10.72% (Sektor-Rally). Der Einzeltitel war beide Male okay — der Sektor entschied."
+        ],
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:08.030852",
@@ -26582,15 +26745,18 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "LEGACY: STAGE_2 wie LIN, Time Exit +5.21% nach 80 Bars. Setup seit 08.07. abgeschaltet. Kein Erkenntniswert fuer die aktive Strategie.",
+        "lesson_tags": [
+          "legacy_stage2_disabled",
+          "long_horizon_drift"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-16T12:29:29.199742+00:00",
+        "confidence": "LOW"
       },
       "auto_meta": {
         "built_at": "2026-08-14T08:03:08.501550",
