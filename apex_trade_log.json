@@ -4035,5 +4035,23 @@
     "gain_from_open": 2.69,
     "score": 24.2,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_DASH_2026-08-07",
+    "ts": "2026-08-17T17:55:06Z",
+    "ticker": "DASH",
+    "exit_price": 213.84611099999998,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000004
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_SMCI_2026-08-17",
+    "ts": "2026-08-17T17:55:07Z",
+    "ticker": "SMCI",
+    "signal_date": "2026-08-17",
+    "score": 72.7,
+    "source": "momentum_filler"
   }
 ]
