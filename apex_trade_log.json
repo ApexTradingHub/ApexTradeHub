@@ -3979,5 +3979,23 @@
     "signal_date": "2026-08-14",
     "score": 90.6,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_NBIS_2026-08-14_1401",
+    "ts": "2026-08-17T13:35:06Z",
+    "ticker": "NBIS",
+    "exit_price": 269.31,
+    "reason": "Stop Loss",
+    "pnl_pct": 9.065412626364011e-07
+  },
+  {
+    "event": "open",
+    "id": "PAPER_FTI_2026-08-14",
+    "ts": "2026-08-17T13:35:07Z",
+    "ticker": "FTI",
+    "entry_signal": 78.08,
+    "entry_actual": 78.47039999999998,
+    "mode": "paper"
   }
 ]
