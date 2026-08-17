@@ -4063,5 +4063,69 @@
     "gain_from_open": 4.21,
     "score": 30.6,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_LITE_2026-08-17_1426",
+    "ts": "2026-08-17T19:45:07Z",
+    "ticker": "LITE",
+    "pnl_pct": 1.53,
+    "range_pos_eod": 0.631,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 4.95
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_LITE_2026-08-17_1426",
+    "ts": "2026-08-17T19:45:07Z",
+    "ticker": "LITE",
+    "exit_price": 972.8466796875,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": 1.5264458508041925
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_MRX_2026-08-17_1606",
+    "ts": "2026-08-17T19:45:07Z",
+    "ticker": "MRX",
+    "pnl_pct": -0.08,
+    "new_stop": 69.4,
+    "mode": "rot->-4%",
+    "high_since_entry_pct": 1.54,
+    "range_pos_eod": 0.551,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.03
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_UI_2026-08-17_1706",
+    "ts": "2026-08-17T19:45:07Z",
+    "ticker": "UI",
+    "pnl_pct": -0.57,
+    "range_pos_eod": 0.52,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 5.18
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_UI_2026-08-17_1706",
+    "ts": "2026-08-17T19:45:07Z",
+    "ticker": "UI",
+    "exit_price": 586.7000122070312,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.5744910935883041
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_PPC_2026-08-17_1846",
+    "ts": "2026-08-17T19:45:07Z",
+    "ticker": "PPC",
+    "pnl_pct": -0.14,
+    "new_stop": 27.55,
+    "mode": "rot->-4%",
+    "high_since_entry_pct": 2.44,
+    "range_pos_eod": 0.639,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.79
   }
 ]
