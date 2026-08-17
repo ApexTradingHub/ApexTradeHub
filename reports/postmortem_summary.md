@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-08-14T08:03:08.801788 | Total trades: 271_
+_Updated: 2026-08-17T07:39:42.990087 | Total trades: 272_
 
-**Analyse-Status**: complete=271
+**Analyse-Status**: complete=271, pending=1
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -103,8 +103,8 @@ _Updated: 2026-08-14T08:03:08.801788 | Total trades: 271_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
-| IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | extended_rally_fade,valuation_unwind,high_score_loss_85plus |
 | MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
+| SW_2026-07-24 | BREAKOUT | -6.19% | Stop Loss D+5 | 102.4 | Consumer Cyclical | — |
 | GPN_2026-07-20 | BREAKOUT | -5.78% | Stop Loss D+3 | 119.9 | Industrials | macro_selloff_correlates_all_stocks,duplicate_trap |
 | PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | earnings_gap_through_stop,guidance_disappointment,hold_through_earnings_risk |
 | ILMN_2026-07-30 | BREAKOUT | -5.57% | Stop Loss D+5 | 114.2 | Healthcare | sell_the_news,valuation_unwind,extended_perf120 |
@@ -114,7 +114,8 @@ _Updated: 2026-08-14T08:03:08.801788 | Total trades: 271_
 | BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | sector_rotation_win,software_momentum,high_score_win_exception |
 | BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (0)
+## Pending Claude-Analyse (1)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
+- `SW_2026-07-24`
