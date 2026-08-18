@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 151.69427314072,
-  "last_updated": "2026-08-18T13:25:02Z",
+  "last_updated": "2026-08-18T13:30:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_SMCI_2026-08-17",
@@ -18,6 +18,23 @@
       "rr": 1.5,
       "upside_pct": 6.0,
       "added_at": "2026-08-17T17:55:07Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_KEYS_2026-08-17",
+      "ticker": "KEYS",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-08-17",
+      "entry": 361.81,
+      "stop_initial": 343.21,
+      "target": 393.71,
+      "score": 87.2,
+      "rr": 1.71,
+      "upside_pct": 8.8,
+      "added_at": "2026-08-18T13:30:11Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -47,9 +64,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-13T14:00:10Z",
-      "current_price": 1184.5999755859375,
-      "pnl_pct": -4.039014987448968,
-      "pnl_usd": -2.019507493724484,
+      "current_price": 1200.239990234375,
+      "pnl_pct": -2.772063069327887,
+      "pnl_usd": -1.3860315346639436,
       "hold_days": 4,
       "hold_trading_days": 3
     },
@@ -77,9 +94,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-14T13:35:08Z",
-      "current_price": 191.0399932861328,
-      "pnl_pct": -4.470448361038309,
-      "pnl_usd": -2.2352241805191544,
+      "current_price": 194.14999389648438,
+      "pnl_pct": -2.915292507055416,
+      "pnl_usd": -1.457646253527708,
       "hold_days": 3,
       "hold_trading_days": 2
     },
@@ -130,7 +147,7 @@
       "shares": 0.6916585885567527,
       "size_usd": 50.0,
       "stop": 69.4,
-      "high_since_entry": 73.40499877929688,
+      "high_since_entry": 73.405,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-17T16:06:51Z",
@@ -159,7 +176,7 @@
       "shares": 1.7421602324333527,
       "size_usd": 50.0,
       "stop": 27.55,
-      "high_since_entry": 29.399999618530273,
+      "high_since_entry": 29.4,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-17T18:46:46Z",
@@ -5701,7 +5718,7 @@
     "losses": 62,
     "win_rate": 49.59349593495935,
     "pnl_realized": -5.554620753488066,
-    "pnl_unrealized": -3.8358681757175352,
-    "equity": 397.8584049650024
+    "pnl_unrealized": -2.4248142896655485,
+    "equity": 399.2694588510544
   }
 }
