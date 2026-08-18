@@ -4174,5 +4174,50 @@
     "gain_from_open": 2.04,
     "score": 28.5,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_DT_2026-08-18_1632",
+    "ts": "2026-08-18T19:45:09Z",
+    "ticker": "DT",
+    "pnl_pct": -0.2,
+    "new_stop": 47.4,
+    "mode": "rot->-4%",
+    "high_since_entry_pct": 0.7,
+    "range_pos_eod": 0.8,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.75
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_GE_2026-08-18_1822",
+    "ts": "2026-08-18T19:45:09Z",
+    "ticker": "GE",
+    "pnl_pct": 0.39,
+    "new_stop": 372.77,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 0.56,
+    "range_pos_eod": 0.934,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.52
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_MKC_2026-08-18_1822",
+    "ts": "2026-08-18T19:45:09Z",
+    "ticker": "MKC",
+    "pnl_pct": -0.71,
+    "range_pos_eod": 0.643,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.85
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MKC_2026-08-18_1822",
+    "ts": "2026-08-18T19:45:09Z",
+    "ticker": "MKC",
+    "exit_price": 55.5099983215332,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.7065565984950011
   }
 ]
