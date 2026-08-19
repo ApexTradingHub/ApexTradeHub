@@ -2,11 +2,11 @@
 
 _Updated: 2026-08-19T07:25:27.570911 | Total trades: 276_
 
-**Analyse-Status**: complete=271, pending=5
+**Analyse-Status**: complete=276
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
-10 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
+13 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
 
 - `PINS_2026-07-29`
 - `ILMN_2026-07-30`
@@ -18,15 +18,18 @@ _Updated: 2026-08-19T07:25:27.570911 | Total trades: 276_
 - `TPR_2026-07-29`
 - `A_2026-07-23`
 - `EW_2026-05-26`
+- `SW_2026-07-24`
+- `BURL_2026-07-28`
+- `ISP.MI_2026-07-20`
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `breakout_no_follow_through` | 44 |
+| `breakout_no_follow_through` | 47 |
 | `post_earnings_beat_continuation` | 37 |
 | `sector_momentum_tailwind` | 36 |
-| `high_score_loss_85plus` | 33 |
+| `high_score_loss_85plus` | 34 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 23 |
@@ -36,12 +39,12 @@ _Updated: 2026-08-19T07:25:27.570911 | Total trades: 276_
 | `oversold_bounce_with_catalyst` | 18 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
+| `sector_divergence_loser` | 14 |
 | `fundamental_deterioration` | 13 |
 | `geopolitical_premium_fade` | 13 |
 | `earnings_adjacency_risk` | 11 |
 | `low_score_loss` | 11 |
 | `macro_selloff_correlates_all_stocks` | 11 |
-| `sector_divergence_loser` | 11 |
 | `reversal_no_turn` | 9 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
@@ -104,7 +107,7 @@ _Updated: 2026-08-19T07:25:27.570911 | Total trades: 276_
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
 | MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
-| SW_2026-07-24 | BREAKOUT | -6.19% | Stop Loss D+5 | 102.4 | Consumer Cyclical | — |
+| SW_2026-07-24 | BREAKOUT | -6.19% | Stop Loss D+5 | 102.4 | Consumer Cyclical | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
 | GPN_2026-07-20 | BREAKOUT | -5.78% | Stop Loss D+3 | 119.9 | Industrials | macro_selloff_correlates_all_stocks,duplicate_trap |
 | PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | earnings_gap_through_stop,guidance_disappointment,hold_through_earnings_risk |
 | ILMN_2026-07-30 | BREAKOUT | -5.57% | Stop Loss D+5 | 114.2 | Healthcare | sell_the_news,valuation_unwind,extended_perf120 |
@@ -114,12 +117,7 @@ _Updated: 2026-08-19T07:25:27.570911 | Total trades: 276_
 | BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | sector_rotation_win,software_momentum,high_score_win_exception |
 | BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (5)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `SW_2026-07-24`
-- `BURL_2026-07-28`
-- `VRSN_2026-08-03`
-- `LLY_2026-08-10`
-- `ISP.MI_2026-07-20`

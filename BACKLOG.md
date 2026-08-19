@@ -1128,3 +1128,43 @@ VCP-Werte sind also kein Rauschen — sie tragen Signal, und eine hoehere Huerde
 dafuer BX -5% gekauft) — genau die Art Anekdote, die eine funktionierende Regel kaputtmacht. Die
 Regel kostet gelegentlich einen SNOW und verdient im Schnitt +58pp (Top-1) bzw. +29pp (Top-2)
 gegenueber keiner Prioritaet. Sichtbare Kosten, unsichtbarer Nutzen — immer gegen n testen.
+
+
+---
+
+## 28. Gap-Prioritaet in der Pick-Auswahl — NO-GO 2026-08-19
+
+**Ausloeser:** User-Frage nach mehr Profitabilitaet und einer WR "so nah an 100% wie moeglich".
+Diagnose zuvor: die vom Trader GEPICKTEN Signale schneiden schlechter ab als die liegengelassenen
+(Ø +0.40% vs +1.56%). Verdacht: der Score sortiert nicht gut, ein besserer Ranking-Schluessel muesste
+her. Gap>=2% war der einzige Katalysator, der in BEIDEN Datenquellen positiv ist (Backtest +10.2pp,
+Live bereinigt +6.1pp) — im Gegensatz zu Pocket Pivot (+16.7 vs -4.1, widerspruechlich) und VCP (~0).
+
+**Akzeptanzkriterien (VORAB fixiert):** (1) WR >= aktuell +2pp, (2) Gesamt-PnL nicht schlechter,
+(3) Signal-Count unveraendert (bei Re-Ranking automatisch). Getestet auf `bt_gapgate.json`
+(206 Trades, 79 Scan-Tage, durchgehend mit AKTUELLEM Code bewertet = einzige Quelle ohne Score-Drift).
+
+| Variante | Top | WR | PF | Summe |
+|---|---:|---:|---:|---:|
+| VCP-first (aktuell) | 2 | 47.5% | 1.33 | +124.2pp |
+| GAP-first | 2 | 47.5% | 1.36 | +134.3pp |
+| GAP, dann VCP | 2 | 48.9% | 1.40 | +146.3pp |
+| VCP, dann GAP | 2 | 48.9% | 1.39 | +144.0pp |
+| nur Band/Score | 2 | 45.3% | 1.26 | +99.6pp |
+
+**ERGEBNIS: NO-GO.** Kriterium 1 gerissen (bestenfalls +1.4pp statt +2pp). Kriterium 2 dagegen klar
+uebererfuellt (+10 bis +22pp, konsistent ueber ALLE Gap-Varianten und Top-1 wie Top-2).
+Die Gap-Prioritaet verbessert also den ERTRAG, nicht die TREFFERQUOTE. Latte NICHT nachtraeglich
+verschoben — genau dafuer war sie vorher gesetzt.
+
+**WICHTIGER als das Einzelergebnis — die Meta-Beobachtung:** In dieser Session wurden getestet und
+verworfen: Sektor-Gate-Ausweitung, VCP-Mindestschwelle, 1pp-Trailing, PP-Bonus-Entfernung, engeres
+PICK_BAND, weniger Picks/Tag, TP/SL-Anpassung, Gap-Prioritaet. **Die WR liegt in JEDER Konfiguration
+zwischen 43 und 49%.** Das ist keine Zufallsfolge mehr:
+**Die Trefferquote ist keine Stellschraube dieses Systems.** Ein 20d-Hoch-Ausbruch funktioniert in
+etwa der Haelfte der Faelle, und keine Sortierung aendert das nennenswert. Was sich sehr wohl bewegt,
+ist der ERTRAG pro Trade (Exits, Trailing, Reihenfolge: +124 vs +146pp).
+**Konsequenz fuer kuenftige Arbeit: nicht mehr auf WR optimieren, sondern auf Payoff.**
+
+**Falls neu aufgerollt:** dann als eigener, vorab angemeldeter Test gegen ein ERTRAGS-Kriterium
+(z.B. PF >= +0.05 UND Summe >= +10%), nicht als Umdeutung dieses Laufs.

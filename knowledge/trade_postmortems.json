@@ -26837,15 +26837,21 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Smurfit Westrock (Verpackung/Materials), Stop -6.19% — groesster Verlust des Batches. Dritter Rohstoff-/Materials-Fall nach EOG und MOS. Zyklische Materials-Titel haengen am Rohstoffpreis, nicht am Ausbruchsmuster.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "commodity_macro_shock",
+          "sector_divergence_loser",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Dritter Datenpunkt fuer die Rohstoff-Zelle (EOG, MOS, SW). Ein Commodity-Momentum-Gate fuer Energy+Materials bleibt der plausibelste ungetestete Filter — bewusst NICHT gebaut, weil die Evidenz mit n=3 duenn ist."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-19T14:54:11.586869+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-17T07:39:42.689921",
@@ -26926,15 +26932,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Burlington (Consumer Cyclical), Stop -5.02% nach 18 Tagen. Langsamer Zerfall statt schnellem Fehlausbruch. Einzelhandel stand seit den schwachen Juli-Umsatzdaten (-0.6% statt +0.1% erwartet) unter Druck — dieselbe Zelle, die auch M (Macys) gekostet hat.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "breakout_no_follow_through",
+          "slow_stop_4plus",
+          "consumer_weakness",
+          "retail_data_miss"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-19T14:54:11.586869+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-18T07:24:48.309859",
@@ -27011,19 +27022,32 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-18",
+            "title": "17.-18.08.: dritte Verlustsitzung in Folge, S&P -0.69%, Nasdaq -1.33%. Halbleiter-Selloff (Philadelphia SE Semiconductor -5.4%, >$680 Mrd. Marktwert), Zweifel an AI-Chip-Bewertungen; Anleiherenditen auf Mehrjahreshoch, Iran-Deal-Hoffnung verblasst -> Oel fest",
+            "src": "WebSearch 2026-08-19 (Yahoo/CNBC/DetroitNews/BriskMarkets)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Technology-BREAKOUT direkt in den Halbleiter-/Tech-Selloff. Marktkontext 17.-18.08.: dritte Verlustsitzung in Folge (S&P -0.69%, Nasdaq -1.33%). Ausgeloest von einem Halbleiter-Selloff (Philadelphia-Semi-Index -5.4%, ueber $680 Mrd. Marktwert vernichtet) plus Anleiherenditen auf Mehrjahreshoch, weil die Inflations- und Staatsschuldensorgen zurueckkamen und die Iran-Deal-Hoffnung verblasste. Stop -5.17% am 17.08. nach 14 Tagen Haltedauer. Score 115.6 — aus dem 100+-Bucket, der live nur 46.7% WR hat. Kein firmenspezifischer Ausloeser: der Sektor riss ihn mit.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_divergence_loser",
+          "tech_selloff",
+          "high_score_loss_85plus",
+          "slow_stop_4plus"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Das TECH_QQQ_GATE greift nur bei qqq_perf_20 < 0 zum SIGNAL-Zeitpunkt. Am 03.08. war QQQ noch OK — der Selloff kam zwei Wochen spaeter. Ein Einstiegs-Gate kann eine Sektor-Drehung waehrend der Haltedauer grundsaetzlich nicht abfangen."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-19T14:54:11.586869+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-18T07:24:48.728821",
@@ -27100,19 +27124,31 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-18",
+            "title": "17.-18.08.: dritte Verlustsitzung in Folge, S&P -0.69%, Nasdaq -1.33%. Halbleiter-Selloff (Philadelphia SE Semiconductor -5.4%, >$680 Mrd. Marktwert), Zweifel an AI-Chip-Bewertungen; Anleiherenditen auf Mehrjahreshoch, Iran-Deal-Hoffnung verblasst -> Oel fest",
+            "src": "WebSearch 2026-08-19 (Yahoo/CNBC/DetroitNews/BriskMarkets)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Healthcare-BREAKOUT, Stop -5.18% am 17.08. Marktkontext 17.-18.08.: dritte Verlustsitzung in Folge (S&P -0.69%, Nasdaq -1.33%). Ausgeloest von einem Halbleiter-Selloff (Philadelphia-Semi-Index -5.4%, ueber $680 Mrd. Marktwert vernichtet) plus Anleiherenditen auf Mehrjahreshoch, weil die Inflations- und Staatsschuldensorgen zurueckkamen und die Iran-Deal-Hoffnung verblasste. Gesundheitswerte gehoerten neben Tech zu den Hauptbelastungen der Sitzung. Bemerkenswert: ein ZWEITES LLY-Signal laeuft aktuell offen und steht bei +3.5% mit aktivem Trailing — derselbe Titel, wenige Tage spaeter, anderes Ergebnis.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_divergence_loser",
+          "breakout_no_follow_through",
+          "same_ticker_regime_flip"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Wiederholungssignale desselben Tickers sind nicht per se schlecht (vgl. BMRN, BX) — der Markteintrittszeitpunkt entscheidet, nicht der Titel."
+        ],
+        "analyzed_at": "2026-08-19T14:54:11.586869+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-18T07:24:49.159231",
@@ -27193,15 +27229,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Intesa Sanpaolo (EU/Financials), Time Exit +7.58% nach voller Haltedauer. Score 71.0 — also UNTER Gate 80, damit ein Signal, das der Trader live gar nicht gekauft haette; es laeuft nur im Equity-Tracker mit (SCAN_MIN_SCORE bleibt bewusst bei 70, damit wir sub-80 weiter messen). Zeigt, dass auch niedrig bewertete Signale liefern koennen — die Trennschaerfe des Scores ist schwach, was sich in dieser Session mehrfach bestaetigt hat.",
+        "lesson_tags": [
+          "sub_gate80_win",
+          "eu_signal_win",
+          "time_exit_positive",
+          "score_low_discrimination"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Datenpunkt fuer den EU-Entscheid (BACKLOG #23): EU-Bilanz jetzt AMP.MI +8.9%, ISP.MI +7.6%, VOD.L -5.0% — gemischt, aber nicht schlechter als US."
+        ],
+        "analyzed_at": "2026-08-19T14:54:11.586869+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-19T07:25:27.270631",
