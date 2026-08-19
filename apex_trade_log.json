@@ -4229,5 +4229,44 @@
     "new_stop": 28.36247416496277,
     "high": 30.4,
     "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_PPC_2026-08-17_1846",
+    "ts": "2026-08-19T13:35:08Z",
+    "ticker": "PPC",
+    "old_stop": 28.36247416496277,
+    "new_stop": 29.848000793457032,
+    "high": 31.670000076293945,
+    "ladder_step": 2
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_PPC_2026-08-17_1846",
+    "ts": "2026-08-19T13:35:08Z",
+    "ticker": "PPC",
+    "old_stop": 29.848000793457032,
+    "new_stop": 30.422000808715822,
+    "high": 31.670000076293945,
+    "ladder_step": 3
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_PPC_2026-08-17_1846",
+    "ts": "2026-08-19T13:35:08Z",
+    "ticker": "PPC",
+    "old_stop": 30.422000808715822,
+    "new_stop": 30.85250082015991,
+    "high": 31.670000076293945,
+    "ladder_step": 4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_GE_2026-08-18_1822",
+    "ts": "2026-08-19T13:35:08Z",
+    "ticker": "GE",
+    "exit_price": 372.77,
+    "reason": "Stop Loss",
+    "pnl_pct": 0.0013373979227057024
   }
 ]
