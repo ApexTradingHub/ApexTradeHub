@@ -1168,3 +1168,55 @@ ist der ERTRAG pro Trade (Exits, Trailing, Reihenfolge: +124 vs +146pp).
 
 **Falls neu aufgerollt:** dann als eigener, vorab angemeldeter Test gegen ein ERTRAGS-Kriterium
 (z.B. PF >= +0.05 UND Summe >= +10%), nicht als Umdeutung dieses Laufs.
+
+
+---
+
+## 16b. Rescue-Regel GELOEST 2026-08-20 — roter Zweig war die Ursache
+
+**Ausloeser:** User fiel auf, dass mehrere Positionen bei exakt 0.00% schliessen. Alle sechs sind
+gerettete Intraday-Plays, deren EOD-Breakeven-Stop am naechsten Morgen getroffen wurde (vier davon
+binnen fuenf Minuten nach Eroeffnung). Frage des Users: koennen wir statt bei Breakeven zu schliessen
+"bewerten und weiterlaufen lassen"?
+
+**Messung ueber alle 33 geretteten Intraday-Plays, nach Zweig getrennt:**
+
+| Zweig | n | IST | -1% | -2% | -3% | -4% |
+|---|---:|---:|---:|---:|---:|---:|
+| GRUEN am EOD (Breakeven-Stop) | 20 | **+29.28%** | +29.01 | +24.01 | +12.01 | +10.00 |
+| ROT am EOD (-4% "Raum") | 13 | **-30.00%** | -13.68 | -12.18 | -18.19 | -27.10 |
+
+**Der Breakeven-Stop ist im gruenen Zweig OPTIMAL** — jede Lockerung verschlechtert monoton.
+Die 0.00%-Closes sind also der PREIS einer funktionierenden Regel, nicht ihr Fehler.
+Die Antwort auf die Nutzerfrage lautet damit: nein, nicht lockern.
+
+**Das Loch sass im roten Zweig.** Gruen +29.28 und rot -30.00 ergeben zusammen exakt die in #16
+dokumentierte Rescue-Bilanz von -1.01pp.
+
+**Realistische Nachrechnung des roten Zweigs** (inkl. WULF-Guard, Stop nie ueber dem aktuellen Kurs
+— die erste Rechnung war zu optimistisch, weil sie Exits unterhalb des EOD-Kurses unterstellte):
+
+| Variante | Summe (n=13) | Ø | vs IST |
+|---|---:|---:|---:|
+| -4% Raum (IST) | -30.00% | -2.31% | — |
+| -1% Stop | -13.68% | -1.05% | +16.3pp |
+| -2% Stop | -12.18% | -0.94% | +17.8pp |
+| **am EOD schliessen** | **-9.64%** | **-0.74%** | **+20.4pp** |
+
+Jede Verengung hilft, Schliessen am meisten — in **10 von 13 Faellen** besser, die drei Ausnahmen
+(FRSH, MRX, TDY) verlieren nur Zehntel. Kein herausgepicktes Optimum, sondern der Endpunkt einer
+durchgehenden Richtung.
+
+**DEPLOYED (commit f0bbf2b5): `RESCUE_REQUIRE_GREEN = True`.** Rescue nur noch fuer Positionen, die
+ueber VWAP UND gruen sind. Rote werden am EOD geschlossen (`Intraday Close (EOD, rot)`, Event
+`eod_close_red`). Gruener Zweig unveraendert. Der -4%-Code bleibt fuer den Rollback stehen.
+Verhaltenstest an den 33 historischen Faellen: 20 Rescue / 13 Close, Rollback stellt Altverhalten her.
+Erwartung: aus -0.72% ueber diese 33 Trades wuerde +19.64%.
+
+**Inhaltlich konsequent:** Ein Intraday-Play, das bis zum Abend nicht funktioniert hat, ist ein
+gescheitertes Setup. Die Uebernacht-Erholungsoption kostet mehr als sie bringt — dieselbe Logik,
+die das VWAP-Gate schon fuer die Schwachen unter VWAP festgestellt hat. Die Regel ist jetzt
+konsequent zu Ende gefuehrt.
+
+**Vorbehalt:** n=13 im roten Zweig. Effekt gross (+20.4pp) und konsistent, aber duenn.
+**Monitoring:** naechste ~10 `eod_close_red`-Events gegen den Verlauf danach pruefen.
