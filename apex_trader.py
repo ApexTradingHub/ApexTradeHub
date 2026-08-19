@@ -221,6 +221,11 @@ MOMENTUM_ENTRY_BUFFER      = 0.005  # buy_above = current * 1.005 (Trigger ueber
 # festhalten statt ausbluten). Fail-open: bei Fetch-Fehler (VWAP unbekannt) wird gerescued wie
 # bisher. Exit-Mechanik = backtest-blind (#24), daher Rollback-Flag. Rollback = False.
 RESCUE_REQUIRE_ABOVE_VWAP  = True
+# 2026-08-20 (BACKLOG #16 geloest): Rescue NUR noch fuer gruene Positionen. Der rote Zweig
+# ("-4% Raum zum Erholen") kostete ueber 13 Trades -30.00%, waehrend der gruene Zweig (n=20,
+# Breakeven-Stop) +29.28% verdiente — zusammen ergab das die dokumentierten -1.01pp.
+# Rollback = Flag auf False (dann greift wieder der -4%-Zweig).
+RESCUE_REQUIRE_GREEN       = True
 # 2026-07-29: Self-Healing SL-Reconcile in sync_etoro_positions — gleicht eToros SL jeden Run
 # mit dem Paper-Stop ab, re-pusht bei Drift >0.3%. Absicherung gegen stille Trailing-Push-
 # Fehler (der update_sl_tp-404-Bug lief wochenlang unbemerkt). Rollback = False.
@@ -1813,6 +1818,27 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                     log(f"  EOD-CLOSE (unter VWAP, kein Rescue): {p['ticker']} "
                         f"({pnl_now:+.1f}%) @ ${cur:.2f}")
                     # faellt unten in den if i_reason-Block -> close_position
+                elif RESCUE_REQUIRE_GREEN and pnl_now < 0:
+                    # 2026-08-20: ROTER Zweig abgeschafft. Messung ueber alle 33 geretteten
+                    # Intraday-Plays: GRUEN (n=20, Breakeven-Stop) verdient +29.28% — der
+                    # Breakeven ist dort nachweislich OPTIMAL (jede Lockerung auf -1/-2/-3/-4%
+                    # verschlechtert). ROT (n=13, -4% "Raum zum Erholen") kostet -30.00% und
+                    # frisst damit exakt den gruenen Gewinn auf -> das war die Ursache der in
+                    # BACKLOG #16 dokumentierten Rescue-Bilanz von -1.01pp.
+                    # Realistisch nachgerechnet (inkl. WULF-Guard, Stop nie ueber dem Kurs):
+                    #   -4% Raum (heute) -30.00% | -1% -13.68% | -2% -12.18% | EOD-Close -9.64%
+                    # Jede Verengung hilft, Schliessen am meisten (+20.4pp, in 10 von 13 Faellen
+                    # besser). Inhaltlich konsequent: ein Intraday-Play, das bis zum Abend nicht
+                    # funktioniert hat, ist ein gescheitertes Setup — die Uebernacht-Erholungs-
+                    # Option kostet mehr als sie bringt, genau wie beim VWAP-Gate.
+                    # Rescue also nur noch fuer: ueber VWAP UND gruen.
+                    i_reason, i_px = "Intraday Close (EOD, rot)", cur
+                    events.append({
+                        "event": "eod_close_red", "id": p["id"], "ts": now_iso(),
+                        "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2), **shadow,
+                    })
+                    log(f"  EOD-CLOSE (rot, kein Rescue): {p['ticker']} "
+                        f"({pnl_now:+.1f}%) @ ${cur:.2f}")
                 else:
                     # 2026-07-11 AP1 Schritt 2: source-Rewrite ENTFERNT. source bleibt
                     # "intraday_momentum" (ehrliche Attribution), intraday_rescued=True ist
@@ -1822,11 +1848,14 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                     # Der -4%-Stop ist der nachgewiesene Preis der Runner-Option (PAY +18%).
                     p["setup"]  = "MOMENTUM"
                     p["target"] = round(entry * (1 + MOMENTUM_TP_PCT), 2)
+                    # Ab 2026-08-20 erreicht bei RESCUE_REQUIRE_GREEN=True nur noch GRUEN diesen
+                    # Zweig (rot wird oben geschlossen). Breakeven ist dort gemessen OPTIMAL —
+                    # nicht lockern. Der -4%-Zweig bleibt fuer den Rollback (Flag auf False).
                     if pnl_now >= 0:
                         p["stop"] = round(max(p.get("stop", 0) or 0, entry), 2)   # mind. Breakeven
                         _mode = "gruen->Breakeven"
                     else:
-                        p["stop"] = round(entry * (1 - MOMENTUM_SL_PCT), 2)        # -4% Raum
+                        p["stop"] = round(entry * (1 - MOMENTUM_SL_PCT), 2)        # -4% (nur Rollback)
                         _mode = "rot->-4%"
                     p["intraday_rescued"] = True
                     # Trailing-Ladder-Felder sicherstellen (Intraday-Pos hat sie evtl. nicht) ->
