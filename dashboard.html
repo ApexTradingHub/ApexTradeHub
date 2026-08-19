@@ -1176,6 +1176,7 @@ function traderExitBadge(reason) {
   if (r.includes('time exit'))     return 'TE';
   if (r.includes('manual'))        return 'MAN';
   if (r.includes('etoro closed'))  return 'ETORO';  // Grund unklar (siehe apex_trader Fallback)
+  if (r.includes('displaced'))     return 'VERDR';  // von einem Intraday-Play aus dem Slot geworfen
   return '?';
 }
 
