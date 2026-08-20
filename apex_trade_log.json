@@ -4380,5 +4380,56 @@
     "gain_from_open": 3.42,
     "score": 32.4,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_NDSN_2026-08-20_1606",
+    "ts": "2026-08-20T19:45:11Z",
+    "ticker": "NDSN",
+    "pnl_pct": 1.78,
+    "new_stop": 329.78,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.1,
+    "range_pos_eod": 0.963,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 8.83
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_PCG_2026-08-20_1706",
+    "ts": "2026-08-20T19:45:12Z",
+    "ticker": "PCG",
+    "pnl_pct": -1.07,
+    "range_pos_eod": 0.557,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 2.5
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_PCG_2026-08-20_1706",
+    "ts": "2026-08-20T19:45:12Z",
+    "ticker": "PCG",
+    "exit_price": 18.05500030517578,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.06849147848887
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_VALE_2026-08-20_1746",
+    "ts": "2026-08-20T19:45:12Z",
+    "ticker": "VALE",
+    "pnl_pct": -0.17,
+    "range_pos_eod": 0.817,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.24
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_VALE_2026-08-20_1746",
+    "ts": "2026-08-20T19:45:12Z",
+    "ticker": "VALE",
+    "exit_price": 14.175000190734863,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.16972449489835842
   }
 ]
