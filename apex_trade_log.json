@@ -4431,5 +4431,37 @@
     "exit_price": 14.175000190734863,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.16972449489835842
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_SMCI_2026-08-17",
+    "ts": "2026-08-21T13:30:10Z",
+    "ticker": "SMCI",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_KEYS_2026-08-17",
+    "ts": "2026-08-21T13:30:10Z",
+    "ticker": "KEYS",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_FCX_2026-08-20",
+    "ts": "2026-08-21T13:30:10Z",
+    "ticker": "FCX",
+    "signal_date": "2026-08-20",
+    "score": 117.5,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_KMX_2026-08-20",
+    "ts": "2026-08-21T13:30:10Z",
+    "ticker": "KMX",
+    "signal_date": "2026-08-20",
+    "score": 127.0,
+    "source": "scanner"
   }
 ]
