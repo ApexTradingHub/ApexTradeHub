@@ -4556,5 +4556,23 @@
     "entry_signal": 210.32,
     "entry_actual": 211.37159999999997,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_NDSN_2026-08-20_1606",
+    "ts": "2026-08-21T15:30:07Z",
+    "ticker": "NDSN",
+    "exit_price": 329.78,
+    "reason": "Stop Loss",
+    "pnl_pct": 3.701568021813556e-07
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_OVV_2026-08-18",
+    "ts": "2026-08-21T15:30:07Z",
+    "ticker": "OVV",
+    "signal_date": "2026-08-18",
+    "score": 113.4,
+    "source": "scanner"
   }
 ]
