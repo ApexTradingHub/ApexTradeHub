@@ -4529,5 +4529,23 @@
     "gain_from_open": 4.35,
     "score": 30.3,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MARA_2026-08-21_1401",
+    "ts": "2026-08-21T14:15:07Z",
+    "ticker": "MARA",
+    "exit_price": 11.85,
+    "reason": "Intraday Stop",
+    "pnl_pct": -3.0278253596042797
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DHR_2026-08-19",
+    "ts": "2026-08-21T14:15:08Z",
+    "ticker": "DHR",
+    "signal_date": "2026-08-19",
+    "score": 132.6,
+    "source": "scanner"
   }
 ]
