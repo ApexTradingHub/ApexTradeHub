@@ -27321,19 +27321,33 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-19",
+            "title": "TGT Q2 2026: EPS $2.46 vs $2.25, Umsatz $26.54B vs $26.14B, comps +3.8%; FY-Guidance von $7.50-8.50 auf $9.90-10.90 angehoben; Aktie auf 52-Wochen-Hoch",
+            "src": "WebSearch 2026-08-22 (Bloomberg/Benzinga/Public)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Q2-Bericht 19.08.: EPS $2.46 vs $2.25, Umsatz $26.54B vs $26.14B, vergleichbare Umsaetze +3.8% bei +3.6% Kundenfrequenz, Digital +8.7%. Vor allem aber ein kraeftiger GUIDANCE-RAISE: FY-EPS von $7.50-8.50 auf $9.90-10.90. Aktie auf 52-Wochen-Hoch -> TP +10.58% nach 22 Tagen. Turnaround-Story unter neuem CEO, YTD ueber +50%. MUSTER BESTAETIGT: Guidance-Anhebung als eigentlicher Treiber — jetzt der fuenfte Fall nach BAX, BMY, EMR und DOCU. Der Beat allein war moderat (+9%), die Guidance war es nicht.",
+        "lesson_tags": [
+          "guidance_raise_catalyst",
+          "post_earnings_beat_continuation",
+          "turnaround_story",
+          "long_hold_win",
+          "retail_share_gain"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Fuenfter Beleg fuer 'Guidance-Raise schlaegt Beat-Hoehe'. Wir tracken weiterhin nur earnings_beat_recent (ja/nein), nicht die Guidance-Richtung — mangels Datenquelle."
+        ],
+        "analyzed_at": "2026-08-22T09:48:59.556730+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-20T07:28:37.541959",
@@ -27410,19 +27424,33 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-20",
+            "title": "TTWO: FY27-Bookings-Guidance verfehlt Konsens um $760 Mio. trotz Q1-Beat; ab 17.08. GTA-VI-Leaks, Kurs $249 -> $237 (-4.8% in der Woche)",
+            "src": "WebSearch 2026-08-22 (ts2.tech/Noisypixel/Finbold)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Doppelbelastung: (1) Die FY27-Bookings-Prognose verfehlte den Konsens um $760 Mio. zur Mitte — trotz Q1-Beat fiel die Aktie darauf. (2) Ab dem 17.08. kursierten geleakte GTA-VI-Aufnahmen, der Kurs gab von $249 auf $237 nach (-4.8% in der Woche). Unser Stop lief am 20.08. bei -5.16%. Score 112.4 — aus dem 100+-Bucket, das live nur 46.7% WR hat.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "guidance_disappointment",
+          "high_score_loss_85plus",
+          "news_shock",
+          "sell_the_news",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Spiegelbild von TGT: dort hob die Guidance den Kurs, hier drueckte sie ihn — bei beidesmal geschlagenen Quartalszahlen. Die Beat/Miss-Flagge allein sagt nichts."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-22T09:48:59.556730+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-20T07:28:38.042311",
@@ -27503,15 +27531,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Industrials-BREAKOUT, Time Exit +6.21% nach voller Haltedauer. Kein einzelner Katalysator — ruhiger Aufwaertsdrift, der das Ziel nicht ganz erreichte, aber deutlich im Plus auslief. Genau das Profil, das die Haltedauer-Verlaengerung auf 30 Tage ermoeglichen sollte: unter der alten 15-Tage-Regel waere der Trade frueher und flacher beendet worden. Hinweis zur Anzeige: das Exit-Datum 01.09. im Summary ist das FENSTER-Ende, nicht der tatsaechliche Exit (bekannte Eigenheit des Postmortem-Builders, s. LIN/EW).",
+        "lesson_tags": [
+          "time_exit_positive",
+          "slow_grind_win",
+          "hold30_benefit",
+          "no_identifiable_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Beleg fuer die 30-Tage-Haltedauer (dd47fd3): flache Trades bekommen Zeit, ins Plus zu laufen, statt bei Tag 15 abgeschnitten zu werden."
+        ],
+        "analyzed_at": "2026-08-22T09:48:59.556730+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-20T07:28:38.464216",
@@ -27592,15 +27627,20 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Consumer-Defensive-BREAKOUT, Time Exit +4.47%. Wie MMM ein langsamer Laeufer ohne Katalysator, der die volle Haltedauer brauchte. Defensive Titel waren in der Baer-/Chop-Phase Juli-August eine der stabileren Ecken. Exit-Datum 02.09. im Summary = Fenster-Ende, nicht der echte Exit.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "slow_grind_win",
+          "defensive_consumer",
+          "hold30_benefit"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-22T09:48:59.556730+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-21T07:30:03.720539",
