@@ -4,7 +4,7 @@
 komprimiert wird, kann eine neue Session diese Datei lesen und **kalt aufgreifen** ohne den
 ganzen Verlauf zu kennen. Wird laufend aktualisiert.
 
-**Letztes Update:** 2026-08-06 (**Gap-Gate in Trader+Equity+Backtest vereinheitlicht** — Equity-Metrik war ~1/3 zu gut (jetzt 223 Trades/WR 44.4%/+249pp), Backtest kaum betroffen (7.6%) · OFFEN: Score-Gradient nicht monoton, Gate 80 fraglich — erst neue Learn-Kalibrierung abwarten · Trailing-Leiter 4/6/8/10/14 · Regime MIXED)
+**Letztes Update:** 2026-08-22 (**Rescue nur noch gruen** (rot am EOD zu, +20.4pp) · **Zerlegung: Rohkante nur +1.3%/Trade, Auswahl -0.9, Management -0.9** -> weniger Mechanik · seit eToro-Aus PF 1.40 ueber n=31 · WR ist KEINE Stellschraube (BACKLOG #28) · Regime wieder BEARISH)
 
 ---
 
@@ -290,6 +290,39 @@ Script nach dem Staging und vor dem Commit → dirty Index → jeder Folge-Run s
 ---
 
 ## 8. Recent Major Code-Changes (chronologisch, für Re-Bauchgefühl)
+
+- **2026-08-20** **Rescue-Regel: nur noch GRUEN retten, ROT am EOD schliessen** (commit f0bbf2b5,
+  BACKLOG #16b). `RESCUE_REQUIRE_GREEN = True`. Ursache-Analyse: der gruene Zweig (Breakeven-Stop)
+  ist gemessen OPTIMAL — jede Lockerung auf -1/-2/-3/-4% verschlechtert monoton. Die 0.00%-Closes
+  sind sein PREIS, nicht sein Fehler. Das Loch sass im ROTEN Zweig: -4% "Raum zum Erholen" kostete
+  ueber n=13 **-30.00%**. Realistisch (inkl. WULF-Guard): -4% -30.00 | -2% -12.18 | **EOD-Close
+  -9.64%** (+20.4pp, in 10/13 Faellen besser). Rollback = Flag auf False, der -4%-Code steht noch.
+  **KORREKTUR 22.08.:** Der gruene Zweig verdient NICHT +29.28% wie zunaechst berichtet — die
+  Identifikation ueber Stop/Entry hatte Runner mitgezaehlt, deren Stop die Trailing-Leiter hochzog.
+  Sauber ueber das Event-Log (mode="gruen->Breakeven"): **+7.20% ueber n=19**, davon fast alles aus
+  den komfortabel gruenen (>=+1%: n=7, +6.42%). Die **hauchduenn gruenen (<+1%, n=12) bringen
+  zusammen +0.78%** und belegen Slots — GE/TSLA/NDSN sind die Live-Faelle. Vorschlag (NICHT gebaut):
+  Rescue-Schwelle von >0% auf >=+1% anheben (+4.31pp gemessen, aber n=12 und von wenigen Trades
+  getragen). Begruendung waere mechanisch: ein Breakeven-Stop auf +0.4% ist kein Stop, sondern ein
+  verzoegerter Verkauf mit Gap-Risiko ohne Aufwaertsoption.
+
+- **2026-08-22** **WARUM WIR NICHT PROFITABEL WAREN — die Zerlegung** (keine Code-Aenderung, aber
+  die wichtigste Erkenntnis). Arithmetik: Ø Gewinn +4.13% vs Ø Verlust -5.34% bei ~50% WR.
+  **Nur 13% der Trades erreichen ihr Ziel, Median-MFE +2.62%**, und von 26 Gewinnern sind 13 flache
+  Ausstiege bei ~+1%. Die Kante geht in drei Schichten verloren (alle mit derselben Methode gemessen):
+  | Ebene | Ø/Trade |
+  |---|---|
+  | alle BREAKOUT-Signale (180, reine TP/SL-Sim) | **+1.32%** |
+  | davon die, die der Trader PICKT (37) | **+0.40%** |
+  | was er tatsaechlich erzielt (54) | **-0.51%** |
+  Auswahl kostet ~0.9pp, Management ~0.9pp. **Die Rohkante ist nur +1.3%/Trade — zu duenn fuer zwei
+  Schichten Reibung.** Deshalb hat kein Einzel-Tuning geholfen.
+  **Kernsatz: In einem System mit 13% Zielerreichung zerstoert jeder Mechanismus, der einen Gewinner
+  kappt, mehr als er schuetzt** (PPC +14% wiegt vier Stops auf). -> Kuenftig WENIGER Mechanik, nicht mehr.
+  **Erste saubere Zahlen seit dem eToro-Aus (07.08.):** alle Setups n=31, WR 51.6%, **PF 1.40**,
+  +13.4pp (Ø +0.43%); nur Scanner-BREAKOUTs n=10, WR 70%, PF 1.97. Das ist profitabel — aber
+  n=31 ueber zwei Wochen in einem anderen Regime, **kein Beweis**. Der Vergleich "eToro-Aera vs
+  Paper-Aera" ist zudem verzerrt (eToro fuehrte die STOPS aus, unsere Logik die TPs).
 
 - **2026-08-05/06** **Gap-Gate auch in Backtest + top2; Reichweite des Bugs eingegrenzt**
   (commits 79e9d39b, 15e9df13): `apex_backtest_v2.evaluate_outcome` hatte denselben Fehler wie der
