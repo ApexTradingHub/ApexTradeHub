@@ -27717,19 +27717,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-21",
+            "title": "PANW: 5-Tage-Verlustserie kumuliert -12% (19.08. -3.79% auf $360.08); Gewinnmitnahmen + Forward-KGV 91.4 vs Branche 46.4; Positions-Abbau vor Q4-FY26-Bericht am 01.09.",
+            "src": "WebSearch 2026-08-24 (Trefis/TradingKey/Zacks)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Bewertungs-Abbau VOR dem Bericht, nicht danach. Einstieg 04.08. @ $369.54 (Score 125.3, PP). Ab dem 15.08. lief eine 5-Tage-Verlustserie ueber kumuliert -12% (19.08. allein -3.8% auf $360.08); Stop am 22.08. bei -6.41%, D+13. Ursache laut Marktberichten: Gewinnmitnahmen und eine Forward-KGV von 91.4 gegen einen Branchenschnitt von 46.4, dazu Positions-Abbau vor dem Q4-FY26-Bericht am 01.09. Kein Unternehmens-Ereignis, kein Downgrade — eine reine Multiple-Kompression bei ausgereiztem Setup. SPIEGELBILD ZU PINS: dort kostete das HALTEN durch Earnings, hier das Halten IN die Erwartungshaltung hinein. Beides derselbe Mechanismus — ein Termin im Kalender saugt vor sich her Liquiditaet ab. Unser Earnings-Layer kennt nur `cat_earnings_next_days` als Blackout-Fenster (-15 ab 7 Tagen); bei Signal am 04.08. lagen bis zum 01.09. 28 Tage, also weit ausserhalb.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "valuation_unwind",
+          "pre_earnings_derisking",
+          "slow_stop_4plus",
+          "breakout_no_follow_through",
+          "multiple_compression"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Score 125.3 im 100+-Bucket, das live nur 46.9% WR liefert (n=113) — erneut ein high-score-Verlierer. Ein Extension-/Bewertungs-Marker fehlt uns komplett; perf_120 faengt die Kursausdehnung, nicht die Bewertungsausdehnung."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-24T17:49:29.853015+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-24T07:45:09.674906",
@@ -27806,19 +27821,35 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "DTE: MPSC fordert Gesetzgeber auf, jaehrliche Ratenerhoehungen zu beenden und Gewinnmechanik umzustellen; zuvor Q2 (28.07.) Beat $1.32 aber Elektro-Segmentgewinn -15% auf $270 Mio.; -8.01% im Monat bis 18.08.",
+            "src": "WebSearch 2026-08-24 (PlanetDetroit/USNews/StockAnalysis)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Doppelschlag aus Sektor und Regulierung, verstaerkt durch die STAGE_2-Mechanik. (1) SEKTOR: XLU -4.35% waehrend SPY +2.39% (Divergenz-Flag gesetzt) — steigende Treasury-Renditen entziehen renditegetriebenen Versorgern das Kapital, die 30-Tage-SEC-Rendite des XLU liegt bei ~2.6% gegen einen 10-Jaehrigen bei 4%+. (2) FUNDAMENTAL: Q2 am 28.07. schlug zwar mit bereinigt $1.32 EPS, aber der Kern brach weg — Elektro-Segmentgewinn -15% auf $270 Mio. (hoehere Rate-Base-Kosten, ungunstiges Wetter, Steuer-Timing). Die Aktie fiel auf den Beat. (3) REGULIERUNG: Am 14.08. forderte die Michigan Public Service Commission den Gesetzgeber auf, die jaehrlichen Ratenerhoehungen zu beenden und die Gewinnmechanik von DTE/Consumers umzustellen (mehrjaehrige, leistungsgebundene Plaene). Das trifft genau das Rate-Base-Wachstumsmodell, auf dem die 6-8%-EPS-Ziele stehen. -8.0% im Monat bis zum 18.08., Stop am 20.08. bei -12.67%. (4) MECHANIK: Der STAGE_2-Stop lag 12.7% unter dem Einstieg bei 35 Tagen Haltedauer — genug Raum, damit ein langsamer Abwaertstrend voll durchlaufen kann.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_divergence_loser",
+          "regulatory_overhang",
+          "rate_sensitive_utility",
+          "earnings_beat_weak_core",
+          "stage2_deep_drawdown",
+          "slow_stop_4plus"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "ZWEITE Bestaetigung fuer die STAGE_2-Abschaltung: die beiden groessten Einzelverluste der gesamten Datenbank sind STAGE_2 (DTE -12.67% D+35, COST -12.3% D+31) — beide nach dem gleichen Muster: weiter Stop + langer Hold laesst einen Abwaertstrend voll auslaufen. Das Setup ist zu Recht deaktiviert.",
+          "Das Sektor-Divergenz-Flag stand HIER schon zum Signalzeitpunkt (XLU -4.35% vs SPY +2.39%). SECTOR_RS_GATE deckt aber nur Tech/Comm ab — Utilities waere neben Financials (BX-Lehre) die naechste Zelle. Nicht bauen ohne Messung, aber notiert."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-24T17:49:29.853015+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-24T07:45:10.115437",

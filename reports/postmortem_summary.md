@@ -2,7 +2,7 @@
 
 _Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 
-**Analyse-Status**: complete=280, pending=2
+**Analyse-Status**: complete=282
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -28,10 +28,10 @@ _Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 
 | Tag | Count |
 |---|---|
-| `breakout_no_follow_through` | 48 |
+| `breakout_no_follow_through` | 49 |
 | `post_earnings_beat_continuation` | 38 |
 | `sector_momentum_tailwind` | 36 |
-| `high_score_loss_85plus` | 35 |
+| `high_score_loss_85plus` | 36 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 23 |
@@ -41,7 +41,7 @@ _Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 | `oversold_bounce_with_catalyst` | 18 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
-| `sector_divergence_loser` | 14 |
+| `sector_divergence_loser` | 15 |
 | `fundamental_deterioration` | 13 |
 | `geopolitical_premium_fade` | 13 |
 | `earnings_adjacency_risk` | 11 |
@@ -73,7 +73,7 @@ _Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Analyse |
 |---|---|---|---|---|---|---|
-| DTE_2026-07-02 | STAGE_2 | -12.67% | Stop Loss D+35 | 117.5 | Utilities | _pending_ |
+| DTE_2026-07-02 | STAGE_2 | -12.67% | Stop Loss D+35 | 117.5 | Utilities | Doppelschlag aus Sektor und Regulierung, verstaerkt durch die STAGE_2-Mechanik. (1) SEKTOR: XLU -4.35% waehrend SPY +2.39% (Divergenz-Flag gesetzt) — steigende Treasury-Renditen entziehen renditegetriebenen Versorgern das Kapital, die 30-Tage-SEC-Rendite des XLU liegt bei ~2.6% gegen einen 10-Jaehrigen bei 4%+. (2) FUNDAMENTAL: Q2 am 28.07. schlug zwar mit bereinigt $1.32 EPS, aber der Kern brach weg — Elektro-Segmentgewinn -15% auf $270 Mio. (hoehere Rate-Base-Kosten, ungunstiges Wetter, Steuer-Timing). Die Aktie fiel auf den Beat. (3) REGULIERUNG: Am 14.08. forderte die Michigan Public Service Commission den Gesetzgeber auf, die jaehrlichen Ratenerhoehungen zu beenden und die Gewinnmechanik von DTE/Consumers umzustellen (mehrjaehrige, leistungsgebundene Plaene). Das trifft genau das Rate-Base-Wachstumsmodell, auf dem die 6-8%-EPS-Ziele stehen. -8.0% im Monat bis zum 18.08., Stop am 20.08. bei -12.67%. (4) MECHANIK: Der STAGE_2-Stop lag 12.7% unter dem Einstieg bei 35 Tagen Haltedauer — genug Raum, damit ein langsamer Abwaertstrend voll durchlaufen kann. |
 | COST_2026-05-17 | STAGE_2 | -12.3% | Stop Loss D+31 | 101.6 | Consumer Defensive | STAGE_2 (einziger Nicht-BREAKOUT) -12.3% Stop nach D+31. Costco meldete Blowout-Q3 (Net Income +15.2%, Sales +11.6%) am 28.5 — aber Aktie FIEL (Sell-the-News: 52x P/E zu teuer) + Tariff-Class-Action-Klagen (IEEPA). STAGE_2's langer 60d-Hold liess einen -12% Drawdown entstehen. |
 | ENPH_2026-04-20 | REVERSAL | -9.96% | Stop Loss D+7 | 91.1 | Technology | Stop ausgeloest 1 Tag VOR Earnings-Beat - REVERSAL stoppt sich aus dem profitablen Move raus |
 | UPST_2026-06-29 | BREAKOUT | -9.55% | Stop Loss D+6 | 102.2 | Financial Services | Macro-Selloff Ende Juni 2026 (steigende Bond-Yields + Oil-Spike revived Inflations-Fear + hawkishe Fed) traf High-Beta-Long-Duration-Growth ueberproportional. UPST bereits -56%/Jahr (perf_120 -30.9%) = BREAKOUT auf tief-negativer Momentum-Basis. Fundamental intakt (Origination +48% YoY), reiner Macro-vs-Setup-Konflikt. D+6 Stop -9.6%. |
@@ -108,7 +108,7 @@ _Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
-| PANW_2026-08-04 | BREAKOUT | -6.41% | Stop Loss D+13 | 125.3 | Technology | — |
+| PANW_2026-08-04 | BREAKOUT | -6.41% | Stop Loss D+13 | 125.3 | Technology | high_score_loss_85plus,valuation_unwind,pre_earnings_derisking |
 | MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
 | PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | earnings_gap_through_stop,guidance_disappointment,hold_through_earnings_risk |
 | ILMN_2026-07-30 | BREAKOUT | -5.57% | Stop Loss D+5 | 114.2 | Healthcare | sell_the_news,valuation_unwind,extended_perf120 |
@@ -119,9 +119,7 @@ _Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 | BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | sector_rotation_win,software_momentum,high_score_win_exception |
 | BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (2)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `PANW_2026-08-04`
-- `DTE_2026-07-02`
