@@ -134,6 +134,23 @@ TRAILING_TARGET_MULT  = 1.05
 # Rollback: False -> exakt das alte reine `cur`-Verhalten.
 STOP_CHECK_USE_LOW = True
 
+# === Spiegelfall: HIGH erst ab Einstieg zaehlen (2026-08-24) ===
+# get_today_high() liefert das Hoch des GANZEN Tages — auch Bars von VOR unserem Einstieg.
+# Das floss in den TP-Check UND in `high_since_entry`, also in die Trailing-Ladder.
+# BELEG NWS 06.08.: Einstieg 33.84 um 18:20; Hoch VOR dem Einstieg 35.31, Hoch DANACH nur
+# 33.97. high_since_entry wurde 35.31 -> Sprosse 1 -> Stop 34.52, also UEBER dem Einstieg und
+# ueber jedem Kurs nach dem Kauf. 15 Min spaeter zu bei +0.21%. Der WULF-Schutz
+# (min(new_stop, cur*0.995)) griff nicht, weil NWS duenn handelt und auch `cur` aus einem
+# veralteten 1-Min-Bar kam — zwei Datenfehler, die sich gegenseitig gedeckt haben.
+# TP-Seite gemessen: KEIN Phantom-Gewinn in 20 TP-Exits, aber ein Beinahe-Fall (SE 12.08.:
+# Ziel 130 lag vor dem Einstieg schon bei 131.90; der Kurs kam danach nochmal auf 130.26,
+# der Gewinn war also echt). Der Schaden sitzt in der Ladder, nicht im TP — eine Sprosse
+# braucht nur +4%, und das tickt am Einstiegstag oft schon vor dem Kauf.
+# NICHT betroffen: trigger_pending (dort ist das Tages-High korrekt — die Position existiert
+# noch nicht, die Frage ist ja gerade, ob der Trigger heute irgendwann lief).
+# Rollback: False -> wieder das ungefensterte Tages-High.
+HIGH_CHECK_SINCE_ENTRY = True
+
 # Stagnations-Exit — totes Kapital freigeben fuer neue Signale
 # Phase-1 Update 2026-06-07
 STAGNATION_DAYS    = 5      # nach 5 Tagen
@@ -555,20 +572,21 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
     return result
 
 
-def get_today_lows(tickers: list[str]) -> dict:
-    """Heutige 1-Min-LOW-Serie je Ticker, MIT Zeitstempel — Gegenstueck zu get_today_high().
+def get_today_hl(tickers: list[str]) -> tuple[dict, dict]:
+    """Heutige 1-Min-HIGH- und -LOW-Serien je Ticker, MIT Zeitachse, aus EINEM Download.
 
-    Anders als beim High geben wir hier die ganze Serie zurueck statt nur das Minimum:
-    ein Tief darf den Stop nur ausloesen, wenn es NACH dem Setzen des aktuellen Stops lag
-    (s. STOP_CHECK_USE_LOW). Dafuer brauchen wir die Zeitachse.
+    Beide Seiten brauchen die Zeitachse, weil ein Extremwert nur zaehlt, wenn er im richtigen
+    Fenster lag: das Tief NACH dem Setzen des Stops (`stop_set_at`), das Hoch NACH dem
+    Einstieg (`opened_at`). get_today_high() verdichtet dagegen sofort zum Tagesmaximum und
+    wirft damit genau die Information weg, auf die es ankommt.
 
-    Kein v8-Fallback: wo keine Serie ankommt, faellt der Stop-Check auf das alte
-    `cur`-Verhalten zurueck. Das ist die konservative Richtung (eher kein Exit als ein
-    falscher), deshalb bewusst kein Ersatzpfad mit tagesweitem Minimum.
+    Kein v8-Fallback: wo keine Serie ankommt, faellt der Aufrufer auf den alten Pfad zurueck
+    (Stop nur gegen cur, High aus get_today_high). Das ist in beide Richtungen die
+    konservative Wahl.
     """
     if not tickers:
-        return {}
-    result = {}
+        return {}, {}
+    highs, lows = {}, {}
     try:
         import yfinance as yf
         single = (len(tickers) == 1)
@@ -578,41 +596,55 @@ def get_today_lows(tickers: list[str]) -> dict:
             progress=False, threads=False, auto_adjust=True,
         )
         for t in tickers:
-            s = _extract_series(df, t, single, "Low")
-            # _extract_series liefert im Single-Ticker-Fall je nach yfinance/pandas-Version
-            # einen DataFrame mit einer Spalte statt einer Series (MultiIndex-Columns auch
-            # bei nur einem Ticker). Ohne dieses Squeeze bricht die Zeitachsen-Filterung.
-            if s is not None and getattr(s, "ndim", 1) == 2:
-                s = s.iloc[:, 0] if s.shape[1] else None
-            if s is not None and len(s):
-                result[t] = s
+            for col, sink in (("High", highs), ("Low", lows)):
+                s = _extract_series(df, t, single, col)
+                # _extract_series liefert im Single-Ticker-Fall je nach yfinance/pandas-
+                # Version einen DataFrame mit einer Spalte statt einer Series (MultiIndex-
+                # Columns auch bei nur einem Ticker). Ohne Squeeze bricht die Filterung.
+                if s is not None and getattr(s, "ndim", 1) == 2:
+                    s = s.iloc[:, 0] if s.shape[1] else None
+                if s is not None and len(s):
+                    sink[t] = s
     except Exception as e:
-        log(f"lows yfinance failed: {e}")
-    if len(result) < len(tickers):
-        miss = [t for t in tickers if t not in result]
-        log(f"  lows: keine Serie fuer {miss} — Stop-Check dort nur auf cur")
-    return result
+        log(f"intraday H/L yfinance failed: {e}")
+    if len(lows) < len(tickers):
+        miss = [t for t in tickers if t not in lows]
+        log(f"  intraday-Serien fehlen fuer {miss} — dort alter Pfad (Stop nur auf cur)")
+    return highs, lows
 
 
-def _low_since(low_ser, since_iso: str | None):
-    """Tiefster 1-Min-Kurs seit `since_iso`. None wenn keine Daten oder keine Bars danach.
+def _extreme_since(ser, since_iso, how: str):
+    """Tiefster bzw. hoechster 1-Min-Kurs seit `since_iso`.
 
-    None bedeutet ausdruecklich "keine Aussage moeglich" — der Aufrufer prueft dann nur
-    gegen cur und schliesst NICHT.
+    Gibt None zurueck, wenn keine Serie da ist ODER keine Bar nach dem Zeitpunkt liegt.
+    None heisst ausdruecklich "keine Aussage moeglich" — der Aufrufer muss selbst
+    entscheiden, was dann gilt, und darf None nie als Extremwert missverstehen.
     """
-    if low_ser is None or not len(low_ser):
+    if ser is None or not len(ser):
         return None
     try:
-        s = low_ser
+        s = ser
         if since_iso:
             since = datetime.fromisoformat(since_iso.replace("Z", "+00:00"))
             idx = s.index
             if getattr(idx, "tz", None) is None:
                 idx = idx.tz_localize("UTC")
             s = s[idx >= since]
-        return float(s.min()) if len(s) else None
+        if not len(s):
+            return None
+        return float(s.min() if how == "min" else s.max())
     except Exception:
         return None
+
+
+def _low_since(low_ser, since_iso=None):
+    """Tiefster Kurs seit `since_iso` — fuer den Stop (Fenster ab stop_set_at)."""
+    return _extreme_since(low_ser, since_iso, "min")
+
+
+def _high_since(high_ser, since_iso=None):
+    """Hoechster Kurs seit `since_iso` — fuer TP und Trailing (Fenster ab opened_at)."""
+    return _extreme_since(high_ser, since_iso, "max")
 
 
 def market_open_today() -> bool:
@@ -1858,17 +1890,34 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
     events = []
     tickers = list({p["ticker"] for p in state["open"]})
     prices = batch_prices(tickers)
-    highs = get_today_high(tickers)
-    lows = get_today_lows(tickers) if STOP_CHECK_USE_LOW else {}
+    # Ein Download fuer beide Seiten (frueher zwei Abrufe derselben 1-Min-Bars).
+    high_ser, lows = get_today_hl(tickers)
+    # v8-Fallback nur noch fuer die Ticker ohne Serie — dort gilt der alte, ungefensterte Pfad.
+    # Bei ausgeschaltetem Flag (Rollback) braucht JEDER Ticker wieder das ungefensterte
+    # Tages-High, sonst faellt der Rollback-Pfad faelschlich auf cur zurueck.
+    _gaps = [t for t in tickers if t not in high_ser] if HIGH_CHECK_SINCE_ENTRY else tickers
+    highs = get_today_high(_gaps) if _gaps else {}
 
     still_open = []
     for p in state["open"]:
         cur = prices.get(p["ticker"])
-        high = highs.get(p["ticker"], cur)
         if cur is None:
             log(f"  no price for {p['ticker']} — keeping open")
             still_open.append(p)
             continue
+
+        # Tageshoch NUR ab dem Einstieg (s. HIGH_CHECK_SINCE_ENTRY). Drei Faelle:
+        #   Serie da + Bars seit Einstieg -> gefenstertes Hoch (der Normalfall)
+        #   Serie da, aber noch keine Bar -> cur (gerade erst eroeffnet; NICHT das Tages-High,
+        #                                   sonst waere der Bug ueber die Hintertuer zurueck)
+        #   keine Serie                   -> alter Pfad ueber get_today_high
+        _hs = high_ser.get(p["ticker"])
+        if _hs is not None and HIGH_CHECK_SINCE_ENTRY:
+            high = _high_since(_hs, p.get("opened_at"))
+            if high is None:
+                high = cur
+        else:
+            high = highs.get(p["ticker"], cur)
 
         # Migration fuer Positionen von vor dem 24.08.-Deploy: ohne bekannten Zeitpunkt des
         # Stop-Setzens koennte ein Tief von VOR einer heute schon gelaufenen Ladder-Stufe
