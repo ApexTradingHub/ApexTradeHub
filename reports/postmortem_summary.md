@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-08-21T07:30:04.020743 | Total trades: 280_
+_Updated: 2026-08-24T07:45:10.415643 | Total trades: 282_
 
-**Analyse-Status**: complete=280
+**Analyse-Status**: complete=280, pending=2
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -73,6 +73,7 @@ _Updated: 2026-08-21T07:30:04.020743 | Total trades: 280_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Analyse |
 |---|---|---|---|---|---|---|
+| DTE_2026-07-02 | STAGE_2 | -12.67% | Stop Loss D+35 | 117.5 | Utilities | _pending_ |
 | COST_2026-05-17 | STAGE_2 | -12.3% | Stop Loss D+31 | 101.6 | Consumer Defensive | STAGE_2 (einziger Nicht-BREAKOUT) -12.3% Stop nach D+31. Costco meldete Blowout-Q3 (Net Income +15.2%, Sales +11.6%) am 28.5 — aber Aktie FIEL (Sell-the-News: 52x P/E zu teuer) + Tariff-Class-Action-Klagen (IEEPA). STAGE_2's langer 60d-Hold liess einen -12% Drawdown entstehen. |
 | ENPH_2026-04-20 | REVERSAL | -9.96% | Stop Loss D+7 | 91.1 | Technology | Stop ausgeloest 1 Tag VOR Earnings-Beat - REVERSAL stoppt sich aus dem profitablen Move raus |
 | UPST_2026-06-29 | BREAKOUT | -9.55% | Stop Loss D+6 | 102.2 | Financial Services | Macro-Selloff Ende Juni 2026 (steigende Bond-Yields + Oil-Spike revived Inflations-Fear + hawkishe Fed) traf High-Beta-Long-Duration-Growth ueberproportional. UPST bereits -56%/Jahr (perf_120 -30.9%) = BREAKOUT auf tief-negativer Momentum-Basis. Fundamental intakt (Origination +48% YoY), reiner Macro-vs-Setup-Konflikt. D+6 Stop -9.6%. |
@@ -87,7 +88,6 @@ _Updated: 2026-08-21T07:30:04.020743 | Total trades: 280_
 | IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | BREAKOUT nach ~29% 6-Tage-Rally gekauft = extended; drehte auf Valuation-Unwind + Enterprise-Growth-Deceleration + Macro-Headwinds. -8.5% Stop D+3. |
 | CACI_2026-05-01 | REVERSAL | -8.03% | Stop Loss D+3 | 72.6 | Technology | REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben |
 | AMTM_2026-04-01 | REVERSAL | -8.01% | Stop Loss D+23 | 59.7 | Industrials | DEAD_CAT_BOUNCE - Stock war -20% YTD, REVERSAL kaufte trotz fundamentaler Schwaeche; nahm 23 Tage zum Stop |
-| APH_2026-05-12 | REVERSAL | -7.84% | Stop Loss D+5 | 86.5 | Unknown | REVERSAL in einen Valuation-Unwind eines Momentum-Stocks gekauft (+105% 1J). Trotz STARKER Q1-Earnings (Beat + Guidance-Raise auf +41-43% EPS-Wachstum) brach der Kurs ein wegen: Analyst-Downgrades Buy->Hold (BofA, Jefferies, Zacks; Bedenken zu Bewertung + Aerospace-Connectivity-Backlog-Slowdown) UND ~$250M Insider-Verkaeufe in 24-72h (CEO verkaufte $18.7M am 5.5). Stock -13.2% in einer Woche. base_range 27.6 = extrem breit = fallendes Messer. Stop nach nur 5 Tagen. Mean-Reversion eines parabolischen Momentum-Unwinds ist kein REVERSAL-Setup. |
 
 ## Best 10 Trades
 
@@ -104,12 +104,12 @@ _Updated: 2026-08-21T07:30:04.020743 | Total trades: 280_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
 
-## Recent (30d) — Worst 5 / Best 5  (n=36)
+## Recent (30d) — Worst 5 / Best 5  (n=31)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
+| PANW_2026-08-04 | BREAKOUT | -6.41% | Stop Loss D+13 | 125.3 | Technology | — |
 | MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
-| SW_2026-07-24 | BREAKOUT | -6.19% | Stop Loss D+5 | 102.4 | Consumer Cyclical | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
 | PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | earnings_gap_through_stop,guidance_disappointment,hold_through_earnings_risk |
 | ILMN_2026-07-30 | BREAKOUT | -5.57% | Stop Loss D+5 | 114.2 | Healthcare | sell_the_news,valuation_unwind,extended_perf120 |
 | M_2026-08-04 | BREAKOUT | -5.46% | Stop Loss D+3 | 134.9 | Consumer Cyclical | high_score_loss_85plus,retail_data_miss,consumer_weakness |
@@ -119,7 +119,9 @@ _Updated: 2026-08-21T07:30:04.020743 | Total trades: 280_
 | BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | sector_rotation_win,software_momentum,high_score_win_exception |
 | BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (0)
+## Pending Claude-Analyse (2)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
+- `PANW_2026-08-04`
+- `DTE_2026-07-02`
