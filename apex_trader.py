@@ -118,6 +118,22 @@ MOMENTUM_TRAIL_GIVEBACK = 0.06   # 6% Give-Back vom High (nach +15%-Ladder-Ende)
 TRAILING_TRIGGER_MULT = 1.08
 TRAILING_TARGET_MULT  = 1.05
 
+# === Symmetrische Stop-Pruefung (2026-08-24) ===
+# BEFUND: Der TP-Check lief immer gegen das Tages-HIGH (get_today_high, 1-Min-Bars), der
+# Stop-Check aber nur gegen `cur` = Close des LETZTEN 1-Min-Bars zum Cron-Zeitpunkt (alle
+# 5 Min). Folge: Aufwaertsdochte zaehlten IMMER, Abwaertsdochte nur bei zufaelligem Timing.
+# Das ist ein einseitiger Optimismus-Bias von Paper gegenueber einem echten Broker-Stop,
+# der auf der Tape ausloest — und ein Kandidat fuer die alte Frage "eToro real -11.7% vs.
+# Statistik positiv".
+# BELEG LLY 17.08.: Stop 1170.49; zwei 1-Min-Bars schlossen darunter (15:31 -> 1166.12,
+# 15:32 -> 1169.71, Tagestief 1163.50). Der Cron sah 15:30 und 15:35 -> kein Exit. Die
+# Position lief 3 Tage weiter und schloss mit +2.00% statt -5.18%.
+# WICHTIG: Ein Tief zaehlt nur, wenn es NACH dem Setzen des aktuellen Stops lag — sonst
+# wuerde eine frisch hochgezogene Trailing-Sprosse sofort von einem Tief ausgeloest, das
+# Stunden vorher passierte (dafuer traegt jede Position `stop_set_at`).
+# Rollback: False -> exakt das alte reine `cur`-Verhalten.
+STOP_CHECK_USE_LOW = True
+
 # Stagnations-Exit — totes Kapital freigeben fuer neue Signale
 # Phase-1 Update 2026-06-07
 STAGNATION_DAYS    = 5      # nach 5 Tagen
@@ -515,6 +531,11 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
         )
         for t in tickers:
             s = _extract_series(df, t, single, "High")
+            # Gleiches Squeeze wie in get_today_lows: bei Einzelticker kommt je nach
+            # Version ein 1-Spalten-DataFrame. float(df.max()) lief bisher nur ueber
+            # einen pandas-Deprecation-Pfad und wird kuenftig ein TypeError.
+            if s is not None and getattr(s, "ndim", 1) == 2:
+                s = s.iloc[:, 0] if s.shape[1] else None
             if s is not None and len(s):
                 result[t] = float(s.max())
     except Exception as e:
@@ -532,6 +553,66 @@ def get_today_high(tickers: list[str]) -> dict[str, float]:
         except Exception as e:
             log(f"  high v8 fail {t}: {e}")
     return result
+
+
+def get_today_lows(tickers: list[str]) -> dict:
+    """Heutige 1-Min-LOW-Serie je Ticker, MIT Zeitstempel — Gegenstueck zu get_today_high().
+
+    Anders als beim High geben wir hier die ganze Serie zurueck statt nur das Minimum:
+    ein Tief darf den Stop nur ausloesen, wenn es NACH dem Setzen des aktuellen Stops lag
+    (s. STOP_CHECK_USE_LOW). Dafuer brauchen wir die Zeitachse.
+
+    Kein v8-Fallback: wo keine Serie ankommt, faellt der Stop-Check auf das alte
+    `cur`-Verhalten zurueck. Das ist die konservative Richtung (eher kein Exit als ein
+    falscher), deshalb bewusst kein Ersatzpfad mit tagesweitem Minimum.
+    """
+    if not tickers:
+        return {}
+    result = {}
+    try:
+        import yfinance as yf
+        single = (len(tickers) == 1)
+        df = yf.download(
+            tickers if not single else tickers[0],
+            period="1d", interval="1m",
+            progress=False, threads=False, auto_adjust=True,
+        )
+        for t in tickers:
+            s = _extract_series(df, t, single, "Low")
+            # _extract_series liefert im Single-Ticker-Fall je nach yfinance/pandas-Version
+            # einen DataFrame mit einer Spalte statt einer Series (MultiIndex-Columns auch
+            # bei nur einem Ticker). Ohne dieses Squeeze bricht die Zeitachsen-Filterung.
+            if s is not None and getattr(s, "ndim", 1) == 2:
+                s = s.iloc[:, 0] if s.shape[1] else None
+            if s is not None and len(s):
+                result[t] = s
+    except Exception as e:
+        log(f"lows yfinance failed: {e}")
+    if len(result) < len(tickers):
+        miss = [t for t in tickers if t not in result]
+        log(f"  lows: keine Serie fuer {miss} — Stop-Check dort nur auf cur")
+    return result
+
+
+def _low_since(low_ser, since_iso: str | None):
+    """Tiefster 1-Min-Kurs seit `since_iso`. None wenn keine Daten oder keine Bars danach.
+
+    None bedeutet ausdruecklich "keine Aussage moeglich" — der Aufrufer prueft dann nur
+    gegen cur und schliesst NICHT.
+    """
+    if low_ser is None or not len(low_ser):
+        return None
+    try:
+        s = low_ser
+        if since_iso:
+            since = datetime.fromisoformat(since_iso.replace("Z", "+00:00"))
+            idx = s.index
+            if getattr(idx, "tz", None) is None:
+                idx = idx.tz_localize("UTC")
+            s = s[idx >= since]
+        return float(s.min()) if len(s) else None
+    except Exception:
+        return None
 
 
 def market_open_today() -> bool:
@@ -1423,6 +1504,8 @@ def apply_manual_overrides(state: dict, dry_run: bool = False) -> list:
             new_sl = f(ov["sl"])
             old_sl = pos["stop"]
             pos["stop"] = max(old_sl, new_sl)
+            if pos["stop"] != old_sl:
+                pos["stop_set_at"] = now_iso()
             # Trailing-Ladder konsistent halten: wenn manuell hoeher als naechste Stufe -> Stufe upgrade
             entry = pos.get("entry_actual", pos.get("entry"))
             if entry:
@@ -1707,6 +1790,7 @@ def open_position(state: dict, pending: dict, entry_actual: float) -> bool:
         "shares": shares,
         "size_usd": POSITION_SIZE,
         "stop":  pending["stop_initial"],
+        "stop_set_at": now_iso(),     # ab wann dieser Stop gilt (fuer den Low-Check)
         "high_since_entry": entry_actual,
         "trailing_active": False,
         "ladder_step": 0,             # Phase-1: noch keine Trail-Stufe aktiv
@@ -1775,6 +1859,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
     tickers = list({p["ticker"] for p in state["open"]})
     prices = batch_prices(tickers)
     highs = get_today_high(tickers)
+    lows = get_today_lows(tickers) if STOP_CHECK_USE_LOW else {}
 
     still_open = []
     for p in state["open"]:
@@ -1784,6 +1869,27 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             log(f"  no price for {p['ticker']} — keeping open")
             still_open.append(p)
             continue
+
+        # Migration fuer Positionen von vor dem 24.08.-Deploy: ohne bekannten Zeitpunkt des
+        # Stop-Setzens koennte ein Tief von VOR einer heute schon gelaufenen Ladder-Stufe
+        # ruecklaufend ausloesen. Einmalig auf jetzt setzen — kostet einen Run Blindheit,
+        # verhindert dafuer jeden falschen Exit beim Umstellen.
+        p.setdefault("stop_set_at", now_iso())
+
+        def _stop_hit(stop_level: float, _p=p, _cur=cur) -> bool:
+            """True wenn der Stop beruehrt wurde — per Snapshot ODER per Tief.
+
+            Das Tief wird BEWUSST erst beim Aufruf geholt und immer gegen das AKTUELLE
+            `stop_set_at` gefenstert: zieht die Trailing-Ladder den Stop in genau diesem
+            Run hoch, darf ein Tief von vorhin ihn nicht ruecklaufend ausloesen.
+            None vom Tief = keine Aussage -> nur cur zaehlt (konservativ, kein Exit).
+            """
+            if _cur <= stop_level:
+                return True
+            if not STOP_CHECK_USE_LOW:
+                return False
+            lo = _low_since(lows.get(_p["ticker"]), _p.get("stop_set_at"))
+            return lo is not None and lo <= stop_level
 
         entry = p["entry_actual"]
 
@@ -1795,7 +1901,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             i_reason, i_px = None, cur
             if high_i >= p["target"]:
                 i_reason, i_px = "Intraday TP", p["target"]
-            elif cur <= p["stop"]:
+            elif _stop_hit(p["stop"]):
                 i_reason, i_px = "Intraday Stop", p["stop"]
             elif _is_eod_utc() and market_open:   # EOD-Rescue nur an echten Handelstagen
                 # EOD->SWING (2026-06-26, User-Wunsch): KEIN hartes Banken mehr am EOD.
@@ -1857,6 +1963,10 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                     else:
                         p["stop"] = round(entry * (1 - MOMENTUM_SL_PCT), 2)        # -4% (nur Rollback)
                         _mode = "rot->-4%"
+                    # Der Rescue setzt einen NEUEN Stop (Breakeven bzw. -4%) — ab jetzt zaehlen
+                    # fuer den Low-Check nur noch Tiefs nach diesem Moment, nicht der Verlauf
+                    # des Intraday-Tages davor.
+                    p["stop_set_at"] = now_iso()
                     p["intraday_rescued"] = True
                     # Trailing-Ladder-Felder sicherstellen (Intraday-Pos hat sie evtl. nicht) ->
                     # sonst KeyError beim naechsten Run in der Ladder.
@@ -1920,6 +2030,8 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                 new_stop = min(new_stop, cur * 0.995)
                 old_stop = p["stop"]
                 p["stop"] = max(old_stop, new_stop)   # niemals nach unten
+                if p["stop"] != old_stop:
+                    p["stop_set_at"] = now_iso()      # Low-Check erst ab jetzt
                 p["ladder_step"] = step_idx
                 p["trailing_active"] = True
                 p["trailing_activated_at"] = p.get("trailing_activated_at") or now_iso()
@@ -1949,6 +2061,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
             if new_stop_rounded > p["stop"]:
                 old_stop = p["stop"]
                 p["stop"] = new_stop_rounded
+                p["stop_set_at"] = now_iso()          # Low-Check erst ab jetzt
                 events.append({
                     "event": "trailing_continuous", "id": p["id"], "ts": now_iso(),
                     "ticker": p["ticker"], "old_stop": old_stop, "new_stop": p["stop"],
@@ -1984,7 +2097,7 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
         if (not is_momentum) and high is not None and high >= p["target"]:
             exit_reason = "Take Profit"
             exit_price = p["target"]
-        elif cur <= p["stop"]:
+        elif _stop_hit(p["stop"]):
             exit_reason = "Stop Loss" + (" (Trailing)" if p.get("trailing_active") else "")
             exit_price = p["stop"]
         else:
