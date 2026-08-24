@@ -4593,5 +4593,33 @@
     "new_stop": 215.59903199999997,
     "high": 219.88999938964844,
     "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_FCX_2026-08-20",
+    "ts": "2026-08-24T13:35:07Z",
+    "ticker": "FCX",
+    "old_stop": 74.585472,
+    "new_stop": 76.019808,
+    "high": 78.87999725341797,
+    "ladder_step": 3
+  },
+  {
+    "event": "close",
+    "id": "PAPER_DHR_2026-08-19",
+    "ts": "2026-08-24T13:35:07Z",
+    "ticker": "DHR",
+    "exit_price": 215.59903199999997,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.999999999999997
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_TECK_2026-08-21",
+    "ts": "2026-08-24T13:35:07Z",
+    "ticker": "TECK",
+    "signal_date": "2026-08-21",
+    "score": 135.1,
+    "source": "scanner"
   }
 ]
