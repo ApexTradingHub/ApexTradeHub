@@ -2,7 +2,7 @@
 
 _Updated: 2026-08-25T07:31:27.561496 | Total trades: 284_
 
-**Analyse-Status**: complete=282, pending=2
+**Analyse-Status**: complete=284
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -29,9 +29,9 @@ _Updated: 2026-08-25T07:31:27.561496 | Total trades: 284_
 | Tag | Count |
 |---|---|
 | `breakout_no_follow_through` | 49 |
-| `post_earnings_beat_continuation` | 38 |
+| `post_earnings_beat_continuation` | 39 |
+| `high_score_loss_85plus` | 37 |
 | `sector_momentum_tailwind` | 36 |
-| `high_score_loss_85plus` | 36 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `duplicate_trap` | 23 |
@@ -119,9 +119,7 @@ _Updated: 2026-08-25T07:31:27.561496 | Total trades: 284_
 | BILL_2026-07-28 | BREAKOUT | 11.2% | Take Profit D+11 | 127.3 | Technology | sector_rotation_win,software_momentum,high_score_win_exception |
 | BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (2)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `JCI_2026-08-04`
-- `DASH_2026-08-07`

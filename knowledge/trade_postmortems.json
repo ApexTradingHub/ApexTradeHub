@@ -27926,19 +27926,35 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-19",
+            "title": "JCI faellt 3.2% auf $144.94; Downgrade mit Verweis auf geschlossene Bewertungsluecke, Neubewertung der Data-Center-Kuehlnachfrage im HVAC-Sektor — trotz Q3 (+9% Umsatz, Orders +27%, Backlog +32%) und FY26-Guidance-Anhebung vom 29.07.",
+            "src": "WebSearch 2026-08-25 (QuiverQuant/GuruFocus/SEC 8-K)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Bewertungs-Abbau auf GUTEN Zahlen — und damit das erste klare GEGENBEISPIEL zum Guidance-Muster. Johnson Controls lieferte am 29.07. ein starkes Q3 (Umsatz +9% auf $6.6 Mrd., organisch +10%, Auftragseingang organisch +27%, Backlog $21.0 Mrd. = +32%) UND hob die FY26-Prognose an. Wir kauften am 04.08. mit PEAD-Flag. Danach kein neues negatives Unternehmens-Ereignis, sondern ein Downgrade mit dem Argument, die Aktie habe die Bewertungsluecke zu den Vergleichswerten bereits geschlossen; parallel bepreiste der Markt die Nachfrage nach Rechenzentrums-Kuehlung im ganzen HVAC-Sektor neu. Am 19.08. -3.2% auf $144.94, unser Stop am 18.08. bei -5.31% (D+14, Score 107.6). DIE LEHRE — Praezisierung des Guidance-Musters: Die Anhebung lag SECHS TAGE VOR unserem Signal, war also eingepreist. Bei TGT kam die Anhebung WAEHREND der Haltedauer (19.08.) und trug den Kurs auf ein 52-Wochen-Hoch. **Eine Guidance-Anhebung hilft, wenn sie im Fenster LANDET — nicht, wenn sie schon hinter uns liegt.** Danach ist sie nur noch ein Grund fuer eine hohe Bewertung, also eher Risiko.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "valuation_unwind",
+          "guidance_raise_already_priced",
+          "post_earnings_beat_continuation_failed",
+          "analyst_downgrade",
+          "sector_derating",
+          "slow_stop_4plus",
+          "high_score_loss_85plus"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Dritter Bewertungs-Abbau-Verlierer im August nach PANW (Fwd-KGV 91 vs Branche 46) und ILMN (sell_the_news/extended_perf120). Muster: gute Fundamentaldaten schuetzen NICHT, wenn die Aktie den Vorlauf schon gelaufen hat. Wir haben keinen Bewertungs-Marker — perf_120 misst die Kurs-, nicht die Bewertungsausdehnung."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-25T14:30:30.167784+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-25T07:31:26.839129",
@@ -28015,19 +28031,35 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-18",
+            "title": "DASH: Q2-Bericht 05.08., danach Kursziel-Anhebungen (Cantor Fitzgerald, Wells Fargo) und neue Liefer-Partnerschaften mit Barnes & Noble, Carter's, Kohl's, Gap zum Schulstart",
+            "src": "WebSearch 2026-08-25 (Benzinga/StockStory/Yahoo Finance)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Sauberer Katalysator-Stapel: Q2-Bericht am 05.08. nach Boersenschluss, danach eine Welle von Kurszielanhebungen (u.a. Cantor Fitzgerald, Wells Fargo), dazu neue Einzelhandels-Partnerschaften fuer die Back-to-School-Lieferung (Barnes & Noble, Carter's, Kohl's, Gap). Signal am 07.08. mit Score 145.4, Pocket Pivot UND Gap>=2% — der Catalyst mit dem hoechsten bestaetigten Lift (+10.9% WR, n=33, HIGH). Ziel erreicht D+11 mit +10.25%.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "analyst_pt_raise_wave",
+          "partnership_catalyst",
+          "gap_gt_2pct_win",
+          "pocket_pivot_win",
+          "high_score_win_exception"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Gap>=2% bleibt der einzige Catalyst mit CONFIRMED-Positivlift. Hier zusammen mit Pocket Pivot und einem echten, mehrteiligen Nachrichtenstapel.",
+          "WICHTIG — DIVERGENZ TRADER vs. SIGNAL-TRACKER (n=1, Illustration, KEIN Beweis): Der Signal-Tracker bucht +10.25% (kein Trailing). Der LIVE-Trader hat DASH am 17.08. per Trailing-Sprosse 1 bei +2.00% beendet. Der 5-Min-Replay vom 24.08. ergibt ohne Sprosse 1 einen Ausstieg bei +4.00% (dann greift Sprosse 2). Also drei Zahlen fuer denselben Trade: +2.00% mit voller Leiter, +4.00% ohne Sprosse 1, +10.25% ohne Trailing. Das ist der KERNSATZ (13% Zielerreichung -> jeder kappende Mechanismus kostet mehr als er schuetzt) an einem einzelnen Fall sichtbar gemacht."
+        ],
+        "analyzed_at": "2026-08-25T14:30:30.167784+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-25T07:31:27.261297",
