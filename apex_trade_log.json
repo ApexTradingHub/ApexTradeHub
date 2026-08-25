@@ -4697,5 +4697,23 @@
     "new_stop": 69.95282399999998,
     "high": 71.33499908447266,
     "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_FCX_2026-08-20",
+    "ts": "2026-08-25T18:45:08Z",
+    "ticker": "FCX",
+    "exit_price": 79.32,
+    "reason": "Take Profit",
+    "pnl_pct": 10.60170002007898
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CPB_2026-08-24",
+    "ts": "2026-08-25T18:45:09Z",
+    "ticker": "CPB",
+    "signal_date": "2026-08-24",
+    "score": 91.0,
+    "source": "scanner"
   }
 ]
