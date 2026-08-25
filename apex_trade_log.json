@@ -4640,5 +4640,23 @@
     "new_stop": 207.97919555664063,
     "high": 212.2100067138672,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CRM_2026-08-13",
+    "ts": "2026-08-25T13:30:08Z",
+    "ticker": "CRM",
+    "exit_price": 207.97919555664063,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 4.000000000000004
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CHWY_2026-08-24",
+    "ts": "2026-08-25T13:30:08Z",
+    "ticker": "CHWY",
+    "signal_date": "2026-08-24",
+    "score": 96.3,
+    "source": "scanner"
   }
 ]
