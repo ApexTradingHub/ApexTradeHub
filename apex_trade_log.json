@@ -4752,5 +4752,23 @@
     "new_stop": 63.93608123779297,
     "high": 65.2699966430664,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_KMX_2026-08-20",
+    "ts": "2026-08-26T16:25:06Z",
+    "ticker": "KMX",
+    "exit_price": 63.93608123779297,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 4.000000000000001
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SNAP_2026-08-25",
+    "ts": "2026-08-26T16:25:07Z",
+    "ticker": "SNAP",
+    "signal_date": "2026-08-25",
+    "score": 102.6,
+    "source": "scanner"
   }
 ]
