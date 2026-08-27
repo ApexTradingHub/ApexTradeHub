@@ -28136,19 +28136,37 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-06",
+            "title": "BSY Q2 2026: Umsatz +12.8%, ARR +12%, getragen von Rohstoff-/Versorger-Nachfrage und KI-Einfuehrung; FCF und Margen auf Kurs zur Jahresprognose, KI-Monetarisierung ab 2027. Am 18.08. neuer Chief Revenue Officer.",
+            "src": "WebSearch 2026-08-27 (StockStory/StockAnalysis/Investing.com)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Langsamer Laeufer, der die volle Haltedauer brauchte: Time Exit D+30 mit +9.11%, das Ziel (38.00 = +12.4%) knapp verfehlt. Signal-Profil war unauffaellig — Score 90.2, RSI 60.2, movement_class WEAK_BREAKOUT, aber Pocket Pivot UND gap_pct 6.14 (der einzige Catalyst mit CONFIRMED-Positivlift, inzwischen +12.2% WR bei n=34) plus closing_strength 0.87. Im Fenster lag der Q2-Bericht vom 06.08.: Umsatz +12.8%, ARR +12%, getragen von Nachfrage aus Rohstoffen und Versorgern sowie KI-Einfuehrung; freier Cashflow und Margen auf Kurs zur Jahresprognose, KI-Monetarisierung fuer 2027 angekuendigt. Am 18.08. wurde zusaetzlich ein neuer Chief Revenue Officer berufen. Analystenkonsens 13x Kaufen, 0x Verkaufen, Durchschnittsziel 44.47 — also weiterhin Luft nach oben.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "slow_grind_win",
+          "hold30_benefit",
+          "gap_gt_2pct_win",
+          "pocket_pivot_win",
+          "held_through_earnings_won",
+          "recurring_revenue_quality"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Dritter Beleg fuer die 30-Tage-Haltedauer nach MMM (+6.21%) und SJM (+4.47%): flache Trades brauchen Zeit, unter der alten 15-Tage-Regel waeren alle drei frueher und flacher beendet worden.",
+          "Gegenbeispiel zum Earnings-Runway-Gedanken (vom User ausdruecklich NICHT zu bauen): BSY wurde DURCH den Q2-Bericht gehalten und gewann dadurch. PINS ist der Gegenfall. Beide Richtungen existieren — ein pauschaler Runway-Filter waere hier teuer gewesen.",
+          "WEAK_BREAKOUT mit starkem Tagesschluss (0.87) und Gap>=2% ist offenbar kein Widerspruch — die Klassifikation beschreibt die Bewegung, nicht die Qualitaet."
+        ],
+        "analyzed_at": "2026-08-27T12:37:34.772567+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-26T07:33:14.590029",
