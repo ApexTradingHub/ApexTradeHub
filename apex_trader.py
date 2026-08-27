@@ -151,6 +151,31 @@ STOP_CHECK_USE_LOW = True
 # Rollback: False -> wieder das ungefensterte Tages-High.
 HIGH_CHECK_SINCE_ENTRY = True
 
+# === ENTRY-DRIFT-GATE (2026-08-27) — modus-unabhaengiges Gap-Gate ===
+# BEFUND: Das bisherige Gap-Gate sass AUSSCHLIESSLICH im eToro-Zweig (open_position ->
+# etoro_open_position -> GapTooLargeError -> Rollback) und verglich den eToro-Ask mit dem
+# yfinance-Entry. Seit TRADING_MODE=paper (07.08.) wird etoro_open_position nie aufgerufen,
+# also lief das Gate DREI WOCHEN nicht. Beweis: letzter gap-gate-Reject im Log = 06.08. (CLX),
+# einen Tag vor der Umstellung; seither 15 Opens, 0 Rejects.
+# WARUM DAS TEUER IST: der Trigger feuert auf dem TAGES-High, und
+#   entry_actual = max(p["entry"], min(cur_price, p["entry"]*1.005))
+# nimmt den Trigger als BODEN und deckelt bei +0.5%. Eroeffnet die Aktie weit ueber dem
+# Trigger, buchen wir trotzdem Trigger*1.005 — einen Preis, den es an dem Tag nie gab.
+# GEMESSEN (5-Min-Bars gegen jeden open-Event seit 07.08.): 5 von 15 Fills haetten geblockt
+# gehoert und tragen +27.3 von +34.2pp = 80% des Ergebnisses. Ohne sie Ø +0.69% statt +2.28%.
+#   SE  Trigger 115.77 vs Markt 129.02 (+11.4%) -> "gewann" +11.73%
+#   HP  Trigger  36.14 vs Markt  38.99 ( +7.9%) -> "gewann" +10.13%
+#   FCX Trigger  71.36 vs Markt  76.07 ( +6.6%) -> "gewann" +10.60%
+#   FOXA Trigger 60.35 vs Markt  63.09 ( +4.5%) -> +2.00%
+#   SNAP Trigger  5.83 vs Markt   5.38 ( -7.7%) -> -7.20%, gekauft UNTER dem eigenen Stop 5.41
+# Beide Richtungen zaehlen, daher abs(): +Drift = Kurs weggelaufen (Chase), -Drift = Ausbruch
+# schon gescheitert. Gleiche Schwelle und gleiche Konvention wie das eToro-Gate, das im
+# Live-Modus als zweite Linie bestehen bleibt (dort gegen den echten Ask).
+# LEHRE: Eine Schutzregel im Zweig eines Betriebsmodus faellt mit diesem Modus lautlos aus.
+# Rollback: ENTRY_DRIFT_GATE_ENABLED = False.
+ENTRY_DRIFT_GATE_ENABLED = True
+ENTRY_DRIFT_GATE_PCT     = 3.0
+
 # Stagnations-Exit — totes Kapital freigeben fuer neue Signale
 # Phase-1 Update 2026-06-07
 STAGNATION_DAYS    = 5      # nach 5 Tagen
@@ -1773,6 +1798,27 @@ def trigger_pending(state: dict, dry_run: bool = False) -> list:
             continue
 
         if high_today >= p["entry"]:
+            # === ENTRY-DRIFT-GATE (2026-08-27) — modus-unabhaengig ===
+            # Der Trigger feuert auf dem TAGES-High. Steht der Kurs jetzt weit davon weg, ist
+            # der Fill unten eine Fiktion: `entry_actual` nimmt den Trigger als BODEN und
+            # deckelt bei +0.5%, bucht also einen Preis, den es in dem Moment nicht gibt.
+            if ENTRY_DRIFT_GATE_ENABLED:
+                drift_pct = (cur_price / p["entry"] - 1) * 100
+                if abs(drift_pct) > ENTRY_DRIFT_GATE_PCT:
+                    p["status"] = "expired"
+                    p["expired_at"] = now_iso()
+                    p["expired_reason"] = "entry_drift"
+                    state["expired"].append(p)
+                    events.append({
+                        "event": "expired", "id": p["id"], "ts": now_iso(),
+                        "ticker": p["ticker"], "entry_signal": p["entry"],
+                        "cur_price": cur_price, "drift_pct": round(drift_pct, 2),
+                        "reason": f"entry-drift {drift_pct:+.2f}% > {ENTRY_DRIFT_GATE_PCT}% "
+                                  f"— Kurs vom Trigger weg, kein Retry",
+                    })
+                    log(f"  PARKED (entry-drift): {p['ticker']} Trigger ${p['entry']:.2f} vs "
+                        f"aktuell ${cur_price:.2f} ({drift_pct:+.2f}%) — Fill waere fiktiv")
+                    continue
             # FIRE
             entry_actual = max(p["entry"], min(cur_price, p["entry"] * 1.005))
             # Simulate fill: at entry if high>=entry, but cap slippage at +0.5%
