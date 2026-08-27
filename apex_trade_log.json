@@ -4872,5 +4872,23 @@
     "range_pos_eod": 0.899,
     "above_vwap_eod": true,
     "dist_to_day_low_pct": 2.53
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_PPC_2026-08-17_1846",
+    "ts": "2026-08-27T13:35:08Z",
+    "ticker": "PPC",
+    "exit_price": 30.85250082015991,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 7.499999999999996
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_FLS_2026-08-27",
+    "ts": "2026-08-27T13:35:09Z",
+    "ticker": "FLS",
+    "signal_date": "2026-08-27",
+    "score": 117.9,
+    "source": "scanner"
   }
 ]
