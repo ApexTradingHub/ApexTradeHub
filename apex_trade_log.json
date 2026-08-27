@@ -4955,5 +4955,37 @@
     "gain_from_open": 2.58,
     "score": 36.0,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_ASAN_2026-08-27_1652",
+    "ts": "2026-08-27T19:45:09Z",
+    "ticker": "ASAN",
+    "pnl_pct": 0.24,
+    "new_stop": 10.2,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 0.54,
+    "range_pos_eod": 0.831,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 6.12
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_GIS_2026-08-27_1712",
+    "ts": "2026-08-27T19:45:09Z",
+    "ticker": "GIS",
+    "pnl_pct": -0.08,
+    "range_pos_eod": 0.834,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.16
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_GIS_2026-08-27_1712",
+    "ts": "2026-08-27T19:45:09Z",
+    "ticker": "GIS",
+    "exit_price": 40.5099983215332,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.0752391284117195
   }
 ]
