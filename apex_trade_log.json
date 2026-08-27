@@ -4899,5 +4899,32 @@
     "entry_signal": 82.5,
     "entry_actual": 82.5,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FIX_2026-08-26_1807",
+    "ts": "2026-08-27T13:50:07Z",
+    "ticker": "FIX",
+    "exit_price": 1605.69,
+    "reason": "Stop Loss",
+    "pnl_pct": 0.00014809416569385754
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CACI_2026-08-26_1852",
+    "ts": "2026-08-27T13:50:07Z",
+    "ticker": "CACI",
+    "exit_price": 620.31,
+    "reason": "Stop Loss",
+    "pnl_pct": 3.935784051585764e-07
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_GEN_2026-08-27",
+    "ts": "2026-08-27T13:50:08Z",
+    "ticker": "GEN",
+    "signal_date": "2026-08-27",
+    "score": 124.9,
+    "source": "scanner"
   }
 ]
