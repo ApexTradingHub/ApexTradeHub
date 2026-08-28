@@ -28243,19 +28243,33 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-19",
+            "title": "FTI Allzeithoch $80.55 am 19.08., danach Absturz mit dem Oelpreis: Brent -10% unter $90 nach 10-taegiger Waffenruhe Israel/Libanon und US-Iran-Verhandlungsoptimismus; Q2 fundamental stark (Subsea-Margen >23%, Rekord-Pipeline)",
+            "src": "WebSearch 2026-08-28 (QuiverQuant/StockAnalysis/Yahoo)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Makro-Schock im Sektor, nicht im Unternehmen. TechnipFMC erreichte am 19.08. mit $80.55 sein Allzeithoch, danach brach der Oelpreis ein: Brent fiel um ueber 10% unter $90, WTI analog — ausgeloest von einer zehntaegigen Waffenruhe zwischen Israel und Libanon und Optimismus zu US-Iran-Verhandlungen. Oelfeld-Dienstleister sind der erste Reflex auf Preisbewegungen, FTI verlor 3% an einem Nachmittag. Unser Stop am 25.08. bei -4.85% (D+8). Fundamental war nichts kaputt: Q2 zeigte starkes Umsatz- und EBITDA-Wachstum, Subsea-Margen ueber 23% und eine Rekord-Pipeline. Reiner Rohstoff-Makro gegen ein intaktes Setup.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "commodity_macro_shock",
+          "geopolitical_premium_fade",
+          "energy_oil_reversal",
+          "breakout_no_follow_through",
+          "deadzone_rsi_loss"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Vierter Energie-/Rohstoff-Verlierer nach EOG, MOS und SW. Der User hat ein Rohstoff-/Energie-Sektor-Gate ausdruecklich NICHT gewollt — die Faelle werden nur gezaehlt, nicht in eine Regel gegossen. Anzumerken ist, dass ein Gate hier ohnehin nicht gegriffen haette: zum Signalzeitpunkt lag Energy mit +0.2% VOR dem SPY (-1.3%), die Divergenz entstand erst durch den Waffenruhe-Schock danach."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:53.371766",
@@ -28332,19 +28346,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-26",
+            "title": "Chewy faellt 5.7% an einem Tag; kein Unternehmens-Ausloeser, Q2-Bericht erst zum 09.09. erwartet (Konsens EPS $0.33, Umsatz $3.08 Mrd.); Titel 80% unter Allzeithoch, zuvor +17.5% in 90 Tagen",
+            "src": "WebSearch 2026-08-28 (MarketBeat/Motley Fool/Yahoo)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Schneller Stop D+2 bei -5.67%, am 26.08. fiel die Aktie 5.7% an einem Tag. Kein einzelner Unternehmens-Ausloeser auffindbar — der Q2-Bericht stand erst zum 09.09. an (Konsens $0.33 EPS, $3.08 Mrd. Umsatz). Die Aktie liegt 80% unter ihrem Allzeithoch, hatte aber in den 90 Tagen bis zum 20.08. um 17.5% zugelegt; unser Signal kaufte das obere Ende dieser Erholung. Messbar dagegen: **Sektor-Divergenz war zum Signalzeitpunkt gesetzt** (Consumer Cyclical -1.9% gegen SPY +1.0%), Short-Quote 11.9%, movement_class WEAK_BREAKOUT, Earnings in 15 Tagen. Profil eines schwachen Ausbruchs in einen schwachen Sektor, der vor dem Bericht abverkauft wurde.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "sector_divergence_loser",
+          "quick_stop_1_3d",
+          "weak_breakout",
+          "pre_earnings_derisking",
+          "consumer_weakness",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "WEAK_BREAKOUT plus gesetzte Sektor-Divergenz plus Short-Quote ueber 10% — drei Warnzeichen gleichzeitig, die der Score (96.3) nicht zusammenfuehrt."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:53.865535",
@@ -28425,15 +28454,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "STAGE_2-Altlast: Zeit-Exit nach **D+80** mit -1.48%. Kimco lief 80 Handelstage lang seitwaerts und band Kapital, ohne je in die Naehe des Ziels ($31.89, +30.8%) oder des Stops ($20.98, -14.0%) zu kommen. Real-Estate-Divergenz war zum Signalzeitpunkt gesetzt (Sektor +2.5% gegen SPY +4.6%). Kein Einzelfall-Befund noetig — der Befund ist die SETUP-KLASSE: STAGE_2 kombiniert einen sehr weiten Stop mit einer sehr langen Haltedauer und produziert damit entweder tote Seitwaertstrades oder tiefe Drawdowns. Das Setup ist zu Recht abgeschaltet.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "stage2_dead_money",
+          "time_exit_negative",
+          "sector_divergence_loser",
+          "capital_lockup"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Teil des STAGE_2-Trios vom Juni (KIM -1.48%, LIN -6.40%, GL +9.77%), das jetzt gemeinsam ausgelaufen ist: netto +1.89% ueber drei Trades und 240 Handelstage gebundenes Kapital. Bestaetigt die Abschaltung."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:54.304684",
@@ -28510,19 +28546,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-27",
+            "title": "Salesforce Q2: EPS $4.29 vs $3.27, cRPO +14%, Agentforce-ARR >$1.5 Mrd., Anthropic-Partnerschaft 'Claudeforce', FY27-Prognose auf $16.67-16.71 angehoben; Aktie +22% auf $252.05",
+            "src": "WebSearch 2026-08-28 (Seeking Alpha/FXLeaders/TimothySykes)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Erstes von zwei CRM-Signalen, Ziel erreicht D+10 mit +10.12%. Salesforce meldete am 26.08. ein Quartal, das alles schlug: EPS $4.29 gegen $3.27 Konsens, cRPO +14%, KI-ARR nahe $4 Mrd., Agentforce-ARR ueber $1.5 Mrd. Dazu die vertiefte Anthropic-Partnerschaft ('Claudeforce', Claude als Standardmodell in Slack und den KI-Produkten) und eine angehobene FY27-EPS-Prognose auf $16.67-16.71. Die Aktie sprang am 27.08. rund 22% auf $252.05. Einstieg 13.08. bei Score 113.8 mit Pocket Pivot und Gap +1.82%, elf Tage vor dem Bericht. BEMERKENSWERT: movement_class DEADZONE_BREAKOUT bei RSI 65.6 — genau das Band, das im Juli als 'tot' im Verdacht stand. Die Deadzone-These wurde damals falsifiziert; dieser Trade und sein Zwilling vom 19.08. sind zwei weitere Gegenbelege.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "guidance_raise_catalyst",
+          "secular_ai_catalyst",
+          "ai_partnership_catalyst",
+          "pocket_pivot_win",
+          "deadzone_rsi_win"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Zweiter und dritter Beleg gegen die RSI-Deadzone-These (RSI 60-65). Nicht anfassen."
+        ],
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:54.759206",
@@ -28599,19 +28650,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-25",
+            "title": "Eli Lilly im August 2026 fundamental stark (Marktwert >$1 Bio., 6/10 US-Adipositas-Rezepte, Novo CagriSema verfehlt Direktvergleich 23% vs 25.5%) — kein negativer Einzelausloeser fuer unseren Stop; Healthcare-Sektor divergierte -1.8% gegen SPY +0.3%",
+            "src": "WebSearch 2026-08-28 (24/7WallSt/BioPharmaDive/CNBC)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Hoechster Score im Batch (139.9), SWEET_BREAKOUT, Pocket Pivot UND earnings_beat — und trotzdem Stop D+6 bei -5.10%. Die Recherche findet **keinen negativen unternehmensspezifischen Ausloeser**: Lillys eigene Nachrichtenlage war im August durchweg positiv (Marktwert ueber $1 Bio., 6 von 10 US-Adipositas-Verschreibungen, Novo Nordisks CagriSema verfehlte im Direktvergleich mit 23% gegen 25.5% Gewichtsreduktion). Was messbar dagegen stand: **Sektor-Divergenz war zum Signalzeitpunkt gesetzt** — Healthcare -1.8% gegen SPY +0.3%. Der Titel hatte perf_120 von +25.7%, war also weit gelaufen. Einordnung: high_score_loss_85plus mit Sektor-Divergenz. Das SECTOR_RS_GATE deckt nur Tech/Comm ab; Healthcare waere nach Financials (BX) und Utilities (DTE) die dritte Kandidaten-Zelle. Weiterhin NICHT gebaut, nur gezaehlt.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "sector_divergence_loser",
+          "extended_perf120",
+          "breakout_no_follow_through",
+          "no_identifiable_catalyst"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Dritter Sektor-Divergenz-Verlierer ausserhalb der Gate-Abdeckung nach BX (Financials) und DTE (Utilities). Wenn sich das haeuft, ist die Ausweitung des SECTOR_RS_GATE ein Messkandidat — aber die WR-Studie (#28) sagt, Gates heben die WR nicht.",
+          "Zweites LLY-Signal binnen einer Woche (13.08. und 19.08.), beide unprofitabel (+2.00% Trailing bzw. -5.10%). Duplikat-Muster in einem steigenden Titel mit schlechtem Timing."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:55.177102",
@@ -28688,19 +28754,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-27",
+            "title": "Salesforce Q2 am 26.08. (Bericht 6 Tage nach unserem Einstieg): EPS $4.29 vs $3.27, Anthropic-Deal, FY27-Guidance angehoben; Aktie +22%",
+            "src": "WebSearch 2026-08-28 (Seeking Alpha/FXLeaders)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zweites CRM-Signal, Ziel D+6 mit +11.48% — der staerkere der beiden. Salesforce meldete am 26.08. ein Quartal, das alles schlug: EPS $4.29 gegen $3.27 Konsens, cRPO +14%, KI-ARR nahe $4 Mrd., Agentforce-ARR ueber $1.5 Mrd. Dazu die vertiefte Anthropic-Partnerschaft ('Claudeforce', Claude als Standardmodell in Slack und den KI-Produkten) und eine angehobene FY27-EPS-Prognose auf $16.67-16.71. Die Aktie sprang am 27.08. rund 22% auf $252.05. ENTSCHEIDEND UND UNBEQUEM: `cat_earnings_next_days` stand bei **6**, wir sind also SECHS TAGE VOR dem Bericht eingestiegen und haben DURCH ihn gehalten. Das ist dieselbe Wette, die bei PINS -5.72% gekostet hat (Guidance verfehlt, Gap durch den Stop). Hier ging sie auf, weil das Quartal ueberragend war. Sauber getaggt als pre_earnings_gamble_won: das Ergebnis rechtfertigt die Wette nicht rueckwirkend, es zeigt nur die Varianz. Wir haben keinen Marker, der die Richtung vorhersagt.",
+        "lesson_tags": [
+          "pre_earnings_gamble_won",
+          "hold_through_earnings_risk",
+          "post_earnings_beat_continuation",
+          "guidance_raise_catalyst",
+          "ai_partnership_catalyst",
+          "deadzone_rsi_win"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Gegenstueck zu PINS (2026-07-29): dort kostete das Halten durch Earnings -5.72%, hier brachte es +11.48%. Beide mit denselben Vorab-Informationen. Der User hat einen Earnings-Runway-Filter ausdruecklich NICHT gewollt — dieser Trade ist das Argument dafuer, dass die Entscheidung richtig war: der Filter haette hier den besten Trade des Monats verhindert."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:55.599074",
@@ -28777,19 +28858,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-24",
+            "title": "Illumina: Q2 (30.07.) EPS $1.31 vs $1.23 und dritte Guidance-Anhebung in Folge; +82% seit Maerz auf $223.22, 52-Wochen-Hoch $220.32, institutionelle Zukaeufe im August",
+            "src": "WebSearch 2026-08-28 (tikr/QuiverQuant/ad-hoc-news)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Ziel D+5 mit +10.89% — und damit **derselbe Ticker, der am 30.07. -5.57% verlor**. Der Vergleich der beiden ist die eigentliche Lehre. Hintergrund: Q2 am 30.07. schlug mit EPS $1.31 gegen $1.23 und hob die Jahresprognose an — die **dritte Anhebung in Folge**, was die Sorge entkraeftete, die Nachfrage nach klinischer Sequenzierung sei ein Einmaleffekt. NovaSeq-X-Momentum, institutionelle Zukaeufe, +82% seit Anfang Maerz, 52-Wochen-Hoch bei $220.32. WARUM DER ERSTE VERLOR UND DER ZWEITE GEWANN: Am 30.07. kauften wir direkt in den Earnings-Sprung (sell_the_news, extended_perf120) — die Position lief sofort in den Stop. Am 20.08. kauften wir mit **gap_pct -2.29**, also in einen Ruecksetzer innerhalb des intakten Aufwaertstrends. **Nicht der Katalysator unterschied die beiden Trades, sondern die Position im Move.** Gleiches Setup, gleicher Sektor, gleiche Story, entgegengesetztes Ergebnis.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "guidance_raise_catalyst",
+          "pullback_entry_win",
+          "same_ticker_opposite_outcome",
+          "extended_perf120",
+          "institutional_accumulation"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Der bisher klarste Beleg, dass die EINSTIEGSPOSITION im Move zaehlt, nicht nur der Katalysator. Ruecksetzer-Einstieg (negativer gap_pct) schlug den Sprung-Einstieg beim selben Titel um 16.5 Punkte. Kein Deployment daraus ableiten (n=2), aber im Auge behalten — beruehrt dieselbe Frage wie das Entry-Drift-Gate."
+        ],
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-27T17:54:56.050789",
@@ -28866,19 +28962,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-05",
+            "title": "News Corp Q4 FY26: Umsatz $2.3 Mrd. (+11%), Segment-EBITDA $423 Mio. (+31%), adj. EPS $0.35 vs $0.19 (51% ueber Konsens), FCF +42%, Rueckkaeufe vervierfacht; KI-Lizenzdeals mit OpenAI und Meta",
+            "src": "WebSearch 2026-08-28 (StockStory/BigGo Finance)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Ziel D+16 mit +8.10%. News Corp schloss das Geschaeftsjahr mit einem Rekordquartal: Umsatz $2.3 Mrd. (+11%), Segment-EBITDA $423 Mio. (+31%), Nettoergebnis aus fortgefuehrten Geschaeften +167% auf $230 Mio., bereinigtes EPS $0.35 gegen $0.19 — **51% ueber Konsens**. Freier Cashflow +42% auf $811 Mio., Aktienrueckkaeufe auf $643 Mio. vervierfacht. Treiber waren Dow Jones, Digital Real Estate und Buchverlag (Segment-EBITDA zusammen +30%) sowie KI-Lizenzdeals mit OpenAI und Meta. Signal-Profil war stark: Score 130.6, SWEET_BREAKOUT, Pocket Pivot, closing_strength 0.90.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "ai_licensing_catalyst",
+          "buyback_support",
+          "pocket_pivot_win",
+          "sweet_breakout_win",
+          "high_score_win_exception"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "closing_strength 0.90 plus Pocket Pivot plus SWEET_BREAKOUT — das Profil, das wir wollen. Kein Gap noetig, der Katalysator trug."
+        ],
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-28T19:01:26.565838",
@@ -28959,15 +29070,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "STAGE_2-Altlast, Zeit-Exit D+80 mit -6.40%. Linde bekam ein Ziel von $709.60 (+36.9%) und einen Stop bei $450.03 (-13.2%) — eine Spanne von 50 Prozentpunkten, in der sich 80 Tage lang nichts entschied. Der Sektor lief dabei sogar leicht besser als der Markt (Basic Materials +4.9% gegen SPY +4.5%), es fehlte also nicht am Umfeld, sondern an der Bewegung. **Anzeige-Hinweis:** exit_date 29.09. ist das FENSTER-Ende, nicht der echte Ausstieg (bekannte Eigenheit des Postmortem-Builders, s. EW/MMM/SJM).",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "stage2_dead_money",
+          "time_exit_negative",
+          "capital_lockup",
+          "target_too_ambitious"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Zweiter des STAGE_2-Trios. Ein +36.9%-Ziel ist fuer einen Industriegase-Titel keine realistische Erwartung in einem Quartal — das Setup hat Ziel und Zeithorizont nie zueinander passend gewaehlt."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-28T19:01:27.093171",
@@ -29048,15 +29166,22 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Der einzige Gewinner des STAGE_2-Trios: Zeit-Exit D+80 mit +9.77%, ohne das Ziel ($203.61, +27.2%) zu erreichen. Getragen vom Sektor — Financial Services legten im Fenster **+11.2%** zu gegen SPY +4.5%, Globe Life lief also sogar leicht schlechter als sein Sektor. Ehrliche Einordnung: **das ist kein Setup-Erfolg, sondern ein Sektor-Mitnahmeeffekt.** closing_strength lag bei 0.61, es gab keinen Katalysator, und 80 Tage Haltedauer fuer +9.77% sind eine schwache Kapitalrendite gemessen an einem BREAKOUT, der dasselbe in 5-15 Tagen holt.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "sector_momentum_tailwind",
+          "stage2_dead_money",
+          "no_identifiable_catalyst"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "NICHT replizieren. Der Gewinn kam aus dem Sektor, nicht aus dem Setup, und die Kapitalbindung war unverhaeltnismaessig. Dritter des STAGE_2-Trios — das Trio zusammen netto +1.89% ueber 240 gebundene Handelstage."
+        ],
+        "analyzed_at": "2026-08-28T20:01:00.468353+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-28T19:01:27.563481",

@@ -2,11 +2,11 @@
 
 _Updated: 2026-08-28T19:01:27.863770 | Total trades: 295_
 
-**Analyse-Status**: complete=285, pending=10
+**Analyse-Status**: complete=295
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
-15 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
+18 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
 
 - `PINS_2026-07-29`
 - `ILMN_2026-07-30`
@@ -23,31 +23,34 @@ _Updated: 2026-08-28T19:01:27.863770 | Total trades: 295_
 - `ISP.MI_2026-07-20`
 - `MMM_2026-07-21`
 - `SJM_2026-07-22`
+- `KIM_2026-06-08`
+- `LIN_2026-06-09`
+- `GL_2026-06-09`
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
-| `breakout_no_follow_through` | 49 |
-| `post_earnings_beat_continuation` | 39 |
-| `high_score_loss_85plus` | 37 |
-| `sector_momentum_tailwind` | 36 |
+| `breakout_no_follow_through` | 52 |
+| `post_earnings_beat_continuation` | 43 |
+| `high_score_loss_85plus` | 38 |
+| `sector_momentum_tailwind` | 37 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
+| `secular_ai_catalyst` | 23 |
 | `duplicate_trap` | 23 |
-| `secular_ai_catalyst` | 22 |
 | `reversal_win_external_catalyst` | 21 |
 | `defensive_low_beta_drift` | 18 |
 | `oversold_bounce_with_catalyst` | 18 |
+| `sector_divergence_loser` | 18 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
-| `sector_divergence_loser` | 15 |
+| `geopolitical_premium_fade` | 14 |
 | `fundamental_deterioration` | 13 |
-| `geopolitical_premium_fade` | 13 |
 | `earnings_adjacency_risk` | 11 |
 | `low_score_loss` | 11 |
 | `macro_selloff_correlates_all_stocks` | 11 |
-| `reversal_no_turn` | 9 |
+| `time_exit_negative` | 10 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -111,25 +114,15 @@ _Updated: 2026-08-28T19:01:27.863770 | Total trades: 295_
 | PANW_2026-08-04 | BREAKOUT | -6.41% | Stop Loss D+13 | 125.3 | Technology | high_score_loss_85plus,valuation_unwind,pre_earnings_derisking |
 | MOS_2026-08-05 | BREAKOUT | -6.35% | Stop Loss D+6 | 98.3 | Basic Materials | commodity_macro_shock,sector_divergence_loser,breakout_no_follow_through |
 | PINS_2026-07-29 | BREAKOUT | -5.72% | Stop Loss D+6 | 116.5 | Communication Services | earnings_gap_through_stop,guidance_disappointment,hold_through_earnings_risk |
-| CHWY_2026-08-24 | BREAKOUT | -5.67% | Stop Loss D+2 | 96.3 | Consumer Cyclical | — |
+| CHWY_2026-08-24 | BREAKOUT | -5.67% | Stop Loss D+2 | 96.3 | Consumer Cyclical | sector_divergence_loser,quick_stop_1_3d,weak_breakout |
 | ILMN_2026-07-30 | BREAKOUT | -5.57% | Stop Loss D+5 | 114.2 | Healthcare | sell_the_news,valuation_unwind,extended_perf120 |
 | SNOW_2026-07-29 | BREAKOUT | 14.27% | Take Profit D+4 | 108.4 | Technology | vcp_priority_opportunity_cost,sector_sympathy_move,secular_ai_catalyst |
 | ESTC_2026-07-29 | BREAKOUT | 11.93% | Take Profit D+5 | 105.6 | Technology | ai_partnership_catalyst,sector_sympathy_move,secular_ai_catalyst |
-| CRM_2026-08-19 | BREAKOUT | 11.48% | Take Profit D+6 | 117.7 | Technology | — |
-| ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | — |
+| CRM_2026-08-19 | BREAKOUT | 11.48% | Take Profit D+6 | 117.7 | Technology | pre_earnings_gamble_won,hold_through_earnings_risk,post_earnings_beat_continuation |
+| ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
 | BX_2026-08-04 | BREAKOUT | 10.72% | Take Profit D+7 | 108.4 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (10)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `FTI_2026-08-14`
-- `CHWY_2026-08-24`
-- `KIM_2026-06-08`
-- `CRM_2026-08-13`
-- `LLY_2026-08-19`
-- `CRM_2026-08-19`
-- `ILMN_2026-08-20`
-- `NWSA_2026-08-05`
-- `LIN_2026-06-09`
-- `GL_2026-06-09`
