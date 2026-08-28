@@ -5106,5 +5106,56 @@
     "gain_from_open": 4.25,
     "score": 38.0,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_HPQ_2026-08-28_1522",
+    "ts": "2026-08-28T19:45:08Z",
+    "ticker": "HPQ",
+    "pnl_pct": -0.62,
+    "range_pos_eod": 0.468,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.58
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_HPQ_2026-08-28_1522",
+    "ts": "2026-08-28T19:45:08Z",
+    "ticker": "HPQ",
+    "exit_price": 30.375,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.6216277792827308
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_MSFT_2026-08-28_1541",
+    "ts": "2026-08-28T19:45:08Z",
+    "ticker": "MSFT",
+    "pnl_pct": -0.19,
+    "range_pos_eod": 0.704,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.8
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MSFT_2026-08-28_1541",
+    "ts": "2026-08-28T19:45:08Z",
+    "ticker": "MSFT",
+    "exit_price": 513.9600219726562,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.19030964075499446
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_NOW_2026-08-28_1856",
+    "ts": "2026-08-28T19:45:08Z",
+    "ticker": "NOW",
+    "pnl_pct": 0.33,
+    "new_stop": 144.34,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 0.64,
+    "range_pos_eod": 0.886,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.09
   }
 ]
