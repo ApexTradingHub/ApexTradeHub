@@ -176,6 +176,31 @@ HIGH_CHECK_SINCE_ENTRY = True
 ENTRY_DRIFT_GATE_ENABLED = True
 ENTRY_DRIFT_GATE_PCT     = 3.0
 
+# === Mindest-Gewinn fuer den EOD-Rescue (2026-08-28) ===
+# BEFUND: Ein Breakeven-Stop hat NULL Toleranz. Solange der Stop nur gegen den 5-Min-Snapshot
+# geprueft wurde, ueberlebte so eine Position kurze Dochte; seit der Tief-Pruefung (24.08.,
+# STOP_CHECK_USE_LOW) reicht ein Ausschlag von Hundertstelprozent.
+# LIVE-BILANZ seit dem Stop-Fix — 4 von 4 gruenen Rescues tot, zwei davon in MINUTEN:
+#   FIX  26.08. 21:45 (+0.62%) -> 27.08. 15:50  0.00%   (18 h)
+#   CACI 26.08. 21:45 (+0.49%) -> 27.08. 15:50  0.00%   (18 h)
+#   ASAN 27.08. 21:45 (+0.24%) -> 27.08. 21:50 -0.05%   ( 5 Min!)
+#   NOW  28.08. 21:45 (+0.33%) -> 28.08. 21:55  0.00%   (10 Min!)
+# ASAN und NOW starben, BEVOR der Handelstag zu Ende war: der Pfad wandelt ausdruecklich in
+# eine UEBERNACHT-Position um, und die naechsten Laeufe derselben Sitzung stoppen sie sofort
+# wieder aus. Der Mechanismus widersprach seiner eigenen Absicht.
+# Die 4 Faelle haetten als EOD-Close +1.68pp gebracht statt -0.05pp.
+# STUDIE (scratchpad/rescue_stop_study.py, alle 21 gruenen Rescues, 5-Min-Replay unter der
+# AKTUELLEN Stop-Mechanik): Breakeven Ø +0.57% | Ur-Stop -3% Ø +0.60% | kein Rescue Ø +0.93%
+# (WR 85.7%, 18 von 21 Trades dafuer). Der Breakeven-Wert ist dabei noch zu HOCH gemessen,
+# weil er ueberwiegend aus der Zeit mit Snapshot-Toleranz stammt.
+# ENTSCHEIDUNG (User, 28.08.): Variante (a) — nur die hauchduennen nicht mehr retten, statt
+# den Rescue ganz abzuschaffen. Das haelt die Juni-Entscheidung "kein hartes Banken am EOD"
+# fuer starke Schluesse intakt und deckt trotzdem alle vier beobachteten Schadensfaelle ab
+# (alle lagen unter +1%). Begruendung mechanisch: ein Breakeven-Stop auf +0.4% ist kein Stop,
+# sondern ein verzoegerter Verkauf mit Uebernacht-Gap-Risiko.
+# Rollback: 0.0 -> exakt das alte Verhalten (die Bedingung wird dann nie wahr).
+RESCUE_MIN_PNL_PCT = 1.0
+
 # Stagnations-Exit — totes Kapital freigeben fuer neue Signale
 # Phase-1 Update 2026-06-07
 STAGNATION_DAYS    = 5      # nach 5 Tagen
@@ -2040,6 +2065,18 @@ def update_open_positions(state: dict, dry_run: bool = False, allow_stagnation: 
                     })
                     log(f"  EOD-CLOSE (rot, kein Rescue): {p['ticker']} "
                         f"({pnl_now:+.1f}%) @ ${cur:.2f}")
+                elif 0 <= pnl_now < RESCUE_MIN_PNL_PCT:
+                    # 2026-08-28: hauchduenn gruene werden nicht mehr gerettet, s. Konstante.
+                    # Bewusst auf 0 <= pnl_now begrenzt, damit ein Rollback von
+                    # RESCUE_REQUIRE_GREEN=False weiterhin sauber in den -4%-Zweig laeuft.
+                    i_reason, i_px = "Intraday Close (EOD, zu duenn)", cur
+                    events.append({
+                        "event": "eod_close_thin", "id": p["id"], "ts": now_iso(),
+                        "ticker": p["ticker"], "pnl_pct": round(pnl_now, 2),
+                        "threshold_pct": RESCUE_MIN_PNL_PCT, **shadow,
+                    })
+                    log(f"  EOD-CLOSE (nur {pnl_now:+.2f}%, unter {RESCUE_MIN_PNL_PCT:.1f}% — "
+                        f"kein Rescue): {p['ticker']} @ ${cur:.2f}")
                 else:
                     # 2026-07-11 AP1 Schritt 2: source-Rewrite ENTFERNT. source bleibt
                     # "intraday_momentum" (ehrliche Attribution), intraday_rescued=True ist
