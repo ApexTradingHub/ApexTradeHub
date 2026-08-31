@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 149.52383112860792,
-  "last_updated": "2026-08-31T13:40:03Z",
+  "last_updated": "2026-08-31T13:45:02Z",
   "pending": [
     {
       "id": "PAPER_FDS_2026-08-29",
@@ -22,19 +22,19 @@
       "mode": "paper"
     },
     {
-      "id": "PAPER_SLB_2026-08-29",
-      "ticker": "SLB",
+      "id": "PAPER_MPC_2026-08-29",
+      "ticker": "MPC",
       "setup": "BREAKOUT",
       "source": "scanner",
       "sector": "Energy",
       "signal_date": "2026-08-29",
-      "entry": 56.0,
-      "stop_initial": 53.45,
-      "target": 61.44,
-      "score": 111.0,
-      "rr": 2.13,
-      "upside_pct": 9.7,
-      "added_at": "2026-08-31T13:40:08Z",
+      "entry": 368.34,
+      "stop_initial": 352.54,
+      "target": 400.0,
+      "score": 133.1,
+      "rr": 2.0,
+      "upside_pct": 8.6,
+      "added_at": "2026-08-31T13:45:09Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -65,9 +65,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-26T13:40:08Z",
-      "current_price": 137.0050048828125,
-      "pnl_pct": -0.8052186981757741,
-      "pnl_usd": -0.40260934908788704,
+      "current_price": 137.22000122070312,
+      "pnl_pct": -0.6495563941891764,
+      "pnl_usd": -0.3247781970945882,
       "hold_days": 5,
       "hold_trading_days": 3
     },
@@ -96,9 +96,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-08-27T13:55:08Z",
-      "current_price": 30.950000762939453,
-      "pnl_pct": 3.8590629628840682,
-      "pnl_usd": 1.9295314814420343,
+      "current_price": 30.780000686645508,
+      "pnl_pct": 3.2885929082063994,
+      "pnl_usd": 1.6442964541031997,
       "hold_days": 3,
       "hold_trading_days": 2,
       "trailing_activated_at": "2026-08-28T15:00:08Z"
@@ -128,9 +128,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-28T13:35:07Z",
-      "current_price": 168.16000366210938,
-      "pnl_pct": -2.4763650976573865,
-      "pnl_usd": -1.2381825488286933,
+      "current_price": 169.5825958251953,
+      "pnl_pct": -1.6513391955023455,
+      "pnl_usd": -0.8256695977511729,
       "hold_days": 3,
       "hold_trading_days": 1
     },
@@ -155,13 +155,13 @@
       "size_usd": 50.0,
       "stop": 179.57,
       "stop_set_at": "2026-08-31T13:35:09Z",
-      "high_since_entry": 189.1999969482422,
+      "high_since_entry": 189.67999267578125,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-31T13:35:09Z",
-      "current_price": 189.1999969482422,
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.0,
+      "current_price": 189.67999267578125,
+      "pnl_pct": 0.2536975345038567,
+      "pnl_usd": 0.12684876725192834,
       "hold_days": 0,
       "hold_trading_days": 0
     },
@@ -186,13 +186,13 @@
       "size_usd": 50.0,
       "stop": 107.37,
       "stop_set_at": "2026-08-31T13:35:09Z",
-      "high_since_entry": 117.91999816894531,
+      "high_since_entry": 118.0,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-31T13:35:09Z",
-      "current_price": 117.72000122070312,
-      "pnl_pct": 1.6967612196899926,
-      "pnl_usd": 0.8483806098449963,
+      "current_price": 116.37000274658203,
+      "pnl_pct": 0.5305152882764803,
+      "pnl_usd": 0.26525764413824016,
       "hold_days": 0,
       "hold_trading_days": 0
     }
@@ -6802,6 +6802,25 @@
       "mode": "paper",
       "expired_at": "2026-08-31T13:35:09Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_SLB_2026-08-29",
+      "ticker": "SLB",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Energy",
+      "signal_date": "2026-08-29",
+      "entry": 56.0,
+      "stop_initial": 53.45,
+      "target": 61.44,
+      "score": 111.0,
+      "rr": 2.13,
+      "upside_pct": 9.7,
+      "added_at": "2026-08-31T13:40:08Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-08-31T13:45:09Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -6813,7 +6832,7 @@
     "losses": 79,
     "win_rate": 48.701298701298704,
     "pnl_realized": -7.725062765600047,
-    "pnl_unrealized": 1.1371201933704502,
-    "equity": 400.66095132197836
+    "pnl_unrealized": 0.8859550706476071,
+    "equity": 400.40978619925556
   }
 }

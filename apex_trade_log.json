@@ -5248,5 +5248,24 @@
     "signal_date": "2026-08-29",
     "score": 111.0,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_SLB_2026-08-29",
+    "ts": "2026-08-31T13:45:09Z",
+    "ticker": "SLB",
+    "entry_signal": 56.0,
+    "cur_price": 59.599998474121094,
+    "drift_pct": 6.43,
+    "reason": "entry-drift +6.43% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MPC_2026-08-29",
+    "ts": "2026-08-31T13:45:09Z",
+    "ticker": "MPC",
+    "signal_date": "2026-08-29",
+    "score": 133.1,
+    "source": "scanner"
   }
 ]
