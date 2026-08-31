@@ -5286,5 +5286,33 @@
     "gain_from_open": 1.08,
     "score": 23.5,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_CLH_2026-08-31_1457",
+    "ts": "2026-08-31T19:45:06Z",
+    "ticker": "CLH",
+    "pnl_pct": -0.14,
+    "range_pos_eod": 0.692,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.26
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CLH_2026-08-31_1457",
+    "ts": "2026-08-31T19:45:06Z",
+    "ticker": "CLH",
+    "exit_price": 313.8949890136719,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.13838881976783415
+  },
+  {
+    "event": "open",
+    "id": "PAPER_FDS_2026-08-29",
+    "ts": "2026-08-31T19:45:07Z",
+    "ticker": "FDS",
+    "entry_signal": 310.01,
+    "entry_actual": 311.56004999999993,
+    "mode": "paper"
   }
 ]
