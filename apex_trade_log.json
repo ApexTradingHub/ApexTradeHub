@@ -5193,5 +5193,42 @@
     "signal_date": "2026-08-29",
     "score": 89.6,
     "source": "scanner"
+  },
+  {
+    "event": "open",
+    "id": "PAPER_SAP.DE_2026-08-29",
+    "ts": "2026-08-31T13:35:09Z",
+    "ticker": "SAP.DE",
+    "entry_signal": 188.78,
+    "entry_actual": 189.1999969482422,
+    "mode": "paper"
+  },
+  {
+    "event": "open",
+    "id": "PAPER_EPAM_2026-08-29",
+    "ts": "2026-08-31T13:35:09Z",
+    "ticker": "EPAM",
+    "entry_signal": 115.18,
+    "entry_actual": 115.7559,
+    "mode": "paper"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_AGCO_2026-08-29",
+    "ts": "2026-08-31T13:35:09Z",
+    "ticker": "AGCO",
+    "entry_signal": 112.69,
+    "cur_price": 116.5999984741211,
+    "drift_pct": 3.47,
+    "reason": "entry-drift +3.47% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_FDS_2026-08-29",
+    "ts": "2026-08-31T13:35:09Z",
+    "ticker": "FDS",
+    "signal_date": "2026-08-29",
+    "score": 129.8,
+    "source": "scanner"
   }
 ]
