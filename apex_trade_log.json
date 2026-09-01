@@ -5361,5 +5361,53 @@
     "gain_from_open": 1.08,
     "score": 24.8,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_STDN_2026-09-01_1401",
+    "ts": "2026-09-01T19:45:07Z",
+    "ticker": "STDN",
+    "pnl_pct": -1.83,
+    "range_pos_eod": 0.506,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 4.86
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_STDN_2026-09-01_1401",
+    "ts": "2026-09-01T19:45:07Z",
+    "ticker": "STDN",
+    "exit_price": 16.59000015258789,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.8343164079274827
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_AON_2026-09-01_1716",
+    "ts": "2026-09-01T19:45:07Z",
+    "ticker": "AON",
+    "pnl_pct": 0.64,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.9,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.49
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_AON_2026-09-01_1716",
+    "ts": "2026-09-01T19:45:07Z",
+    "ticker": "AON",
+    "exit_price": 326.9599914550781,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.6371315563146933
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DOCU_2026-09-01",
+    "ts": "2026-09-01T19:45:08Z",
+    "ticker": "DOCU",
+    "signal_date": "2026-09-01",
+    "score": 129.4,
+    "source": "scanner"
   }
 ]
