@@ -2,11 +2,11 @@
 
 _Updated: 2026-08-31T14:28:07.694516 | Total trades: 300_
 
-**Analyse-Status**: complete=295, pending=5
+**Analyse-Status**: complete=300
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
-18 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
+21 Trade(s) sind als `complete` markiert, haben aber ein leeres `news.web_research`-Feld. News bitte strukturiert nachtragen (Datum/Titel/Quelle), nicht nur im Analyse-Text:
 
 - `PINS_2026-07-29`
 - `ILMN_2026-07-30`
@@ -26,23 +26,26 @@ _Updated: 2026-08-31T14:28:07.694516 | Total trades: 300_
 - `KIM_2026-06-08`
 - `LIN_2026-06-09`
 - `GL_2026-06-09`
+- `ASB_2026-06-10`
+- `SWK_2026-07-30`
+- `ITX.MC_2026-07-30`
 
 ## Lesson-Tag Frequency (Claude curated)
 
 | Tag | Count |
 |---|---|
 | `breakout_no_follow_through` | 52 |
-| `post_earnings_beat_continuation` | 43 |
+| `post_earnings_beat_continuation` | 44 |
+| `sector_momentum_tailwind` | 38 |
 | `high_score_loss_85plus` | 38 |
-| `sector_momentum_tailwind` | 37 |
 | `sector_relative_strength` | 29 |
 | `reversal_after_oversold_trap` | 24 |
 | `secular_ai_catalyst` | 23 |
 | `duplicate_trap` | 23 |
 | `reversal_win_external_catalyst` | 21 |
+| `sector_divergence_loser` | 19 |
 | `defensive_low_beta_drift` | 18 |
 | `oversold_bounce_with_catalyst` | 18 |
-| `sector_divergence_loser` | 18 |
 | `oil_peak_chase` | 15 |
 | `energy_oil_surge_2026q1` | 15 |
 | `geopolitical_premium_fade` | 14 |
@@ -50,7 +53,7 @@ _Updated: 2026-08-31T14:28:07.694516 | Total trades: 300_
 | `earnings_adjacency_risk` | 11 |
 | `low_score_loss` | 11 |
 | `macro_selloff_correlates_all_stocks` | 11 |
-| `time_exit_negative` | 10 |
+| `time_exit_negative` | 11 |
 
 ## Sektor-Divergenz-Loser (Sektor-ETF >2pp schwächer als SPY)
 
@@ -122,12 +125,7 @@ _Updated: 2026-08-31T14:28:07.694516 | Total trades: 300_
 | DASH_2026-08-07 | BREAKOUT | 10.25% | Take Profit D+11 | 145.4 | Consumer Cyclical | post_earnings_beat_continuation,analyst_pt_raise_wave,partnership_catalyst |
 | KKR_2026-08-03 | BREAKOUT | 10.17% | Take Profit D+8 | 100.7 | Financial Services | sector_rotation_win,sector_sympathy_move,financials_alt_managers |
 
-## Pending Claude-Analyse (5)
+## Pending Claude-Analyse (0)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
-- `ASB_2026-06-10`
-- `EQR_2026-06-10`
-- `SWK_2026-07-30`
-- `AVY_2026-07-30`
-- `ITX.MC_2026-07-30`

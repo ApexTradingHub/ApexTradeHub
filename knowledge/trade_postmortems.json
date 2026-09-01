@@ -29262,15 +29262,23 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "STAGE_2-Altlast, Zeit-Exit +6.66% nach **D+80** ohne Zielerreichung ($36.92 = +27.4%). Wie schon bei GL kam der Gewinn aus dem Sektor: Financial Services legten im Fenster **+11.0%** zu gegen SPY +5.7% — Associated Banc-Corp lief also deutlich SCHLECHTER als sein eigener Sektor und immer noch schlechter als ein simpler Sektor-ETF. closing_strength 0.40, kein Katalysator ausser einem Pocket Pivot. Vierter und letzter STAGE_2-Trade der Juni-Kohorte. **Gesamtbilanz der Kohorte: KIM -1.48%, LIN -6.40%, GL +9.77%, ASB +6.66% = +8.55pp ueber 320 gebundene Handelstage.** Das entspricht gut zwei BREAKOUT-Gewinnern, fuer die achtfache Kapitalbindung.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "sector_momentum_tailwind",
+          "stage2_dead_money",
+          "capital_lockup",
+          "underperformed_own_sector"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "NICHT replizieren — derselbe Befund wie bei GL: Sektor-Mitnahme statt Setup-Edge, und der Titel blieb hinter seinem Sektor zurueck. Die STAGE_2-Abschaltung ist damit von allen vier Trades der Kohorte gestuetzt."
+        ],
+        "analyzed_at": "2026-09-01T18:25:57.663142+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-31T14:28:05.284141",
@@ -29347,19 +29355,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-18",
+            "title": "EQR/AvalonBay-Fusion zu Vivmark Residential abgeschlossen, Handel ab 18.08.2026 unter VMRK; EQR-Kursreihe endet, yfinance liefert im Signalfenster nur 15 statt 58 Bars",
+            "src": "WebSearch + yfinance-Pruefung 2026-09-01 (SimplyWallSt/Yahoo)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "**DIESER TRADE IST NICHT AUSWERTBAR — Datenartefakt, nicht als Verlust zaehlen.** Equity Residential fusionierte mit AvalonBay zu 'Vivmark Residential'; der Titel handelt seit dem 18.08.2026 unter VMRK. Die EQR-Kursreihe endet damit. NACHGEPRUEFT: yfinance liefert fuer EQR im Fenster 10.06.-01.09. nur **15 Bars (17.07. bis 21.08.)**, waehrend gesunde Ticker im selben Fenster 58 haben. Es fehlen also die ersten fuenf Wochen nach dem Signal KOMPLETT, und die Reihe bricht sechs Wochen vor dem nominellen Exit-Datum ab. Die gebuchten -7.11% sind schlicht der letzte Kurs, den EQR je gedruckt hat (63.66 am 21.08.), nicht das Ergebnis eines Time Exits an D+80. Zum Vergleich: VMRK steht am 01.09. bei 65.30, die 'echte' Fortschreibung waere -4.71%. GENERELLER BEFUND: **Wir modellieren Kapitalmassnahmen nicht.** Bei Fusion, Umbenennung oder Delisting endet die Kursreihe, und der Tracker friert die Position beim letzten Druck ein, bis die Haltedauer ablaeuft — ohne dass irgendwo ein Fehler auftaucht. Gleiche Familie wie die Bad-Prints und die Phantom-Fills: eine stille Datenluecke, die als Ergebnis durchgeht.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "data_artifact_invalid",
+          "corporate_action_blindspot",
+          "delisted_ticker",
+          "stage2_dead_money",
+          "sector_divergence_loser"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "VORSCHLAG (nicht umgesetzt, User-Entscheid): Trades mit auffaellig wenigen Bars gegen die erwartete Handelstagzahl markieren und aus der Wissensbasis nehmen, so wie beim Gap-Gate-Purge (250->223). Vorher zaehlen, wie viele Faelle betroffen sind.",
+          "Sektor-Divergenz war ohnehin zum Signalzeitpunkt gesetzt (Real Estate -1.5% gegen SPY +5.7%), und Real Estate ist wie Utilities nicht vom SECTOR_RS_GATE abgedeckt."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-01T18:25:57.663142+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-31T14:28:05.734742",
@@ -29440,15 +29463,24 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zeit-Exit +1.63% nach D+30 — ein flacher Ueberlebender gegen den eigenen Sektor. Industrials divergierten zum Signalzeitpunkt bereits negativ (-2.0% gegen SPY +3.1%, Divergenz-Flag gesetzt), Stanley Black & Decker lief trotzdem leicht ins Plus. Signal-Profil war ordentlich: Score 106.3, Pocket Pivot, **closing_strength 0.93** — also das genaue Gegenteil von AVY am selben Tag. Der starke Schluss hat hier zwar keinen grossen Gewinner produziert, aber auch keinen Stop. Dritter SWK-Trade in der Datenbank (n=3, WR 67%, Ø +5.03%) — der Ticker traegt sich.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "slow_grind_win",
+          "sector_divergence_survived",
+          "pocket_pivot_win",
+          "strong_closing_strength",
+          "hold30_benefit"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Gegenstueck zu AVY vom selben Tag: closing_strength 0.93 gegen 0.09. Beide endeten positiv, aber SWK ohne den Umweg ueber einen verpufften Spike. Wenn wir closing_strength je messen wollen, sind diese beiden das natuerliche Paar."
+        ],
+        "analyzed_at": "2026-09-01T18:25:57.663142+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-31T14:28:06.211270",
@@ -29525,19 +29557,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-07-30",
+            "title": "Avery Dennison Q2 2026: Nettoumsatz +10.9% auf $2.46 Mrd. (Konsens $2.30 Mrd.), adj. EPS $2.89 (+19.4%) vs $2.47 erwartet, FY-Prognose $10.00-10.30; Aktie am Tag +4.6-5.8%",
+            "src": "WebSearch 2026-09-01 (StockStory/SimplyWallSt/Yahoo)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zeit-Exit +3.65% nach D+30 — trotz des schlechtesten Tagesschlusses im ganzen Batch. Am 30.07. meldete Avery Dennison ein starkes Q2: Nettoumsatz +10.9% auf $2.46 Mrd. gegen $2.30 Mrd. Konsens, bereinigtes EPS $2.89 (+19.4%) gegen $2.47 erwartet, Jahresprognose $10.00-10.30. Die Aktie sprang am Tag 4.6-5.8%. GENAU DA HABEN WIR SIGNALISIERT — mit **gap_pct 11.04** und **closing_strength 0.09**. Das heisst: die Aktie eroeffnete mit einem elfprozentigen Sprung und schloss am **untersten Rand** der Tagesspanne. Das ist das Lehrbuchbild eines verpufften Spikes, dazu WEAK_BREAKOUT und perf_120 von -8.3%. Dass daraus ueber 30 Tage dennoch +3.65% wurden, ist ein ehrliches Aber: der Katalysator war echt und trug, auch wenn der Einstiegstag mies aussah. Es ist aber KEIN Beleg dafuer, dass man Spikes kaufen soll — es ist ein flacher Zeit-Exit, kein Zielerfolg.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "post_earnings_beat_continuation",
+          "spike_fade_entry",
+          "weak_closing_strength",
+          "gap_gt_2pct_win",
+          "slow_grind_win"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "**closing_strength 0.09 bei gap 11.04 ist das schaerfste Warnsignal, das wir haben — und der Swing-Pfad wertet es nicht aus.** Der Intraday-Kanal kennt dafuer eine Konsolidations-Pruefung (Soft-Penalty bei vertikalem Spike, ApexScan L1088ff), der BREAKOUT-Pfad nicht. Messkandidat, nicht bauen ohne Zahlen: wie schneiden Signale mit closing_strength < 0.2 ab?"
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-01T18:25:57.663142+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-08-31T14:28:06.668446",
@@ -29618,15 +29665,23 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Zeit-Exit -0.24% nach D+30, also faktisch eine Nullnummer. Inditex bewegte sich einen Monat lang nicht vom Fleck. WICHTIGE EINORDNUNG: **Score 76.9 liegt UNTER dem Live-Gate von 80** — dieses Signal war fuer den Trader nie kaufbar. Es existiert nur, weil `SCAN_MIN_SCORE` bei 70 steht und der Equity-Tracker damit absichtlich auch sub-80 mitrechnet (Monitoring-Zweck seit dem Gate-Deploy am 22.07.). Der Trade ist also ein Beleg FUER das Gate, kein Verlust aus dem Buch. Passend dazu: DEADZONE_BREAKOUT, kein Pocket Pivot, kein Gap, kein Katalysator — trotz perfektem Tagesschluss (closing_strength 1.0). Ein sauberer Schluss allein traegt nichts.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "time_exit_negative",
+          "below_live_gate",
+          "no_identifiable_catalyst",
+          "dead_money",
+          "eu_ticker"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Genau der Signaltyp, den Gate 80 aussortiert: hoher Tagesschluss, aber kein Katalysator und Score unter der Schwelle. Der Equity-Tracker misst sub-80 weiter mit — solche Faelle sind das Material fuer die Frage, ob Gate 80 in ruhigen Phasen zu eng steht. Bisher spricht dieser hier FUER das Gate."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-01T18:25:57.663142+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-08-31T14:28:07.394277",
