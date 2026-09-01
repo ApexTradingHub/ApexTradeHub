@@ -5314,5 +5314,23 @@
     "entry_signal": 310.01,
     "entry_actual": 311.56004999999993,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_GEN_2026-08-27",
+    "ts": "2026-09-01T13:55:07Z",
+    "ticker": "GEN",
+    "exit_price": 30.396,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000004
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_EXPN.L_2026-09-01",
+    "ts": "2026-09-01T13:55:07Z",
+    "ticker": "EXPN.L",
+    "signal_date": "2026-09-01",
+    "score": 117.9,
+    "source": "scanner"
   }
 ]
