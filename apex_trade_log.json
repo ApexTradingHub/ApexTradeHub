@@ -5418,5 +5418,33 @@
     "entry_signal": 65.77,
     "entry_actual": 65.77,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_GPC_2026-08-25",
+    "ts": "2026-09-02T13:35:06Z",
+    "ticker": "GPC",
+    "exit_price": 135.625,
+    "reason": "Stagnation Exit",
+    "pnl_pct": -1.80437404044319
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MPC_2026-08-29",
+    "ts": "2026-09-02T13:35:06Z",
+    "ticker": "MPC",
+    "old_stop": 352.54,
+    "new_stop": 377.58533399999993,
+    "high": 385.7699890136719,
+    "ladder_step": 1
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_RRC_2026-09-01",
+    "ts": "2026-09-02T13:35:07Z",
+    "ticker": "RRC",
+    "signal_date": "2026-09-01",
+    "score": 104.8,
+    "source": "scanner"
   }
 ]
