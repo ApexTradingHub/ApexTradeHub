@@ -5549,5 +5549,24 @@
     "gain_from_open": 5.62,
     "score": 36.6,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_DELL_2026-09-03_1716",
+    "ts": "2026-09-03T19:45:08Z",
+    "ticker": "DELL",
+    "pnl_pct": -0.23,
+    "range_pos_eod": 0.658,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.22
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_DELL_2026-09-03_1716",
+    "ts": "2026-09-03T19:45:08Z",
+    "ticker": "DELL",
+    "exit_price": 512.844970703125,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.23247361592470986
   }
 ]
