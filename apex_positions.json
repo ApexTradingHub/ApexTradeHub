@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 98.01643339054093,
-  "last_updated": "2026-09-03T17:10:02Z",
+  "cash": 48.016433390540925,
+  "last_updated": "2026-09-03T17:15:03Z",
   "pending": [
     {
       "id": "PAPER_EXPN.L_2026-09-01",
@@ -79,9 +79,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-08-31T13:50:08Z",
-      "current_price": 391.82501220703125,
-      "pnl_pct": 5.846672649412797,
-      "pnl_usd": 2.923336324706399,
+      "current_price": 392.2900085449219,
+      "pnl_pct": 5.972285649161469,
+      "pnl_usd": 2.9861428245807344,
       "hold_days": 3,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-09-02T13:35:06Z"
@@ -111,9 +111,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-31T19:45:07Z",
-      "current_price": 310.4750061035156,
-      "pnl_pct": -0.3482615619314184,
-      "pnl_usd": -0.17413078096570922,
+      "current_price": 310.7349853515625,
+      "pnl_pct": -0.26481721531288527,
+      "pnl_usd": -0.13240860765644263,
       "hold_days": 2,
       "hold_trading_days": 3
     },
@@ -142,9 +142,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-02T13:40:12Z",
-      "current_price": 42.869998931884766,
-      "pnl_pct": 0.7757379686994981,
-      "pnl_usd": 0.38786898434974904,
+      "current_price": 42.959999084472656,
+      "pnl_pct": 0.9873039127236886,
+      "pnl_usd": 0.49365195636184434,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -204,11 +204,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-03T15:00:09Z",
-      "current_price": 284.375,
-      "pnl_pct": -0.9594956988123831,
-      "pnl_usd": -0.47974784940619153,
+      "current_price": 284.11029052734375,
+      "pnl_pct": -1.0516872053272892,
+      "pnl_usd": -0.5258436026636446,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_DELL_2026-09-03_1716",
+      "ticker": "DELL",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Technology",
+      "signal_date": "2026-09-03",
+      "stop_initial": 498.62,
+      "target": 539.74,
+      "score": 36.6,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.62,
+      "entry_actual": 514.0399780273438,
+      "shares": 0.09726869920094096,
+      "size_usd": 50.0,
+      "stop": 498.62,
+      "stop_set_at": "2026-09-03T17:16:30Z",
+      "high_since_entry": 514.0399780273438,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-03T17:16:30Z",
+      "status": "open",
+      "current_price": 514.0399780273438,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -7107,12 +7135,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 162,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 79,
     "losses": 83,
     "win_rate": 48.76543209876543,
     "pnl_realized": -9.232460503667031,
-    "pnl_unrealized": 2.1031825281967604,
-    "equity": 400.11961591873774
+    "pnl_unrealized": 2.267398420135005,
+    "equity": 400.2838318106759
   }
 }
