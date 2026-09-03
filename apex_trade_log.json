@@ -5485,5 +5485,23 @@
     "new_stop": 384.98896799999994,
     "high": 393.355712890625,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_EPAM_2026-08-29",
+    "ts": "2026-09-03T14:45:07Z",
+    "ticker": "EPAM",
+    "exit_price": 118.071018,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.9999999999999987
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_AVTR_2026-09-02",
+    "ts": "2026-09-03T14:45:08Z",
+    "ticker": "AVTR",
+    "signal_date": "2026-09-02",
+    "score": 115.0,
+    "source": "scanner"
   }
 ]
