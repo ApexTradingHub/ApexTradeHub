@@ -5512,5 +5512,23 @@
     "entry_signal": 14.73,
     "entry_actual": 14.80365,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_DOCU_2026-09-01",
+    "ts": "2026-09-03T14:55:06Z",
+    "ticker": "DOCU",
+    "exit_price": 67.08539999999999,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.9999999999999951
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CEG_2026-09-02",
+    "ts": "2026-09-03T14:55:07Z",
+    "ticker": "CEG",
+    "signal_date": "2026-09-02",
+    "score": 108.8,
+    "source": "scanner"
   }
 ]
