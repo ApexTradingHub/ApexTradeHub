@@ -5568,5 +5568,23 @@
     "exit_price": 512.844970703125,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.23247361592470986
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MPC_2026-08-29",
+    "ts": "2026-09-04T13:35:06Z",
+    "ticker": "MPC",
+    "exit_price": 384.98896799999994,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 4.000000000000007
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CDW_2026-09-03",
+    "ts": "2026-09-04T13:35:07Z",
+    "ticker": "CDW",
+    "signal_date": "2026-09-03",
+    "score": 127.1,
+    "source": "scanner"
   }
 ]
