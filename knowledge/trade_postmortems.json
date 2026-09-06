@@ -29762,15 +29762,24 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Stop D+19 bei -4.96%. Profil: WEAK_BREAKOUT mit perf_120 von -12.7% (beaten-down) UND earnings_beat — also genau die Kombination, die der Learn-Report als schwaechste ausweist: **beaten-down BREAKOUT MIT Catalyst kommt auf 45.0% WR (n=20), OHNE Catalyst auf 66.7% (n=6)**. Der Katalysator ist bei tief gefallenen Titeln kein Rettungsanker, sondern haeufig nur der Grund, warum der Titel ueberhaupt kurz zuckt. Bemerkenswert ist der Tagesschluss: closing_strength 0.98, also praktisch auf dem Tageshoch — ein starker Schluss allein hat den Trade nicht getragen. NEBENBEFUND: Der LIVE-Trader hat CLX am 06.08. per **Gap-Gate abgelehnt** (Reject im Log). Dieser Eintrag stammt also aus dem Equity-Tracker, nicht aus dem Buch — das Gate hat den Verlust real vermieden.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "beaten_down_with_catalyst",
+          "weak_breakout",
+          "slow_stop_4plus",
+          "consumer_defensive",
+          "gap_gate_avoided_live"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Der Gap-Gate-Reject vom 06.08. ist der Beleg, dass Tracker und Trader hier unterschiedliche Universen messen — genau die Diskrepanz, die der Gate-Fund vom 06.08. beschreibt. Bei Tracker-Verlusten immer pruefen, ob der Trader ihn ueberhaupt gekauft hat.",
+          "closing_strength 0.98 bei WEAK_BREAKOUT: der starke Schluss ueberschreibt die schwache Bewegungsklasse nicht."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-09-02T11:45:21.903842",
@@ -29847,19 +29856,36 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-09-02",
+            "title": "Fortinet -5.6% im sektorweiten Sicherheits-Selloff (CrowdStrike -6.8%, Palo Alto -6.0%, Zscaler -5.4%); zuvor Gewinnmitnahmen nach dem Post-Earnings-Lauf auf das 52-Wochen-Hoch $172.09, Forward-KGV >50 und Kurs ~14% ueber dem Konsensziel $150.91",
+            "src": "WebSearch 2026-09-06 (QuiverQuant/AlphaStreet/GuruFocus/TradingKey)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Hoechster Score der Datenbank-Neuzugaenge (145.6, POWER_BREAKOUT, closing_strength 0.92, Pocket Pivot UND Beat) — und Stop nach zwei Tagen mit -5.87%. WAS WIR GEKAUFT HABEN: Fortinets Q2 Ende Juli schlug und hob die Prognose, die Aktie lief danach scharf bis auf ein 52-Wochen-Hoch von $172.09. Unser Einstieg lag bei **172.43 — also GENAU auf diesem Hoch**, bei einem perf_120 von **+106.5%**. Danach Gewinnmitnahmen plus ein sektorweiter Sicherheits-Selloff (02.09.: FTNT -5.6%, CrowdStrike -6.8%, Palo Alto -6.0%, Zscaler -5.4%). DER MESSBARE WARNHINWEIS, DEN WIR HATTEN UND NICHT NUTZTEN: FTNT notierte mit einem Forward-KGV ueber 50 und lag **rund 14% UEBER dem Analysten-Konsensziel von $150.91**. `analyst_upside_gt_15pct` ist seit dem 04.09. ein CONFIRMED-Positivlift (+12.4%, n=30) — hier war das Upside deutlich NEGATIV. Wir werten aber nur die Oberkante aus (>15% Upside als Bonus), nicht die Unterkante.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "high_score_loss_85plus",
+          "valuation_unwind",
+          "extended_perf120",
+          "quick_stop_1_3d",
+          "sector_selloff",
+          "bought_at_52w_high",
+          "negative_analyst_upside"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "**VIERTER Bewertungs-Abbau-Verlierer nach PANW, ILMN und JCI — und PANW war im selben Selloff.** Das Muster ist jetzt gross genug fuer eine Messfrage: `cat_analyst_target` wird seit dem 04.08. mitgeschnitten, also laesst sich pruefen, wie Signale abschneiden, die UEBER dem Konsensziel notieren. Erst messen, nicht bauen — und die WR-Studie (#28) warnt, dass Gates die WR nicht heben.",
+          "perf_120 von +106.5% ist der hoechste Wert unter allen Verlierern. Extension allein ist laut STX/CIEN kein Ausschlusskriterium — aber Extension OHNE frischen Katalysator (Earnings lagen 67 Tage zurueck) ist etwas anderes als Extension MIT."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-09-02T11:45:22.320213",
@@ -29936,19 +29962,34 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-14",
+            "title": "Antero Resources: Erdgas +3% auf Hormus-Lieferaengste und kuehlere Wetterprognosen; Q2-Beat und angehobene Produktionsprognose 4.1 Bcfe/Tag; Benchmark hebt Kursziel $44 -> $47",
+            "src": "WebSearch 2026-09-06 (StreetInsider/TipRanks/Yahoo)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Ziel D+15 mit +9.09%. Antero Resources profitierte von einer Erdgas-Rally: Gaspreise +3% auf Sorgen um Lieferstoerungen in der Strasse von Hormus und kuehlere Wetterprognosen, dazu erneute Beachtung des Q2-Beats und der angehobenen Jahresproduktionsprognose (4.1 Bcfe/Tag, Kostenprognose -$0.10/Mcfe, HG-Zukauf integriert mit ~$100 Mio. Jahresersparnis). Benchmark hob das Kursziel von $44 auf $47. **WICHTIGE EINORDNUNG: Score 79.7 liegt UNTER dem Live-Gate von 80** — dieses Signal war fuer den Trader nie kaufbar, es existiert nur im Equity-Tracker (SCAN_MIN_SCORE=70). Damit ist es ein Gegenbeispiel zum Gate, und zwar ein teures: 0.3 Score-Punkte trennten uns von +9.09%.",
+        "lesson_tags": [
+          "sector_momentum_tailwind",
+          "commodity_supply_shock",
+          "analyst_pt_raise_wave",
+          "gap_gt_2pct_win",
+          "below_live_gate",
+          "deadzone_rsi_win"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "**Gegenbeispiel zu ITX.MC:** beide sub-80 und damit nicht handelbar, aber ITX.MC endete bei -0.24% (Beleg FUER das Gate) und AR bei +9.09% (Beleg DAGEGEN). Genau dieses Material sammelt der Equity-Tracker seit dem Gate-Deploy am 22.07. an. Wenn die Frage 'steht Gate 80 in ruhigen Phasen zu eng?' entschieden werden soll, dann ueber ALLE sub-80-Signale, nicht ueber Einzelfaelle."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-09-02T11:45:22.789810",
@@ -30029,15 +30070,23 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Stop D+16 bei -4.60%. Signal-Profil war unauffaellig gut (Score 109.5, Pocket Pivot, gap 1.09, closing_strength 0.84, Basic Materials leicht vor dem SPY), aber **`cat_earnings_next_days` stand bei 9** — der Bericht lag also innerhalb der Haltedauer, und wir sind hineingelaufen. Kein spezifischer negativer Ausloeser recherchierbar; der Verlauf passt zu einem Vorlauf-Abbau vor dem Termin, wie er auch bei PANW und CHWY zu sehen war. EU-/LSE-Titel: dieselbe Kategorie, die schon die 100x-Bad-Prints geliefert hat (VOD.L). Hier ist der Kurs plausibel, der `BADPRINT_MAX_RATIO`-Filter greift also korrekt.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "hold_through_earnings_risk",
+          "pre_earnings_derisking",
+          "eu_ticker",
+          "slow_stop_4plus",
+          "breakout_no_follow_through"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Dritter Fall mit Earnings im Fenster nach PINS (-5.72%) und CRM (+11.48%). Die Bilanz dieser Wette bleibt gemischt — der User hat einen Earnings-Runway-Filter ausdruecklich abgelehnt, und CRM zeigt, warum ein pauschaler Filter teuer waere."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-09-02T11:45:23.225864",
@@ -30118,15 +30167,24 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zeit-Exit +3.77% nach D+30. Amadeus IT lief mit Rueckenwind: Technology-Sektor +3.1%, gap 2.49 (CONFIRMED-Positivkatalysator) und ein Earnings-Beat im Ruecken. Score 99.3, aber closing_strength nur 0.61 und kein Pocket Pivot. Ergebnis wie bei WAT und ZBH: positiv, aber unter dem Ziel ($60.00 = +10.5%) — ein ruhiger Drift, der von der laengeren Haltedauer profitierte. EU-Titel: gehoert zu dem Bucket, dessen Edge seit dem 17.07. ueber den Equity-Tracker gemessen wird (Entscheid bei n>=30 EU-Trades, erwartet ~Okt 2026).",
+        "lesson_tags": [
+          "time_exit_positive",
+          "post_earnings_beat_continuation",
+          "gap_gt_2pct_win",
+          "eu_ticker",
+          "slow_grind_win",
+          "hold30_benefit"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Zaehlt fuer die EU-Auswertung mit. Bisher fuegt sich EU unauffaellig ein — kein eigener Cron gerechtfertigt, solange der Edge nicht nachgewiesen ist (#23)."
+        ],
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-09-02T11:45:23.646172",
@@ -30203,19 +30261,35 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-08-20",
+            "title": "Deere Q3 FY2026: Umsatz $12.61 Mrd., EPS $5.10 vs $4.69 erwartet, Jahresprognose fuer Nettogewinn angehoben, Bau gleicht schwaechere Landwirtschaft aus; Aktie +9%",
+            "src": "WebSearch 2026-09-06 (ad-hoc-news/Yahoo/StocksToTrade)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Ziel erreicht D+8 mit +8.48% — und das **gegen eine gesetzte Sektor-Divergenz** (Industrials -4.2% gegen SPY -0.5%). Deere meldete am 20.08. ein starkes Q3: Umsatz $12.61 Mrd., EPS $5.10 gegen $4.69 erwartet (+$0.41), Bau-Segment glich die schwaechere Landwirtschaft aus, Jahresprognose fuer den Nettogewinn angehoben. Die Aktie sprang ueber 9%. **DAS WICHTIGE IST DAS TIMING — und es ist der direkte Gegensatz zu FTNT:** Wir kauften am 21.08., einen Tag NACH dem Bericht, mit einem Gap von nur **0.37%** — also in die ruhige Fortsetzung statt in den Sprung. FTNT kauften wir einen Monat nach dessen Bericht auf dem 52-Wochen-Hoch. Gleiche Zutat (Post-Earnings-Beat), entgegengesetzte Position im Move, 16 Punkte Ergebnisunterschied.",
+        "lesson_tags": [
+          "post_earnings_beat_continuation",
+          "guidance_raise_catalyst",
+          "pullback_entry_win",
+          "sector_divergence_survived",
+          "pocket_pivot_win",
+          "low_gap_entry"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "**Drittes Beispiel fuer 'die Position im Move entscheidet' nach ILMN (30.07. vs 20.08.) und jetzt FTNT vs DE.** Muster: Einstieg 1-2 Tage nach dem Bericht mit kleinem Gap schlaegt Einstieg in den Sprung oder weit danach. Das beruehrt dieselbe Groesse wie das Entry-Drift-Gate — dort messen wir Drift gegen den Trigger, hier waere es Drift gegen das Earnings-Datum. Messkandidat.",
+          "Sektor-Divergenz ist KEIN sicheres Ausschlusskriterium: DE gewann mit -4.2% Sektor, SWK ueberlebte mit -2.0%. Gegen LLY/CHWY/DTE, die daran scheiterten. Das Flag allein trennt nicht."
+        ],
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-09-03T11:44:46.561753",
@@ -30296,15 +30370,24 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zeit-Exit +3.36% nach D+30, Ziel ($430 = +9.5%) nicht erreicht. Solides Signal-Profil (Score 108.6, Pocket Pivot, gap 2.31 = der CONFIRMED-Positivkatalysator, closing_strength 0.72), aber kein Ereignis, das den Kurs getragen haette. Healthcare legte im Fenster +6.7% zu — Waters blieb also hinter dem eigenen Sektor zurueck. Der Trade ist der Normalfall des Systems, kein Lehrstueck: kein Katalysator, ruhiger Drift, positiver Zeit-Exit dank der 30-Tage-Haltedauer.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "slow_grind_win",
+          "hold30_benefit",
+          "gap_gt_2pct_win",
+          "no_identifiable_catalyst",
+          "underperformed_own_sector"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "Vierter Beleg fuer die 30-Tage-Haltedauer nach MMM, SJM und BSY. Unter der alten 15-Tage-Regel waeren alle vier frueher und flacher beendet worden."
+        ],
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-09-03T11:44:46.989797",
@@ -30381,19 +30464,35 @@
       },
       "news": {
         "yfinance_news": [],
-        "web_research": [],
+        "web_research": [
+          {
+            "date": "2026-09-03",
+            "title": "Campbell's Q4 FY2026: Quartal im Rahmen, aber FY27-Prognose unter Konsens (organ. Umsatz -4% bis -2%, adj. EBIT -12% bis -7%, adj. EPS $1.65-1.80 vs $1.89), Dividende -36% auf $0.25, $500-Mio.-Sparprogramm; Aktie -6.2%",
+            "src": "WebSearch 2026-09-06 (Investing.com/ChartMill/StockStory)"
+          }
+        ],
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
-        "primary_failure_cause": null,
+        "status": "complete",
+        "primary_failure_cause": "Stop D+10 bei -5.17% — und der Stop hat uns vor deutlich Schlimmerem bewahrt. Campbell's meldete Anfang September das Q4 FY2026 (Geschaeftsjahr endete 02.08.): Quartal im Rahmen, aber die **FY2027-Prognose lag klar unter Konsens** (organisches Umsatzwachstum -4% bis -2%, bereinigtes EBIT -12% bis -7%, bereinigtes EPS $1.65-1.80 gegen $1.89 erwartet) plus **Dividendenkuerzung um 36%** auf $0.25 und ein $500-Mio.-Sparprogramm. Die Aktie fiel an dem Tag 6.2%. **Unser Stop lag rund fuenf Tage VOR dieser Meldung.** Wir sind also am Vorlauf gescheitert (Konsumwerte schwach, `earnings_next_days` stand bei 14) und haben dadurch den Einbruch nicht mitgenommen. Ein weiterer Beleg fuer das Guidance-Muster — diesmal auf der Verliererseite und in der schaerfsten Form: Quartal getroffen, Ausblick gesenkt, Dividende gekuerzt.",
         "primary_win_cause": null,
-        "lesson_tags": [],
+        "lesson_tags": [
+          "guidance_disappointment",
+          "dividend_cut",
+          "pre_earnings_derisking",
+          "consumer_weakness",
+          "stop_saved_from_worse",
+          "squeeze_high_failed"
+        ],
         "similar_trades": [],
-        "what_would_have_helped": [],
+        "what_would_have_helped": [
+          "Der Stop hat hier funktioniert wie gedacht: raus, bevor die eigentliche Nachricht kam. Gegenstueck zu PINS, wo das Halten durch den Termin -5.72% kostete — hier waren wir vorher draussen und haben 6.2% zusaetzlichen Abverkauf vermieden.",
+          "Zweites CPB-Signal binnen Tagen: das vom 24.08. lief ohne Trigger aus (expired, 'no trigger after 4d'). Der Scanner hat den Titel also zweimal angeboten, waehrend sich eine Guidance-Katastrophe aufbaute."
+        ],
         "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "HIGH"
       },
       "auto_meta": {
         "built_at": "2026-09-04T11:46:08.989856",
@@ -30474,15 +30573,24 @@
         "key_events": []
       },
       "claude_analysis": {
-        "status": "pending",
+        "status": "complete",
         "primary_failure_cause": null,
-        "primary_win_cause": null,
-        "lesson_tags": [],
+        "primary_win_cause": "Zeit-Exit +1.15% nach D+30 — ein flacher Ueberlebender mit einem auffaelligen Profil: **gap_pct 5.42 bei closing_strength 0.27**. Also ein Sprung von ueber fuenf Prozent, der im unteren Viertel der Tagesspanne schloss. Das ist dasselbe Muster wie AVY am 30.07. (gap 11.04, closing_strength 0.09, Ergebnis +3.65% Zeit-Exit): grosser Sprung, schwacher Schluss, danach ein flaches Dahinduempeln bis zum Zeit-Exit. **Beide erreichten ihr Ziel nicht, beide endeten knapp positiv.** Healthcare lief im Fenster mit +5.5% deutlich besser als der Titel selbst.",
+        "lesson_tags": [
+          "time_exit_positive",
+          "spike_fade_entry",
+          "weak_closing_strength",
+          "slow_grind_win",
+          "underperformed_own_sector",
+          "hold30_benefit"
+        ],
         "similar_trades": [],
         "what_would_have_helped": [],
-        "what_to_replicate": [],
-        "analyzed_at": null,
-        "confidence": null
+        "what_to_replicate": [
+          "**Zweiter Datenpunkt fuer den Messkandidaten 'closing_strength im Swing-Pfad'** (nach AVY). Bisheriges Bild: grosses Gap + schwacher Schluss = kein Stop, aber auch kein Ziel, sondern ein flacher Zeit-Exit. Wenn sich das haelt, waere es kein Skip-Kriterium, sondern ein Erwartungs-Daempfer. Erst messen (Equity-Tracker fuehrt das Feld)."
+        ],
+        "analyzed_at": "2026-09-06T09:39:17.614993+00:00",
+        "confidence": "MED"
       },
       "auto_meta": {
         "built_at": "2026-09-04T11:46:09.535323",
