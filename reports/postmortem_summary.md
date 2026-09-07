@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-04T11:46:09.835545 | Total trades: 309_
+_Updated: 2026-09-07T13:03:16.435092 | Total trades: 313_
 
-**Analyse-Status**: complete=309
+**Analyse-Status**: complete=309, pending=4
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -113,9 +113,9 @@ _Updated: 2026-09-04T11:46:09.835545 | Total trades: 309_
 | STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
 | CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
-| LRCX_2026-06-11 | BREAKOUT | 14.87% | Time Exit D+15 | 161.0 | Technology | BREAKOUT-WIN +14.87% (Time-Exit D+15, Score 161 = hoechster). Record-Q3-FY26 (Rev $5.84B +24% YoY, EPS +41%) getrieben von AI-WFE-Nachfrage; +28.7% in 30d. Micron-Q3 hob den ganzen Semi-Sektor. Analyst-PT-Welle (Wells Fargo $450, Citi $450, Oppenheimer $400). WICHTIG: Score 161 HAT hier geliefert (Gegenbeispiel zu high_score_loss — mit echtem AI-Catalyst skaliert hoher Score zum grossen Win). |
+| ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=15)
+## Recent (30d) — Worst 5 / Best 5  (n=12)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -126,11 +126,15 @@ _Updated: 2026-09-04T11:46:09.835545 | Total trades: 309_
 | TTWO_2026-08-10 | BREAKOUT | -5.16% | Stop Loss D+7 | 112.4 | Communication Services | guidance_disappointment,high_score_loss_85plus,news_shock |
 | CRM_2026-08-19 | BREAKOUT | 11.48% | Take Profit D+6 | 117.7 | Technology | pre_earnings_gamble_won,hold_through_earnings_risk,post_earnings_beat_continuation |
 | ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
-| DASH_2026-08-07 | BREAKOUT | 10.25% | Take Profit D+11 | 145.4 | Consumer Cyclical | post_earnings_beat_continuation,analyst_pt_raise_wave,partnership_catalyst |
 | CRM_2026-08-13 | BREAKOUT | 10.12% | Take Profit D+10 | 113.8 | Technology | post_earnings_beat_continuation,guidance_raise_catalyst,secular_ai_catalyst |
-| BMRN_2026-08-07 | BREAKOUT | 9.5% | Take Profit D+1 | 128.5 | Healthcare | repeat_signal_win,fast_tp_under_4d,defensive_healthcare |
+| AR_2026-08-10 | BREAKOUT | 9.09% | Take Profit D+15 | 79.7 | Energy | sector_momentum_tailwind,commodity_supply_shock,analyst_pt_raise_wave |
+| DE_2026-08-21 | BREAKOUT | 8.48% | Take Profit D+8 | 106.5 | Industrials | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
 
-## Pending Claude-Analyse (0)
+## Pending Claude-Analyse (4)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
+- `ALL_2026-06-18`
+- `PTC_2026-08-07`
+- `CAP.PA_2026-08-07`
+- `CART_2026-08-07`
