@@ -1022,6 +1022,11 @@ def scan_slice(ticker, df_slice, relax=0, risk_on=True, scan_date=None):
         "perf_20":          round(perf_20, 1),
         "perf_60":          round(perf_60, 1),
         "perf_120":         round(perf_120, 1),
+        # 2026-09-06 ergaenzt: trennt POWER_BREAKOUT (>-2 = am 52W-Hoch) von
+        # EMERGING_BREAKOUT (darunter). Wurde bisher nur lokal berechnet und
+        # weggeworfen — dabei ist es die Groesse, an der die beiden Klassen
+        # in der Live-Messung um 2.3pp/Trade auseinanderlaufen.
+        "pct_from_52w":     round(pct_from_52w, 1),
         "rsi":              round(rsi14, 1),
         "strong_catalyst":  strong_catalyst,
         # SCORE_V2 Stufe 2 (2026-07-11): Features fuer LogReg-Ranking (reine Metadaten)
@@ -1356,12 +1361,38 @@ def run_backtest(tickers, bt_days=None, top_n=None, start_date=None, end_date=No
                 if _ep is None:
                     continue
                 _pnl = (_ep - _sig["buy_above"]) / _sig["buy_above"] * 100
+                # 2026-09-06: Feldsatz erweitert. Der alte Satz (8 Felder) reichte nur fuer
+                # Score-Gewicht-Sweeps; fuer die Auswahl-Neubewertung brauchen wir die
+                # STRUKTURELLEN Merkmale — movement_class, closing_strength, gap, perf_120,
+                # pct_from_52w —, weil nur die frei von Score-Drift sind.
                 _ALL_CANDIDATES.append({
                     "date": _sig["scan_date"], "ticker": _sig["ticker"],
                     "score": _sig["score"], "rank": _rank,
                     "picked": _rank < MAX_OPEN_TRADES,
                     "cat_vcp_strength": _sig.get("cat_vcp_strength"),
                     "pnl_pct": round(_pnl, 2), "exit_reason": _reason,
+                    "hold_days": _td,
+                    # --- strukturelle Merkmale (score-drift-frei) ---
+                    "movement_class": _sig.get("movement_class"),
+                    "movement_bonus": _sig.get("movement_bonus"),
+                    "closing_strength": _sig.get("closing_strength"),
+                    "inside_day": _sig.get("inside_day"),
+                    "perf_120": _sig.get("perf_120"),
+                    "perf_20": _sig.get("perf_20"),
+                    "perf_60": _sig.get("perf_60"),
+                    "pct_from_52w": _sig.get("pct_from_52w"),
+                    "rsi": _sig.get("rsi"),
+                    "vol_ratio": _sig.get("vol_ratio"),
+                    "base_range": _sig.get("base_range"),
+                    "rr": _sig.get("rr"),
+                    # --- Katalysatoren (KEIN earnings_beat: der Backtest hat keine
+                    #     Earnings-Schicht, das Feld waere durchgehend None) ---
+                    "cat_gap_pct": _sig.get("cat_gap_pct"),
+                    "cat_pocket_pivot": _sig.get("cat_pocket_pivot"),
+                    "cat_vol_climax": _sig.get("cat_vol_climax"),
+                    # --- Kontext ---
+                    "buy_above": _sig.get("buy_above"), "stop": _sig.get("stop"),
+                    "target": _sig.get("target"),
                 })
         for sig in signals_today[:MAX_OPEN_TRADES]:
             ticker  = sig["ticker"]
