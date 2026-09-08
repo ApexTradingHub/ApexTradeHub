@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 148.98903226610093,
-  "last_updated": "2026-09-08T17:50:03Z",
+  "cash": 98.98903226610093,
+  "last_updated": "2026-09-08T17:55:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_BBY_2026-09-08",
@@ -79,9 +79,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-02T13:40:12Z",
-      "current_price": 42.0,
-      "pnl_pct": -1.2693935119887145,
-      "pnl_usd": -0.6346967559943573,
+      "current_price": 42.0099983215332,
+      "pnl_pct": -1.2458901703497791,
+      "pnl_usd": -0.6229450851748896,
       "hold_days": 6,
       "hold_trading_days": 4
     },
@@ -110,9 +110,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-03T14:50:07Z",
-      "current_price": 15.135000228881836,
-      "pnl_pct": 2.238300884456446,
-      "pnl_usd": 1.119150442228223,
+      "current_price": 15.170000076293945,
+      "pnl_pct": 2.474728031897174,
+      "pnl_usd": 1.237364015948587,
       "hold_days": 5,
       "hold_trading_days": 3
     },
@@ -167,9 +167,37 @@
       "ladder_step": 0,
       "opened_at": "2026-09-08T17:26:33Z",
       "status": "open",
-      "current_price": 127.74500274658203,
-      "pnl_pct": -0.7882819226122442,
-      "pnl_usd": -0.3941409613061221,
+      "current_price": 128.0175018310547,
+      "pnl_pct": -0.5766485767765629,
+      "pnl_usd": -0.28832428838828145,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_TKO_2026-09-08_1756",
+      "ticker": "TKO",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Communication Services",
+      "signal_date": "2026-09-08",
+      "stop_initial": 184.19,
+      "target": 199.38,
+      "score": 35.0,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.94,
+      "entry_actual": 189.88999938964844,
+      "shares": 0.26331033841019474,
+      "size_usd": 50.0,
+      "stop": 184.19,
+      "stop_set_at": "2026-09-08T17:56:31Z",
+      "high_since_entry": 189.88999938964844,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-08T17:56:31Z",
+      "status": "open",
+      "current_price": 189.88999938964844,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -7240,12 +7268,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 166,
-    "open_trades": 5,
+    "open_trades": 6,
     "wins": 81,
     "losses": 85,
     "win_rate": 48.795180722891565,
     "pnl_realized": -8.259861628107041,
-    "pnl_unrealized": -1.282624423205795,
-    "equity": 397.70640784289515
+    "pnl_unrealized": -1.0468425057481228,
+    "equity": 397.9421897603528
   }
 }
