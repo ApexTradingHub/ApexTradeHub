@@ -5610,5 +5610,15 @@
     "ts": "2026-09-08T13:30:11Z",
     "ticker": "CDW",
     "reason": "no trigger after 5d, nicht re-validiert"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_CEG_2026-09-02",
+    "ts": "2026-09-08T13:35:06Z",
+    "ticker": "CEG",
+    "old_stop": 292.8726,
+    "new_stop": 298.6152,
+    "high": 305.79998779296875,
+    "ladder_step": 2
   }
 ]
