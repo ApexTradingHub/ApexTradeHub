@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07 06:15 UTC",
+  "updated": "2026-09-08 06:15 UTC",
   "series": {
     "vix": {
       "id": "VIXCLS",
@@ -21,9 +21,8 @@
     },
     "fed_funds": {
       "id": "DFF",
-      "value": 3.63,
-      "date": "2026-09-03",
-      "delta": 0.0
+      "value": null,
+      "error": "HTTP Error 502: Bad Gateway"
     },
     "tbill_3m": {
       "id": "DTB3",
