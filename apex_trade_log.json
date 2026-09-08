@@ -5697,5 +5697,69 @@
     "new_stop": 15.099723,
     "high": 15.420000076293945,
     "ladder_step": 1
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_BLTE_2026-09-08_1402",
+    "ts": "2026-09-08T19:45:07Z",
+    "ticker": "BLTE",
+    "pnl_pct": -1.25,
+    "range_pos_eod": 0.339,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.91
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_BLTE_2026-09-08_1402",
+    "ts": "2026-09-08T19:45:07Z",
+    "ticker": "BLTE",
+    "exit_price": 191.5850067138672,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.2499293137618772
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_ALB_2026-09-08_1726",
+    "ts": "2026-09-08T19:45:07Z",
+    "ticker": "ALB",
+    "pnl_pct": 1.43,
+    "new_stop": 128.76,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 1.54,
+    "range_pos_eod": 0.878,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.12
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_TKO_2026-09-08_1756",
+    "ts": "2026-09-08T19:45:07Z",
+    "ticker": "TKO",
+    "pnl_pct": 3.02,
+    "new_stop": 189.89,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 3.23,
+    "range_pos_eod": 0.975,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 8.55
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_AMD_2026-09-08_1846",
+    "ts": "2026-09-08T19:45:07Z",
+    "ticker": "AMD",
+    "pnl_pct": -0.73,
+    "range_pos_eod": 0.692,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.67
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_AMD_2026-09-08_1846",
+    "ts": "2026-09-08T19:45:07Z",
+    "ticker": "AMD",
+    "exit_price": 504.4100036621094,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.7330740909259071
   }
 ]
