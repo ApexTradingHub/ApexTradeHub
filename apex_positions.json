@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 147.99753056375704,
-  "last_updated": "2026-09-08T19:45:03Z",
+  "last_updated": "2026-09-08T19:50:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_BBY_2026-09-08",
@@ -79,9 +79,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-02T13:40:12Z",
-      "current_price": 42.1349983215332,
-      "pnl_pct": -0.9520490796116502,
-      "pnl_usd": -0.4760245398058251,
+      "current_price": 42.099998474121094,
+      "pnl_pct": -1.0343242263255887,
+      "pnl_usd": -0.5171621131627944,
       "hold_days": 6,
       "hold_trading_days": 4
     },
@@ -110,9 +110,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-09-03T14:50:07Z",
-      "current_price": 15.404999732971191,
-      "pnl_pct": 4.062172051968211,
-      "pnl_usd": 2.0310860259841057,
+      "current_price": 15.354999542236328,
+      "pnl_pct": 3.7244162232714824,
+      "pnl_usd": 1.8622081116357412,
       "hold_days": 5,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-09-08T19:15:07Z"
@@ -140,11 +140,12 @@
       "ladder_step": 0,
       "opened_at": "2026-09-08T17:26:33Z",
       "status": "open",
-      "current_price": 130.59500122070312,
-      "pnl_pct": 1.425137303628703,
-      "pnl_usd": 0.7125686518143515,
+      "current_price": 129.84500122070312,
+      "pnl_pct": 0.8426582480240662,
+      "pnl_usd": 0.42132912401203304,
       "hold_days": 0,
-      "intraday_rescued": true
+      "intraday_rescued": true,
+      "hold_trading_days": 0
     },
     {
       "id": "PAPER_INTRA_TKO_2026-09-08_1756",
@@ -169,11 +170,12 @@
       "ladder_step": 0,
       "opened_at": "2026-09-08T17:56:31Z",
       "status": "open",
-      "current_price": 195.625,
-      "pnl_pct": 3.0201699029886866,
-      "pnl_usd": 1.5100849514943433,
+      "current_price": 194.52999877929688,
+      "pnl_pct": 2.443519619022854,
+      "pnl_usd": 1.221759809511427,
       "hold_days": 0,
-      "intraday_rescued": true
+      "intraday_rescued": true,
+      "hold_trading_days": 0
     }
   ],
   "closed": [
@@ -7310,7 +7312,7 @@
     "losses": 87,
     "win_rate": 48.214285714285715,
     "pnl_realized": -9.251363330450934,
-    "pnl_unrealized": 1.7269765503741095,
-    "equity": 399.72450711413114
+    "pnl_unrealized": 0.9373963928835413,
+    "equity": 398.9349269566406
   }
 }
