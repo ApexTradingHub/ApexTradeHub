@@ -2,43 +2,8 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 149.9001965825786,
-  "last_updated": "2026-09-08T13:25:02Z",
-  "pending": [
-    {
-      "id": "PAPER_EXPN.L_2026-09-01",
-      "ticker": "EXPN.L",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Industrials",
-      "signal_date": "2026-09-01",
-      "entry": 3059.11,
-      "stop_initial": 2912.78,
-      "target": 3307.59,
-      "score": 117.9,
-      "rr": 1.7,
-      "upside_pct": 8.1,
-      "added_at": "2026-09-01T13:55:07Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_CDW_2026-09-03",
-      "ticker": "CDW",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-09-03",
-      "entry": 154.46,
-      "stop_initial": 144.32,
-      "target": 175.0,
-      "score": 127.1,
-      "rr": 2.03,
-      "upside_pct": 13.3,
-      "added_at": "2026-09-04T13:35:07Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "last_updated": "2026-09-08T13:30:03Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_SAP.DE_2026-08-29",
@@ -65,9 +30,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-08-31T13:35:09Z",
-      "current_price": 182.82000732421875,
-      "pnl_pct": -3.3720875935155306,
-      "pnl_usd": -1.6860437967577653,
+      "current_price": 182.94000244140625,
+      "pnl_pct": -3.30866522611437,
+      "pnl_usd": -1.654332613057185,
       "hold_days": 7,
       "hold_trading_days": 6
     },
@@ -7153,6 +7118,42 @@
       "mode": "paper",
       "expired_at": "2026-08-31T13:45:09Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_EXPN.L_2026-09-01",
+      "ticker": "EXPN.L",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-09-01",
+      "entry": 3059.11,
+      "stop_initial": 2912.78,
+      "target": 3307.59,
+      "score": 117.9,
+      "rr": 1.7,
+      "upside_pct": 8.1,
+      "added_at": "2026-09-01T13:55:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-08T13:30:11Z"
+    },
+    {
+      "id": "PAPER_CDW_2026-09-03",
+      "ticker": "CDW",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-09-03",
+      "entry": 154.46,
+      "stop_initial": 144.32,
+      "target": 175.0,
+      "score": 127.1,
+      "rr": 2.03,
+      "upside_pct": 13.3,
+      "added_at": "2026-09-04T13:35:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-08T13:30:11Z"
     }
   ],
   "stats": {
@@ -7164,7 +7165,7 @@
     "losses": 84,
     "win_rate": 48.78048780487805,
     "pnl_realized": -7.348697311629383,
-    "pnl_unrealized": -1.2145044915679013,
-    "equity": 398.68569209101065
+    "pnl_unrealized": -1.1827933078673207,
+    "equity": 398.7174032747113
   }
 }
