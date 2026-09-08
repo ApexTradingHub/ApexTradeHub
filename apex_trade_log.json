@@ -5620,5 +5620,32 @@
     "new_stop": 298.6152,
     "high": 305.79998779296875,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_FDS_2026-08-29",
+    "ts": "2026-09-08T13:45:06Z",
+    "ticker": "FDS",
+    "exit_price": 293.42,
+    "reason": "Stop Loss",
+    "pnl_pct": -5.822328632955323
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CEG_2026-09-02",
+    "ts": "2026-09-08T13:45:06Z",
+    "ticker": "CEG",
+    "exit_price": 298.6152,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 4.000000000000007
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_BBY_2026-09-08",
+    "ts": "2026-09-08T13:45:06Z",
+    "ticker": "BBY",
+    "signal_date": "2026-09-08",
+    "score": 70.2,
+    "source": "momentum_filler"
   }
 ]
