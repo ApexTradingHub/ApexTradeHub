@@ -5833,5 +5833,32 @@
     "entry_signal": 31.28,
     "entry_actual": 31.4364,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_BVC_2026-09-09",
+    "ts": "2026-09-09T14:05:06Z",
+    "ticker": "BVC",
+    "exit_price": 16.12,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.921155927534804
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_BBY_2026-09-08",
+    "ts": "2026-09-09T14:05:06Z",
+    "ticker": "BBY",
+    "entry_signal": 90.72,
+    "entry_actual": 90.72,
+    "mode": "paper"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_HPE_2026-09-09",
+    "ts": "2026-09-09T14:05:06Z",
+    "ticker": "HPE",
+    "signal_date": "2026-09-09",
+    "score": 63.6,
+    "source": "momentum_filler"
   }
 ]
