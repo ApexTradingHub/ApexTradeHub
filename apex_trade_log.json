@@ -5960,5 +5960,15 @@
     "exit_price": 19.96,
     "reason": "Stop Loss",
     "pnl_pct": -0.0070089193830900455
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_HPE_2026-09-09",
+    "ts": "2026-09-09T20:05:05Z",
+    "ticker": "HPE",
+    "old_stop": 53.79,
+    "new_stop": 57.723380999999996,
+    "high": 58.91999816894531,
+    "ladder_step": 1
   }
 ]
