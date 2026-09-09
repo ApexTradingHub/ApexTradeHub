@@ -5806,5 +5806,23 @@
     "entry_signal": 16.87,
     "entry_actual": 16.954349999999998,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ALB_2026-09-08_1726",
+    "ts": "2026-09-09T13:50:05Z",
+    "ticker": "ALB",
+    "exit_price": 128.76,
+    "reason": "Stop Loss",
+    "pnl_pct": 4.266204013478284e-06
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_MLYS_2026-09-09",
+    "ts": "2026-09-09T13:50:06Z",
+    "ticker": "MLYS",
+    "signal_date": "2026-09-09",
+    "score": 68.7,
+    "source": "momentum_filler"
   }
 ]
