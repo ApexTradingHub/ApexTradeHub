@@ -5779,5 +5779,23 @@
     "exit_price": 15.099723,
     "reason": "Stop Loss (Trailing)",
     "pnl_pct": 1.9999999999999987
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_TKO_2026-09-08_1756",
+    "ts": "2026-09-09T13:40:07Z",
+    "ticker": "TKO",
+    "exit_price": 189.89,
+    "reason": "Stop Loss",
+    "pnl_pct": 3.214237457577515e-07
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_BVC_2026-09-09",
+    "ts": "2026-09-09T13:40:08Z",
+    "ticker": "BVC",
+    "signal_date": "2026-09-09",
+    "score": 75.8,
+    "source": "momentum_filler"
   }
 ]
