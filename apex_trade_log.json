@@ -5899,5 +5899,57 @@
     "gain_from_open": 4.6,
     "score": 39.4,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_GME_2026-09-09_1736",
+    "ts": "2026-09-09T19:45:07Z",
+    "ticker": "GME",
+    "pnl_pct": 1.35,
+    "new_stop": 19.96,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 1.4,
+    "range_pos_eod": 0.992,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 6.63
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_SYY_2026-09-09_1746",
+    "ts": "2026-09-09T19:45:07Z",
+    "ticker": "SYY",
+    "pnl_pct": -1.52,
+    "range_pos_eod": 0.383,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 2.03
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_SYY_2026-09-09_1746",
+    "ts": "2026-09-09T19:45:07Z",
+    "ticker": "SYY",
+    "exit_price": 81.31500244140625,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.5199191692580767
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_FICO_2026-09-09_1836",
+    "ts": "2026-09-09T19:45:07Z",
+    "ticker": "FICO",
+    "pnl_pct": 0.21,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.818,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.3
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FICO_2026-09-09_1836",
+    "ts": "2026-09-09T19:45:07Z",
+    "ticker": "FICO",
+    "exit_price": 979.6500244140625,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.2117481216914551
   }
 ]
