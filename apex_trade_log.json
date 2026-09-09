@@ -5761,5 +5761,23 @@
     "exit_price": 504.4100036621094,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.7330740909259071
+  },
+  {
+    "event": "close",
+    "id": "PAPER_RRC_2026-09-01",
+    "ts": "2026-09-09T13:35:06Z",
+    "ticker": "RRC",
+    "exit_price": 41.81999969482422,
+    "reason": "Stagnation Exit",
+    "pnl_pct": -1.6925254000370953
+  },
+  {
+    "event": "close",
+    "id": "PAPER_AVTR_2026-09-02",
+    "ts": "2026-09-09T13:35:06Z",
+    "ticker": "AVTR",
+    "exit_price": 15.099723,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.9999999999999987
   }
 ]
