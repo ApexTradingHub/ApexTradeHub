@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 95.69069219378497,
-  "last_updated": "2026-09-09T18:30:03Z",
+  "cash": 45.69069219378497,
+  "last_updated": "2026-09-09T18:35:02Z",
   "pending": [],
   "open": [
     {
@@ -61,9 +61,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-09T13:55:06Z",
-      "current_price": 31.059999465942383,
-      "pnl_pct": -1.1973398164472273,
-      "pnl_usd": -0.5986699082236137,
+      "current_price": 31.065000534057617,
+      "pnl_pct": -1.1814312896590635,
+      "pnl_usd": -0.5907156448295318,
       "hold_days": 0,
       "hold_trading_days": 0
     },
@@ -92,9 +92,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-09T14:05:06Z",
-      "current_price": 88.88500213623047,
-      "pnl_pct": -2.022704876289165,
-      "pnl_usd": -1.0113524381445824,
+      "current_price": 88.9000015258789,
+      "pnl_pct": -2.006171157540887,
+      "pnl_usd": -1.0030855787704436,
       "hold_days": 0,
       "hold_trading_days": 0
     },
@@ -123,9 +123,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-09T14:10:06Z",
-      "current_price": 57.8849983215332,
-      "pnl_pct": 2.2855856069204767,
-      "pnl_usd": 1.1427928034602384,
+      "current_price": 57.83000183105469,
+      "pnl_pct": 2.1884041540736905,
+      "pnl_usd": 1.0942020770368452,
       "hold_days": 0,
       "hold_trading_days": 0
     },
@@ -152,9 +152,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-09T17:36:31Z",
       "status": "open",
-      "current_price": 19.854999542236328,
-      "pnl_pct": -0.533026446268041,
-      "pnl_usd": -0.2665132231340205,
+      "current_price": 19.8700008392334,
+      "pnl_pct": -0.45787491536494784,
+      "pnl_usd": -0.22893745768247392,
       "hold_days": 0
     },
     {
@@ -183,6 +183,34 @@
       "current_price": 81.86499786376953,
       "pnl_pct": -0.8538232210976737,
       "pnl_usd": -0.42691161054883686,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_FICO_2026-09-09_1836",
+      "ticker": "FICO",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Technology",
+      "signal_date": "2026-09-09",
+      "stop_initial": 948.25,
+      "target": 1026.46,
+      "score": 39.4,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 4.6,
+      "entry_actual": 977.5800170898438,
+      "shares": 0.05114670832659296,
+      "size_usd": 50.0,
+      "stop": 948.25,
+      "stop_set_at": "2026-09-09T18:36:30Z",
+      "high_since_entry": 977.5800170898438,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-09T18:36:30Z",
+      "status": "open",
+      "current_price": 977.5800170898438,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -7484,12 +7512,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 173,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 84,
     "losses": 89,
     "win_rate": 48.554913294797686,
     "pnl_realized": -11.558201700423005,
-    "pnl_unrealized": -2.8361291229315886,
-    "equity": 392.8545630708534
+    "pnl_unrealized": -2.8309229611352147,
+    "equity": 392.85976923264974
   }
 }
