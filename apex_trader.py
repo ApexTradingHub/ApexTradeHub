@@ -56,6 +56,35 @@ PICK_BAND = (90.0, 120.0)
 # identisch. 4x groesser als Schema A (Score-Bonus). Rollback = False.
 VCP_PICK_PRIORITY = True
 
+# === EREIGNIS-FILTER (2026-09-10) — Option C, Schritt 1 ===
+# HERKUNFT: Das Edge-Audit vom 06./07.09. hat sechs Muster-Hypothesen getestet und ALLE
+# verworfen (movement_class, closing_strength, Score-Baender, >=2-Merkmale, MEAN_REVERSION,
+# Leiter/Stagnation). Ueberlebt haben nur ZWEI Merkmale — und beide sind keine Chartmuster,
+# sondern EREIGNISSE: `gap_gt_2pct` (+16.7% WR-Lift, CONFIRMED, n=38) und
+# `analyst_upside_gt_15pct` (+12.4%, CONFIRMED, n=30). Dasselbe sagen die 309 Postmortems:
+# entschieden hat jedes Mal Information (Guidance-Richtung, Abstand zum Bericht), nie ein Muster.
+# MESSUNG (Live-Equity-Tracker, 164 Signale mit Upside-Wert, Split 03.07.):
+#   Upside>=15 ODER Gap>=2   n=63  WR 57%  Ø +2.74%  PF 2.36   (IS +2.11 / OOS +3.21)
+#   weder noch               n=101 WR 46%  Ø +0.46%  PF 1.17
+#   Zielerreichung steigt monoton ueber die Upside-Baender: 24.5 / 21.1 / 36.8 / 50.0%
+# DREI EHRLICHE VORBEHALTE:
+#  1. Nur 4 Monate Daten (Analysten-Felder erst ab 05.05.). Genau die Stichprobengroesse,
+#     die im Audit ZWEIMAL getaeuscht hat (stark auf 2 Jahren, tot auf 4).
+#  2. NICHT backtestbar: yfinance liefert keine Point-in-Time-Analystenziele, der Backtest
+#     hat keine Earnings-/Analysten-Schicht. Die vorab fixierte Latte ("2-Jahres-Backtest,
+#     n>=60") ist fuer Ereignis-Merkmale prinzipiell unerreichbar — deshalb Live-Daten mit
+#     Out-of-Sample-Split als Ersatz. Das ist ein SCHWAECHERER Nachweis, bewusst so.
+#  3. Der Equity-Tracker unterstellt Fills zum Trigger-Preis; die sind nachweislich nicht
+#     immer verfuegbar (Entry-Drift-Gate). +2.74% ist damit eher zu hoch als zu niedrig.
+# ABBRUCH-KRITERIUM, VORAB FIXIERT (damit es spaeter nicht wegdiskutiert wird):
+#   Nach 30 gefilterten Trades: liegt Ø < +1.0% ODER PF < 1.4, wird der Filter abgeschaltet.
+#   Zusaetzlich abschalten, wenn >50% der Verwerfungen auf fehlende Analysten-Daten
+#   entfallen (dann filtern wir Datenlage statt Qualitaet).
+# Rollback: EVENT_FILTER_ENABLED = False.
+EVENT_FILTER_ENABLED = True
+EVENT_MIN_UPSIDE     = 15.0   # cat_analyst_upside in Prozent
+EVENT_MIN_GAP        = 2.0    # cat_gap_pct in Prozent
+
 # Setup-Filter — BREAKOUT only.
 # 2026-06-12: STAGE_2 wieder raus. Widerspricht der Rotations-These (Hold 60d,
 # blockiert Slot wochenlang). Schnelle ~5%-Spruenge sind das Momentum-Filler-Job.
@@ -1457,6 +1486,7 @@ def select_new_signals(state: dict, signals: list) -> list:
 
     # Alle qualifizierten, frischen Kandidaten flach sammeln
     candidates = []
+    _ev_skipped, _ev_nodata = 0, 0
     for s in signals:
         if not passes_tg_gate(s):
             continue
@@ -1474,7 +1504,24 @@ def select_new_signals(state: dict, signals: list) -> list:
             continue                          # schon offen oder pending
         if (ticker, d) in tracked_keys:
             continue                          # diesen (Ticker, Datum)-Eintrag schon getrackt
+        # === EREIGNIS-FILTER (2026-09-10) — s. EVENT_FILTER_ENABLED ===
+        # BEWUSST GANZ AM ENDE der Kette: davor stehen die billigen strukturellen Checks
+        # (Frische, busy, tracked). Steht der Filter vorne, zaehlt er Monate alter Signale
+        # mit und der Log-Zaehler suggeriert eine Haerte, die es nicht gibt.
+        # Fail-closed: fehlt der Upside-Wert UND ist kein Gap da, wird nicht gekauft.
+        if EVENT_FILTER_ENABLED and s.get("setup") == "BREAKOUT":
+            _up = s.get("cat_analyst_upside")
+            _gap = f(s.get("cat_gap_pct"))
+            if not ((_up is not None and _up >= EVENT_MIN_UPSIDE) or _gap >= EVENT_MIN_GAP):
+                _ev_skipped += 1
+                if _up is None:
+                    _ev_nodata += 1
+                continue
         candidates.append(s)
+
+    if _ev_skipped:
+        log(f"  Ereignis-Filter: {_ev_skipped} Signale verworfen "
+            f"(davon {_ev_nodata} mangels Analysten-Daten), {len(candidates)} bleiben")
 
     if not candidates:
         return []
