@@ -1,41 +1,10 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 195.03310221031012,
-  "last_updated": "2026-09-09T21:55:02Z",
+  "cash": 242.48817697152256,
+  "last_updated": "2026-09-10T13:00:03Z",
   "pending": [],
   "open": [
-    {
-      "id": "PAPER_SAP.DE_2026-08-29",
-      "ticker": "SAP.DE",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-08-29",
-      "entry": 188.78,
-      "stop_initial": 179.57,
-      "target": 205.0,
-      "score": 105.8,
-      "rr": 1.76,
-      "upside_pct": 8.6,
-      "added_at": "2026-08-31T13:30:09Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 189.1999969482422,
-      "shares": 0.26427061737045415,
-      "size_usd": 50.0,
-      "stop": 179.57,
-      "stop_set_at": "2026-08-31T13:35:09Z",
-      "high_since_entry": 192.1199951171875,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-08-31T13:35:09Z",
-      "current_price": 182.86000061035156,
-      "pnl_pct": -3.350949492681547,
-      "pnl_usd": -1.6754747463407735,
-      "hold_days": 9,
-      "hold_trading_days": 7
-    },
     {
       "id": "PAPER_MOM_MLYS_2026-09-09",
       "ticker": "MLYS",
@@ -65,7 +34,7 @@
       "pnl_pct": -2.9787125752312575,
       "pnl_usd": -1.4893562876156288,
       "hold_days": 0,
-      "hold_trading_days": 0
+      "hold_trading_days": 1
     },
     {
       "id": "PAPER_MOM_BBY_2026-09-08",
@@ -96,7 +65,7 @@
       "pnl_pct": -2.9651688940731082,
       "pnl_usd": -1.4825844470365541,
       "hold_days": 0,
-      "hold_trading_days": 0
+      "hold_trading_days": 1
     },
     {
       "id": "PAPER_MOM_HPE_2026-09-09",
@@ -127,7 +96,7 @@
       "pnl_pct": 4.07030812508877,
       "pnl_usd": 2.035154062544385,
       "hold_days": 0,
-      "hold_trading_days": 0,
+      "hold_trading_days": 1,
       "trailing_activated_at": "2026-09-09T20:05:05Z"
     }
   ],
@@ -6972,6 +6941,40 @@
       "exit_price": 19.96,
       "exit_reason": "Stop Loss",
       "closed_at": "2026-09-09T20:00:07Z"
+    },
+    {
+      "id": "PAPER_SAP.DE_2026-08-29",
+      "ticker": "SAP.DE",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-08-29",
+      "entry": 188.78,
+      "stop_initial": 179.57,
+      "target": 205.0,
+      "score": 105.8,
+      "rr": 1.76,
+      "upside_pct": 8.6,
+      "added_at": "2026-08-31T13:30:09Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 189.1999969482422,
+      "shares": 0.26427061737045415,
+      "size_usd": 50.0,
+      "stop": 179.57,
+      "stop_set_at": "2026-08-31T13:35:09Z",
+      "high_since_entry": 192.1199951171875,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-08-31T13:35:09Z",
+      "current_price": 182.86000061035156,
+      "pnl_pct": -5.089850477575108,
+      "pnl_usd": -2.544925238787554,
+      "hold_days": 9,
+      "hold_trading_days": 8,
+      "exit_price": 179.57,
+      "exit_reason": "Stop Loss",
+      "closed_at": "2026-09-10T13:00:33Z"
     }
   ],
   "expired": [
@@ -7523,13 +7526,13 @@
   "stats": {
     "trading_mode": "paper",
     "etoro_env": "demo",
-    "total_trades": 176,
-    "open_trades": 4,
+    "total_trades": 177,
+    "open_trades": 3,
     "wins": 85,
-    "losses": 91,
-    "win_rate": 48.29545454545455,
-    "pnl_realized": -12.215791683897862,
-    "pnl_unrealized": -2.612261418448571,
-    "equity": 392.42084079186156
+    "losses": 92,
+    "win_rate": 48.0225988700565,
+    "pnl_realized": -14.760716922685416,
+    "pnl_unrealized": -0.9367866721077975,
+    "equity": 391.5513902994148
   }
 }
