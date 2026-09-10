@@ -5979,5 +5979,50 @@
     "exit_price": 179.57,
     "reason": "Stop Loss",
     "pnl_pct": -5.089850477575108
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_MLYS_2026-09-09",
+    "ts": "2026-09-10T13:35:05Z",
+    "ticker": "MLYS",
+    "exit_price": 29.88,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.950948581898691
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_HPE_2026-09-09",
+    "ts": "2026-09-10T13:35:05Z",
+    "ticker": "HPE",
+    "exit_price": 57.723380999999996,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.999999999999997
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_ADM_2026-09-09",
+    "ts": "2026-09-10T13:35:05Z",
+    "ticker": "ADM",
+    "signal_date": "2026-09-09",
+    "score": 97.3,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_SEI_2026-09-10",
+    "ts": "2026-09-10T13:35:05Z",
+    "ticker": "SEI",
+    "signal_date": "2026-09-10",
+    "score": 70.5,
+    "source": "momentum_filler"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_CMPS_2026-09-10",
+    "ts": "2026-09-10T13:35:05Z",
+    "ticker": "CMPS",
+    "signal_date": "2026-09-10",
+    "score": 68.8,
+    "source": "momentum_filler"
   }
 ]
