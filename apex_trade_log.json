@@ -6072,5 +6072,44 @@
     "exit_price": 54.18,
     "reason": "Intraday TP",
     "pnl_pct": 5.000003104986238
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_AEHR_2026-09-10_1401",
+    "ts": "2026-09-10T19:45:05Z",
+    "ticker": "AEHR",
+    "pnl_pct": -1.26,
+    "range_pos_eod": 0.325,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 2.99
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_AEHR_2026-09-10_1401",
+    "ts": "2026-09-10T19:45:05Z",
+    "ticker": "AEHR",
+    "exit_price": 94.75,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.2609411171497675
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_UBER_2026-09-10_1731",
+    "ts": "2026-09-10T19:45:06Z",
+    "ticker": "UBER",
+    "pnl_pct": 0.28,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.743,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.55
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_UBER_2026-09-10_1731",
+    "ts": "2026-09-10T19:45:06Z",
+    "ticker": "UBER",
+    "exit_price": 72.38999938964844,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.2839950654404111
   }
 ]
