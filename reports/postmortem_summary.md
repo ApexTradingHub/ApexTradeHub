@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-09T11:56:38.616064 | Total trades: 318_
+_Updated: 2026-09-10T11:52:10.880512 | Total trades: 324_
 
-**Analyse-Status**: complete=309, pending=9
+**Analyse-Status**: complete=309, pending=15
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -119,18 +119,18 @@ _Updated: 2026-09-09T11:56:38.616064 | Total trades: 318_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
+| CNC_2026-09-02 | VCP | -7.73% | Stop Loss D+4 | 92.1 | Healthcare | — |
 | CART_2026-08-19 | BREAKOUT | -5.94% | Stop Loss D+13 | 132.7 | Consumer Cyclical | — |
 | FTNT_2026-08-28 | BREAKOUT | -5.87% | Stop Loss D+2 | 145.6 | Technology | high_score_loss_85plus,valuation_unwind,extended_perf120 |
 | CHWY_2026-08-24 | BREAKOUT | -5.67% | Stop Loss D+2 | 96.3 | Consumer Cyclical | sector_divergence_loser,quick_stop_1_3d,weak_breakout |
-| FDS_2026-08-29 | BREAKOUT | -5.35% | Stop Loss D+6 | 129.8 | Financial Services | — |
-| LLY_2026-08-10 | BREAKOUT | -5.18% | Stop Loss D+5 | 105.5 | Healthcare | sector_divergence_loser,breakout_no_follow_through,same_ticker_regime_flip |
+| KKR_2026-08-11 | BREAKOUT | -5.41% | Stop Loss D+20 | 115.7 | Financial Services | — |
 | CRM_2026-08-19 | BREAKOUT | 11.48% | Take Profit D+6 | 117.7 | Technology | pre_earnings_gamble_won,hold_through_earnings_risk,post_earnings_beat_continuation |
 | ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
 | CRM_2026-08-13 | BREAKOUT | 10.12% | Take Profit D+10 | 113.8 | Technology | post_earnings_beat_continuation,guidance_raise_catalyst,secular_ai_catalyst |
-| AR_2026-08-10 | BREAKOUT | 9.09% | Take Profit D+15 | 79.7 | Energy | sector_momentum_tailwind,commodity_supply_shock,analyst_pt_raise_wave |
+| MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
 | DE_2026-08-21 | BREAKOUT | 8.48% | Take Profit D+8 | 106.5 | Industrials | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
 
-## Pending Claude-Analyse (9)
+## Pending Claude-Analyse (15)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -143,3 +143,9 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `CART_2026-08-19`
 - `DXCM_2026-08-10`
 - `UBER_2026-08-10`
+- `KKR_2026-08-11`
+- `KMX_2026-08-24`
+- `MPC_2026-08-29`
+- `CNC_2026-09-02`
+- `D_2026-06-22`
+- `SAP.DE_2026-08-29`
