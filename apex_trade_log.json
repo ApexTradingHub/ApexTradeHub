@@ -6140,5 +6140,45 @@
     "gain_from_open": 4.4,
     "score": 32.3,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_ADBE_2026-09-11_1741",
+    "ts": "2026-09-11T19:45:05Z",
+    "ticker": "ADBE",
+    "pnl_pct": 0.53,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.978,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.41
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ADBE_2026-09-11_1741",
+    "ts": "2026-09-11T19:45:05Z",
+    "ticker": "ADBE",
+    "exit_price": 254.57969665527344,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.527039650859956
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_KR_2026-09-11_1826",
+    "ts": "2026-09-11T19:45:06Z",
+    "ticker": "KR",
+    "pnl_pct": 0.52,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.818,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.64
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_KR_2026-09-11_1826",
+    "ts": "2026-09-11T19:45:06Z",
+    "ticker": "KR",
+    "exit_price": 58.790000915527344,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.5213312863083747
   }
 ]
