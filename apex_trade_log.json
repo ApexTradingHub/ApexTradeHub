@@ -6180,5 +6180,30 @@
     "exit_price": 58.790000915527344,
     "reason": "Intraday Close (EOD, zu duenn)",
     "pnl_pct": 0.5213312863083747
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_CMPS_2026-09-10",
+    "ts": "2026-09-14T13:30:07Z",
+    "ticker": "CMPS",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DVN_2026-09-11",
+    "ts": "2026-09-14T13:30:07Z",
+    "ticker": "DVN",
+    "signal_date": "2026-09-11",
+    "score": 115.3,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DELL_2026-09-11",
+    "ts": "2026-09-14T13:30:07Z",
+    "ticker": "DELL",
+    "signal_date": "2026-09-11",
+    "score": 145.7,
+    "source": "scanner"
   }
 ]
