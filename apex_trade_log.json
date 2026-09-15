@@ -6267,5 +6267,34 @@
     "signal_date": "2026-09-14",
     "score": 150.6,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_SM_2026-09-14",
+    "ts": "2026-09-15T13:35:07Z",
+    "ticker": "SM",
+    "entry_signal": 38.96,
+    "cur_price": 40.48099899291992,
+    "drift_pct": 3.9,
+    "reason": "entry-drift +3.90% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_OKTA_2026-09-14",
+    "ts": "2026-09-15T13:35:07Z",
+    "ticker": "OKTA",
+    "entry_signal": 179.8,
+    "cur_price": 185.9600067138672,
+    "drift_pct": 3.43,
+    "reason": "entry-drift +3.43% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "open",
+    "id": "PAPER_CRWD_2026-09-14",
+    "ts": "2026-09-15T13:35:07Z",
+    "ticker": "CRWD",
+    "entry_signal": 234.35,
+    "entry_actual": 234.35,
+    "mode": "paper"
   }
 ]
