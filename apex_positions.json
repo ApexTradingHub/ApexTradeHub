@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 191.24999069089915,
-  "last_updated": "2026-09-15T13:55:03Z",
+  "cash": 141.24999069089915,
+  "last_updated": "2026-09-15T14:00:03Z",
   "pending": [],
   "open": [
     {
@@ -30,9 +30,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-09-09T14:05:06Z",
-      "current_price": 94.13999938964844,
-      "pnl_pct": 3.7698405970551576,
-      "pnl_usd": 1.8849202985275786,
+      "current_price": 94.47000122070312,
+      "pnl_pct": 4.1335992291701125,
+      "pnl_usd": 2.0667996145850562,
       "hold_days": 5,
       "hold_trading_days": 4,
       "trailing_activated_at": "2026-09-14T16:50:05Z"
@@ -62,9 +62,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-10T13:40:06Z",
-      "current_price": 87.58499908447266,
-      "pnl_pct": 0.022096660588558834,
-      "pnl_usd": 0.011048330294279419,
+      "current_price": 87.8550033569336,
+      "pnl_pct": 0.3304416251505047,
+      "pnl_usd": 0.16522081257525234,
       "hold_days": 5,
       "hold_trading_days": 3
     },
@@ -93,9 +93,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-14T13:35:06Z",
-      "current_price": 50.724998474121094,
-      "pnl_pct": 0.6433405735452324,
-      "pnl_usd": 0.3216702867726162,
+      "current_price": 50.60499954223633,
+      "pnl_pct": 0.4052509977258931,
+      "pnl_usd": 0.20262549886294656,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -124,11 +124,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-15T13:35:07Z",
-      "current_price": 235.5970001220703,
-      "pnl_pct": 0.5321101438320112,
-      "pnl_usd": 0.2660550719160056,
+      "current_price": 235.71499633789062,
+      "pnl_pct": 0.5824605666271093,
+      "pnl_usd": 0.29123028331355466,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_APPN_2026-09-15_1401",
+      "ticker": "APPN",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Technology",
+      "signal_date": "2026-09-15",
+      "stop_initial": 37.52,
+      "target": 40.62,
+      "score": 20.2,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.72,
+      "entry_actual": 38.685001373291016,
+      "shares": 1.2924905835604057,
+      "size_usd": 50.0,
+      "stop": 37.52,
+      "stop_set_at": "2026-09-15T14:01:50Z",
+      "high_since_entry": 38.685001373291016,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-15T14:01:50Z",
+      "status": "open",
+      "current_price": 38.685001373291016,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -7890,12 +7918,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 185,
-    "open_trades": 4,
+    "open_trades": 5,
     "wins": 90,
     "losses": 95,
     "win_rate": 48.64864864864865,
     "pnl_realized": -15.998903203308894,
-    "pnl_unrealized": 2.4836939875104798,
-    "equity": 393.73368467840965
+    "pnl_unrealized": 2.7258762093368096,
+    "equity": 393.9758669002359
   }
 }
