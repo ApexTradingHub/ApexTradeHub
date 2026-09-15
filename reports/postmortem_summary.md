@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-14T13:23:15.528721 | Total trades: 328_
+_Updated: 2026-09-15T12:12:34.218579 | Total trades: 331_
 
-**Analyse-Status**: complete=309, pending=19
+**Analyse-Status**: complete=309, pending=22
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -115,7 +115,7 @@ _Updated: 2026-09-14T13:23:15.528721 | Total trades: 328_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=17)
+## Recent (30d) — Worst 5 / Best 5  (n=20)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -128,9 +128,9 @@ _Updated: 2026-09-14T13:23:15.528721 | Total trades: 328_
 | ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
 | MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
 | DE_2026-08-21 | BREAKOUT | 8.48% | Take Profit D+8 | 106.5 | Industrials | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
-| RRC_2026-09-01 | BREAKOUT | -3.86% | Stop Loss D+6 | 104.8 | Energy | — |
+| GPC_2026-08-25 | BREAKOUT | -3.81% | Stop Loss D+13 | 95.7 | Consumer Cyclical | — |
 
-## Pending Claude-Analyse (19)
+## Pending Claude-Analyse (22)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -153,3 +153,5 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `DHR_2026-08-19`
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
+- `GPC_2026-08-25`
+- _(+ 2 mehr)_
