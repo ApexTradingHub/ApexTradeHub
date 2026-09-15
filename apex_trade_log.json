@@ -6233,5 +6233,39 @@
     "new_stop": 92.5344,
     "high": 94.36000061035156,
     "ladder_step": 1
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_DELL_2026-09-11",
+    "ts": "2026-09-15T13:30:09Z",
+    "ticker": "DELL",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SM_2026-09-14",
+    "ts": "2026-09-15T13:30:09Z",
+    "ticker": "SM",
+    "signal_date": "2026-09-14",
+    "score": 143.8,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_OKTA_2026-09-14",
+    "ts": "2026-09-15T13:30:09Z",
+    "ticker": "OKTA",
+    "signal_date": "2026-09-14",
+    "score": 147.6,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_CRWD_2026-09-14",
+    "ts": "2026-09-15T13:30:09Z",
+    "ticker": "CRWD",
+    "signal_date": "2026-09-14",
+    "score": 150.6,
+    "source": "scanner"
   }
 ]
