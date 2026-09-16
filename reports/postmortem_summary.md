@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-15T12:12:34.218579 | Total trades: 331_
+_Updated: 2026-09-16T12:09:58.795790 | Total trades: 335_
 
-**Analyse-Status**: complete=309, pending=22
+**Analyse-Status**: complete=309, pending=26
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -84,6 +84,7 @@ _Updated: 2026-09-15T12:12:34.218579 | Total trades: 331_
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Analyse |
 |---|---|---|---|---|---|---|
+| LIN_2026-07-01 | STAGE_2 | -14.2% | Stop Loss D+52 | 110.1 | Basic Materials | _pending_ |
 | DTE_2026-07-02 | STAGE_2 | -12.67% | Stop Loss D+35 | 117.5 | Utilities | Doppelschlag aus Sektor und Regulierung, verstaerkt durch die STAGE_2-Mechanik. (1) SEKTOR: XLU -4.35% waehrend SPY +2.39% (Divergenz-Flag gesetzt) — steigende Treasury-Renditen entziehen renditegetriebenen Versorgern das Kapital, die 30-Tage-SEC-Rendite des XLU liegt bei ~2.6% gegen einen 10-Jaehrigen bei 4%+. (2) FUNDAMENTAL: Q2 am 28.07. schlug zwar mit bereinigt $1.32 EPS, aber der Kern brach weg — Elektro-Segmentgewinn -15% auf $270 Mio. (hoehere Rate-Base-Kosten, ungunstiges Wetter, Steuer-Timing). Die Aktie fiel auf den Beat. (3) REGULIERUNG: Am 14.08. forderte die Michigan Public Service Commission den Gesetzgeber auf, die jaehrlichen Ratenerhoehungen zu beenden und die Gewinnmechanik von DTE/Consumers umzustellen (mehrjaehrige, leistungsgebundene Plaene). Das trifft genau das Rate-Base-Wachstumsmodell, auf dem die 6-8%-EPS-Ziele stehen. -8.0% im Monat bis zum 18.08., Stop am 20.08. bei -12.67%. (4) MECHANIK: Der STAGE_2-Stop lag 12.7% unter dem Einstieg bei 35 Tagen Haltedauer — genug Raum, damit ein langsamer Abwaertstrend voll durchlaufen kann. |
 | COST_2026-05-17 | STAGE_2 | -12.3% | Stop Loss D+31 | 101.6 | Consumer Defensive | STAGE_2 (einziger Nicht-BREAKOUT) -12.3% Stop nach D+31. Costco meldete Blowout-Q3 (Net Income +15.2%, Sales +11.6%) am 28.5 — aber Aktie FIEL (Sell-the-News: 52x P/E zu teuer) + Tariff-Class-Action-Klagen (IEEPA). STAGE_2's langer 60d-Hold liess einen -12% Drawdown entstehen. |
 | ENPH_2026-04-20 | REVERSAL | -9.96% | Stop Loss D+7 | 91.1 | Technology | Stop ausgeloest 1 Tag VOR Earnings-Beat - REVERSAL stoppt sich aus dem profitablen Move raus |
@@ -98,7 +99,6 @@ _Updated: 2026-09-15T12:12:34.218579 | Total trades: 331_
 | ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | High-Score-Loss (137): Insider-Verkaeufe $584M/3M, Cloud-Titan-Konzentration (MSFT/Meta), Networking-De-Risking. -8.6% Stop. |
 | IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | BREAKOUT nach ~29% 6-Tage-Rally gekauft = extended; drehte auf Valuation-Unwind + Enterprise-Growth-Deceleration + Macro-Headwinds. -8.5% Stop D+3. |
 | CACI_2026-05-01 | REVERSAL | -8.03% | Stop Loss D+3 | 72.6 | Technology | REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben |
-| AMTM_2026-04-01 | REVERSAL | -8.01% | Stop Loss D+23 | 59.7 | Industrials | DEAD_CAT_BOUNCE - Stock war -20% YTD, REVERSAL kaufte trotz fundamentaler Schwaeche; nahm 23 Tage zum Stop |
 
 ## Best 10 Trades
 
@@ -115,7 +115,7 @@ _Updated: 2026-09-15T12:12:34.218579 | Total trades: 331_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=20)
+## Recent (30d) — Worst 5 / Best 5  (n=22)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -126,11 +126,11 @@ _Updated: 2026-09-15T12:12:34.218579 | Total trades: 331_
 | FDS_2026-08-29 | BREAKOUT | -5.35% | Stop Loss D+6 | 129.8 | Financial Services | — |
 | CRM_2026-08-19 | BREAKOUT | 11.48% | Take Profit D+6 | 117.7 | Technology | pre_earnings_gamble_won,hold_through_earnings_risk,post_earnings_beat_continuation |
 | ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
+| RVTY_2026-08-20 | BREAKOUT | 10.34% | Take Profit D+17 | 140.0 | Healthcare | — |
+| DOCU_2026-09-01 | BREAKOUT | 10.23% | Take Profit D+9 | 129.4 | Technology | — |
 | MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
-| DE_2026-08-21 | BREAKOUT | 8.48% | Take Profit D+8 | 106.5 | Industrials | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
-| GPC_2026-08-25 | BREAKOUT | -3.81% | Stop Loss D+13 | 95.7 | Consumer Cyclical | — |
 
-## Pending Claude-Analyse (22)
+## Pending Claude-Analyse (26)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 2 mehr)_
+- _(+ 6 mehr)_
