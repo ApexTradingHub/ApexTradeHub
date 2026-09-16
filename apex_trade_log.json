@@ -6387,5 +6387,23 @@
     "exit_price": 94.9000015258789,
     "reason": "Intraday Close (EOD, below VWAP)",
     "pnl_pct": -1.607045589845952
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CRWD_2026-09-14",
+    "ts": "2026-09-16T13:35:06Z",
+    "ticker": "CRWD",
+    "exit_price": 239.037,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000053
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_SAIL_2026-09-15_1406",
+    "ts": "2026-09-16T13:35:06Z",
+    "ticker": "SAIL",
+    "exit_price": 19.81,
+    "reason": "Stop Loss",
+    "pnl_pct": 2.695899193872681e-06
   }
 ]
