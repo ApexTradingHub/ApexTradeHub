@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 141.77437354881909,
-  "last_updated": "2026-09-16T19:05:02Z",
+  "cash": 91.77437354881909,
+  "last_updated": "2026-09-16T19:10:02Z",
   "pending": [],
   "open": [
     {
@@ -30,9 +30,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-10T13:40:06Z",
-      "current_price": 85.5199966430664,
-      "pnl_pct": -2.336136780728042,
-      "pnl_usd": -1.168068390364021,
+      "current_price": 85.2750015258789,
+      "pnl_pct": -2.615921282056474,
+      "pnl_usd": -1.307960641028237,
       "hold_days": 6,
       "hold_trading_days": 4
     },
@@ -61,9 +61,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-14T13:35:06Z",
-      "current_price": 48.7599983215332,
-      "pnl_pct": -3.2554112358780216,
-      "pnl_usd": -1.627705617939011,
+      "current_price": 48.599998474121094,
+      "pnl_pct": -3.5728665265475246,
+      "pnl_usd": -1.7864332632737623,
       "hold_days": 2,
       "hold_trading_days": 2
     },
@@ -90,9 +90,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-16T17:36:28Z",
       "status": "open",
-      "current_price": 470.5299987792969,
-      "pnl_pct": 0.9742716882477295,
-      "pnl_usd": 0.48713584412386474,
+      "current_price": 470.2200012207031,
+      "pnl_pct": 0.9077471780457327,
+      "pnl_usd": 0.45387358902286634,
       "hold_days": 0
     },
     {
@@ -118,9 +118,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-16T18:46:35Z",
       "status": "open",
-      "current_price": 921.7100219726562,
-      "pnl_pct": -0.3550026532325954,
-      "pnl_usd": -0.1775013266162977,
+      "current_price": 918.0,
+      "pnl_pct": -0.756088809191468,
+      "pnl_usd": -0.378044404595734,
       "hold_days": 0
     },
     {
@@ -146,9 +146,37 @@
       "ladder_step": 0,
       "opened_at": "2026-09-16T18:56:32Z",
       "status": "open",
-      "current_price": 9.704999923706055,
-      "pnl_pct": -0.10293596216951234,
-      "pnl_usd": -0.05146798108475617,
+      "current_price": 9.645000457763672,
+      "pnl_pct": -0.7205321021592795,
+      "pnl_usd": -0.3602660510796397,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_MELI_2026-09-16_1911",
+      "ticker": "MELI",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-09-16",
+      "stop_initial": 1792.24,
+      "target": 1940.05,
+      "score": 28.4,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.39,
+      "entry_actual": 1847.6700439453125,
+      "shares": 0.027061108753614616,
+      "size_usd": 50.0,
+      "stop": 1792.24,
+      "stop_set_at": "2026-09-16T19:11:28Z",
+      "high_since_entry": 1847.6700439453125,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-16T19:11:28Z",
+      "status": "open",
+      "current_price": 1847.6700439453125,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -8076,12 +8104,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 190,
-    "open_trades": 5,
+    "open_trades": 6,
     "wins": 93,
     "losses": 97,
     "win_rate": 48.94736842105264,
     "pnl_realized": -15.474520345388914,
-    "pnl_unrealized": -2.5376074718802206,
-    "equity": 389.23676607693886
+    "pnl_unrealized": -3.3788307709545067,
+    "equity": 388.3955427778646
   }
 }
