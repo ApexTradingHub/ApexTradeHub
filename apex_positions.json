@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 291.7743735488191,
-  "last_updated": "2026-09-16T17:30:03Z",
+  "cash": 241.77437354881909,
+  "last_updated": "2026-09-16T17:35:03Z",
   "pending": [],
   "open": [
     {
@@ -30,9 +30,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-10T13:40:06Z",
-      "current_price": 86.49500274658203,
-      "pnl_pct": -1.222679502085532,
-      "pnl_usd": -0.611339751042766,
+      "current_price": 86.43000030517578,
+      "pnl_pct": -1.2969123107339575,
+      "pnl_usd": -0.6484561553669788,
       "hold_days": 6,
       "hold_trading_days": 4
     },
@@ -61,11 +61,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-14T13:35:06Z",
-      "current_price": 49.26499938964844,
-      "pnl_pct": -2.2534398999053735,
-      "pnl_usd": -1.1267199499526868,
+      "current_price": 49.21500015258789,
+      "pnl_pct": -2.3526432591025026,
+      "pnl_usd": -1.1763216295512513,
       "hold_days": 2,
       "hold_trading_days": 2
+    },
+    {
+      "id": "PAPER_INTRA_AXON_2026-09-16_1736",
+      "ticker": "AXON",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Industrials",
+      "signal_date": "2026-09-16",
+      "stop_initial": 452.01,
+      "target": 489.29,
+      "score": 44.8,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.7,
+      "entry_actual": 465.989990234375,
+      "shares": 0.10729844212930824,
+      "size_usd": 50.0,
+      "stop": 452.01,
+      "stop_set_at": "2026-09-16T17:36:28Z",
+      "high_since_entry": 465.989990234375,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-16T17:36:28Z",
+      "status": "open",
+      "current_price": 465.989990234375,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -7992,12 +8020,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 190,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 93,
     "losses": 97,
     "win_rate": 48.94736842105264,
     "pnl_realized": -15.474520345388914,
-    "pnl_unrealized": -1.7380597009954528,
-    "equity": 390.03631384782364
+    "pnl_unrealized": -1.82477778491823,
+    "equity": 389.94959576390085
   }
 }
