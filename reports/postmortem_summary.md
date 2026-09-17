@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-16T12:09:58.795790 | Total trades: 335_
+_Updated: 2026-09-17T12:11:17.186993 | Total trades: 339_
 
-**Analyse-Status**: complete=309, pending=26
+**Analyse-Status**: complete=309, pending=30
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -115,7 +115,7 @@ _Updated: 2026-09-16T12:09:58.795790 | Total trades: 335_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=22)
+## Recent (30d) — Worst 5 / Best 5  (n=25)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -130,7 +130,7 @@ _Updated: 2026-09-16T12:09:58.795790 | Total trades: 335_
 | DOCU_2026-09-01 | BREAKOUT | 10.23% | Take Profit D+9 | 129.4 | Technology | — |
 | MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
 
-## Pending Claude-Analyse (26)
+## Pending Claude-Analyse (30)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 6 mehr)_
+- _(+ 10 mehr)_
