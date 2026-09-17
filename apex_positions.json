@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 338.8001232417073,
-  "last_updated": "2026-09-17T16:05:03Z",
+  "cash": 288.8001232417073,
+  "last_updated": "2026-09-17T16:10:02Z",
   "pending": [],
   "open": [
     {
@@ -28,9 +28,37 @@
       "ladder_step": 0,
       "opened_at": "2026-09-17T14:01:46Z",
       "status": "open",
-      "current_price": 98.33999633789062,
-      "pnl_pct": -0.09651163006996086,
-      "pnl_usd": -0.04825581503498043,
+      "current_price": 98.95999908447266,
+      "pnl_pct": 0.5333484420176852,
+      "pnl_usd": 0.2666742210088426,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_FPS_2026-09-17_1612",
+      "ticker": "FPS",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Industrials",
+      "signal_date": "2026-09-17",
+      "stop_initial": 36.18,
+      "target": 39.16,
+      "score": 18.1,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.43,
+      "entry_actual": 37.29999923706055,
+      "shares": 1.3404826011449615,
+      "size_usd": 50.0,
+      "stop": 36.18,
+      "stop_set_at": "2026-09-17T16:12:12Z",
+      "high_since_entry": 37.29999923706055,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-17T16:12:12Z",
+      "status": "open",
+      "current_price": 37.29999923706055,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -8150,12 +8178,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 196,
-    "open_trades": 1,
+    "open_trades": 2,
     "wins": 94,
     "losses": 102,
     "win_rate": 47.95918367346938,
     "pnl_realized": -18.44877065250069,
-    "pnl_unrealized": -0.04825581503498043,
-    "equity": 388.75186742667233
+    "pnl_unrealized": 0.2666742210088426,
+    "equity": 389.0667974627161
   }
 }
