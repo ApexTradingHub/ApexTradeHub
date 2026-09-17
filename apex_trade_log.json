@@ -6596,5 +6596,24 @@
     "signal_date": "2026-09-17",
     "score": 63.6,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_BRKR_2026-09-17",
+    "ts": "2026-09-17T17:45:06Z",
+    "ticker": "BRKR",
+    "entry_signal": 60.97,
+    "cur_price": 63.970001220703125,
+    "drift_pct": 4.92,
+    "reason": "entry-drift +4.92% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_PS_2026-09-17",
+    "ts": "2026-09-17T17:45:06Z",
+    "ticker": "PS",
+    "entry_signal": 41.22,
+    "entry_actual": 41.42609999999999,
+    "mode": "paper"
   }
 ]
