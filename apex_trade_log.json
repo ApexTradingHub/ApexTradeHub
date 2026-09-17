@@ -6661,5 +6661,53 @@
     "entry_signal": 207.63,
     "entry_actual": 207.63,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_XMTR_2026-09-17_1401",
+    "ts": "2026-09-17T19:45:06Z",
+    "ticker": "XMTR",
+    "pnl_pct": -2.19,
+    "range_pos_eod": 0.328,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.88
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_XMTR_2026-09-17_1401",
+    "ts": "2026-09-17T19:45:06Z",
+    "ticker": "XMTR",
+    "exit_price": 96.27999877929688,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -2.1892607636974897
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_FPS_2026-09-17_1612",
+    "ts": "2026-09-17T19:45:06Z",
+    "ticker": "FPS",
+    "pnl_pct": 0.59,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.776,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.33
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FPS_2026-09-17_1612",
+    "ts": "2026-09-17T19:45:06Z",
+    "ticker": "FPS",
+    "exit_price": 37.52000045776367,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.5898156171663835
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_ARQT_2026-09-17",
+    "ts": "2026-09-17T19:45:06Z",
+    "ticker": "ARQT",
+    "entry_signal": 26.27,
+    "entry_actual": 26.27,
+    "mode": "paper"
   }
 ]
