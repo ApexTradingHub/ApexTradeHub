@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 238.8001232417073,
-  "last_updated": "2026-09-17T18:40:02Z",
+  "last_updated": "2026-09-17T18:45:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_ARQT_2026-09-17",
@@ -46,9 +46,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-17T14:01:46Z",
       "status": "open",
-      "current_price": 96.93499755859375,
-      "pnl_pct": -1.5238482625116339,
-      "pnl_usd": -0.7619241312558169,
+      "current_price": 96.46009826660156,
+      "pnl_pct": -2.0062979031585004,
+      "pnl_usd": -1.0031489515792502,
       "hold_days": 0
     },
     {
@@ -74,9 +74,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-17T16:12:12Z",
       "status": "open",
-      "current_price": 37.20000076293945,
-      "pnl_pct": -0.26809242940074174,
-      "pnl_usd": -0.13404621470037087,
+      "current_price": 37.26459884643555,
+      "pnl_pct": -0.09490721541309541,
+      "pnl_usd": -0.0474536077065477,
       "hold_days": 0
     },
     {
@@ -98,17 +98,18 @@
       "entry_actual": 41.42609999999999,
       "shares": 1.2069685536413037,
       "size_usd": 50.0,
-      "stop": 39.37,
-      "stop_set_at": "2026-09-17T17:45:06Z",
-      "high_since_entry": 42.88999938964844,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 42.25462199999999,
+      "stop_set_at": "2026-09-17T18:45:05Z",
+      "high_since_entry": 43.154998779296875,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-09-17T17:45:06Z",
-      "current_price": 42.88999938964844,
-      "pnl_pct": 3.533761058000745,
-      "pnl_usd": 1.7668805290003724,
+      "current_price": 43.154998779296875,
+      "pnl_pct": 4.1734529180803515,
+      "pnl_usd": 2.0867264590401757,
       "hold_days": 0,
-      "hold_trading_days": 0
+      "hold_trading_days": 0,
+      "trailing_activated_at": "2026-09-17T18:45:05Z"
     }
   ],
   "closed": [
@@ -8251,7 +8252,7 @@
     "losses": 102,
     "win_rate": 47.95918367346938,
     "pnl_realized": -18.44877065250069,
-    "pnl_unrealized": 0.8709101830441845,
-    "equity": 389.6710334247515
+    "pnl_unrealized": 1.0361238997543778,
+    "equity": 389.8362471414617
   }
 }
