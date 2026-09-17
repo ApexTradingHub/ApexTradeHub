@@ -1,10 +1,39 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 388.8001232417073,
-  "last_updated": "2026-09-17T13:55:02Z",
+  "cash": 338.8001232417073,
+  "last_updated": "2026-09-17T14:00:03Z",
   "pending": [],
-  "open": [],
+  "open": [
+    {
+      "id": "PAPER_INTRA_XMTR_2026-09-17_1401",
+      "ticker": "XMTR",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Industrials",
+      "signal_date": "2026-09-17",
+      "stop_initial": 95.48,
+      "target": 103.36,
+      "score": 25.9,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.75,
+      "entry_actual": 98.43499755859375,
+      "shares": 0.5079494208372113,
+      "size_usd": 50.0,
+      "stop": 95.48,
+      "stop_set_at": "2026-09-17T14:01:46Z",
+      "high_since_entry": 98.43499755859375,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-17T14:01:46Z",
+      "status": "open",
+      "current_price": 98.43499755859375,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
+    }
+  ],
   "closed": [
     {
       "id": "PAPER_ADI_2026-06-03",
@@ -8121,12 +8150,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 196,
-    "open_trades": 0,
+    "open_trades": 1,
     "wins": 94,
     "losses": 102,
     "win_rate": 47.95918367346938,
     "pnl_realized": -18.44877065250069,
-    "pnl_unrealized": 0,
+    "pnl_unrealized": 0.0,
     "equity": 388.8001232417073
   }
 }
