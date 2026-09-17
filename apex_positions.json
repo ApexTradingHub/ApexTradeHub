@@ -2,8 +2,60 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 288.8001232417073,
-  "last_updated": "2026-09-17T17:35:02Z",
-  "pending": [],
+  "last_updated": "2026-09-17T17:40:03Z",
+  "pending": [
+    {
+      "id": "PAPER_MOM_BRKR_2026-09-17",
+      "ticker": "BRKR",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-17",
+      "entry": 60.97,
+      "stop_initial": 58.24,
+      "target": 64.31,
+      "score": 67.6,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-17T17:40:05Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_MOM_ARQT_2026-09-17",
+      "ticker": "ARQT",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-17",
+      "entry": 26.27,
+      "stop_initial": 25.09,
+      "target": 27.71,
+      "score": 65.3,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-17T17:40:05Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_MOM_PS_2026-09-17",
+      "ticker": "PS",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Financial Services",
+      "signal_date": "2026-09-17",
+      "entry": 41.22,
+      "stop_initial": 39.37,
+      "target": 43.47,
+      "score": 63.6,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-17T17:40:05Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_XMTR_2026-09-17_1401",
@@ -28,9 +80,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-17T14:01:46Z",
       "status": "open",
-      "current_price": 98.27999877929688,
-      "pnl_pct": -0.15746308034864478,
-      "pnl_usd": -0.07873154017432239,
+      "current_price": 98.75,
+      "pnl_pct": 0.32001061534922454,
+      "pnl_usd": 0.1600053076746123,
       "hold_days": 0
     },
     {
@@ -56,9 +108,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-17T16:12:12Z",
       "status": "open",
-      "current_price": 37.099998474121094,
-      "pnl_pct": -0.5361950858721098,
-      "pnl_usd": -0.2680975429360549,
+      "current_price": 37.08000183105469,
+      "pnl_pct": -0.589805390095757,
+      "pnl_usd": -0.2949026950478785,
       "hold_days": 0
     }
   ],
@@ -8183,7 +8235,7 @@
     "losses": 102,
     "win_rate": 47.95918367346938,
     "pnl_realized": -18.44877065250069,
-    "pnl_unrealized": -0.3468290831103773,
-    "equity": 388.4532941585969
+    "pnl_unrealized": -0.13489738737326623,
+    "equity": 388.66522585433404
   }
 }
