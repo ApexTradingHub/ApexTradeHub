@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 336.37703925813753,
-  "last_updated": "2026-09-18T18:50:03Z",
+  "cash": 286.37703925813753,
+  "last_updated": "2026-09-18T18:55:03Z",
   "pending": [],
   "open": [
     {
@@ -30,11 +30,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-17T19:45:06Z",
-      "current_price": 25.729999542236328,
-      "pnl_pct": -2.055578445997988,
-      "pnl_usd": -1.027789222998994,
+      "current_price": 25.708200454711914,
+      "pnl_pct": -2.1385593653905044,
+      "pnl_usd": -1.0692796826952522,
       "hold_days": 0,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_INTRA_TRGP_2026-09-18_1856",
+      "ticker": "TRGP",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Energy",
+      "signal_date": "2026-09-18",
+      "stop_initial": 285.6,
+      "target": 309.15,
+      "score": 32.3,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 3.11,
+      "entry_actual": 294.42999267578125,
+      "shares": 0.16981965575449617,
+      "size_usd": 50.0,
+      "stop": 285.6,
+      "stop_set_at": "2026-09-18T18:56:26Z",
+      "high_since_entry": 294.42999267578125,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-18T18:56:26Z",
+      "status": "open",
+      "current_price": 294.42999267578125,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -8338,12 +8366,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 201,
-    "open_trades": 1,
+    "open_trades": 2,
     "wins": 96,
     "losses": 105,
     "win_rate": 47.76119402985074,
     "pnl_realized": -20.87185463607049,
-    "pnl_unrealized": -1.027789222998994,
-    "equity": 385.34925003513854
+    "pnl_unrealized": -1.0692796826952522,
+    "equity": 385.3077595754423
   }
 }
