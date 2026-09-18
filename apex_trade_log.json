@@ -6850,5 +6850,44 @@
     "gain_from_open": 1.84,
     "score": 24.9,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_TRGP_2026-09-18_1856",
+    "ts": "2026-09-18T19:45:06Z",
+    "ticker": "TRGP",
+    "pnl_pct": -0.29,
+    "range_pos_eod": 0.75,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.22
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_TRGP_2026-09-18_1856",
+    "ts": "2026-09-18T19:45:06Z",
+    "ticker": "TRGP",
+    "exit_price": 293.57501220703125,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.29038497775988553
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_BABA_2026-09-18_1911",
+    "ts": "2026-09-18T19:45:06Z",
+    "ticker": "BABA",
+    "pnl_pct": 0.11,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.798,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_BABA_2026-09-18_1911",
+    "ts": "2026-09-18T19:45:06Z",
+    "ticker": "BABA",
+    "exit_price": 113.18000030517578,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.11499093313465189
   }
 ]
