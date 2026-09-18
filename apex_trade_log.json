@@ -6718,5 +6718,45 @@
     "exit_price": 42.25462199999999,
     "reason": "Stop Loss (Trailing)",
     "pnl_pct": 1.9999999999999993
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_GNRC_2026-09-17",
+    "ts": "2026-09-18T13:30:06Z",
+    "ticker": "GNRC",
+    "old_stop": 198.34,
+    "new_stop": 206.17395668029786,
+    "high": 231.887,
+    "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_GNRC_2026-09-17",
+    "ts": "2026-09-18T13:30:06Z",
+    "ticker": "GNRC",
+    "old_stop": 206.17395668029786,
+    "new_stop": 206.17395668029786,
+    "high": 231.887,
+    "ladder_step": 2
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_GNRC_2026-09-17",
+    "ts": "2026-09-18T13:30:06Z",
+    "ticker": "GNRC",
+    "old_stop": 206.17395668029786,
+    "new_stop": 206.17395668029786,
+    "high": 231.887,
+    "ladder_step": 3
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_GNRC_2026-09-17",
+    "ts": "2026-09-18T13:30:06Z",
+    "ticker": "GNRC",
+    "old_stop": 206.17395668029786,
+    "new_stop": 206.17395668029786,
+    "high": 231.887,
+    "ladder_step": 4
   }
 ]
