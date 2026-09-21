@@ -7053,5 +7053,37 @@
     "gain_from_open": 2.61,
     "score": 19.6,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_P_2026-09-21_1401",
+    "ts": "2026-09-21T19:45:08Z",
+    "ticker": "P",
+    "pnl_pct": 1.3,
+    "new_stop": 110.78,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.73,
+    "range_pos_eod": 0.831,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.48
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_MXL_2026-09-21_1401",
+    "ts": "2026-09-21T19:45:09Z",
+    "ticker": "MXL",
+    "pnl_pct": -0.07,
+    "range_pos_eod": 0.558,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.94
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MXL_2026-09-21_1401",
+    "ts": "2026-09-21T19:45:09Z",
+    "ticker": "MXL",
+    "exit_price": 86.37999725341797,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.06941830899294114
   }
 ]
