@@ -2,22 +2,22 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 236.8818266473569,
-  "last_updated": "2026-09-21T13:40:02Z",
+  "last_updated": "2026-09-21T13:45:02Z",
   "pending": [
     {
-      "id": "PAPER_MOM_MXL_2026-09-21",
-      "ticker": "MXL",
+      "id": "PAPER_MOM_P_2026-09-21",
+      "ticker": "P",
       "setup": "MOMENTUM",
       "source": "momentum_filler",
       "sector": "Technology",
       "signal_date": "2026-09-21",
-      "entry": 81.53,
-      "stop_initial": 77.88,
-      "target": 85.99,
-      "score": 71.6,
+      "entry": 104.66,
+      "stop_initial": 99.97,
+      "target": 110.39,
+      "score": 69.5,
       "rr": 1.5,
       "upside_pct": 6.0,
-      "added_at": "2026-09-21T13:40:06Z",
+      "added_at": "2026-09-21T13:45:05Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -48,9 +48,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-17T19:45:06Z",
-      "current_price": 25.809999465942383,
-      "pnl_pct": -1.7510488544256444,
-      "pnl_usd": -0.8755244272128222,
+      "current_price": 25.799999237060547,
+      "pnl_pct": -1.7891159609419591,
+      "pnl_usd": -0.8945579804709796,
       "hold_days": 3,
       "hold_trading_days": 2
     },
@@ -75,13 +75,13 @@
       "size_usd": 50.0,
       "stop": 63.4504,
       "stop_set_at": "2026-09-21T13:35:06Z",
-      "high_since_entry": 65.4000015258789,
+      "high_since_entry": 65.61000061035156,
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 65.37999725341797,
-      "pnl_pct": 7.162755701389889,
-      "pnl_usd": 3.5813778506949445,
+      "current_price": 65.61000061035156,
+      "pnl_pct": 7.53974858277588,
+      "pnl_usd": 3.76987429138794,
       "hold_days": 2,
       "hold_trading_days": 1,
       "trailing_activated_at": "2026-09-21T13:35:06Z"
@@ -111,9 +111,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 10.829999923706055,
-      "pnl_pct": 1.4044936676596909,
-      "pnl_usd": 0.7022468338298453,
+      "current_price": 10.755000114440918,
+      "pnl_pct": 0.7022482625554144,
+      "pnl_usd": 0.3511241312777072,
       "hold_days": 2,
       "hold_trading_days": 1
     }
@@ -8510,6 +8510,25 @@
       "mode": "paper",
       "expired_at": "2026-09-17T17:45:06Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_MOM_MXL_2026-09-21",
+      "ticker": "MXL",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Technology",
+      "signal_date": "2026-09-21",
+      "entry": 81.53,
+      "stop_initial": 77.88,
+      "target": 85.99,
+      "score": 71.6,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-21T13:40:06Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-21T13:45:05Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -8521,7 +8540,7 @@
     "losses": 106,
     "win_rate": 48.03921568627451,
     "pnl_realized": -20.36706724685112,
-    "pnl_unrealized": 3.408100257311968,
-    "equity": 390.28992690466885
+    "pnl_unrealized": 3.2264404421946677,
+    "equity": 390.10826708955153
   }
 }

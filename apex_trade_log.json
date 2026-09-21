@@ -6967,5 +6967,24 @@
     "signal_date": "2026-09-21",
     "score": 71.6,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_MXL_2026-09-21",
+    "ts": "2026-09-21T13:45:05Z",
+    "ticker": "MXL",
+    "entry_signal": 81.53,
+    "cur_price": 87.97000122070312,
+    "drift_pct": 7.9,
+    "reason": "entry-drift +7.90% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_P_2026-09-21",
+    "ts": "2026-09-21T13:45:05Z",
+    "ticker": "P",
+    "signal_date": "2026-09-21",
+    "score": 69.5,
+    "source": "momentum_filler"
   }
 ]
