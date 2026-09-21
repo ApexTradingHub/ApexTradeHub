@@ -6949,5 +6949,23 @@
     "new_stop": 63.4504,
     "high": 65.4000015258789,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_ALMR_2026-09-18",
+    "ts": "2026-09-21T13:40:06Z",
+    "ticker": "ALMR",
+    "exit_price": 34.65585182189941,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.1849688230639734
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_MXL_2026-09-21",
+    "ts": "2026-09-21T13:40:06Z",
+    "ticker": "MXL",
+    "signal_date": "2026-09-21",
+    "score": 71.6,
+    "source": "momentum_filler"
   }
 ]
