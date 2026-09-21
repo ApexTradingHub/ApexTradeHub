@@ -6889,5 +6889,45 @@
     "exit_price": 113.18000030517578,
     "reason": "Intraday Close (EOD, zu duenn)",
     "pnl_pct": 0.11499093313465189
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_ALMR_2026-09-18",
+    "ts": "2026-09-21T13:30:08Z",
+    "ticker": "ALMR",
+    "old_stop": 32.72,
+    "new_stop": 34.65585182189941,
+    "high": 37.76,
+    "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_ALMR_2026-09-18",
+    "ts": "2026-09-21T13:30:08Z",
+    "ticker": "ALMR",
+    "old_stop": 34.65585182189941,
+    "new_stop": 34.65585182189941,
+    "high": 37.76,
+    "ladder_step": 2
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_ALMR_2026-09-18",
+    "ts": "2026-09-21T13:30:08Z",
+    "ticker": "ALMR",
+    "old_stop": 34.65585182189941,
+    "new_stop": 34.65585182189941,
+    "high": 37.76,
+    "ladder_step": 3
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_ALMR_2026-09-18",
+    "ts": "2026-09-21T13:30:08Z",
+    "ticker": "ALMR",
+    "old_stop": 34.65585182189941,
+    "new_stop": 34.65585182189941,
+    "high": 37.76,
+    "ladder_step": 4
   }
 ]
