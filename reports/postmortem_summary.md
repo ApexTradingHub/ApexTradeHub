@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-18T11:53:05.123329 | Total trades: 344_
+_Updated: 2026-09-21T13:23:20.412390 | Total trades: 347_
 
-**Analyse-Status**: complete=309, pending=35
+**Analyse-Status**: complete=309, pending=38
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -92,13 +92,13 @@ _Updated: 2026-09-18T11:53:05.123329 | Total trades: 344_
 | SW_2026-05-04 | REVERSAL | -9.44% | Stop Loss D+11 | 64.6 | Unknown | REVERSAL gekauft 4 Tage vor Q1-2026-Earnings, die massiv verfehlten: EPS $0.33 vs $0.41 erwartet (-19.5% Surprise), Net Income -83% YoY auf $63M (vs $382M). Net-Marge brach von 5.0% auf 0.8% ein (hoehere Depreciation/Impairment/Restructuring + ~$65M Wetter-Headwinds + schwaechere NA-Volumina). 7-Tage-Verlustserie -9.5%, Stop am 19.5 bei -4.6% Tagesverlust. Oversold-RSI war Falle - der Abverkauf war fundamental getrieben. |
 | WDC_2026-03-18 | BREAKOUT | -9.37% | Stop Loss D+3 | 94.4 | Technology | Stop zu eng fuer hochvolatilen AI-Storage-Stock (170% YTD, 845% 1y) - getoppt nach 3 Tagen, dann massive Continuation verpasst |
 | HII_2026-05-12 | REVERSAL | -9.34% | Stop Loss D+13 | 90.9 | Industrials | REVERSAL-Lehrbuch-Versagen: oversold RSI 35.6 war Falle. Gekauft ~7 Tage NACH Q1-Earnings (5.5) in fundamentale Deterioration: Segment-Margin 5.6% (von 6.3%), neg. FCF -$461M, $390M Cash-Burn, Insider-Form-144 am 5.5. Stock -12% post-earnings, weiter -4% am 29.5. analyst_upside 19.4% (>15 = ANTI-predictive bestaetigt). Score 90.9 = High-Score-Loss. Kombi aller REVERSAL-Failure-Modes. |
+| EQR_2026-07-02 | STAGE_2 | -9.29% | Time Exit D+80 | 103.7 | Real Estate | _pending_ |
 | CACI_2026-04-23 | REVERSAL | -9.28% | Stop Loss D+9 | 81.2 | Technology | Identisch zu CACI_2026-04-19 - REVERSAL #2 in Downgrade-Phase, kein Lerneffekt durch System |
 | KLAC_2026-06-29 | BREAKOUT | -9.28% | Stop Loss D+3 | 117.8 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
 | BTU_2026-05-01 | REVERSAL | -8.73% | Stop Loss D+3 | 82.2 | Energy | REVERSAL 4 Tage vor Q1 Earnings - Earnings am 5.5 zeigten Net Loss & EBITDA -43%, Production Cut |
 | ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | High-Score-Loss (137): Insider-Verkaeufe $584M/3M, Cloud-Titan-Konzentration (MSFT/Meta), Networking-De-Risking. -8.6% Stop. |
 | IOT_2026-07-17 | BREAKOUT | -8.51% | Stop Loss D+3 | 104.4 | Technology | BREAKOUT nach ~29% 6-Tage-Rally gekauft = extended; drehte auf Valuation-Unwind + Enterprise-Growth-Deceleration + Macro-Headwinds. -8.5% Stop D+3. |
-| CACI_2026-05-01 | REVERSAL | -8.03% | Stop Loss D+3 | 72.6 | Technology | REVERSAL #3 fuer CACI in 12 Tagen - Phase E DUPLICATE_WINDOW (3d) hat nicht ausgereicht, weil wir alle 10-15 Tage neu signalisiert haben |
 
 ## Best 10 Trades
 
@@ -115,22 +115,22 @@ _Updated: 2026-09-18T11:53:05.123329 | Total trades: 344_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=28)
+## Recent (30d) — Worst 5 / Best 5  (n=18)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
 | CNC_2026-09-02 | VCP | -7.73% | Stop Loss D+4 | 92.1 | Healthcare | — |
-| CART_2026-08-19 | BREAKOUT | -5.94% | Stop Loss D+13 | 132.7 | Consumer Cyclical | — |
 | FTNT_2026-08-28 | BREAKOUT | -5.87% | Stop Loss D+2 | 145.6 | Technology | high_score_loss_85plus,valuation_unwind,extended_perf120 |
 | CHWY_2026-08-24 | BREAKOUT | -5.67% | Stop Loss D+2 | 96.3 | Consumer Cyclical | sector_divergence_loser,quick_stop_1_3d,weak_breakout |
 | FDS_2026-08-29 | BREAKOUT | -5.35% | Stop Loss D+6 | 129.8 | Financial Services | — |
-| CRM_2026-08-19 | BREAKOUT | 11.48% | Take Profit D+6 | 117.7 | Technology | pre_earnings_gamble_won,hold_through_earnings_risk,post_earnings_beat_continuation |
-| ILMN_2026-08-20 | BREAKOUT | 10.89% | Take Profit D+5 | 124.4 | Healthcare | post_earnings_beat_continuation,guidance_raise_catalyst,pullback_entry_win |
-| RVTY_2026-08-20 | BREAKOUT | 10.34% | Take Profit D+17 | 140.0 | Healthcare | — |
+| SM_2026-09-14 | BREAKOUT | -5.29% | Stop Loss D+4 | 143.8 | Energy | — |
 | DOCU_2026-09-01 | BREAKOUT | 10.23% | Take Profit D+9 | 129.4 | Technology | — |
 | XRX_2026-08-29 | SHORT_SQUEEZE | 10.13% | Time Exit D+20 | 86.4 | Industrials | — |
+| MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
+| GME_2026-09-11 | BREAKOUT | 8.27% | Take Profit D+4 | 92.7 | Consumer Cyclical | — |
+| AVTR_2026-09-02 | BREAKOUT | 8.15% | Take Profit D+10 | 115.0 | Healthcare | — |
 
-## Pending Claude-Analyse (35)
+## Pending Claude-Analyse (38)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 15 mehr)_
+- _(+ 18 mehr)_
