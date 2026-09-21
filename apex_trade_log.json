@@ -6986,5 +6986,24 @@
     "signal_date": "2026-09-21",
     "score": 69.5,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_P_2026-09-21",
+    "ts": "2026-09-21T13:50:08Z",
+    "ticker": "P",
+    "entry_signal": 104.66,
+    "cur_price": 110.27999877929688,
+    "drift_pct": 5.37,
+    "reason": "entry-drift +5.37% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_INTC_2026-09-21",
+    "ts": "2026-09-21T13:50:08Z",
+    "ticker": "INTC",
+    "signal_date": "2026-09-21",
+    "score": 64.9,
+    "source": "momentum_filler"
   }
 ]
