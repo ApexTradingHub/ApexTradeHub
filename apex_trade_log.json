@@ -7211,5 +7211,71 @@
     "new_stop": 27.320800000000002,
     "high": 28.0,
     "ladder_step": 2
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_CIFR_2026-09-22_1401",
+    "ts": "2026-09-22T19:45:07Z",
+    "ticker": "CIFR",
+    "pnl_pct": -1.88,
+    "range_pos_eod": 0.458,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CIFR_2026-09-22_1401",
+    "ts": "2026-09-22T19:45:07Z",
+    "ticker": "CIFR",
+    "exit_price": 19.0049991607666,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.8843658371325216
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_DOCN_2026-09-22_1431",
+    "ts": "2026-09-22T19:45:07Z",
+    "ticker": "DOCN",
+    "pnl_pct": -1.77,
+    "range_pos_eod": 0.284,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.61
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_DOCN_2026-09-22_1431",
+    "ts": "2026-09-22T19:45:07Z",
+    "ticker": "DOCN",
+    "exit_price": 145.97999572753906,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.7664278291241473
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_MARA_2026-09-22_1446",
+    "ts": "2026-09-22T19:45:08Z",
+    "ticker": "MARA",
+    "pnl_pct": -0.33,
+    "range_pos_eod": 0.7,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 5.4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MARA_2026-09-22_1446",
+    "ts": "2026-09-22T19:45:08Z",
+    "ticker": "MARA",
+    "exit_price": 13.670000076293945,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.32810846367693425
+  },
+  {
+    "event": "open",
+    "id": "PAPER_SMCI_2026-09-21",
+    "ts": "2026-09-22T19:45:08Z",
+    "ticker": "SMCI",
+    "entry_signal": 41.61,
+    "entry_actual": 41.61,
+    "mode": "paper"
   }
 ]
