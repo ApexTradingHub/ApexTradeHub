@@ -2,8 +2,26 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 136.84711749286043,
-  "last_updated": "2026-09-22T13:25:03Z",
-  "pending": [],
+  "last_updated": "2026-09-22T13:30:02Z",
+  "pending": [
+    {
+      "id": "PAPER_SMCI_2026-09-21",
+      "ticker": "SMCI",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-09-21",
+      "entry": 41.61,
+      "stop_initial": 37.94,
+      "target": 48.53,
+      "score": 131.0,
+      "rr": 1.88,
+      "upside_pct": 16.6,
+      "added_at": "2026-09-22T13:30:09Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_MOM_ARQT_2026-09-17",
@@ -120,7 +138,7 @@
       "size_usd": 50.0,
       "stop": 160.31,
       "stop_set_at": "2026-09-21T14:00:07Z",
-      "high_since_entry": 167.82,
+      "high_since_entry": 170.23,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-21T14:00:07Z",
