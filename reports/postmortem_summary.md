@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-21T13:23:20.412390 | Total trades: 347_
+_Updated: 2026-09-22T12:04:25.705733 | Total trades: 349_
 
-**Analyse-Status**: complete=309, pending=38
+**Analyse-Status**: complete=309, pending=40
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -115,22 +115,22 @@ _Updated: 2026-09-21T13:23:20.412390 | Total trades: 347_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=18)
+## Recent (30d) — Worst 5 / Best 5  (n=20)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
 | CNC_2026-09-02 | VCP | -7.73% | Stop Loss D+4 | 92.1 | Healthcare | — |
 | FTNT_2026-08-28 | BREAKOUT | -5.87% | Stop Loss D+2 | 145.6 | Technology | high_score_loss_85plus,valuation_unwind,extended_perf120 |
 | CHWY_2026-08-24 | BREAKOUT | -5.67% | Stop Loss D+2 | 96.3 | Consumer Cyclical | sector_divergence_loser,quick_stop_1_3d,weak_breakout |
+| MUR_2026-09-10 | BREAKOUT | -5.47% | Stop Loss D+7 | 101.7 | Energy | — |
 | FDS_2026-08-29 | BREAKOUT | -5.35% | Stop Loss D+6 | 129.8 | Financial Services | — |
-| SM_2026-09-14 | BREAKOUT | -5.29% | Stop Loss D+4 | 143.8 | Energy | — |
 | DOCU_2026-09-01 | BREAKOUT | 10.23% | Take Profit D+9 | 129.4 | Technology | — |
 | XRX_2026-08-29 | SHORT_SQUEEZE | 10.13% | Time Exit D+20 | 86.4 | Industrials | — |
 | MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
 | GME_2026-09-11 | BREAKOUT | 8.27% | Take Profit D+4 | 92.7 | Consumer Cyclical | — |
 | AVTR_2026-09-02 | BREAKOUT | 8.15% | Take Profit D+10 | 115.0 | Healthcare | — |
 
-## Pending Claude-Analyse (38)
+## Pending Claude-Analyse (40)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 18 mehr)_
+- _(+ 20 mehr)_
