@@ -7094,5 +7094,24 @@
     "signal_date": "2026-09-21",
     "score": 131.0,
     "source": "scanner"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_IMOS_2026-09-18",
+    "ts": "2026-09-22T13:35:07Z",
+    "ticker": "IMOS",
+    "old_stop": 63.4504,
+    "new_stop": 64.67060000000001,
+    "high": 66.1,
+    "ladder_step": 3
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_P_2026-09-21_1401",
+    "ts": "2026-09-22T13:35:07Z",
+    "ticker": "P",
+    "exit_price": 110.78,
+    "reason": "Stop Loss",
+    "pnl_pct": 0.004512276282774105
   }
 ]
