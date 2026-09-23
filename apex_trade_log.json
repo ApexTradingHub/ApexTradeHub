@@ -7304,5 +7304,24 @@
     "signal_date": "2026-09-23",
     "score": 77.2,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_VICR_2026-09-23",
+    "ts": "2026-09-23T14:50:08Z",
+    "ticker": "VICR",
+    "entry_signal": 225.02,
+    "cur_price": 267.9549865722656,
+    "drift_pct": 19.08,
+    "reason": "entry-drift +19.08% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_INOD_2026-09-23",
+    "ts": "2026-09-23T14:50:08Z",
+    "ticker": "INOD",
+    "signal_date": "2026-09-23",
+    "score": 72.2,
+    "source": "momentum_filler"
   }
 ]

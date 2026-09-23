@@ -2,22 +2,22 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 235.6244136535364,
-  "last_updated": "2026-09-23T14:45:03Z",
+  "last_updated": "2026-09-23T14:50:03Z",
   "pending": [
     {
-      "id": "PAPER_MOM_VICR_2026-09-23",
-      "ticker": "VICR",
+      "id": "PAPER_MOM_INOD_2026-09-23",
+      "ticker": "INOD",
       "setup": "MOMENTUM",
       "source": "momentum_filler",
       "sector": "Technology",
       "signal_date": "2026-09-23",
-      "entry": 225.02,
-      "stop_initial": 214.94,
-      "target": 237.33,
-      "score": 77.2,
+      "entry": 61.36,
+      "stop_initial": 58.61,
+      "target": 64.71,
+      "score": 72.2,
       "rr": 1.5,
       "upside_pct": 6.0,
-      "added_at": "2026-09-23T14:45:06Z",
+      "added_at": "2026-09-23T14:50:08Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -48,9 +48,9 @@
       "trailing_active": true,
       "ladder_step": 4,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 67.05999755859375,
-      "pnl_pct": 9.916403144720132,
-      "pnl_usd": 4.958201572360066,
+      "current_price": 67.54989624023438,
+      "pnl_pct": 10.719384101351217,
+      "pnl_usd": 5.3596920506756085,
       "hold_days": 4,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-09-21T13:35:06Z"
@@ -80,9 +80,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 10.740099906921387,
-      "pnl_pct": 0.5627332108744102,
-      "pnl_usd": 0.2813666054372051,
+      "current_price": 10.739999771118164,
+      "pnl_pct": 0.5617956097206399,
+      "pnl_usd": 0.28089780486031996,
       "hold_days": 4,
       "hold_trading_days": 3
     },
@@ -111,9 +111,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-22T19:45:08Z",
-      "current_price": 41.439998626708984,
-      "pnl_pct": -0.40855893605146615,
-      "pnl_usd": -0.20427946802573305,
+      "current_price": 41.470001220703125,
+      "pnl_pct": -0.33645464863464175,
+      "pnl_usd": -0.16822732431732088,
       "hold_days": 0,
       "hold_trading_days": 1
     }
@@ -8855,6 +8855,25 @@
       "mode": "paper",
       "expired_at": "2026-09-21T13:55:07Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_MOM_VICR_2026-09-23",
+      "ticker": "VICR",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Technology",
+      "signal_date": "2026-09-23",
+      "entry": 225.02,
+      "stop_initial": 214.94,
+      "target": 237.33,
+      "score": 77.2,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-23T14:45:06Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-23T14:50:08Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -8866,7 +8885,7 @@
     "losses": 112,
     "win_rate": 47.417840375586856,
     "pnl_realized": -21.62448024067163,
-    "pnl_unrealized": 5.035288709771538,
-    "equity": 390.65970236330793
+    "pnl_unrealized": 5.472362531218608,
+    "equity": 391.096776184755
   }
 }
