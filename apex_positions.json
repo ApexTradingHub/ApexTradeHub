@@ -2,22 +2,22 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 235.6244136535364,
-  "last_updated": "2026-09-23T14:50:03Z",
+  "last_updated": "2026-09-23T14:55:02Z",
   "pending": [
     {
-      "id": "PAPER_MOM_INOD_2026-09-23",
-      "ticker": "INOD",
+      "id": "PAPER_MOM_COIN_2026-09-23",
+      "ticker": "COIN",
       "setup": "MOMENTUM",
       "source": "momentum_filler",
-      "sector": "Technology",
+      "sector": "Financial Services",
       "signal_date": "2026-09-23",
-      "entry": 61.36,
-      "stop_initial": 58.61,
-      "target": 64.71,
-      "score": 72.2,
+      "entry": 202.06,
+      "stop_initial": 193.01,
+      "target": 213.11,
+      "score": 71.8,
       "rr": 1.5,
       "upside_pct": 6.0,
-      "added_at": "2026-09-23T14:50:08Z",
+      "added_at": "2026-09-23T14:55:06Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -48,9 +48,9 @@
       "trailing_active": true,
       "ladder_step": 4,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 67.54989624023438,
-      "pnl_pct": 10.719384101351217,
-      "pnl_usd": 5.3596920506756085,
+      "current_price": 67.31999969482422,
+      "pnl_pct": 10.342566292122966,
+      "pnl_usd": 5.171283146061483,
       "hold_days": 4,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-09-21T13:35:06Z"
@@ -80,9 +80,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 10.739999771118164,
-      "pnl_pct": 0.5617956097206399,
-      "pnl_usd": 0.28089780486031996,
+      "current_price": 10.725000381469727,
+      "pnl_pct": 0.42135188642066335,
+      "pnl_usd": 0.21067594321033167,
       "hold_days": 4,
       "hold_trading_days": 3
     },
@@ -111,9 +111,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-22T19:45:08Z",
-      "current_price": 41.470001220703125,
-      "pnl_pct": -0.33645464863464175,
-      "pnl_usd": -0.16822732431732088,
+      "current_price": 41.75,
+      "pnl_pct": 0.3364575823119456,
+      "pnl_usd": 0.1682287911559728,
       "hold_days": 0,
       "hold_trading_days": 1
     }
@@ -8874,6 +8874,25 @@
       "mode": "paper",
       "expired_at": "2026-09-23T14:50:08Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_MOM_INOD_2026-09-23",
+      "ticker": "INOD",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Technology",
+      "signal_date": "2026-09-23",
+      "entry": 61.36,
+      "stop_initial": 58.61,
+      "target": 64.71,
+      "score": 72.2,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-23T14:50:08Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-23T14:55:06Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -8885,7 +8904,7 @@
     "losses": 112,
     "win_rate": 47.417840375586856,
     "pnl_realized": -21.62448024067163,
-    "pnl_unrealized": 5.472362531218608,
-    "equity": 391.096776184755
+    "pnl_unrealized": 5.550187880427787,
+    "equity": 391.17460153396416
   }
 }
