@@ -7286,5 +7286,23 @@
     "exit_price": 27.320800000000002,
     "reason": "Stop Loss (Trailing)",
     "pnl_pct": 4.000000000000009
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_TWST_2026-09-21",
+    "ts": "2026-09-23T14:45:06Z",
+    "ticker": "TWST",
+    "exit_price": 160.31,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.475032773209386
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_VICR_2026-09-23",
+    "ts": "2026-09-23T14:45:06Z",
+    "ticker": "VICR",
+    "signal_date": "2026-09-23",
+    "score": 77.2,
+    "source": "momentum_filler"
   }
 ]
