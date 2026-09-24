@@ -7437,5 +7437,38 @@
     "gain_from_open": 1.92,
     "score": 17.8,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_VIA_2026-09-24_1601",
+    "ts": "2026-09-24T19:45:06Z",
+    "ticker": "VIA",
+    "pnl_pct": 1.53,
+    "new_stop": 29.97,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.57,
+    "range_pos_eod": 0.812,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.61
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_UBS_2026-09-24_1902",
+    "ts": "2026-09-24T19:45:06Z",
+    "ticker": "UBS",
+    "pnl_pct": 0.36,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.859,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.77
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_UBS_2026-09-24_1902",
+    "ts": "2026-09-24T19:45:06Z",
+    "ticker": "UBS",
+    "exit_price": 48.48500061035156,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.3622422522995375
   }
 ]
