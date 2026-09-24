@@ -7380,5 +7380,33 @@
     "exit_price": 58.0,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.6253776543648429
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_IMOS_2026-09-18",
+    "ts": "2026-09-24T13:35:13Z",
+    "ticker": "IMOS",
+    "old_stop": 65.58574999999999,
+    "new_stop": 68.02615,
+    "high": 71.0,
+    "ladder_step": 5
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_NOK_2026-09-18",
+    "ts": "2026-09-24T13:35:13Z",
+    "ticker": "NOK",
+    "exit_price": 10.2,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.494382022471914
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_KEYS_2026-09-23",
+    "ts": "2026-09-24T13:35:13Z",
+    "ticker": "KEYS",
+    "signal_date": "2026-09-23",
+    "score": 139.2,
+    "source": "scanner"
   }
 ]
