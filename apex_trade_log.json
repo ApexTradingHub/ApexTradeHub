@@ -7536,5 +7536,32 @@
     "signal_date": "2026-09-25",
     "score": 69.4,
     "source": "momentum_filler"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_SMCI_2026-09-21",
+    "ts": "2026-09-25T14:20:06Z",
+    "ticker": "SMCI",
+    "exit_price": 42.4422,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.000000000000001
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_WRBY_2026-09-25",
+    "ts": "2026-09-25T14:20:06Z",
+    "ticker": "WRBY",
+    "entry_signal": 26.4,
+    "entry_actual": 26.4,
+    "mode": "paper"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_IONQ_2026-09-25",
+    "ts": "2026-09-25T14:20:06Z",
+    "ticker": "IONQ",
+    "signal_date": "2026-09-25",
+    "score": 64.7,
+    "source": "momentum_filler"
   }
 ]
