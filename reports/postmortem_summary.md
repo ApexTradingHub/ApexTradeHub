@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-09-23T12:17:16.136328 | Total trades: 352_
+_Updated: 2026-09-25T12:19:40.971685 | Total trades: 354_
 
-**Analyse-Status**: complete=309, pending=43
+**Analyse-Status**: complete=309, pending=45
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -113,24 +113,24 @@ _Updated: 2026-09-23T12:17:16.136328 | Total trades: 352_
 | STX_2026-04-16 | BREAKOUT | 16.76% | Take Profit D+9 | 112.0 | Technology | BREAKOUT gewann +16.76% TROTZ extremer Extension (perf120 148%!) und niedrigem vol_ratio (0.78). Treiber: saekularer AI-Storage-Catalyst - Q3-FY26 (29.4) crushte (+44% Rev, EPS $4.10 vs $3.51), High-End-Kapazitaet bis FY2027 ausgebucht, Analyst-Upgrades auf $750. Plus Sektor-Tailwind (XLK +4.66%). Lehre: Extension allein ist KEIN Ausschlusskriterium - ein starker, bestaetigter Catalyst schlaegt die Extension (Gegenbeispiel zu WDC, das mit zu engem Stop trotz gleichem AI-Storage-Thema verlor). |
 | CIEN_2026-03-18 | BREAKOUT | 16.64% | Take Profit D+5 | 105.5 | Technology | BREAKOUT gewann +16.64% TP D+5. Entry 18.3 lag 13 Tage NACH dem Q1-Earnings-Beat (5.3: Rekord-Rev $1.43B +33%) - also Post-Earnings-Momentum-Continuation auf einem bereits BESTAETIGTEN Catalyst (AI-Optical-Networking). Stock +27% in 30d, Analyst-PT-Raises (MS, JPM auf $380-400). Extension (perf120 178%) war kein Hindernis, weil der Catalyst (AI) real und bestaetigt war. Der GUTE Gegenpol zu FLS/XRAY: Earnings BEKANNT (Beat), nicht davor gewettet. |
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
-| ALL_2026-06-18 | STAGE_2 | 15.61% | Time Exit D+80 | 103.3 | Financial Services | _pending_ |
+| OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=21)
+## Recent (30d) — Worst 5 / Best 5  (n=22)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
 | CNC_2026-09-02 | VCP | -7.73% | Stop Loss D+4 | 92.1 | Healthcare | — |
+| EPAM_2026-08-29 | BREAKOUT | -6.78% | Stop Loss D+17 | 105.7 | Technology | — |
 | EOG_2026-09-14 | VCP | -6.38% | Stop Loss D+6 | 77.8 | Energy | — |
 | FTNT_2026-08-28 | BREAKOUT | -5.87% | Stop Loss D+2 | 145.6 | Technology | high_score_loss_85plus,valuation_unwind,extended_perf120 |
 | MUR_2026-09-10 | BREAKOUT | -5.47% | Stop Loss D+7 | 101.7 | Energy | — |
-| FDS_2026-08-29 | BREAKOUT | -5.35% | Stop Loss D+6 | 129.8 | Financial Services | — |
+| OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | — |
 | TWLO_2026-09-15 | BREAKOUT | 12.49% | Take Profit D+5 | 114.5 | Technology | — |
 | DOCU_2026-09-01 | BREAKOUT | 10.23% | Take Profit D+9 | 129.4 | Technology | — |
 | XRX_2026-08-29 | SHORT_SQUEEZE | 10.13% | Time Exit D+20 | 86.4 | Industrials | — |
 | MPC_2026-08-29 | BREAKOUT | 8.6% | Take Profit D+7 | 133.1 | Energy | — |
-| GME_2026-09-11 | BREAKOUT | 8.27% | Take Profit D+4 | 92.7 | Consumer Cyclical | — |
 
-## Pending Claude-Analyse (43)
+## Pending Claude-Analyse (45)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 23 mehr)_
+- _(+ 25 mehr)_
