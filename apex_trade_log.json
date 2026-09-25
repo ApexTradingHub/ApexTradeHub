@@ -7622,5 +7622,63 @@
     "gain_from_open": 3.72,
     "score": 34.2,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_MSFT_2026-09-25_1902",
+    "ts": "2026-09-25T19:45:07Z",
+    "ticker": "MSFT",
+    "pnl_pct": -0.11,
+    "range_pos_eod": 0.846,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.76
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MSFT_2026-09-25_1902",
+    "ts": "2026-09-25T19:45:07Z",
+    "ticker": "MSFT",
+    "exit_price": 515.989990234375,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.10550745612412941
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_HUM_2026-09-25_1902",
+    "ts": "2026-09-25T19:45:07Z",
+    "ticker": "HUM",
+    "pnl_pct": -1.2,
+    "range_pos_eod": 0.472,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.28
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_HUM_2026-09-25_1902",
+    "ts": "2026-09-25T19:45:07Z",
+    "ticker": "HUM",
+    "exit_price": 399.3900146484375,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.2022227214749537
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_COST_2026-09-25_1911",
+    "ts": "2026-09-25T19:45:07Z",
+    "ticker": "COST",
+    "pnl_pct": 0.29,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.97,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.47
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_COST_2026-09-25_1911",
+    "ts": "2026-09-25T19:45:07Z",
+    "ticker": "COST",
+    "exit_price": 922.6099853515625,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.2913257201220292
   }
 ]
