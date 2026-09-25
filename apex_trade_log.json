@@ -7517,5 +7517,24 @@
     "signal_date": "2026-09-25",
     "score": 70.1,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_VCYT_2026-09-25",
+    "ts": "2026-09-25T14:15:06Z",
+    "ticker": "VCYT",
+    "entry_signal": 48.78,
+    "cur_price": 47.09000015258789,
+    "drift_pct": -3.46,
+    "reason": "entry-drift -3.46% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_WRBY_2026-09-25",
+    "ts": "2026-09-25T14:15:06Z",
+    "ticker": "WRBY",
+    "signal_date": "2026-09-25",
+    "score": 69.4,
+    "source": "momentum_filler"
   }
 ]

@@ -2,22 +2,22 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 231.00622225528735,
-  "last_updated": "2026-09-25T14:10:03Z",
+  "last_updated": "2026-09-25T14:15:02Z",
   "pending": [
     {
-      "id": "PAPER_MOM_VCYT_2026-09-25",
-      "ticker": "VCYT",
+      "id": "PAPER_MOM_WRBY_2026-09-25",
+      "ticker": "WRBY",
       "setup": "MOMENTUM",
       "source": "momentum_filler",
       "sector": "Healthcare",
       "signal_date": "2026-09-25",
-      "entry": 48.78,
-      "stop_initial": 46.6,
-      "target": 51.45,
-      "score": 70.1,
+      "entry": 26.4,
+      "stop_initial": 25.22,
+      "target": 27.85,
+      "score": 69.4,
       "rr": 1.5,
       "upside_pct": 6.0,
-      "added_at": "2026-09-25T14:10:06Z",
+      "added_at": "2026-09-25T14:15:06Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -44,13 +44,13 @@
       "size_usd": 50.0,
       "stop": 68.02615,
       "stop_set_at": "2026-09-24T13:35:13Z",
-      "high_since_entry": 71.79000091552734,
+      "high_since_entry": 72.05000305175781,
       "trailing_active": true,
       "ladder_step": 5,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 71.55010223388672,
-      "pnl_pct": 17.276023986046095,
-      "pnl_usd": 8.638011993023047,
+      "current_price": 71.7300033569336,
+      "pnl_pct": 17.57089552029765,
+      "pnl_usd": 8.785447760148825,
       "hold_days": 6,
       "hold_trading_days": 5,
       "trailing_activated_at": "2026-09-21T13:35:06Z"
@@ -80,9 +80,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-09-22T19:45:08Z",
-      "current_price": 42.724300384521484,
-      "pnl_pct": 2.677962952466919,
-      "pnl_usd": 1.3389814762334595,
+      "current_price": 42.61000061035156,
+      "pnl_pct": 2.4032699119239678,
+      "pnl_usd": 1.2016349559619839,
       "hold_days": 2,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-09-25T13:50:06Z"
@@ -112,9 +112,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-09-24T13:40:06Z",
-      "current_price": 360.8349914550781,
-      "pnl_pct": 4.475293165516814,
-      "pnl_usd": 2.237646582758407,
+      "current_price": 360.2250061035156,
+      "pnl_pct": 4.298679477985635,
+      "pnl_usd": 2.1493397389928175,
       "hold_days": 1,
       "hold_trading_days": 1,
       "trailing_activated_at": "2026-09-25T13:35:06Z"
@@ -9058,6 +9058,25 @@
       "mode": "paper",
       "expired_at": "2026-09-23T14:55:06Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_MOM_VCYT_2026-09-25",
+      "ticker": "VCYT",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-25",
+      "entry": 48.78,
+      "stop_initial": 46.6,
+      "target": 51.45,
+      "score": 70.1,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-25T14:10:06Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-25T14:15:06Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -9069,7 +9088,7 @@
     "losses": 115,
     "win_rate": 47.24770642201835,
     "pnl_realized": -26.24267163892067,
-    "pnl_unrealized": 12.214640052014914,
-    "equity": 393.22086230730224
+    "pnl_unrealized": 12.136422455103627,
+    "equity": 393.142644710391
   }
 }
