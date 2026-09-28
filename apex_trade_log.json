@@ -7717,5 +7717,41 @@
     "entry_signal": 405.25,
     "entry_actual": 407.27624999999995,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_WRBY_2026-09-25",
+    "ts": "2026-09-28T14:55:07Z",
+    "ticker": "WRBY",
+    "exit_price": 25.22,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.469696969696969
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_IONQ_2026-09-25",
+    "ts": "2026-09-28T14:55:07Z",
+    "ticker": "IONQ",
+    "exit_price": 46.104000000000006,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000075
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_OUST_2026-09-28",
+    "ts": "2026-09-28T14:55:07Z",
+    "ticker": "OUST",
+    "signal_date": "2026-09-28",
+    "score": 73.8,
+    "source": "momentum_filler"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_AAON_2026-09-28",
+    "ts": "2026-09-28T14:55:07Z",
+    "ticker": "AAON",
+    "signal_date": "2026-09-28",
+    "score": 69.0,
+    "source": "momentum_filler"
   }
 ]
