@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 282.26317154170033,
-  "last_updated": "2026-09-28T18:25:02Z",
+  "cash": 232.26317154170033,
+  "last_updated": "2026-09-28T18:30:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -80,11 +80,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 414.4700012207031,
-      "pnl_pct": 1.7663075665971628,
-      "pnl_usd": 0.8831537832985813,
+      "current_price": 414.3999938964844,
+      "pnl_pct": 1.7491184169183518,
+      "pnl_usd": 0.8745592084591759,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_CMG_2026-09-28_1831",
+      "ticker": "CMG",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-09-28",
+      "stop_initial": 31.79,
+      "target": 34.41,
+      "score": 34.0,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.0,
+      "entry_actual": 32.775001525878906,
+      "shares": 1.5255529419432783,
+      "size_usd": 50.0,
+      "stop": 31.79,
+      "stop_set_at": "2026-09-28T18:31:34Z",
+      "high_since_entry": 32.775001525878906,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-28T18:31:34Z",
+      "status": "open",
+      "current_price": 32.775001525878906,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -9301,12 +9329,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 225,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 107,
     "losses": 118,
     "win_rate": 47.55555555555556,
     "pnl_realized": -24.985722352507675,
-    "pnl_unrealized": 9.29980579058991,
-    "equity": 391.56297733229025
+    "pnl_unrealized": 9.291211215750504,
+    "equity": 391.55438275745087
   }
 }
