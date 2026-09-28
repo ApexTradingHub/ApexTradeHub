@@ -7753,5 +7753,15 @@
     "signal_date": "2026-09-28",
     "score": 69.0,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_AAON_2026-09-28",
+    "ts": "2026-09-28T15:00:06Z",
+    "ticker": "AAON",
+    "entry_signal": 89.55,
+    "cur_price": 85.9800033569336,
+    "drift_pct": -3.99,
+    "reason": "entry-drift -3.99% > 3.0% — Kurs vom Trigger weg, kein Retry"
   }
 ]

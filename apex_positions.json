@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 282.26317154170033,
-  "last_updated": "2026-09-28T14:55:03Z",
+  "last_updated": "2026-09-28T15:00:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -15,23 +15,6 @@
       "stop_initial": 41.97,
       "target": 46.34,
       "score": 73.8,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-09-28T14:55:07Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_MOM_AAON_2026-09-28",
-      "ticker": "AAON",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Industrials",
-      "signal_date": "2026-09-28",
-      "entry": 89.55,
-      "stop_initial": 85.54,
-      "target": 94.45,
-      "score": 69.0,
       "rr": 1.5,
       "upside_pct": 6.0,
       "added_at": "2026-09-28T14:55:07Z",
@@ -65,9 +48,9 @@
       "trailing_active": true,
       "ladder_step": 5,
       "opened_at": "2026-09-18T19:10:06Z",
-      "current_price": 69.55000305175781,
-      "pnl_pct": 13.997710296275717,
-      "pnl_usd": 6.998855148137858,
+      "current_price": 69.5199966430664,
+      "pnl_pct": 13.948527525104751,
+      "pnl_usd": 6.974263762552376,
       "hold_days": 9,
       "hold_trading_days": 6,
       "trailing_activated_at": "2026-09-21T13:35:06Z"
@@ -97,9 +80,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 413.3399963378906,
-      "pnl_pct": 1.4888534104040385,
-      "pnl_usd": 0.7444267052020193,
+      "current_price": 413.6400146484375,
+      "pnl_pct": 1.5625179834172882,
+      "pnl_usd": 0.7812589917086441,
       "hold_days": 0,
       "hold_trading_days": 0
     }
@@ -9293,6 +9276,25 @@
       "mode": "paper",
       "expired_at": "2026-09-25T14:15:06Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_MOM_AAON_2026-09-28",
+      "ticker": "AAON",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Industrials",
+      "signal_date": "2026-09-28",
+      "entry": 89.55,
+      "stop_initial": 85.54,
+      "target": 94.45,
+      "score": 69.0,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-28T14:55:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-09-28T15:00:06Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -9304,7 +9306,7 @@
     "losses": 118,
     "win_rate": 47.55555555555556,
     "pnl_realized": -24.985722352507675,
-    "pnl_unrealized": 7.7432818533398775,
-    "equity": 390.00645339504024
+    "pnl_unrealized": 7.75552275426102,
+    "equity": 390.0186942959614
   }
 }
