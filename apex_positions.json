@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 229.96861502723445,
-  "last_updated": "2026-09-28T19:40:03Z",
+  "cash": 278.9464915299807,
+  "last_updated": "2026-09-28T19:45:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -80,39 +80,11 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 414.17999267578125,
-      "pnl_pct": 1.695100727278181,
-      "pnl_usd": 0.8475503636390905,
+      "current_price": 414.6549987792969,
+      "pnl_pct": 1.811730681397928,
+      "pnl_usd": 0.9058653406989641,
       "hold_days": 0,
       "hold_trading_days": 0
-    },
-    {
-      "id": "PAPER_INTRA_CMG_2026-09-28_1831",
-      "ticker": "CMG",
-      "setup": "INTRADAY",
-      "source": "intraday_momentum",
-      "sector": "Consumer Cyclical",
-      "signal_date": "2026-09-28",
-      "stop_initial": 31.79,
-      "target": 34.41,
-      "score": 34.0,
-      "rr": 1.67,
-      "upside_pct": 5.0,
-      "gain_from_open": 5.0,
-      "entry_actual": 32.775001525878906,
-      "shares": 1.5255529419432783,
-      "size_usd": 50.0,
-      "stop": 31.79,
-      "stop_set_at": "2026-09-28T18:31:34Z",
-      "high_since_entry": 32.775001525878906,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-09-28T18:31:34Z",
-      "status": "open",
-      "current_price": 32.07600021362305,
-      "pnl_pct": -2.1327270166682766,
-      "pnl_usd": -1.0663635083341383,
-      "hold_days": 0
     }
   ],
   "closed": [
@@ -8585,6 +8557,37 @@
       "exit_price": 17.88,
       "exit_reason": "Stop Loss",
       "closed_at": "2026-09-28T19:40:06Z"
+    },
+    {
+      "id": "PAPER_INTRA_CMG_2026-09-28_1831",
+      "ticker": "CMG",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-09-28",
+      "stop_initial": 31.79,
+      "target": 34.41,
+      "score": 34.0,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.0,
+      "entry_actual": 32.775001525878906,
+      "shares": 1.5255529419432783,
+      "size_usd": 50.0,
+      "stop": 31.79,
+      "stop_set_at": "2026-09-28T18:31:34Z",
+      "high_since_entry": 32.775001525878906,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-28T18:31:34Z",
+      "status": "closed",
+      "current_price": 32.07600021362305,
+      "pnl_pct": -2.0442469945075348,
+      "pnl_usd": -1.0221234972537674,
+      "hold_days": 0,
+      "exit_price": 32.10499954223633,
+      "exit_reason": "Intraday Close (EOD, below VWAP)",
+      "closed_at": "2026-09-28T19:45:07Z"
     }
   ],
   "expired": [
@@ -9362,13 +9365,13 @@
   "stats": {
     "trading_mode": "paper",
     "etoro_env": "demo",
-    "total_trades": 226,
-    "open_trades": 3,
+    "total_trades": 227,
+    "open_trades": 2,
     "wins": 107,
-    "losses": 119,
-    "win_rate": 47.34513274336283,
-    "pnl_realized": -27.280278866973553,
-    "pnl_unrealized": 8.517458096859874,
-    "equity": 388.48607312409433
+    "losses": 120,
+    "win_rate": 47.136563876651984,
+    "pnl_realized": -28.30240236422732,
+    "pnl_unrealized": 9.642136582253887,
+    "equity": 388.5886281122346
   }
 }

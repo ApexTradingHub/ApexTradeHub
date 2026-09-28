@@ -7800,5 +7800,24 @@
     "exit_price": 17.88,
     "reason": "Stop Loss",
     "pnl_pct": -4.589113028931757
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_CMG_2026-09-28_1831",
+    "ts": "2026-09-28T19:45:07Z",
+    "ticker": "CMG",
+    "pnl_pct": -2.04,
+    "range_pos_eod": 0.393,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CMG_2026-09-28_1831",
+    "ts": "2026-09-28T19:45:07Z",
+    "ticker": "CMG",
+    "exit_price": 32.10499954223633,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -2.0442469945075348
   }
 ]
