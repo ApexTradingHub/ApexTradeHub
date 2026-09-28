@@ -7689,5 +7689,33 @@
     "signal_date": "2026-09-25",
     "score": 85.9,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_KEYS_2026-09-23",
+    "ts": "2026-09-28T13:35:08Z",
+    "ticker": "KEYS",
+    "exit_price": 359.193432,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 4.000000000000002
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_IONQ_2026-09-25",
+    "ts": "2026-09-28T13:35:08Z",
+    "ticker": "IONQ",
+    "old_stop": 43.18,
+    "new_stop": 46.104000000000006,
+    "high": 47.11000061035156,
+    "ladder_step": 1
+  },
+  {
+    "event": "open",
+    "id": "PAPER_ISRG_2026-09-25",
+    "ts": "2026-09-28T13:35:08Z",
+    "ticker": "ISRG",
+    "entry_signal": 405.25,
+    "entry_actual": 407.27624999999995,
+    "mode": "paper"
   }
 ]
