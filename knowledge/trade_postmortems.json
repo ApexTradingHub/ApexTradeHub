@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-09-25T12:19:40.971685",
-    "total_trades": 354,
+    "updated": "2026-09-28T14:33:17.581800",
+    "total_trades": 355,
     "analyzed_trades": 187
   },
   "trades": {
@@ -34599,6 +34599,95 @@
       },
       "auto_meta": {
         "built_at": "2026-09-25T12:19:40.671475",
+        "version": "1.0"
+      }
+    },
+    "DE_2026-09-22": {
+      "core": {
+        "ticker": "DE",
+        "signal_date": "2026-09-22",
+        "exit_date": "2026-09-26",
+        "setup": "BREAKOUT",
+        "entry": 707.29,
+        "stop": 681.54,
+        "target": 775.0,
+        "exit_price": 681.54,
+        "exit_reason": "Stop Loss",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": -3.64,
+        "pnl_usd": -7.28,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 120.4,
+        "rr": 2.63,
+        "rsi": 66.3,
+        "macd_bull": "NO",
+        "vol_ratio": 1.15,
+        "avg_dv_m": 918.48,
+        "perf_20d": 8.4,
+        "perf_60d": 15.0,
+        "perf_120d": 25.1,
+        "base_range": 5.9,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.93,
+        "inside_day": false,
+        "sector": "Industrials",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 0.58,
+          "vcp_strength": 0.16,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 63,
+          "short_pct": 1.95,
+          "analyst_upside": -2.087467288656275
+        }
+      },
+      "market_context": {
+        "sector": "Industrials",
+        "sector_etf": "XLI",
+        "spy_perf_pct": -0.26,
+        "qqq_perf_pct": -0.4,
+        "sector_etf_perf_pct": 0.09,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-09-28T14:33:17.281594",
         "version": "1.0"
       }
     }
