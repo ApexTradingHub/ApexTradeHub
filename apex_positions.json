@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 334.732428261664,
-  "last_updated": "2026-09-29T18:25:02Z",
+  "cash": 284.732428261664,
+  "last_updated": "2026-09-29T18:30:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -65,11 +65,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 410.0799865722656,
-      "pnl_pct": 0.6884115074880202,
-      "pnl_usd": 0.34420575374401013,
+      "current_price": 410.3299865722656,
+      "pnl_pct": 0.7497949051204625,
+      "pnl_usd": 0.37489745256023127,
       "hold_days": 1,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_INTRA_MDB_2026-09-29_1831",
+      "ticker": "MDB",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Technology",
+      "signal_date": "2026-09-29",
+      "stop_initial": 328.38,
+      "target": 355.47,
+      "score": 27.7,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.18,
+      "entry_actual": 338.5400085449219,
+      "shares": 0.14769303106863174,
+      "size_usd": 50.0,
+      "stop": 328.38,
+      "stop_set_at": "2026-09-29T18:31:50Z",
+      "high_since_entry": 338.5400085449219,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-29T18:31:50Z",
+      "status": "open",
+      "current_price": 338.5400085449219,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -9386,12 +9414,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 228,
-    "open_trades": 1,
+    "open_trades": 2,
     "wins": 108,
     "losses": 120,
     "win_rate": 47.368421052631575,
     "pnl_realized": -22.51646563254399,
-    "pnl_unrealized": 0.34420575374401013,
-    "equity": 385.076634015408
+    "pnl_unrealized": 0.37489745256023127,
+    "equity": 385.1073257142242
   }
 }
