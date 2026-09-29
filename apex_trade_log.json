@@ -7874,5 +7874,24 @@
     "entry_signal": 74.32,
     "entry_actual": 74.36000061035156,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_MDB_2026-09-29_1831",
+    "ts": "2026-09-29T19:45:06Z",
+    "ticker": "MDB",
+    "pnl_pct": -0.41,
+    "range_pos_eod": 0.577,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.04
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MDB_2026-09-29_1831",
+    "ts": "2026-09-29T19:45:06Z",
+    "ticker": "MDB",
+    "exit_price": 337.1650085449219,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.40615583543873723
   }
 ]
