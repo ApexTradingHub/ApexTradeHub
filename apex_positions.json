@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 278.9464915299807,
-  "last_updated": "2026-09-29T13:25:04Z",
+  "last_updated": "2026-09-29T13:30:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -18,6 +18,23 @@
       "rr": 1.5,
       "upside_pct": 6.0,
       "added_at": "2026-09-28T14:55:07Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_MOM_HHH_2026-09-29",
+      "ticker": "HHH",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Real Estate",
+      "signal_date": "2026-09-29",
+      "entry": 74.32,
+      "stop_initial": 70.99,
+      "target": 78.39,
+      "score": 67.9,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-29T13:30:07Z",
       "status": "pending",
       "mode": "paper"
     }
