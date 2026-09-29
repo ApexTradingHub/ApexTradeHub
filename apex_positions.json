@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 234.73242826166398,
-  "last_updated": "2026-09-29T19:30:03Z",
+  "cash": 184.73242826166398,
+  "last_updated": "2026-09-29T19:35:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -18,23 +18,6 @@
       "rr": 1.5,
       "upside_pct": 6.0,
       "added_at": "2026-09-28T14:55:07Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_MOM_HHH_2026-09-29",
-      "ticker": "HHH",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Real Estate",
-      "signal_date": "2026-09-29",
-      "entry": 74.32,
-      "stop_initial": 70.99,
-      "target": 78.39,
-      "score": 67.9,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-09-29T13:30:07Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -65,9 +48,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 412.760009765625,
-      "pnl_pct": 1.346447224856606,
-      "pnl_usd": 0.673223612428303,
+      "current_price": 412.05999755859375,
+      "pnl_pct": 1.174570714249555,
+      "pnl_usd": 0.5872853571247775,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -94,9 +77,9 @@
       "ladder_step": 0,
       "opened_at": "2026-09-29T18:31:50Z",
       "status": "open",
-      "current_price": 334.9849853515625,
-      "pnl_pct": -1.0501043018930651,
-      "pnl_usd": -0.5250521509465326,
+      "current_price": 335.489990234375,
+      "pnl_pct": -0.9009328981989907,
+      "pnl_usd": -0.45046644909949535,
       "hold_days": 0
     },
     {
@@ -120,15 +103,45 @@
       "size_usd": 50.0,
       "stop": 249.9,
       "stop_set_at": "2026-09-29T19:10:06Z",
-      "high_since_entry": 261.62,
+      "high_since_entry": 261.7200012207031,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-29T19:10:06Z",
-      "current_price": 260.7900085449219,
-      "pnl_pct": -0.31725076640858096,
-      "pnl_usd": -0.15862538320429048,
+      "current_price": 261.2950134277344,
+      "pnl_pct": -0.12422084407370595,
+      "pnl_usd": -0.06211042203685298,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_MOM_HHH_2026-09-29",
+      "ticker": "HHH",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Real Estate",
+      "signal_date": "2026-09-29",
+      "entry": 74.32,
+      "stop_initial": 70.99,
+      "target": 78.39,
+      "score": 67.9,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-29T13:30:07Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 74.36000061035156,
+      "shares": 0.6724045130392261,
+      "size_usd": 50.0,
+      "stop": 70.99,
+      "stop_set_at": "2026-09-29T19:35:06Z",
+      "high_since_entry": 74.36000061035156,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-29T19:35:06Z",
+      "current_price": 74.36000061035156,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -9445,12 +9458,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 228,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 108,
     "losses": 120,
     "win_rate": 47.368421052631575,
     "pnl_realized": -22.51646563254399,
-    "pnl_unrealized": -0.010453921722520076,
-    "equity": 384.7219743399414
+    "pnl_unrealized": 0.07470848598842915,
+    "equity": 384.8071367476524
   }
 }
