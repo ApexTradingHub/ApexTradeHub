@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 284.732428261664,
-  "last_updated": "2026-09-29T19:05:02Z",
+  "cash": 234.73242826166398,
+  "last_updated": "2026-09-29T19:10:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -37,23 +37,6 @@
       "added_at": "2026-09-29T13:30:07Z",
       "status": "pending",
       "mode": "paper"
-    },
-    {
-      "id": "PAPER_MOM_RCL_2026-09-29",
-      "ticker": "RCL",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Consumer Cyclical",
-      "signal_date": "2026-09-29",
-      "entry": 261.62,
-      "stop_initial": 249.9,
-      "target": 275.93,
-      "score": 66.7,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-09-29T19:05:05Z",
-      "status": "pending",
-      "mode": "paper"
     }
   ],
   "open": [
@@ -82,9 +65,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 411.57000732421875,
-      "pnl_pct": 1.054261652678938,
-      "pnl_usd": 0.527130826339469,
+      "current_price": 411.20001220703125,
+      "pnl_pct": 0.9634154230774082,
+      "pnl_usd": 0.4817077115387041,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -111,9 +94,39 @@
       "ladder_step": 0,
       "opened_at": "2026-09-29T18:31:50Z",
       "status": "open",
-      "current_price": 332.8999938964844,
-      "pnl_pct": -1.6659817173984355,
-      "pnl_usd": -0.8329908586992176,
+      "current_price": 333.1600036621094,
+      "pnl_pct": -1.589178456613234,
+      "pnl_usd": -0.794589228306617,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_MOM_RCL_2026-09-29",
+      "ticker": "RCL",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-09-29",
+      "entry": 261.62,
+      "stop_initial": 249.9,
+      "target": 275.93,
+      "score": 66.7,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-29T19:05:05Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 261.62,
+      "shares": 0.19111688708814312,
+      "size_usd": 50.0,
+      "stop": 249.9,
+      "stop_set_at": "2026-09-29T19:10:06Z",
+      "high_since_entry": 261.62,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-29T19:10:06Z",
+      "current_price": 261.62,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -9431,12 +9444,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 228,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 108,
     "losses": 120,
     "win_rate": 47.368421052631575,
     "pnl_realized": -22.51646563254399,
-    "pnl_unrealized": -0.3058600323597487,
-    "equity": 384.4265682293042
+    "pnl_unrealized": -0.3128815167679129,
+    "equity": 384.4195467448961
   }
 }
