@@ -7903,5 +7903,25 @@
     "gain_from_open": 2.87,
     "score": 32.1,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_FDS_2026-09-30_1911",
+    "ts": "2026-09-30T19:45:05Z",
+    "ticker": "FDS",
+    "pnl_pct": 0.26,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.949,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.7
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FDS_2026-09-30_1911",
+    "ts": "2026-09-30T19:45:05Z",
+    "ticker": "FDS",
+    "exit_price": 270.6600036621094,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.26300849156236206
   }
 ]
