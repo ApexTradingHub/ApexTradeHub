@@ -7990,5 +7990,76 @@
     "gain_from_open": 2.77,
     "score": 30.5,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_UTHR_2026-10-01_1401",
+    "ts": "2026-10-01T19:45:06Z",
+    "ticker": "UTHR",
+    "pnl_pct": 0.48,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.715,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.72
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_UTHR_2026-10-01_1401",
+    "ts": "2026-10-01T19:45:06Z",
+    "ticker": "UTHR",
+    "exit_price": 577.4550170898438,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.4837567940013648
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_ROG_2026-10-01_1431",
+    "ts": "2026-10-01T19:45:06Z",
+    "ticker": "ROG",
+    "pnl_pct": -0.56,
+    "range_pos_eod": 0.721,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.32
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ROG_2026-10-01_1431",
+    "ts": "2026-10-01T19:45:06Z",
+    "ticker": "ROG",
+    "exit_price": 154.98500061035156,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.5614012553403559
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_MU_2026-10-01_1816",
+    "ts": "2026-10-01T19:45:07Z",
+    "ticker": "MU",
+    "pnl_pct": 1.53,
+    "new_stop": 1072.38,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.18,
+    "range_pos_eod": 0.905,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 6.45
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_BJ_2026-10-01_1856",
+    "ts": "2026-10-01T19:45:07Z",
+    "ticker": "BJ",
+    "pnl_pct": -1.05,
+    "range_pos_eod": 0.598,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 2.46
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_BJ_2026-10-01_1856",
+    "ts": "2026-10-01T19:45:07Z",
+    "ticker": "BJ",
+    "exit_price": 93.88500213623047,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.0539073378153663
   }
 ]
