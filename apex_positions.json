@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 82.39485097038045,
-  "last_updated": "2026-10-01T18:50:02Z",
+  "cash": 32.394850970380446,
+  "last_updated": "2026-10-01T18:55:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -48,9 +48,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 401.3299865722656,
-      "pnl_pct": -1.4600074096474625,
-      "pnl_usd": -0.7300037048237313,
+      "current_price": 401.80999755859375,
+      "pnl_pct": -1.3421485886805817,
+      "pnl_usd": -0.6710742943402909,
       "hold_days": 3,
       "hold_trading_days": 3
     },
@@ -79,9 +79,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-29T19:10:06Z",
-      "current_price": 268.8399963378906,
-      "pnl_pct": 2.7597264497708967,
-      "pnl_usd": 1.3798632248854483,
+      "current_price": 269.07000732421875,
+      "pnl_pct": 2.8476444171771065,
+      "pnl_usd": 1.4238222085885532,
       "hold_days": 1,
       "hold_trading_days": 2
     },
@@ -139,9 +139,9 @@
       "ladder_step": 0,
       "opened_at": "2026-10-01T14:01:47Z",
       "status": "open",
-      "current_price": 584.1849975585938,
-      "pnl_pct": 1.6548501270514764,
-      "pnl_usd": 0.8274250635257381,
+      "current_price": 585.0449829101562,
+      "pnl_pct": 1.8044973832971785,
+      "pnl_usd": 0.9022486916485891,
       "hold_days": 0
     },
     {
@@ -167,9 +167,9 @@
       "ladder_step": 0,
       "opened_at": "2026-10-01T14:31:46Z",
       "status": "open",
-      "current_price": 154.63999938964844,
-      "pnl_pct": -0.7827545335080011,
-      "pnl_usd": -0.39137726675400053,
+      "current_price": 154.77000427246094,
+      "pnl_pct": -0.6993432141807858,
+      "pnl_usd": -0.3496716070903929,
       "hold_days": 0
     },
     {
@@ -195,9 +195,37 @@
       "ladder_step": 0,
       "opened_at": "2026-10-01T18:16:38Z",
       "status": "open",
-      "current_price": 1086.3299560546875,
-      "pnl_pct": 1.3008402906019703,
-      "pnl_usd": 0.6504201453009851,
+      "current_price": 1086.60009765625,
+      "pnl_pct": 1.3260311371612568,
+      "pnl_usd": 0.6630155685806284,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_BJ_2026-10-01_1856",
+      "ticker": "BJ",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Defensive",
+      "signal_date": "2026-10-01",
+      "stop_initial": 92.04,
+      "target": 99.63,
+      "score": 30.5,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.77,
+      "entry_actual": 94.88500213623047,
+      "shares": 0.5269536689076831,
+      "size_usd": 50.0,
+      "stop": 92.04,
+      "stop_set_at": "2026-10-01T18:56:38Z",
+      "high_since_entry": 94.88500213623047,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-01T18:56:38Z",
+      "status": "open",
+      "current_price": 94.88500213623047,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -9611,12 +9639,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 231,
-    "open_trades": 6,
+    "open_trades": 7,
     "wins": 109,
     "losses": 122,
     "win_rate": 47.18614718614719,
     "pnl_realized": -24.85404292382752,
-    "pnl_unrealized": 2.9220380798433423,
-    "equity": 385.3168890502238
+    "pnl_unrealized": 3.1540511850959896,
+    "equity": 385.54890215547647
   }
 }
