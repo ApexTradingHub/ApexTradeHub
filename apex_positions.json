@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 234.66085458972577,
-  "last_updated": "2026-10-01T13:25:02Z",
+  "last_updated": "2026-10-01T13:30:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -18,6 +18,23 @@
       "rr": 1.5,
       "upside_pct": 6.0,
       "added_at": "2026-09-28T14:55:07Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_ASML.AS_2026-10-01",
+      "ticker": "ASML.AS",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-10-01",
+      "entry": 1556.91,
+      "stop_initial": 1481.06,
+      "target": 1700.0,
+      "score": 140.5,
+      "rr": 1.89,
+      "upside_pct": 9.2,
+      "added_at": "2026-10-01T13:30:08Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -75,7 +92,7 @@
       "size_usd": 50.0,
       "stop": 249.9,
       "stop_set_at": "2026-09-29T19:10:06Z",
-      "high_since_entry": 269.6499938964844,
+      "high_since_entry": 269.65,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-29T19:10:06Z",
