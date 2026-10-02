@@ -8137,5 +8137,23 @@
     "gain_from_open": 4.27,
     "score": 35.0,
     "mode": "paper"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MU_2026-10-01_1816",
+    "ts": "2026-10-02T18:40:06Z",
+    "ticker": "MU",
+    "exit_price": 1072.38,
+    "reason": "Stop Loss",
+    "pnl_pct": -4.5532482595982566e-07
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_MAT_2026-10-02",
+    "ts": "2026-10-02T18:40:06Z",
+    "ticker": "MAT",
+    "signal_date": "2026-10-02",
+    "score": 72.5,
+    "source": "momentum_filler"
   }
 ]
