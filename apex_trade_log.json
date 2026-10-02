@@ -8174,5 +8174,43 @@
     "gain_from_open": 5.06,
     "score": 33.5,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_ARW_2026-10-02_1816",
+    "ts": "2026-10-02T19:45:06Z",
+    "ticker": "ARW",
+    "pnl_pct": -0.68,
+    "range_pos_eod": 0.694,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.76
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ARW_2026-10-02_1816",
+    "ts": "2026-10-02T19:45:06Z",
+    "ticker": "ARW",
+    "exit_price": 243.36000061035156,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.6795197745566404
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_NTAP_2026-10-02_1851",
+    "ts": "2026-10-02T19:45:06Z",
+    "ticker": "NTAP",
+    "pnl_pct": -0.2,
+    "range_pos_eod": 0.684,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 4.95
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_NTAP_2026-10-02_1851",
+    "ts": "2026-10-02T19:45:06Z",
+    "ticker": "NTAP",
+    "exit_price": 226.9499969482422,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.19788784534753873
   }
 ]
