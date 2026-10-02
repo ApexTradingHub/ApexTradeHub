@@ -8078,5 +8078,15 @@
     "ts": "2026-10-02T13:30:08Z",
     "ticker": "OUST",
     "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_RCL_2026-09-29",
+    "ts": "2026-10-02T13:35:06Z",
+    "ticker": "RCL",
+    "old_stop": 249.9,
+    "new_stop": 266.8524,
+    "high": 277.0,
+    "ladder_step": 1
   }
 ]
