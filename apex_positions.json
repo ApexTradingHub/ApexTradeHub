@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 181.82907507080327,
-  "last_updated": "2026-10-01T21:55:02Z",
+  "last_updated": "2026-10-02T13:00:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_OUST_2026-09-28",
@@ -52,7 +52,7 @@
       "pnl_pct": -1.5474143106951237,
       "pnl_usd": -0.7737071553475618,
       "hold_days": 3,
-      "hold_trading_days": 3
+      "hold_trading_days": 4
     },
     {
       "id": "PAPER_MOM_RCL_2026-09-29",
@@ -83,7 +83,7 @@
       "pnl_pct": 3.2604517607539067,
       "pnl_usd": 1.6302258803769534,
       "hold_days": 2,
-      "hold_trading_days": 2
+      "hold_trading_days": 3
     },
     {
       "id": "PAPER_ASML.AS_2026-10-01",
@@ -104,17 +104,18 @@
       "entry_actual": 1564.69455,
       "shares": 0.03195511865239129,
       "size_usd": 50.0,
-      "stop": 1481.06,
-      "stop_set_at": "2026-10-01T13:35:06Z",
-      "high_since_entry": 1615.0,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 1595.988441,
+      "stop_set_at": "2026-10-02T13:00:33Z",
+      "high_since_entry": 1642.5999755859375,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-10-01T13:35:06Z",
-      "current_price": 1601.800048828125,
-      "pnl_pct": 2.371421235417805,
-      "pnl_usd": 1.1857106177089025,
+      "current_price": 1637.800048828125,
+      "pnl_pct": 4.672189778389979,
+      "pnl_usd": 2.3360948891949893,
       "hold_days": 0,
-      "hold_trading_days": 0
+      "hold_trading_days": 1,
+      "trailing_activated_at": "2026-10-02T13:00:33Z"
     },
     {
       "id": "PAPER_INTRA_MU_2026-10-01_1816",
@@ -144,7 +145,7 @@
       "pnl_usd": 1.1793880821228426,
       "hold_days": 0,
       "intraday_rescued": true,
-      "hold_trading_days": 0
+      "hold_trading_days": 1
     }
   ],
   "closed": [
@@ -9655,7 +9656,7 @@
     "losses": 124,
     "win_rate": 47.008547008547005,
     "pnl_realized": -25.4198188234047,
-    "pnl_unrealized": 3.2216174248611367,
-    "equity": 385.0506924956644
+    "pnl_unrealized": 4.3720016963472235,
+    "equity": 386.2010767671505
   }
 }

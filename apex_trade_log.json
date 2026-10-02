@@ -8061,5 +8061,15 @@
     "exit_price": 93.88500213623047,
     "reason": "Intraday Close (EOD, below VWAP)",
     "pnl_pct": -1.0539073378153663
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_ASML.AS_2026-10-01",
+    "ts": "2026-10-02T13:00:33Z",
+    "ticker": "ASML.AS",
+    "old_stop": 1481.06,
+    "new_stop": 1595.988441,
+    "high": 1642.5999755859375,
+    "ladder_step": 1
   }
 ]
