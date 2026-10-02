@@ -2,26 +2,8 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 181.82907507080327,
-  "last_updated": "2026-10-02T13:25:03Z",
-  "pending": [
-    {
-      "id": "PAPER_MOM_OUST_2026-09-28",
-      "ticker": "OUST",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Technology",
-      "signal_date": "2026-09-28",
-      "entry": 43.94,
-      "stop_initial": 41.97,
-      "target": 46.34,
-      "score": 73.8,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-09-28T14:55:07Z",
-      "status": "pending",
-      "mode": "paper"
-    }
-  ],
+  "last_updated": "2026-10-02T13:30:03Z",
+  "pending": [],
   "open": [
     {
       "id": "PAPER_ISRG_2026-09-25",
@@ -75,7 +57,7 @@
       "size_usd": 50.0,
       "stop": 249.9,
       "stop_set_at": "2026-09-29T19:10:06Z",
-      "high_since_entry": 270.8599853515625,
+      "high_since_entry": 270.86,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-09-29T19:10:06Z",
@@ -110,9 +92,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-10-01T13:35:06Z",
-      "current_price": 1642.199951171875,
-      "pnl_pct": 4.9533885812969105,
-      "pnl_usd": 2.4766942906484553,
+      "current_price": 1640.199951171875,
+      "pnl_pct": 4.825568106687345,
+      "pnl_usd": 2.4127840533436724,
       "hold_days": 0,
       "hold_trading_days": 1,
       "trailing_activated_at": "2026-10-02T13:00:33Z"
@@ -135,7 +117,7 @@
       "size_usd": 50.0,
       "stop": 1072.38,
       "stop_set_at": "2026-10-01T19:45:07Z",
-      "high_since_entry": 1098.9000244140625,
+      "high_since_entry": 1107.865,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-01T18:16:38Z",
@@ -9645,6 +9627,24 @@
       "mode": "paper",
       "expired_at": "2026-09-28T15:00:06Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_MOM_OUST_2026-09-28",
+      "ticker": "OUST",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Technology",
+      "signal_date": "2026-09-28",
+      "entry": 43.94,
+      "stop_initial": 41.97,
+      "target": 46.34,
+      "score": 73.8,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-09-28T14:55:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-10-02T13:30:08Z"
     }
   ],
   "stats": {
@@ -9656,7 +9656,7 @@
     "losses": 124,
     "win_rate": 47.008547008547005,
     "pnl_realized": -25.4198188234047,
-    "pnl_unrealized": 4.512601097800689,
-    "equity": 386.34167616860395
+    "pnl_unrealized": 4.448690860495907,
+    "equity": 386.2777659312992
   }
 }
