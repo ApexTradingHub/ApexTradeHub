@@ -8267,5 +8267,24 @@
     "gain_from_open": 2.57,
     "score": 32.9,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_LW_2026-10-05_1821",
+    "ts": "2026-10-05T19:45:12Z",
+    "ticker": "LW",
+    "pnl_pct": -1.2,
+    "range_pos_eod": 0.575,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.49
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_LW_2026-10-05_1821",
+    "ts": "2026-10-05T19:45:12Z",
+    "ticker": "LW",
+    "exit_price": 44.4900016784668,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -1.1991941271789435
   }
 ]
