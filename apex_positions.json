@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 179.8987021415283,
-  "last_updated": "2026-10-05T14:05:03Z",
+  "cash": 229.10486105192314,
+  "last_updated": "2026-10-05T14:10:02Z",
   "pending": [
     {
       "id": "PAPER_CAP.PA_2026-10-03",
@@ -23,37 +23,6 @@
     }
   ],
   "open": [
-    {
-      "id": "PAPER_ISRG_2026-09-25",
-      "ticker": "ISRG",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Healthcare",
-      "signal_date": "2026-09-25",
-      "entry": 405.25,
-      "stop_initial": 388.19,
-      "target": 440.0,
-      "score": 85.9,
-      "rr": 2.04,
-      "upside_pct": 8.6,
-      "added_at": "2026-09-28T13:30:09Z",
-      "status": "open",
-      "mode": "paper",
-      "entry_actual": 407.27624999999995,
-      "shares": 0.12276679526488472,
-      "size_usd": 50.0,
-      "stop": 388.19,
-      "stop_set_at": "2026-09-28T13:35:08Z",
-      "high_since_entry": 416.510009765625,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-09-28T13:35:08Z",
-      "current_price": 398.8699951171875,
-      "pnl_pct": -2.0640179442853466,
-      "pnl_usd": -1.0320089721426733,
-      "hold_days": 7,
-      "hold_trading_days": 5
-    },
     {
       "id": "PAPER_MOM_RCL_2026-09-29",
       "ticker": "RCL",
@@ -79,9 +48,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-09-29T19:10:06Z",
-      "current_price": 273.42999267578125,
-      "pnl_pct": 4.5141780734581625,
-      "pnl_usd": 2.2570890367290812,
+      "current_price": 274.3900146484375,
+      "pnl_pct": 4.881130895358725,
+      "pnl_usd": 2.4405654476793623,
       "hold_days": 5,
       "hold_trading_days": 4,
       "trailing_activated_at": "2026-10-02T13:35:06Z"
@@ -143,9 +112,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-02T18:45:06Z",
-      "current_price": 15.125,
-      "pnl_pct": 0.033068783068788236,
-      "pnl_usd": 0.016534391534394118,
+      "current_price": 15.140000343322754,
+      "pnl_pct": 0.13227740292827175,
+      "pnl_usd": 0.06613870146413588,
       "hold_days": 2,
       "hold_trading_days": 1
     }
@@ -9001,6 +8970,40 @@
       "exit_price": 226.9499969482422,
       "exit_reason": "Intraday Close (EOD, below VWAP)",
       "closed_at": "2026-10-02T19:45:06Z"
+    },
+    {
+      "id": "PAPER_ISRG_2026-09-25",
+      "ticker": "ISRG",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Healthcare",
+      "signal_date": "2026-09-25",
+      "entry": 405.25,
+      "stop_initial": 388.19,
+      "target": 440.0,
+      "score": 85.9,
+      "rr": 2.04,
+      "upside_pct": 8.6,
+      "added_at": "2026-09-28T13:30:09Z",
+      "status": "closed",
+      "mode": "paper",
+      "entry_actual": 407.27624999999995,
+      "shares": 0.12276679526488472,
+      "size_usd": 50.0,
+      "stop": 388.19,
+      "stop_set_at": "2026-09-28T13:35:08Z",
+      "high_since_entry": 416.510009765625,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-09-28T13:35:08Z",
+      "current_price": 398.8699951171875,
+      "pnl_pct": -1.5876821792103515,
+      "pnl_usd": -0.7938410896051757,
+      "hold_days": 7,
+      "hold_trading_days": 5,
+      "exit_price": 400.80999755859375,
+      "exit_reason": "Stagnation Exit",
+      "closed_at": "2026-10-05T14:10:06Z"
     }
   ],
   "expired": [
@@ -9796,13 +9799,13 @@
   "stats": {
     "trading_mode": "paper",
     "etoro_env": "demo",
-    "total_trades": 238,
-    "open_trades": 4,
+    "total_trades": 239,
+    "open_trades": 3,
     "wins": 110,
-    "losses": 128,
-    "win_rate": 46.21848739495798,
-    "pnl_realized": -27.350191752679653,
-    "pnl_unrealized": 4.101770170597953,
-    "equity": 384.00047231212625
+    "losses": 129,
+    "win_rate": 46.02510460251046,
+    "pnl_realized": -28.14403284228483,
+    "pnl_unrealized": 5.3668598636206495,
+    "equity": 384.47172091554376
   }
 }
