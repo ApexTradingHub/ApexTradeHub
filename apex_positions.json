@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 281.10486105192314,
-  "last_updated": "2026-10-05T15:30:02Z",
+  "cash": 231.10486105192314,
+  "last_updated": "2026-10-05T15:35:03Z",
   "pending": [
     {
       "id": "PAPER_CAP.PA_2026-10-03",
@@ -18,23 +18,6 @@
       "rr": 1.99,
       "upside_pct": 10.9,
       "added_at": "2026-10-05T13:30:08Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_MOM_IBRX_2026-10-05",
-      "ticker": "IBRX",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Healthcare",
-      "signal_date": "2026-10-05",
-      "entry": 10.34,
-      "stop_initial": 9.87,
-      "target": 10.9,
-      "score": 74.9,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-10-05T15:30:06Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -65,9 +48,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-10-01T13:35:06Z",
-      "current_price": 1652.199951171875,
-      "pnl_pct": 5.592490954344735,
-      "pnl_usd": 2.796245477172368,
+      "current_price": 1651.800048828125,
+      "pnl_pct": 5.566933100656934,
+      "pnl_usd": 2.783466550328467,
       "hold_days": 4,
       "hold_trading_days": 2,
       "trailing_activated_at": "2026-10-02T13:00:33Z"
@@ -97,11 +80,41 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-02T18:45:06Z",
-      "current_price": 15.164999961853027,
-      "pnl_pct": 0.2976187953242601,
-      "pnl_usd": 0.14880939766213006,
+      "current_price": 15.104999542236328,
+      "pnl_pct": -0.09920937674385644,
+      "pnl_usd": -0.049604688371928225,
       "hold_days": 2,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_MOM_IBRX_2026-10-05",
+      "ticker": "IBRX",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Healthcare",
+      "signal_date": "2026-10-05",
+      "entry": 10.34,
+      "stop_initial": 9.87,
+      "target": 10.9,
+      "score": 74.9,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-10-05T15:30:06Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 10.34,
+      "shares": 4.835589941972921,
+      "size_usd": 50.0,
+      "stop": 9.87,
+      "stop_set_at": "2026-10-05T15:35:06Z",
+      "high_since_entry": 10.34,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-05T15:35:06Z",
+      "current_price": 10.34,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -9820,12 +9833,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 240,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 111,
     "losses": 129,
     "win_rate": 46.25,
     "pnl_realized": -26.144032842284826,
-    "pnl_unrealized": 2.945054874834498,
-    "equity": 384.04991592675765
+    "pnl_unrealized": 2.7338618619565387,
+    "equity": 383.8387229138797
   }
 }
