@@ -8334,5 +8334,23 @@
     "signal_date": "2026-10-06",
     "score": 134.6,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_MOM_IBRX_2026-10-05",
+    "ts": "2026-10-06T13:35:07Z",
+    "ticker": "IBRX",
+    "exit_price": 10.347999620437623,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 0.07736576825554084
+  },
+  {
+    "event": "open",
+    "id": "PAPER_SMCI_2026-10-06",
+    "ts": "2026-10-06T13:35:07Z",
+    "ticker": "SMCI",
+    "entry_signal": 43.85,
+    "entry_actual": 43.85,
+    "mode": "paper"
   }
 ]
