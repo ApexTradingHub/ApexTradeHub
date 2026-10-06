@@ -8380,5 +8380,24 @@
     "gain_from_open": 1.96,
     "score": 28.4,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_STZ_2026-10-06_1900",
+    "ts": "2026-10-06T19:45:07Z",
+    "ticker": "STZ",
+    "pnl_pct": -0.93,
+    "range_pos_eod": 0.54,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.81
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_STZ_2026-10-06_1900",
+    "ts": "2026-10-06T19:45:07Z",
+    "ticker": "STZ",
+    "exit_price": 115.02999877929688,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.9258899673185543
   }
 ]

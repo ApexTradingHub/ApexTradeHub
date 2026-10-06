@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 182.54394687246145,
-  "last_updated": "2026-10-06T19:40:03Z",
+  "cash": 232.08100188880218,
+  "last_updated": "2026-10-06T19:45:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_PBR_2026-10-06",
@@ -111,39 +111,11 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-06T13:35:07Z",
-      "current_price": 43.47309875488281,
-      "pnl_pct": -0.8595239341326999,
-      "pnl_usd": -0.42976196706634995,
+      "current_price": 43.39500045776367,
+      "pnl_pct": -1.0376272342903752,
+      "pnl_usd": -0.5188136171451876,
       "hold_days": 0,
       "hold_trading_days": 0
-    },
-    {
-      "id": "PAPER_INTRA_STZ_2026-10-06_1900",
-      "ticker": "STZ",
-      "setup": "INTRADAY",
-      "source": "intraday_momentum",
-      "sector": "Consumer Defensive",
-      "signal_date": "2026-10-06",
-      "stop_initial": 112.62,
-      "target": 121.91,
-      "score": 28.4,
-      "rr": 1.67,
-      "upside_pct": 5.0,
-      "gain_from_open": 1.96,
-      "entry_actual": 116.1050033569336,
-      "shares": 0.43064466262740164,
-      "size_usd": 50.0,
-      "stop": 112.62,
-      "stop_set_at": "2026-10-06T19:00:02Z",
-      "high_since_entry": 116.1050033569336,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-10-06T19:00:02Z",
-      "status": "open",
-      "current_price": 115.27999877929688,
-      "pnl_pct": -0.7105676360048534,
-      "pnl_usd": -0.3552838180024267,
-      "hold_days": 0
     }
   ],
   "closed": [
@@ -9167,6 +9139,37 @@
       "exit_price": 15.7248,
       "exit_reason": "Stop Loss (Trailing)",
       "closed_at": "2026-10-06T13:45:08Z"
+    },
+    {
+      "id": "PAPER_INTRA_STZ_2026-10-06_1900",
+      "ticker": "STZ",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Defensive",
+      "signal_date": "2026-10-06",
+      "stop_initial": 112.62,
+      "target": 121.91,
+      "score": 28.4,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.96,
+      "entry_actual": 116.1050033569336,
+      "shares": 0.43064466262740164,
+      "size_usd": 50.0,
+      "stop": 112.62,
+      "stop_set_at": "2026-10-06T19:00:02Z",
+      "high_since_entry": 116.1050033569336,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-06T19:00:02Z",
+      "status": "closed",
+      "current_price": 115.27999877929688,
+      "pnl_pct": -0.9258899673185543,
+      "pnl_usd": -0.46294498365927716,
+      "hold_days": 0,
+      "exit_price": 115.02999877929688,
+      "exit_reason": "Intraday Close (EOD, rot)",
+      "closed_at": "2026-10-06T19:45:07Z"
     }
   ],
   "expired": [
@@ -9962,13 +9965,13 @@
   "stats": {
     "trading_mode": "paper",
     "etoro_env": "demo",
-    "total_trades": 243,
-    "open_trades": 4,
+    "total_trades": 244,
+    "open_trades": 3,
     "wins": 113,
-    "losses": 130,
-    "win_rate": 46.50205761316872,
-    "pnl_realized": -24.704947021746523,
-    "pnl_unrealized": 0.4578895283472897,
-    "equity": 383.00183640080877
+    "losses": 131,
+    "win_rate": 46.31147540983606,
+    "pnl_realized": -25.1678920054058,
+    "pnl_unrealized": 0.7241216962708787,
+    "equity": 382.80512358507303
   }
 }
