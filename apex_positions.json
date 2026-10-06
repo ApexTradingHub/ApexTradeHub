@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 232.54394687246145,
-  "last_updated": "2026-10-06T18:50:03Z",
+  "cash": 182.54394687246145,
+  "last_updated": "2026-10-06T18:55:03Z",
   "pending": [
     {
       "id": "PAPER_MOM_PBR_2026-10-06",
@@ -111,11 +111,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-06T13:35:07Z",
-      "current_price": 43.7400016784668,
-      "pnl_pct": -0.2508513603949933,
-      "pnl_usd": -0.12542568019749664,
+      "current_price": 43.79990005493164,
+      "pnl_pct": -0.11425301041815461,
+      "pnl_usd": -0.057126505209077305,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_STZ_2026-10-06_1900",
+      "ticker": "STZ",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Defensive",
+      "signal_date": "2026-10-06",
+      "stop_initial": 112.62,
+      "target": 121.91,
+      "score": 28.4,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.96,
+      "entry_actual": 116.1050033569336,
+      "shares": 0.43064466262740164,
+      "size_usd": 50.0,
+      "stop": 112.62,
+      "stop_set_at": "2026-10-06T19:00:02Z",
+      "high_since_entry": 116.1050033569336,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-06T19:00:02Z",
+      "status": "open",
+      "current_price": 116.1050033569336,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -9935,12 +9963,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 243,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 113,
     "losses": 130,
     "win_rate": 46.50205761316872,
     "pnl_realized": -24.704947021746523,
-    "pnl_unrealized": 1.1175096332185697,
-    "equity": 383.66145650568
+    "pnl_unrealized": 1.185808808206989,
+    "equity": 383.7297556806684
   }
 }
