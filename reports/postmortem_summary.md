@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-10-06T13:39:32.436356 | Total trades: 366_
+_Updated: 2026-10-07T13:59:33.352748 | Total trades: 368_
 
-**Analyse-Status**: complete=309, pending=57
+**Analyse-Status**: complete=309, pending=59
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -115,22 +115,22 @@ _Updated: 2026-10-06T13:39:32.436356 | Total trades: 366_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=17)
+## Recent (30d) — Worst 5 / Best 5  (n=19)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
 | EOG_2026-09-14 | VCP | -6.38% | Stop Loss D+6 | 77.8 | Energy | — |
 | MUR_2026-09-10 | BREAKOUT | -5.47% | Stop Loss D+7 | 101.7 | Energy | — |
+| BBY_2026-09-11 | BREAKOUT | -5.47% | Stop Loss D+17 | 121.8 | Consumer Cyclical | — |
 | SM_2026-09-14 | BREAKOUT | -5.29% | Stop Loss D+4 | 143.8 | Energy | — |
 | CNC_2026-09-14 | BREAKOUT | -5.28% | Stop Loss D+4 | 95.0 | Healthcare | — |
-| ARE_2026-09-17 | BREAKOUT | -5.13% | Stop Loss D+4 | 118.4 | Real Estate | — |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | — |
 | CRWD_2026-09-14 | BREAKOUT | 15.21% | Take Profit D+14 | 150.6 | Technology | — |
 | OKTA_2026-09-22 | BREAKOUT | 12.88% | Take Profit D+9 | 127.8 | Technology | — |
 | TWLO_2026-09-15 | BREAKOUT | 12.49% | Take Profit D+5 | 114.5 | Technology | — |
 | KEYS_2026-09-23 | BREAKOUT | 9.11% | Take Profit D+6 | 139.2 | Technology | — |
 
-## Pending Claude-Analyse (57)
+## Pending Claude-Analyse (59)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 37 mehr)_
+- _(+ 39 mehr)_
