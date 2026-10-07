@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 284.0810018888022,
-  "last_updated": "2026-10-07T19:10:02Z",
+  "last_updated": "2026-10-07T19:15:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_PBR_2026-10-06",
@@ -90,17 +90,18 @@
       "entry_actual": 43.85,
       "shares": 1.1402508551881414,
       "size_usd": 50.0,
-      "stop": 40.41,
-      "stop_set_at": "2026-10-06T13:35:07Z",
-      "high_since_entry": 45.43000030517578,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 44.727000000000004,
+      "stop_set_at": "2026-10-07T19:15:05Z",
+      "high_since_entry": 45.63999938964844,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-10-06T13:35:07Z",
-      "current_price": 45.400001525878906,
-      "pnl_pct": 3.5347811308526906,
-      "pnl_usd": 1.7673905654263453,
+      "current_price": 45.630001068115234,
+      "pnl_pct": 4.059295480308399,
+      "pnl_usd": 2.0296477401541995,
       "hold_days": 1,
-      "hold_trading_days": 1
+      "hold_trading_days": 1,
+      "trailing_activated_at": "2026-10-07T19:15:05Z"
     }
   ],
   "closed": [
@@ -9991,7 +9992,7 @@
     "losses": 131,
     "win_rate": 46.53061224489796,
     "pnl_realized": -23.167892005405797,
-    "pnl_unrealized": 1.0868145494323023,
-    "equity": 385.16781643823447
+    "pnl_unrealized": 1.3490717241601566,
+    "equity": 385.43007361296236
   }
 }
