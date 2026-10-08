@@ -8492,5 +8492,44 @@
     "gain_from_open": 2.2,
     "score": 27.3,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_ITUB_2026-10-08_1531",
+    "ts": "2026-10-08T19:45:17Z",
+    "ticker": "ITUB",
+    "pnl_pct": 0.2,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.658,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.62
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ITUB_2026-10-08_1531",
+    "ts": "2026-10-08T19:45:17Z",
+    "ticker": "ITUB",
+    "exit_price": 9.8100004196167,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.20429476855571138
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_MDT_2026-10-08_1736",
+    "ts": "2026-10-08T19:45:18Z",
+    "ticker": "MDT",
+    "pnl_pct": -0.01,
+    "range_pos_eod": 0.759,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.59
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MDT_2026-10-08_1736",
+    "ts": "2026-10-08T19:45:18Z",
+    "ticker": "MDT",
+    "exit_price": 87.7699966430664,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.011394550432401894
   }
 ]
