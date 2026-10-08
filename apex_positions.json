@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 185.08100188880218,
-  "last_updated": "2026-10-08T17:30:02Z",
+  "cash": 135.08100188880218,
+  "last_updated": "2026-10-08T17:35:02Z",
   "pending": [
     {
       "id": "PAPER_FIX_2026-10-08",
@@ -96,9 +96,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-08T13:35:06Z",
-      "current_price": 24.704999923706055,
-      "pnl_pct": 1.3276565388476216,
-      "pnl_usd": 0.6638282694238107,
+      "current_price": 24.7450008392334,
+      "pnl_pct": 1.4917204547476917,
+      "pnl_usd": 0.7458602273738458,
       "hold_days": 0,
       "hold_trading_days": 0
     },
@@ -127,9 +127,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-08T14:45:07Z",
-      "current_price": 15.585000038146973,
-      "pnl_pct": -1.0476188054160467,
-      "pnl_usd": -0.5238094027080233,
+      "current_price": 15.59000015258789,
+      "pnl_pct": -1.015872047061012,
+      "pnl_usd": -0.507936023530506,
       "hold_days": 0,
       "hold_trading_days": 0
     },
@@ -156,9 +156,37 @@
       "ladder_step": 0,
       "opened_at": "2026-10-08T15:32:00Z",
       "status": "open",
-      "current_price": 9.875,
-      "pnl_pct": 0.8682332837403205,
-      "pnl_usd": 0.43411664187016025,
+      "current_price": 9.859999656677246,
+      "pnl_pct": 0.7150122073235369,
+      "pnl_usd": 0.35750610366176844,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_MDT_2026-10-08_1736",
+      "ticker": "MDT",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Healthcare",
+      "signal_date": "2026-10-08",
+      "stop_initial": 85.15,
+      "target": 92.17,
+      "score": 27.3,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.2,
+      "entry_actual": 87.77999877929688,
+      "shares": 0.5696058406848898,
+      "size_usd": 50.0,
+      "stop": 85.15,
+      "stop_set_at": "2026-10-08T17:36:43Z",
+      "high_since_entry": 87.77999877929688,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-08T17:36:43Z",
+      "status": "open",
+      "current_price": 87.77999877929688,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -10080,12 +10108,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 246,
-    "open_trades": 4,
+    "open_trades": 5,
     "wins": 115,
     "losses": 131,
     "win_rate": 46.7479674796748,
     "pnl_realized": -22.167892005405793,
-    "pnl_unrealized": 0.050270549330999226,
-    "equity": 385.1312724381332
+    "pnl_unrealized": 0.07156534825015987,
+    "equity": 385.1525672370523
   }
 }
