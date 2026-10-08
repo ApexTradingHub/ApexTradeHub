@@ -8445,5 +8445,23 @@
     "signal_date": "2026-10-08",
     "score": 94.9,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_SMCI_2026-10-06",
+    "ts": "2026-10-08T13:35:05Z",
+    "ticker": "SMCI",
+    "exit_price": 44.727000000000004,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000058
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_PBR_2026-10-06",
+    "ts": "2026-10-08T13:35:06Z",
+    "ticker": "PBR",
+    "entry_signal": 24.26,
+    "entry_actual": 24.3813,
+    "mode": "paper"
   }
 ]
