@@ -8569,5 +8569,24 @@
     "gain_from_open": 3.52,
     "score": 32.8,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_ELV_2026-10-09_1837",
+    "ts": "2026-10-09T19:45:07Z",
+    "ticker": "ELV",
+    "pnl_pct": -0.35,
+    "range_pos_eod": 0.776,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.41
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ELV_2026-10-09_1837",
+    "ts": "2026-10-09T19:45:07Z",
+    "ticker": "ELV",
+    "exit_price": 414.6099853515625,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.34611284308529094
   }
 ]
