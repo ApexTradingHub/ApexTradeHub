@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 185.17745199786384,
-  "last_updated": "2026-10-09T14:25:02Z",
+  "last_updated": "2026-10-09T14:30:02Z",
   "pending": [
     {
       "id": "PAPER_FIX_2026-10-08",
@@ -48,9 +48,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-06T13:30:10Z",
-      "current_price": 115.75,
-      "pnl_pct": 3.653622279931941,
-      "pnl_usd": 1.8268111399659706,
+      "current_price": 115.55000305175781,
+      "pnl_pct": 3.474525881398595,
+      "pnl_usd": 1.7372629406992974,
       "hold_days": 3,
       "hold_trading_days": 3
     },
@@ -73,17 +73,18 @@
       "entry_actual": 24.3813,
       "shares": 2.0507520107623467,
       "size_usd": 50.0,
-      "stop": 23.17,
-      "stop_set_at": "2026-10-08T13:35:06Z",
-      "high_since_entry": 25.34000015258789,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 24.868926,
+      "stop_set_at": "2026-10-09T14:30:06Z",
+      "high_since_entry": 25.43000030517578,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-10-08T13:35:06Z",
-      "current_price": 25.334999084472656,
-      "pnl_pct": 3.911600630289019,
-      "pnl_usd": 1.9558003151445096,
+      "current_price": 25.424999237060547,
+      "pnl_pct": 4.280736618066089,
+      "pnl_usd": 2.1403683090330445,
       "hold_days": 1,
-      "hold_trading_days": 1
+      "hold_trading_days": 1,
+      "trailing_activated_at": "2026-10-09T14:30:06Z"
     },
     {
       "id": "PAPER_MOM_NU_2026-10-07",
@@ -141,9 +142,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-09T13:40:13Z",
-      "current_price": 59.959999084472656,
-      "pnl_pct": -0.18312071068820138,
-      "pnl_usd": -0.09156035534410069,
+      "current_price": 59.904998779296875,
+      "pnl_pct": -0.274681066032302,
+      "pnl_usd": -0.137340533016151,
       "hold_days": 0,
       "hold_trading_days": 0
     }
@@ -10133,7 +10134,7 @@
     "losses": 132,
     "win_rate": 46.774193548387096,
     "pnl_realized": -22.071441896344137,
-    "pnl_unrealized": 3.1037481803482865,
-    "equity": 388.28120017821215
+    "pnl_unrealized": 3.152987797298098,
+    "equity": 388.33043979516196
   }
 }
