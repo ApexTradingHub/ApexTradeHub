@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 235.17745199786384,
-  "last_updated": "2026-10-09T13:30:02Z",
+  "cash": 185.17745199786384,
+  "last_updated": "2026-10-09T13:35:02Z",
   "pending": [
     {
       "id": "PAPER_FIX_2026-10-08",
@@ -17,23 +17,6 @@
       "score": 114.8,
       "rr": 1.84,
       "upside_pct": 11.2,
-      "added_at": "2026-10-08T13:30:08Z",
-      "status": "pending",
-      "mode": "paper"
-    },
-    {
-      "id": "PAPER_TRMB_2026-10-08",
-      "ticker": "TRMB",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Technology",
-      "signal_date": "2026-10-08",
-      "entry": 60.01,
-      "stop_initial": 57.53,
-      "target": 65.0,
-      "score": 94.9,
-      "rr": 2.01,
-      "upside_pct": 8.3,
       "added_at": "2026-10-08T13:30:08Z",
       "status": "pending",
       "mode": "paper"
@@ -68,7 +51,7 @@
       "current_price": 114.8499984741211,
       "pnl_pct": 2.8476748223525497,
       "pnl_usd": 1.423837411176275,
-      "hold_days": 2,
+      "hold_days": 3,
       "hold_trading_days": 3
     },
     {
@@ -92,14 +75,14 @@
       "size_usd": 50.0,
       "stop": 23.17,
       "stop_set_at": "2026-10-08T13:35:06Z",
-      "high_since_entry": 24.850000381469727,
+      "high_since_entry": 24.860000610351562,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-08T13:35:06Z",
-      "current_price": 24.700000762939453,
-      "pnl_pct": 1.307152460859157,
-      "pnl_usd": 0.6535762304295784,
-      "hold_days": 0,
+      "current_price": 24.854999542236328,
+      "pnl_pct": 1.9428805774767082,
+      "pnl_usd": 0.9714402887383541,
+      "hold_days": 1,
       "hold_trading_days": 1
     },
     {
@@ -127,11 +110,41 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-08T14:45:07Z",
-      "current_price": 15.385000228881836,
-      "pnl_pct": -2.3174588642423113,
-      "pnl_usd": -1.1587294321211556,
+      "current_price": 15.670100212097168,
+      "pnl_pct": -0.5073002406529018,
+      "pnl_usd": -0.2536501203264509,
       "hold_days": 0,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_TRMB_2026-10-08",
+      "ticker": "TRMB",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-10-08",
+      "entry": 60.01,
+      "stop_initial": 57.53,
+      "target": 65.0,
+      "score": 94.9,
+      "rr": 2.01,
+      "upside_pct": 8.3,
+      "added_at": "2026-10-08T13:30:08Z",
+      "status": "open",
+      "mode": "paper",
+      "entry_actual": 60.31004999999999,
+      "shares": 0.8290492214813288,
+      "size_usd": 50.0,
+      "stop": 57.53,
+      "stop_set_at": "2026-10-09T13:35:26Z",
+      "high_since_entry": 60.31004999999999,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-09T13:35:26Z",
+      "current_price": 60.31004999999999,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -10114,12 +10127,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 248,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 116,
     "losses": 132,
     "win_rate": 46.774193548387096,
     "pnl_realized": -22.071441896344137,
-    "pnl_unrealized": 0.9186842094846976,
-    "equity": 386.09613620734854
+    "pnl_unrealized": 2.141627579588178,
+    "equity": 387.31907957745204
   }
 }
