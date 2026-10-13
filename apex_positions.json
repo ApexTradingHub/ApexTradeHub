@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 135.0043955763212,
-  "last_updated": "2026-10-13T18:50:03Z",
+  "cash": 85.0043955763212,
+  "last_updated": "2026-10-13T18:55:03Z",
   "pending": [],
   "open": [
     {
@@ -62,9 +62,9 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-10-08T13:35:06Z",
-      "current_price": 25.299999237060547,
-      "pnl_pct": 3.768048615375502,
-      "pnl_usd": 1.884024307687751,
+      "current_price": 25.26219940185547,
+      "pnl_pct": 3.6130124392689043,
+      "pnl_usd": 1.8065062196344521,
       "hold_days": 5,
       "hold_trading_days": 3,
       "trailing_activated_at": "2026-10-09T14:30:06Z"
@@ -94,9 +94,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-08T14:45:07Z",
-      "current_price": 15.704999923706055,
-      "pnl_pct": -0.2857147701202877,
-      "pnl_usd": -0.14285738506014384,
+      "current_price": 15.719900131225586,
+      "pnl_pct": -0.1911102779327877,
+      "pnl_usd": -0.09555513896639384,
       "hold_days": 5,
       "hold_trading_days": 3
     },
@@ -125,9 +125,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-09T13:40:13Z",
-      "current_price": 59.959999084472656,
-      "pnl_pct": -0.18312071068820138,
-      "pnl_usd": -0.09156035534410069,
+      "current_price": 60.09000015258789,
+      "pnl_pct": 0.0332952519814898,
+      "pnl_usd": 0.0166476259907449,
       "hold_days": 4,
       "hold_trading_days": 2
     },
@@ -156,11 +156,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-13T13:35:07Z",
-      "current_price": 115.7300033569336,
-      "pnl_pct": 1.136687331770456,
-      "pnl_usd": 0.568343665885228,
+      "current_price": 115.79499816894531,
+      "pnl_pct": 1.1934864313120233,
+      "pnl_usd": 0.5967432156560116,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_VEEV_2026-10-13_1856",
+      "ticker": "VEEV",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Healthcare",
+      "signal_date": "2026-10-13",
+      "stop_initial": 296.1,
+      "target": 320.52,
+      "score": 20.7,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.75,
+      "entry_actual": 305.2550048828125,
+      "shares": 0.16379747817466586,
+      "size_usd": 50.0,
+      "stop": 296.1,
+      "stop_set_at": "2026-10-13T18:56:38Z",
+      "high_since_entry": 305.2550048828125,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-13T18:56:38Z",
+      "status": "open",
+      "current_price": 305.2550048828125,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -10192,12 +10220,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 249,
-    "open_trades": 5,
+    "open_trades": 6,
     "wins": 116,
     "losses": 133,
     "win_rate": 46.58634538152611,
     "pnl_realized": -22.244498317886784,
-    "pnl_unrealized": 5.723815729721075,
-    "equity": 390.7282113060422
+    "pnl_unrealized": 5.830207418867155,
+    "equity": 390.83460299518833
   }
 }
