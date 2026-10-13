@@ -8650,5 +8650,24 @@
     "gain_from_open": 1.75,
     "score": 20.7,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_VEEV_2026-10-13_1856",
+    "ts": "2026-10-13T19:45:06Z",
+    "ticker": "VEEV",
+    "pnl_pct": -0.86,
+    "range_pos_eod": 0.289,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 0.91
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_VEEV_2026-10-13_1856",
+    "ts": "2026-10-13T19:45:06Z",
+    "ticker": "VEEV",
+    "exit_price": 302.6199951171875,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.8632159091499846
   }
 ]
