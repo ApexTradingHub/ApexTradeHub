@@ -8612,5 +8612,15 @@
     "ts": "2026-10-12T13:35:08Z",
     "ticker": "FIX",
     "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_CAP.PA_2026-10-03",
+    "ts": "2026-10-13T13:00:36Z",
+    "ticker": "CAP.PA",
+    "old_stop": 113.9034,
+    "new_stop": 116.13680000000001,
+    "high": 119.0999984741211,
+    "ladder_step": 2
   }
 ]
