@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-10-12T16:10:26.679468",
-    "total_trades": 375,
+    "updated": "2026-10-13T14:36:48.608578",
+    "total_trades": 376,
     "analyzed_trades": 187
   },
   "trades": {
@@ -36468,6 +36468,95 @@
       },
       "auto_meta": {
         "built_at": "2026-10-12T16:10:26.379199",
+        "version": "1.0"
+      }
+    },
+    "ANET_2026-10-08": {
+      "core": {
+        "ticker": "ANET",
+        "signal_date": "2026-10-08",
+        "exit_date": "2026-10-12",
+        "setup": "BREAKOUT",
+        "entry": 212.42,
+        "stop": 202.13,
+        "target": 230.0,
+        "exit_price": 202.13,
+        "exit_reason": "Stop Loss",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": -4.84,
+        "pnl_usd": -9.69,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 142.3,
+        "rr": 1.71,
+        "rsi": 66.8,
+        "macd_bull": "YES",
+        "vol_ratio": 1.43,
+        "avg_dv_m": 1047.12,
+        "perf_20d": 10.5,
+        "perf_60d": 18.9,
+        "perf_120d": 39.5,
+        "base_range": 8.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.92,
+        "inside_day": false,
+        "sector": "Technology",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.53,
+          "vcp_strength": 0.16,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 25,
+          "short_pct": 1.27,
+          "analyst_upside": 12.381068433489318
+        }
+      },
+      "market_context": {
+        "sector": "Technology",
+        "sector_etf": "XLK",
+        "spy_perf_pct": 0.54,
+        "qqq_perf_pct": -0.21,
+        "sector_etf_perf_pct": -0.72,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-10-13T14:36:48.308367",
         "version": "1.0"
       }
     }
