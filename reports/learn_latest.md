@@ -1,16 +1,16 @@
-# ApexLearn Report — 2026-10-13 14:36
+# ApexLearn Report — 2026-10-14 12:27
 
-Window: last 30 days (since 2026-09-13)  |  Filter: setup=ALL, ticker=ALL
-Market: BULLISH — SPY=STRONG | QQQ=STRONG | Market=BULLISH (updated 2026-10-13 02:14)
+Window: last 30 days (since 2026-09-14)  |  Filter: setup=ALL, ticker=ALL
+Market: BULLISH — SPY=STRONG | QQQ=STRONG | Market=BULLISH (updated 2026-10-13 23:53)
 
 **Knowledge base** — 288 lifetime trades  |  WR 46.5%  |  PF 1.362  |  Range 2026-03-17 → 2026-10-08
 
 ## 1. Window Performance
 
-- **7d**: n=2 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -6.34% | Total $-25.38
+- **7d**: n=1 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -4.84% | Total $-9.69
 - **14d**: n=3 | WR 33.3% | PF 0.76 | AvgW +9.62% | AvgL -6.34% | Total $-6.14
 - **30d**: n=18 | WR 50.0% | PF 2.20 | AvgW +11.45% | AvgL -5.20% | Total $+112.43
-- **90d**: n=131 | WR 44.3% | PF 1.38 | AvgW +8.55% | AvgL -4.93% | Total $+271.82
+- **90d**: n=130 | WR 44.6% | PF 1.40 | AvgW +8.55% | AvgL -4.93% | Total $+281.30
 
 ## 2. Confirmed Facts (Knowledge Base)
 
@@ -140,17 +140,18 @@ perf_120<0 gesamt: WR 45.7% (n=35). Aggregat verschleiert — der Catalyst trenn
 - **2026-09-14** OKTA   🔵 Breakout         | 🟢 W +16.05% | Take Profit D+7 | score 147.6 PP GAP PEAD
 - **2026-09-14** CRWD   🔵 Breakout         | 🟢 W +15.21% | Take Profit D+14 | score 150.6 PP GAP PEAD
 
-## 10. Offene Positionen (5)
+## 10. Offene Positionen (6)
 
-_Filtered: 16 legacy, 80 expired-hold, 23 stale-no-trigger_
+_Filtered: 16 legacy, 80 expired-hold, 24 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-10-13 | D+0 | AMP.MI | 🔵 Breakout | $12.33 | $11.77 | $13.57 | 142.7 |
-| 2026-10-13 | D+0 | CAP.PA | 🔵 Breakout | $115.93 | $109.5 | $130.0 | 105.4 |
-| 2026-10-13 | D+0 | EBAY | 🔵 Breakout | $113.86 | $108.82 | $123.97 | 96.0 |
-| 2026-10-10 | D+3 | ZS | 🔵 Breakout | $217.4 | $203.53 | $249.64 | 119.3 |
-| 2026-10-09 | D+4 | OGN | 🔵 Breakout | $13.81 | $13.39 | $15.0 | 101.1 |
+| 2026-10-14 | D+0 | CNQ | 🔵 Breakout | $51.92 | $50.03 | $57.46 | 108.9 |
+| 2026-10-14 | D+0 | EZJ.L | 🔹 Bounceback | $685.17 | $656.96 | $808.5 | 97.1 |
+| 2026-10-13 | D+1 | AMP.MI | 🔵 Breakout | $12.33 | $11.77 | $13.57 | 142.7 |
+| 2026-10-13 | D+1 | CAP.PA | 🔵 Breakout | $115.93 | $109.5 | $130.0 | 105.4 |
+| 2026-10-13 | D+1 | EBAY | 🔵 Breakout | $113.86 | $108.82 | $123.97 | 96.0 |
+| 2026-10-10 | D+4 | ZS | 🔵 Breakout | $217.4 | $203.53 | $249.64 | 119.3 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
