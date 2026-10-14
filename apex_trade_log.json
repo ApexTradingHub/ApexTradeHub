@@ -8669,5 +8669,15 @@
     "exit_price": 302.6199951171875,
     "reason": "Intraday Close (EOD, below VWAP)",
     "pnl_pct": -0.8632159091499846
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_MOM_PBR_2026-10-06",
+    "ts": "2026-10-14T13:40:06Z",
+    "ticker": "PBR",
+    "old_stop": 24.868926,
+    "new_stop": 25.356552,
+    "high": 25.875,
+    "ladder_step": 2
   }
 ]
