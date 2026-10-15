@@ -8688,5 +8688,15 @@
     "exit_price": 15.03,
     "reason": "Stop Loss",
     "pnl_pct": -4.571428571428576
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_CAP.PA_2026-10-03",
+    "ts": "2026-10-15T13:00:37Z",
+    "ticker": "CAP.PA",
+    "old_stop": 116.13680000000001,
+    "new_stop": 117.36024696350097,
+    "high": 121.44999694824219,
+    "ladder_step": 3
   }
 ]
