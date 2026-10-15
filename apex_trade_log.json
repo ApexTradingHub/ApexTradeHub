@@ -8812,5 +8812,43 @@
     "exit_price": 25.356552,
     "reason": "Stop Loss (Trailing)",
     "pnl_pct": 4.000000000000005
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_FHN_2026-10-15_1641",
+    "ts": "2026-10-15T19:45:05Z",
+    "ticker": "FHN",
+    "pnl_pct": -0.6,
+    "range_pos_eod": 0.497,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.06
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FHN_2026-10-15_1641",
+    "ts": "2026-10-15T19:45:05Z",
+    "ticker": "FHN",
+    "exit_price": 22.930500030517578,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.6046799573124292
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_ETSY_2026-10-15_1811",
+    "ts": "2026-10-15T19:45:06Z",
+    "ticker": "ETSY",
+    "pnl_pct": -0.19,
+    "range_pos_eod": 0.778,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.46
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ETSY_2026-10-15_1811",
+    "ts": "2026-10-15T19:45:06Z",
+    "ticker": "ETSY",
+    "exit_price": 88.81999969482422,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.19103064729314237
   }
 ]
