@@ -8718,5 +8718,33 @@
     "new_stop": 119.00647199999999,
     "high": 121.55000305175781,
     "ladder_step": 2
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_EBAY_2026-10-13",
+    "ts": "2026-10-15T15:10:06Z",
+    "ticker": "EBAY",
+    "old_stop": 119.00647199999999,
+    "new_stop": 121.29505799999998,
+    "high": 124.18000030517578,
+    "ladder_step": 3
+  },
+  {
+    "event": "close",
+    "id": "PAPER_EBAY_2026-10-13",
+    "ts": "2026-10-15T15:10:06Z",
+    "ticker": "EBAY",
+    "exit_price": 123.97,
+    "reason": "Take Profit",
+    "pnl_pct": 8.337637300936052
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_MOM_LQDA_2026-10-15",
+    "ts": "2026-10-15T15:10:06Z",
+    "ticker": "LQDA",
+    "signal_date": "2026-10-15",
+    "score": 60.9,
+    "source": "momentum_filler"
   }
 ]
