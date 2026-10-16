@@ -8850,5 +8850,24 @@
     "exit_price": 88.81999969482422,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.19103064729314237
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_CAP.PA_2026-10-03",
+    "ts": "2026-10-16T13:00:36Z",
+    "ticker": "CAP.PA",
+    "old_stop": 117.36024696350097,
+    "new_stop": 119.4869,
+    "high": 124.30000305175781,
+    "ladder_step": 4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_CAP.PA_2026-10-03",
+    "ts": "2026-10-16T13:00:36Z",
+    "ticker": "CAP.PA",
+    "exit_price": 123.88,
+    "reason": "Take Profit",
+    "pnl_pct": 10.934001970090439
   }
 ]
