@@ -8869,5 +8869,23 @@
     "exit_price": 123.88,
     "reason": "Take Profit",
     "pnl_pct": 10.934001970090439
+  },
+  {
+    "event": "close",
+    "id": "PAPER_TRMB_2026-10-08",
+    "ts": "2026-10-16T13:40:06Z",
+    "ticker": "TRMB",
+    "exit_price": 61.165000915527344,
+    "reason": "Stagnation Exit",
+    "pnl_pct": 1.8228753558616597
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_CCC_2026-10-15",
+    "ts": "2026-10-16T13:40:06Z",
+    "ticker": "CCC",
+    "entry_signal": 7.65,
+    "entry_actual": 7.65500020980835,
+    "mode": "paper"
   }
 ]
