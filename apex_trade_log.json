@@ -8897,5 +8897,24 @@
     "gain_from_open": 5.96,
     "score": 36.3,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_FMC_2026-10-16_1731",
+    "ts": "2026-10-16T19:45:05Z",
+    "ticker": "FMC",
+    "pnl_pct": -1.56,
+    "range_pos_eod": 0.561,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 7.87
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_FMC_2026-10-16_1731",
+    "ts": "2026-10-16T19:45:05Z",
+    "ticker": "FMC",
+    "exit_price": 5.684999942779541,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.5584441749202154
   }
 ]

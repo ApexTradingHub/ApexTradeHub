@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 295.43647534717326,
-  "last_updated": "2026-10-16T19:40:02Z",
+  "cash": 344.6572532597132,
+  "last_updated": "2026-10-16T19:45:03Z",
   "pending": [],
   "open": [
     {
@@ -35,34 +35,6 @@
       "pnl_usd": -0.2612700038788568,
       "hold_days": 0,
       "hold_trading_days": 0
-    },
-    {
-      "id": "PAPER_INTRA_FMC_2026-10-16_1731",
-      "ticker": "FMC",
-      "setup": "INTRADAY",
-      "source": "intraday_momentum",
-      "sector": "Basic Materials",
-      "signal_date": "2026-10-16",
-      "stop_initial": 5.6,
-      "target": 6.06,
-      "score": 36.3,
-      "rr": 1.67,
-      "upside_pct": 5.0,
-      "gain_from_open": 5.96,
-      "entry_actual": 5.775000095367432,
-      "shares": 8.658008515031682,
-      "size_usd": 50.0,
-      "stop": 5.6,
-      "stop_set_at": "2026-10-16T17:31:35Z",
-      "high_since_entry": 5.775000095367432,
-      "trailing_active": false,
-      "ladder_step": 0,
-      "opened_at": "2026-10-16T17:31:35Z",
-      "status": "open",
-      "current_price": 5.704999923706055,
-      "pnl_pct": -1.212124164595762,
-      "pnl_usd": -0.606062082297881,
-      "hold_days": 0
     }
   ],
   "closed": [
@@ -9581,6 +9553,37 @@
       "exit_price": 61.165000915527344,
       "exit_reason": "Stagnation Exit",
       "closed_at": "2026-10-16T13:40:06Z"
+    },
+    {
+      "id": "PAPER_INTRA_FMC_2026-10-16_1731",
+      "ticker": "FMC",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Basic Materials",
+      "signal_date": "2026-10-16",
+      "stop_initial": 5.6,
+      "target": 6.06,
+      "score": 36.3,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.96,
+      "entry_actual": 5.775000095367432,
+      "shares": 8.658008515031682,
+      "size_usd": 50.0,
+      "stop": 5.6,
+      "stop_set_at": "2026-10-16T17:31:35Z",
+      "high_since_entry": 5.775000095367432,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-16T17:31:35Z",
+      "status": "closed",
+      "current_price": 5.704999923706055,
+      "pnl_pct": -1.5584441749202154,
+      "pnl_usd": -0.7792220874601077,
+      "hold_days": 0,
+      "exit_price": 5.684999942779541,
+      "exit_reason": "Intraday Close (EOD, below VWAP)",
+      "closed_at": "2026-10-16T19:45:05Z"
     }
   ],
   "expired": [
@@ -10394,13 +10397,13 @@
   "stats": {
     "trading_mode": "paper",
     "etoro_env": "demo",
-    "total_trades": 258,
-    "open_trades": 2,
+    "total_trades": 259,
+    "open_trades": 1,
     "wins": 121,
-    "losses": 137,
-    "win_rate": 46.89922480620155,
-    "pnl_realized": -11.812418547034765,
-    "pnl_unrealized": -0.8673320861767378,
-    "equity": 394.5691432609965
+    "losses": 138,
+    "win_rate": 46.71814671814672,
+    "pnl_realized": -12.591640634494873,
+    "pnl_unrealized": -0.2612700038788568,
+    "equity": 394.3959832558343
   }
 }
