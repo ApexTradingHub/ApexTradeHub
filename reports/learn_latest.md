@@ -1,16 +1,16 @@
-# ApexLearn Report — 2026-10-16 11:56
+# ApexLearn Report — 2026-10-19 14:01
 
-Window: last 30 days (since 2026-09-16)  |  Filter: setup=ALL, ticker=ALL
-Market: MIXED — SPY=STRONG | QQQ=OK | Market=MIXED (updated 2026-10-15 23:17)
+Window: last 30 days (since 2026-09-19)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-19 12:53)
 
 **Knowledge base** — 296 lifetime trades  |  WR 46.6%  |  PF 1.355  |  Range 2026-03-17 → 2026-10-13
 
 ## 1. Window Performance
 
 - **7d**: n=1 | WR 100.0% | PF 999.00 | AvgW +8.88% | AvgL +0.00% | Total $+17.76
-- **14d**: n=5 | WR 40.0% | PF 1.01 | AvgW +9.91% | AvgL -6.54% | Total $+0.34
-- **30d**: n=18 | WR 50.0% | PF 1.53 | AvgW +9.15% | AvgL -5.98% | Total $+56.99
-- **90d**: n=132 | WR 46.2% | PF 1.48 | AvgW +8.50% | AvgL -4.95% | Total $+334.18
+- **14d**: n=3 | WR 33.3% | PF 0.70 | AvgW +8.88% | AvgL -6.34% | Total $-7.62
+- **30d**: n=14 | WR 50.0% | PF 1.58 | AvgW +10.04% | AvgL -6.34% | Total $+51.82
+- **90d**: n=130 | WR 46.2% | PF 1.48 | AvgW +8.52% | AvgL -4.94% | Total $+330.59
 
 ## 2. Confirmed Facts (Knowledge Base)
 
@@ -37,8 +37,7 @@ Market: MIXED — SPY=STRONG | QQQ=OK | Market=MIXED (updated 2026-10-15 23:17)
 
 | Setup | n | WR | PF | AvgWin | AvgLoss |
 |---|---|---|---|---|---|
-| 🔵 Breakout | 17 | 52.9% | 1.66 | +9.15% | -6.19% |
-| 🔹 Bounceback | 1 | 0.0% | 0.00 | +0.00% | -4.31% |
+| 🔵 Breakout | 14 | 50.0% | 1.58 | +10.04% | -6.34% |
 
 ## 4. Per-Setup Lifetime-Performance (Knowledge)
 
@@ -120,7 +119,7 @@ perf_120<0 gesamt: WR 48.6% (n=37). Aggregat verschleiert — der Catalyst trenn
 | time_exit_negative | 28 | 18% | -2.77% | 🔵 Breakout:20, 🚀 Trend:7, 🔹 Bounceback:1 |
 | high_score_loss_85plus | 134 | 85% | -5.18% | 🔵 Breakout:120, 🚀 Trend:9, 🔥 Bet:1, 🔹 Bounceback:4 |
 
-## 9. Window-Trade-Detail (letzte 18)
+## 9. Window-Trade-Detail (letzte 14)
 
 - **2026-10-13** EBAY   🔵 Breakout         | 🟢 W +8.88% | Take Profit D+2 | score 96.0 PP GAP
 - **2026-10-08** ANET   🔵 Breakout         | 🔴 L -4.84% | Stop Loss D+3 | score 142.3 PP
@@ -136,27 +135,17 @@ perf_120<0 gesamt: WR 48.6% (n=37). Aggregat verschleiert — der Catalyst trenn
 - **2026-09-22** NET    🔵 Breakout         | 🔴 L -7.59% | Stop Loss D+16 | score 112.6
 - **2026-09-21** FFIV   🔵 Breakout         | 🟢 W +8.92% | Take Profit D+14 | score 121.2 PP
 - **2026-09-21** SMCI   🔵 Breakout         | 🔴 L -8.82% | Stop Loss D+17 | score 131.0 PP GAP SHORT
-- **2026-09-17** BXSL   🔹 Bounceback       | 🔴 L -4.31% | Stop Loss D+9 | score 104.3
-- **2026-09-17** ARE    🔵 Breakout         | 🔴 L -5.13% | Stop Loss D+4 | score 118.4 PP
-- **2026-09-17** DT     🔵 Breakout         | 🟢 W +8.81% | Take Profit D+13 | score 148.3 PP
-- **2026-09-16** UHS    🔵 Breakout         | 🟢 W +3.22% | Time Exit D+30 | score 100.8 PP
 
-## 10. Offene Positionen (10)
+## 10. Offene Positionen (4)
 
-_Filtered: 16 legacy, 79 expired-hold, 19 stale-no-trigger_
+_Filtered: 16 legacy, 80 expired-hold, 24 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-10-15 | D+1 | IT | 🔵 Breakout | $204.7 | $192.96 | $225.0 | 154.4 |
-| 2026-10-15 | D+1 | NOW | 🔵 Breakout | $148.44 | $139.45 | $165.0 | 132.1 |
-| 2026-10-15 | D+1 | M | 🔵 Breakout | $23.68 | $22.33 | $26.0 | 112.9 |
-| 2026-10-15 | D+1 | MUR | 🔵 Breakout | $40.06 | $38.08 | $44.0 | 102.8 |
-| 2026-10-14 | D+2 | CNQ | 🔵 Breakout | $51.92 | $50.03 | $57.46 | 108.9 |
-| 2026-10-14 | D+2 | EZJ.L | 🔹 Bounceback | $685.17 | $656.96 | $808.5 | 97.1 |
-| 2026-10-14 | D+2 | LLY | 🔵 Breakout | $1217.43 | $1165.8 | $1325 | 109.7 |
-| 2026-10-14 | D+2 | DG | 🔵 Breakout | $129.41 | $123.5 | $140 | 89.7 |
-| 2026-10-13 | D+3 | AMP.MI | 🔵 Breakout | $12.33 | $11.77 | $13.57 | 142.7 |
-| 2026-10-13 | D+3 | CAP.PA | 🔵 Breakout | $115.93 | $109.5 | $130.0 | 105.4 |
+| 2026-10-15 | D+4 | IT | 🔵 Breakout | $204.7 | $192.96 | $225.0 | 154.4 |
+| 2026-10-15 | D+4 | NOW | 🔵 Breakout | $148.44 | $139.45 | $165.0 | 132.1 |
+| 2026-10-15 | D+4 | M | 🔵 Breakout | $23.68 | $22.33 | $26.0 | 112.9 |
+| 2026-10-15 | D+4 | MUR | 🔵 Breakout | $40.06 | $38.08 | $44.0 | 102.8 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
