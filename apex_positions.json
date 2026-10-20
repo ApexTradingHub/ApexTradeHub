@@ -2,8 +2,43 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 344.6572532597132,
-  "last_updated": "2026-10-20T13:25:03Z",
-  "pending": [],
+  "last_updated": "2026-10-20T13:30:02Z",
+  "pending": [
+    {
+      "id": "PAPER_CHRD_2026-10-20",
+      "ticker": "CHRD",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Energy",
+      "signal_date": "2026-10-20",
+      "entry": 155.21,
+      "stop_initial": 148.57,
+      "target": 170.0,
+      "score": 109.8,
+      "rr": 2.23,
+      "upside_pct": 9.5,
+      "added_at": "2026-10-20T13:30:06Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_CLF_2026-10-20",
+      "ticker": "CLF",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Basic Materials",
+      "signal_date": "2026-10-20",
+      "entry": 13.25,
+      "stop_initial": 12.07,
+      "target": 15.35,
+      "score": 148.3,
+      "rr": 1.8,
+      "upside_pct": 15.9,
+      "added_at": "2026-10-20T13:30:06Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_MOM_CCC_2026-10-15",
