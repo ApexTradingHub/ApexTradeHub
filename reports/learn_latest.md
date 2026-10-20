@@ -1,7 +1,7 @@
-# ApexLearn Report — 2026-10-19 14:01
+# ApexLearn Report — 2026-10-20 12:17
 
-Window: last 30 days (since 2026-09-19)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-19 12:53)
+Window: last 30 days (since 2026-09-20)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-19 23:55)
 
 **Knowledge base** — 296 lifetime trades  |  WR 46.6%  |  PF 1.355  |  Range 2026-03-17 → 2026-10-13
 
@@ -10,7 +10,7 @@ Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-19 12:
 - **7d**: n=1 | WR 100.0% | PF 999.00 | AvgW +8.88% | AvgL +0.00% | Total $+17.76
 - **14d**: n=3 | WR 33.3% | PF 0.70 | AvgW +8.88% | AvgL -6.34% | Total $-7.62
 - **30d**: n=14 | WR 50.0% | PF 1.58 | AvgW +10.04% | AvgL -6.34% | Total $+51.82
-- **90d**: n=130 | WR 46.2% | PF 1.48 | AvgW +8.52% | AvgL -4.94% | Total $+330.59
+- **90d**: n=127 | WR 45.7% | PF 1.45 | AvgW +8.56% | AvgL -4.96% | Total $+308.62
 
 ## 2. Confirmed Facts (Knowledge Base)
 
@@ -138,14 +138,14 @@ perf_120<0 gesamt: WR 48.6% (n=37). Aggregat verschleiert — der Catalyst trenn
 
 ## 10. Offene Positionen (4)
 
-_Filtered: 16 legacy, 80 expired-hold, 24 stale-no-trigger_
+_Filtered: 16 legacy, 82 expired-hold, 26 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-10-15 | D+4 | IT | 🔵 Breakout | $204.7 | $192.96 | $225.0 | 154.4 |
-| 2026-10-15 | D+4 | NOW | 🔵 Breakout | $148.44 | $139.45 | $165.0 | 132.1 |
-| 2026-10-15 | D+4 | M | 🔵 Breakout | $23.68 | $22.33 | $26.0 | 112.9 |
-| 2026-10-15 | D+4 | MUR | 🔵 Breakout | $40.06 | $38.08 | $44.0 | 102.8 |
+| 2026-10-20 | D+0 | CLF | 🔵 Breakout | $13.25 | $12.07 | $15.35 | 148.3 |
+| 2026-10-20 | D+0 | APA | 🔵 Breakout | $49.36 | $47.1 | $54.0 | 136.8 |
+| 2026-10-20 | D+0 | CHRD | 🔵 Breakout | $155.21 | $148.57 | $170.0 | 109.8 |
+| 2026-10-20 | D+0 | ERIE | 🔵 Breakout | $244.49 | $233.57 | $265.0 | 71.0 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
