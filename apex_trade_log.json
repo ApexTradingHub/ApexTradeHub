@@ -9049,5 +9049,15 @@
     "signal_date": "2026-10-21",
     "score": 61.0,
     "source": "momentum_filler"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_MOM_SRPT_2026-10-21",
+    "ts": "2026-10-21T18:05:07Z",
+    "ticker": "SRPT",
+    "entry_signal": 19.27,
+    "cur_price": 18.68000030517578,
+    "drift_pct": -3.06,
+    "reason": "entry-drift -3.06% > 3.0% — Kurs vom Trigger weg, kein Retry"
   }
 ]

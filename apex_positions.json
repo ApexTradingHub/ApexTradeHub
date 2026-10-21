@@ -2,25 +2,8 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 145.72479972888766,
-  "last_updated": "2026-10-21T18:00:03Z",
+  "last_updated": "2026-10-21T18:05:03Z",
   "pending": [
-    {
-      "id": "PAPER_MOM_SRPT_2026-10-21",
-      "ticker": "SRPT",
-      "setup": "MOMENTUM",
-      "source": "momentum_filler",
-      "sector": "Healthcare",
-      "signal_date": "2026-10-21",
-      "entry": 19.27,
-      "stop_initial": 18.4,
-      "target": 20.32,
-      "score": 67.1,
-      "rr": 1.5,
-      "upside_pct": 6.0,
-      "added_at": "2026-10-21T18:00:07Z",
-      "status": "pending",
-      "mode": "paper"
-    },
     {
       "id": "PAPER_MOM_CWST_2026-10-21",
       "ticker": "CWST",
@@ -65,9 +48,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-16T13:40:06Z",
-      "current_price": 7.635000228881836,
-      "pnl_pct": -0.2612668893318605,
-      "pnl_usd": -0.13063344466593024,
+      "current_price": 7.639999866485596,
+      "pnl_pct": -0.19595483881938985,
+      "pnl_usd": -0.09797741940969493,
       "hold_days": 5,
       "hold_trading_days": 3
     },
@@ -96,9 +79,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-20T13:35:06Z",
-      "current_price": 149.32000732421875,
-      "pnl_pct": -3.9001141512154005,
-      "pnl_usd": -1.9500570756077003,
+      "current_price": 149.10000610351562,
+      "pnl_pct": -4.041703296401133,
+      "pnl_usd": -2.0208516482005665,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -125,9 +108,9 @@
       "ladder_step": 0,
       "opened_at": "2026-10-21T14:01:50Z",
       "status": "open",
-      "current_price": 12.670000076293945,
-      "pnl_pct": 1.5224402325865023,
-      "pnl_usd": 0.7612201162932511,
+      "current_price": 12.664999961853027,
+      "pnl_pct": 1.4823752115582887,
+      "pnl_usd": 0.7411876057791443,
       "hold_days": 0
     },
     {
@@ -181,9 +164,9 @@
       "ladder_step": 0,
       "opened_at": "2026-10-21T17:06:33Z",
       "status": "open",
-      "current_price": 289.0199890136719,
-      "pnl_pct": 1.1850715536671736,
-      "pnl_usd": 0.5925357768335868,
+      "current_price": 288.9750061035156,
+      "pnl_pct": 1.1693231654730372,
+      "pnl_usd": 0.5846615827365186,
       "hold_days": 0
     }
   ],
@@ -10608,6 +10591,25 @@
       "status": "expired",
       "mode": "paper",
       "expired_at": "2026-10-12T13:35:08Z"
+    },
+    {
+      "id": "PAPER_MOM_SRPT_2026-10-21",
+      "ticker": "SRPT",
+      "setup": "MOMENTUM",
+      "source": "momentum_filler",
+      "sector": "Healthcare",
+      "signal_date": "2026-10-21",
+      "entry": 19.27,
+      "stop_initial": 18.4,
+      "target": 20.32,
+      "score": 67.1,
+      "rr": 1.5,
+      "upside_pct": 6.0,
+      "added_at": "2026-10-21T18:00:07Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-10-21T18:05:07Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -10619,7 +10621,7 @@
     "losses": 138,
     "win_rate": 47.12643678160919,
     "pnl_realized": -11.524094165320403,
-    "pnl_unrealized": -0.9468846436246388,
-    "equity": 394.77791508526303
+    "pnl_unrealized": -1.0129298955724448,
+    "equity": 394.71186983331523
   }
 }
