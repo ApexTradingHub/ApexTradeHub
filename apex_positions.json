@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 195.72479972888766,
-  "last_updated": "2026-10-21T17:00:03Z",
+  "cash": 145.72479972888766,
+  "last_updated": "2026-10-21T17:05:03Z",
   "pending": [],
   "open": [
     {
@@ -90,9 +90,9 @@
       "ladder_step": 0,
       "opened_at": "2026-10-21T14:01:50Z",
       "status": "open",
-      "current_price": 12.710000038146973,
-      "pnl_pct": 1.8429527591908073,
-      "pnl_usd": 0.9214763795954036,
+      "current_price": 12.734999656677246,
+      "pnl_pct": 2.043270222710471,
+      "pnl_usd": 1.0216351113552355,
       "hold_days": 0
     },
     {
@@ -118,9 +118,37 @@
       "ladder_step": 0,
       "opened_at": "2026-10-21T16:51:33Z",
       "status": "open",
-      "current_price": 35.43000030517578,
-      "pnl_pct": 0.5534261145065242,
-      "pnl_usd": 0.2767130572532621,
+      "current_price": 35.290000915527344,
+      "pnl_pct": 0.1560956555216375,
+      "pnl_usd": 0.07804782776081876,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_WAB_2026-10-21_1706",
+      "ticker": "WAB",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Industrials",
+      "signal_date": "2026-10-21",
+      "stop_initial": 277.07,
+      "target": 299.92,
+      "score": 28.1,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.09,
+      "entry_actual": 285.635009765625,
+      "shares": 0.1750485699950682,
+      "size_usd": 50.0,
+      "stop": 277.07,
+      "stop_set_at": "2026-10-21T17:06:33Z",
+      "high_since_entry": 285.635009765625,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-21T17:06:33Z",
+      "status": "open",
+      "current_price": 285.635009765625,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -10551,12 +10579,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 261,
-    "open_trades": 4,
+    "open_trades": 5,
     "wins": 123,
     "losses": 138,
     "win_rate": 47.12643678160919,
     "pnl_realized": -11.524094165320403,
-    "pnl_unrealized": -0.8236231277335961,
-    "equity": 394.901176601154
+    "pnl_unrealized": -0.9221296254662077,
+    "equity": 394.80267010342146
   }
 }
