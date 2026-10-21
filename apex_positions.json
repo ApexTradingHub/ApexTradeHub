@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 295.72479972888766,
-  "last_updated": "2026-10-21T13:55:02Z",
+  "cash": 245.72479972888766,
+  "last_updated": "2026-10-21T14:00:03Z",
   "pending": [],
   "open": [
     {
@@ -61,11 +61,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-20T13:35:06Z",
-      "current_price": 151.08999633789062,
-      "pnl_pct": -2.760978510817654,
-      "pnl_usd": -1.3804892554088268,
+      "current_price": 151.75999450683594,
+      "pnl_pct": -2.329778776044429,
+      "pnl_usd": -1.1648893880222144,
       "hold_days": 1,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_INTRA_LION_2026-10-21_1401",
+      "ticker": "LION",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-10-21",
+      "stop_initial": 12.11,
+      "target": 13.1,
+      "score": 3.6,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.54,
+      "entry_actual": 12.479999542236328,
+      "shares": 4.006410403364514,
+      "size_usd": 50.0,
+      "stop": 12.11,
+      "stop_set_at": "2026-10-21T14:01:50Z",
+      "high_since_entry": 12.479999542236328,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-21T14:01:50Z",
+      "status": "open",
+      "current_price": 12.479999542236328,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -10495,12 +10523,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 261,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 123,
     "losses": 138,
     "win_rate": 47.12643678160919,
     "pnl_realized": -11.524094165320403,
-    "pnl_unrealized": -1.5764409796812204,
-    "equity": 394.1483587492064
+    "pnl_unrealized": -1.360841112294608,
+    "equity": 394.36395861659304
   }
 }
