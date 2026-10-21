@@ -9088,5 +9088,69 @@
     "gain_from_open": 1.68,
     "score": 23.4,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_LION_2026-10-21_1401",
+    "ts": "2026-10-21T19:45:06Z",
+    "ticker": "LION",
+    "pnl_pct": 1.44,
+    "new_stop": 12.48,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.32,
+    "range_pos_eod": 0.804,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.69
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_WAB_2026-10-21_1706",
+    "ts": "2026-10-21T19:45:06Z",
+    "ticker": "WAB",
+    "pnl_pct": 1.03,
+    "new_stop": 285.64,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.23,
+    "range_pos_eod": 0.787,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.59
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_MCO_2026-10-21_1826",
+    "ts": "2026-10-21T19:45:06Z",
+    "ticker": "MCO",
+    "pnl_pct": -0.6,
+    "range_pos_eod": 0.79,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.05
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MCO_2026-10-21_1826",
+    "ts": "2026-10-21T19:45:06Z",
+    "ticker": "MCO",
+    "exit_price": 478.6400146484375,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.60429305748053
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_UDR_2026-10-21_1906",
+    "ts": "2026-10-21T19:45:07Z",
+    "ticker": "UDR",
+    "pnl_pct": -0.33,
+    "range_pos_eod": 0.537,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.46
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_UDR_2026-10-21_1906",
+    "ts": "2026-10-21T19:45:07Z",
+    "ticker": "UDR",
+    "exit_price": 35.04499816894531,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.3270809981964814
   }
 ]
