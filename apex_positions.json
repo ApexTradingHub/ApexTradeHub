@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 193.76202090017426,
-  "last_updated": "2026-10-22T13:25:03Z",
+  "last_updated": "2026-10-22T13:30:02Z",
   "pending": [
     {
       "id": "PAPER_MOM_CWST_2026-10-21",
@@ -18,6 +18,23 @@
       "rr": 1.5,
       "upside_pct": 6.0,
       "added_at": "2026-10-21T18:00:07Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_TSLA_2026-10-21",
+      "ticker": "TSLA",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-10-21",
+      "entry": 389.34,
+      "stop_initial": 370.7,
+      "target": 425.0,
+      "score": 95.2,
+      "rr": 1.91,
+      "upside_pct": 9.2,
+      "added_at": "2026-10-22T13:30:08Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -138,9 +155,9 @@
       "ladder_step": 0,
       "opened_at": "2026-10-21T17:06:33Z",
       "status": "open",
-      "current_price": 288.94000244140625,
-      "pnl_pct": 1.1570684834793639,
-      "pnl_usd": 0.5785342417396819,
+      "current_price": 286.6600036621094,
+      "pnl_pct": 0.35884743166652566,
+      "pnl_usd": 0.17942371583326286,
       "hold_days": 0,
       "intraday_rescued": true,
       "hold_trading_days": 1
@@ -10690,7 +10707,7 @@
     "losses": 141,
     "win_rate": 46.590909090909086,
     "pnl_realized": -13.486872994033773,
-    "pnl_unrealized": -0.24118933262573428,
-    "equity": 393.5208315675485
+    "pnl_unrealized": -0.6402998585321533,
+    "equity": 393.1217210416421
   }
 }
