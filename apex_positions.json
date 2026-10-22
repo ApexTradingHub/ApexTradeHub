@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 241.5714912063779,
-  "last_updated": "2026-10-22T14:15:03Z",
+  "cash": 292.5714912063779,
+  "last_updated": "2026-10-22T14:20:02Z",
   "pending": [
     {
       "id": "PAPER_TSLA_2026-10-21",
@@ -55,37 +55,6 @@
       "hold_trading_days": 4
     },
     {
-      "id": "PAPER_INTRA_LION_2026-10-21_1401",
-      "ticker": "LION",
-      "setup": "MOMENTUM",
-      "source": "intraday_momentum",
-      "sector": "Unknown",
-      "signal_date": "2026-10-21",
-      "stop_initial": 12.11,
-      "target": 13.23,
-      "score": 3.6,
-      "rr": 1.67,
-      "upside_pct": 5.0,
-      "gain_from_open": 1.54,
-      "entry_actual": 12.479999542236328,
-      "shares": 4.006410403364514,
-      "size_usd": 50.0,
-      "stop": 12.729599533081055,
-      "stop_set_at": "2026-10-22T14:05:06Z",
-      "high_since_entry": 12.979499816894531,
-      "trailing_active": true,
-      "ladder_step": 1,
-      "opened_at": "2026-10-21T14:01:50Z",
-      "status": "open",
-      "current_price": 12.739999771118164,
-      "pnl_pct": 2.0833352437386847,
-      "pnl_usd": 1.0416676218693424,
-      "hold_days": 1,
-      "intraday_rescued": true,
-      "hold_trading_days": 1,
-      "trailing_activated_at": "2026-10-22T14:05:06Z"
-    },
-    {
       "id": "PAPER_MOM_CWST_2026-10-21",
       "ticker": "CWST",
       "setup": "MOMENTUM",
@@ -110,9 +79,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-22T13:35:07Z",
-      "current_price": 94.30999755859375,
-      "pnl_pct": 0.46337955642476697,
-      "pnl_usd": 0.2316897782123835,
+      "current_price": 94.23999786376953,
+      "pnl_pct": 0.3888126378370506,
+      "pnl_usd": 0.1944063189185253,
       "hold_days": 0,
       "hold_trading_days": 0
     }
@@ -9890,6 +9859,40 @@
       "exit_price": 148.57,
       "exit_reason": "Stop Loss",
       "closed_at": "2026-10-22T14:15:06Z"
+    },
+    {
+      "id": "PAPER_INTRA_LION_2026-10-21_1401",
+      "ticker": "LION",
+      "setup": "MOMENTUM",
+      "source": "intraday_momentum",
+      "sector": "Unknown",
+      "signal_date": "2026-10-21",
+      "stop_initial": 12.11,
+      "target": 13.23,
+      "score": 3.6,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.54,
+      "entry_actual": 12.479999542236328,
+      "shares": 4.006410403364514,
+      "size_usd": 50.0,
+      "stop": 12.729599533081055,
+      "stop_set_at": "2026-10-22T14:05:06Z",
+      "high_since_entry": 12.979499816894531,
+      "trailing_active": true,
+      "ladder_step": 1,
+      "opened_at": "2026-10-21T14:01:50Z",
+      "status": "closed",
+      "current_price": 12.739999771118164,
+      "pnl_pct": 2.000000000000004,
+      "pnl_usd": 1.000000000000002,
+      "hold_days": 1,
+      "intraday_rescued": true,
+      "hold_trading_days": 1,
+      "trailing_activated_at": "2026-10-22T14:05:06Z",
+      "exit_price": 12.729599533081055,
+      "exit_reason": "Stop Loss (Trailing)",
+      "closed_at": "2026-10-22T14:20:05Z"
     }
   ],
   "expired": [
@@ -10722,13 +10725,13 @@
   "stats": {
     "trading_mode": "paper",
     "etoro_env": "demo",
-    "total_trades": 266,
-    "open_trades": 3,
-    "wins": 124,
+    "total_trades": 267,
+    "open_trades": 2,
+    "wins": 125,
     "losses": 142,
-    "win_rate": 46.616541353383454,
-    "pnl_realized": -15.677402687830122,
-    "pnl_unrealized": 1.2406982602784942,
-    "equity": 392.81218946665643
+    "win_rate": 46.81647940074906,
+    "pnl_realized": -14.67740268783012,
+    "pnl_unrealized": 0.16174717911529368,
+    "equity": 392.7332383854932
   }
 }
