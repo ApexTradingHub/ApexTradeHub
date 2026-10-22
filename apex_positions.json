@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 292.5714912063779,
-  "last_updated": "2026-10-22T17:35:02Z",
+  "cash": 242.5714912063779,
+  "last_updated": "2026-10-22T17:40:02Z",
   "pending": [
     {
       "id": "PAPER_TSLA_2026-10-21",
@@ -79,11 +79,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-22T13:35:07Z",
-      "current_price": 96.81999969482422,
-      "pnl_pct": 3.1371501409578895,
-      "pnl_usd": 1.5685750704789447,
+      "current_price": 96.70500183105469,
+      "pnl_pct": 3.014649087674767,
+      "pnl_usd": 1.5073245438373835,
       "hold_days": 0,
       "hold_trading_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_NDAQ_2026-10-22_1741",
+      "ticker": "NDAQ",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Financial Services",
+      "signal_date": "2026-10-22",
+      "stop_initial": 98.97,
+      "target": 107.13,
+      "score": 32.5,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 4.0,
+      "entry_actual": 102.027099609375,
+      "shares": 0.49006587653115674,
+      "size_usd": 50.0,
+      "stop": 98.97,
+      "stop_set_at": "2026-10-22T17:41:39Z",
+      "high_since_entry": 102.027099609375,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-22T17:41:39Z",
+      "status": "open",
+      "current_price": 102.027099609375,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -10726,12 +10754,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 267,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 125,
     "losses": 142,
     "win_rate": 46.81647940074906,
     "pnl_realized": -14.67740268783012,
-    "pnl_unrealized": 1.5032567908724814,
-    "equity": 394.07474799725037
+    "pnl_unrealized": 1.4420062642309202,
+    "equity": 394.01349747060885
   }
 }
