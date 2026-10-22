@@ -9161,5 +9161,23 @@
     "signal_date": "2026-10-21",
     "score": 95.2,
     "source": "scanner"
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_WAB_2026-10-21_1706",
+    "ts": "2026-10-22T13:35:06Z",
+    "ticker": "WAB",
+    "exit_price": 285.64,
+    "reason": "Stop Loss",
+    "pnl_pct": 0.0017470667825631898
+  },
+  {
+    "event": "open",
+    "id": "PAPER_MOM_CWST_2026-10-21",
+    "ts": "2026-10-22T13:35:07Z",
+    "ticker": "CWST",
+    "entry_signal": 93.54,
+    "entry_actual": 93.875,
+    "mode": "paper"
   }
 ]
