@@ -9217,5 +9217,25 @@
     "gain_from_open": 4.0,
     "score": 32.5,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_NDAQ_2026-10-22_1741",
+    "ts": "2026-10-22T19:45:05Z",
+    "ticker": "NDAQ",
+    "pnl_pct": 0.76,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.947,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.56
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_NDAQ_2026-10-22_1741",
+    "ts": "2026-10-22T19:45:05Z",
+    "ticker": "NDAQ",
+    "exit_price": 102.80500030517578,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.7624451726836132
   }
 ]
