@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 342.88739551311323,
-  "last_updated": "2026-10-23T13:35:02Z",
+  "last_updated": "2026-10-23T13:40:03Z",
   "pending": [
     {
       "id": "PAPER_TSLA_2026-10-21",
@@ -59,17 +59,18 @@
       "entry_actual": 93.875,
       "shares": 0.5326231691078562,
       "size_usd": 50.0,
-      "stop": 89.35,
-      "stop_set_at": "2026-10-22T13:35:07Z",
-      "high_since_entry": 97.46499633789062,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 95.7525,
+      "stop_set_at": "2026-10-23T13:40:05Z",
+      "high_since_entry": 97.7750015258789,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-10-22T13:35:07Z",
-      "current_price": 96.80000305175781,
-      "pnl_pct": 3.1158487901547938,
-      "pnl_usd": 1.5579243950773969,
-      "hold_days": 0,
-      "hold_trading_days": 1
+      "current_price": 97.62000274658203,
+      "pnl_pct": 3.9893504624042944,
+      "pnl_usd": 1.9946752312021472,
+      "hold_days": 1,
+      "hold_trading_days": 1,
+      "trailing_activated_at": "2026-10-23T13:40:05Z"
     }
   ],
   "closed": [
@@ -10782,7 +10783,7 @@
     "losses": 143,
     "win_rate": 46.84014869888476,
     "pnl_realized": -14.361498381094778,
-    "pnl_unrealized": 1.5579243950773969,
-    "equity": 394.44531990819064
+    "pnl_unrealized": 1.9946752312021472,
+    "equity": 394.8820707443154
   }
 }
