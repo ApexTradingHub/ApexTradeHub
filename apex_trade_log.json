@@ -9274,5 +9274,39 @@
     "entry_signal": 1103.61,
     "entry_actual": 1104.0450439453125,
     "mode": "paper"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_TSLA_2026-10-21",
+    "ts": "2026-10-26T13:30:10Z",
+    "ticker": "TSLA",
+    "reason": "no trigger after 5d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_SM_2026-10-23",
+    "ts": "2026-10-26T13:30:10Z",
+    "ticker": "SM",
+    "signal_date": "2026-10-23",
+    "score": 148.3,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_DVN_2026-10-23",
+    "ts": "2026-10-26T13:30:10Z",
+    "ticker": "DVN",
+    "signal_date": "2026-10-23",
+    "score": 107.8,
+    "source": "scanner"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_AMT_2026-10-23",
+    "ts": "2026-10-26T13:30:10Z",
+    "ticker": "AMT",
+    "signal_date": "2026-10-23",
+    "score": 84.2,
+    "source": "scanner"
   }
 ]
