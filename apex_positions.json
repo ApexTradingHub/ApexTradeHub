@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 192.88739551311323,
-  "last_updated": "2026-10-26T13:35:03Z",
+  "last_updated": "2026-10-26T13:40:03Z",
   "pending": [
     {
       "id": "PAPER_DVN_2026-10-23",
@@ -48,10 +48,10 @@
       "trailing_active": true,
       "ladder_step": 1,
       "opened_at": "2026-10-22T13:35:07Z",
-      "current_price": 97.55999755859375,
-      "pnl_pct": 3.925430155625832,
-      "pnl_usd": 1.962715077812916,
-      "hold_days": 3,
+      "current_price": 97.04000091552734,
+      "pnl_pct": 3.3715056357148803,
+      "pnl_usd": 1.6857528178574401,
+      "hold_days": 4,
       "hold_trading_days": 2,
       "trailing_activated_at": "2026-10-23T13:40:05Z"
     },
@@ -80,9 +80,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-23T19:50:06Z",
-      "current_price": 1102.8399658203125,
-      "pnl_pct": -0.10915117382291262,
-      "pnl_usd": -0.05457558691145631,
+      "current_price": 1109.0,
+      "pnl_pct": 0.44880017186444954,
+      "pnl_usd": 0.22440008593222477,
       "hold_days": 2,
       "hold_trading_days": 1
     },
@@ -111,10 +111,11 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:35:08Z",
-      "current_price": 39.91,
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.0,
-      "hold_days": 0
+      "current_price": 39.720001220703125,
+      "pnl_pct": -0.4760681014704876,
+      "pnl_usd": -0.2380340507352438,
+      "hold_days": 0,
+      "hold_trading_days": 0
     },
     {
       "id": "PAPER_AMT_2026-10-23",
@@ -137,14 +138,15 @@
       "size_usd": 50.0,
       "stop": 175.54,
       "stop_set_at": "2026-10-26T13:35:08Z",
-      "high_since_entry": 187.30184999999997,
+      "high_since_entry": 190.44000244140625,
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:35:08Z",
-      "current_price": 187.30184999999997,
-      "pnl_pct": 0.0,
-      "pnl_usd": 0.0,
-      "hold_days": 0
+      "current_price": 189.5800018310547,
+      "pnl_pct": 1.216299695413961,
+      "pnl_usd": 0.6081498477069806,
+      "hold_days": 0,
+      "hold_trading_days": 0
     }
   ],
   "closed": [
@@ -10875,7 +10877,7 @@
     "losses": 143,
     "win_rate": 46.84014869888476,
     "pnl_realized": -14.361498381094778,
-    "pnl_unrealized": 1.9081394909014597,
-    "equity": 394.7955350040147
+    "pnl_unrealized": 2.2802687007614018,
+    "equity": 395.1676642138747
   }
 }
