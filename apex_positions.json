@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 193.88739551311323,
-  "last_updated": "2026-10-27T17:20:03Z",
+  "cash": 143.88739551311323,
+  "last_updated": "2026-10-27T17:25:02Z",
   "pending": [],
   "open": [
     {
@@ -30,9 +30,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-10-23T19:50:06Z",
-      "current_price": 1172.7249755859375,
-      "pnl_pct": 6.2207544897984235,
-      "pnl_usd": 3.1103772448992117,
+      "current_price": 1174.114990234375,
+      "pnl_pct": 6.346656476865026,
+      "pnl_usd": 3.1733282384325125,
       "hold_days": 3,
       "hold_trading_days": 2,
       "trailing_activated_at": "2026-10-27T14:00:07Z"
@@ -62,9 +62,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:35:08Z",
-      "current_price": 39.31999969482422,
-      "pnl_pct": -1.4783269986864893,
-      "pnl_usd": -0.7391634993432448,
+      "current_price": 39.28499984741211,
+      "pnl_pct": -1.5660239353241976,
+      "pnl_usd": -0.7830119676620988,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -93,9 +93,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:35:08Z",
-      "current_price": 184.57000732421875,
-      "pnl_pct": -1.4585241287158794,
-      "pnl_usd": -0.7292620643579397,
+      "current_price": 184.66000366210938,
+      "pnl_pct": -1.4104753038427535,
+      "pnl_usd": -0.7052376519213768,
       "hold_days": 1,
       "hold_trading_days": 1
     },
@@ -124,11 +124,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:55:06Z",
-      "current_price": 50.900001525878906,
-      "pnl_pct": -1.7753727795509846,
-      "pnl_usd": -0.8876863897754923,
+      "current_price": 50.8650016784668,
+      "pnl_pct": -1.8429139752635062,
+      "pnl_usd": -0.921456987631753,
       "hold_days": 1,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_INTRA_CNC_2026-10-27_1726",
+      "ticker": "CNC",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Healthcare",
+      "signal_date": "2026-10-27",
+      "stop_initial": 67.62,
+      "target": 73.2,
+      "score": 28.1,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 3.41,
+      "entry_actual": 69.70999908447266,
+      "shares": 0.7172572178549504,
+      "size_usd": 50.0,
+      "stop": 67.62,
+      "stop_set_at": "2026-10-27T17:26:36Z",
+      "high_since_entry": 69.70999908447266,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-10-27T17:26:36Z",
+      "status": "open",
+      "current_price": 69.70999908447266,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -10889,12 +10917,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 270,
-    "open_trades": 4,
+    "open_trades": 5,
     "wins": 127,
     "losses": 143,
     "win_rate": 47.03703703703704,
     "pnl_realized": -13.36149838109478,
-    "pnl_unrealized": 0.7542652914225352,
-    "equity": 394.6416608045357
+    "pnl_unrealized": 0.7636216312172838,
+    "equity": 394.6510171443305
   }
 }
