@@ -1,7 +1,7 @@
-# ApexLearn Report — 2026-10-26 13:37
+# ApexLearn Report — 2026-10-27 12:43
 
-Window: last 30 days (since 2026-09-26)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-26 12:46)
+Window: last 30 days (since 2026-09-27)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-27 00:04)
 
 **Knowledge base** — 307 lifetime trades  |  WR 47.6%  |  PF 1.396  |  Range 2026-03-17 → 2026-10-15
 
@@ -9,7 +9,7 @@ Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-10-26 12:
 
 - **14d**: n=3 | WR 100.0% | PF 999.00 | AvgW +9.55% | AvgL +0.00% | Total $+57.26
 - **30d**: n=12 | WR 58.3% | PF 2.40 | AvgW +9.60% | AvgL -5.60% | Total $+78.36
-- **90d**: n=127 | WR 45.7% | PF 1.43 | AvgW +8.47% | AvgL -4.98% | Total $+295.01
+- **90d**: n=119 | WR 43.7% | PF 1.29 | AvgW +8.26% | AvgL -4.98% | Total $+191.79
 
 ## 2. Confirmed Facts (Knowledge Base)
 
@@ -138,19 +138,20 @@ perf_120<0 gesamt: WR 51.3% (n=39). Aggregat verschleiert — der Catalyst trenn
 - **2026-09-29** KEYS   🔵 Breakout         | 🔴 L -4.68% | Stop Loss D+12 | score 103.3 PP
 - **2026-09-29** ISRG   🔵 Breakout         | 🟢 W +8.57% | Take Profit D+15 | score 82.9 PP
 
-## 10. Offene Positionen (7)
+## 10. Offene Positionen (8)
 
-_Filtered: 16 legacy, 80 expired-hold, 25 stale-no-trigger_
+_Filtered: 16 legacy, 81 expired-hold, 27 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-10-23 | D+3 | SM | 🔵 Breakout | $39.91 | $37.73 | $43.64 | 148.3 |
-| 2026-10-23 | D+3 | EL | 🔵 Breakout | $109.57 | $104.24 | $119.03 | 128.9 |
-| 2026-10-23 | D+3 | DVN | 🔵 Breakout | $51.78 | $49.52 | $57.2 | 107.8 |
-| 2026-10-23 | D+3 | AMT | 🔵 Breakout | $186.37 | $175.54 | $205.0 | 84.2 |
-| 2026-10-22 | D+4 | WDAY | 🔵 Breakout | $206.44 | $195.56 | $225.0 | 119.4 |
-| 2026-10-22 | D+4 | URI | 🔵 Breakout | $1103.61 | $1048.85 | $1200.0 | 117.0 |
-| 2026-10-22 | D+4 | TECH | 🔹 Bounceback | $72.8 | $69.16 | $85.9 | 83.5 |
+| 2026-10-27 | D+0 | SM | 🔵 Breakout | $39.91 | $37.73 | $43.64 | 148.3 |
+| 2026-10-27 | D+0 | EL | 🔵 Breakout | $109.57 | $104.24 | $119.03 | 113.9 |
+| 2026-10-27 | D+0 | DVN | 🔵 Breakout | $51.78 | $49.52 | $57.2 | 107.8 |
+| 2026-10-27 | D+0 | AMT | 🔵 Breakout | $186.37 | $175.54 | $205.0 | 99.3 |
+| 2026-10-23 | D+4 | SM | 🔵 Breakout | $39.91 | $37.73 | $43.64 | 148.3 |
+| 2026-10-23 | D+4 | EL | 🔵 Breakout | $109.57 | $104.24 | $119.03 | 128.9 |
+| 2026-10-23 | D+4 | DVN | 🔵 Breakout | $51.78 | $49.52 | $57.2 | 107.8 |
+| 2026-10-23 | D+4 | AMT | 🔵 Breakout | $186.37 | $175.54 | $205.0 | 84.2 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
