@@ -9394,5 +9394,57 @@
     "gain_from_open": 1.76,
     "score": 28.3,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_CNC_2026-10-27_1726",
+    "ts": "2026-10-27T19:45:07Z",
+    "ticker": "CNC",
+    "pnl_pct": -2.3,
+    "range_pos_eod": 0.406,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.72
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CNC_2026-10-27_1726",
+    "ts": "2026-10-27T19:45:07Z",
+    "ticker": "CNC",
+    "exit_price": 68.11000061035156,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -2.2952209082405233
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_PFG_2026-10-27_1831",
+    "ts": "2026-10-27T19:45:07Z",
+    "ticker": "PFG",
+    "pnl_pct": 0.58,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.933,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.13
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_PFG_2026-10-27_1831",
+    "ts": "2026-10-27T19:45:07Z",
+    "ticker": "PFG",
+    "exit_price": 112.81999969482422,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.5794789484616945
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_RRC_2026-10-27_1831",
+    "ts": "2026-10-27T19:45:07Z",
+    "ticker": "RRC",
+    "pnl_pct": 1.74,
+    "new_stop": 54.6,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 1.79,
+    "range_pos_eod": 0.985,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.81
   }
 ]
