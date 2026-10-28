@@ -9495,5 +9495,58 @@
     "gain_from_open": 1.08,
     "score": 21.3,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_GNRC_2026-10-28_1826",
+    "ts": "2026-10-28T19:45:09Z",
+    "ticker": "GNRC",
+    "pnl_pct": 1.29,
+    "new_stop": 198.25,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.24,
+    "range_pos_eod": 0.882,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 10.94
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_BAX_2026-10-28_1902",
+    "ts": "2026-10-28T19:45:09Z",
+    "ticker": "BAX",
+    "pnl_pct": 0.23,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.662,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.91
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_BAX_2026-10-28_1902",
+    "ts": "2026-10-28T19:45:09Z",
+    "ticker": "BAX",
+    "exit_price": 25.655000686645508,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.234426157064631
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_WELL_2026-10-28_1906",
+    "ts": "2026-10-28T19:45:09Z",
+    "ticker": "WELL",
+    "pnl_pct": 0.48,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.773,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.94
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_WELL_2026-10-28_1906",
+    "ts": "2026-10-28T19:45:09Z",
+    "ticker": "WELL",
+    "exit_price": 226.2949981689453,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.47730971601796146
   }
 ]
