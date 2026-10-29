@@ -9586,5 +9586,15 @@
     "cur_price": 275.5799865722656,
     "drift_pct": 3.4,
     "reason": "entry-drift +3.40% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_GNRC_2026-10-28_1826",
+    "ts": "2026-10-29T13:40:06Z",
+    "ticker": "GNRC",
+    "old_stop": 202.215,
+    "new_stop": 206.16399696350098,
+    "high": 210.17999267578125,
+    "ladder_step": 2
   }
 ]
