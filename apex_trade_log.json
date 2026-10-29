@@ -9566,5 +9566,25 @@
     "signal_date": "2026-10-29",
     "score": 88.3,
     "source": "scanner"
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_GNRC_2026-10-28_1826",
+    "ts": "2026-10-29T13:35:06Z",
+    "ticker": "GNRC",
+    "old_stop": 198.25,
+    "new_stop": 202.215,
+    "high": 207.37319946289062,
+    "ladder_step": 1
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_NUE_2026-10-29",
+    "ts": "2026-10-29T13:35:07Z",
+    "ticker": "NUE",
+    "entry_signal": 266.53,
+    "cur_price": 275.5799865722656,
+    "drift_pct": 3.4,
+    "reason": "entry-drift +3.40% > 3.0% — Kurs vom Trigger weg, kein Retry"
   }
 ]

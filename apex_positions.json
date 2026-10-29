@@ -2,25 +2,8 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 144.22424295472774,
-  "last_updated": "2026-10-29T13:30:02Z",
+  "last_updated": "2026-10-29T13:35:02Z",
   "pending": [
-    {
-      "id": "PAPER_NUE_2026-10-29",
-      "ticker": "NUE",
-      "setup": "BREAKOUT",
-      "source": "scanner",
-      "sector": "Basic Materials",
-      "signal_date": "2026-10-29",
-      "entry": 266.53,
-      "stop_initial": 253.47,
-      "target": 290.0,
-      "score": 102.9,
-      "rr": 1.8,
-      "upside_pct": 8.8,
-      "added_at": "2026-10-29T13:30:08Z",
-      "status": "pending",
-      "mode": "paper"
-    },
     {
       "id": "PAPER_NXPI_2026-10-29",
       "ticker": "NXPI",
@@ -65,9 +48,9 @@
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-10-23T19:50:06Z",
-      "current_price": 1175.3399658203125,
-      "pnl_pct": 6.457609883399966,
-      "pnl_usd": 3.228804941699983,
+      "current_price": 1180.2550048828125,
+      "pnl_pct": 6.902794533197956,
+      "pnl_usd": 3.451397266598978,
       "hold_days": 5,
       "hold_trading_days": 4,
       "trailing_activated_at": "2026-10-27T14:00:07Z"
@@ -97,9 +80,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:35:08Z",
-      "current_price": 39.560001373291016,
-      "pnl_pct": -0.8769697487070433,
-      "pnl_usd": -0.4384848743535216,
+      "current_price": 39.41999816894531,
+      "pnl_pct": -1.2277670535071012,
+      "pnl_usd": -0.6138835267535506,
       "hold_days": 2,
       "hold_trading_days": 3
     },
@@ -128,9 +111,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:35:08Z",
-      "current_price": 186.0,
-      "pnl_pct": -0.6950545336311272,
-      "pnl_usd": -0.3475272668155636,
+      "current_price": 186.61000061035156,
+      "pnl_pct": -0.36937669844073134,
+      "pnl_usd": -0.18468834922036567,
       "hold_days": 2,
       "hold_trading_days": 3
     },
@@ -159,9 +142,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-10-26T13:55:06Z",
-      "current_price": 51.290000915527344,
-      "pnl_pct": -1.0227687812005357,
-      "pnl_usd": -0.5113843906002679,
+      "current_price": 51.06999969482422,
+      "pnl_pct": -1.4473176465010864,
+      "pnl_usd": -0.7236588232505432,
       "hold_days": 2,
       "hold_trading_days": 3
     },
@@ -181,19 +164,20 @@
       "entry_actual": 198.25,
       "shares": 0.25220680958385877,
       "size_usd": 50.0,
-      "stop": 198.25,
-      "stop_set_at": "2026-10-28T19:45:09Z",
-      "high_since_entry": 203.46,
-      "trailing_active": false,
-      "ladder_step": 0,
+      "stop": 202.215,
+      "stop_set_at": "2026-10-29T13:35:06Z",
+      "high_since_entry": 207.37319946289062,
+      "trailing_active": true,
+      "ladder_step": 1,
       "opened_at": "2026-10-28T18:26:33Z",
       "status": "open",
-      "current_price": 201.52999877929688,
-      "pnl_pct": 1.6544760551308324,
-      "pnl_usd": 0.8272380275654162,
+      "current_price": 204.2449951171875,
+      "pnl_pct": 3.0239571839533417,
+      "pnl_usd": 1.5119785919766706,
       "hold_days": 0,
       "intraday_rescued": true,
-      "hold_trading_days": 1
+      "hold_trading_days": 1,
+      "trailing_activated_at": "2026-10-29T13:35:06Z"
     }
   ],
   "closed": [
@@ -11106,6 +11090,25 @@
       "status": "expired",
       "mode": "paper",
       "expired_at": "2026-10-26T13:30:10Z"
+    },
+    {
+      "id": "PAPER_NUE_2026-10-29",
+      "ticker": "NUE",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Basic Materials",
+      "signal_date": "2026-10-29",
+      "entry": 266.53,
+      "stop_initial": 253.47,
+      "target": 290.0,
+      "score": 102.9,
+      "rr": 1.8,
+      "upside_pct": 8.8,
+      "added_at": "2026-10-29T13:30:08Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-10-29T13:35:07Z",
+      "expired_reason": "entry_drift"
     }
   ],
   "stats": {
@@ -11117,7 +11120,7 @@
     "losses": 144,
     "win_rate": 47.63636363636364,
     "pnl_realized": -13.024650939480276,
-    "pnl_unrealized": 2.758646437496046,
-    "equity": 396.9828893922238
+    "pnl_unrealized": 3.4411451593511897,
+    "equity": 397.66538811407895
   }
 }
