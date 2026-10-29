@@ -9664,5 +9664,31 @@
     "new_stop": 260.22880000000004,
     "high": 266.0849914550781,
     "ladder_step": 2
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_MGM_2026-10-29_1801",
+    "ts": "2026-10-29T19:45:08Z",
+    "ticker": "MGM",
+    "pnl_pct": 2.61,
+    "new_stop": 27.98,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.66,
+    "range_pos_eod": 0.993,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.47
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_CRH_2026-10-29_1806",
+    "ts": "2026-10-29T19:45:08Z",
+    "ticker": "CRH",
+    "pnl_pct": 1.67,
+    "new_stop": 88.98,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.01,
+    "range_pos_eod": 0.921,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 8.63
   }
 ]
