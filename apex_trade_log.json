@@ -9748,5 +9748,24 @@
     "new_stop": 29.094000396728518,
     "high": 29.670000076293945,
     "ladder_step": 2
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MIR_2026-10-30_1441",
+    "ts": "2026-10-30T18:35:06Z",
+    "ticker": "MIR",
+    "exit_price": 17.93,
+    "reason": "Intraday Stop",
+    "pnl_pct": -2.9761880728367758
+  },
+  {
+    "event": "intraday_open",
+    "id": "PAPER_INTRA_VRTX_2026-10-30_1836",
+    "ts": "2026-10-30T18:36:29Z",
+    "ticker": "VRTX",
+    "entry": 560.280029296875,
+    "gain_from_open": 1.73,
+    "score": 24.8,
+    "mode": "paper"
   }
 ]
