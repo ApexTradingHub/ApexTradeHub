@@ -9767,5 +9767,37 @@
     "gain_from_open": 1.73,
     "score": 24.8,
     "mode": "paper"
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_BOOT_2026-10-30_1416",
+    "ts": "2026-10-30T19:45:07Z",
+    "ticker": "BOOT",
+    "pnl_pct": 1.3,
+    "new_stop": 129.25,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.65,
+    "range_pos_eod": 0.72,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 3.55
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_VRTX_2026-10-30_1836",
+    "ts": "2026-10-30T19:45:07Z",
+    "ticker": "VRTX",
+    "pnl_pct": -0.31,
+    "range_pos_eod": 0.623,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.58
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_VRTX_2026-10-30_1836",
+    "ts": "2026-10-30T19:45:07Z",
+    "ticker": "VRTX",
+    "exit_price": 558.5625,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.306548369933945
   }
 ]
