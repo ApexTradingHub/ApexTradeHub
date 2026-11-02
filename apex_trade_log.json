@@ -9799,5 +9799,25 @@
     "exit_price": 558.5625,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.306548369933945
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_MGM_2026-10-29_1801",
+    "ts": "2026-11-02T14:30:11Z",
+    "ticker": "MGM",
+    "old_stop": 29.094000396728518,
+    "new_stop": 29.65350040435791,
+    "high": 30.264999389648438,
+    "ladder_step": 3
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_CRH_2026-10-29_1806",
+    "ts": "2026-11-02T14:30:11Z",
+    "ticker": "CRH",
+    "old_stop": 88.98,
+    "new_stop": 90.4057006072998,
+    "high": 92.68000030517578,
+    "ladder_step": 1
   }
 ]
