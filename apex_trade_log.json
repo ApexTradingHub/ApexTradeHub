@@ -9906,5 +9906,25 @@
     "gain_from_open": 4.13,
     "score": 38.2,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_TAP_2026-11-02_1911",
+    "ts": "2026-11-02T19:45:06Z",
+    "ticker": "TAP",
+    "pnl_pct": 0.06,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.911,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.88
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_TAP_2026-11-02_1911",
+    "ts": "2026-11-02T19:45:06Z",
+    "ticker": "TAP",
+    "exit_price": 42.654998779296875,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.058638776812833485
   }
 ]
