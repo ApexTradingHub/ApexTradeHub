@@ -9819,5 +9819,34 @@
     "new_stop": 90.4057006072998,
     "high": 92.68000030517578,
     "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_AMT_2026-10-23",
+    "ts": "2026-11-02T14:35:08Z",
+    "ticker": "AMT",
+    "exit_price": 187.02499389648438,
+    "reason": "Stagnation Exit",
+    "pnl_pct": -0.14781279710563366
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_BOOT_2026-10-30_1416",
+    "ts": "2026-11-02T14:35:08Z",
+    "ticker": "BOOT",
+    "old_stop": 129.25,
+    "new_stop": 131.835,
+    "high": 137.22000122070312,
+    "ladder_step": 1
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_BOOT_2026-10-30_1416",
+    "ts": "2026-11-02T14:35:08Z",
+    "ticker": "BOOT",
+    "old_stop": 131.835,
+    "new_stop": 134.1707762145996,
+    "high": 137.22000122070312,
+    "ladder_step": 2
   }
 ]
