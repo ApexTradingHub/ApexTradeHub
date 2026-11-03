@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-11-02T16:35:35.930885",
-    "total_trades": 401,
+    "updated": "2026-11-03T14:41:26.464858",
+    "total_trades": 408,
     "analyzed_trades": 187
   },
   "trades": {
@@ -38782,6 +38782,629 @@
       },
       "auto_meta": {
         "built_at": "2026-11-02T16:35:35.630663",
+        "version": "1.0"
+      }
+    },
+    "CHRD_2026-10-20": {
+      "core": {
+        "ticker": "CHRD",
+        "signal_date": "2026-10-20",
+        "exit_date": "2026-11-02",
+        "setup": "BREAKOUT",
+        "entry": 155.21,
+        "stop": 148.57,
+        "target": 170.0,
+        "exit_price": 148.57,
+        "exit_reason": "Stop Loss",
+        "exit_day": 9,
+        "trigger_day": null,
+        "pnl_pct": -4.28,
+        "pnl_usd": -8.56,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 109.8,
+        "rr": 2.23,
+        "rsi": 67.9,
+        "macd_bull": "YES",
+        "vol_ratio": 1.12,
+        "avg_dv_m": 99.95,
+        "perf_20d": 10.8,
+        "perf_60d": 12.6,
+        "perf_120d": 12.1,
+        "base_range": 15.7,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.73,
+        "inside_day": false,
+        "sector": "Energy",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -1.14,
+          "vcp_strength": 0.11,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 13.0,
+          "short_pct": 9.58,
+          "analyst_upside": 17.24342957017091
+        }
+      },
+      "market_context": {
+        "sector": "Energy",
+        "sector_etf": "XLE",
+        "spy_perf_pct": -2.2,
+        "qqq_perf_pct": -5.09,
+        "sector_etf_perf_pct": -1.06,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:22.847206",
+        "version": "1.0"
+      }
+    },
+    "SM_2026-10-23": {
+      "core": {
+        "ticker": "SM",
+        "signal_date": "2026-10-23",
+        "exit_date": "2026-10-31",
+        "setup": "BREAKOUT",
+        "entry": 39.91,
+        "stop": 37.73,
+        "target": 43.64,
+        "exit_price": 37.73,
+        "exit_reason": "Stop Loss",
+        "exit_day": 6,
+        "trigger_day": null,
+        "pnl_pct": -5.46,
+        "pnl_usd": -10.92,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 148.3,
+        "rr": 1.71,
+        "rsi": 65.2,
+        "macd_bull": "YES",
+        "vol_ratio": 1.03,
+        "avg_dv_m": 104.51,
+        "perf_20d": 18.3,
+        "perf_60d": 27.6,
+        "perf_120d": 29.5,
+        "base_range": 9.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.73,
+        "inside_day": false,
+        "sector": "Energy",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.09,
+          "vcp_strength": 0.04,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 10,
+          "short_pct": 6.859999999999999,
+          "analyst_upside": 15.238643729743217
+        }
+      },
+      "market_context": {
+        "sector": "Energy",
+        "sector_etf": "XLE",
+        "spy_perf_pct": -0.56,
+        "qqq_perf_pct": -1.97,
+        "sector_etf_perf_pct": 1.0,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:23.378042",
+        "version": "1.0"
+      }
+    },
+    "EL_2026-10-23": {
+      "core": {
+        "ticker": "EL",
+        "signal_date": "2026-10-23",
+        "exit_date": "2026-10-31",
+        "setup": "BREAKOUT",
+        "entry": 109.57,
+        "stop": 104.24,
+        "target": 119.03,
+        "exit_price": 104.24,
+        "exit_reason": "Stop Loss",
+        "exit_day": 6,
+        "trigger_day": null,
+        "pnl_pct": -4.86,
+        "pnl_usd": -9.73,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 128.9,
+        "rr": 1.78,
+        "rsi": 66.7,
+        "macd_bull": "YES",
+        "vol_ratio": 1.39,
+        "avg_dv_m": 316.63,
+        "perf_20d": 15.0,
+        "perf_60d": 28.5,
+        "perf_120d": 34.6,
+        "base_range": 13.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.9,
+        "inside_day": true,
+        "sector": "Consumer Defensive",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -0.7,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 9,
+          "short_pct": 3.0199999,
+          "analyst_upside": 1.2738474279929912
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Defensive",
+        "sector_etf": "XLP",
+        "spy_perf_pct": -0.56,
+        "qqq_perf_pct": -1.97,
+        "sector_etf_perf_pct": 1.31,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:24.004823",
+        "version": "1.0"
+      }
+    },
+    "DVN_2026-10-23": {
+      "core": {
+        "ticker": "DVN",
+        "signal_date": "2026-10-23",
+        "exit_date": "2026-10-31",
+        "setup": "BREAKOUT",
+        "entry": 51.78,
+        "stop": 49.52,
+        "target": 57.2,
+        "exit_price": 49.52,
+        "exit_reason": "Stop Loss",
+        "exit_day": 6,
+        "trigger_day": null,
+        "pnl_pct": -4.36,
+        "pnl_usd": -8.73,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 107.8,
+        "rr": 2.39,
+        "rsi": 61.6,
+        "macd_bull": "YES",
+        "vol_ratio": 1.5,
+        "avg_dv_m": 453.7,
+        "perf_20d": 9.2,
+        "perf_60d": 17.1,
+        "perf_120d": 1.6,
+        "base_range": 6.8,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Energy",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.85,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 12,
+          "short_pct": 2.7199999999999998,
+          "analyst_upside": 19.673088149445416
+        }
+      },
+      "market_context": {
+        "sector": "Energy",
+        "sector_etf": "XLE",
+        "spy_perf_pct": -0.56,
+        "qqq_perf_pct": -1.97,
+        "sector_etf_perf_pct": 1.0,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:24.612605",
+        "version": "1.0"
+      }
+    },
+    "SM_2026-10-27": {
+      "core": {
+        "ticker": "SM",
+        "signal_date": "2026-10-27",
+        "exit_date": "2026-11-02",
+        "setup": "BREAKOUT",
+        "entry": 39.91,
+        "stop": 37.73,
+        "target": 43.64,
+        "exit_price": 37.73,
+        "exit_reason": "Stop Loss",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": -5.46,
+        "pnl_usd": -10.92,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 148.3,
+        "rr": 1.71,
+        "rsi": 65.2,
+        "macd_bull": "YES",
+        "vol_ratio": 1.03,
+        "avg_dv_m": 104.51,
+        "perf_20d": 18.3,
+        "perf_60d": 27.6,
+        "perf_120d": 29.5,
+        "base_range": 9.2,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.74,
+        "inside_day": false,
+        "sector": "Energy",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.09,
+          "vcp_strength": 0.04,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 6.0,
+          "short_pct": 6.859999999999999,
+          "analyst_upside": 15.123835616438353
+        }
+      },
+      "market_context": {
+        "sector": "Energy",
+        "sector_etf": "XLE",
+        "spy_perf_pct": -2.28,
+        "qqq_perf_pct": -5.57,
+        "sector_etf_perf_pct": -1.41,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:25.174541",
+        "version": "1.0"
+      }
+    },
+    "EL_2026-10-27": {
+      "core": {
+        "ticker": "EL",
+        "signal_date": "2026-10-27",
+        "exit_date": "2026-11-02",
+        "setup": "BREAKOUT",
+        "entry": 109.57,
+        "stop": 104.24,
+        "target": 119.03,
+        "exit_price": 104.24,
+        "exit_reason": "Stop Loss",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": -4.86,
+        "pnl_usd": -9.73,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 113.9,
+        "rr": 1.78,
+        "rsi": 66.7,
+        "macd_bull": "YES",
+        "vol_ratio": 1.39,
+        "avg_dv_m": 316.63,
+        "perf_20d": 15.0,
+        "perf_60d": 28.5,
+        "perf_120d": 34.6,
+        "base_range": 13.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.9,
+        "inside_day": true,
+        "sector": "Consumer Defensive",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": -0.7,
+          "vcp_strength": 0.0,
+          "earnings_blackout": true,
+          "earnings_beat": false,
+          "earnings_next_days": 5.0,
+          "short_pct": 2.7,
+          "analyst_upside": 1.1342492188935793
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Defensive",
+        "sector_etf": "XLP",
+        "spy_perf_pct": -2.28,
+        "qqq_perf_pct": -5.57,
+        "sector_etf_perf_pct": 4.22,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:25.678938",
+        "version": "1.0"
+      }
+    },
+    "DVN_2026-10-27": {
+      "core": {
+        "ticker": "DVN",
+        "signal_date": "2026-10-27",
+        "exit_date": "2026-11-02",
+        "setup": "BREAKOUT",
+        "entry": 51.78,
+        "stop": 49.52,
+        "target": 57.2,
+        "exit_price": 49.52,
+        "exit_reason": "Stop Loss",
+        "exit_day": 4,
+        "trigger_day": null,
+        "pnl_pct": -4.36,
+        "pnl_usd": -8.73,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 107.8,
+        "rr": 2.39,
+        "rsi": 61.6,
+        "macd_bull": "YES",
+        "vol_ratio": 1.5,
+        "avg_dv_m": 453.7,
+        "perf_20d": 9.2,
+        "perf_60d": 17.1,
+        "perf_120d": 1.6,
+        "base_range": 6.8,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.88,
+        "inside_day": false,
+        "sector": "Energy",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 0.85,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 8.0,
+          "short_pct": 2.7199999999999998,
+          "analyst_upside": 19.09372579395816
+        }
+      },
+      "market_context": {
+        "sector": "Energy",
+        "sector_etf": "XLE",
+        "spy_perf_pct": -2.28,
+        "qqq_perf_pct": -5.57,
+        "sector_etf_perf_pct": -1.41,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-03T14:41:26.164622",
         "version": "1.0"
       }
     }
