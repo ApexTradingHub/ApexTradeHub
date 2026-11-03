@@ -10002,5 +10002,81 @@
     "gain_from_open": 2.51,
     "score": 31.8,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_NXT_2026-11-03_1506",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "NXT",
+    "pnl_pct": -1.1,
+    "range_pos_eod": 0.547,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.29
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_NXT_2026-11-03_1506",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "NXT",
+    "exit_price": 95.8499984741211,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.0989036076412186
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_VRSN_2026-11-03_1829",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "VRSN",
+    "pnl_pct": -0.33,
+    "range_pos_eod": 0.726,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.81
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_VRSN_2026-11-03_1829",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "VRSN",
+    "exit_price": 314.1199951171875,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.32682811335709344
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_ORCL_2026-11-03_1856",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "ORCL",
+    "pnl_pct": -1.5,
+    "range_pos_eod": 0.491,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.74
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_ORCL_2026-11-03_1856",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "ORCL",
+    "exit_price": 124.67949676513672,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -1.5048455037979902
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_CVS_2026-11-03_1907",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "CVS",
+    "pnl_pct": -0.14,
+    "range_pos_eod": 0.814,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.84
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CVS_2026-11-03_1907",
+    "ts": "2026-11-03T19:45:07Z",
+    "ticker": "CVS",
+    "exit_price": 90.5199966430664,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.1379006063536122
   }
 ]
