@@ -2,8 +2,26 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 245.92949522458156,
-  "last_updated": "2026-11-03T14:25:03Z",
-  "pending": [],
+  "last_updated": "2026-11-03T14:30:02Z",
+  "pending": [
+    {
+      "id": "PAPER_ADSK_2026-11-03",
+      "ticker": "ADSK",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Technology",
+      "signal_date": "2026-11-03",
+      "entry": 256.68,
+      "stop_initial": 244.24,
+      "target": 280.0,
+      "score": 108.1,
+      "rr": 1.87,
+      "upside_pct": 9.1,
+      "added_at": "2026-11-03T14:30:09Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_MGM_2026-10-29_1801",
@@ -54,7 +72,7 @@
       "size_usd": 50.0,
       "stop": 94.31880355834961,
       "stop_set_at": "2026-11-02T15:30:08Z",
-      "high_since_entry": 97.05999755859375,
+      "high_since_entry": 97.06,
       "trailing_active": true,
       "ladder_step": 3,
       "opened_at": "2026-10-29T18:06:42Z",
@@ -85,7 +103,7 @@
       "size_usd": 50.0,
       "stop": 134.1707762145996,
       "stop_set_at": "2026-11-02T14:35:08Z",
-      "high_since_entry": 139.47999572753906,
+      "high_since_entry": 139.48,
       "trailing_active": true,
       "ladder_step": 2,
       "opened_at": "2026-10-30T14:16:47Z",
