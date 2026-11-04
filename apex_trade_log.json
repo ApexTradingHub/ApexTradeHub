@@ -10156,5 +10156,24 @@
     "gain_from_open": 3.42,
     "score": 30.2,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_BXSL_2026-11-04_1856",
+    "ts": "2026-11-04T19:45:06Z",
+    "ticker": "BXSL",
+    "pnl_pct": -1.13,
+    "range_pos_eod": 0.519,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 2.34
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_BXSL_2026-11-04_1856",
+    "ts": "2026-11-04T19:45:06Z",
+    "ticker": "BXSL",
+    "exit_price": 23.649999618530273,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.128764451933499
   }
 ]
