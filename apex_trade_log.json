@@ -10078,5 +10078,24 @@
     "exit_price": 90.5199966430664,
     "reason": "Intraday Close (EOD, rot)",
     "pnl_pct": -0.1379006063536122
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_INTRA_MGM_2026-10-29_1801",
+    "ts": "2026-11-04T14:30:11Z",
+    "ticker": "MGM",
+    "old_stop": 30.073125410079953,
+    "new_stop": 30.859924392700194,
+    "high": 32.26499938964844,
+    "ladder_step": 5
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_TXN_2026-11-04",
+    "ts": "2026-11-04T14:30:11Z",
+    "ticker": "TXN",
+    "signal_date": "2026-11-04",
+    "score": 97.4,
+    "source": "scanner"
   }
 ]
