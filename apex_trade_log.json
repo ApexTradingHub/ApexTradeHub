@@ -10175,5 +10175,15 @@
     "exit_price": 23.649999618530273,
     "reason": "Intraday Close (EOD, below VWAP)",
     "pnl_pct": -1.128764451933499
+  },
+  {
+    "event": "trailing_continuous",
+    "id": "PAPER_INTRA_MGM_2026-10-29_1801",
+    "ts": "2026-11-05T14:35:13Z",
+    "ticker": "MGM",
+    "old_stop": 30.98,
+    "new_stop": 31.25,
+    "high": 33.2400016784668,
+    "gain_pct": 18.8
   }
 ]
