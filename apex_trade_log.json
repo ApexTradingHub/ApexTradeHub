@@ -10213,5 +10213,15 @@
     "exit_price": 297.01,
     "reason": "Stop Loss",
     "pnl_pct": -4.856328282666503
+  },
+  {
+    "event": "trailing_activated",
+    "id": "PAPER_ADSK_2026-11-03",
+    "ts": "2026-11-05T15:00:14Z",
+    "ticker": "ADSK",
+    "old_stop": 266.9472,
+    "new_stop": 272.0808,
+    "high": 277.5150146484375,
+    "ladder_step": 3
   }
 ]
