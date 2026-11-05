@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-11-03T14:41:26.464858 | Total trades: 408_
+_Updated: 2026-11-05T14:58:39.163385 | Total trades: 413_
 
-**Analyse-Status**: complete=309, pending=99
+**Analyse-Status**: complete=309, pending=104
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -115,7 +115,7 @@ _Updated: 2026-11-03T14:41:26.464858 | Total trades: 408_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=20)
+## Recent (30d) — Worst 5 / Best 5  (n=25)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -130,7 +130,7 @@ _Updated: 2026-11-03T14:41:26.464858 | Total trades: 408_
 | EBAY_2026-10-13 | BREAKOUT | 8.88% | Take Profit D+2 | 96.0 | Consumer Cyclical | — |
 | LLY_2026-10-14 | BREAKOUT | 8.84% | Take Profit D+11 | 109.7 | Healthcare | — |
 
-## Pending Claude-Analyse (99)
+## Pending Claude-Analyse (104)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 79 mehr)_
+- _(+ 84 mehr)_
