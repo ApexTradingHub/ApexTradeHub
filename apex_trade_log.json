@@ -10262,5 +10262,44 @@
     "gain_from_open": 5.56,
     "score": 32.5,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_PFGC_2026-11-05_1548",
+    "ts": "2026-11-05T19:45:06Z",
+    "ticker": "PFGC",
+    "pnl_pct": -1.2,
+    "range_pos_eod": 0.417,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.23
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_PFGC_2026-11-05_1548",
+    "ts": "2026-11-05T19:45:06Z",
+    "ticker": "PFGC",
+    "exit_price": 110.33000183105469,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -1.2043887924316954
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_MGNI_2026-11-05_1902",
+    "ts": "2026-11-05T19:45:06Z",
+    "ticker": "MGNI",
+    "pnl_pct": 0.93,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.806,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.57
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MGNI_2026-11-05_1902",
+    "ts": "2026-11-05T19:45:06Z",
+    "ticker": "MGNI",
+    "exit_price": 27.700000762939453,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.9291348914218585
   }
 ]
