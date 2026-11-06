@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-11-05T14:58:39.163385 | Total trades: 413_
+_Updated: 2026-11-06T14:38:26.721002 | Total trades: 416_
 
-**Analyse-Status**: complete=309, pending=104
+**Analyse-Status**: complete=309, pending=107
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -96,9 +96,9 @@ _Updated: 2026-11-05T14:58:39.163385 | Total trades: 413_
 | CACI_2026-04-23 | REVERSAL | -9.28% | Stop Loss D+9 | 81.2 | Technology | Identisch zu CACI_2026-04-19 - REVERSAL #2 in Downgrade-Phase, kein Lerneffekt durch System |
 | KLAC_2026-06-29 | BREAKOUT | -9.28% | Stop Loss D+3 | 117.8 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
 | LRCX_2026-06-29 | BREAKOUT | -9.2% | Stop Loss D+3 | 125.5 | Technology | Semi-Sektor-Selloff Ende Juni 2026 (Memory-Kosten-Fear nach Apple/Microsoft-Preiserhoehungen, AI-Spending-Scrutiny, TSMC-Stake-Sale, Samsung-Streik-News). LRCX verlor >100B Marktwert. Hoch-Score Tech-BREAKOUT lief in einen sektorweiten Baerenmove; XLK/Semi divergierte negativ TROTZ positivem SPY. Quick-Stop D+3-4. |
+| CLF_2026-10-20 | BREAKOUT | -8.91% | Stop Loss D+12 | 148.3 | Basic Materials | _pending_ |
 | SMCI_2026-09-21 | BREAKOUT | -8.82% | Stop Loss D+17 | 131.0 | Technology | _pending_ |
 | BTU_2026-05-01 | REVERSAL | -8.73% | Stop Loss D+3 | 82.2 | Energy | REVERSAL 4 Tage vor Q1 Earnings - Earnings am 5.5 zeigten Net Loss & EBITDA -43%, Production Cut |
-| ANET_2026-07-08 | BREAKOUT | -8.57% | Stop Loss D+7 | 137.0 | Technology | High-Score-Loss (137): Insider-Verkaeufe $584M/3M, Cloud-Titan-Konzentration (MSFT/Meta), Networking-De-Risking. -8.6% Stop. |
 
 ## Best 10 Trades
 
@@ -115,11 +115,11 @@ _Updated: 2026-11-05T14:58:39.163385 | Total trades: 413_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=25)
+## Recent (30d) — Worst 5 / Best 5  (n=27)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
-| SMCI_2026-10-06 | BREAKOUT | -7.84% | Stop Loss D+4 | 134.6 | Technology | — |
+| CLF_2026-10-20 | BREAKOUT | -8.91% | Stop Loss D+12 | 148.3 | Basic Materials | — |
 | NOW_2026-10-15 | BREAKOUT | -6.06% | Stop Loss D+10 | 132.1 | Technology | — |
 | SM_2026-10-23 | BREAKOUT | -5.46% | Stop Loss D+6 | 148.3 | Energy | — |
 | SM_2026-10-27 | BREAKOUT | -5.46% | Stop Loss D+4 | 148.3 | Energy | — |
@@ -130,7 +130,7 @@ _Updated: 2026-11-05T14:58:39.163385 | Total trades: 413_
 | EBAY_2026-10-13 | BREAKOUT | 8.88% | Take Profit D+2 | 96.0 | Consumer Cyclical | — |
 | LLY_2026-10-14 | BREAKOUT | 8.84% | Take Profit D+11 | 109.7 | Healthcare | — |
 
-## Pending Claude-Analyse (104)
+## Pending Claude-Analyse (107)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 84 mehr)_
+- _(+ 87 mehr)_

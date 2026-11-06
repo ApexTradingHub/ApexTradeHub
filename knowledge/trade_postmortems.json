@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-11-05T14:58:39.163385",
-    "total_trades": 413,
+    "updated": "2026-11-06T14:38:26.721002",
+    "total_trades": 416,
     "analyzed_trades": 187
   },
   "trades": {
@@ -39850,6 +39850,273 @@
       },
       "auto_meta": {
         "built_at": "2026-11-05T14:58:38.863132",
+        "version": "1.0"
+      }
+    },
+    "CLF_2026-10-20": {
+      "core": {
+        "ticker": "CLF",
+        "signal_date": "2026-10-20",
+        "exit_date": "2026-11-06",
+        "setup": "BREAKOUT",
+        "entry": 13.25,
+        "stop": 12.07,
+        "target": 15.35,
+        "exit_price": 12.07,
+        "exit_reason": "Stop Loss",
+        "exit_day": 12,
+        "trigger_day": null,
+        "pnl_pct": -8.91,
+        "pnl_usd": -17.81,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 148.3,
+        "rr": 1.8,
+        "rsi": 66.7,
+        "macd_bull": "YES",
+        "vol_ratio": 4.07,
+        "avg_dv_m": 305.97,
+        "perf_20d": 16.8,
+        "perf_60d": 18.2,
+        "perf_120d": 38.0,
+        "base_range": 24.9,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.71,
+        "inside_day": false,
+        "sector": "Basic Materials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": true,
+          "gap_pct": 17.16,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 13.889999999999999,
+          "analyst_upside": -8.51063829787233
+        }
+      },
+      "market_context": {
+        "sector": "Basic Materials",
+        "sector_etf": "XLB",
+        "spy_perf_pct": -4.17,
+        "qqq_perf_pct": -8.24,
+        "sector_etf_perf_pct": 0.85,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-06T14:38:25.396425",
+        "version": "1.0"
+      }
+    },
+    "TSLA_2026-10-21": {
+      "core": {
+        "ticker": "TSLA",
+        "signal_date": "2026-10-21",
+        "exit_date": "2026-11-05",
+        "setup": "BREAKOUT",
+        "entry": 389.34,
+        "stop": 370.7,
+        "target": 425.0,
+        "exit_price": 370.7,
+        "exit_reason": "Stop Loss",
+        "exit_day": 11,
+        "trigger_day": null,
+        "pnl_pct": -4.79,
+        "pnl_usd": -9.58,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 95.2,
+        "rr": 1.91,
+        "rsi": 59.8,
+        "macd_bull": "YES",
+        "vol_ratio": 1.27,
+        "avg_dv_m": 13658.28,
+        "perf_20d": 1.7,
+        "perf_60d": 25.7,
+        "perf_120d": 1.3,
+        "base_range": 11.3,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.72,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 2.09,
+          "vcp_strength": 0.01,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 2.01,
+          "analyst_upside": 2.939974642274934
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -5.19,
+        "qqq_perf_pct": -10.78,
+        "sector_etf_perf_pct": 1.83,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-06T14:38:25.868004",
+        "version": "1.0"
+      }
+    },
+    "NUE_2026-10-29": {
+      "core": {
+        "ticker": "NUE",
+        "signal_date": "2026-10-29",
+        "exit_date": "2026-11-05",
+        "setup": "BREAKOUT",
+        "entry": 266.53,
+        "stop": 253.47,
+        "target": 290.0,
+        "exit_price": 253.47,
+        "exit_reason": "Stop Loss",
+        "exit_day": 5,
+        "trigger_day": null,
+        "pnl_pct": -4.9,
+        "pnl_usd": -9.8,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 102.9,
+        "rr": 1.8,
+        "rsi": 66.0,
+        "macd_bull": "YES",
+        "vol_ratio": 1.91,
+        "avg_dv_m": 339.82,
+        "perf_20d": 14.9,
+        "perf_60d": 3.9,
+        "perf_120d": 16.2,
+        "base_range": 11.1,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.62,
+        "inside_day": false,
+        "sector": "Basic Materials",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 2.97,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 87.0,
+          "short_pct": 2.8499998,
+          "analyst_upside": 6.125133375032177
+        }
+      },
+      "market_context": {
+        "sector": "Basic Materials",
+        "sector_etf": "XLB",
+        "spy_perf_pct": -4.73,
+        "qqq_perf_pct": -9.55,
+        "sector_etf_perf_pct": -0.38,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-06T14:38:26.420793",
         "version": "1.0"
       }
     }
