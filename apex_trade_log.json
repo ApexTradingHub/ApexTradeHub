@@ -10439,5 +10439,24 @@
     "signal_date": "2026-11-07",
     "score": 132.2,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_ABNB_2026-11-07",
+    "ts": "2026-11-09T14:55:07Z",
+    "ticker": "ABNB",
+    "entry_signal": 180.42,
+    "cur_price": 194.80499267578125,
+    "drift_pct": 7.97,
+    "reason": "entry-drift +7.97% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_UHS_2026-11-06",
+    "ts": "2026-11-09T14:55:07Z",
+    "ticker": "UHS",
+    "signal_date": "2026-11-06",
+    "score": 137.9,
+    "source": "scanner"
   }
 ]
