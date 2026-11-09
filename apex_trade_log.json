@@ -10458,5 +10458,24 @@
     "signal_date": "2026-11-06",
     "score": 137.9,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_UHS_2026-11-06",
+    "ts": "2026-11-09T15:00:11Z",
+    "ticker": "UHS",
+    "entry_signal": 191.96,
+    "cur_price": 197.89999389648438,
+    "drift_pct": 3.09,
+    "reason": "entry-drift +3.09% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_ETSY_2026-11-06",
+    "ts": "2026-11-09T15:00:11Z",
+    "ticker": "ETSY",
+    "signal_date": "2026-11-06",
+    "score": 143.4,
+    "source": "scanner"
   }
 ]
