@@ -10421,5 +10421,23 @@
     "new_stop": 102.85169906616211,
     "high": 105.66999816894531,
     "ladder_step": 1
+  },
+  {
+    "event": "close",
+    "id": "PAPER_BBY_2026-11-06",
+    "ts": "2026-11-09T14:50:07Z",
+    "ticker": "BBY",
+    "exit_price": 102.85169906616211,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 2.0000000000000027
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_ABNB_2026-11-07",
+    "ts": "2026-11-09T14:50:08Z",
+    "ticker": "ABNB",
+    "signal_date": "2026-11-07",
+    "score": 132.2,
+    "source": "scanner"
   }
 ]
