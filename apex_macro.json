@@ -1,39 +1,39 @@
 {
-  "updated": "2026-11-09 06:15 UTC",
+  "updated": "2026-11-10 06:15 UTC",
   "series": {
     "vix": {
       "id": "VIXCLS",
-      "value": 28.18,
-      "date": "2026-11-05",
-      "delta": 11.57
+      "value": 25.64,
+      "date": "2026-11-06",
+      "delta": -2.54
     },
     "hy_oas": {
       "id": "BAMLH0A0HYM2",
-      "value": 3.48,
-      "date": "2026-11-05",
-      "delta": 0.16
+      "value": 3.42,
+      "date": "2026-11-06",
+      "delta": -0.06
     },
     "yield_curve": {
       "id": "T10Y2Y",
-      "value": 0.35,
-      "date": "2026-11-06",
+      "value": 0.32,
+      "date": "2026-11-09",
       "delta": -0.03
     },
     "fed_funds": {
       "id": "DFF",
       "value": 3.88,
-      "date": "2026-11-05",
+      "date": "2026-11-06",
       "delta": 0.0
     },
     "tbill_3m": {
       "id": "DTB3",
-      "value": 4.0,
-      "date": "2026-11-05",
-      "delta": -0.03
+      "value": 4.01,
+      "date": "2026-11-06",
+      "delta": 0.01
     }
   },
   "regime_macro": "RISK_OFF",
   "reasons": [
-    "VIX 28.2 \u2265 25.0"
+    "VIX 25.6 \u2265 25.0"
   ]
 }
