@@ -1,21 +1,22 @@
-# ApexLearn Report — 2026-11-09 16:54
+# ApexLearn Report — 2026-11-10 15:15
 
-Window: last 30 days (since 2026-10-10)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-09 15:58)
+Window: last 30 days (since 2026-10-11)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-10 02:55)
 
-**Knowledge base** — 330 lifetime trades  |  WR 45.8%  |  PF 1.303  |  Range 2026-03-17 → 2026-10-29
+**Knowledge base** — 331 lifetime trades  |  WR 45.6%  |  PF 1.296  |  Range 2026-03-17 → 2026-11-03
 
 ## 1. Window Performance
 
-- **14d**: n=7 | WR 14.3% | PF 0.30 | AvgW +8.81% | AvgL -4.94% | Total $-41.72
-- **30d**: n=25 | WR 28.0% | PF 0.69 | AvgW +8.98% | AvgL -5.04% | Total $-55.79
-- **90d**: n=104 | WR 38.5% | PF 1.04 | AvgW +8.67% | AvgL -5.23% | Total $+24.10
+- **7d**: n=1 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -4.69% | Total $-9.38
+- **14d**: n=8 | WR 12.5% | PF 0.26 | AvgW +8.81% | AvgL -4.91% | Total $-51.10
+- **30d**: n=26 | WR 26.9% | PF 0.66 | AvgW +8.98% | AvgL -5.02% | Total $-65.17
+- **90d**: n=104 | WR 38.5% | PF 1.04 | AvgW +8.67% | AvgL -5.22% | Total $+25.54
 
 ## 2. Confirmed Facts (Knowledge Base)
 
 **✅ CONFIRMED (n≥30) — vertrauenswürdige Fakten:**
-- **🔵 Breakout**: lifetime WR 47% (n=300, PF 1.406)
-- **cat_earnings_beat**: -14% WR-Lift (with 33% vs without 48%, n_present=42)
+- **🔵 Breakout**: lifetime WR 46% (n=301, PF 1.397)
+- **cat_earnings_beat**: -15% WR-Lift (with 33% vs without 48%, n_present=43)
 - **gap_gt_2pct**: +14% WR-Lift (with 57% vs without 43%, n_present=56)
 
 **⚠️ TENTATIVE (n=15-30) — Trend, brauche mehr Daten:**
@@ -25,22 +26,22 @@ Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-09 15:
 **🔍 HYPOTHESIS (n<15) — nur Auffälligkeit, kein Beweis:**
 - **🔹 Bounceback**: lifetime WR 33% (n=12, PF 0.469)
 - **cat_vol_climax**: +38% WR-Lift (with 83% vs without 45%, n_present=6)
-- **cat_earnings_blackout**: +14% WR-Lift (with 60% vs without 46%, n_present=5)
-- **inside_day**: -13% WR-Lift (with 33% vs without 46%, n_present=6)
-- **🔵 Breakout × vol_25plus**: +23% vs setup-baseline (WR 70%, n=10)
+- **cat_earnings_blackout**: +15% WR-Lift (with 60% vs without 45%, n_present=5)
+- **inside_day**: -12% WR-Lift (with 33% vs without 46%, n_present=6)
+- **🔵 Breakout × vol_25plus**: +24% vs setup-baseline (WR 70%, n=10)
 - _(+ 4 weitere)_
 
 ## 3. Per-Setup Window-Performance
 
 | Setup | n | WR | PF | AvgWin | AvgLoss |
 |---|---|---|---|---|---|
-| 🔵 Breakout | 25 | 28.0% | 0.69 | +8.98% | -5.04% |
+| 🔵 Breakout | 26 | 26.9% | 0.66 | +8.98% | -5.02% |
 
 ## 4. Per-Setup Lifetime-Performance (Knowledge)
 
 | Setup | n | WR | PF | AvgWin | AvgLoss | Confidence |
 |---|---|---|---|---|---|---|
-| 🔵 Breakout | 300 | 46.7% | 1.41 | +7.78% | -4.84% | HIGH |
+| 🔵 Breakout | 301 | 46.5% | 1.40 | +7.78% | -4.84% | HIGH |
 | 🚀 Trend | 15 | 33.3% | 0.67 | +10.21% | -7.66% | MED |
 | 🔹 Bounceback | 12 | 33.3% | 0.47 | +5.66% | -6.03% | LOW |
 
@@ -48,14 +49,14 @@ Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-09 15:
 
 | Catalyst | n_present | WR with | WR without | Lift | Confidence |
 |---|---|---|---|---|---|
-| cat_vol_climax | 6 | 83.3% | 45.1% | +38.3% | LOW |
-| cat_earnings_blackout | 5 | 60.0% | 45.5% | +14.5% | LOW |
-| cat_earnings_beat | 42 | 33.3% | 47.6% | -14.2% | HIGH |
-| gap_gt_2pct | 56 | 57.1% | 43.4% | +13.7% | HIGH |
-| inside_day | 6 | 33.3% | 46.0% | -12.7% | LOW |
-| analyst_upside_gt_15pct | 52 | 48.1% | 45.3% | +2.8% | HIGH |
-| cat_pocket_pivot | 193 | 46.6% | 44.5% | +2.1% | HIGH |
-| short_gt_15pct | 19 | 47.4% | 45.7% | +1.7% | MED |
+| cat_vol_climax | 6 | 83.3% | 44.9% | +38.4% | LOW |
+| cat_earnings_beat | 43 | 32.6% | 47.6% | -15.0% | HIGH |
+| cat_earnings_blackout | 5 | 60.0% | 45.4% | +14.6% | LOW |
+| gap_gt_2pct | 56 | 57.1% | 43.3% | +13.9% | HIGH |
+| inside_day | 6 | 33.3% | 45.8% | -12.5% | LOW |
+| analyst_upside_gt_15pct | 52 | 48.1% | 45.2% | +2.9% | HIGH |
+| cat_pocket_pivot | 194 | 46.4% | 44.5% | +1.9% | HIGH |
+| short_gt_15pct | 19 | 47.4% | 45.5% | +1.9% | MED |
 
 ## 5b. Beaten-Down-BREAKOUT (perf_120<0): Catalyst-Split
 
@@ -73,7 +74,7 @@ perf_120<0 gesamt: WR 52.5% (n=40). Aggregat verschleiert — der Catalyst trenn
 **🔵 Breakout:**
 | Score-Bucket | n | actual WR | conf |
 |---|---|---|---|
-| 100-999 | 201 | 43.8% | HIGH |
+| 100-999 | 202 | 43.6% | HIGH |
 | 60-70 | 6 | 33.3% | LOW |
 | 70-80 | 19 | 42.1% | MED |
 | 80-90 | 31 | 61.3% | HIGH |
@@ -119,12 +120,13 @@ perf_120<0 gesamt: WR 52.5% (n=40). Aggregat verschleiert — der Catalyst trenn
 | Failure Pattern | count | % of losses | avg pnl | by setup |
 |---|---|---|---|---|
 | quick_stop_1_3d | 33 | 18% | -5.43% | 🔵 Breakout:33 |
-| slow_stop_4plus | 118 | 66% | -5.49% | 🔵 Breakout:107, 🚀 Trend:3, 🔥 Bet:1, 🔹 Bounceback:7 |
+| slow_stop_4plus | 119 | 66% | -5.48% | 🔵 Breakout:108, 🚀 Trend:3, 🔥 Bet:1, 🔹 Bounceback:7 |
 | time_exit_negative | 28 | 16% | -2.77% | 🔵 Breakout:20, 🚀 Trend:7, 🔹 Bounceback:1 |
-| high_score_loss_85plus | 155 | 87% | -5.18% | 🔵 Breakout:139, 🚀 Trend:9, 🔥 Bet:1, 🔹 Bounceback:6 |
+| high_score_loss_85plus | 156 | 87% | -5.18% | 🔵 Breakout:140, 🚀 Trend:9, 🔥 Bet:1, 🔹 Bounceback:6 |
 
-## 9. Window-Trade-Detail (letzte 25)
+## 9. Window-Trade-Detail (letzte 26)
 
+- **2026-11-03** REP.MC 🔵 Breakout         | 🔴 L -4.69% | Stop Loss D+5 | score 135.8 PP PEAD
 - **2026-10-29** HOG    🔵 Breakout         | 🟢 W +8.81% | Take Profit D+2 | score 136.4 SHORT
 - **2026-10-29** NUE    🔵 Breakout         | 🔴 L -4.90% | Stop Loss D+5 | score 102.9 PP GAP
 - **2026-10-28** TSLA   🔵 Breakout         | 🔴 L -5.17% | Stop Loss D+5 | score 108.6 PEAD
@@ -151,26 +153,30 @@ perf_120<0 gesamt: WR 52.5% (n=40). Aggregat verschleiert — der Catalyst trenn
 - **2026-10-13** EBAY   🔵 Breakout         | 🟢 W +8.88% | Take Profit D+2 | score 96.0 PP GAP
 - **2026-10-13** AMP.MI 🔵 Breakout         | 🔴 L -4.54% | Stop Loss D+13 | score 142.7 PP
 
-## 10. Offene Positionen (9)
+## 10. Offene Positionen (13)
 
-_Filtered: 16 legacy, 89 expired-hold, 19 stale-no-trigger_
+_Filtered: 16 legacy, 90 expired-hold, 17 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-11-07 | D+2 | ABNB | 🔵 Breakout | $180.42 | $170.21 | $200 | 132.2 |
-| 2026-11-06 | D+3 | ETSY | 🔵 Breakout | $95.68 | $89.37 | $106.46 | 143.4 |
-| 2026-11-06 | D+3 | UHS | 🔵 Breakout | $191.96 | $181.09 | $212.68 | 137.9 |
-| 2026-11-06 | D+3 | APPF | 🔵 Breakout | $232.08 | $216.35 | $260.0 | 132.0 |
-| 2026-11-06 | D+3 | DG | 🔵 Breakout | $139.4 | $132.02 | $152.48 | 131.8 |
-| 2026-11-06 | D+3 | MOH | 🔵 Breakout | $226.45 | $211.25 | $257.13 | 126.2 |
-| 2026-11-06 | D+3 | BBY | 🔵 Breakout | $100.78 | $95.41 | $110.0 | 119.5 |
-| 2026-11-06 | D+3 | BF-B | 🔵 Breakout | $30.35 | $28.94 | $33.0 | 118.1 |
-| 2026-11-06 | D+3 | LUV | 🔵 Breakout | $44.86 | $42.38 | $49.0 | 114.6 |
+| 2026-11-10 | D+0 | DAL | 🔵 Breakout | $90.1 | $85.03 | $99.94 | 122.6 |
+| 2026-11-10 | D+0 | TGT | 🔵 Breakout | $166.82 | $158.86 | $185.0 | 121.4 |
+| 2026-11-10 | D+0 | BBY | 🔵 Breakout | $103.75 | $97.78 | $115.0 | 113.0 |
+| 2026-11-10 | D+0 | OGN | 🔵 Breakout | $13.89 | $13.47 | $15.0 | 85.2 |
+| 2026-11-07 | D+3 | ABNB | 🔵 Breakout | $180.42 | $170.21 | $200 | 132.2 |
+| 2026-11-06 | D+4 | ETSY | 🔵 Breakout | $95.68 | $89.37 | $106.46 | 143.4 |
+| 2026-11-06 | D+4 | UHS | 🔵 Breakout | $191.96 | $181.09 | $212.68 | 137.9 |
+| 2026-11-06 | D+4 | APPF | 🔵 Breakout | $232.08 | $216.35 | $260.0 | 132.0 |
+| 2026-11-06 | D+4 | DG | 🔵 Breakout | $139.4 | $132.02 | $152.48 | 131.8 |
+| 2026-11-06 | D+4 | MOH | 🔵 Breakout | $226.45 | $211.25 | $257.13 | 126.2 |
+| 2026-11-06 | D+4 | BBY | 🔵 Breakout | $100.78 | $95.41 | $110.0 | 119.5 |
+| 2026-11-06 | D+4 | BF-B | 🔵 Breakout | $30.35 | $28.94 | $33.0 | 118.1 |
+| 2026-11-06 | D+4 | LUV | 🔵 Breakout | $44.86 | $42.38 | $49.0 | 114.6 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
-- TOTAL WR last-30d (28.0%) vs lifetime (45.8%): 📉 worse by 17.8pp
-- 🔵 Breakout last-30d 28.0% vs lifetime 46.7%: 📉 worse by 18.7pp
+- TOTAL WR last-30d (26.9%) vs lifetime (45.6%): 📉 worse by 18.7pp
+- 🔵 Breakout last-30d 26.9% vs lifetime 46.5%: 📉 worse by 19.6pp
 
 ---
 _Report-Ende. Knowledge-File: `knowledge/apex_knowledge.json`. Diesen Output an Claude füttern für datengestützte Verbesserungen._
