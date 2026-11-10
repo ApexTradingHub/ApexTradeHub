@@ -10564,5 +10564,37 @@
     "exit_price": 29.5,
     "reason": "Intraday Stop",
     "pnl_pct": -2.9924362117007717
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_LASR_2026-11-10_1551",
+    "ts": "2026-11-10T19:45:06Z",
+    "ticker": "LASR",
+    "pnl_pct": -2.55,
+    "range_pos_eod": 0.184,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 0.89
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_LASR_2026-11-10_1551",
+    "ts": "2026-11-10T19:45:06Z",
+    "ticker": "LASR",
+    "exit_price": 43.2400016784668,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -2.5467597038997005
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_TTD_2026-11-10_1651",
+    "ts": "2026-11-10T19:45:06Z",
+    "ticker": "TTD",
+    "pnl_pct": 1.73,
+    "new_stop": 15.27,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 3.46,
+    "range_pos_eod": 0.823,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 8.64
   }
 ]
