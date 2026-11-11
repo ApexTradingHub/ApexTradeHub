@@ -10662,5 +10662,43 @@
     "gain_from_open": 1.19,
     "score": 15.7,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_RKLB_2026-11-11_1501",
+    "ts": "2026-11-11T19:45:07Z",
+    "ticker": "RKLB",
+    "pnl_pct": -0.9,
+    "range_pos_eod": 0.577,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 4.62
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_RKLB_2026-11-11_1501",
+    "ts": "2026-11-11T19:45:07Z",
+    "ticker": "RKLB",
+    "exit_price": 66.12000274658203,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.8992782720976856
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_MRCY_2026-11-11_1501",
+    "ts": "2026-11-11T19:45:07Z",
+    "ticker": "MRCY",
+    "pnl_pct": -0.01,
+    "range_pos_eod": 0.585,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 2.41
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_MRCY_2026-11-11_1501",
+    "ts": "2026-11-11T19:45:07Z",
+    "ticker": "MRCY",
+    "exit_price": 87.41000366210938,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.011432746562888747
   }
 ]
