@@ -10623,5 +10623,24 @@
     "signal_date": "2026-11-11",
     "score": 93.5,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_UCG.MI_2026-11-11",
+    "ts": "2026-11-11T14:35:07Z",
+    "ticker": "UCG.MI",
+    "entry_signal": 79.35,
+    "cur_price": 83.76000213623047,
+    "drift_pct": 5.56,
+    "reason": "entry-drift +5.56% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "open",
+    "id": "PAPER_IAG.L_2026-11-11",
+    "ts": "2026-11-11T14:35:07Z",
+    "ticker": "IAG.L",
+    "entry_signal": 450.9,
+    "entry_actual": 453.1544999999999,
+    "mode": "paper"
   }
 ]
