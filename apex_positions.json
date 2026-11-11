@@ -2,8 +2,43 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 198.3941636009579,
-  "last_updated": "2026-11-11T14:25:02Z",
-  "pending": [],
+  "last_updated": "2026-11-11T14:30:02Z",
+  "pending": [
+    {
+      "id": "PAPER_UCG.MI_2026-11-11",
+      "ticker": "UCG.MI",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Financial Services",
+      "signal_date": "2026-11-11",
+      "entry": 79.35,
+      "stop_initial": 75.8,
+      "target": 85.76,
+      "score": 115.7,
+      "rr": 1.81,
+      "upside_pct": 8.1,
+      "added_at": "2026-11-11T14:30:09Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_IAG.L_2026-11-11",
+      "ticker": "IAG.L",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Industrials",
+      "signal_date": "2026-11-11",
+      "entry": 450.9,
+      "stop_initial": 429.04,
+      "target": 489.1,
+      "score": 93.5,
+      "rr": 1.75,
+      "upside_pct": 8.5,
+      "added_at": "2026-11-11T14:30:09Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_MGM_2026-10-29_1801",
