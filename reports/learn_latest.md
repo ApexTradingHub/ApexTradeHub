@@ -1,15 +1,15 @@
-# ApexLearn Report — 2026-11-11 14:43
+# ApexLearn Report — 2026-11-12 15:37
 
-Window: last 30 days (since 2026-10-12)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-11 00:53)
+Window: last 30 days (since 2026-10-13)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-12 01:59)
 
 **Knowledge base** — 333 lifetime trades  |  WR 45.6%  |  PF 1.296  |  Range 2026-03-17 → 2026-11-03
 
 ## 1. Window Performance
 
-- **14d**: n=6 | WR 16.7% | PF 0.33 | AvgW +8.81% | AvgL -5.31% | Total $-35.52
+- **14d**: n=4 | WR 25.0% | PF 0.53 | AvgW +8.81% | AvgL -5.50% | Total $-15.37
 - **30d**: n=28 | WR 28.6% | PF 0.70 | AvgW +8.95% | AvgL -5.12% | Total $-61.50
-- **90d**: n=106 | WR 38.7% | PF 1.04 | AvgW +8.67% | AvgL -5.25% | Total $+29.21
+- **90d**: n=105 | WR 38.1% | PF 1.01 | AvgW +8.64% | AvgL -5.25% | Total $+8.98
 
 ## 2. Confirmed Facts (Knowledge Base)
 
@@ -157,22 +157,22 @@ perf_120<0 gesamt: WR 52.5% (n=40). Aggregat verschleiert — der Catalyst trenn
 
 ## 10. Offene Positionen (12)
 
-_Filtered: 16 legacy, 91 expired-hold, 22 stale-no-trigger_
+_Filtered: 16 legacy, 91 expired-hold, 23 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-11-11 | D+0 | RCL | 🔵 Breakout | $343.0 | $324.91 | $374.99 | 130.7 |
-| 2026-11-11 | D+0 | GPN | 🔵 Breakout | $101.52 | $95.96 | $113.2 | 123.7 |
-| 2026-11-11 | D+0 | LW | 🔵 Breakout | $57.31 | $54.54 | $62.31 | 117.4 |
-| 2026-11-11 | D+0 | UCG.MI | 🔵 Breakout | $79.35 | $75.8 | $85.76 | 115.7 |
-| 2026-11-11 | D+0 | CBOE | 🔵 Breakout | $362.63 | $343.37 | $395.45 | 111.1 |
-| 2026-11-11 | D+0 | TMO | 🔵 Breakout | $724.53 | $691.47 | $800.0 | 101.1 |
-| 2026-11-11 | D+0 | IAG.L | 🔵 Breakout | $450.9 | $429.04 | $489.1 | 93.5 |
-| 2026-11-10 | D+1 | DAL | 🔵 Breakout | $90.1 | $85.03 | $99.94 | 122.6 |
-| 2026-11-10 | D+1 | TGT | 🔵 Breakout | $166.82 | $158.86 | $185.0 | 121.4 |
-| 2026-11-10 | D+1 | BBY | 🔵 Breakout | $103.75 | $97.78 | $115.0 | 113.0 |
-| 2026-11-10 | D+1 | OGN | 🔵 Breakout | $13.89 | $13.47 | $15.0 | 85.2 |
-| 2026-11-07 | D+4 | ABNB | 🔵 Breakout | $180.42 | $170.21 | $200 | 132.2 |
+| 2026-11-12 | D+0 | BEN | 🔵 Breakout | $36.22 | $34.47 | $40.0 | 100.9 |
+| 2026-11-11 | D+1 | RCL | 🔵 Breakout | $343.0 | $324.91 | $374.99 | 130.7 |
+| 2026-11-11 | D+1 | GPN | 🔵 Breakout | $101.52 | $95.96 | $113.2 | 123.7 |
+| 2026-11-11 | D+1 | LW | 🔵 Breakout | $57.31 | $54.54 | $62.31 | 117.4 |
+| 2026-11-11 | D+1 | UCG.MI | 🔵 Breakout | $79.35 | $75.8 | $85.76 | 115.7 |
+| 2026-11-11 | D+1 | CBOE | 🔵 Breakout | $362.63 | $343.37 | $395.45 | 111.1 |
+| 2026-11-11 | D+1 | TMO | 🔵 Breakout | $724.53 | $691.47 | $800.0 | 101.1 |
+| 2026-11-11 | D+1 | IAG.L | 🔵 Breakout | $450.9 | $429.04 | $489.1 | 93.5 |
+| 2026-11-10 | D+2 | DAL | 🔵 Breakout | $90.1 | $85.03 | $99.94 | 122.6 |
+| 2026-11-10 | D+2 | TGT | 🔵 Breakout | $166.82 | $158.86 | $185.0 | 121.4 |
+| 2026-11-10 | D+2 | BBY | 🔵 Breakout | $103.75 | $97.78 | $115.0 | 113.0 |
+| 2026-11-10 | D+2 | OGN | 🔵 Breakout | $13.89 | $13.47 | $15.0 | 85.2 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
