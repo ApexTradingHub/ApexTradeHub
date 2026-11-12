@@ -10809,5 +10809,24 @@
     "new_stop": 31.65,
     "high": 33.66999816894531,
     "gain_pct": 20.4
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_EQPT_2026-11-12_1502",
+    "ts": "2026-11-12T19:45:07Z",
+    "ticker": "EQPT",
+    "pnl_pct": -1.2,
+    "range_pos_eod": 0.437,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 3.23
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_EQPT_2026-11-12_1502",
+    "ts": "2026-11-12T19:45:07Z",
+    "ticker": "EQPT",
+    "exit_price": 15.65999984741211,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.198741510944992
   }
 ]
