@@ -115,7 +115,7 @@ _Updated: 2026-11-11T14:43:50.455875 | Total trades: 420_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=28)
+## Recent (30d) — Worst 5 / Best 5  (n=26)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -126,9 +126,9 @@ _Updated: 2026-11-11T14:43:50.455875 | Total trades: 420_
 | SM_2026-10-27 | BREAKOUT | -5.46% | Stop Loss D+4 | 148.3 | Energy | — |
 | IT_2026-10-15 | BREAKOUT | 9.92% | Take Profit D+5 | 154.4 | Technology | — |
 | MUR_2026-10-15 | BREAKOUT | 9.84% | Take Profit D+6 | 102.8 | Energy | — |
-| EBAY_2026-10-13 | BREAKOUT | 8.88% | Take Profit D+2 | 96.0 | Consumer Cyclical | — |
 | LLY_2026-10-14 | BREAKOUT | 8.84% | Take Profit D+11 | 109.7 | Healthcare | — |
 | HOG_2026-10-29 | BREAKOUT | 8.81% | Take Profit D+2 | 136.4 | Consumer Cyclical | — |
+| URI_2026-10-22 | BREAKOUT | 8.73% | Take Profit D+6 | 117.0 | Industrials | — |
 
 ## Pending Claude-Analyse (111)
 
