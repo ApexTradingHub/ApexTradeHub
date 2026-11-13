@@ -10867,5 +10867,63 @@
     "gain_from_open": 4.0,
     "score": 31.2,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_KDP_2026-11-13_1606",
+    "ts": "2026-11-13T19:45:07Z",
+    "ticker": "KDP",
+    "pnl_pct": -0.08,
+    "range_pos_eod": 0.708,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 1.89
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_KDP_2026-11-13_1606",
+    "ts": "2026-11-13T19:45:07Z",
+    "ticker": "KDP",
+    "exit_price": 36.584999084472656,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.08330438794090847
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_SO_2026-11-13_1811",
+    "ts": "2026-11-13T19:45:07Z",
+    "ticker": "SO",
+    "pnl_pct": -0.88,
+    "range_pos_eod": 0.531,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.36
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_SO_2026-11-13_1811",
+    "ts": "2026-11-13T19:45:07Z",
+    "ticker": "SO",
+    "exit_price": 93.43499755859375,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.8752435380219602
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_CHA_2026-11-13_1901",
+    "ts": "2026-11-13T19:45:07Z",
+    "ticker": "CHA",
+    "pnl_pct": 0.63,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.854,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.88
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_CHA_2026-11-13_1901",
+    "ts": "2026-11-13T19:45:07Z",
+    "ticker": "CHA",
+    "exit_price": 14.380000114440918,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.6298121261591665
   }
 ]
