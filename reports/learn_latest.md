@@ -1,14 +1,14 @@
-# ApexLearn Report — 2026-11-13 14:56
+# ApexLearn Report — 2026-11-16 16:29
 
-Window: last 30 days (since 2026-10-14)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-13 01:28)
+Window: last 30 days (since 2026-10-17)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-16 15:32)
 
 **Knowledge base** — 333 lifetime trades  |  WR 45.6%  |  PF 1.296  |  Range 2026-03-17 → 2026-11-03
 
 ## 1. Window Performance
 
-- **14d**: n=2 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -5.79% | Total $-23.18
-- **30d**: n=26 | WR 26.9% | PF 0.64 | AvgW +8.96% | AvgL -5.15% | Total $-70.18
+- **14d**: n=1 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -4.69% | Total $-9.38
+- **30d**: n=20 | WR 15.0% | PF 0.29 | AvgW +8.64% | AvgL -5.18% | Total $-124.33
 - **90d**: n=104 | WR 38.5% | PF 1.03 | AvgW +8.64% | AvgL -5.25% | Total $+18.69
 
 ## 2. Confirmed Facts (Knowledge Base)
@@ -34,7 +34,7 @@ Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-13 01:
 
 | Setup | n | WR | PF | AvgWin | AvgLoss |
 |---|---|---|---|---|---|
-| 🔵 Breakout | 25 | 28.0% | 0.69 | +8.96% | -5.05% |
+| 🔵 Breakout | 19 | 15.8% | 0.32 | +8.64% | -5.07% |
 | 🔥 Bet | 1 | 0.0% | 0.00 | +0.00% | -6.90% |
 
 ## 4. Per-Setup Lifetime-Performance (Knowledge)
@@ -124,7 +124,7 @@ perf_120<0 gesamt: WR 52.5% (n=40). Aggregat verschleiert — der Catalyst trenn
 | time_exit_negative | 28 | 16% | -2.77% | 🔵 Breakout:20, 🚀 Trend:7, 🔹 Bounceback:1 |
 | high_score_loss_85plus | 157 | 87% | -5.19% | 🔵 Breakout:140, 🚀 Trend:9, 🔥 Bet:2, 🔹 Bounceback:6 |
 
-## 9. Window-Trade-Detail (letzte 26)
+## 9. Window-Trade-Detail (letzte 20)
 
 - **2026-11-03** REP.MC 🔵 Breakout         | 🔴 L -4.69% | Stop Loss D+5 | score 135.8 PP PEAD
 - **2026-10-31** DVA    🔥 Bet              | 🔴 L -6.90% | Stop Loss D+7 | score 102.7 PP GAP PEAD SHORT
@@ -146,37 +146,22 @@ perf_120<0 gesamt: WR 52.5% (n=40). Aggregat verschleiert — der Catalyst trenn
 - **2026-10-20** CHRD   🔵 Breakout         | 🔴 L -4.28% | Stop Loss D+9 | score 109.8 PP
 - **2026-10-20** APA    🔵 Breakout         | 🔴 L -4.58% | Stop Loss D+11 | score 136.8 PP
 - **2026-10-20** CLF    🔵 Breakout         | 🔴 L -8.91% | Stop Loss D+12 | score 148.3 PP VC GAP
-- **2026-10-15** IT     🔵 Breakout         | 🟢 W +9.92% | Take Profit D+5 | score 154.4 PP SHORT
-- **2026-10-15** MUR    🔵 Breakout         | 🟢 W +9.84% | Take Profit D+6 | score 102.8 PP
-- **2026-10-15** NOW    🔵 Breakout         | 🔴 L -6.06% | Stop Loss D+10 | score 132.1 PP
-- **2026-10-14** LLY    🔵 Breakout         | 🟢 W +8.84% | Take Profit D+11 | score 109.7
-- **2026-10-14** CNQ    🔵 Breakout         | 🔴 L -3.64% | Stop Loss D+15 | score 108.9
-- **2026-10-14** DG     🔵 Breakout         | 🟢 W +8.18% | Take Profit D+15 | score 89.7
 
-## 10. Offene Positionen (13)
+## 10. Offene Positionen (4)
 
-_Filtered: 16 legacy, 92 expired-hold, 22 stale-no-trigger_
+_Filtered: 16 legacy, 92 expired-hold, 33 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-11-13 | D+0 | HUM | 🔵 Breakout | $449.34 | $422.86 | $500 | 138.0 |
-| 2026-11-12 | D+1 | BEN | 🔵 Breakout | $36.22 | $34.47 | $40.0 | 100.9 |
-| 2026-11-11 | D+2 | RCL | 🔵 Breakout | $343.0 | $324.91 | $374.99 | 130.7 |
-| 2026-11-11 | D+2 | GPN | 🔵 Breakout | $101.52 | $95.96 | $113.2 | 123.7 |
-| 2026-11-11 | D+2 | LW | 🔵 Breakout | $57.31 | $54.54 | $62.31 | 117.4 |
-| 2026-11-11 | D+2 | UCG.MI | 🔵 Breakout | $79.35 | $75.8 | $85.76 | 115.7 |
-| 2026-11-11 | D+2 | CBOE | 🔵 Breakout | $362.63 | $343.37 | $395.45 | 111.1 |
-| 2026-11-11 | D+2 | TMO | 🔵 Breakout | $724.53 | $691.47 | $800.0 | 101.1 |
-| 2026-11-11 | D+2 | IAG.L | 🔵 Breakout | $450.9 | $429.04 | $489.1 | 93.5 |
-| 2026-11-10 | D+3 | DAL | 🔵 Breakout | $90.1 | $85.03 | $99.94 | 122.6 |
-| 2026-11-10 | D+3 | TGT | 🔵 Breakout | $166.82 | $158.86 | $185.0 | 121.4 |
-| 2026-11-10 | D+3 | BBY | 🔵 Breakout | $103.75 | $97.78 | $115.0 | 113.0 |
-| 2026-11-10 | D+3 | OGN | 🔵 Breakout | $13.89 | $13.47 | $15.0 | 85.2 |
+| 2026-11-14 | D+2 | SWKS | 🔵 Breakout | $90.68 | $84.08 | $102.5 | 116.5 |
+| 2026-11-14 | D+2 | CEG | 🔵 Breakout | $278.22 | $257.57 | $317.52 | 73.9 |
+| 2026-11-13 | D+3 | HUM | 🔵 Breakout | $449.34 | $422.86 | $500 | 138.0 |
+| 2026-11-12 | D+4 | BEN | 🔵 Breakout | $36.22 | $34.47 | $40.0 | 100.9 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
-- TOTAL WR last-30d (26.9%) vs lifetime (45.6%): 📉 worse by 18.7pp
-- 🔵 Breakout last-30d 28.0% vs lifetime 46.7%: 📉 worse by 18.7pp
+- TOTAL WR last-30d (15.0%) vs lifetime (45.6%): 📉 worse by 30.6pp
+- 🔵 Breakout last-30d 15.8% vs lifetime 46.7%: 📉 worse by 30.9pp
 
 ---
 _Report-Ende. Knowledge-File: `knowledge/apex_knowledge.json`. Diesen Output an Claude füttern für datengestützte Verbesserungen._
