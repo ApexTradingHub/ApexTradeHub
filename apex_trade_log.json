@@ -10955,5 +10955,24 @@
     "new_stop": 31.72,
     "high": 33.7400016784668,
     "gain_pct": 20.6
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_WWW_2026-11-16_1506",
+    "ts": "2026-11-16T19:45:06Z",
+    "ticker": "WWW",
+    "pnl_pct": -1.05,
+    "range_pos_eod": 0.321,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.01
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_WWW_2026-11-16_1506",
+    "ts": "2026-11-16T19:45:06Z",
+    "ticker": "WWW",
+    "exit_price": 25.040000915527344,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -1.0472214441911532
   }
 ]
