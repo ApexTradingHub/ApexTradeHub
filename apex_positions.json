@@ -2,8 +2,26 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 199.0215649674056,
-  "last_updated": "2026-11-17T14:25:02Z",
-  "pending": [],
+  "last_updated": "2026-11-17T14:30:03Z",
+  "pending": [
+    {
+      "id": "PAPER_TSCO_2026-11-17",
+      "ticker": "TSCO",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-11-17",
+      "entry": 37.8,
+      "stop_initial": 35.71,
+      "target": 42.0,
+      "score": 118.8,
+      "rr": 2.02,
+      "upside_pct": 11.1,
+      "added_at": "2026-11-17T14:30:13Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_MGM_2026-10-29_1801",
@@ -123,9 +141,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-11-11T14:35:07Z",
-      "current_price": 448.79998779296875,
-      "pnl_pct": -0.9609332373464632,
-      "pnl_usd": -0.4804666186732316,
+      "current_price": 448.802001953125,
+      "pnl_pct": -0.9604887619729978,
+      "pnl_usd": -0.4802443809864989,
       "hold_days": 5,
       "hold_trading_days": 4
     }
@@ -12281,7 +12299,7 @@
     "losses": 166,
     "win_rate": 46.27831715210356,
     "pnl_realized": -8.227328926802373,
-    "pnl_unrealized": 4.551684715655725,
-    "equity": 403.5732496830613
+    "pnl_unrealized": 4.551906953342457,
+    "equity": 403.57347192074803
   }
 }
