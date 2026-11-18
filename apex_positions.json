@@ -2,8 +2,26 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 242.46415618964517,
-  "last_updated": "2026-11-18T14:25:02Z",
-  "pending": [],
+  "last_updated": "2026-11-18T14:30:02Z",
+  "pending": [
+    {
+      "id": "PAPER_BRBR_2026-11-18",
+      "ticker": "BRBR",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Defensive",
+      "signal_date": "2026-11-18",
+      "entry": 10.92,
+      "stop_initial": 10.08,
+      "target": 12.5,
+      "score": 126.7,
+      "rr": 1.88,
+      "upside_pct": 14.5,
+      "added_at": "2026-11-18T14:30:09Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_MGM_2026-10-29_1801",
@@ -61,9 +79,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-11-11T14:35:07Z",
-      "current_price": 445.1000061035156,
-      "pnl_pct": -1.7774277639269396,
-      "pnl_usd": -0.8887138819634699,
+      "current_price": 444.79998779296875,
+      "pnl_pct": -1.843634391147209,
+      "pnl_usd": -0.9218171955736045,
       "hold_days": 6,
       "hold_trading_days": 5
     },
@@ -12318,7 +12336,7 @@
     "losses": 168,
     "win_rate": 45.98070739549839,
     "pnl_realized": -14.784737704562797,
-    "pnl_unrealized": 9.333283858504348,
-    "equity": 401.7974400481495
+    "pnl_unrealized": 9.300180544894214,
+    "equity": 401.76433673453937
   }
 }
