@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-11-17T16:30:16.731180",
-    "total_trades": 421,
+    "updated": "2026-11-18T15:59:17.041091",
+    "total_trades": 424,
     "analyzed_trades": 187
   },
   "trades": {
@@ -40562,6 +40562,273 @@
       },
       "auto_meta": {
         "built_at": "2026-11-17T16:30:16.431018",
+        "version": "1.0"
+      }
+    },
+    "DHI_2026-11-03": {
+      "core": {
+        "ticker": "DHI",
+        "signal_date": "2026-11-03",
+        "exit_date": "2026-11-18",
+        "setup": "BREAKOUT",
+        "entry": 149.6,
+        "stop": 142.51,
+        "target": 164.51,
+        "exit_price": 142.51,
+        "exit_reason": "Stop Loss",
+        "exit_day": 11,
+        "trigger_day": null,
+        "pnl_pct": -4.74,
+        "pnl_usd": -9.48,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 84.7,
+        "rr": 2.1,
+        "rsi": 65.1,
+        "macd_bull": "YES",
+        "vol_ratio": 1.1,
+        "avg_dv_m": 488.47,
+        "perf_20d": 14.8,
+        "perf_60d": 1.2,
+        "perf_120d": 7.1,
+        "base_range": 12.4,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.91,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 1.01,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 76,
+          "short_pct": 6.1100002,
+          "analyst_upside": -2.8033413980252386
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -3.24,
+        "qqq_perf_pct": -4.03,
+        "sector_etf_perf_pct": 0.97,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-18T15:59:15.764017",
+        "version": "1.0"
+      }
+    },
+    "BBY_2026-11-10": {
+      "core": {
+        "ticker": "BBY",
+        "signal_date": "2026-11-10",
+        "exit_date": "2026-11-18",
+        "setup": "BREAKOUT",
+        "entry": 103.75,
+        "stop": 97.78,
+        "target": 115.0,
+        "exit_price": 97.78,
+        "exit_reason": "Stop Loss",
+        "exit_day": 6,
+        "trigger_day": null,
+        "pnl_pct": -5.75,
+        "pnl_usd": -11.51,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 113.0,
+        "rr": 1.89,
+        "rsi": 66.7,
+        "macd_bull": "YES",
+        "vol_ratio": 1.33,
+        "avg_dv_m": 307.24,
+        "perf_20d": 22.2,
+        "perf_60d": 24.3,
+        "perf_120d": 83.5,
+        "base_range": 14.6,
+        "horizon": "1-3 weeks",
+        "movement_class": "POWER_BREAKOUT",
+        "closing_strength": 0.92,
+        "inside_day": false,
+        "sector": "Consumer Cyclical",
+        "catalysts": {
+          "pocket_pivot": false,
+          "vol_climax": false,
+          "gap_pct": 1.38,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": 13,
+          "short_pct": 8.9099996,
+          "analyst_upside": -16.211893112532938
+        }
+      },
+      "market_context": {
+        "sector": "Consumer Cyclical",
+        "sector_etf": "XLY",
+        "spy_perf_pct": -2.67,
+        "qqq_perf_pct": -2.53,
+        "sector_etf_perf_pct": -2.13,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-18T15:59:16.246035",
+        "version": "1.0"
+      }
+    },
+    "HUM_2026-11-13": {
+      "core": {
+        "ticker": "HUM",
+        "signal_date": "2026-11-13",
+        "exit_date": "2026-11-17",
+        "setup": "BREAKOUT",
+        "entry": 449.34,
+        "stop": 422.86,
+        "target": 500.0,
+        "exit_price": 422.86,
+        "exit_reason": "Stop Loss",
+        "exit_day": 3,
+        "trigger_day": null,
+        "pnl_pct": -5.89,
+        "pnl_usd": -11.79,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 138.0,
+        "rr": 1.91,
+        "rsi": 64.1,
+        "macd_bull": "YES",
+        "vol_ratio": 1.64,
+        "avg_dv_m": 679.18,
+        "perf_20d": 4.6,
+        "perf_60d": 17.1,
+        "perf_120d": 47.6,
+        "base_range": 12.9,
+        "horizon": "1-3 weeks",
+        "movement_class": "SWEET_BREAKOUT",
+        "closing_strength": 0.6,
+        "inside_day": false,
+        "sector": "Healthcare",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 1.13,
+          "vcp_strength": 0.06,
+          "earnings_blackout": false,
+          "earnings_beat": true,
+          "earnings_next_days": 88,
+          "short_pct": 2.6300002,
+          "analyst_upside": 10.458740533718004
+        }
+      },
+      "market_context": {
+        "sector": "Healthcare",
+        "sector_etf": "XLV",
+        "spy_perf_pct": -2.91,
+        "qqq_perf_pct": -3.37,
+        "sector_etf_perf_pct": -1.91,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-18T15:59:16.740878",
         "version": "1.0"
       }
     }
