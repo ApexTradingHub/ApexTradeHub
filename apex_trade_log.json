@@ -11049,5 +11049,15 @@
     "signal_date": "2026-11-18",
     "score": 126.7,
     "source": "scanner"
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_BRBR_2026-11-18",
+    "ts": "2026-11-18T14:35:06Z",
+    "ticker": "BRBR",
+    "entry_signal": 10.92,
+    "cur_price": 13.189499855041504,
+    "drift_pct": 20.78,
+    "reason": "entry-drift +20.78% > 3.0% — Kurs vom Trigger weg, kein Retry"
   }
 ]
