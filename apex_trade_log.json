@@ -11109,5 +11109,24 @@
     "new_stop": 31.91,
     "high": 33.94499969482422,
     "gain_pct": 21.3
+  },
+  {
+    "event": "eod_close_red",
+    "id": "PAPER_INTRA_TGT_2026-11-18_1709",
+    "ts": "2026-11-18T19:45:07Z",
+    "ticker": "TGT",
+    "pnl_pct": -0.14,
+    "range_pos_eod": 0.722,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 5.4
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_TGT_2026-11-18_1709",
+    "ts": "2026-11-18T19:45:07Z",
+    "ticker": "TGT",
+    "exit_price": 168.57989501953125,
+    "reason": "Intraday Close (EOD, rot)",
+    "pnl_pct": -0.1422297679601236
   }
 ]
