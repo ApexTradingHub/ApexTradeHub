@@ -11059,5 +11059,25 @@
     "cur_price": 13.189499855041504,
     "drift_pct": 20.78,
     "reason": "entry-drift +20.78% > 3.0% — Kurs vom Trigger weg, kein Retry"
+  },
+  {
+    "event": "trailing_continuous",
+    "id": "PAPER_INTRA_MGM_2026-10-29_1801",
+    "ts": "2026-11-18T17:05:11Z",
+    "ticker": "MGM",
+    "old_stop": 31.83,
+    "new_stop": 31.84,
+    "high": 33.869998931884766,
+    "gain_pct": 21.1
+  },
+  {
+    "event": "intraday_open",
+    "id": "PAPER_INTRA_TGT_2026-11-18_1709",
+    "ts": "2026-11-18T17:09:24Z",
+    "ticker": "TGT",
+    "entry": 168.82000732421875,
+    "gain_from_open": 4.89,
+    "score": 38.8,
+    "mode": "paper"
   }
 ]
