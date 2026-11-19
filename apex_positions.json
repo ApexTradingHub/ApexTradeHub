@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 241.3346258062909,
-  "last_updated": "2026-11-19T18:55:02Z",
+  "cash": 191.3346258062909,
+  "last_updated": "2026-11-19T19:00:03Z",
   "pending": [],
   "open": [
     {
@@ -28,9 +28,9 @@
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
       "status": "open",
-      "current_price": 33.029998779296875,
-      "pnl_pct": 18.069699120274233,
-      "pnl_usd": 9.034849560137117,
+      "current_price": 32.98500061035156,
+      "pnl_pct": 17.908847758945498,
+      "pnl_usd": 8.954423879472749,
       "hold_days": 21,
       "intraday_rescued": true,
       "hold_trading_days": 15,
@@ -59,9 +59,9 @@
       "ladder_step": 0,
       "opened_at": "2026-11-19T16:56:31Z",
       "status": "open",
-      "current_price": 27.110000610351562,
-      "pnl_pct": 0.05647137931660761,
-      "pnl_usd": 0.028235689658303805,
+      "current_price": 27.010000228881836,
+      "pnl_pct": -0.3126059014351277,
+      "pnl_usd": -0.15630295071756384,
       "hold_days": 0
     },
     {
@@ -87,9 +87,37 @@
       "ladder_step": 0,
       "opened_at": "2026-11-19T18:51:23Z",
       "status": "open",
-      "current_price": 19.05500030517578,
-      "pnl_pct": 0.10507201431047568,
-      "pnl_usd": 0.05253600715523784,
+      "current_price": 19.199499130249023,
+      "pnl_pct": 0.8641937701894883,
+      "pnl_usd": 0.4320968850947441,
+      "hold_days": 0
+    },
+    {
+      "id": "PAPER_INTRA_TU_2026-11-19_1902",
+      "ticker": "TU",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Communication Services",
+      "signal_date": "2026-11-19",
+      "stop_initial": 10.28,
+      "target": 11.12,
+      "score": 35.8,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 5.69,
+      "entry_actual": 10.595000267028809,
+      "shares": 4.7192070542553815,
+      "size_usd": 50.0,
+      "stop": 10.28,
+      "stop_set_at": "2026-11-19T19:02:10Z",
+      "high_since_entry": 10.595000267028809,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-11-19T19:02:10Z",
+      "status": "open",
+      "current_price": 10.595000267028809,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
       "hold_days": 0
     }
   ],
@@ -12457,12 +12485,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 315,
-    "open_trades": 3,
+    "open_trades": 4,
     "wins": 144,
     "losses": 171,
     "win_rate": 45.714285714285715,
     "pnl_realized": -15.914268087917087,
-    "pnl_unrealized": 9.115621256950659,
-    "equity": 400.45024706324153
+    "pnl_unrealized": 9.23021781384993,
+    "equity": 400.5648436201408
   }
 }
