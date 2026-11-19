@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 342.84637479424697,
-  "last_updated": "2026-11-19T15:00:02Z",
+  "cash": 292.84637479424697,
+  "last_updated": "2026-11-19T15:05:02Z",
   "pending": [],
   "open": [
     {
@@ -28,13 +28,41 @@
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
       "status": "open",
-      "current_price": 32.91999816894531,
-      "pnl_pct": 17.676488722234613,
-      "pnl_usd": 8.838244361117306,
+      "current_price": 33.150001525878906,
+      "pnl_pct": 18.49866335600493,
+      "pnl_usd": 9.249331678002465,
       "hold_days": 20,
       "intraday_rescued": true,
       "hold_trading_days": 15,
       "trailing_activated_at": "2026-10-30T14:45:07Z"
+    },
+    {
+      "id": "PAPER_INTRA_SLS_2026-11-19_1506",
+      "ticker": "SLS",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Healthcare",
+      "signal_date": "2026-11-19",
+      "stop_initial": 15.37,
+      "target": 16.64,
+      "score": 23.6,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.89,
+      "entry_actual": 15.849200248718262,
+      "shares": 3.154733312429663,
+      "size_usd": 50.0,
+      "stop": 15.37,
+      "stop_set_at": "2026-11-19T15:06:55Z",
+      "high_since_entry": 15.849200248718262,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-11-19T15:06:55Z",
+      "status": "open",
+      "current_price": 15.849200248718262,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -12370,12 +12398,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 314,
-    "open_trades": 1,
+    "open_trades": 2,
     "wins": 144,
     "losses": 170,
     "win_rate": 45.85987261146497,
     "pnl_realized": -14.402519099961005,
-    "pnl_unrealized": 8.838244361117306,
-    "equity": 401.68461915536426
+    "pnl_unrealized": 9.249331678002465,
+    "equity": 402.09570647224945
   }
 }
