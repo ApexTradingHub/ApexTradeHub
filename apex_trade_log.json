@@ -11215,5 +11215,58 @@
     "gain_from_open": 5.69,
     "score": 35.8,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_GME_2026-11-19_1656",
+    "ts": "2026-11-19T19:45:06Z",
+    "ticker": "GME",
+    "pnl_pct": 0.65,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.83,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 4.28
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_GME_2026-11-19_1656",
+    "ts": "2026-11-19T19:45:06Z",
+    "ticker": "GME",
+    "exit_price": 27.270000457763672,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.6469922126939383
+  },
+  {
+    "event": "intraday_to_swing",
+    "id": "PAPER_INTRA_BBWI_2026-11-19_1851",
+    "ts": "2026-11-19T19:45:06Z",
+    "ticker": "BBWI",
+    "pnl_pct": 1.73,
+    "new_stop": 19.03,
+    "mode": "gruen->Breakeven",
+    "high_since_entry_pct": 2.08,
+    "range_pos_eod": 0.926,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 8.79
+  },
+  {
+    "event": "eod_close_thin",
+    "id": "PAPER_INTRA_TU_2026-11-19_1902",
+    "ts": "2026-11-19T19:45:06Z",
+    "ticker": "TU",
+    "pnl_pct": 0.94,
+    "threshold_pct": 1.0,
+    "range_pos_eod": 0.945,
+    "above_vwap_eod": true,
+    "dist_to_day_low_pct": 7.16
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_TU_2026-11-19_1902",
+    "ts": "2026-11-19T19:45:06Z",
+    "ticker": "TU",
+    "exit_price": 10.694999694824219,
+    "reason": "Intraday Close (EOD, zu duenn)",
+    "pnl_pct": 0.9438360101472025
   }
 ]
