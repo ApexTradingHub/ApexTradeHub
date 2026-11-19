@@ -11148,5 +11148,23 @@
     "new_stop": 31.96,
     "high": 34.0,
     "gain_pct": 21.5
+  },
+  {
+    "event": "close",
+    "id": "PAPER_IAG.L_2026-11-11",
+    "ts": "2026-11-19T14:35:08Z",
+    "ticker": "IAG.L",
+    "exit_price": 448.20001220703125,
+    "reason": "Stagnation Exit",
+    "pnl_pct": -1.0933330228362907
+  },
+  {
+    "event": "close",
+    "id": "PAPER_TSCO_2026-11-17",
+    "ts": "2026-11-19T14:35:08Z",
+    "ticker": "TSCO",
+    "exit_price": 38.74877999999999,
+    "reason": "Stop Loss (Trailing)",
+    "pnl_pct": 1.9999999999999987
   }
 ]
