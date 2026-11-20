@@ -1,8 +1,8 @@
 # Postmortem Database — Summary
 
-_Updated: 2026-11-19T16:05:32.648108 | Total trades: 426_
+_Updated: 2026-11-20T15:46:49.978795 | Total trades: 429_
 
-**Analyse-Status**: complete=309, pending=117
+**Analyse-Status**: complete=309, pending=120
 
 ## ⚠ Daten-Qualität: complete OHNE strukturierte News
 
@@ -115,22 +115,22 @@ _Updated: 2026-11-19T16:05:32.648108 | Total trades: 426_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=26)
+## Recent (30d) — Worst 5 / Best 5  (n=24)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
-| CLF_2026-10-20 | BREAKOUT | -8.91% | Stop Loss D+12 | 148.3 | Basic Materials | — |
 | CEG_2026-11-14 | BREAKOUT | -7.42% | Stop Loss D+4 | 73.9 | Utilities | — |
 | DVA_2026-10-31 | SHORT_SQUEEZE | -6.9% | Stop Loss D+7 | 102.7 | Healthcare | — |
 | HUM_2026-11-13 | BREAKOUT | -5.89% | Stop Loss D+3 | 138.0 | Healthcare | — |
 | BBY_2026-11-10 | BREAKOUT | -5.75% | Stop Loss D+6 | 113.0 | Consumer Cyclical | — |
+| UHS_2026-11-06 | BREAKOUT | -5.66% | Stop Loss D+9 | 137.9 | Healthcare | — |
 | HOG_2026-10-29 | BREAKOUT | 8.81% | Take Profit D+2 | 136.4 | Consumer Cyclical | — |
 | URI_2026-10-22 | BREAKOUT | 8.73% | Take Profit D+6 | 117.0 | Industrials | — |
-| ERIE_2026-10-20 | BREAKOUT | 8.39% | Take Profit D+8 | 71.0 | Financial Services | — |
-| CHRD_2026-10-20 | BREAKOUT | -4.28% | Stop Loss D+9 | 109.8 | Energy | — |
+| WAT_2026-10-21 | BREAKOUT | 0.23% | Time Exit D+30 | 116.1 | Healthcare | — |
 | DHR_2026-10-21 | BREAKOUT | -4.33% | Stop Loss D+12 | 123.9 | Healthcare | — |
+| DVN_2026-10-27 | BREAKOUT | -4.36% | Stop Loss D+4 | 107.8 | Energy | — |
 
-## Pending Claude-Analyse (117)
+## Pending Claude-Analyse (120)
 
 Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 
@@ -154,4 +154,4 @@ Diese Trades warten auf Claude WebSearch-Verifikation + Lesson-Tagging:
 - `TROW_2026-06-26`
 - `RRC_2026-09-01`
 - `GPC_2026-08-25`
-- _(+ 97 mehr)_
+- _(+ 100 mehr)_
