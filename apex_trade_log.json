@@ -11296,5 +11296,24 @@
     "gain_from_open": 1.03,
     "score": 25.1,
     "mode": "paper"
+  },
+  {
+    "event": "eod_close_below_vwap",
+    "id": "PAPER_INTRA_APG_2026-11-20_1821",
+    "ts": "2026-11-20T19:45:06Z",
+    "ticker": "APG",
+    "pnl_pct": -0.76,
+    "range_pos_eod": 0.439,
+    "above_vwap_eod": false,
+    "dist_to_day_low_pct": 1.13
+  },
+  {
+    "event": "close",
+    "id": "PAPER_INTRA_APG_2026-11-20_1821",
+    "ts": "2026-11-20T19:45:06Z",
+    "ticker": "APG",
+    "exit_price": 41.525001525878906,
+    "reason": "Intraday Close (EOD, below VWAP)",
+    "pnl_pct": -0.7647262169654245
   }
 ]
