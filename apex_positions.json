@@ -2,8 +2,26 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 342.1169066173379,
-  "last_updated": "2026-11-20T14:30:03Z",
-  "pending": [],
+  "last_updated": "2026-11-20T14:35:03Z",
+  "pending": [
+    {
+      "id": "PAPER_PENN_2026-11-20",
+      "ticker": "PENN",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-11-20",
+      "entry": 18.76,
+      "stop_initial": 17.67,
+      "target": 20.58,
+      "score": 97.1,
+      "rr": 1.67,
+      "upside_pct": 9.7,
+      "added_at": "2026-11-20T14:35:06Z",
+      "status": "pending",
+      "mode": "paper"
+    }
+  ],
   "open": [
     {
       "id": "PAPER_INTRA_MGM_2026-10-29_1801",
@@ -28,9 +46,9 @@
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
       "status": "open",
-      "current_price": 33.40999984741211,
-      "pnl_pct": 19.428058594567364,
-      "pnl_usd": 9.714029297283682,
+      "current_price": 32.95000076293945,
+      "pnl_pct": 17.78373659921414,
+      "pnl_usd": 8.89186829960707,
       "hold_days": 21,
       "intraday_rescued": true,
       "hold_trading_days": 16,
@@ -12501,7 +12519,7 @@
     "losses": 172,
     "win_rate": 45.911949685534594,
     "pnl_realized": -15.131987276870008,
-    "pnl_unrealized": 9.714029297283682,
-    "equity": 401.8309359146216
+    "pnl_unrealized": 8.89186829960707,
+    "equity": 401.00877491694496
   }
 }
