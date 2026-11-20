@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 342.1169066173379,
-  "last_updated": "2026-11-20T18:15:02Z",
+  "cash": 292.1169066173379,
+  "last_updated": "2026-11-20T18:20:02Z",
   "pending": [
     {
       "id": "PAPER_PENN_2026-11-20",
@@ -46,13 +46,41 @@
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
       "status": "open",
-      "current_price": 32.790000915527344,
-      "pnl_pct": 17.211797921000247,
-      "pnl_usd": 8.605898960500124,
+      "current_price": 32.82500076293945,
+      "pnl_pct": 17.336909080731605,
+      "pnl_usd": 8.668454540365802,
       "hold_days": 22,
       "intraday_rescued": true,
       "hold_trading_days": 16,
       "trailing_activated_at": "2026-10-30T14:45:07Z"
+    },
+    {
+      "id": "PAPER_INTRA_APG_2026-11-20_1821",
+      "ticker": "APG",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Industrials",
+      "signal_date": "2026-11-20",
+      "stop_initial": 40.59,
+      "target": 43.94,
+      "score": 25.1,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 1.03,
+      "entry_actual": 41.845001220703125,
+      "shares": 1.1948858535404254,
+      "size_usd": 50.0,
+      "stop": 40.59,
+      "stop_set_at": "2026-11-20T18:21:30Z",
+      "high_since_entry": 41.845001220703125,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-11-20T18:21:30Z",
+      "status": "open",
+      "current_price": 41.845001220703125,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -12514,12 +12542,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 318,
-    "open_trades": 1,
+    "open_trades": 2,
     "wins": 146,
     "losses": 172,
     "win_rate": 45.911949685534594,
     "pnl_realized": -15.131987276870008,
-    "pnl_unrealized": 8.605898960500124,
-    "equity": 400.722805577838
+    "pnl_unrealized": 8.668454540365802,
+    "equity": 400.78536115770373
   }
 }
