@@ -1,7 +1,7 @@
-# ApexLearn Report — 2026-11-23 18:46
+# ApexLearn Report — 2026-11-24 18:22
 
-Window: last 30 days (since 2026-10-24)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-23 17:55)
+Window: last 30 days (since 2026-10-25)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-24 04:58)
 
 **Knowledge base** — 346 lifetime trades  |  WR 44.5%  |  PF 1.232  |  Range 2026-03-17 → 2026-11-14
 
@@ -9,7 +9,7 @@ Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-23 17:
 
 - **14d**: n=5 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -5.83% | Total $-58.34
 - **30d**: n=19 | WR 5.3% | PF 0.09 | AvgW +8.81% | AvgL -5.27% | Total $-172.24
-- **90d**: n=100 | WR 35.0% | PF 0.87 | AvgW +8.51% | AvgL -5.27% | Total $-89.49
+- **90d**: n=99 | WR 35.4% | PF 0.88 | AvgW +8.51% | AvgL -5.29% | Total $-81.88
 
 ## 2. Confirmed Facts (Knowledge Base)
 
@@ -146,15 +146,16 @@ perf_120<0 gesamt: WR 51.2% (n=41). Aggregat verschleiert — der Catalyst trenn
 - **2026-10-27** EL     🔵 Breakout         | 🔴 L -4.86% | Stop Loss D+4 | score 113.9 PP
 - **2026-10-27** DVN    🔵 Breakout         | 🔴 L -4.36% | Stop Loss D+4 | score 107.8 PP
 
-## 10. Offene Positionen (3)
+## 10. Offene Positionen (4)
 
-_Filtered: 16 legacy, 94 expired-hold, 26 stale-no-trigger_
+_Filtered: 16 legacy, 95 expired-hold, 25 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-11-21 | D+2 | GME | 🔵 Breakout | $26.7 | $25.17 | $29.71 | 143.1 |
-| 2026-11-20 | D+3 | TGT | 🔵 Breakout | $166.76 | $158.58 | $180.51 | 117.2 |
-| 2026-11-20 | D+3 | PENN | 🔵 Breakout | $18.76 | $17.67 | $20.58 | 97.1 |
+| 2026-11-24 | D+0 | PDD | 🔵 Breakout | $87.82 | $83.41 | $95.62 | 108.2 |
+| 2026-11-21 | D+3 | GME | 🔵 Breakout | $26.7 | $25.17 | $29.71 | 143.1 |
+| 2026-11-20 | D+4 | TGT | 🔵 Breakout | $166.76 | $158.58 | $180.51 | 117.2 |
+| 2026-11-20 | D+4 | PENN | 🔵 Breakout | $18.76 | $17.67 | $20.58 | 97.1 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
