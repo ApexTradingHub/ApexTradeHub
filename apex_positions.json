@@ -2,22 +2,22 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 341.7345435088552,
-  "last_updated": "2026-11-24T14:30:02Z",
+  "last_updated": "2026-11-24T14:35:02Z",
   "pending": [
     {
-      "id": "PAPER_PENN_2026-11-20",
-      "ticker": "PENN",
+      "id": "PAPER_PDD_2026-11-24",
+      "ticker": "PDD",
       "setup": "BREAKOUT",
       "source": "scanner",
       "sector": "Consumer Cyclical",
-      "signal_date": "2026-11-20",
-      "entry": 18.76,
-      "stop_initial": 17.67,
-      "target": 20.58,
-      "score": 97.1,
-      "rr": 1.67,
-      "upside_pct": 9.7,
-      "added_at": "2026-11-20T14:35:06Z",
+      "signal_date": "2026-11-24",
+      "entry": 87.82,
+      "stop_initial": 83.41,
+      "target": 95.62,
+      "score": 108.2,
+      "rr": 1.77,
+      "upside_pct": 8.9,
+      "added_at": "2026-11-24T14:35:06Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -46,9 +46,9 @@
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
       "status": "open",
-      "current_price": 33.689998626708984,
-      "pnl_pct": 20.428947872418252,
-      "pnl_usd": 10.214473936209126,
+      "current_price": 33.79399871826172,
+      "pnl_pct": 20.800708695061967,
+      "pnl_usd": 10.400354347530984,
       "hold_days": 25,
       "intraday_rescued": true,
       "hold_trading_days": 18,
@@ -12539,6 +12539,24 @@
       "mode": "paper",
       "expired_at": "2026-11-18T14:35:06Z",
       "expired_reason": "entry_drift"
+    },
+    {
+      "id": "PAPER_PENN_2026-11-20",
+      "ticker": "PENN",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-11-20",
+      "entry": 18.76,
+      "stop_initial": 17.67,
+      "target": 20.58,
+      "score": 97.1,
+      "rr": 1.67,
+      "upside_pct": 9.7,
+      "added_at": "2026-11-20T14:35:06Z",
+      "status": "expired",
+      "mode": "paper",
+      "expired_at": "2026-11-24T14:35:06Z"
     }
   ],
   "stats": {
@@ -12550,7 +12568,7 @@
     "losses": 173,
     "win_rate": 45.76802507836991,
     "pnl_realized": -15.51435038535272,
-    "pnl_unrealized": 10.214473936209126,
-    "equity": 401.9490174450643
+    "pnl_unrealized": 10.400354347530984,
+    "equity": 402.1348978563862
   }
 }

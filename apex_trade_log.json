@@ -11315,5 +11315,21 @@
     "exit_price": 41.525001525878906,
     "reason": "Intraday Close (EOD, below VWAP)",
     "pnl_pct": -0.7647262169654245
+  },
+  {
+    "event": "expired",
+    "id": "PAPER_PENN_2026-11-20",
+    "ts": "2026-11-24T14:35:06Z",
+    "ticker": "PENN",
+    "reason": "no trigger after 4d, nicht re-validiert"
+  },
+  {
+    "event": "pending_added",
+    "id": "PAPER_PDD_2026-11-24",
+    "ts": "2026-11-24T14:35:06Z",
+    "ticker": "PDD",
+    "signal_date": "2026-11-24",
+    "score": 108.2,
+    "source": "scanner"
   }
 ]
