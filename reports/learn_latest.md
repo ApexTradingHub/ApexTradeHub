@@ -1,13 +1,13 @@
-# ApexLearn Report — 2026-11-24 18:22
+# ApexLearn Report — 2026-11-25 17:39
 
-Window: last 30 days (since 2026-10-25)  |  Filter: setup=ALL, ticker=ALL
-Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-24 04:58)
+Window: last 30 days (since 2026-10-26)  |  Filter: setup=ALL, ticker=ALL
+Market: BEARISH — SPY=WEAK | QQQ=WEAK | Market=BEARISH (updated 2026-11-25 03:44)
 
 **Knowledge base** — 346 lifetime trades  |  WR 44.5%  |  PF 1.232  |  Range 2026-03-17 → 2026-11-14
 
 ## 1. Window Performance
 
-- **14d**: n=5 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -5.83% | Total $-58.34
+- **14d**: n=3 | WR 0.0% | PF 0.00 | AvgW +0.00% | AvgL -5.93% | Total $-35.58
 - **30d**: n=19 | WR 5.3% | PF 0.09 | AvgW +8.81% | AvgL -5.27% | Total $-172.24
 - **90d**: n=99 | WR 35.4% | PF 0.88 | AvgW +8.51% | AvgL -5.29% | Total $-81.88
 
@@ -148,14 +148,14 @@ perf_120<0 gesamt: WR 51.2% (n=41). Aggregat verschleiert — der Catalyst trenn
 
 ## 10. Offene Positionen (4)
 
-_Filtered: 16 legacy, 95 expired-hold, 25 stale-no-trigger_
+_Filtered: 16 legacy, 97 expired-hold, 25 stale-no-trigger_
 
 | Signal | D+ | Ticker | Setup | Entry | Stop | Target | Score |
 |---|---|---|---|---|---|---|---|
-| 2026-11-24 | D+0 | PDD | 🔵 Breakout | $87.82 | $83.41 | $95.62 | 108.2 |
-| 2026-11-21 | D+3 | GME | 🔵 Breakout | $26.7 | $25.17 | $29.71 | 143.1 |
-| 2026-11-20 | D+4 | TGT | 🔵 Breakout | $166.76 | $158.58 | $180.51 | 117.2 |
-| 2026-11-20 | D+4 | PENN | 🔵 Breakout | $18.76 | $17.67 | $20.58 | 97.1 |
+| 2026-11-25 | D+0 | A | 🔵 Breakout | $183.36 | $174.6 | $198.44 | 124.7 |
+| 2026-11-25 | D+0 | DIS | 🔵 Breakout | $123.62 | $119.05 | $135.0 | 106.2 |
+| 2026-11-24 | D+1 | PDD | 🔵 Breakout | $87.82 | $83.41 | $95.62 | 108.2 |
+| 2026-11-21 | D+4 | GME | 🔵 Breakout | $26.7 | $25.17 | $29.71 | 143.1 |
 
 ## 12. Window-vs-Lifetime Drift (worth investigating?)
 
