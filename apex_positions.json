@@ -1,8 +1,8 @@
 {
   "mode": "paper",
   "capital_initial": 400.0,
-  "cash": 291.7345435088552,
-  "last_updated": "2026-11-25T15:15:03Z",
+  "cash": 241.7345435088552,
+  "last_updated": "2026-11-25T15:20:03Z",
   "pending": [
     {
       "id": "PAPER_PDD_2026-11-24",
@@ -63,9 +63,9 @@
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
       "status": "open",
-      "current_price": 34.06999969482422,
-      "pnl_pct": 21.787307346711387,
-      "pnl_usd": 10.893653673355693,
+      "current_price": 33.93000030517578,
+      "pnl_pct": 21.286862707785943,
+      "pnl_usd": 10.643431353892971,
       "hold_days": 26,
       "intraday_rescued": true,
       "hold_trading_days": 19,
@@ -96,11 +96,39 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-11-24T19:55:05Z",
-      "current_price": 26.8799991607666,
-      "pnl_pct": 0.17328772156671446,
-      "pnl_usd": 0.08664386078335723,
+      "current_price": 26.770000457763672,
+      "pnl_pct": -0.23664278695036198,
+      "pnl_usd": -0.11832139347518099,
       "hold_days": 0,
       "hold_trading_days": 1
+    },
+    {
+      "id": "PAPER_INTRA_ANF_2026-11-25_1521",
+      "ticker": "ANF",
+      "setup": "INTRADAY",
+      "source": "intraday_momentum",
+      "sector": "Consumer Cyclical",
+      "signal_date": "2026-11-25",
+      "stop_initial": 163.93,
+      "target": 177.45,
+      "score": 19.5,
+      "rr": 1.67,
+      "upside_pct": 5.0,
+      "gain_from_open": 2.07,
+      "entry_actual": 169.0,
+      "shares": 0.2958579881656805,
+      "size_usd": 50.0,
+      "stop": 163.93,
+      "stop_set_at": "2026-11-25T15:21:30Z",
+      "high_since_entry": 169.0,
+      "trailing_active": false,
+      "ladder_step": 0,
+      "opened_at": "2026-11-25T15:21:30Z",
+      "status": "open",
+      "current_price": 169.0,
+      "pnl_pct": 0.0,
+      "pnl_usd": 0.0,
+      "hold_days": 0
     }
   ],
   "closed": [
@@ -12611,12 +12639,12 @@
     "trading_mode": "paper",
     "etoro_env": "demo",
     "total_trades": 319,
-    "open_trades": 2,
+    "open_trades": 3,
     "wins": 146,
     "losses": 173,
     "win_rate": 45.76802507836991,
     "pnl_realized": -15.51435038535272,
-    "pnl_unrealized": 10.980297534139051,
-    "equity": 402.7148410429943
+    "pnl_unrealized": 10.52510996041779,
+    "equity": 402.259653469273
   }
 }
