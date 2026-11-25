@@ -2,7 +2,7 @@
   "mode": "paper",
   "capital_initial": 400.0,
   "cash": 291.7345435088552,
-  "last_updated": "2026-11-25T14:25:02Z",
+  "last_updated": "2026-11-25T14:30:03Z",
   "pending": [
     {
       "id": "PAPER_PDD_2026-11-24",
@@ -18,6 +18,23 @@
       "rr": 1.77,
       "upside_pct": 8.9,
       "added_at": "2026-11-24T14:35:06Z",
+      "status": "pending",
+      "mode": "paper"
+    },
+    {
+      "id": "PAPER_A_2026-11-25",
+      "ticker": "A",
+      "setup": "BREAKOUT",
+      "source": "scanner",
+      "sector": "Healthcare",
+      "signal_date": "2026-11-25",
+      "entry": 183.36,
+      "stop_initial": 174.6,
+      "target": 198.44,
+      "score": 124.7,
+      "rr": 1.72,
+      "upside_pct": 8.2,
+      "added_at": "2026-11-25T14:30:11Z",
       "status": "pending",
       "mode": "paper"
     }
@@ -41,7 +58,7 @@
       "size_usd": 50.0,
       "stop": 32.5,
       "stop_set_at": "2026-11-24T17:15:05Z",
-      "high_since_entry": 34.56999969482422,
+      "high_since_entry": 34.57,
       "trailing_active": true,
       "ladder_step": 5,
       "opened_at": "2026-10-29T18:01:57Z",
@@ -79,9 +96,9 @@
       "trailing_active": false,
       "ladder_step": 0,
       "opened_at": "2026-11-24T19:55:05Z",
-      "current_price": 27.495100021362305,
-      "pnl_pct": 2.465574827593521,
-      "pnl_usd": 1.2327874137967605,
+      "current_price": 27.280000686645508,
+      "pnl_pct": 1.66396737900576,
+      "pnl_usd": 0.83198368950288,
       "hold_days": 0,
       "hold_trading_days": 1
     }
@@ -12599,7 +12616,7 @@
     "losses": 173,
     "win_rate": 45.76802507836991,
     "pnl_realized": -15.51435038535272,
-    "pnl_unrealized": 12.591145524480524,
-    "equity": 404.3256890333357
+    "pnl_unrealized": 12.190341800186644,
+    "equity": 403.9248853090419
   }
 }
