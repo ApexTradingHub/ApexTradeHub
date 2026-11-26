@@ -2,8 +2,8 @@
   "_meta": {
     "created": "2026-05-18T22:21:44.797904",
     "version": "1.0",
-    "updated": "2026-11-23T18:46:42.545636",
-    "total_trades": 433,
+    "updated": "2026-11-26T17:20:49.310494",
+    "total_trades": 434,
     "analyzed_trades": 187
   },
   "trades": {
@@ -41630,6 +41630,95 @@
       },
       "auto_meta": {
         "built_at": "2026-11-23T18:46:42.245412",
+        "version": "1.0"
+      }
+    },
+    "AMT_2026-10-27": {
+      "core": {
+        "ticker": "AMT",
+        "signal_date": "2026-10-27",
+        "exit_date": "2026-12-08",
+        "setup": "BREAKOUT",
+        "entry": 186.37,
+        "stop": 175.54,
+        "target": 205.0,
+        "exit_price": 184.59,
+        "exit_reason": "Time Exit",
+        "exit_day": 30,
+        "trigger_day": null,
+        "pnl_pct": -0.96,
+        "pnl_usd": -1.91,
+        "outcome": "LOSS"
+      },
+      "signal_metadata": {
+        "score": 99.3,
+        "rr": 1.72,
+        "rsi": 66.5,
+        "macd_bull": "YES",
+        "vol_ratio": 2.49,
+        "avg_dv_m": 670.45,
+        "perf_20d": 13.0,
+        "perf_60d": 9.5,
+        "perf_120d": 6.6,
+        "base_range": 14.8,
+        "horizon": "1-3 weeks",
+        "movement_class": "DEADZONE_BREAKOUT",
+        "closing_strength": 0.21,
+        "inside_day": false,
+        "sector": "Real Estate",
+        "catalysts": {
+          "pocket_pivot": true,
+          "vol_climax": false,
+          "gap_pct": 10.55,
+          "vcp_strength": 0.0,
+          "earnings_blackout": false,
+          "earnings_beat": false,
+          "earnings_next_days": null,
+          "short_pct": 1.82,
+          "analyst_upside": 14.584204376460598
+        }
+      },
+      "market_context": {
+        "sector": "Real Estate",
+        "sector_etf": "XLRE",
+        "spy_perf_pct": -6.88,
+        "qqq_perf_pct": -12.11,
+        "sector_etf_perf_pct": 3.35,
+        "sector_divergence": false,
+        "regime_at_signal": null,
+        "macro_at_signal": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        },
+        "macro_at_exit": {
+          "vix": null,
+          "hy_oas": null,
+          "yield_curve": null,
+          "regime": "UNKNOWN",
+          "date_used": null
+        }
+      },
+      "news": {
+        "yfinance_news": [],
+        "web_research": [],
+        "key_events": []
+      },
+      "claude_analysis": {
+        "status": "pending",
+        "primary_failure_cause": null,
+        "primary_win_cause": null,
+        "lesson_tags": [],
+        "similar_trades": [],
+        "what_would_have_helped": [],
+        "what_to_replicate": [],
+        "analyzed_at": null,
+        "confidence": null
+      },
+      "auto_meta": {
+        "built_at": "2026-11-26T17:20:49.010295",
         "version": "1.0"
       }
     }
