@@ -115,7 +115,7 @@ _Updated: 2026-11-26T17:20:49.310494 | Total trades: 434_
 | APP_2026-05-26 | BREAKOUT | 16.18% | Take Profit D+2 | 103.4 | Unknown | BREAKOUT mit dem perfekten Catalyst-Stack: Q1-2026-Beat ($1.84B Rev vs $1.78B Est), Q2-Guidance ueber Konsens ($1.92-1.95B Rev, $1.62B EBITDA), Analyst-PT-Raise-Welle (Morgan Stanley auf $720, UBS, DB, Macquarie, Wedbush, Oppenheimer, Jefferies bullish), PLUS AXON-Self-Serve-Plattform-Launch im Juni, PLUS Meta-Competition-Relief (kein non-IDFA-Bid). Score 103 + Pivot + Analyst-Flag = strong-conviction-breakout. Gewann TP D+2 trotz schwacher closing_strength 0.41 — die fundamentalen Treiber waren so dominant, dass intraday-Spike-Fade-Warnsignal irrelevant. |
 | OKTA_2026-09-14 | BREAKOUT | 16.05% | Take Profit D+7 | 147.6 | Technology | _pending_ |
 
-## Recent (30d) — Worst 5 / Best 5  (n=20)
+## Recent (30d) — Worst 5 / Best 5  (n=16)
 
 | Trade | Setup | PnL% | Exit | Score | Sektor | Tags |
 |---|---|---|---|---|---|---|
@@ -125,10 +125,10 @@ _Updated: 2026-11-26T17:20:49.310494 | Total trades: 434_
 | BBY_2026-11-10 | BREAKOUT | -5.75% | Stop Loss D+6 | 113.0 | Consumer Cyclical | — |
 | UHS_2026-11-06 | BREAKOUT | -5.66% | Stop Loss D+9 | 137.9 | Healthcare | — |
 | HOG_2026-10-29 | BREAKOUT | 8.81% | Take Profit D+2 | 136.4 | Consumer Cyclical | — |
-| AMT_2026-10-27 | BREAKOUT | -0.96% | Time Exit D+30 | 99.3 | Real Estate | — |
-| DVN_2026-10-27 | BREAKOUT | -4.36% | Stop Loss D+4 | 107.8 | Energy | — |
 | UCG.MI_2026-11-11 | BREAKOUT | -4.47% | Stop Loss D+7 | 115.7 | Financial Services | — |
 | ASH_2026-10-31 | BREAKOUT | -4.6% | Stop Loss D+16 | 111.7 | Basic Materials | — |
+| BF-B_2026-11-06 | BREAKOUT | -4.65% | Stop Loss D+11 | 118.1 | Consumer Defensive | — |
+| REP.MC_2026-11-03 | BREAKOUT | -4.69% | Stop Loss D+5 | 135.8 | Energy | — |
 
 ## Pending Claude-Analyse (125)
 
